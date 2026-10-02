@@ -52,6 +52,6 @@ If someone else changed the same part of the site in the meantime, Claude shows 
 
 One-time repository settings that make this safe:
 
-- Turn on GitHub Actions for the repository, so the checks in `.github/workflows/ci.yml` (Format, Lint, Type Check, Build) run on every pull request. Render only deploys `main` once these checks pass.
+- GitHub Actions runs the checks in `.github/workflows/ci.yml` (Format, Lint, Type Check, Build) on every pull request. Render only deploys `main` once these checks pass.
 - Protect `main`: require a pull request before merging, require the Format, Lint, Type Check and Build checks to pass, and block force pushes.
 - Invite each editor to the repository with **Write** access.
