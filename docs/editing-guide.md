@@ -49,6 +49,15 @@ If someone else changed the same part of the site in the meantime, Claude shows 
 - **Insights articles:** paste the text into the chat, or share a link to the document, and say who wrote it. Claude turns it into an article and asks you about the address and images.
 - **Images:** Claude can see images you paste into the chat but usually can't save them to the site from there. It will send you a link to upload the image to GitHub instead: open it, drag the image in, and click "Commit changes". A share link (Google Drive set to "anyone with the link", or Dropbox) also works if your network settings allow those sites.
 
+## Forms
+
+The contact form and the newsletter signup in the footer send their submissions to FormSpark, an outside service. Some form changes are made there rather than on the website:
+
+- **In FormSpark, by you:** who gets an email for each submission, reading or exporting submissions and newsletter signups, spam protection, automatic replies, and sending submissions to other tools. Go to [formspark.io](https://formspark.io), sign in with Google as **admin@runfleet.com**, and open "Contact Form" or "Newsletter Sign Up". Ask Napon if you don't have access to that account.
+- **On the website, through Claude:** the form's wording, its fields, and the thank-you pages. Ask as you would for any other change.
+
+Not sure which? Ask Claude; it will tell you where the change belongs.
+
 ## Other languages
 
 The site is also in German, Arabic, French, Chinese (Simplified) and Spanish, switched with the flag menu at the top of every page. When you change wording or add an Insights article, Claude updates the translations in the same change and shows you a translated page in the preview. Ask in English; you can also ask for a fix in one language only, for example "the German home page headline should say …".

@@ -13,6 +13,7 @@ Reference files in this folder:
 - `conflicts.md`: how to walk the editor through a merge conflict.
 - `design-and-voice.md`: how the site looks and sounds, for wording and anything visual.
 - `images.md`: getting images from the editor into the site, including Insights articles.
+- `forms.md`: the contact form and newsletter signup (FormSpark), and which changes the editor makes in the FormSpark dashboard instead of the site.
 
 ## 0. Setup check (first request of a session only)
 
@@ -32,6 +33,8 @@ Every task starts from the latest version of the site.
 - A merge conflict at any point: follow `conflicts.md`.
 
 ## 2. Understand the request
+
+If the request is about the contact form or newsletter signup (who gets the emails, spam, seeing submissions, the fields), read `forms.md` first: some of these changes happen in FormSpark, not on the site.
 
 Restate the request in one sentence and name the pages it affects ("I'll change the headline on the home page"). Find the right file with `content-map.md`; never guess by searching for a sentence alone when the map names the file.
 
