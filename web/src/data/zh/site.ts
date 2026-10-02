@@ -14,7 +14,7 @@ export const headerLinks: NavLink[] = [
   { label: '解决方案', href: '/#solutions' },
   { label: 'AI 智能体', href: '/#ai' },
   { label: '咨询服务', href: '/#consultancy' },
-  { label: '关于我们', href: '/about' },
+  { label: '洞察', href: '/insights' },
 ]
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
@@ -30,7 +30,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: '公司',
     links: [
-      { label: '关于我们', href: '/about' },
+      { label: '洞察', href: '/insights' },
       { label: '咨询服务', href: '/#consultancy' },
       { label: 'AI 智能体', href: '/#ai' },
       { label: '联系我们', href: '/contact' },
