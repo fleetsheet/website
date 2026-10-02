@@ -18,5 +18,4 @@ jobs:
         with:
           scopes: |
             web
-            cms
           requireScope: false

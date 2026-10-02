@@ -1,7 +1,7 @@
 {
   "name": "web",
   "version": "1.0.0",
-  "description": "JHB Payload Astro Website Template - Web",
+  "description": "Fleet marketing website",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -16,15 +16,11 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^11.0.11",
-    "@jhb.software/astro-payload-richtext-lexical": "0.3.4",
     "@lucide/astro": "^1.48.0",
-    "@payloadcms/live-preview": "3.90.2",
-    "@payloadcms/sdk": "3.90.2",
     "astro": "^7.3.5",
     "astro-seo-schema": "^7.0.0",
-    "cms": "workspace:*",
-    "payload": "3.90.2",
-    "schema-dts": "^2.0.0"
+    "schema-dts": "^2.0.0",
+    "sharp": "^0.35.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

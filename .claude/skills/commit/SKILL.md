@@ -12,4 +12,4 @@ When the user requests you to commit the changes, you MUST start by stating the 
 
 The type can be of type `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`.
 
-The scope can be of type `cms`, `web`. If both are changed, omit the scope.
+The scope is `web` for changes in `web/`. Omit the scope for repository-wide changes.
