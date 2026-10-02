@@ -1,22 +1,8 @@
 # Repository Overview
 
-This is a mono-repository consisting of:
-
-- **CMS** (`/cms`): Payload CMS with Next.js for content management
-- **Frontend** (`/web`): Astro-based static site, styled with Tailwind CSS
+This repository contains the Fleet marketing website (`/web`): an Astro-based static site, styled with Tailwind CSS. There is no CMS: all content lives in the repository as Markdown files and typed data files.
 
 ## Essential Commands
-
-### CMS Development (`/cms`)
-
-```bash
-pnpm dev
-pnpm build
-pnpm generate:types
-pnpm generate:importmap
-pnpm lint
-pnpm format
-```
 
 ### Frontend Development (`/web`)
 
@@ -30,35 +16,21 @@ pnpm format
 
 ## Architecture Overview
 
-### CMS Architecture
-
-The CMS uses Payload v3 with a modular collection and block system:
-
-- **Collections** (`/cms/src/collections/`): Define content types with plural names (e.g. `Articles.ts`)
-- **Blocks** (`/cms/src/blocks/`): Reusable content blocks that map to frontend block components. Suffix: `Block` (e.g. `AuthorsListBlock.ts`)
-- **Globals** (`/cms/src/globals/`): Site-wide settings (Header, Footer, Labels)
-- **Endpoints** (`/cms/src/endpoints/`): Custom HTTP API-endpoints
-- **Fields** (`/cms/src/fields/`): Reusable fields (e.g. `heroSection` field for the `pages` collection)
-
-Key architectural patterns:
-
-- Usage of the [@jhb.software/payload-pages-plugin](https://github.com/jhb-software/payload-pages-plugin) for hierarchical page structure and path generation
-
 ### Frontend Architecture
 
-The frontend uses Astro's static site generation with dynamic CMS integration:
+The frontend uses Astro's static site generation with content from the repository:
 
 - **Components**: (`/web/src/components/`): Reusable .astro components
-  - **Blocks**: (`/web/src/components/blocks/`): .astro components for CMS blocks (same naming convention as the CMS blocks)
-- **Layout**: (`/web/src/layout/`): Layout components like `HeroSection.astro`, `Footer.astro`
-  - **collections**: (`/web/src/layout/collections/`): Layout components for collection types (e.g. `ArticleLayout.astro`)
+- **Layout**: (`/web/src/layout/`): Layout components like `Layout.astro`, `Header.astro`, `Footer.astro`
+- **Content**: (`/web/src/content/`): Markdown content collections, with schemas in `/web/src/content.config.ts`
+  - **insights**: (`/web/src/content/insights/`): one `.md` file per Insights article, served at `/insights/<file name>`
 - **Pages**: (`/web/src/pages/`): Dynamic routing
 - **Schema**: (`/web/src/schema/`): Structured data schemas for SEO
 
 Key architectural patterns:
 
 - Static site generation with Astro
-- SSR only for `/preview` pages
+- Content collections with strict frontmatter schemas; `pnpm check` fails on invalid content
 - Tailwind CSS v4 for styling with custom design tokens
 
 #### Design System
@@ -85,11 +57,6 @@ Always use Astro's type-safe environment variables instead of `import.meta.env`:
 Strict mode is enabled across the monorepo. Always ensure existing types are reused and type assertions are prevented.
 
 ## Rules
-
-### Payload Types
-
-- If CMS schema was modified, run `pnpm generate:types` in `cms` to update TypeScript types
-- Ensure all new components properly type their props using generated CMS types
 
 ### Structured Data Schemas
 
@@ -130,5 +97,4 @@ When completing any task in this codebase, always perform these quality checks:
 
 ### Code Quality
 
-- Run `pnpm lint` in `cms`
-- Run `pnpm lint` and `pnpm check` in `web`
+- Run `pnpm lint`, `pnpm format` and `pnpm check` in `web`

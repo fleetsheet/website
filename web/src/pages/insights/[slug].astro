@@ -1,0 +1,44 @@
+---
+import Container from '@/components/ui/Container.astro'
+import { websiteConfig } from '@/config'
+import Layout from '@/layout/Layout.astro'
+import { insightSchema } from '@/schema/insight'
+import { formatDate } from '@/utils/formatDate'
+import { getPublishedInsights } from '@/utils/insights'
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
+import { Schema } from 'astro-seo-schema'
+import { render } from 'astro:content'
+
+export const getStaticPaths = (async () => {
+  const insights = await getPublishedInsights()
+  return insights.map((insight) => ({ params: { slug: insight.id }, props: { insight } }))
+}) satisfies GetStaticPaths
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { insight } = Astro.props
+const { Content } = await render(insight)
+const { title, description, publishedAt, author, category, image } = insight.data
+---
+
+<Layout meta={{ title: `${title} | ${websiteConfig.name}`, description, image }}>
+  <Container class="py-24">
+    <article class="mx-auto max-w-3xl">
+      <header class="flex flex-col gap-4">
+        <a href="/insights" class="eyebrow text-azul-blue">
+          Insights
+        </a>
+        <h1 class="text-display-md">{title}</h1>
+        <p class="text-muted text-sm">
+          <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+          {author && <span> · {author}</span>}
+          {category && <span> · {category}</span>}
+        </p>
+      </header>
+      <div class="prose mt-10 max-w-none">
+        <Content />
+      </div>
+    </article>
+  </Container>
+  <Schema item={insightSchema(insight)} />
+</Layout>

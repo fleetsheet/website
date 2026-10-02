@@ -1,6 +1,6 @@
 ---
 name: astro-components
-description: Astro component conventions and best practices. Use when creating or modifying .astro files in web/, working with Astro props, Tailwind CSS styling, or using custom components like Img, RichText, and Link.
+description: Astro component conventions and best practices. Use when creating or modifying .astro files in web/, working with Astro props, Tailwind CSS styling, or composing pages from the UI primitives.
 ---
 
 # Astro Components Rules
@@ -17,17 +17,7 @@ type Props = {
 const { title } = Astro.props;
 ```
 
-Use types from the CMS wherever possible:
-
-```ts
-import type { Image } from "cms/src/payload-types";
-
-type Props = {
-  images: Image[];
-};
-
-const { images } = Astro.props;
-```
+Reuse existing types, such as `CollectionEntry<'insights'>` from `astro:content` for content collection entries.
 
 ## Styling
 
@@ -43,27 +33,14 @@ Always use Tailwind CSS. When a tag has many classes, group them with `class:lis
 
 ## Custom Components
 
+### UI primitives
+
+Build pages from the primitives in `web/src/components/ui/` (`Container`, `PageSection`, `SectionHeader`, `Button`, …) instead of new one-off styles.
+
 ### Images
 
-Use the custom `<Img />` component from `web/src/components/Img.astro`. It handles alt text automatically:
+Use Astro's `<Image />` from `astro:assets` and always pass a descriptive `alt`.
 
-```astro
-<Img media={media} class="w-full h-full aspect-square" height={500} width={500} />
-```
+### Markdown content
 
-### Rich Text
-
-For rendering rich text from the CMS, always use `<RichText />` from `web/src/components/blocks/RichTextBlock/RichTextLexical.astro`:
-
-```astro
-<RichText data={richText} />
-```
-
-### Links
-
-For internal or external links, always use the custom `Link.astro` component from `web/src/components/Link.astro`. Normalize CMS-driven internal paths using `normalizePath()`:
-
-```astro
-<Link href={normalizePath(page.path)}>Page Name</Link>
-<Link href={externalUrl}>Website Name</Link>
-```
+Render content collection entries with `render()` from `astro:content` inside a `prose` container.
