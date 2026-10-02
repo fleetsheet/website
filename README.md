@@ -33,6 +33,7 @@ Run these from `web/`:
 
 - `web/src/config.ts`: site name, description, navigation, footer links and the default SEO settings.
 - `web/src/data/`: page copy, one typed file per page.
+- `web/src/content/insights/<slug>.md`: Insights articles, one Markdown file per article, published at `/insights/<slug>`.
 - `web/src/components/`: UI primitives (`ui/`) and page sections.
 - `web/src/layout/`: the page layout, header, footer and SEO metadata.
 - `web/src/schema/`: JSON-LD structured data.
