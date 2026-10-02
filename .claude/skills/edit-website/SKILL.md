@@ -47,7 +47,7 @@ Pass the page paths that will change. Each path gets a desktop and a phone scree
 
 - Edit content and copy only: the files in `content-map.md`, images in `web/src/assets/` or `web/public/`. Follow the design rules in `CLAUDE.md` (sentence case, no emoji, no new colors).
 - Wording: keep the existing tone, US English, short sentences. Keep text lengths close to the original unless asked, so layouts don't break.
-- Images: give every image alt text that describes it. Prefer WebP or PNG under 500 KB.
+- Images: give every image alt text that describes it. JPG, PNG or WebP all work; keep each file under 2 MB, since images in `web/src/` are optimized by the build.
 - If the request needs a code change (a new section type, a layout change, a new page template), tell the editor in plain words that it changes how the site is built, not just its content, and that it will be flagged on the pull request. Then do it carefully following `CLAUDE.md`.
 
 ## 5. Check

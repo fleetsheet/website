@@ -44,7 +44,7 @@ description: One or two sentences shown in the list and in search results.
 publishedAt: 2026-10-02
 author: Full name
 category: Operations
-image: /images/insights/my-article.webp
+image: ./images/my-article/cover.webp
 imageAlt: What the image shows
 draft: false
 ---
@@ -54,10 +54,12 @@ Article text in Markdown.
 
 `draft: true` keeps an article off the site. `updatedAt` is optional.
 
+Article images go in `web/src/content/insights/images/<file name>/` and are referenced with a relative path, both in `image` and in the article body (`![What the image shows](./images/my-article/chart.png)`). The build converts them to WebP.
+
 ## Images
 
-| What                                                     | Where                         |
-| -------------------------------------------------------- | ----------------------------- |
-| Logo, favicon, social sharing image (`og.png`, 1200×630) | `web/public/`                 |
-| Brand images used by pages                               | `web/src/assets/brand/`       |
-| Article images                                           | `web/public/images/insights/` |
+| What                                                     | Where                                          |
+| -------------------------------------------------------- | ---------------------------------------------- |
+| Logo, favicon, social sharing image (`og.png`, 1200×630) | `web/public/`                                  |
+| Brand images used by pages                               | `web/src/assets/brand/`                        |
+| Article images                                           | `web/src/content/insights/images/<file name>/` |
