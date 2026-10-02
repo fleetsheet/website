@@ -14,7 +14,7 @@ export const headerLinks: NavLink[] = [
   { label: 'المنصة', href: '/#platform' },
   { label: 'الحلول', href: '/#solutions' },
   { label: 'وكلاء الذكاء الاصطناعي', href: '/#ai' },
-  { label: 'الاستشارات', href: '/#consultancy' },
+  { label: 'الأسئلة الشائعة', href: '/faqs' },
   { label: 'رؤى', href: '/insights' },
 ]
 
@@ -32,7 +32,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: 'الشركة',
     links: [
       { label: 'رؤى', href: '/insights' },
-      { label: 'الاستشارات', href: '/#consultancy' },
+      { label: 'الأسئلة الشائعة', href: '/faqs' },
       { label: 'وكلاء الذكاء الاصطناعي', href: '/#ai' },
       { label: 'تواصل معنا', href: '/contact' },
     ],

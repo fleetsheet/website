@@ -25,6 +25,7 @@ All paths are relative to `web/src/`.
 | Home: consultancy                                                                              | `/#consultancy`         | `data/en/home.ts` (`consultancy`)                                  |
 | Home: closing "Book a demo" banner                                                             | `/`                     | `data/en/home.ts` (`demoCta`)                                      |
 | Contact page                                                                                   | `/contact`              | `data/en/contact.ts` (`contactPage`, form labels in `contactForm`) |
+| FAQs page                                                                                      | `/faqs`                 | `data/en/faq.ts` (`faqPage`)                                    |
 | Contact thank-you page                                                                         | `/contact/thanks`       | `data/en/contact.ts` (`contactThanks`)                             |
 | Newsletter signup (footer)                                                                     | every page              | `data/en/newsletter.ts` (`newsletterForm`)                         |
 | Newsletter thank-you page                                                                      | `/newsletter/thanks`    | `data/en/newsletter.ts` (`newsletterThanks`)                       |

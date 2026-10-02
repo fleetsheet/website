@@ -14,7 +14,7 @@ export const headerLinks: NavLink[] = [
   { label: 'Plataforma', href: '/#platform' },
   { label: 'Soluciones', href: '/#solutions' },
   { label: 'Agentes de IA', href: '/#ai' },
-  { label: 'Consultoría', href: '/#consultancy' },
+  { label: 'Preguntas frecuentes', href: '/faqs' },
   { label: 'Insights', href: '/insights' },
 ]
 
@@ -32,7 +32,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: 'Empresa',
     links: [
       { label: 'Insights', href: '/insights' },
-      { label: 'Consultoría', href: '/#consultancy' },
+      { label: 'Preguntas frecuentes', href: '/faqs' },
       { label: 'Agentes de IA', href: '/#ai' },
       { label: 'Contacto', href: '/contact' },
     ],
