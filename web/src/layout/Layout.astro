@@ -1,40 +1,40 @@
 ---
 import { websiteConfig } from '@/config'
+import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
 import { VERCEL_ENV } from 'astro:env/server'
 import { ClientRouter } from 'astro:transitions'
-import type { SeoMetadata } from 'cms/src/payload-types'
-import { initGlobalState } from '../globalState'
 import '../styles.css'
 import Footer from './Footer.astro'
 import Header from './Header.astro'
 import SEOMetadata from './SEOMetadata.astro'
 
 type Props = {
-  meta: SeoMetadata
-  lang: string
+  meta: PageMeta
+  lang?: string
+  enableAnalytics?: boolean
 }
 
-const { meta, lang } = Astro.props
+const { meta, lang = websiteConfig.lang, enableAnalytics = true } = Astro.props
 
-await initGlobalState(Astro)
-const { preview } = Astro.locals.globalState
-
-const enablePlausible = VERCEL_ENV === 'production' && !preview
+const enablePlausible = VERCEL_ENV === 'production' && enableAnalytics
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
-    <link rel="icon" href="/icon.svg" sizes="any" type="image/svg+xml" />
+    <link rel="icon" href={websiteConfig.icon} type="image/png" />
+    <link rel="apple-touch-icon" href={websiteConfig.icon} />
+    <meta name="theme-color" content="#F0F5F8" />
 
-    <Font cssVariable="--font-montserrat" preload />
+    <Font cssVariable="--font-sora" preload />
+    <Font cssVariable="--font-hanken-grotesk" preload />
 
-    <SEOMetadata {...meta} />
+    <SEOMetadata {...meta} lang={lang} />
 
     {enablePlausible && (
       <>
@@ -54,9 +54,15 @@ const enablePlausible = VERCEL_ENV === 'production' && !preview
 
     <ClientRouter />
   </head>
-  <body>
-    <Header alternatePaths={meta.alternatePaths} />
-    <main class="py-32">
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="bg-rich-blue text-alice-blue sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />

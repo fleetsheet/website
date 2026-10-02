@@ -1,0 +1,125 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { aiAgents } from '@/data/home'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
+import Sparkles from '@lucide/astro/icons/sparkles'
+
+const { chat } = aiAgents
+const maxHours = Math.max(...chat.rows.map((row) => row.hours))
+---
+
+<PageSection
+  id="ai"
+  tone="inverse"
+  containerClass="grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-center gap-14"
+>
+  <SectionHeader
+    eyebrow={aiAgents.eyebrow}
+    title={aiAgents.title}
+    description={aiAgents.description}
+    tone="dark"
+    class="gap-5"
+  >
+    <ul class="mt-2 flex flex-col gap-4">
+      {aiAgents.points.map((point) => (
+        <li class="flex gap-3.5">
+          <IconChip size="lg" tone="dark">
+            <ShieldCheck />
+          </IconChip>
+          <div>
+            <h3 class="font-display text-base font-semibold text-white">{point.title}</h3>
+            <p class="text-columbia-blue text-[15px] leading-[1.55]">{point.description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </SectionHeader>
+
+  <div
+    class="bg-surface text-rich-blue overflow-hidden rounded-xl shadow-[0_10px_15px_-3px_rgb(0_0_0/0.25)]"
+    aria-hidden="true"
+  >
+    <div class="border-border flex items-center gap-2.5 border-b px-5 py-4">
+      <IconChip size="sm">
+        <Sparkles />
+      </IconChip>
+      <span class="font-display flex-1 text-sm font-semibold">{chat.assistant}</span>
+      <span class="text-muted flex items-center gap-1.5 text-xs">
+        <span class="size-[7px] rounded-full bg-green-600"></span>
+        {chat.context}
+      </span>
+    </div>
+    <div class="flex flex-col gap-4 bg-slate-50 p-5">
+      <p class="bg-rich-blue text-alice-blue max-w-[85%] self-end rounded-[12px_12px_4px_12px] px-3.5 py-2.5 text-sm leading-[1.45]">
+        {chat.question}
+      </p>
+      <div class="flex flex-col gap-3">
+        <p class="text-sm leading-[1.55]">
+          <span class="font-bold">{chat.answer.lead}</span> {chat.answer.body}{' '}
+          <span class="font-bold">{chat.answer.cost}</span> {chat.answer.tail}
+        </p>
+        <div class="bg-surface border-border flex flex-col gap-3.5 rounded-xl border p-4 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <p class="font-display text-[13px] font-semibold">{chat.chartTitle}</p>
+            <Badge tone="info">{chat.chartBadge}</Badge>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-xs">
+            {chat.stats.map((stat) => (
+              <div class="bg-page rounded-md p-2">
+                <p class="text-muted">{stat.label}</p>
+                <p
+                  class:list={[
+                    'font-display mt-0.5 text-base font-semibold',
+                    stat.trend === 'up' && 'text-amber-700',
+                  ]}
+                >
+                  {stat.value}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div class="flex flex-col gap-2">
+            {chat.rows.map((row, index) => (
+              <div class="flex items-center gap-2.5 text-xs">
+                <span class="text-azul-blue w-24 shrink-0 truncate">{row.site}</span>
+                <div class="bg-page h-3.5 flex-1 overflow-hidden rounded-[3px]">
+                  <div
+                    class:list={[
+                      'h-full rounded-[3px]',
+                      index === 0 ? 'bg-sun-orange' : 'bg-celestial-blue',
+                    ]}
+                    style={`width: ${Math.round((row.hours / maxHours) * 100)}%`}
+                  />
+                </div>
+                <span class="w-7 text-right font-bold">{row.hours}</span>
+              </div>
+            ))}
+          </div>
+          <div class="border-border flex flex-wrap items-center justify-between gap-2 border-t pt-2.5">
+            <span class="text-muted text-xs">{chat.sources}</span>
+            <span class="bg-rich-blue text-alice-blue rounded-md px-2.5 py-1.5 text-xs font-semibold">
+              {chat.action}
+            </span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1.5">
+          {chat.followUps.map((followUp) => (
+            <span class="border-border bg-surface text-azul-blue rounded-full border px-2.5 py-1.5 text-xs font-medium">
+              {followUp}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class="border-border flex items-center gap-2.5 border-t px-4 py-3">
+      <span class="text-muted flex-1 text-sm">{chat.placeholder}</span>
+      <span class="bg-rich-blue text-alice-blue flex size-[30px] items-center justify-center rounded-md">
+        <ArrowRight class="size-3.5" stroke-width={2.5} />
+      </span>
+    </div>
+  </div>
+</PageSection>

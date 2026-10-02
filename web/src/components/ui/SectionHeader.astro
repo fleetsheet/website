@@ -1,0 +1,45 @@
+---
+type Props = {
+  eyebrow?: string
+  title: string
+  description?: string
+  tone?: 'light' | 'dark'
+  align?: 'start' | 'center'
+  class?: string
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  tone = 'light',
+  align = 'start',
+  class: className,
+} = Astro.props
+---
+
+<div
+  class:list={[
+    'flex max-w-[720px] flex-col gap-4',
+    align === 'center' && 'mx-auto items-center text-center',
+    className,
+  ]}
+>
+  {eyebrow && (
+    <p class:list={['eyebrow', tone === 'light' ? 'text-azul-blue' : 'text-sky-blue']}>{eyebrow}</p>
+  )}
+  <h2 class:list={['text-display-md', tone === 'light' ? 'text-rich-blue' : 'text-white']}>
+    {title}
+  </h2>
+  {description && (
+    <p
+      class:list={[
+        'text-[17px] leading-[1.65] text-pretty',
+        tone === 'light' ? 'text-azul-blue' : 'text-columbia-blue',
+      ]}
+    >
+      {description}
+    </p>
+  )}
+  <slot />
+</div>

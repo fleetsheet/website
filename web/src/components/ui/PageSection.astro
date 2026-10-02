@@ -1,0 +1,26 @@
+---
+import Container from './Container.astro'
+
+type Props = {
+  id?: string
+  tone?: 'page' | 'surface' | 'inverse'
+  width?: 'content' | 'wide'
+  class?: string
+  containerClass?: string
+}
+
+const { id, tone = 'page', width = 'content', class: className, containerClass } = Astro.props
+---
+
+<section
+  id={id}
+  class:list={[
+    tone === 'surface' && 'bg-surface border-border border-y',
+    tone === 'inverse' && 'bg-rich-blue text-alice-blue',
+    className,
+  ]}
+>
+  <Container width={width} class:list={['py-24', containerClass]}>
+    <slot />
+  </Container>
+</section>

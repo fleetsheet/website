@@ -1,0 +1,143 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import FeatureCard from '@/components/ui/FeatureCard.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { platform } from '@/data/home'
+import Box from '@lucide/astro/icons/box'
+import FileText from '@lucide/astro/icons/file-text'
+
+const { workOrders, assets, documents, workflows, auditLogs, mobile } = platform
+
+const stepStyles = [
+  'bg-columbia-blue text-azul-blue',
+  'bg-cream-peach text-cream-peach-foreground',
+  'bg-rich-blue text-alice-blue',
+]
+---
+
+<PageSection id="platform" tone="surface" containerClass="flex flex-col gap-12">
+  <SectionHeader
+    eyebrow={platform.eyebrow}
+    title={platform.title}
+    description={platform.description}
+  />
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-5">
+    <FeatureCard title={workOrders.title} description={workOrders.description}>
+      <MockPanel padding="xs">
+        {workOrders.items.map((item) => (
+          <div class="flex items-center gap-2.5 p-2.5 text-[13px]">
+            <span class="bg-columbia-blue text-azul-blue flex size-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold">
+              {item.initials}
+            </span>
+            <p class="min-w-0 flex-1 truncate font-semibold">{item.title}</p>
+            <Badge tone={item.tone}>{item.status}</Badge>
+          </div>
+        ))}
+      </MockPanel>
+    </FeatureCard>
+
+    <FeatureCard title={assets.title} description={assets.description}>
+      <MockPanel class="flex flex-col gap-3">
+        <div class="flex items-center gap-2.5">
+          <IconChip size="lg">
+            <Box />
+          </IconChip>
+          <div class="flex-1">
+            <p class="text-sm font-bold">{assets.asset.name}</p>
+            <p class="text-muted text-xs">{assets.asset.location}</p>
+          </div>
+          <Badge tone="done">{assets.asset.status}</Badge>
+        </div>
+        <dl class="grid grid-cols-3 gap-2 text-xs">
+          {assets.asset.facts.map((fact) => (
+            <div class="bg-page rounded-md p-2">
+              <dt class="text-muted">{fact.label}</dt>
+              <dd class="mt-0.5 font-bold">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </MockPanel>
+    </FeatureCard>
+
+    <FeatureCard title={documents.title} description={documents.description}>
+      <MockPanel padding="xs">
+        {documents.items.map((item) => (
+          <div class="flex items-center gap-2.5 p-2.5 text-[13px]">
+            <FileText class="text-celestial-blue size-[18px]" />
+            <div class="min-w-0 flex-1">
+              <p class="truncate font-semibold">{item.title}</p>
+              <p class="text-muted text-xs">{item.location}</p>
+            </div>
+            <Badge tone={item.tone}>{item.status}</Badge>
+          </div>
+        ))}
+      </MockPanel>
+    </FeatureCard>
+
+    <FeatureCard title={workflows.title} description={workflows.description}>
+      <div class="flex flex-col">
+        {workflows.steps.map((step, index) => (
+          <div class="flex flex-col items-start">
+            <div class="bg-surface border-border flex w-full items-center gap-2.5 rounded-md border px-3 py-2.5 text-[13px] shadow-xs">
+              <span
+                class:list={[
+                  'rounded-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.04em] uppercase',
+                  stepStyles[index % stepStyles.length],
+                ]}
+              >
+                {step.kind}
+              </span>
+              <span class="font-semibold">{step.text}</span>
+            </div>
+            {index < workflows.steps.length - 1 && <div class="bg-uranian-blue ml-6 h-3.5 w-0.5" />}
+          </div>
+        ))}
+      </div>
+    </FeatureCard>
+
+    <FeatureCard title={auditLogs.title} description={auditLogs.description}>
+      <MockPanel class="flex flex-col gap-3.5">
+        {auditLogs.entries.map((entry) => (
+          <div class="flex gap-2.5 text-[13px] leading-[1.4]">
+            <span class="text-muted w-10 shrink-0 pt-px font-mono text-[11px]">{entry.when}</span>
+            <p class="flex-1">
+              <span class="font-bold">{entry.who}</span> {entry.what}
+            </p>
+          </div>
+        ))}
+      </MockPanel>
+    </FeatureCard>
+
+    <FeatureCard title={mobile.title} description={mobile.description} class="overflow-hidden">
+      <div class="bg-rich-blue mx-auto -mb-12 w-60 rounded-t-[28px] px-2.5 pt-2.5">
+        <div class="bg-page flex flex-col gap-2.5 rounded-t-[20px] px-3.5 pt-4 pb-14">
+          <p class="font-display text-sm font-semibold">{mobile.heading}</p>
+          <div class="bg-surface border-border flex flex-col gap-2 rounded-[10px] border p-3">
+            <div class="flex justify-between gap-1.5">
+              <span class="text-[13px] font-bold">{mobile.task.title}</span>
+              <Badge tone={mobile.task.tone} class="px-1.5 py-0.5 text-[10px] font-bold">
+                {mobile.task.status}
+              </Badge>
+            </div>
+            <p class="text-muted text-xs">{mobile.task.location}</p>
+            <div class="flex gap-1.5">
+              {mobile.actions.map((action, index) => (
+                <span
+                  class:list={[
+                    'flex-1 rounded-md p-[7px] text-center text-[11px] font-semibold',
+                    index === 0 ? 'bg-rich-blue text-alice-blue' : 'border-border border',
+                  ]}
+                >
+                  {action}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </FeatureCard>
+  </div>
+</PageSection>

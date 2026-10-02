@@ -1,0 +1,146 @@
+---
+import logo from '@/assets/brand/fleet-logo-dark-bg.png'
+import Badge from '@/components/ui/Badge.astro'
+import Container from '@/components/ui/Container.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import { websiteConfig } from '@/config'
+import { showcase } from '@/data/home'
+import Box from '@lucide/astro/icons/box'
+import Building from '@lucide/astro/icons/building'
+import ChartLine from '@lucide/astro/icons/chart-line'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard'
+import Sparkles from '@lucide/astro/icons/sparkles'
+import Workflow from '@lucide/astro/icons/workflow'
+import { Image } from 'astro:assets'
+
+const navItems = [
+  { label: 'Dashboard', icon: LayoutDashboard, active: true },
+  { label: 'Work orders', icon: ClipboardList },
+  { label: 'Locations', icon: Building },
+  { label: 'Assets', icon: Box },
+  { label: 'Workflows', icon: Workflow },
+  { label: 'Reports', icon: ChartLine },
+]
+
+const { prediction } = showcase
+---
+
+<section aria-label="Product preview">
+  <Container width="wide" class="pb-24">
+    <div
+      class="bg-supergraphic flex flex-wrap items-start gap-5 rounded-2xl p-[clamp(20px,4vw,48px)]"
+      aria-hidden="true"
+    >
+      <div class="bg-surface shadow-float flex min-w-0 flex-[1_1_600px] overflow-hidden rounded-xl">
+        <aside class="bg-rich-blue border-azul-blue hidden w-[188px] shrink-0 flex-col gap-1 border-r px-3 py-4 sm:flex">
+          <div class="flex items-center gap-2 px-2 pt-1 pb-4">
+            <Image src={logo} alt="" width={24} height={24} class="rounded-md" />
+            <span class="font-display text-alice-blue text-[15px] font-semibold">
+              {websiteConfig.name}
+            </span>
+          </div>
+          {navItems.map(({ label, icon: Icon, active }) => (
+            <div
+              class:list={[
+                'font-display flex items-center gap-2.5 rounded-md p-2 text-[13px]',
+                active ? 'bg-azul-blue text-alice-blue' : 'text-uranian-blue',
+              ]}
+            >
+              <Icon class="size-4" />
+              {label}
+            </div>
+          ))}
+        </aside>
+        <div class="bg-page flex min-w-0 flex-1 flex-col gap-5 p-4 sm:p-6">
+          <div class="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p class="font-display text-xl font-semibold tracking-[-0.02em]">
+                {showcase.greeting}
+              </p>
+              <p class="text-azul-blue text-[13px]">{showcase.scope}</p>
+            </div>
+            <div class="flex gap-1.5">
+              {showcase.filters.map((filter) => (
+                <span class="bg-surface border-border rounded-md border px-2.5 py-1.5 text-xs font-medium">
+                  {filter}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 sm:gap-3">
+            {showcase.stats.map((stat) => (
+              <div class="bg-surface border-border rounded-xl border p-2.5 shadow-xs sm:p-3.5">
+                <p class="text-azul-blue text-xs">{stat.label}</p>
+                <p class="font-display mt-1 text-lg font-semibold sm:text-2xl">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+          <div class="bg-surface border-border overflow-hidden rounded-xl border shadow-xs">
+            <p class="font-display border-border border-b px-4 py-3 text-sm font-semibold">
+              Work orders
+            </p>
+            {showcase.workOrders.map((order) => (
+              <div class="flex items-center gap-3 border-b border-slate-100 px-4 py-[11px] text-[13px] last:border-b-0">
+                <span class="text-muted hidden w-[58px] shrink-0 font-mono text-[11px] sm:inline">
+                  {order.id}
+                </span>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate font-semibold">{order.title}</p>
+                  <p class="text-muted truncate text-xs">{order.location}</p>
+                </div>
+                <Badge tone={order.tone}>{order.status}</Badge>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex min-w-0 flex-[1_1_280px] flex-col gap-4">
+        <MockPanel elevation="float" class="flex flex-col gap-3 p-[18px]">
+          <div class="flex items-center gap-2.5">
+            <IconChip>
+              <Sparkles />
+            </IconChip>
+            <div class="flex-1">
+              <p class="font-display text-[13px] font-semibold">{prediction.title}</p>
+              <p class="text-muted text-xs">{prediction.asset}</p>
+            </div>
+            <Badge tone="overdue">{prediction.risk}</Badge>
+          </div>
+          <p class="text-sm leading-normal">{prediction.message}</p>
+          <div class="flex h-10 items-end gap-[3px]">
+            {prediction.trend.map((value, index) => (
+              <div
+                class:list={[
+                  'flex-1 rounded-xs',
+                  index >= prediction.alertFrom ? 'bg-sun-orange' : 'bg-uranian-blue',
+                ]}
+                style={`height: ${value}%`}
+              />
+            ))}
+          </div>
+          <div class="border-border flex items-center justify-between gap-2 border-t pt-2.5">
+            <span class="text-muted text-xs">{prediction.rule}</span>
+            <span class="bg-rich-blue text-alice-blue rounded-md px-2.5 py-1.5 text-xs font-semibold">
+              {prediction.action}
+            </span>
+          </div>
+        </MockPanel>
+        <MockPanel elevation="float" class="flex flex-col gap-2.5 p-[18px]">
+          <p class="font-display text-[13px] font-semibold">Audit log</p>
+          {showcase.audit.map((entry) => (
+            <div class="flex gap-2.5 text-xs leading-[1.4]">
+              <span class="bg-celestial-blue mt-1 size-2 shrink-0 rounded-full" />
+              <p class="flex-1">
+                <span class="font-semibold">{entry.who}</span> {entry.what}
+              </p>
+              <span class="text-muted whitespace-nowrap">{entry.when}</span>
+            </div>
+          ))}
+        </MockPanel>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,204 +1,110 @@
 ---
-import { defaultLocale } from '@/cms/locales'
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import Logo from '@/components/ui/Logo.astro'
 import { websiteConfig } from '@/config'
+import Menu from '@lucide/astro/icons/menu'
+import X from '@lucide/astro/icons/x'
 
-import type { Page, SeoMetadata } from 'cms/src/payload-types'
-import Link from '../components/Link.astro'
-import { normalizePath } from '../utils/normalizePath'
-
-type Props = {
-  alternatePaths: SeoMetadata['alternatePaths']
-}
-
-const { alternatePaths } = Astro.props
-const { locale, preview, labels, header } = Astro.locals.globalState
-
-const currentPath = Astro.url.pathname
-
-// NOTE: when the 404 page is rendered, the locale might be undefined, therefore fallback to default locale
-const homePagePath = normalizePath(`/${locale ?? defaultLocale}`, preview)
+const { headerLinks, actions } = websiteConfig
 ---
 
-<header
-  class:list={['fixed z-40 flex w-full items-center justify-between px-4 py-4 md:px-12']}
-  id="header"
->
-  <a href={homePagePath} class="flex items-center gap-2 text-2xl font-bold">
-    {websiteConfig.name}
-  </a>
+<header id="site-header" class="bg-page border-border sticky top-0 z-40 border-b">
+  <Container class="flex items-center gap-8 py-3.5">
+    <a href="/" aria-label={`${websiteConfig.name} home`} class="rounded-md">
+      <Logo size="lg" />
+    </a>
 
-  <div class="flex items-center gap-4">
-    <nav>
-      <ul class="hidden list-none gap-4 md:flex">
-        {header.links?.map((link) => (
+    <nav aria-label="Main" class="hidden flex-1 lg:block">
+      <ul class="flex flex-wrap gap-6 text-[15px] font-medium">
+        {headerLinks.map((link) => (
           <li>
-            <div class="flex flex-col gap-0.5">
-              <Link path={(link.page as Page)?.path} class="!py-2">
-                {link.label}
-              </Link>
-              {currentPath === normalizePath((link.page as Page)?.path, preview) && (
-                <span class="h-0.5 w-full rounded-sm bg-slate-400" />
-              )}
-            </div>
+            <a href={link.href} class="text-azul-blue hover:text-rich-blue transition-colors">
+              {link.label}
+            </a>
           </li>
         ))}
       </ul>
     </nav>
 
-    <div class="hidden gap-2 md:flex">
-      {alternatePaths.map(({ hreflang, path }, index) => {
-        return (
-          <>
-            <a
-              href={normalizePath(path, preview)}
-              class:list={[
-                'text-sm font-medium uppercase',
-                hreflang === locale
-                  ? 'text-primary underline'
-                  : 'hover:text-primary text-slate-600',
-              ]}
-            >
-              {hreflang}
-            </a>
-            {index < alternatePaths.length - 1 && <span class="text-slate-600">/</span>}
-          </>
-        )
-      })}
+    <div class="ml-auto hidden items-center gap-2 sm:flex">
+      <Button href={actions.signIn.href} variant="ghost" size="sm">
+        {actions.signIn.label}
+      </Button>
+      <Button href={actions.bookDemo.href} size="sm" class="font-semibold">
+        {actions.bookDemo.label}
+      </Button>
     </div>
-  </div>
 
-  <div class="block md:hidden">
     <button
-      class="menu-icon"
-      id="menu-icon"
-      data-state="closed"
-      aria-label={labels.global['open-menu']}
+      type="button"
+      id="site-menu-button"
+      class="group text-rich-blue hover:bg-border ml-auto rounded-md p-2 sm:ml-0 lg:hidden"
+      aria-controls="site-menu"
       aria-expanded="false"
-      data-label-open={labels.global['open-menu']}
-      data-label-close={labels.global['close-menu']}
+      aria-label="Open menu"
     >
-      <div>
-        <span></span>
-        <span></span>
-      </div>
+      <Menu class="size-6 group-aria-expanded:hidden" aria-hidden="true" />
+      <X class="hidden size-6 group-aria-expanded:block" aria-hidden="true" />
     </button>
+  </Container>
+
+  <div id="site-menu" class="border-border bg-page hidden border-t lg:hidden">
+    <Container class="flex flex-col gap-6 py-6">
+      <nav aria-label="Mobile">
+        <ul class="flex flex-col gap-1 text-lg font-medium">
+          {headerLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:bg-border block rounded-md px-2 py-2">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="flex flex-col gap-2 sm:hidden">
+        <Button href={actions.signIn.href} variant="secondary">
+          {actions.signIn.label}
+        </Button>
+        <Button href={actions.bookDemo.href}>{actions.bookDemo.label}</Button>
+      </div>
+    </Container>
   </div>
 </header>
 
-<section
-  role="dialog"
-  class:list={['fixed inset-0 z-50 hidden h-screen w-screen bg-white p-4']}
-  id="navbar-modal"
->
-  <div class="flex h-full flex-col items-stretch justify-between">
-    <ul class="flex flex-col gap-5">
-      {header.links?.map((link) => (
-        <li>
-          <Link path={(link.page as Page)?.path} class="w-full !text-lg">
-            {link.label}
-          </Link>
-        </li>
-      ))}
-    </ul>
-
-    <div class="flex flex-row items-center justify-center gap-4">
-      {alternatePaths.map(({ hreflang, path }, index) => {
-        return (
-          <>
-            <a
-              href={normalizePath(path, preview)}
-              class:list={[
-                'text-lg font-medium uppercase',
-                hreflang === locale
-                  ? 'text-primary underline'
-                  : 'hover:text-primary text-slate-600',
-              ]}
-            >
-              {hreflang}
-            </a>
-            {index < alternatePaths.length - 1 && <span class="text-slate-600">/</span>}
-          </>
-        )
-      })}
-    </div>
-  </div>
-</section>
-
 <script>
-  function setupHeader() {
-    const modalButton = document.getElementById('menu-icon')
-    const modal = document.getElementById('navbar-modal')
-    const header = document.getElementById('header')
+  const setMenuOpen = (open: boolean) => {
+    const button = document.getElementById('site-menu-button')
+    const menu = document.getElementById('site-menu')
 
-    if (!modalButton || !modal || !header) {
-      throw new Error('Missing elements')
+    if (!button || !menu) {
+      return
     }
 
-    const intercept = document.createElement('div')
-    intercept.setAttribute('data-observer-intercept', '')
-    header.before(intercept)
-
-    const observer = new IntersectionObserver(([entry]) => {
-      header.classList.toggle('header-scrolled', !entry.isIntersecting)
-      header.classList.toggle('header-transparent', entry.isIntersecting)
-      document.body.classList.toggle('scrolled', !entry.isIntersecting)
-    })
-
-    observer.observe(intercept)
-
-    const animateInClasses = ['animate-in', 'slide-in-from-top-5', 'fade-in', 'duration-300']
-    const animateOutClasses = ['animate-out', 'slide-out-to-top-5', 'fade-out', 'duration-300']
-
-    modalButton?.addEventListener('click', () => {
-      if (modalButton.classList.contains('active')) {
-        // close modal
-        modalButton.classList.remove('active')
-        modalButton.setAttribute('aria-expanded', 'false')
-        modalButton.setAttribute('aria-label', modalButton.dataset.labelOpen!)
-        modal?.classList.add(...animateOutClasses)
-
-        // reset header styles
-        header.classList.add(
-          document.body.classList.contains('scrolled') ? 'header-scrolled' : 'header-transparent',
-        )
-
-        // Wait for animation to complete before hiding
-        setTimeout(() => {
-          modal?.classList.add('hidden')
-          modal?.classList.remove(...animateOutClasses)
-        }, 300)
-
-        // enable page scrolling
-        document.body.style.overflow = 'auto'
-      } else {
-        modal?.style.setProperty('top', `${header.clientHeight}px`)
-        modal?.style.setProperty('height', `${window.innerHeight - header.clientHeight}px`)
-
-        // open modal
-        modalButton.classList.add('active')
-        modalButton.setAttribute('aria-expanded', 'true')
-        modalButton.setAttribute('aria-label', modalButton.dataset.labelClose!)
-        modal?.classList.remove('hidden')
-        modal?.classList.add(...animateInClasses)
-
-        // set header styles
-        header.classList.remove('header-transparent')
-        header.classList.add(
-          document.body.classList.contains('scrolled') ? 'header-scrolled' : 'header-solid',
-        )
-
-        // Remove animation classes after animation completes
-        setTimeout(() => {
-          modal?.classList.remove(...animateInClasses)
-        }, 300)
-
-        // disable page scrolling
-        document.body.style.overflow = 'hidden'
-      }
-    })
+    button.setAttribute('aria-expanded', String(open))
+    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+    menu.classList.toggle('hidden', !open)
   }
 
-  // Run setup function on the initial and any subsequent page loads due to navigation
-  // https://docs.astro.build/en/guides/view-transitions/#astropage-load
-  document.addEventListener('astro:page-load', setupHeader)
+  document.addEventListener('keydown', (event) => {
+    const button = document.getElementById('site-menu-button')
+
+    if (event.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false)
+      button.focus()
+    }
+  })
+
+  document.addEventListener('astro:page-load', () => {
+    const button = document.getElementById('site-menu-button')
+    const menu = document.getElementById('site-menu')
+
+    button?.addEventListener('click', () => {
+      setMenuOpen(button.getAttribute('aria-expanded') !== 'true')
+    })
+
+    menu?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMenuOpen(false))
+    })
+  })
 </script>

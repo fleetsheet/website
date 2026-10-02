@@ -61,6 +61,17 @@ Key architectural patterns:
 - SSR only for `/preview` pages
 - Tailwind CSS v4 for styling with custom design tokens
 
+#### Design System
+
+The site follows the Fleet design system (brand guide by Blackhat Agency, landing page designed in Claude Design). Every new page must reuse it instead of introducing new colors, fonts or one-off styles.
+
+- **Tokens** live in `web/src/styles.css` (`@theme`). Use the brand utilities (`bg-page`, `bg-surface`, `text-rich-blue`, `text-azul-blue`, `text-muted`, `border-border`, `bg-columbia-blue`, `text-celestial-blue`, `bg-sun-orange`, …), the display sizes (`text-display-xl` for the page h1, `text-display-md` for section h2s, `text-display-lg` for CTA banners), `text-lead`, the `eyebrow` utility and the `bg-supergraphic` background. Never hard-code hex values.
+- **Fonts**: Sora for headings (`font-display`, applied to h1–h6 automatically), Hanken Grotesk for body text (`font-sans`, the default). Both are self-hosted from `web/src/assets/fonts/` via Astro's font API in `astro.config.mjs`.
+- **Global config** (`web/src/config.ts`): site name, tagline, header links, footer columns, and the Sign in / Book a demo actions. Change navigation there, not in `Header.astro` or `Footer.astro`.
+- **UI primitives** (`web/src/components/ui/`): `Container`, `PageSection` (tones `page`, `surface`, `inverse`), `SectionHeader`, `Button` (variants `primary`, `secondary`, `ghost`, `accent`, `inverse`), `Badge` (status tones `due`, `overdue`, `done`, `info`), `IconChip`, `FeatureCard`, `MockPanel`, `CheckList`, `Logo` and `CtaBanner`. Build new pages by composing these.
+- **Page sections** for a specific page live in `web/src/components/<page>/` (e.g. `components/home/`), and their copy lives in a typed data file in `web/src/data/` (e.g. `data/home.ts`), so wording can change without touching markup.
+- **Visual rules**: Alice Blue page background with white cards, 1px `border-border` borders with subtle blue-tinted shadows, `rounded-md` buttons and badges, `rounded-xl` cards, Sun Orange only for marketing CTAs and overdue states, no gradients, no emoji, sentence case for UI labels.
+
 #### Astro Environment Variables
 
 Always use Astro's type-safe environment variables instead of `import.meta.env`:

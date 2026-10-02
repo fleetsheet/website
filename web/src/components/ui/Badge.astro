@@ -1,0 +1,26 @@
+---
+export type BadgeTone = 'due' | 'overdue' | 'done' | 'info' | 'neutral'
+
+type Props = {
+  tone?: BadgeTone
+  class?: string
+}
+
+const { tone = 'info', class: className } = Astro.props
+---
+
+<span
+  class:list={[
+    'inline-flex items-center rounded-md px-2 py-[3px] text-[11px] font-semibold whitespace-nowrap',
+    {
+      'bg-cream-peach text-cream-peach-foreground': tone === 'due',
+      'bg-sun-orange text-rich-blue': tone === 'overdue',
+      'bg-green-100 text-green-700': tone === 'done',
+      'bg-columbia-blue text-azul-blue': tone === 'info',
+      'border-border text-azul-blue border bg-white': tone === 'neutral',
+    },
+    className,
+  ]}
+>
+  <slot />
+</span>

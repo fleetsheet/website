@@ -52,11 +52,39 @@ export default defineConfig({
   },
   fonts: [
     {
-      provider: fontProviders.google(),
-      name: 'Montserrat',
-      cssVariable: '--font-montserrat',
-      weights: ['100 900'],
-      styles: ['normal'],
+      provider: fontProviders.local(),
+      name: 'Sora',
+      cssVariable: '--font-sora',
+      fallbacks: ['system-ui', 'sans-serif'],
+      options: {
+        variants: [
+          {
+            src: ['./src/assets/fonts/Sora-Variable.woff2'],
+            weight: '100 800',
+            style: 'normal',
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: 'Hanken Grotesk',
+      cssVariable: '--font-hanken-grotesk',
+      fallbacks: ['system-ui', 'sans-serif'],
+      options: {
+        variants: [
+          {
+            src: ['./src/assets/fonts/HankenGrotesk-Variable.woff2'],
+            weight: '100 900',
+            style: 'normal',
+          },
+          {
+            src: ['./src/assets/fonts/HankenGrotesk-Italic-Variable.woff2'],
+            weight: '100 900',
+            style: 'italic',
+          },
+        ],
+      },
     },
   ],
 })

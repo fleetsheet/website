@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'> & {
+  width?: 'content' | 'wide'
+}
+
+const { width = 'content', class: className, ...rest } = Astro.props
+---
+
+<div
+  class:list={['mx-auto w-full px-6', width === 'wide' ? 'max-w-wide' : 'max-w-content', className]}
+  {...rest}
+>
+  <slot />
+</div>

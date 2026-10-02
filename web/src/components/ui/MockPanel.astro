@@ -1,0 +1,20 @@
+---
+type Props = {
+  padding?: 'none' | 'xs' | 'md'
+  elevation?: 'sm' | 'float'
+  class?: string
+}
+
+const { padding = 'md', elevation = 'sm', class: className } = Astro.props
+---
+
+<div
+  class:list={[
+    'bg-surface rounded-xl',
+    elevation === 'sm' ? 'border-border border shadow-sm' : 'shadow-float',
+    { 'p-1.5': padding === 'xs', 'p-4': padding === 'md' },
+    className,
+  ]}
+>
+  <slot />
+</div>

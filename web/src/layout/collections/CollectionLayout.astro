@@ -1,8 +1,11 @@
 ---
 import { getPageData } from '@/cms/getPageData'
 import type { Locale } from '@/cms/types'
+import { getFileSize } from '@/components/imgUtils'
 import LivePreviewRefreshPageScript from '@/components/LivePreviewRefreshPageScript.astro'
 import PreviewAdminToolbar from '@/components/PreviewAdminToolbar.astro'
+import { initGlobalState } from '@/globalState'
+import type { PageMeta } from '@/types'
 import type { PageProps } from 'cms/src/endpoints/pageProps'
 import type { Author, Page, Post } from 'cms/src/payload-types'
 import Layout from '../Layout.astro'
@@ -18,12 +21,23 @@ type Props = {
 
 const { pageProps, locale, preview } = Astro.props
 
+await initGlobalState(Astro)
+
 const pageData = await getPageData(pageProps.collection, pageProps.id, locale, {
   preview,
 })
+
+const { title, description, image, noIndex, alternatePaths } = pageData.meta
+const meta: PageMeta = {
+  title: title ?? '',
+  description,
+  image: typeof image === 'object' && image?.url ? getFileSize('og', image).url : undefined,
+  noIndex,
+  alternatePaths,
+}
 ---
 
-<Layout lang={locale!} meta={pageData.meta}>
+<Layout lang={locale!} meta={meta} enableAnalytics={!preview}>
   {preview && <LivePreviewRefreshPageScript />}
   {preview && <PreviewAdminToolbar pageProps={pageProps} />}
 
