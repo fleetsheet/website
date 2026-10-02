@@ -11,6 +11,7 @@ import { websiteConfig } from '@/config'
 import { demoCta } from '@/data/home'
 import Layout from '@/layout/Layout.astro'
 import { organizationSchema } from '@/schema/organization'
+import { websiteSchema } from '@/schema/website'
 import { Schema } from 'astro-seo-schema'
 ---
 
@@ -35,4 +36,5 @@ import { Schema } from 'astro-seo-schema'
     secondaryAction={websiteConfig.actions.signIn}
   />
   <Schema item={organizationSchema()} />
+  <Schema item={websiteSchema()} />
 </Layout>

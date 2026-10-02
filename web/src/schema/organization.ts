@@ -6,8 +6,10 @@ export const organizationSchema = (): WithContext<Organization> => {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: websiteConfig.name,
+    description: websiteConfig.description,
+    url: new URL('/', websiteConfig.url).toString(),
     logo: websiteConfig.logo.url,
+    email: websiteConfig.email,
     sameAs: websiteConfig.socialUrls,
-    url: websiteConfig.url,
   }
 }
