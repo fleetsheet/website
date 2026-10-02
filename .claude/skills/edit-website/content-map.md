@@ -4,11 +4,11 @@ Keep this file up to date: when a page or section is added, add a row.
 
 ## Site addresses
 
-| What                  | Address                                                                                                                           |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Live site             | https://fleet-website-mh1y.onrender.com (switches to https://runfleet.com once the domain points at Render; update this row then) |
-| Pull request previews | Render's comment or deployment on the pull request; otherwise `https://fleet-website-mh1y-pr-<pull request number>.onrender.com`  |
-| Local preview         | http://localhost:4321 after `pnpm build && pnpm preview` in `web/`                                                                |
+| What                  | Address                                                                                                                             |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Live site             | https://fleet-website-mh1y.onrender.com (switches to https://runfleet.com once the domain points at Render; update this row then)   |
+| Pull request previews | Render's comment or deployment on the pull request; otherwise usually `https://fleet-website-pr-<pull request number>.onrender.com` |
+| Local preview         | http://localhost:4321 after `pnpm build && pnpm preview` in `web/`                                                                  |
 
 ## Pages
 
