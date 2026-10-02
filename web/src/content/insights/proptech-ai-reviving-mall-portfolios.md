@@ -3,11 +3,11 @@ title: 'Beyond Foot Traffic: How PropTech and AI Are Reviving Mall Portfolios in
 description: 'Learn how malls and retail portfolios use PropTech and AI to improve facilities management, automate workflows, and boost asset performance. Explore real-world benefits: lower downtime, smarter maintenance, unified dashboards, and scalable operations.'
 publishedAt: 2025-11-20
 updatedAt: 2026-08-10
-image: https://static1.squarespace.com/static/66f3da3d6d36da015dfdd900/6854d4153a3dbb322f38160d/69132dddadee515f1b8afc06/1786374874590/AdobeStock_653863978.jpeg
+image: ./images/proptech-ai-reviving-mall-portfolios/mall-retail-interior-foot-traffic-property-operations-fleet.jpg
 imageAlt: 'Beyond Foot Traffic: How PropTech and AI Are Reviving Mall Portfolios in 2025'
 ---
 
-![Mall interior with visitors walking through retail floors, illustrating foot traffic patterns and the need for unified mall operations and facilities management.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/d97998f2-1781-4633-988a-1270c732406e/mall-retail-interior-foot-traffic-property-operations-fleet)
+![Mall interior with visitors walking through retail floors, illustrating foot traffic patterns and the need for unified mall operations and facilities management.](./images/proptech-ai-reviving-mall-portfolios/mall-retail-interior-foot-traffic-property-operations-fleet.jpg)
 
 Foot traffic inside a modern shopping mall, highlighting the operational complexity that mall owners face and the growing need for AI-powered facilities and asset management.
 
@@ -37,7 +37,7 @@ _(Source:_ [_FMJ_](https://www.fmj.co.uk/unlocking-ai-in-facilities-management-k
 
 ## Why Mall Operations Need A Unified Platform
 
-![Two technicians performing HVAC and MEP preventive maintenance on a rooftop, representing essential asset upkeep managed through Fleet CMMS.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/a09ae273-bfe6-42b0-91ac-2b6823ec3c93/hvac-mep-maintenance-technicians-preventive-maintenance-fleet-cmms.jpeg)
+![Two technicians performing HVAC and MEP preventive maintenance on a rooftop, representing essential asset upkeep managed through Fleet CMMS.](./images/proptech-ai-reviving-mall-portfolios/hvac-mep-maintenance-technicians-preventive-maintenance-fleet-cmms.jpg)
 
 Technicians performing HVAC and MEP preventive maintenance, showcasing how smart CMMS platforms like Fleet reduce downtime and standardize facility operations.
 
@@ -53,7 +53,7 @@ Fleet gives mall and retail operators real-time visibility across every site. It
 
 Here’s how Fleet solves real-world problems for mall & retail property managers:
 
-![Fleet CMMS software interface showing detailed asset inventory management with lifecycle history and performance tracking.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/c37c9a22-07be-4ddf-86aa-79e3c949f4c4/fleet-cmms-asset-inventory-management-dashboard.png)
+![Fleet CMMS software interface showing detailed asset inventory management with lifecycle history and performance tracking.](./images/proptech-ai-reviving-mall-portfolios/fleet-cmms-asset-inventory-management-dashboard.png)
 
 Fleet’s asset inventory dashboard consolidates asset data, lifecycle history, and maintenance records to help mall and retail operators manage equipment proactively.
 
@@ -61,7 +61,7 @@ Fleet’s asset inventory dashboard consolidates asset data, lifecycle history, 
 
 Fleet centralizes every asset your retail or mall operation depends on: from escalators and HVAC units to fire panels and back-of-house equipment. Each asset carries its full lifecycle history, giving teams real-time visibility into performance, past repairs, and upcoming preventive maintenance. Fleet automatically generates PPM tasks when data or usage signals indicate wear, ensuring your equipment stays compliant and downtime stays low. This brings consistency across multi-site portfolios and empowers property leaders to manage maintenance proactively instead of reacting to failures.
 
-![Fleet real-time operations dashboard displaying map views and task summaries for multi-site property and facilities management.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/eb38a780-381f-4568-9455-1993276f34a6/fleet-operations-dashboard-real-time-maps-task-management.png)
+![Fleet real-time operations dashboard displaying map views and task summaries for multi-site property and facilities management.](./images/proptech-ai-reviving-mall-portfolios/fleet-operations-dashboard-real-time-maps-task-management.png)
 
 _Fleet’s real-time operations dashboard provides multi-site visibility with mapped locations, open tasks, and performance metrics for data-driven decision-making._
 
@@ -69,7 +69,7 @@ _Fleet’s real-time operations dashboard provides multi-site visibility with ma
 
 Fleet’s real-time dashboards bring every site’s operational health into one unified view. The facility health table flags urgent issues by location so managers know exactly where to focus first. Visual summaries, such as open vs. closed task charts and average completion time metrics turn daily activity into clear, actionable insight. This helps operations teams spot workflow bottlenecks, benchmark performance across malls or stores, and maintain compliance with confidence. With Fleet, leaders get instant visibility, without digging through spreadsheets or fragmented tools.
 
-![Fleet CMMS interface showing work order creation and automated workflows on both desktop and mobile for field technicians and managers.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/8435200b-7239-4726-982a-e817e9280de7/fleet-work-order-workflow-desktop-mobile-cmms)
+![Fleet CMMS interface showing work order creation and automated workflows on both desktop and mobile for field technicians and managers.](./images/proptech-ai-reviving-mall-portfolios/fleet-work-order-workflow-desktop-mobile-cmms.png)
 
 Create, assign, and track work orders across desktop and mobile. Fleet streamlines multi-site maintenance workflows for technicians and property teams.
 
@@ -77,7 +77,7 @@ Create, assign, and track work orders across desktop and mobile. Fleet streamlin
 
 From food court hygiene checks to elevator inspections and parking-cleanliness audits, Fleet lets you create smart, customizable forms tailored to each site. These forms power automated workflows: if a technician selects “door sensor fault,” Fleet instantly generates a work order, notifies the assigned vendor, and logs the issue for reporting. Every form becomes a trigger for standardized, predictable operations. This reduces manual follow-up, strengthens compliance, and ensures every site follows the same quality and safety standards.
 
-![Fleet AI agent interface where users create work orders through chat, enabling automated workflows and intelligent property operations.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/f900f022-fd5a-413b-a5b9-ccd7f74927d5/fleet-ai-agent-chat-based-work-order-automation.png)
+![Fleet AI agent interface where users create work orders through chat, enabling automated workflows and intelligent property operations.](./images/proptech-ai-reviving-mall-portfolios/fleet-ai-agent-chat-based-work-order-automation.png)
 
 Fleet’s AI agent enables users to create work orders through chat, automating workflows and accelerating property operations with intelligent task handling.
 

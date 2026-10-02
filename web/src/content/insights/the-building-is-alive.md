@@ -3,13 +3,13 @@ title: 'AI Moved into the Building'
 description: 'AI is moving beyond dashboards and into the physical systems that keep buildings running. Discover how Fleet helps real estate teams manage AI-driven maintenance, compliance, assets, and workflows.'
 publishedAt: 2026-08-11
 updatedAt: 2026-09-21
-image: https://static1.squarespace.com/static/66f3da3d6d36da015dfdd900/6854d4153a3dbb322f38160d/6a79eada0f61e11c4d931bdd/1790009277149/a.png
+image: ./images/the-building-is-alive/cover.png
 imageAlt: 'AI Moved into the Building'
 ---
 
 ## Your software didn’t get the memo.
 
-![A robot uses a multimeter to inspect mechanical, electrical, and plumbing equipment inside a building, symbolizing the need for software that connects AI insights to real maintenance work.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/4a5cb1e5-4cf8-4050-baa5-f57385c9b16b/Robot-Multimeter.png)
+![A robot uses a multimeter to inspect mechanical, electrical, and plumbing equipment inside a building, symbolizing the need for software that connects AI insights to real maintenance work.](./images/the-building-is-alive/robot-multimeter.png)
 
 AI may be in the building—but someone still needs to make sure the work gets done. The right software connects intelligent signals to real-world action.
 
@@ -39,7 +39,7 @@ Cool. Except most buildings aren't wired for it. HVAC, lighting, security, and e
 
 The upside is real, though: the U.S. Department of Energy pegs high-performance controls at ~30% average HVAC savings, with controls-and-software upgrades cutting 10–30% of energy use in existing buildings. That's not a someday story — that's a cost, resilience, and compliance story happening right now.
 
-![Fleet map overview interface showing multiple real estate locations and portfolio-level operational visibility across sites.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/9c3f20c9-8cf4-48af-95bf-bbd4d3c57257/Fleet-map-overview.png)
+![Fleet map overview interface showing multiple real estate locations and portfolio-level operational visibility across sites.](./images/the-building-is-alive/fleet-map-overview.png)
 
 When operations span multiple sites, visibility is the first step toward control. Fleet gives real estate teams a map-based overview of properties, tasks, and operational activity in one place.
 
@@ -57,7 +57,7 @@ Robots are taking the jobs nobody wanted anyway. NIOSH says U.S. companies are l
 
 But robots aren't magic safety wands. NIOSH is blunt about it: robotic systems bring their own hazards — crushing, trapping, getting caught by something you didn't see coming. Training, barriers, and supervision still matter, a lot. Safer buildings come from pairing smarter machines with sharper management, not from swapping one for the other and calling it done.
 
-![Fleet asset management interface displaying asset details, maintenance history, service information, and operational records.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/38a5ed18-b724-4cbb-a1cc-ca91e7b0512b/Fleet+asset+management+interface.png)
+![Fleet asset management interface displaying asset details, maintenance history, service information, and operational records.](./images/the-building-is-alive/fleet-asset-management-interface.png)
 
 Real estate team still needs the asset history, maintenance records, and context to decide what happens next. Fleet keeps every asset’s information organized and accessible.
 
@@ -75,7 +75,7 @@ The Veolia Institute has the receipts — real deployments where AI-enabled buil
 
 Here's the catch: a prediction is worthless if nothing happens after it. A flagged risk sitting in an inbox is not an insight. It has to become a task, an owner, a record, a closed loop — fast.
 
-![Fleet preventive maintenance interface showing scheduled services, work order routing, and maintenance status for real estate assets.](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/82d2c17b-2e76-46de-95a0-c80863501fa4/Fleet+PPM+Interface.png)
+![Fleet preventive maintenance interface showing scheduled services, work order routing, and maintenance status for real estate assets.](./images/the-building-is-alive/fleet-ppm-interface.png)
 
 Preventive maintenance works best when it leads to action. Fleet helps teams schedule service, route work orders, and stay ahead of asset issues before they become disruptions.
 

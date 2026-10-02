@@ -3,11 +3,11 @@ title: 'Why Real Estate Teams Are Switching to Smart Maintenance Software'
 description: 'Managing property maintenance with spreadsheets, paper logs, and phone calls might seem familiar — but it’s far from efficient. In today’s real estate environment, where teams juggle multiple sites, assets, vendors, and compliance demands, outdated systems come at a cost: lost time, reactive firefighting, and inconsistent reporting.'
 publishedAt: 2025-07-21
 updatedAt: 2025-08-29
-image: https://static1.squarespace.com/static/66f3da3d6d36da015dfdd900/t/687eec108a02fc221da0e5fb/1754979137227/cover-software-maintenance-40645.jpg
+image: ./images/real-estate-teams-smart-maintenance-software/cover-software-maintenance-40645.jpg
 imageAlt: 'Why Real Estate Teams Are Switching to Smart Maintenance Software'
 ---
 
-![](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/1753148413237-VD5HIBSUXW7A9PX5XEZ8/cover-software-maintenance-40645.jpg)
+![](./images/real-estate-teams-smart-maintenance-software/cover-software-maintenance-40645.jpg)
 
 ## Introduction: The Hidden Costs of Manual Maintenance
 
@@ -33,7 +33,7 @@ A good CMMS/CAFM allows you to:
 
 ## Why Spreadsheets No Longer Work
 
-![](https://images.squarespace-cdn.com/content/v1/66f3da3d6d36da015dfdd900/2392ae2b-271b-423a-927a-1873513abfe1/spreadsheets.jpg)
+![](./images/real-estate-teams-smart-maintenance-software/spreadsheets.jpg)
 
 Spreadsheets were never built to handle the scale and complexity of modern property operations. Real estate and facilities managers face challenges like:
 
