@@ -2,8 +2,11 @@ import { websiteConfig } from '@/config'
 import type { CollectionEntry } from 'astro:content'
 import type { Article, WithContext } from 'schema-dts'
 
-export const insightSchema = (insight: CollectionEntry<'insights'>): WithContext<Article> => {
-  const { title, description, publishedAt, updatedAt, author, image } = insight.data
+export const insightSchema = (
+  insight: CollectionEntry<'insights'>,
+  imageUrl?: string,
+): WithContext<Article> => {
+  const { title, description, publishedAt, updatedAt, author } = insight.data
 
   return {
     '@context': 'https://schema.org',
@@ -13,7 +16,7 @@ export const insightSchema = (insight: CollectionEntry<'insights'>): WithContext
     datePublished: publishedAt.toISOString(),
     dateModified: (updatedAt ?? publishedAt).toISOString(),
     url: new URL(`/insights/${insight.id}`, websiteConfig.url).href,
-    image: image ? new URL(image, websiteConfig.url).href : undefined,
+    image: imageUrl,
     author: author
       ? { '@type': 'Person', name: author }
       : { '@type': 'Organization', name: websiteConfig.name },

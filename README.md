@@ -47,11 +47,17 @@ description: One or two sentences shown in the article list and search results.
 publishedAt: 2026-10-02
 author: Jane Doe
 category: Guides
+image: ./images/<slug>/cover.jpg
+imageAlt: Description of the cover image
 draft: false
 ---
 
 Article body in Markdown.
+
+![Description of the image](./images/<slug>/photo.jpg)
 ```
+
+Put the article's images in `web/src/content/insights/images/<slug>/` and reference them with relative paths as above. Never link to images hosted elsewhere. The build converts them to optimized WebP files, and the cover `image` becomes a 1200px social sharing image.
 
 Set `draft: true` to keep an article out of the site until it is ready. Run `pnpm check` in `web` to validate the frontmatter.
 

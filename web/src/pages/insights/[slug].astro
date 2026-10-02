@@ -7,6 +7,7 @@ import { formatDate } from '@/utils/formatDate'
 import { getPublishedInsights } from '@/utils/insights'
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
 import { Schema } from 'astro-seo-schema'
+import { getImage } from 'astro:assets'
 import { render } from 'astro:content'
 
 export const getStaticPaths = (async () => {
@@ -20,13 +21,18 @@ const { insight } = Astro.props
 const { Content } = await render(insight)
 const { title, description, publishedAt, updatedAt, author, category, image, imageAlt } =
   insight.data
+
+const shareImage = image
+  ? await getImage({ src: image, width: 1200, format: image.format === 'png' ? 'png' : 'jpg' })
+  : undefined
+const shareImageUrl = shareImage ? new URL(shareImage.src, websiteConfig.url).href : undefined
 ---
 
 <Layout
   meta={{
     title: `${title} | ${websiteConfig.name}`,
     description,
-    image,
+    image: shareImageUrl,
     imageAlt,
     type: 'article',
     publishedTime: publishedAt.toISOString(),
@@ -51,5 +57,5 @@ const { title, description, publishedAt, updatedAt, author, category, image, ima
       </div>
     </article>
   </Container>
-  <Schema item={insightSchema(insight)} />
+  <Schema item={insightSchema(insight, shareImageUrl)} />
 </Layout>
