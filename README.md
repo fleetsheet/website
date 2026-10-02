@@ -2,6 +2,8 @@
 
 The marketing website for [Fleet](https://runfleet.com), the commercial real estate management platform for strategy, operations and maintenance. It is a static [Astro](https://astro.build/) site in `web/`, styled with [Tailwind CSS](https://tailwindcss.com/). All content lives in this repository, so changes go through pull requests and Render preview deployments.
 
+**Not a developer?** You can change the site by asking Claude. See [Editing the Fleet website with Claude](docs/editing-guide.md) for the setup and the prompt to start with.
+
 ## Getting started
 
 Requirements: Node.js 22 and pnpm (the version is pinned in `package.json`).

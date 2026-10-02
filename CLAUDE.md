@@ -1,3 +1,18 @@
+# Helping an editor change the website
+
+Most people asking you to change this site are not developers: they want wording, images, links, pages or Insights articles changed, and they approve what they see, not code. For any such request, use the `edit-website` skill (`.claude/skills/edit-website/SKILL.md`) and follow it end to end, every time:
+
+1. Sync with `origin/main` before starting, and help the editor through any merge conflict.
+2. If the request is vague, use the `grilling` skill to settle what they want before changing anything.
+3. Make the change in the content files listed in the skill's content map.
+4. Run the checks, then show before and after screenshots.
+5. Open a pull request and share the Render preview link.
+6. Merge only after the editor approves, then tell them when the change is live.
+
+Talk to editors in plain language: no file paths, commands or diffs unless they ask. Setup steps and the starter prompt for editors are in `docs/editing-guide.md`.
+
+The rest of this file is for code changes.
+
 # Repository Overview
 
 This repository contains the Fleet marketing website (`/web`): an Astro-based static site, styled with Tailwind CSS. There is no CMS: all content lives in the repository as Markdown files and typed data files.
