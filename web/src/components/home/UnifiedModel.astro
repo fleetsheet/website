@@ -1,0 +1,52 @@
+---
+import Logo from '@/components/ui/Logo.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { unifiedModel } from '@/data/home'
+import Check from '@lucide/astro/icons/check'
+---
+
+<PageSection containerClass="pt-0">
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-center gap-12">
+    <SectionHeader
+      eyebrow={unifiedModel.eyebrow}
+      title={unifiedModel.title}
+      description={unifiedModel.description}
+    />
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <ul class="flex flex-[1_1_160px] flex-col gap-2" aria-label="Before Fleet">
+        {unifiedModel.sources.map((source) => (
+          <li class="bg-surface border-soft-gray text-azul-blue rounded-md border border-dashed px-3 py-2.5 text-sm">
+            {source}
+          </li>
+        ))}
+      </ul>
+      <svg
+        width="40"
+        height="24"
+        viewBox="0 0 40 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="text-celestial-blue"
+        aria-hidden="true"
+      >
+        <path d="M2 12h34"></path>
+        <path d="m29 5 7 7-7 7"></path>
+      </svg>
+      <div class="bg-rich-blue flex flex-[1_1_200px] flex-col gap-3 rounded-xl p-5 shadow-lg">
+        <Logo tone="light" />
+        <ul class="flex flex-col gap-3" aria-label="With Fleet">
+          {unifiedModel.outputs.map((output) => (
+            <li class="bg-azul-blue text-alice-blue flex items-center gap-2 rounded-md px-3 py-[9px] text-sm">
+              <Check class="text-sky-blue size-3.5" stroke-width={2.5} aria-hidden="true" />
+              {output}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</PageSection>

@@ -1,0 +1,40 @@
+---
+import Button from './Button.astro'
+import Container from './Container.astro'
+
+type Action = {
+  label: string
+  href: string
+}
+
+type Props = {
+  id?: string
+  title: string
+  description?: string
+  primaryAction: Action
+  secondaryAction?: Action
+}
+
+const { id, title, description, primaryAction, secondaryAction } = Astro.props
+---
+
+<section id={id}>
+  <Container width="wide" class="py-24">
+    <div class="bg-supergraphic flex flex-col items-center gap-5 rounded-2xl p-[clamp(40px,6vw,80px)] text-center">
+      <h2 class="text-display-lg max-w-[760px] text-white">{title}</h2>
+      {description && (
+        <p class="text-columbia-blue max-w-[560px] text-lg leading-relaxed">{description}</p>
+      )}
+      <div class="mt-2 flex flex-wrap justify-center gap-3">
+        <Button href={primaryAction.href} variant="accent" size="lg">
+          {primaryAction.label}
+        </Button>
+        {secondaryAction && (
+          <Button href={secondaryAction.href} variant="inverse" size="lg">
+            {secondaryAction.label}
+          </Button>
+        )}
+      </div>
+    </div>
+  </Container>
+</section>

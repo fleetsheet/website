@@ -1,0 +1,19 @@
+---
+import Check from '@lucide/astro/icons/check'
+
+type Props = {
+  items: string[]
+  class?: string
+}
+
+const { items, class: className } = Astro.props
+---
+
+<ul class:list={['flex flex-col gap-2.5', className]}>
+  {items.map((item) => (
+    <li class="flex items-center gap-2.5 text-[15px]">
+      <Check class="text-celestial-blue size-4" stroke-width={2.5} aria-hidden="true" />
+      {item}
+    </li>
+  ))}
+</ul>

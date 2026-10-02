@@ -1,14 +1,38 @@
 ---
-export const prerender = false
-
-import { defaultLocale } from '@/cms/locales'
-import type { Locale } from '@/cms/types'
-import { localeFromHeader } from '@/utils/localeFromHeader'
-
-const { headers } = Astro.request
-
-const locale: Locale = localeFromHeader(headers) || defaultLocale
-void locale // Using locale in a noop to avoid unused error by astro check (https://github.com/withastro/astro/issues/14684)
-
-return Astro.redirect(`/${locale}${Astro.url.search}`, 302)
+import AiAgents from '@/components/home/AiAgents.astro'
+import Consultancy from '@/components/home/Consultancy.astro'
+import HomeHero from '@/components/home/HomeHero.astro'
+import PlatformModules from '@/components/home/PlatformModules.astro'
+import ProductShowcase from '@/components/home/ProductShowcase.astro'
+import Solutions from '@/components/home/Solutions.astro'
+import UnifiedModel from '@/components/home/UnifiedModel.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import { websiteConfig } from '@/config'
+import { demoCta } from '@/data/home'
+import Layout from '@/layout/Layout.astro'
+import { organizationSchema } from '@/schema/organization'
+import { Schema } from 'astro-seo-schema'
 ---
+
+<Layout
+  meta={{
+    title: `${websiteConfig.name} | Unified Data and Intelligence for Real Estate`,
+    description: websiteConfig.description,
+  }}
+>
+  <HomeHero />
+  <ProductShowcase />
+  <UnifiedModel />
+  <PlatformModules />
+  <AiAgents />
+  <Solutions />
+  <Consultancy />
+  <CtaBanner
+    id="demo"
+    title={demoCta.title}
+    description={demoCta.description}
+    primaryAction={demoCta.primaryAction}
+    secondaryAction={websiteConfig.actions.signIn}
+  />
+  <Schema item={organizationSchema()} />
+</Layout>

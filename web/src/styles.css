@@ -4,69 +4,93 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system;
-  --color-primary: #1e3a8a;
-  --color-primary-dark: #162d6e;
-  --color-neutral-150: #ededed;
+  --font-sans: var(--font-hanken-grotesk);
+  --font-display: var(--font-sora);
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --color-rich-blue: #1c3950;
+  --color-alice-blue: #f0f5f8;
+  --color-sky-blue: #9dd4fd;
+  --color-celestial-blue: #4e9dd9;
+  --color-sun-orange: #f7ab25;
+
+  --color-azul-blue: #2d5a7e;
+  --color-azul-blue-light: #35668f;
+  --color-argentinian-blue: #68afe5;
+  --color-maya-blue: #83c2f1;
+  --color-uranian-blue: #b9dffb;
+  --color-columbia-blue: #d4eafa;
+  --color-sunset: #fac76e;
+  --color-cream-peach: #fce3b6;
+  --color-cream-peach-foreground: #7a4b00;
+  --color-soft-gray: #adbbcb;
+
+  --color-primary: var(--color-rich-blue);
+  --color-primary-foreground: var(--color-alice-blue);
+  --color-secondary: var(--color-azul-blue);
+  --color-accent: var(--color-celestial-blue);
+  --color-page: var(--color-alice-blue);
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-muted: #64748b;
+
+  --text-display-xl: clamp(2.5rem, 6vw, 4.25rem);
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--letter-spacing: -0.035em;
+  --text-display-xl--font-weight: 600;
+  --text-display-lg: clamp(2rem, 4.4vw, 3.25rem);
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.03em;
+  --text-display-lg--font-weight: 600;
+  --text-display-md: clamp(1.875rem, 3.6vw, 2.625rem);
+  --text-display-md--line-height: 1.12;
+  --text-display-md--letter-spacing: -0.03em;
+  --text-display-md--font-weight: 600;
+  --text-lead: clamp(1.0625rem, 1.6vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  --shadow-xs: 0 1px 2px 0 rgb(28 57 80 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(28 57 80 / 0.1), 0 1px 2px -1px rgb(28 57 80 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(28 57 80 / 0.1), 0 2px 4px -2px rgb(28 57 80 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(28 57 80 / 0.12), 0 4px 6px -4px rgb(28 57 80 / 0.08);
+  --shadow-float: 0 10px 15px -3px rgb(28 57 80 / 0.25), 0 4px 6px -4px rgb(28 57 80 / 0.2);
+
+  --container-content: 75rem;
+  --container-wide: 78rem;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
 @layer base {
   html {
-    /* Scroll offset to account for the fixed header */
-    @apply scroll-pt-26 md:scroll-pt-22;
+    @apply bg-page text-rich-blue scroll-pt-20 font-sans antialiased;
+  }
+
+  body {
+    @apply bg-page;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight text-balance;
   }
 
   h1,
   h2 {
     @apply sm:hyphenate-none hyphenate;
   }
+
+  svg {
+    @apply shrink-0;
+  }
 }
 
-@layer components {
-  .header-solid {
-    @apply bg-white;
-  }
-
-  .header-scrolled {
-    @apply bg-white shadow-sm;
-  }
-
-  .header-transparent {
-    @apply bg-transparent;
-  }
-
-  .menu-icon {
-    @apply relative h-12 w-12 cursor-pointer;
-  }
-
-  .menu-icon div {
-    @apply absolute top-0 right-0 bottom-0 left-0 m-auto h-4 w-7;
-  }
-
-  .menu-icon span {
-    @apply absolute block h-[3px] w-full rounded-sm bg-slate-700;
-    transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
-  }
-
-  .menu-icon span:first-of-type {
-    @apply top-0;
-  }
-
-  .menu-icon span:last-of-type {
-    @apply bottom-0 left-[1/5] w-[4/5];
-  }
-
-  .menu-icon[data-state='open'] span:first-of-type,
-  .menu-icon.active span:first-of-type {
-    @apply top-[4px];
-    transform: rotate(45deg);
-  }
-
-  .menu-icon[data-state='open'] span:last-of-type,
-  .menu-icon.active span:last-of-type {
-    @apply bottom-[9px] left-0 w-full;
-    transform: rotate(-45deg);
-  }
+@utility eyebrow {
+  @apply text-[13px] font-semibold tracking-[0.04em] uppercase;
 }
 
 @utility hyphenate {
@@ -91,24 +115,32 @@
   hyphens: none;
 }
 
-@layer utilities {
-  /* Rich text (Tailwind Typography) themed with the project's brand colors. */
-  .prose {
-    --tw-prose-body: var(--color-slate-700);
-    --tw-prose-bold: var(--color-slate-700);
-    --tw-prose-bullets: var(--color-primary);
-    --tw-prose-counters: var(--color-primary);
-    --tw-prose-quote-borders: var(--color-primary);
+@utility bg-supergraphic {
+  background-color: var(--color-rich-blue);
+  background-image: url('./assets/brand/fleet-supergraphic-bg.png');
+  background-size: 480px auto;
+}
 
-    /* Break long unbreakable strings (URLs, emails) so they wrap instead of overflowing. */
+@layer utilities {
+  .prose {
+    --tw-prose-body: var(--color-azul-blue);
+    --tw-prose-headings: var(--color-rich-blue);
+    --tw-prose-links: var(--color-celestial-blue);
+    --tw-prose-bold: var(--color-rich-blue);
+    --tw-prose-bullets: var(--color-celestial-blue);
+    --tw-prose-counters: var(--color-celestial-blue);
+    --tw-prose-quote-borders: var(--color-celestial-blue);
+    --tw-prose-hr: var(--color-border);
+
     overflow-wrap: anywhere;
   }
 
   .prose-invert {
-    --tw-prose-body: white;
+    --tw-prose-body: var(--color-columbia-blue);
+    --tw-prose-headings: white;
     --tw-prose-bold: white;
-    --tw-prose-bullets: white;
-    --tw-prose-counters: white;
+    --tw-prose-bullets: var(--color-sky-blue);
+    --tw-prose-counters: var(--color-sky-blue);
     --tw-prose-quote-borders: rgba(255, 255, 255, 0.4);
   }
 }

@@ -1,0 +1,34 @@
+---
+import Button from '@/components/ui/Button.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { consultancy } from '@/data/home'
+---
+
+<PageSection id="consultancy" tone="surface" containerClass="flex flex-col gap-10">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <SectionHeader
+      eyebrow={consultancy.eyebrow}
+      title={consultancy.title}
+      description={consultancy.description}
+      class="max-w-[640px]"
+    />
+    <Button href={consultancy.action.href} variant="secondary" class="px-[18px]">
+      {consultancy.action.label}
+    </Button>
+  </div>
+  <ol class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-4">
+    {consultancy.phases.map((phase, index) => (
+      <li class="bg-page border-border flex flex-col gap-3 rounded-xl border p-6">
+        <div class="flex items-center gap-2.5">
+          <span class="font-display bg-rich-blue text-alice-blue flex size-7 items-center justify-center rounded-md text-[13px] font-semibold">
+            {index + 1}
+          </span>
+          <div class="h-px flex-1 bg-slate-300" />
+        </div>
+        <h3 class="text-lg font-semibold">{phase.title}</h3>
+        <p class="text-azul-blue text-[15px] leading-[1.55]">{phase.description}</p>
+      </li>
+    ))}
+  </ol>
+</PageSection>

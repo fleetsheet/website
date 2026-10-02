@@ -1,0 +1,102 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { solutions } from '@/data/home'
+import MapPin from '@lucide/astro/icons/map-pin'
+
+const tabId = (index: number) => `solutions-tab-${index}`
+const panelId = (index: number) => `solutions-panel-${index}`
+---
+
+<PageSection id="solutions" containerClass="flex flex-col gap-8">
+  <SectionHeader eyebrow={solutions.eyebrow} title={solutions.title} />
+
+  <div data-tabs class="flex flex-col gap-8">
+    <div
+      role="tablist"
+      aria-label={solutions.eyebrow}
+      class="bg-surface border-border flex max-w-full flex-wrap gap-1.5 self-start rounded-lg border p-1"
+    >
+      {solutions.sectors.map((sector, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={tabId(index)}
+          aria-controls={panelId(index)}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          tabindex={index === 0 ? 0 : -1}
+          class="font-display text-azul-blue aria-selected:bg-rich-blue aria-selected:text-alice-blue hover:bg-page cursor-pointer rounded-md px-3.5 py-2 text-sm font-medium transition-colors"
+        >
+          {sector.label}
+        </button>
+      ))}
+    </div>
+
+    {solutions.sectors.map((sector, index) => (
+      <div
+        role="tabpanel"
+        id={panelId(index)}
+        aria-labelledby={tabId(index)}
+        hidden={index !== 0}
+        class="bg-surface border-border grid grid-cols-[repeat(auto-fit,minmax(min(100%,360px),1fr))] items-center gap-10 rounded-xl border p-[clamp(24px,3vw,40px)] shadow-sm"
+      >
+        <div class="flex flex-col gap-4">
+          <h3 class="text-[28px] font-semibold tracking-[-0.02em]">{sector.title}</h3>
+          <p class="text-azul-blue leading-[1.65]">{sector.description}</p>
+          <CheckList items={sector.points} />
+        </div>
+        <div class="bg-page flex flex-col gap-2.5 rounded-xl p-5" aria-hidden="true">
+          <p class="text-azul-blue flex items-center gap-2 text-[13px]">
+            <MapPin class="text-celestial-blue size-4" />
+            <span class="font-semibold">{sector.site}</span>
+          </p>
+          {sector.tasks.map((task) => (
+            <div class="bg-surface border-border flex items-center gap-3 rounded-lg border px-3.5 py-3 text-sm">
+              <div class="min-w-0 flex-1">
+                <p class="font-semibold">{task.title}</p>
+                <p class="text-muted text-xs">{task.location}</p>
+              </div>
+              <Badge tone={task.tone}>{task.status}</Badge>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</PageSection>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
+
+      const select = (next: HTMLButtonElement) => {
+        tabs.forEach((tab) => {
+          const selected = tab === next
+          tab.setAttribute('aria-selected', String(selected))
+          tab.tabIndex = selected ? 0 : -1
+          const panel = document.getElementById(tab.getAttribute('aria-controls') ?? '')
+          if (panel) {
+            panel.hidden = !selected
+          }
+        })
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => select(tab))
+        tab.addEventListener('keydown', (event) => {
+          const offset = { ArrowRight: 1, ArrowLeft: -1 }[event.key]
+          if (offset === undefined) {
+            return
+          }
+          event.preventDefault()
+          const next = tabs[(index + offset + tabs.length) % tabs.length]
+          select(next)
+          next.focus()
+        })
+      })
+    })
+  })
+</script>
