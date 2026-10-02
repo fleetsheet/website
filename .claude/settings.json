@@ -35,7 +35,6 @@
       "Bash(pnpm preview:*)",
       "Bash(pnpm generate:*)",
       "Bash(pnpm devsafe:*)",
-      "Bash(pnpm payload:*)",
       "Bash(pnpm astro:*)",
 
       "Bash(pnpm list:*)",
@@ -46,7 +45,6 @@
 
       "Bash(npx tsc:*)",
       "Bash(npx astro:*)",
-      "Bash(npx payload:*)",
       "Bash(npx prettier:*)",
       "Bash(npx eslint:*)",
 

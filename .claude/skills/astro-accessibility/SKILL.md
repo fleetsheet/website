@@ -14,7 +14,7 @@ This project must meet **WCAG 2.1 AA** guidelines.
 
 ## Images
 
-- **Informative images**: use the custom `<Img>` component and pass the `media` prop, it includes the correct alt text
+- **Informative images**: use Astro's `<Image>` from `astro:assets` with a descriptive `alt`
 - **Functional images/icons** (used in buttons or links): use `alt` or `aria-label` to describe the action/purpose
 - **Decorative images/icons**: use `aria-hidden="true"` and `alt=""`
 
