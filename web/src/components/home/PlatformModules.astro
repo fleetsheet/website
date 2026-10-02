@@ -5,9 +5,14 @@ import IconChip from '@/components/ui/IconChip.astro'
 import MockPanel from '@/components/ui/MockPanel.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
-import { platform } from '@/data/home'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
 import Box from '@lucide/astro/icons/box'
 import FileText from '@lucide/astro/icons/file-text'
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { platform } = content.home
 
 const { workOrders, assets, documents, workflows, auditLogs, mobile } = platform
 
@@ -92,7 +97,7 @@ const stepStyles = [
               </span>
               <span class="font-semibold">{step.text}</span>
             </div>
-            {index < workflows.steps.length - 1 && <div class="bg-uranian-blue ml-6 h-3.5 w-0.5" />}
+            {index < workflows.steps.length - 1 && <div class="bg-uranian-blue ms-6 h-3.5 w-0.5" />}
           </div>
         ))}
       </div>

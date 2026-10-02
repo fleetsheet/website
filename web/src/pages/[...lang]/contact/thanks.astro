@@ -1,8 +1,16 @@
 ---
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
-import { contactThanks } from '@/data/contact'
+import { getContent } from '@/data'
+import { getLocale, localeStaticPaths } from '@/i18n'
 import Layout from '@/layout/Layout.astro'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { contactThanks } = content.contact
 ---
 
 <Layout meta={{ ...contactThanks.meta, noIndex: true }}>

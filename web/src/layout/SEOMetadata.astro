@@ -1,10 +1,11 @@
 ---
 import { websiteConfig } from '@/config'
+import { languages, type Locale } from '@/i18n'
 import type { PageMeta } from '@/types'
 import { WEBSITE_URL } from 'astro:env/client'
 import { SITE_ENV } from 'astro:env/server'
 
-type Props = PageMeta & { lang: string }
+type Props = PageMeta & { locale: Locale }
 
 const {
   title,
@@ -16,6 +17,7 @@ const {
   publishedTime,
   modifiedTime,
   alternatePaths = [],
+  locale,
 } = Astro.props
 
 const canonicalUrl = new URL(Astro.url.pathname, WEBSITE_URL)
@@ -53,7 +55,7 @@ const shouldIndex = SITE_ENV === 'production' && !noIndex
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
-<meta property="og:locale" content={websiteConfig.locale} />
+<meta property="og:locale" content={languages[locale].ogLocale} />
 <meta property="og:image" content={ogImageUrl} />
 <meta property="og:image:alt" content={ogImageAlt} />
 {isDefaultImage && (

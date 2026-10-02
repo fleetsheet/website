@@ -1,28 +1,36 @@
 ---
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
-import { hero } from '@/data/home'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import Check from '@lucide/astro/icons/check'
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { hero } = content.home
 ---
 
 <section>
   <Container class="flex flex-col items-center gap-6 pt-20 pb-12 text-center">
     <a
-      href={hero.announcement.href}
-      class="bg-surface border-border text-azul-blue hover:text-rich-blue flex items-center gap-2 rounded-md border py-1.5 pr-3 pl-1.5 text-[13px] font-medium shadow-xs transition-colors"
+      href={localizePath(hero.announcement.href, locale)}
+      class="bg-surface border-border text-azul-blue hover:text-rich-blue flex items-center gap-2 rounded-md border py-1.5 ps-1.5 pe-3 text-[13px] font-medium shadow-xs transition-colors"
     >
       <span class="bg-columbia-blue text-rich-blue rounded-sm px-2 py-0.5 font-semibold">
         {hero.announcement.label}
       </span>
-      {hero.announcement.text} →
+      {hero.announcement.text}
+      <span class="inline-block rtl:-scale-x-100" aria-hidden="true">
+        →
+      </span>
     </a>
     <h1 class="text-display-xl max-w-[900px]">{hero.title}</h1>
     <p class="text-lead text-azul-blue max-w-[640px] text-pretty">{hero.description}</p>
     <div class="flex flex-wrap justify-center gap-3">
       <Button href={hero.primaryAction.href}>
         {hero.primaryAction.label}
-        <ArrowRight class="size-4" aria-hidden="true" />
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
       </Button>
       <Button href={hero.secondaryAction.href} variant="secondary">
         {hero.secondaryAction.label}

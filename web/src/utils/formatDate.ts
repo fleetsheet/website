@@ -1,3 +1,7 @@
-const dateFormatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' })
+import { languages, type Locale } from '@/i18n'
 
-export const formatDate = (date: Date) => dateFormatter.format(date)
+export const formatDate = (date: Date, locale: Locale) =>
+  new Intl.DateTimeFormat(languages[locale].dateLocale, {
+    dateStyle: 'long',
+    timeZone: 'UTC',
+  }).format(date)

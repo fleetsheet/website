@@ -8,11 +8,7 @@ export type NavLink = {
 type WebsiteConfig = {
   url: string
   name: string
-  tagline: string
-  description: string
   domain: string
-  lang: string
-  locale: string
   email: string
   themeColor: string
   icon: string
@@ -28,26 +24,12 @@ type WebsiteConfig = {
     height: number
   }
   socialUrls: string[]
-  actions: {
-    signIn: NavLink
-    bookDemo: NavLink
-  }
-  headerLinks: NavLink[]
-  footerColumns: {
-    title: string
-    links: NavLink[]
-  }[]
 }
 
 export const websiteConfig: WebsiteConfig = {
   url: WEBSITE_URL,
   name: 'Fleet',
-  tagline: 'Unified Data and Intelligence for Real Estate.',
-  description:
-    'Fleet is the commercial real estate management platform purpose-built for strategy, operations, and maintenance.',
   domain: 'runfleet.com',
-  lang: 'en',
-  locale: 'en_US',
   email: 'admin@runfleet.com',
   themeColor: '#F0F5F8',
   icon: '/icon.png',
@@ -63,35 +45,4 @@ export const websiteConfig: WebsiteConfig = {
     height: 630,
   },
   socialUrls: [],
-  actions: {
-    signIn: { label: 'Sign in', href: '#' },
-    bookDemo: { label: 'Book a demo', href: '/contact' },
-  },
-  headerLinks: [
-    { label: 'Platform', href: '/#platform' },
-    { label: 'Solutions', href: '/#solutions' },
-    { label: 'AI agents', href: '/#ai' },
-    { label: 'Consultancy', href: '/#consultancy' },
-    { label: 'About', href: '/about' },
-  ],
-  footerColumns: [
-    {
-      title: 'Platform',
-      links: [
-        { label: 'Facility management', href: '/features/facility-management' },
-        { label: 'Asset management', href: '/features/asset-management' },
-        { label: 'Document management', href: '/features/document-management' },
-        { label: 'Vehicle management', href: '/features/vehicle-management' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { label: 'About', href: '/about' },
-        { label: 'Consultancy', href: '/#consultancy' },
-        { label: 'AI agents', href: '/#ai' },
-        { label: 'Contact', href: '/contact' },
-      ],
-    },
-  ],
 }

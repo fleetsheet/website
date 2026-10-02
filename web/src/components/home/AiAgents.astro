@@ -3,10 +3,15 @@ import Badge from '@/components/ui/Badge.astro'
 import IconChip from '@/components/ui/IconChip.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
-import { aiAgents } from '@/data/home'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import ShieldCheck from '@lucide/astro/icons/shield-check'
 import Sparkles from '@lucide/astro/icons/sparkles'
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { aiAgents } = content.home
 
 const { chat } = aiAgents
 const maxHours = Math.max(...chat.rows.map((row) => row.hours))
@@ -95,7 +100,7 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
                     style={`width: ${Math.round((row.hours / maxHours) * 100)}%`}
                   />
                 </div>
-                <span class="w-7 text-right font-bold">{row.hours}</span>
+                <span class="w-7 text-end font-bold">{row.hours}</span>
               </div>
             ))}
           </div>
@@ -118,7 +123,7 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
     <div class="border-border flex items-center gap-2.5 border-t px-4 py-3">
       <span class="text-muted flex-1 text-sm">{chat.placeholder}</span>
       <span class="bg-rich-blue text-alice-blue flex size-[30px] items-center justify-center rounded-md">
-        <ArrowRight class="size-3.5" stroke-width={2.5} />
+        <ArrowRight class="size-3.5 rtl:-scale-x-100" stroke-width={2.5} />
       </span>
     </div>
   </div>

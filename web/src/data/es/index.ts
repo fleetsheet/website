@@ -1,0 +1,5 @@
+export * as contact from './contact'
+export * as home from './home'
+export * as insights from './insights'
+export * as newsletter from './newsletter'
+export * as site from './site'

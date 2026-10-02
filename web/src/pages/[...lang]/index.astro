@@ -7,18 +7,25 @@ import ProductShowcase from '@/components/home/ProductShowcase.astro'
 import Solutions from '@/components/home/Solutions.astro'
 import UnifiedModel from '@/components/home/UnifiedModel.astro'
 import CtaBanner from '@/components/ui/CtaBanner.astro'
-import { websiteConfig } from '@/config'
-import { demoCta } from '@/data/home'
+import { getContent } from '@/data'
+import { getLocale, localeStaticPaths } from '@/i18n'
 import Layout from '@/layout/Layout.astro'
 import { organizationSchema } from '@/schema/organization'
 import { websiteSchema } from '@/schema/website'
+import type { GetStaticPaths } from 'astro'
 import { Schema } from 'astro-seo-schema'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { demoCta, meta } = content.home
 ---
 
 <Layout
   meta={{
-    title: `${websiteConfig.name} | Unified Data and Intelligence for Real Estate`,
-    description: websiteConfig.description,
+    title: meta.title,
+    description: meta.description,
   }}
 >
   <HomeHero />
@@ -33,8 +40,8 @@ import { Schema } from 'astro-seo-schema'
     title={demoCta.title}
     description={demoCta.description}
     primaryAction={demoCta.primaryAction}
-    secondaryAction={websiteConfig.actions.signIn}
+    secondaryAction={content.site.actions.signIn}
   />
-  <Schema item={organizationSchema()} />
-  <Schema item={websiteSchema()} />
+  <Schema item={organizationSchema(locale)} />
+  <Schema item={websiteSchema(locale)} />
 </Layout>

@@ -2,7 +2,12 @@
 import Button from '@/components/ui/Button.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
-import { consultancy } from '@/data/home'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { consultancy } = content.home
 ---
 
 <PageSection id="consultancy" tone="surface" containerClass="flex flex-col gap-10">

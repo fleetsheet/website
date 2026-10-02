@@ -7,6 +7,12 @@ export type StatusItem = {
   tone: BadgeTone
 }
 
+export const meta = {
+  title: 'Fleet | Unified Data and Intelligence for Real Estate',
+  description:
+    'Fleet is the commercial real estate management platform purpose-built for strategy, operations, and maintenance.',
+}
+
 export const hero = {
   announcement: {
     label: 'New',

@@ -1,0 +1,56 @@
+import type { NavLink } from '@/config'
+
+export const tagline = 'Données et intelligence unifiées pour l’immobilier.'
+
+export const description =
+  'Fleet est la plateforme de gestion immobilière d’entreprise conçue pour la stratégie, l’exploitation et la maintenance.'
+
+export const actions = {
+  signIn: { label: 'Se connecter', href: '#' },
+  bookDemo: { label: 'Demander une démo', href: '/contact' },
+} satisfies Record<string, NavLink>
+
+export const headerLinks: NavLink[] = [
+  { label: 'Plateforme', href: '/#platform' },
+  { label: 'Solutions', href: '/#solutions' },
+  { label: 'Agents IA', href: '/#ai' },
+  { label: 'Conseil', href: '/#consultancy' },
+  { label: 'À propos', href: '/about' },
+]
+
+export const footerColumns: { title: string; links: NavLink[] }[] = [
+  {
+    title: 'Plateforme',
+    links: [
+      { label: 'Gestion des installations', href: '/features/facility-management' },
+      { label: 'Gestion des actifs', href: '/features/asset-management' },
+      { label: 'Gestion documentaire', href: '/features/document-management' },
+      { label: 'Gestion de flotte', href: '/features/vehicle-management' },
+    ],
+  },
+  {
+    title: 'Entreprise',
+    links: [
+      { label: 'À propos', href: '/about' },
+      { label: 'Conseil', href: '/#consultancy' },
+      { label: 'Agents IA', href: '/#ai' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+]
+
+export const labels = {
+  skipToContent: 'Aller au contenu',
+  home: 'Accueil Fleet',
+  mainNav: 'Principale',
+  mobileNav: 'Mobile',
+  openMenu: 'Ouvrir le menu',
+  closeMenu: 'Fermer le menu',
+  language: 'Langue',
+  optional: '(facultatif)',
+  emailPrompt: 'Vous préférez l’e-mail ? Écrivez à',
+  productPreview: 'Aperçu du produit',
+  auditLog: 'Journal d’audit',
+  beforeFleet: 'Avant Fleet',
+  withFleet: 'Avec Fleet',
+}

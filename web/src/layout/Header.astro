@@ -2,24 +2,36 @@
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import Logo from '@/components/ui/Logo.astro'
-import { websiteConfig } from '@/config'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
 import Menu from '@lucide/astro/icons/menu'
 import X from '@lucide/astro/icons/x'
+import LanguageSwitcher, { type Translation } from './LanguageSwitcher.astro'
 
-const { headerLinks, actions } = websiteConfig
+type Props = {
+  translations: Translation[]
+}
+
+const { translations } = Astro.props
+const locale = getLocale(Astro.url)
+const { headerLinks, actions, labels } = getContent(locale).site
+const localize = (href: string) => localizePath(href, locale)
 ---
 
 <header id="site-header" class="bg-page border-border sticky top-0 z-40 border-b">
   <Container class="flex items-center gap-8 py-3.5">
-    <a href="/" aria-label={`${websiteConfig.name} home`} class="rounded-md">
+    <a href={localize('/')} aria-label={labels.home} class="rounded-md">
       <Logo size="lg" />
     </a>
 
-    <nav aria-label="Main" class="hidden flex-1 lg:block">
+    <nav aria-label={labels.mainNav} class="hidden flex-1 lg:block">
       <ul class="flex flex-wrap gap-6 text-[15px] font-medium">
         {headerLinks.map((link) => (
           <li>
-            <a href={link.href} class="text-azul-blue hover:text-rich-blue transition-colors">
+            <a
+              href={localize(link.href)}
+              class="text-azul-blue hover:text-rich-blue transition-colors"
+            >
               {link.label}
             </a>
           </li>
@@ -27,35 +39,44 @@ const { headerLinks, actions } = websiteConfig
       </ul>
     </nav>
 
-    <div class="ml-auto hidden items-center gap-2 sm:flex">
-      <Button href={actions.signIn.href} variant="ghost" size="sm">
-        {actions.signIn.label}
-      </Button>
-      <Button href={actions.bookDemo.href} size="sm" class="font-semibold">
-        {actions.bookDemo.label}
-      </Button>
+    <div class="ms-auto flex items-center gap-2">
+      <LanguageSwitcher
+        id="language"
+        locale={locale}
+        label={labels.language}
+        translations={translations}
+      />
+      <div class="hidden items-center gap-2 sm:flex">
+        <Button href={localize(actions.signIn.href)} variant="ghost" size="sm">
+          {actions.signIn.label}
+        </Button>
+        <Button href={localize(actions.bookDemo.href)} size="sm" class="font-semibold">
+          {actions.bookDemo.label}
+        </Button>
+      </div>
+      <button
+        type="button"
+        id="site-menu-button"
+        class="group text-rich-blue hover:bg-border rounded-md p-2 lg:hidden"
+        aria-controls="site-menu"
+        aria-expanded="false"
+        aria-label={labels.openMenu}
+        data-open-label={labels.openMenu}
+        data-close-label={labels.closeMenu}
+      >
+        <Menu class="size-6 group-aria-expanded:hidden" aria-hidden="true" />
+        <X class="hidden size-6 group-aria-expanded:block" aria-hidden="true" />
+      </button>
     </div>
-
-    <button
-      type="button"
-      id="site-menu-button"
-      class="group text-rich-blue hover:bg-border ml-auto rounded-md p-2 sm:ml-0 lg:hidden"
-      aria-controls="site-menu"
-      aria-expanded="false"
-      aria-label="Open menu"
-    >
-      <Menu class="size-6 group-aria-expanded:hidden" aria-hidden="true" />
-      <X class="hidden size-6 group-aria-expanded:block" aria-hidden="true" />
-    </button>
   </Container>
 
   <div id="site-menu" class="border-border bg-page hidden border-t lg:hidden">
     <Container class="flex flex-col gap-6 py-6">
-      <nav aria-label="Mobile">
+      <nav aria-label={labels.mobileNav}>
         <ul class="flex flex-col gap-1 text-lg font-medium">
           {headerLinks.map((link) => (
             <li>
-              <a href={link.href} class="hover:bg-border block rounded-md px-2 py-2">
+              <a href={localize(link.href)} class="hover:bg-border block rounded-md px-2 py-2">
                 {link.label}
               </a>
             </li>
@@ -63,10 +84,10 @@ const { headerLinks, actions } = websiteConfig
         </ul>
       </nav>
       <div class="flex flex-col gap-2 sm:hidden">
-        <Button href={actions.signIn.href} variant="secondary">
+        <Button href={localize(actions.signIn.href)} variant="secondary">
           {actions.signIn.label}
         </Button>
-        <Button href={actions.bookDemo.href}>{actions.bookDemo.label}</Button>
+        <Button href={localize(actions.bookDemo.href)}>{actions.bookDemo.label}</Button>
       </div>
     </Container>
   </div>
@@ -82,7 +103,10 @@ const { headerLinks, actions } = websiteConfig
     }
 
     button.setAttribute('aria-expanded', String(open))
-    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+    const label = open ? button.dataset.closeLabel : button.dataset.openLabel
+    if (label) {
+      button.setAttribute('aria-label', label)
+    }
     menu.classList.toggle('hidden', !open)
   }
 

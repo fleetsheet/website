@@ -52,6 +52,7 @@ Pass the page paths that will change. Each path gets a desktop and a phone scree
 - Edit content and copy only: the files in `content-map.md`. Follow `design-and-voice.md` for wording and anything visual.
 - Keep text lengths close to the original unless asked, so layouts don't break.
 - Images and Insights articles: follow `images.md`.
+- Translations: the site is also in German, Arabic, French, Chinese (Simplified) and Spanish (see "Languages" in `content-map.md`). When you change English wording, update the same text in all five translations in the same change, translating it yourself, and tell the editor in one line that the other languages were updated too. A new Insights article gets translations too, unless the editor says English only. If the editor asks to change only one language, change only that one. Include one translated page (Arabic, for right to left) in the after screenshots when wording changed.
 - If the request needs a code change (a new section type, a layout change, a new page template), tell the editor in plain words that it changes how the site is built, not just its content, and that it will be flagged on the pull request. Then do it carefully following `CLAUDE.md`.
 
 ## 5. Check

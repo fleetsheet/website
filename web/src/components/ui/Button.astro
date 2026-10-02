@@ -1,4 +1,5 @@
 ---
+import { getLocale, localizePath } from '@/i18n'
 import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'a'> & {
@@ -11,7 +12,7 @@ const { href, variant = 'primary', size = 'md', class: className, ...rest } = As
 ---
 
 <a
-  href={href}
+  href={localizePath(href, getLocale(Astro.url))}
   class:list={[
     'inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap transition duration-200',
     'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-2',

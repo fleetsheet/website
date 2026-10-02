@@ -16,22 +16,31 @@ All paths are relative to `web/src/`.
 
 | Page                                                                                           | Address                 | Words live in                                                   |
 | ---------------------------------------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------- |
-| Home: top banner, headline, buttons                                                            | `/`                     | `data/home.ts` (`hero`)                                         |
-| Home: product preview panel                                                                    | `/`                     | `data/home.ts` (`showcase`)                                     |
-| Home: "From fragmented tools" section                                                          | `/`                     | `data/home.ts` (`unifiedModel`)                                 |
-| Home: platform modules                                                                         | `/#platform`            | `data/home.ts` (`platform`)                                     |
-| Home: AI agents                                                                                | `/#ai`                  | `data/home.ts` (`aiAgents`)                                     |
-| Home: solutions by sector                                                                      | `/#solutions`           | `data/home.ts` (`solutions`)                                    |
-| Home: consultancy                                                                              | `/#consultancy`         | `data/home.ts` (`consultancy`)                                  |
-| Home: closing "Book a demo" banner                                                             | `/`                     | `data/home.ts` (`demoCta`)                                      |
-| Contact page                                                                                   | `/contact`              | `data/contact.ts` (`contactPage`, form labels in `contactForm`) |
-| Contact thank-you page                                                                         | `/contact/thanks`       | `data/contact.ts` (`contactThanks`)                             |
-| Newsletter signup (footer)                                                                     | every page              | `data/newsletter.ts` (`newsletterForm`)                         |
-| Newsletter thank-you page                                                                      | `/newsletter/thanks`    | `data/newsletter.ts` (`newsletterThanks`)                       |
-| Insights list                                                                                  | `/insights`             | `pages/insights/index.astro` (title and intro)                  |
+| Home: top banner, headline, buttons                                                            | `/`                     | `data/en/home.ts` (`hero`)                                         |
+| Home: product preview panel                                                                    | `/`                     | `data/en/home.ts` (`showcase`)                                     |
+| Home: "From fragmented tools" section                                                          | `/`                     | `data/en/home.ts` (`unifiedModel`)                                 |
+| Home: platform modules                                                                         | `/#platform`            | `data/en/home.ts` (`platform`)                                     |
+| Home: AI agents                                                                                | `/#ai`                  | `data/en/home.ts` (`aiAgents`)                                     |
+| Home: solutions by sector                                                                      | `/#solutions`           | `data/en/home.ts` (`solutions`)                                    |
+| Home: consultancy                                                                              | `/#consultancy`         | `data/en/home.ts` (`consultancy`)                                  |
+| Home: closing "Book a demo" banner                                                             | `/`                     | `data/en/home.ts` (`demoCta`)                                      |
+| Contact page                                                                                   | `/contact`              | `data/en/contact.ts` (`contactPage`, form labels in `contactForm`) |
+| Contact thank-you page                                                                         | `/contact/thanks`       | `data/en/contact.ts` (`contactThanks`)                             |
+| Newsletter signup (footer)                                                                     | every page              | `data/en/newsletter.ts` (`newsletterForm`)                         |
+| Newsletter thank-you page                                                                      | `/newsletter/thanks`    | `data/en/newsletter.ts` (`newsletterThanks`)                       |
+| Insights list                                                                                  | `/insights`             | `data/en/insights.ts` (`insightsPage`)                          |
 | Insights article                                                                               | `/insights/<file name>` | `content/insights/<file name>.md`                               |
-| Page not found                                                                                 | any missing address     | `pages/404.astro`                                               |
-| Header links, footer links, Sign in and Book a demo buttons, site name, tagline, contact email | every page              | `config.ts`                                                     |
+| Page not found (English only)                                                                  | any missing address     | `pages/404.astro`                                               |
+| Header links, footer links, Sign in and Book a demo buttons, tagline, menu and button labels   | every page              | `data/en/site.ts`                                               |
+| Site name, contact email, logo, social links                                                   | every page              | `config.ts`                                                     |
+
+## Languages
+
+The site is in English plus German (`de`), Arabic (`ar`, right to left), French (`fr`), Chinese Simplified (`zh`) and Spanish (`es`). English pages have no prefix; translated pages live under `/de`, `/ar`, `/fr`, `/zh` and `/es` (for example `/de/contact`, `/ar/insights/the-building-is-alive`). The flag menu in the header switches language.
+
+- Page wording: each language has its own copy of the data files above in `data/<language>/` (`data/de/home.ts`, `data/ar/site.ts`, ...). They have exactly the same structure as `data/en/`; only the words differ. `pnpm check` fails if a key is missing or added in one language.
+- Insights articles: the English article is `content/insights/<file name>.md`; its translations are `content/insights/<language>/<file name>.md`, with the same file name. Images stay in the shared `content/insights/images/<file name>/` folder, so translated articles reference them as `../images/<file name>/...`. Root-relative links inside a translated article get the language prefix (`/de/contact`).
+- An English article without a translation still appears in each language's Insights list, marked "In English", and the flag menu on it falls back to that language's home page.
 
 ## Insights articles
 
