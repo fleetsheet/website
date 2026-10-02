@@ -1,6 +1,6 @@
 # Fleet website
 
-The marketing website for Fleet, built with [Astro](https://astro.build/) and styled with Tailwind CSS. All content lives in this repository, so changes go through pull requests and Vercel preview deployments.
+The marketing website for Fleet, built with [Astro](https://astro.build/) and styled with Tailwind CSS. All content lives in this repository, so changes go through pull requests and Render preview deployments.
 
 ## Getting started
 
@@ -35,4 +35,6 @@ Set `draft: true` to keep an article out of the site until it is ready. Run `pnp
 
 ## Hosting
 
-The site is fully static and deployed to [Vercel](https://vercel.com/) with the Astro Vercel adapter. Plausible analytics is proxied through `web/vercel.json`.
+The site is fully static and deployed to [Render](https://render.com/) as a static site in the Fleet Website project's production environment. `render.yaml` holds the build command, environment variables, response headers and the Plausible analytics proxy.
+
+Merging to `main` deploys to production once GitHub checks pass, and every pull request gets its own preview URL.

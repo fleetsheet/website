@@ -1,12 +1,8 @@
 // @ts-check
-import vercel from '@astrojs/vercel'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField, fontProviders } from 'astro/config'
 
 export default defineConfig({
-  adapter: vercel({
-    middlewareMode: 'edge',
-  }),
   vite: {
     plugins: [tailwindcss()],
   },
@@ -17,10 +13,11 @@ export default defineConfig({
         context: 'client',
         access: 'public',
       }),
-      VERCEL_ENV: envField.enum({
+      SITE_ENV: envField.enum({
         values: ['production', 'preview', 'development'],
         context: 'server',
         access: 'public',
+        default: 'development',
       }),
     },
   },

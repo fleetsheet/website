@@ -2,10 +2,10 @@
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import Layout from '@/layout/Layout.astro'
-import { VERCEL_ENV } from 'astro:env/server'
+import { SITE_ENV } from 'astro:env/server'
 import House from '@lucide/astro/icons/house'
 
-const isProductionDeployment = VERCEL_ENV === 'production'
+const isProductionDeployment = SITE_ENV === 'production'
 ---
 
 <Layout

@@ -2,7 +2,7 @@
 import { websiteConfig } from '@/config'
 import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
-import { VERCEL_ENV } from 'astro:env/server'
+import { SITE_ENV } from 'astro:env/server'
 import { ClientRouter } from 'astro:transitions'
 import '../styles.css'
 import Footer from './Footer.astro'
@@ -17,7 +17,7 @@ type Props = {
 
 const { meta, lang = websiteConfig.lang, enableAnalytics = true } = Astro.props
 
-const enablePlausible = VERCEL_ENV === 'production' && enableAnalytics
+const enablePlausible = SITE_ENV === 'production' && enableAnalytics
 ---
 
 <!doctype html>

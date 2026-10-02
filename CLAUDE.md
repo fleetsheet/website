@@ -98,3 +98,12 @@ When completing any task in this codebase, always perform these quality checks:
 ### Code Quality
 
 - Run `pnpm lint`, `pnpm format` and `pnpm check` in `web`
+
+### Deployment
+
+The site is a static build of `web/` hosted on Render (Fleet Website project, production environment), configured in `render.yaml`.
+
+- Merging to `main` deploys to production once GitHub checks pass.
+- Every pull request gets its own Render preview URL, posted on the PR.
+- `SITE_ENV` is `production` on the live site and `preview` on pull request previews; analytics and indexing only run in `production`.
+- Response headers and the Plausible proxy rewrites live in `render.yaml`, not in the Astro config.
