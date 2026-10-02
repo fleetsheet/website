@@ -2,7 +2,7 @@
 import { websiteConfig } from '@/config'
 import type { PageMeta } from '@/types'
 import { WEBSITE_URL } from 'astro:env/client'
-import { VERCEL_ENV } from 'astro:env/server'
+import { SITE_ENV } from 'astro:env/server'
 
 type Props = PageMeta & { lang: string }
 
@@ -22,7 +22,7 @@ const canonicalUrl = new URL(Astro.url.pathname, WEBSITE_URL)
 const isDefaultImage = !image
 const ogImageUrl = image ?? websiteConfig.ogImage.url
 const ogImageAlt = imageAlt ?? (isDefaultImage ? websiteConfig.ogImage.alt : title)
-const shouldIndex = VERCEL_ENV === 'production' && !noIndex
+const shouldIndex = SITE_ENV === 'production' && !noIndex
 ---
 
 <title>{title}</title>

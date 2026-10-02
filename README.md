@@ -1,6 +1,6 @@
 # Fleet website
 
-The marketing website for [Fleet](https://runfleet.com), the commercial real estate management platform for strategy, operations and maintenance. It is a static [Astro](https://astro.build/) site in `web/`, styled with [Tailwind CSS](https://tailwindcss.com/). All content lives in this repository, so changes go through pull requests and Vercel preview deployments.
+The marketing website for [Fleet](https://runfleet.com), the commercial real estate management platform for strategy, operations and maintenance. It is a static [Astro](https://astro.build/) site in `web/`, styled with [Tailwind CSS](https://tailwindcss.com/). All content lives in this repository, so changes go through pull requests and Render preview deployments.
 
 ## Getting started
 
@@ -55,8 +55,10 @@ Set `draft: true` to keep an article out of the site until it is ready. Run `pnp
 
 ## SEO
 
-Every page renders its title, description, canonical URL, Open Graph and Twitter card tags through `web/src/layout/SEOMetadata.astro`. Pages pass a `meta` object to `Layout`. Only production deployments (`VERCEL_ENV=production`) are indexable; preview and local builds send `noindex, nofollow`.
+Every page renders its title, description, canonical URL, Open Graph and Twitter card tags through `web/src/layout/SEOMetadata.astro`. Pages pass a `meta` object to `Layout`. Only production deployments (`SITE_ENV=production`) are indexable; preview and local builds send `noindex, nofollow`.
 
 ## Hosting
 
-The site is fully static and deployed to [Vercel](https://vercel.com/) with the Astro Vercel adapter. Production deployments load [Plausible Analytics](https://plausible.io/), proxied through `/js/script.js` and `/api/event` (see `web/vercel.json`).
+The site is fully static and deployed to [Render](https://render.com/) as a static site in the Fleet Website project's production environment. `render.yaml` holds the build command, environment variables, and response headers.
+
+Merging to `main` deploys to production once GitHub checks pass, and every pull request gets its own preview URL.

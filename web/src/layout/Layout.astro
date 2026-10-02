@@ -2,7 +2,6 @@
 import { websiteConfig } from '@/config'
 import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
-import { VERCEL_ENV } from 'astro:env/server'
 import { ClientRouter } from 'astro:transitions'
 import '../styles.css'
 import Footer from './Footer.astro'
@@ -12,12 +11,9 @@ import SEOMetadata from './SEOMetadata.astro'
 type Props = {
   meta: PageMeta
   lang?: string
-  enableAnalytics?: boolean
 }
 
-const { meta, lang = websiteConfig.lang, enableAnalytics = true } = Astro.props
-
-const enablePlausible = VERCEL_ENV === 'production' && enableAnalytics
+const { meta, lang = websiteConfig.lang } = Astro.props
 ---
 
 <!doctype html>
@@ -36,22 +32,6 @@ const enablePlausible = VERCEL_ENV === 'production' && enableAnalytics
     <Font cssVariable="--font-hanken-grotesk" preload />
 
     <SEOMetadata {...meta} lang={lang} />
-
-    {enablePlausible && (
-      <>
-        <script
-          is:inline
-          id="psbl"
-          data-domain={websiteConfig.domain}
-          src="/js/script.js"
-          async
-        ></script>
-        <script
-          is:inline
-          set:html={`window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
-        ></script>
-      </>
-    )}
 
     <ClientRouter />
   </head>
