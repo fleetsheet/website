@@ -46,10 +46,3 @@ projects:
               - path: /_astro/*
                 name: Cache-Control
                 value: public, max-age=31536000, immutable
-            routes:
-              - type: rewrite
-                source: /js/script.js
-                destination: https://plausible.io/js/plausible.js
-              - type: rewrite
-                source: /api/event
-                destination: https://plausible.io/api/event

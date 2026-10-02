@@ -59,6 +59,6 @@ Every page renders its title, description, canonical URL, Open Graph and Twitter
 
 ## Hosting
 
-The site is fully static and deployed to [Render](https://render.com/) as a static site in the Fleet Website project's production environment. `render.yaml` holds the build command, environment variables, response headers and the Plausible analytics proxy.
+The site is fully static and deployed to [Render](https://render.com/) as a static site in the Fleet Website project's production environment. `render.yaml` holds the build command, environment variables, and response headers.
 
 Merging to `main` deploys to production once GitHub checks pass, and every pull request gets its own preview URL.

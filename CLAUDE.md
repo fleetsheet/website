@@ -106,4 +106,4 @@ The site is a static build of `web/` hosted on Render (Fleet Website project, pr
 - Merging to `main` deploys to production once GitHub checks pass.
 - Every pull request gets its own Render preview URL, posted on the PR.
 - `SITE_ENV` is `production` on the live site and `preview` on pull request previews; analytics and indexing only run in `production`.
-- Response headers and the Plausible proxy rewrites live in `render.yaml`, not in the Astro config.
+- Response headers and any rewrites live in `render.yaml`, not in the Astro config.
