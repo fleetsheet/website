@@ -31,15 +31,23 @@ Then describe what you'd like changed, for example:
 - "Add a new Insights article from this text: …"
 - "Replace the phone number in the footer with …"
 
+Sessions use Claude Opus at medium effort by default (set in the repository). You can pick a different model when you start a session.
+
 ## What happens next
 
-1. Claude gets the latest version of the site and makes your change.
-2. It checks nothing is broken and shows you before and after screenshots on desktop and phone.
-3. It sends you a link to a preview of the whole site with your change. Click around and check it.
-4. Reply "looks good" to publish, or tell Claude what to adjust. Every adjustment gets fresh screenshots and a new preview.
-5. After you approve, Claude publishes the change and tells you when it's live, with a link.
+1. If your request leaves choices open, Claude first asks you a few numbered questions, each with its recommendation. Answer them, or reply "go with your recommendations".
+2. Claude gets the latest version of the site and makes your change.
+3. It checks nothing is broken and shows you before and after screenshots on desktop and phone.
+4. It sends you a link to a preview of the whole site with your change. Click around and check it.
+5. Reply "looks good" to publish, or tell Claude what to adjust. Every adjustment gets fresh screenshots and a new preview.
+6. After you approve, Claude publishes the change and tells you when it's live, with a link.
 
 If someone else changed the same part of the site in the meantime, Claude shows you both versions and asks which to keep.
+
+## Images and articles
+
+- **Insights articles:** paste the text into the chat, or share a link to the document, and say who wrote it. Claude turns it into an article and asks you about the address and images.
+- **Images:** Claude can see images you paste into the chat but usually can't save them to the site from there. It will send you a link to upload the image to GitHub instead: open it, drag the image in, and click "Commit changes". A share link (Google Drive set to "anyone with the link", or Dropbox) also works if your network settings allow those sites.
 
 ## Tips
 

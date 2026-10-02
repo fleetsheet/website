@@ -11,6 +11,8 @@ Reference files in this folder:
 
 - `content-map.md`: which file holds the words and images for each page, and the site addresses.
 - `conflicts.md`: how to walk the editor through a merge conflict.
+- `design-and-voice.md`: how the site looks and sounds, for wording and anything visual.
+- `images.md`: getting images from the editor into the site, including Insights articles.
 
 ## 0. Setup check (first request of a session only)
 
@@ -31,7 +33,9 @@ Every task starts from the latest version of the site.
 
 ## 2. Understand the request
 
-Restate the request in one sentence and name the pages it affects ("I'll change the headline on the home page"). If the request is ambiguous, ask one short question with options. Find the right file with `content-map.md`; never guess by searching for a sentence alone when the map names the file.
+Restate the request in one sentence and name the pages it affects ("I'll change the headline on the home page"). Find the right file with `content-map.md`; never guess by searching for a sentence alone when the map names the file.
+
+If the request is clear and small (exact new wording, one place), go ahead. If it is vague or leaves real choices open ("make the home page more exciting", "add a page about our Singapore office", "update pricing"), use the `grilling` skill before changing anything: work out every decision the request depends on, ask them in rounds with your recommended answer for each, and look up facts in the repo yourself instead of asking. Keep the questions in plain language about what visitors will see (wording, which pages, what happens on phones, what links where), never about code, so the editor can answer quickly or reply "go with your recommendations". Start the change only after the editor confirms you've understood.
 
 ## 3. Screenshot before
 
@@ -45,9 +49,9 @@ Pass the page paths that will change. Each path gets a desktop and a phone scree
 
 ## 4. Make the change
 
-- Edit content and copy only: the files in `content-map.md`, images in `web/src/assets/` or `web/public/`. Follow the design rules in `CLAUDE.md` (sentence case, no emoji, no new colors).
-- Wording: keep the existing tone, US English, short sentences. Keep text lengths close to the original unless asked, so layouts don't break.
-- Images: give every image alt text that describes it. JPG, PNG or WebP all work; keep each file under 2 MB, since images in `web/src/` are optimized by the build.
+- Edit content and copy only: the files in `content-map.md`. Follow `design-and-voice.md` for wording and anything visual.
+- Keep text lengths close to the original unless asked, so layouts don't break.
+- Images and Insights articles: follow `images.md`.
 - If the request needs a code change (a new section type, a layout change, a new page template), tell the editor in plain words that it changes how the site is built, not just its content, and that it will be flagged on the pull request. Then do it carefully following `CLAUDE.md`.
 
 ## 5. Check

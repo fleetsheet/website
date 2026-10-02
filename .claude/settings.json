@@ -1,4 +1,6 @@
 {
+  "model": "opus",
+  "effortLevel": "medium",
   "permissions": {
     "allow": [
       "Bash(tree:*)",
@@ -98,7 +100,8 @@
       "Bash(pnpm --filter web:*)",
       "Bash(sleep:*)",
       "Skill(edit-website:*)",
-      "Bash(gh pr merge:*)"
+      "Bash(gh pr merge:*)",
+      "Skill(grilling:*)"
     ],
     "deny": [
       "Bash(git push --force:*)",
