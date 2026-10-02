@@ -1,0 +1,14 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import { newsletterThanks } from '@/data/newsletter'
+import Layout from '@/layout/Layout.astro'
+---
+
+<Layout meta={{ ...newsletterThanks.meta, noIndex: true }}>
+  <Container class="flex flex-col items-center gap-6 py-40 text-center">
+    <h1 class="text-display-md">{newsletterThanks.title}</h1>
+    <p class="text-azul-blue max-w-md text-[17px]">{newsletterThanks.description}</p>
+    <Button href={newsletterThanks.action.href}>{newsletterThanks.action.label}</Button>
+  </Container>
+</Layout>

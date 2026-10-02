@@ -16,7 +16,7 @@ export const hero = {
   title: 'Unified Data and Intelligence for Real Estate',
   description:
     'Fleet is the commercial real estate management platform purpose-built for strategy, operations, and maintenance — every site, asset, and work order in one place.',
-  primaryAction: { label: 'Book a demo', href: '/#demo' },
+  primaryAction: { label: 'Book a demo', href: '/contact' },
   secondaryAction: { label: 'Explore the platform', href: '/#platform' },
   highlights: ['iOS & Android', 'Built-in audit logs', 'Ring-fenced data per organization'],
 }
@@ -411,7 +411,7 @@ export const consultancy = {
   title: 'Let Us Do the Heavy Lifting',
   description:
     'Each phase is tied to operational impact, so leaders can see the rollout delivering measurable results.',
-  action: { label: 'Talk to a consultant →', href: '/#demo' },
+  action: { label: 'Talk to a consultant →', href: '/contact' },
   phases: [
     {
       title: 'Assess',

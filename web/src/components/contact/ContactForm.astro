@@ -1,0 +1,83 @@
+---
+import { websiteConfig } from '@/config'
+import { contactForm } from '@/data/contact'
+
+const redirectUrl = new URL(contactForm.redirectPath, websiteConfig.url).toString()
+
+const fieldClass = [
+  'w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-[15px] text-rich-blue',
+  'placeholder:text-muted shadow-xs transition duration-200',
+  'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-1',
+]
+---
+
+<form
+  method="POST"
+  action={contactForm.actionUrl}
+  data-formspark
+  data-success-message={contactForm.successMessage}
+  data-error-message={contactForm.errorMessage}
+  class:list={[
+    'flex flex-col gap-5', // Layout
+    'bg-surface border-border rounded-xl border p-6 shadow-sm sm:p-8', // Visual
+  ]}
+>
+  <input type="hidden" name="_redirect" value={redirectUrl} />
+  <input
+    type="text"
+    name="_honeypot"
+    class="hidden"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+  />
+  {contactForm.fields.map((field) => (
+    <div class="flex flex-col gap-2">
+      <label for={`contact-${field.name}`} class="text-sm font-semibold">
+        {field.label}
+        {!field.required && <span class="text-muted font-normal"> (optional)</span>}
+      </label>
+      {field.type === 'textarea' ? (
+        <textarea
+          id={`contact-${field.name}`}
+          name={field.name}
+          rows={5}
+          required={field.required}
+          class:list={[fieldClass, 'resize-y']}
+        />
+      ) : (
+        <input
+          id={`contact-${field.name}`}
+          type={field.type}
+          name={field.name}
+          autocomplete={field.autocomplete}
+          required={field.required}
+          class:list={fieldClass}
+        />
+      )}
+    </div>
+  ))}
+  <button
+    type="submit"
+    data-label={contactForm.submitLabel}
+    data-pending-label={contactForm.pendingLabel}
+    class:list={[
+      'inline-flex items-center justify-center gap-2 self-start rounded-md px-5 py-3', // Layout
+      'bg-rich-blue text-alice-blue text-[15px] font-semibold transition duration-200', // Visual
+      'hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60', // States
+      'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-2',
+    ]}
+  >
+    {contactForm.submitLabel}
+  </button>
+  <p
+    data-form-message
+    role="status"
+    aria-live="polite"
+    class="text-[15px] empty:hidden data-[status=error]:text-cream-peach-foreground data-[status=success]:text-azul-blue"
+  ></p>
+</form>
+
+<script>
+  import '@/scripts/formspark'
+</script>
