@@ -1,0 +1,68 @@
+---
+import { websiteConfig } from '@/config'
+import { newsletterForm } from '@/data/newsletter'
+
+const redirectUrl = new URL(newsletterForm.redirectPath, websiteConfig.url).toString()
+---
+
+<form
+  method="POST"
+  action={newsletterForm.actionUrl}
+  data-formspark
+  data-success-message={newsletterForm.successMessage}
+  data-error-message={newsletterForm.errorMessage}
+  class="flex w-full max-w-[400px] flex-col gap-3"
+>
+  <p class="font-display text-sm font-semibold">{newsletterForm.title}</p>
+  <p class="text-azul-blue text-sm leading-[1.55]">{newsletterForm.description}</p>
+  <input type="hidden" name="_redirect" value={redirectUrl} />
+  <input
+    type="text"
+    name="_honeypot"
+    class="hidden"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+  />
+  <div class="flex flex-col gap-2 sm:flex-row">
+    <label for="newsletter-email" class="sr-only">
+      {newsletterForm.emailLabel}
+    </label>
+    <input
+      id="newsletter-email"
+      type="email"
+      name="email"
+      autocomplete="email"
+      required
+      placeholder={newsletterForm.emailPlaceholder}
+      class:list={[
+        'min-w-0 flex-1 rounded-md px-3.5 py-2', // Layout
+        'border-border bg-surface text-rich-blue placeholder:text-muted border text-sm shadow-xs', // Visual
+        'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-1',
+      ]}
+    />
+    <button
+      type="submit"
+      data-label={newsletterForm.submitLabel}
+      data-pending-label={newsletterForm.pendingLabel}
+      class:list={[
+        'inline-flex items-center justify-center rounded-md px-3.5 py-2 whitespace-nowrap', // Layout
+        'bg-rich-blue text-alice-blue text-sm font-medium transition duration-200', // Visual
+        'hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60', // States
+        'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-2',
+      ]}
+    >
+      {newsletterForm.submitLabel}
+    </button>
+  </div>
+  <p
+    data-form-message
+    role="status"
+    aria-live="polite"
+    class="text-sm empty:hidden data-[status=error]:text-cream-peach-foreground data-[status=success]:text-azul-blue"
+  ></p>
+</form>
+
+<script>
+  import '@/scripts/formspark'
+</script>
