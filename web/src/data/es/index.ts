@@ -1,4 +1,5 @@
 export * as contact from './contact'
+export * as faq from './faq'
 export * as home from './home'
 export * as insights from './insights'
 export * as newsletter from './newsletter'

@@ -8,7 +8,7 @@ export const GET: APIRoute = async () => {
 
   const paths = [
     ...locales.flatMap((locale) =>
-      ['/', '/contact', '/insights'].map((path) => localizePath(path, locale)),
+      ['/', '/contact', '/faqs', '/insights'].map((path) => localizePath(path, locale)),
     ),
     ...insights.map(getInsightPath),
   ]

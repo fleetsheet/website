@@ -1,0 +1,58 @@
+---
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import { getContent } from '@/data'
+import { getLocale, localeStaticPaths } from '@/i18n'
+import Layout from '@/layout/Layout.astro'
+import { faqSchema } from '@/schema/faq'
+import ChevronDown from '@lucide/astro/icons/chevron-down'
+import type { GetStaticPaths } from 'astro'
+import { Schema } from 'astro-seo-schema'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.url)
+const { faqPage } = getContent(locale).faq
+---
+
+<Layout meta={faqPage.meta}>
+  <Schema item={faqSchema(locale)} />
+  <Container class="flex flex-col gap-12 pt-24">
+    <div class="flex max-w-[720px] flex-col gap-5">
+      <p class="eyebrow text-azul-blue">{faqPage.eyebrow}</p>
+      <h1 class="text-display-xl">{faqPage.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{faqPage.description}</p>
+    </div>
+    <ul class="flex flex-col gap-3">
+      {faqPage.items.map((item) => (
+        <li>
+          <details class="group border-border bg-surface rounded-xl border shadow-xs">
+            <summary class="text-rich-blue flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+              <span>{item.question}</span>
+              <ChevronDown
+                aria-hidden="true"
+                class="text-azul-blue size-5 shrink-0 transition-transform group-open:rotate-180"
+              />
+            </summary>
+            <div class="text-azul-blue flex flex-col gap-3 px-6 pb-6 leading-relaxed">
+              <p>{item.answer}</p>
+              {item.points && (
+                <ul class="list-disc space-y-1 ps-5">
+                  {item.points.map((point) => (
+                    <li>{point}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </Container>
+  <CtaBanner
+    title={faqPage.cta.title}
+    description={faqPage.cta.description}
+    primaryAction={faqPage.cta.primaryAction}
+    secondaryAction={faqPage.cta.secondaryAction}
+  />
+</Layout>
