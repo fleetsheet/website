@@ -49,6 +49,10 @@ If someone else changed the same part of the site in the meantime, Claude shows 
 - **Insights articles:** paste the text into the chat, or share a link to the document, and say who wrote it. Claude turns it into an article and asks you about the address and images.
 - **Images:** Claude can see images you paste into the chat but usually can't save them to the site from there. It will send you a link to upload the image to GitHub instead: open it, drag the image in, and click "Commit changes". A share link (Google Drive set to "anyone with the link", or Dropbox) also works if your network settings allow those sites.
 
+## Other languages
+
+The site is also in German, Arabic, French, Chinese (Simplified) and Spanish, switched with the flag menu at the top of every page. When you change wording or add an Insights article, Claude updates the translations in the same change and shows you a translated page in the preview. Ask in English; you can also ask for a fix in one language only, for example "the German home page headline should say …".
+
 ## Tips
 
 - One change per request is easiest to review. Several small changes to the same page can go together.

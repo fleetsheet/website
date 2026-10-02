@@ -3,8 +3,13 @@ import Badge from '@/components/ui/Badge.astro'
 import CheckList from '@/components/ui/CheckList.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
-import { solutions } from '@/data/home'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
 import MapPin from '@lucide/astro/icons/map-pin'
+
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { solutions } = content.home
 
 const tabId = (index: number) => `solutions-tab-${index}`
 const panelId = (index: number) => `solutions-panel-${index}`
@@ -87,7 +92,8 @@ const panelId = (index: number) => `solutions-panel-${index}`
       tabs.forEach((tab, index) => {
         tab.addEventListener('click', () => select(tab))
         tab.addEventListener('keydown', (event) => {
-          const offset = { ArrowRight: 1, ArrowLeft: -1 }[event.key]
+          const direction = document.documentElement.dir === 'rtl' ? -1 : 1
+          const offset = { ArrowRight: direction, ArrowLeft: -direction }[event.key]
           if (offset === undefined) {
             return
           }

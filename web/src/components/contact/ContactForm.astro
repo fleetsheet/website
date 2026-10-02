@@ -1,8 +1,16 @@
 ---
 import { websiteConfig } from '@/config'
-import { contactForm } from '@/data/contact'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
 
-const redirectUrl = new URL(contactForm.redirectPath, websiteConfig.url).toString()
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { contactForm } = content.contact
+
+const redirectUrl = new URL(
+  localizePath(contactForm.redirectPath, locale),
+  websiteConfig.url,
+).toString()
 
 const fieldClass = [
   'w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-[15px] text-rich-blue',
@@ -35,7 +43,9 @@ const fieldClass = [
     <div class="flex flex-col gap-2">
       <label for={`contact-${field.name}`} class="text-sm font-semibold">
         {field.label}
-        {!field.required && <span class="text-muted font-normal"> (optional)</span>}
+        {!field.required && (
+          <span class="text-muted font-normal"> {content.site.labels.optional}</span>
+        )}
       </label>
       {field.type === 'textarea' ? (
         <textarea

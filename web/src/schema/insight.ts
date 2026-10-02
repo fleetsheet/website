@@ -1,9 +1,11 @@
 import { websiteConfig } from '@/config'
+import { getInsightPath } from '@/utils/insights'
 import type { CollectionEntry } from 'astro:content'
 import type { Article, WithContext } from 'schema-dts'
 
 export const insightSchema = (
   insight: CollectionEntry<'insights'>,
+  inLanguage: string,
   imageUrl?: string,
 ): WithContext<Article> => {
   const { title, description, publishedAt, updatedAt, author } = insight.data
@@ -15,7 +17,8 @@ export const insightSchema = (
     description,
     datePublished: publishedAt.toISOString(),
     dateModified: (updatedAt ?? publishedAt).toISOString(),
-    url: new URL(`/insights/${insight.id}`, websiteConfig.url).href,
+    url: new URL(getInsightPath(insight), websiteConfig.url).href,
+    inLanguage,
     image: imageUrl,
     author: author
       ? { '@type': 'Person', name: author }

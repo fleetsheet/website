@@ -1,5 +1,7 @@
 ---
 import { websiteConfig } from '@/config'
+import { getContent } from '@/data'
+import { getLocale, languages, localizePath, locales, stripLocale, type Locale } from '@/i18n'
 import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
 import { ClientRouter } from 'astro:transitions'
@@ -10,14 +12,34 @@ import SEOMetadata from './SEOMetadata.astro'
 
 type Props = {
   meta: PageMeta
-  lang?: string
+  translatedLocales?: readonly Locale[]
 }
 
-const { meta, lang = websiteConfig.lang } = Astro.props
+const { meta, translatedLocales = locales } = Astro.props
+const locale = getLocale(Astro.url)
+const { hreflang, dir } = languages[locale]
+const { labels } = getContent(locale).site
+const basePath = stripLocale(Astro.url.pathname)
+const translations = locales.map((translationLocale) => ({
+  locale: translationLocale,
+  href: localizePath(
+    translatedLocales.includes(translationLocale) ? basePath : '/',
+    translationLocale,
+  ),
+}))
+const alternatePaths = meta.noIndex
+  ? []
+  : [
+      ...translatedLocales.map((translationLocale) => ({
+        hreflang: languages[translationLocale].hreflang,
+        path: localizePath(basePath, translationLocale),
+      })),
+      { hreflang: 'x-default', path: basePath },
+    ]
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={hreflang} dir={dir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,18 +53,18 @@ const { meta, lang = websiteConfig.lang } = Astro.props
     <Font cssVariable="--font-sora" preload />
     <Font cssVariable="--font-hanken-grotesk" preload />
 
-    <SEOMetadata {...meta} lang={lang} />
+    <SEOMetadata {...meta} alternatePaths={alternatePaths} locale={locale} />
 
     <ClientRouter />
   </head>
   <body class="flex min-h-screen flex-col">
     <a
       href="#main"
-      class="bg-rich-blue text-alice-blue sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+      class="bg-rich-blue text-alice-blue sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:start-3"
     >
-      Skip to content
+      {labels.skipToContent}
     </a>
-    <Header />
+    <Header translations={translations} />
     <main id="main" class="flex-1">
       <slot />
     </main>

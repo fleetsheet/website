@@ -1,8 +1,16 @@
 ---
 import { websiteConfig } from '@/config'
-import { newsletterForm } from '@/data/newsletter'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
 
-const redirectUrl = new URL(newsletterForm.redirectPath, websiteConfig.url).toString()
+const locale = getLocale(Astro.url)
+const content = getContent(locale)
+const { newsletterForm } = content.newsletter
+
+const redirectUrl = new URL(
+  localizePath(newsletterForm.redirectPath, locale),
+  websiteConfig.url,
+).toString()
 ---
 
 <form

@@ -144,3 +144,10 @@
     --tw-prose-quote-borders: rgba(255, 255, 255, 0.4);
   }
 }
+
+:lang(ar),
+:lang(ar) *,
+:lang(zh),
+:lang(zh) * {
+  letter-spacing: normal;
+}

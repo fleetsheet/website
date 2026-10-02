@@ -1,15 +1,16 @@
-import { getPublishedInsights } from '@/utils/insights'
+import { locales, localizePath } from '@/i18n'
+import { getAllPublishedInsights, getInsightPath } from '@/utils/insights'
 import type { APIRoute } from 'astro'
 import { WEBSITE_URL } from 'astro:env/client'
 
 export const GET: APIRoute = async () => {
-  const insights = await getPublishedInsights()
+  const insights = await getAllPublishedInsights()
 
   const paths = [
-    '/',
-    '/contact',
-    '/insights',
-    ...insights.map((insight) => `/insights/${insight.id}`),
+    ...locales.flatMap((locale) =>
+      ['/', '/contact', '/insights'].map((path) => localizePath(path, locale)),
+    ),
+    ...insights.map(getInsightPath),
   ]
 
   const urls = paths.map(

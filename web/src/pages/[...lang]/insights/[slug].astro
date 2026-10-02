@@ -1,23 +1,38 @@
 ---
 import Container from '@/components/ui/Container.astro'
 import { websiteConfig } from '@/config'
+import { getContent } from '@/data'
+import { languages, localeParams, localizePath } from '@/i18n'
 import Layout from '@/layout/Layout.astro'
 import { insightSchema } from '@/schema/insight'
 import { formatDate } from '@/utils/formatDate'
-import { getPublishedInsights } from '@/utils/insights'
+import {
+  getAllPublishedInsights,
+  getInsightLocale,
+  getInsightSlug,
+  getTranslatedLocales,
+} from '@/utils/insights'
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
 import { Schema } from 'astro-seo-schema'
 import { getImage } from 'astro:assets'
 import { render } from 'astro:content'
 
 export const getStaticPaths = (async () => {
-  const insights = await getPublishedInsights()
-  return insights.map((insight) => ({ params: { slug: insight.id }, props: { insight } }))
+  const insights = await getAllPublishedInsights()
+  return insights.map((insight) => {
+    const slug = getInsightSlug(insight)
+    return {
+      params: { ...localeParams(getInsightLocale(insight)), slug },
+      props: { insight, translatedLocales: getTranslatedLocales(insights, slug) },
+    }
+  })
 }) satisfies GetStaticPaths
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
-const { insight } = Astro.props
+const { insight, translatedLocales } = Astro.props
+const locale = getInsightLocale(insight)
+const { insightsPage } = getContent(locale).insights
 const { Content } = await render(insight)
 const { title, description, publishedAt, updatedAt, author, category, image, imageAlt } =
   insight.data
@@ -38,16 +53,17 @@ const shareImageUrl = shareImage ? new URL(shareImage.src, websiteConfig.url).hr
     publishedTime: publishedAt.toISOString(),
     modifiedTime: updatedAt?.toISOString(),
   }}
+  translatedLocales={translatedLocales}
 >
   <Container class="py-24">
     <article class="mx-auto max-w-3xl">
       <header class="flex flex-col gap-4">
-        <a href="/insights" class="eyebrow text-azul-blue">
-          Insights
+        <a href={localizePath('/insights', locale)} class="eyebrow text-azul-blue">
+          {insightsPage.eyebrow}
         </a>
         <h1 class="text-display-md">{title}</h1>
         <p class="text-muted text-sm">
-          <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+          <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt, locale)}</time>
           {author && <span> · {author}</span>}
           {category && <span> · {category}</span>}
         </p>
@@ -57,5 +73,5 @@ const shareImageUrl = shareImage ? new URL(shareImage.src, websiteConfig.url).hr
       </div>
     </article>
   </Container>
-  <Schema item={insightSchema(insight, shareImageUrl)} />
+  <Schema item={insightSchema(insight, languages[locale].hreflang, shareImageUrl)} />
 </Layout>

@@ -1,0 +1,55 @@
+---
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale, languages, localeStaticPaths } from '@/i18n'
+import Layout from '@/layout/Layout.astro'
+import { formatDate } from '@/utils/formatDate'
+import { getInsightLocale, getInsightPath, getPublishedInsights } from '@/utils/insights'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.url)
+const { insightsPage } = getContent(locale).insights
+const insights = await getPublishedInsights(locale)
+---
+
+<Layout meta={insightsPage.meta}>
+  <PageSection>
+    <SectionHeader eyebrow={insightsPage.eyebrow} title={insightsPage.title} />
+    <ul class="mt-12 flex flex-col gap-6">
+      {insights.map((insight) => {
+        const insightLocale = getInsightLocale(insight)
+        const isFallback = insightLocale !== locale
+        const { hreflang } = languages[insightLocale]
+        return (
+          <li class="border-border bg-surface rounded-xl border p-6">
+            <a
+              href={getInsightPath(insight)}
+              hreflang={isFallback ? hreflang : undefined}
+              class="flex flex-col gap-2"
+            >
+              <p class="text-muted text-sm">
+                <time datetime={insight.data.publishedAt.toISOString()}>
+                  {formatDate(insight.data.publishedAt, locale)}
+                </time>
+                {insight.data.category && <span> · {insight.data.category}</span>}
+                {isFallback && <span> · {insightsPage.englishOnly}</span>}
+              </p>
+              <h2
+                class="text-rich-blue text-xl font-semibold"
+                lang={isFallback ? hreflang : undefined}
+              >
+                {insight.data.title}
+              </h2>
+              <p class="text-azul-blue" lang={isFallback ? hreflang : undefined}>
+                {insight.data.description}
+              </p>
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </PageSection>
+</Layout>
