@@ -12,6 +12,9 @@ type WebsiteConfig = {
   description: string
   domain: string
   lang: string
+  locale: string
+  email: string
+  themeColor: string
   icon: string
   logo: {
     path: string
@@ -20,6 +23,9 @@ type WebsiteConfig = {
   ogImage: {
     path: string
     url: string
+    alt: string
+    width: number
+    height: number
   }
   socialUrls: string[]
   actions: {
@@ -41,6 +47,9 @@ export const websiteConfig: WebsiteConfig = {
     'Fleet is the commercial real estate management platform purpose-built for strategy, operations, and maintenance.',
   domain: 'runfleet.com',
   lang: 'en',
+  locale: 'en_US',
+  email: 'admin@runfleet.com',
+  themeColor: '#F0F5F8',
   icon: '/icon.png',
   logo: {
     path: '/logo.webp',
@@ -49,6 +58,9 @@ export const websiteConfig: WebsiteConfig = {
   ogImage: {
     path: '/og.png',
     url: new URL('/og.png', WEBSITE_URL).toString(),
+    alt: 'Fleet: Unified Data and Intelligence for Real Estate.',
+    width: 1200,
+    height: 630,
   },
   socialUrls: [],
   actions: {

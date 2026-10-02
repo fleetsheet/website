@@ -18,10 +18,21 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { insight } = Astro.props
 const { Content } = await render(insight)
-const { title, description, publishedAt, author, category, image } = insight.data
+const { title, description, publishedAt, updatedAt, author, category, image, imageAlt } =
+  insight.data
 ---
 
-<Layout meta={{ title: `${title} | ${websiteConfig.name}`, description, image }}>
+<Layout
+  meta={{
+    title: `${title} | ${websiteConfig.name}`,
+    description,
+    image,
+    imageAlt,
+    type: 'article',
+    publishedTime: publishedAt.toISOString(),
+    modifiedTime: updatedAt?.toISOString(),
+  }}
+>
   <Container class="py-24">
     <article class="mx-auto max-w-3xl">
       <header class="flex flex-col gap-4">

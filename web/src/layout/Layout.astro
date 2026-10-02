@@ -29,7 +29,8 @@ const enablePlausible = VERCEL_ENV === 'production' && enableAnalytics
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href={websiteConfig.icon} type="image/png" />
     <link rel="apple-touch-icon" href={websiteConfig.icon} />
-    <meta name="theme-color" content="#F0F5F8" />
+    <meta name="theme-color" content={websiteConfig.themeColor} />
+    <meta name="format-detection" content="telephone=no" />
 
     <Font cssVariable="--font-sora" preload />
     <Font cssVariable="--font-hanken-grotesk" preload />
