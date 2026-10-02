@@ -65,7 +65,7 @@ export const websiteConfig: WebsiteConfig = {
   socialUrls: [],
   actions: {
     signIn: { label: 'Sign in', href: '#' },
-    bookDemo: { label: 'Book a demo', href: '/#demo' },
+    bookDemo: { label: 'Book a demo', href: '/contact' },
   },
   headerLinks: [
     { label: 'Platform', href: '/#platform' },

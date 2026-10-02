@@ -5,7 +5,12 @@ import { WEBSITE_URL } from 'astro:env/client'
 export const GET: APIRoute = async () => {
   const insights = await getPublishedInsights()
 
-  const paths = ['/', '/insights', ...insights.map((insight) => `/insights/${insight.id}`)]
+  const paths = [
+    '/',
+    '/contact',
+    '/insights',
+    ...insights.map((insight) => `/insights/${insight.id}`),
+  ]
 
   const urls = paths.map(
     (path) => `<url>
