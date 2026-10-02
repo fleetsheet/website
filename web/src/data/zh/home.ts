@@ -27,7 +27,7 @@ export const hero = {
 }
 
 export const showcase = {
-  greeting: '欢迎，Napon S.',
+  greeting: '欢迎，John S.',
   scope: '资产组合 · 14 个地点',
   filters: ['所有区域', '近 30 天'],
   stats: [

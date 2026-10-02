@@ -28,7 +28,7 @@ export const hero = {
 }
 
 export const showcase = {
-  greeting: 'Willkommen, Napon S.',
+  greeting: 'Willkommen, John S.',
   scope: 'Portfolio · 14 Standorte',
   filters: ['Alle Regionen', 'Letzte 30 Tage'],
   stats: [

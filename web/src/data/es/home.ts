@@ -32,7 +32,7 @@ export const hero = {
 }
 
 export const showcase = {
-  greeting: 'Bienvenido, Napon S.',
+  greeting: 'Bienvenido, John S.',
   scope: 'Cartera · 14 ubicaciones',
   filters: ['Todas las regiones', 'Últimos 30 días'],
   stats: [

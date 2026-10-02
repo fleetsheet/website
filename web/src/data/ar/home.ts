@@ -28,7 +28,7 @@ export const hero = {
 }
 
 export const showcase = {
-  greeting: 'مرحبًا، Napon S.',
+  greeting: 'مرحبًا، John S.',
   scope: 'المحفظة · 14 موقعًا',
   filters: ['كل المناطق', 'آخر 30 يومًا'],
   stats: [
