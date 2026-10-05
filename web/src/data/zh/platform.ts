@@ -50,6 +50,7 @@ export const pages: {
   integrations: PlatformEntry
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
+  workflowBuilder: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -103,68 +104,6 @@ export const pages: {
       title: 'Fleet 工作流构建器 | Fleet',
       description:
         '借助 Fleet 可视化工作流构建器，让维护运营契合您的组织结构、审批链、供应商政策和费用阈值。',
-    },
-    eyebrow: 'Fleet 工作流构建器',
-    title: '贴合您运营方式的工作流',
-    description:
-      '通过人人都能上手的可视化构建器，让维护运营契合您的组织结构、审批链、供应商政策和费用阈值。',
-    highlights: ['可视化构建器', '多级审批', '首周即可上线'],
-    features: {
-      title: '一次搭建，处处运行',
-      description: '由您定义流程，Fleet 负责执行，让任务在正确的时间到达正确的人。',
-      items: [
-        {
-          title: '条件分派',
-          description: '按位置、类型、优先级或资产类别分派工单，例如电梯问题交给指定供应商。',
-        },
-        {
-          title: '多级审批',
-          description: '根据费用、紧急程度或范围，要求管理层或财务审批。',
-        },
-        {
-          title: '基于角色的职责',
-          description: '为技术人员、主管和供应商设定谁可以查看、审批、分派或关闭任务。',
-        },
-        {
-          title: '通知与升级',
-          description: '截止日期临近或工单待分派时，自动提醒相关团队。',
-        },
-        {
-          title: '按站点定制工作流',
-          description: '为每栋楼或每个区域匹配各自的标准作业流程。',
-        },
-        {
-          title: '与所有模块相连',
-          description: '工作流可在同一系统中作用于文档、资产、权限和供应商。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '配置简单，执行有力',
-        description: '拖放即可发布。我们的上线团队会在第一周帮助您把现有流程映射到 Fleet。',
-        points: ['为运营团队设计的可视化构建器', '常见流程的现成模板', '上线前先测试变更'],
-      },
-      {
-        title: '一致、高效、有洞察',
-        description: '每张工单都遵循相同步骤，运营更精准，报表更清晰。',
-        points: [
-          '自动执行文档核查等合规步骤',
-          '从创建到关闭减少人工交接',
-          '结构化数据带来更有价值的报表',
-        ],
-      },
-    ],
-    useCases: {
-      title: '团队搭建的工作流',
-      description: '房地产团队在第一个月常用的工作流。',
-      items: [
-        'A 楼的给排水工单交给供应商，B 楼交给内部团队',
-        '超过 5,000 美元的工单需主管审批',
-        '预防性工单交给专职人员，被动维修交给综合团队',
-        'SLA 期限临近时提醒区域经理',
-        '为新租户入驻设置检查、资产核查和文档流程',
-      ],
     },
   },
   preventiveMaintenance: {
@@ -1553,5 +1492,84 @@ export const fleetMailPage = {
     title: '为集成而生',
     description: 'Fleet Mail 与 Fleet 的 20 多项集成协同工作，包括租户门户、财务工具和楼宇系统。',
     action: { label: '查看全部集成', href: '/platform/integrations' },
+  },
+}
+
+export const workflowBuilderPage = {
+  hero: {
+    eyebrow: 'Fleet 工作流构建器',
+    title: '贴合您运营方式的工作流',
+    description:
+      '通过人人都能上手的可视化构建器，让维护运营契合您的组织结构、审批链、供应商政策和费用阈值。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    highlights: ['可视化构建器', '多级审批', '首周即可上线'],
+  },
+  build: {
+    eyebrow: 'Fleet 工作流构建器',
+    title: '打造属于您的 Fleet',
+    description: '由您定义流程，Fleet 负责执行，让任务每次都在正确的时间到达正确的人。',
+    helpTitle: '我们协助您梳理每个流程',
+    helpDescription: '我们的上线团队会在第一周与您一起，把审批、分派和升级流程配置到 Fleet。',
+    action: { label: '联系我们的团队', href: '/contact' },
+    center: '工作流',
+    nodes: ['审批', '分派', '升级', '通知', '角色', '站点'],
+  },
+  panels: {
+    blocks: {
+      title: '所有构建模块，集中一处',
+      description: '组合触发条件、规则和操作，匹配每个站点的标准作业流程。',
+      panelTitle: '工作流构建模块',
+      status: '已添加',
+      items: [
+        { title: '触发', description: '新请求、费用超出阈值或期限临近' },
+        { title: '条件', description: '站点、资产类型、优先级、供应商或费用' },
+        { title: '审批', description: '主管、管理层或财务审批' },
+        { title: '操作', description: '分派、通知、升级或创建工单' },
+      ],
+    },
+    integrations: {
+      title: '集成是关键',
+      description: '工作流作用于文档、资产、权限和供应商，并连接财务、楼宇和租户系统。',
+      panelTitle: '与您的工作流相连',
+      action: { label: '查看集成', href: '/platform/integrations' },
+      items: [
+        { title: '会计软件', location: '已审批费用自动同步', status: '已连接', tone: 'done' },
+        { title: '楼宇管理系统', location: '告警触发工作流', status: '已连接', tone: 'done' },
+        { title: 'Fleet Mail', location: '邮件审批', status: '已连接', tone: 'done' },
+      ] satisfies StatusItem[],
+    },
+  },
+  templates: {
+    title: '所有流程，尽在一个平台',
+    description: '从常见流程的现成工作流起步，再按您的站点、角色和阈值逐一调整。',
+    tag: '模板',
+    items: [
+      { title: '超过 5,000 美元需审批', description: '排期前需主管批准' },
+      { title: '按楼宇分派供应商', description: 'A 楼给排水交给供应商，B 楼由内部团队处理' },
+      { title: '预防性与被动维修分流', description: '预防性交给专职人员，被动维修交给综合团队' },
+      { title: 'SLA 期限提醒', description: '期限临近时提醒区域经理' },
+      { title: '租户入驻', description: '检查、资产核查和文档' },
+      { title: '合规文档核查', description: '关闭前须附上必需文档' },
+    ],
+  },
+  benefits: {
+    learnMore: '了解更多',
+    items: [
+      {
+        href: '/features/audit-tracking',
+        title: '一致性',
+        description: '每张工单遵循相同步骤，运营准确且合规。',
+      },
+      {
+        href: '/features/reactive-maintenance',
+        title: '效率',
+        description: '可复用的逻辑减少从创建到关闭的人工交接。',
+      },
+      {
+        href: '/features/analytics-and-reporting',
+        title: '洞察',
+        description: '结构化的工作流带来更干净的数据和更有价值的报表。',
+      },
+    ],
   },
 }

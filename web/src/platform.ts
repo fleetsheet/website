@@ -28,7 +28,7 @@ export const detailPages = platformPages.filter(
 
 export type TemplatePageId = Exclude<
   PlatformDetailId,
-  'webAndMobile' | 'integrations' | 'runnerAi' | 'fleetMail'
+  'webAndMobile' | 'integrations' | 'runnerAi' | 'fleetMail' | 'workflowBuilder'
 >
 
 export const templatePages = detailPages.filter(
@@ -36,5 +36,6 @@ export const templatePages = detailPages.filter(
     entry.id !== 'webAndMobile' &&
     entry.id !== 'integrations' &&
     entry.id !== 'runnerAi' &&
-    entry.id !== 'fleetMail',
+    entry.id !== 'fleetMail' &&
+    entry.id !== 'workflowBuilder',
 )

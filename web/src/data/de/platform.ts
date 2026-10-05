@@ -51,6 +51,7 @@ export const pages: {
   integrations: PlatformEntry
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
+  workflowBuilder: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -104,81 +105,6 @@ export const pages: {
       title: 'Fleet Workflow Builder | Fleet',
       description:
         'Gestalten Sie Ihre Instandhaltung mit dem visuellen Workflow Builder von Fleet passend zu Struktur, Freigabeketten, Dienstleisterrichtlinien und Kostengrenzen.',
-    },
-    eyebrow: 'Fleet Workflow Builder',
-    title: 'Workflows, die sich Ihrer Arbeitsweise anpassen',
-    description:
-      'Gestalten Sie Ihre Instandhaltung passend zu Struktur, Freigabeketten, Dienstleisterrichtlinien und Kostengrenzen, mit einem visuellen Builder, den jeder im Team nutzen kann.',
-    highlights: ['Visueller Builder', 'Mehrstufige Freigaben', 'Startklar in der ersten Woche'],
-    features: {
-      title: 'Einmal aufbauen, überall nutzen',
-      description:
-        'Sie legen den Prozess fest, und Fleet setzt ihn um, damit Aufgaben zur richtigen Zeit die richtigen Personen erreichen.',
-      items: [
-        {
-          title: 'Bedingte Aufgabenzuweisung',
-          description:
-            'Aufträge nach Standort, Art, Priorität oder Anlagenkategorie zuweisen, etwa Aufzüge an einen festen Dienstleister.',
-        },
-        {
-          title: 'Mehrstufige Freigaben',
-          description:
-            'Freigaben durch Management oder Finanzen abhängig von Kosten, Dringlichkeit oder Umfang verlangen.',
-        },
-        {
-          title: 'Rollenbasierte Zuständigkeiten',
-          description:
-            'Festlegen, wer Aufgaben sehen, freigeben, zuweisen oder schließen darf, für Techniker, Vorgesetzte und Dienstleister.',
-        },
-        {
-          title: 'Benachrichtigungen und Eskalationen',
-          description:
-            'Teams automatisch informieren, wenn Fristen näher rücken oder ein Auftrag auf Zuweisung wartet.',
-        },
-        {
-          title: 'Standortspezifische Workflows',
-          description:
-            'Jedes Gebäude und jede Region an die eigenen Standardarbeitsanweisungen anpassen.',
-        },
-        {
-          title: 'Mit allen Modulen verbunden',
-          description:
-            'Workflows wirken auf Dokumente, Anlagen, Berechtigungen und Dienstleister in einem System.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Einfach eingerichtet, stark im Einsatz',
-        description:
-          'Ziehen, ablegen, veröffentlichen. Unser Onboarding-Team bildet Ihre Workflows in der ersten Woche gemeinsam mit Ihnen in Fleet ab.',
-        points: [
-          'Visueller Builder für Betriebsteams',
-          'Fertige Vorlagen für gängige Prozesse',
-          'Änderungen vor dem Ausrollen testen',
-        ],
-      },
-      {
-        title: 'Konsistenz, Effizienz und Erkenntnis',
-        description:
-          'Jeder Auftrag folgt denselben Schritten. Das hält den Betrieb präzise und macht Berichte aussagekräftiger.',
-        points: [
-          'Compliance-Schritte wie Dokumentenprüfungen automatisch durchgesetzt',
-          'Weniger manuelle Übergaben von der Erstellung bis zum Abschluss',
-          'Strukturierte Daten für aussagekräftigere Berichte',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Workflows, die Teams aufbauen',
-      description: 'Typische Workflows, die Immobilienteams im ersten Monat einrichten.',
-      items: [
-        'Sanitäraufträge in Gebäude A an einen Dienstleister, in Gebäude B an das eigene Team',
-        'Freigabe durch Vorgesetzte für jeden Auftrag über 5.000 $',
-        'Vorbeugende Aufträge an spezialisierte Teams, reaktive an allgemeine Teams',
-        'Regionalleitungen informieren, wenn SLA-Fristen näher rücken',
-        'Einzugsprozess für Mieter mit Begehung, Anlagenprüfung und Dokumenten',
-      ],
     },
   },
   preventiveMaintenance: {
@@ -1934,5 +1860,130 @@ export const fleetMailPage = {
     description:
       'Fleet Mail arbeitet mit den mehr als 20 Integrationen von Fleet zusammen, darunter Mieterportale, Finanztools und Gebäudesysteme.',
     action: { label: 'Alle Integrationen ansehen', href: '/platform/integrations' },
+  },
+}
+
+export const workflowBuilderPage = {
+  hero: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Workflows, die sich Ihrer Arbeitsweise anpassen',
+    description:
+      'Gestalten Sie Ihre Instandhaltung passend zu Struktur, Freigabeketten, Dienstleisterrichtlinien und Kostengrenzen, mit einem visuellen Builder, den jeder im Team nutzen kann.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    highlights: ['Visueller Builder', 'Mehrstufige Freigaben', 'Startklar in der ersten Woche'],
+  },
+  build: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Gestalten Sie Ihr eigenes Fleet',
+    description:
+      'Sie legen den Prozess fest, und Fleet setzt ihn um, damit Aufgaben jedes Mal zur richtigen Zeit die richtigen Personen erreichen.',
+    helpTitle: 'Wir bilden jeden Prozess mit Ihnen ab',
+    helpDescription:
+      'Unser Onboarding-Team überträgt in Ihrer ersten Woche gemeinsam mit Ihnen Freigaben, Zuweisungen und Eskalationen in Fleet.',
+    action: { label: 'Mit unserem Team sprechen', href: '/contact' },
+    center: 'Workflow',
+    nodes: ['Freigaben', 'Zuweisung', 'Eskalationen', 'Hinweise', 'Rollen', 'Standorte'],
+  },
+  panels: {
+    blocks: {
+      title: 'Alle Bausteine an einem Ort',
+      description:
+        'Kombinieren Sie Auslöser, Bedingungen und Aktionen passend zu den Arbeitsanweisungen jedes Standorts.',
+      panelTitle: 'Workflow-Bausteine',
+      status: 'Hinzugefügt',
+      items: [
+        {
+          title: 'Auslöser',
+          description: 'Neue Anfrage, Kosten über Grenzwert oder nahende Frist',
+        },
+        {
+          title: 'Bedingung',
+          description: 'Standort, Anlagentyp, Priorität, Dienstleister oder Kosten',
+        },
+        { title: 'Freigabe', description: 'Freigabe durch Aufsicht, Management oder Finanzen' },
+        {
+          title: 'Aktion',
+          description: 'Zuweisen, benachrichtigen, eskalieren oder Auftrag erstellen',
+        },
+      ],
+    },
+    integrations: {
+      title: 'Integration ist entscheidend',
+      description:
+        'Workflows wirken auf Dokumente, Anlagen, Berechtigungen und Dienstleister und verbinden sich mit Finanz-, Gebäude- und Mietersystemen.',
+      panelTitle: 'Mit Ihren Workflows verbunden',
+      action: { label: 'Integrationen ansehen', href: '/platform/integrations' },
+      items: [
+        {
+          title: 'Buchhaltungssoftware',
+          location: 'Freigegebene Kosten automatisch synchronisiert',
+          status: 'Verbunden',
+          tone: 'done',
+        },
+        {
+          title: 'Gebäudeleittechnik',
+          location: 'Alarme lösen Workflows aus',
+          status: 'Verbunden',
+          tone: 'done',
+        },
+        {
+          title: 'Fleet Mail',
+          location: 'Freigaben per E-Mail',
+          status: 'Verbunden',
+          tone: 'done',
+        },
+      ] satisfies StatusItem[],
+    },
+  },
+  templates: {
+    title: 'Alle Prozesse auf einer Plattform',
+    description:
+      'Starten Sie mit fertigen Workflows für gängige Prozesse und passen Sie jeden an Ihre Standorte, Rollen und Grenzwerte an.',
+    tag: 'Vorlage',
+    items: [
+      {
+        title: 'Kostenfreigabe über 5.000 $',
+        description: 'Freigabe der Aufsicht vor der Terminierung',
+      },
+      {
+        title: 'Dienstleister je Gebäude',
+        description: 'Sanitär in Gebäude A an Dienstleister, in Gebäude B intern',
+      },
+      {
+        title: 'Vorbeugend und reaktiv getrennt',
+        description: 'Wartung an Spezialteams, Reparaturen an allgemeine Teams',
+      },
+      {
+        title: 'SLA-Fristwarnungen',
+        description: 'Regionalleitungen werden vor Fristablauf informiert',
+      },
+      { title: 'Mietereinzug', description: 'Begehung, Anlagenprüfung und Dokumente' },
+      {
+        title: 'Compliance-Dokumentenprüfung',
+        description: 'Pflichtdokumente vor dem Abschluss angehängt',
+      },
+    ],
+  },
+  benefits: {
+    learnMore: 'Mehr erfahren',
+    items: [
+      {
+        href: '/features/audit-tracking',
+        title: 'Konsistenz',
+        description: 'Jeder Auftrag folgt denselben Schritten, präzise und konform.',
+      },
+      {
+        href: '/features/reactive-maintenance',
+        title: 'Effizienz',
+        description:
+          'Wiederholbare Logik reduziert manuelle Übergaben von der Erstellung bis zum Abschluss.',
+      },
+      {
+        href: '/features/analytics-and-reporting',
+        title: 'Erkenntnisse',
+        description:
+          'Strukturierte Workflows liefern sauberere Daten und aussagekräftigere Berichte.',
+      },
+    ],
   },
 }

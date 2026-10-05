@@ -51,6 +51,7 @@ export const pages: {
   integrations: PlatformEntry
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
+  workflowBuilder: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -104,80 +105,6 @@ export const pages: {
       title: 'Fleet Workflow Builder | Fleet',
       description:
         'Adapte su mantenimiento a su estructura, cadenas de aprobación, políticas de proveedores y umbrales de coste con el editor visual de flujos de Fleet.',
-    },
-    eyebrow: 'Fleet Workflow Builder',
-    title: 'Flujos de trabajo que se adaptan a su forma de operar',
-    description:
-      'Adapte su mantenimiento a su estructura, cadenas de aprobación, políticas de proveedores y umbrales de coste con un editor visual que cualquier persona del equipo puede usar.',
-    highlights: ['Editor visual', 'Aprobaciones en varios pasos', 'En marcha la primera semana'],
-    features: {
-      title: 'Configúrelo una vez y aplíquelo en todas partes',
-      description:
-        'Usted define el proceso y Fleet lo aplica, para que cada tarea llegue a la persona adecuada en el momento adecuado.',
-      items: [
-        {
-          title: 'Asignación condicional',
-          description:
-            'Asigne trabajos por sede, tipo, prioridad o categoría de activo, como los ascensores a un proveedor concreto.',
-        },
-        {
-          title: 'Aprobaciones en varios pasos',
-          description:
-            'Exija la aprobación de dirección o finanzas según el coste, la urgencia o el alcance.',
-        },
-        {
-          title: 'Responsabilidades por rol',
-          description:
-            'Defina quién puede ver, aprobar, asignar o cerrar tareas: técnicos, supervisores y proveedores.',
-        },
-        {
-          title: 'Notificaciones y escalados',
-          description:
-            'Avise automáticamente a los equipos cuando se acerca un plazo o un trabajo espera asignación.',
-        },
-        {
-          title: 'Flujos por sede',
-          description: 'Adapte cada edificio o región a sus propios procedimientos operativos.',
-        },
-        {
-          title: 'Conectado a todos los módulos',
-          description:
-            'Los flujos actúan sobre documentos, activos, permisos y proveedores en un solo sistema.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Fácil de configurar, potente en acción',
-        description:
-          'Arrastre, suelte y publique. Nuestro equipo de incorporación le ayuda a trasladar sus flujos a Fleet durante la primera semana.',
-        points: [
-          'Editor visual pensado para equipos de operaciones',
-          'Plantillas listas para procesos habituales',
-          'Pruebas de los cambios antes de desplegarlos',
-        ],
-      },
-      {
-        title: 'Coherencia, eficiencia y visibilidad',
-        description:
-          'Cada trabajo sigue los mismos pasos, lo que mantiene la operación precisa y hace los informes más claros.',
-        points: [
-          'Pasos de cumplimiento, como revisar documentos, aplicados automáticamente',
-          'Menos traspasos manuales de la creación al cierre',
-          'Datos estructurados para informes más útiles',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Flujos que crean los equipos',
-      description: 'Flujos habituales que los equipos inmobiliarios configuran en su primer mes.',
-      items: [
-        'Fontanería del edificio A a un proveedor y del edificio B al equipo interno',
-        'Aprobación del supervisor para cualquier trabajo de más de 5.000 $',
-        'Trabajos preventivos a personal dedicado y correctivos a equipos generales',
-        'Aviso a los responsables regionales cuando se acercan los plazos del SLA',
-        'Proceso de entrada de inquilinos con inspección, revisión de activos y documentos',
-      ],
     },
   },
   preventiveMaintenance: {
@@ -1929,5 +1856,125 @@ export const fleetMailPage = {
     description:
       'Fleet Mail funciona junto a las más de 20 integraciones de Fleet, incluidos portales de inquilinos, herramientas financieras y sistemas del edificio.',
     action: { label: 'Ver todas las integraciones', href: '/platform/integrations' },
+  },
+}
+
+export const workflowBuilderPage = {
+  hero: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Flujos de trabajo que se adaptan a su forma de operar',
+    description:
+      'Adapte su mantenimiento a su estructura, cadenas de aprobación, políticas de proveedores y umbrales de coste con un editor visual que cualquier persona del equipo puede usar.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    highlights: ['Editor visual', 'Aprobaciones en varios pasos', 'En marcha la primera semana'],
+  },
+  build: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Construya su propio Fleet',
+    description:
+      'Usted define el proceso y Fleet lo aplica, para que cada tarea llegue a la persona adecuada en el momento adecuado, siempre.',
+    helpTitle: 'Le ayudamos a trasladar cada proceso',
+    helpDescription:
+      'Nuestro equipo de incorporación traslada con usted aprobaciones, asignaciones y escalados a Fleet durante la primera semana.',
+    action: { label: 'Hablar con nuestro equipo', href: '/contact' },
+    center: 'Flujo',
+    nodes: ['Aprobaciones', 'Asignación', 'Escalados', 'Avisos', 'Roles', 'Sedes'],
+  },
+  panels: {
+    blocks: {
+      title: 'Todas las piezas en un solo lugar',
+      description:
+        'Combine disparadores, condiciones y acciones para seguir los procedimientos de cada sede.',
+      panelTitle: 'Piezas del flujo',
+      status: 'Añadido',
+      items: [
+        {
+          title: 'Disparador',
+          description: 'Nueva solicitud, coste sobre el umbral o plazo próximo',
+        },
+        { title: 'Condición', description: 'Sede, tipo de activo, prioridad, proveedor o coste' },
+        { title: 'Aprobación', description: 'Visto bueno del supervisor, la dirección o finanzas' },
+        { title: 'Acción', description: 'Asignar, avisar, escalar o crear una orden de trabajo' },
+      ],
+    },
+    integrations: {
+      title: 'La integración es clave',
+      description:
+        'Los flujos actúan sobre documentos, activos, permisos y proveedores, y se conectan con sistemas financieros, del edificio y de inquilinos.',
+      panelTitle: 'Conectado a sus flujos',
+      action: { label: 'Ver integraciones', href: '/platform/integrations' },
+      items: [
+        {
+          title: 'Software contable',
+          location: 'Costes aprobados sincronizados automáticamente',
+          status: 'Conectado',
+          tone: 'done',
+        },
+        {
+          title: 'Sistema de gestión del edificio',
+          location: 'Las alarmas inician flujos',
+          status: 'Conectado',
+          tone: 'done',
+        },
+        {
+          title: 'Fleet Mail',
+          location: 'Aprobaciones por correo',
+          status: 'Conectado',
+          tone: 'done',
+        },
+      ] satisfies StatusItem[],
+    },
+  },
+  templates: {
+    title: 'Todos sus procesos en una sola plataforma',
+    description:
+      'Empiece con flujos listos para procesos habituales y adapte cada uno a sus sedes, roles y umbrales.',
+    tag: 'Plantilla',
+    items: [
+      {
+        title: 'Aprobación de más de 5.000 $',
+        description: 'Visto bueno del supervisor antes de programar',
+      },
+      {
+        title: 'Proveedor por edificio',
+        description: 'Fontanería a proveedor en el edificio A, equipo interno en el B',
+      },
+      {
+        title: 'Preventivo y correctivo separados',
+        description: 'Preventivo a personal dedicado, correctivo a equipos generales',
+      },
+      {
+        title: 'Avisos de plazos SLA',
+        description: 'Responsables regionales avisados antes de cada plazo',
+      },
+      {
+        title: 'Entrada de inquilinos',
+        description: 'Inspección, revisión de activos y documentos',
+      },
+      {
+        title: 'Revisión de documentos de cumplimiento',
+        description: 'Documentos obligatorios adjuntos antes del cierre',
+      },
+    ],
+  },
+  benefits: {
+    learnMore: 'Más información',
+    items: [
+      {
+        href: '/features/audit-tracking',
+        title: 'Coherencia',
+        description: 'Cada trabajo sigue los mismos pasos, con una operación precisa y conforme.',
+      },
+      {
+        href: '/features/reactive-maintenance',
+        title: 'Eficiencia',
+        description: 'La lógica repetible reduce los traspasos manuales de la creación al cierre.',
+      },
+      {
+        href: '/features/analytics-and-reporting',
+        title: 'Visibilidad',
+        description: 'Los flujos estructurados generan datos más limpios e informes más útiles.',
+      },
+    ],
   },
 }

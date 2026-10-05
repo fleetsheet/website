@@ -51,6 +51,7 @@ export const pages: {
   integrations: PlatformEntry
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
+  workflowBuilder: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
@@ -105,86 +106,6 @@ export const pages: {
       title: 'Fleet Workflow Builder | Fleet',
       description:
         'Adaptez votre maintenance à votre organisation, vos circuits de validation, vos règles prestataires et vos seuils de coûts avec l’éditeur visuel de workflows de Fleet.',
-    },
-    eyebrow: 'Fleet Workflow Builder',
-    title: 'Des workflows qui s’adaptent à votre organisation',
-    description:
-      'Adaptez votre maintenance à votre structure, vos circuits de validation, vos règles prestataires et vos seuils de coûts, avec un éditeur visuel accessible à toute l’équipe.',
-    highlights: [
-      'Éditeur visuel',
-      'Validations à plusieurs niveaux',
-      'Opérationnel dès la première semaine',
-    ],
-    features: {
-      title: 'Configurez une fois, appliquez partout',
-      description:
-        'Vous définissez le processus, Fleet l’applique : chaque tâche atteint la bonne personne au bon moment.',
-      items: [
-        {
-          title: 'Routage conditionnel',
-          description:
-            'Affectez les interventions par site, type, priorité ou catégorie d’équipement, par exemple les ascenseurs à un prestataire dédié.',
-        },
-        {
-          title: 'Validations à plusieurs niveaux',
-          description:
-            'Exigez l’accord de la direction ou de la finance selon le coût, l’urgence ou le périmètre.',
-        },
-        {
-          title: 'Responsabilités par rôle',
-          description:
-            'Définissez qui peut voir, valider, affecter ou clôturer les tâches : techniciens, superviseurs, prestataires.',
-        },
-        {
-          title: 'Notifications et escalades',
-          description:
-            'Alertez automatiquement les équipes à l’approche d’une échéance ou quand une intervention attend son affectation.',
-        },
-        {
-          title: 'Workflows par site',
-          description:
-            'Adaptez chaque bâtiment ou région à ses propres procédures opérationnelles.',
-        },
-        {
-          title: 'Connecté à tous les modules',
-          description:
-            'Les workflows agissent sur documents, équipements, droits et prestataires dans un seul système.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Simple à configurer, puissant à l’usage',
-        description:
-          'Glissez, déposez, publiez. Notre équipe d’onboarding vous aide à modéliser vos workflows dans Fleet dès la première semaine.',
-        points: [
-          'Éditeur visuel pensé pour les équipes d’exploitation',
-          'Modèles prêts à l’emploi pour les processus courants',
-          'Tests des modifications avant déploiement',
-        ],
-      },
-      {
-        title: 'Cohérence, efficacité et visibilité',
-        description:
-          'Chaque intervention suit les mêmes étapes, pour une exploitation rigoureuse et un reporting plus clair.',
-        points: [
-          'Étapes de conformité, comme les vérifications de documents, appliquées automatiquement',
-          'Moins de transmissions manuelles de la création à la clôture',
-          'Données structurées pour des rapports plus utiles',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Les workflows que créent les équipes',
-      description:
-        'Des workflows courants mis en place par les équipes immobilières dès le premier mois.',
-      items: [
-        'Plomberie confiée à un prestataire au bâtiment A et à l’équipe interne au bâtiment B',
-        'Validation du superviseur pour toute intervention supérieure à 5 000 $',
-        'Préventif confié à une équipe dédiée, correctif aux équipes générales',
-        'Alerte des responsables régionaux à l’approche des délais SLA',
-        'Parcours d’entrée des locataires avec état des lieux, contrôle des équipements et documents',
-      ],
     },
   },
   preventiveMaintenance: {
@@ -1932,5 +1853,138 @@ export const fleetMailPage = {
     description:
       'Fleet Mail fonctionne avec les plus de 20 intégrations de Fleet, dont les portails locataires, les outils financiers et les systèmes du bâtiment.',
     action: { label: 'Voir toutes les intégrations', href: '/platform/integrations' },
+  },
+}
+
+export const workflowBuilderPage = {
+  hero: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Des workflows qui s’adaptent à votre organisation',
+    description:
+      'Adaptez votre maintenance à votre structure, vos circuits de validation, vos règles prestataires et vos seuils de coûts, avec un éditeur visuel accessible à toute l’équipe.',
+    primaryAction: { label: 'Réserver une démo', href: '/contact' },
+    highlights: [
+      'Éditeur visuel',
+      'Validations à plusieurs niveaux',
+      'Opérationnel dès la première semaine',
+    ],
+  },
+  build: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Construisez votre propre Fleet',
+    description:
+      'Vous définissez le processus, Fleet l’applique : chaque tâche atteint la bonne personne au bon moment, à chaque fois.',
+    helpTitle: 'Nous modélisons chaque processus avec vous',
+    helpDescription:
+      'Notre équipe d’onboarding transpose avec vous validations, routage et escalades dans Fleet dès la première semaine.',
+    action: { label: 'Parler à notre équipe', href: '/contact' },
+    center: 'Workflow',
+    nodes: ['Validations', 'Routage', 'Escalades', 'Notifications', 'Rôles', 'Sites'],
+  },
+  panels: {
+    blocks: {
+      title: 'Tous les éléments au même endroit',
+      description:
+        'Combinez déclencheurs, conditions et actions pour suivre les procédures de chaque site.',
+      panelTitle: 'Éléments de workflow',
+      status: 'Ajouté',
+      items: [
+        {
+          title: 'Déclencheur',
+          description: 'Nouvelle demande, coût au-delà d’un seuil ou échéance proche',
+        },
+        {
+          title: 'Condition',
+          description: 'Site, type d’équipement, priorité, prestataire ou coût',
+        },
+        {
+          title: 'Validation',
+          description: 'Accord du superviseur, de la direction ou de la finance',
+        },
+        { title: 'Action', description: 'Affecter, notifier, escalader ou créer une intervention' },
+      ],
+    },
+    integrations: {
+      title: 'L’intégration au cœur du dispositif',
+      description:
+        'Les workflows agissent sur documents, équipements, droits et prestataires, et se connectent aux systèmes financiers, techniques et locataires.',
+      panelTitle: 'Connecté à vos workflows',
+      action: { label: 'Voir les intégrations', href: '/platform/integrations' },
+      items: [
+        {
+          title: 'Logiciel comptable',
+          location: 'Coûts validés synchronisés automatiquement',
+          status: 'Connecté',
+          tone: 'done',
+        },
+        {
+          title: 'Gestion technique du bâtiment',
+          location: 'Les alarmes déclenchent des workflows',
+          status: 'Connecté',
+          tone: 'done',
+        },
+        {
+          title: 'Fleet Mail',
+          location: 'Validations par e-mail',
+          status: 'Connecté',
+          tone: 'done',
+        },
+      ] satisfies StatusItem[],
+    },
+  },
+  templates: {
+    title: 'Tous vos processus sur une seule plateforme',
+    description:
+      'Partez de workflows prêts à l’emploi pour les processus courants, puis adaptez-les à vos sites, rôles et seuils.',
+    tag: 'Modèle',
+    items: [
+      {
+        title: 'Validation au-delà de 5 000 $',
+        description: 'Accord du superviseur avant planification',
+      },
+      {
+        title: 'Prestataire par bâtiment',
+        description: 'Plomberie au prestataire au bâtiment A, en interne au bâtiment B',
+      },
+      {
+        title: 'Préventif et correctif séparés',
+        description: 'Préventif aux équipes dédiées, correctif aux équipes générales',
+      },
+      {
+        title: 'Alertes d’échéance SLA',
+        description: 'Responsables régionaux alertés à l’approche des délais',
+      },
+      {
+        title: 'Entrée d’un locataire',
+        description: 'État des lieux, contrôle des équipements et documents',
+      },
+      {
+        title: 'Contrôle des documents de conformité',
+        description: 'Documents requis joints avant la clôture',
+      },
+    ],
+  },
+  benefits: {
+    learnMore: 'En savoir plus',
+    items: [
+      {
+        href: '/features/audit-tracking',
+        title: 'Cohérence',
+        description:
+          'Chaque intervention suit les mêmes étapes, pour une exploitation rigoureuse et conforme.',
+      },
+      {
+        href: '/features/reactive-maintenance',
+        title: 'Efficacité',
+        description:
+          'Une logique répétable réduit les transmissions manuelles de la création à la clôture.',
+      },
+      {
+        href: '/features/analytics-and-reporting',
+        title: 'Visibilité',
+        description:
+          'Des workflows structurés produisent des données plus fiables et des rapports plus utiles.',
+      },
+    ],
   },
 }
