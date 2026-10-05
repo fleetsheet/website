@@ -1,0 +1,33 @@
+---
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import Sparkles from '@lucide/astro/icons/sparkles'
+
+type Props = {
+  pressure: { title: string; description: string; points: string[] }
+  answer: { title: string; description: string }
+}
+
+const { pressure, answer } = Astro.props
+---
+
+<PageSection containerClass="grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
+  <div class="bg-azul-blue text-alice-blue flex flex-col gap-5 rounded-2xl p-8 lg:p-10">
+    <h2 class="text-display-md text-white">{pressure.title}</h2>
+    <p class="text-columbia-blue text-[17px] leading-[1.65]">{pressure.description}</p>
+    <ul class="mt-auto flex flex-wrap gap-2">
+      {pressure.points.map((point) => (
+        <li class="bg-rich-blue text-sky-blue rounded-md px-3 py-1.5 text-sm font-medium">
+          {point}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="bg-surface border-border flex flex-col gap-5 rounded-2xl border p-8 shadow-xs lg:p-10">
+    <IconChip size="lg">
+      <Sparkles />
+    </IconChip>
+    <h2 class="text-display-md">{answer.title}</h2>
+    <p class="text-azul-blue text-[17px] leading-[1.65]">{answer.description}</p>
+  </div>
+</PageSection>

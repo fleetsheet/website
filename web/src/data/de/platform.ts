@@ -50,6 +50,7 @@ export const pages: {
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
   runnerAi: PlatformEntry
+  fleetMail: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -94,81 +95,6 @@ export const pages: {
       title: 'Fleet Mail | Fleet',
       description:
         'Fleet Mail verwandelt eingehende E-Mails von Mietern und Dienstleistern in verfolgte Arbeitsaufträge und verschickt Benachrichtigungen, Freigaben und Erinnerungen per E-Mail.',
-    },
-    eyebrow: 'Fleet Mail',
-    title: 'Jede E-Mail ein verfolgter Auftrag',
-    description:
-      'Fleet Mail verwandelt Anfragen von Mietern und Dienstleistern sofort in Arbeitsaufträge und hält Mitarbeitende und Dienstleister mit automatischen E-Mails auf dem Laufenden.',
-    highlights: ['E-Mail zu Auftrag', 'Antworten am Auftrag', 'Automatische Updates'],
-    features: {
-      title: 'Ihr Postfach, verbunden mit dem Betrieb',
-      description:
-        'Anfragen, Antworten und Freigaben laufen über einen strukturierten Datensatz, den das ganze Team sieht.',
-      items: [
-        {
-          title: 'E-Mail zu Auftrag',
-          description:
-            'Jede eingehende Anfrage wird zum Arbeitsauftrag mit Absender, Anhängen und Standort.',
-        },
-        {
-          title: 'Verlauf im Auftrag',
-          description:
-            'Antworten landen automatisch in der Auftragshistorie, sodass jede Unterhaltung im Kontext bleibt.',
-        },
-        {
-          title: 'Intelligente Zuweisung',
-          description:
-            'Anfragen gehen je nach Standort, Kategorie und Priorität an das richtige Team oder den richtigen Dienstleister.',
-        },
-        {
-          title: 'E-Mail-Benachrichtigungen',
-          description:
-            'Mitarbeitende und Dienstleister erhalten Zuweisungen, Fälligkeiten und Erinnerungen direkt ins Postfach.',
-        },
-        {
-          title: 'Freigaben per E-Mail',
-          description:
-            'Manager geben Kosten mit einem Klick direkt aus der E-Mail frei oder lehnen sie ab.',
-        },
-        {
-          title: 'Statusmeldungen für Anfragende',
-          description:
-            'Mieter erhalten eine Bestätigung und Fortschrittsmeldungen, bis ihre Anfrage erledigt ist.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Eingehende Anfragen, sofort geordnet',
-        description:
-          'Ein gemeinsames Postfach wird zur geordneten Warteschlange, in der jede Anfrage erfasst, priorisiert und zugewiesen ist.',
-        points: [
-          'Fotos und Dokumente am Arbeitsauftrag',
-          'Doppelte Anfragen zu einem Auftrag zusammengeführt',
-          'Reaktionszeiten gemessen an Ihren SLAs',
-        ],
-      },
-      {
-        title: 'Updates, die die Richtigen erreichen',
-        description:
-          'Fleet sendet zur richtigen Zeit die richtige Nachricht, damit Teams und Dienstleister immer den nächsten Schritt kennen.',
-        points: [
-          'Benachrichtigungen zu Zuweisung und Fälligkeit',
-          'Eskalationen, wenn Fristen näher rücken',
-          'Abschlussberichte mit Fotonachweis',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Fleet Mail in der Praxis',
-      description: 'E-Mail funktioniert wie gewohnt, jetzt mit vollständiger Nachverfolgung.',
-      items: [
-        'Ein Mieter meldet per E-Mail eine defekte Leuchte, und ein Auftrag entsteht automatisch',
-        'Ein Dienstleister antwortet mit einem Angebot, das in der Auftragshistorie landet',
-        'Eine Finanzverantwortliche gibt Reparaturkosten direkt aus dem Postfach frei',
-        'Ein Techniker erhält jeden Abend seine Aufträge für den nächsten Tag per E-Mail',
-        'Eine Regionalleitung erhält wöchentlich eine Übersicht überfälliger Aufträge',
-      ],
     },
   },
   workflowBuilder: {
@@ -1792,6 +1718,221 @@ export const runnerAiPage = {
     title: 'Für Integration gemacht',
     description:
       'RunnerAI arbeitet mit den mehr als 20 Integrationen von Fleet und nutzt Finanz-, Gebäude- und Mieterdaten für ein vollständiges Bild.',
+    action: { label: 'Alle Integrationen ansehen', href: '/platform/integrations' },
+  },
+}
+
+export const fleetMailPage = {
+  hero: {
+    eyebrow: 'Fleet Mail',
+    title: 'Jede E-Mail ein verfolgter Auftrag',
+    description:
+      'Fleet Mail verwandelt Anfragen von Mietern und Dienstleistern sofort in Arbeitsaufträge und hält alle mit automatischen E-Mails auf dem Laufenden.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    secondaryAction: { label: 'Mit unserem Team sprechen', href: '/contact' },
+    hub: { center: 'Fleet Mail', nodes: ['Mieter', 'Dienstleister', 'Techniker', 'Manager'] },
+  },
+  challenge: {
+    pressure: {
+      title: 'Anfragen kommen von überall',
+      description:
+        'Mieter, Dienstleister und Mitarbeitende senden Anfragen, Angebote und Updates an gemeinsame Postfächer, und jede Nachricht enthält einen Teil eines Auftrags.',
+      points: ['Mieteranfragen', 'Angebote von Dienstleistern', 'Gemeinsame Postfächer'],
+    },
+    answer: {
+      title: 'Fleet Mail führt alles zusammen',
+      description:
+        'Jede E-Mail wird Teil eines strukturierten Datensatzes, mit dem richtigen Team zugewiesen und allen Beteiligten auf dem neuesten Stand.',
+    },
+  },
+  intro: {
+    title: 'Jede Unterhaltung im Fluss, an einem Ort',
+    description:
+      'Anfragen, Antworten und Freigaben laufen über einen Datensatz, den Ihr ganzes Team sieht, während Mieter und Dienstleister ihre gewohnte E-Mail nutzen.',
+  },
+  rows: [
+    {
+      tag: 'Gemeinsames Postfach',
+      title: 'Eine geordnete Warteschlange',
+      description:
+        'Ein gemeinsames Postfach wird zur geordneten Warteschlange, in der jede Anfrage erfasst, priorisiert und zugewiesen ist.',
+      points: [
+        'Jede Anfrage mit Absender, Anhängen und Standort erfasst',
+        'Doppelte Anfragen zu einem Auftrag zusammengeführt',
+        'Reaktionszeiten gemessen an Ihren SLAs',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'maintenance@ · Heute',
+        items: [
+          {
+            title: 'Licht in der Lobby ausgefallen',
+            location: 'Von: Mieter Einheit 1204',
+            status: 'Auftrag erstellt',
+            tone: 'info',
+          },
+          {
+            title: 'Angebot Kältemaschinenwartung',
+            location: 'Von: Klimadienstleister',
+            status: 'Wartet auf Freigabe',
+            tone: 'due',
+          },
+          {
+            title: 'AW: Wasserhahn tropft',
+            location: 'Von: Mieter Einheit 802',
+            status: 'Erledigt',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'E-Mail zu Auftrag',
+      title: 'Anfragen werden sofort zu Aufträgen',
+      description:
+        'Jede E-Mail wird zum Arbeitsauftrag, und jede Antwort landet in der Auftragshistorie, sodass die ganze Unterhaltung im Kontext bleibt.',
+      points: [
+        'Fotos und Dokumente am Arbeitsauftrag',
+        'Intelligente Zuweisung nach Standort, Kategorie und Priorität',
+        'Antworten automatisch in der Auftragshistorie',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2318 · E-Mail-Verlauf',
+        request: {
+          title: 'Licht in der Lobby ausgefallen',
+          location: 'Bayview Residences · Lobby',
+          status: 'Zugewiesen',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Mieter',
+            text: 'Das Hauptlicht in der Lobby ist heute Abend ausgefallen.',
+            time: '18:04',
+            own: false,
+          },
+          {
+            from: 'Fleet Mail',
+            text: 'Danke. Auftrag WO-2318 ist erstellt und Marco L. zugewiesen.',
+            time: '18:04',
+            own: true,
+          },
+          { from: 'Marco L.', text: 'Leuchte ersetzt. Foto anbei.', time: '09:30', own: true },
+        ],
+      },
+    },
+    {
+      tag: 'Freigaben',
+      title: 'Freigaben mit einem Klick',
+      description:
+        'Manager geben Kosten direkt aus der E-Mail frei oder lehnen sie ab, und der Auftrag läuft automatisch weiter.',
+      points: [
+        'Freigabeanfragen an die richtige Person',
+        'Mit einem Klick freigeben oder ablehnen',
+        'Jede Entscheidung am Auftrag dokumentiert',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Freigabe per E-Mail',
+        steps: [
+          { kind: 'E-Mail', text: 'Angebot eingegangen: 3.800 $' },
+          { kind: 'Freigabe', text: 'Finanzleitung gibt im Postfach frei' },
+          { kind: 'Dann', text: 'Dienstleister informiert + Termin geplant' },
+        ],
+      },
+    },
+    {
+      tag: 'Updates',
+      title: 'Alle bleiben informiert',
+      description:
+        'Fleet sendet zur richtigen Zeit die richtige Nachricht, damit Teams, Dienstleister und Mieter immer den nächsten Schritt kennen.',
+      points: [
+        'Benachrichtigungen zu Zuweisung und Fälligkeit',
+        'Eskalationen, wenn Fristen näher rücken',
+        'Abschlussberichte mit Fotonachweis',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Heute gesendete E-Mails',
+        entries: [
+          {
+            when: '09:31',
+            who: 'Mieter, Einheit 1204',
+            what: 'hat einen Abschlussbericht mit Foto erhalten',
+          },
+          { when: '08:00', who: 'Marco L.', what: 'hat die 4 Aufgaben für heute erhalten' },
+          {
+            when: '07:45',
+            who: 'Regionalleitung',
+            what: 'hat die wöchentliche Übersicht überfälliger Aufträge erhalten',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  flow: {
+    eyebrow: 'So funktioniert es',
+    title: 'Vom Postfach zum erledigten Auftrag',
+    items: [
+      {
+        title: 'Empfangen',
+        description:
+          'Mieter und Dienstleister schreiben wie gewohnt an Ihre Instandhaltungsadresse.',
+      },
+      {
+        title: 'Erstellen',
+        description: 'Fleet Mail macht aus jeder E-Mail einen Auftrag mit Fotos und Standort.',
+      },
+      {
+        title: 'Zuweisen',
+        description:
+          'Der Auftrag geht nach Standort, Kategorie und Priorität an das richtige Team oder den richtigen Dienstleister.',
+      },
+      {
+        title: 'Informieren',
+        description: 'Alle erhalten automatisch Fortschritts-, Freigabe- und Abschluss-E-Mails.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Für jeden Absender gemacht',
+    title: 'E-Mail, die für alle funktioniert',
+    description:
+      'Mieter und Dienstleister nutzen weiter ihre gewohnte E-Mail, während Ihr Team mit einem strukturierten, nachverfolgbaren Datensatz arbeitet.',
+    action: { label: 'Mit unserem Team sprechen', href: '/contact' },
+  },
+  connect: {
+    title: 'Ihren gesamten Betrieb verbinden',
+    description:
+      'Fleet Mail ist Teil der Fleet-Plattform, sodass jede E-Mail mit Ihren Anlagen, Dokumenten, Workflows und Berichten verknüpft ist.',
+    items: [
+      {
+        title: 'Alle am selben Datensatz',
+        description:
+          'Mieter, Dienstleister und Mitarbeitende verfolgen einen Auftrag, jede Nachricht im Kontext.',
+      },
+      {
+        title: 'Klare Sicht auf jede Anfrage',
+        description:
+          'Anfragevolumen, Reaktionszeiten und offene Anfragen aller Standorte im Blick.',
+      },
+      {
+        title: 'Mehr Zeit für echte Arbeit',
+        description:
+          'Automatische Erfassung und Updates geben Ihrem Team Zeit für die Arbeit vor Ort.',
+      },
+    ],
+  },
+  industries: {
+    title: 'Eine Lösung für jede Objektart',
+    description:
+      'Von Wohnanlagen bis zu Logistikzentren passt sich Fleet Mail der Kommunikation jedes Objekts an.',
+  },
+  integrate: {
+    title: 'Für Integration gemacht',
+    description:
+      'Fleet Mail arbeitet mit den mehr als 20 Integrationen von Fleet zusammen, darunter Mieterportale, Finanztools und Gebäudesysteme.',
     action: { label: 'Alle Integrationen ansehen', href: '/platform/integrations' },
   },
 }

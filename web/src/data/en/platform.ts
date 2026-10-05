@@ -118,6 +118,7 @@ export const pages: {
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
   runnerAi: PlatformEntry
+  fleetMail: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -162,80 +163,6 @@ export const pages: {
       title: 'Fleet Mail | Fleet',
       description:
         'Fleet Mail turns incoming emails from tenants and vendors into tracked work orders and sends alerts, approvals and reminders by email.',
-    },
-    eyebrow: 'Fleet Mail',
-    title: 'Every Email, a Tracked Job',
-    description:
-      'Fleet Mail turns requests from tenants and vendors into work orders the moment they arrive, and keeps staff and vendors informed with automatic email updates.',
-    highlights: ['Email to work order', 'Replies kept on the job', 'Automatic updates'],
-    features: {
-      title: 'Your Inbox, Connected to Operations',
-      description:
-        'Requests, replies and approvals flow through one structured record that the whole team can see.',
-      items: [
-        {
-          title: 'Email to work order',
-          description:
-            'Each incoming request becomes a work order with its sender, attachments and location.',
-        },
-        {
-          title: 'Threaded job history',
-          description:
-            'Replies are added to the job history automatically, keeping every conversation in context.',
-        },
-        {
-          title: 'Smart routing',
-          description:
-            'Requests are assigned to the right team or vendor based on site, category and priority.',
-        },
-        {
-          title: 'Email alerts',
-          description:
-            'Staff and vendors receive assignments, due dates and overdue reminders straight to their inbox.',
-        },
-        {
-          title: 'Approvals by email',
-          description: 'Managers approve or reject costs with one click from the email itself.',
-        },
-        {
-          title: 'Status updates for requesters',
-          description:
-            'Tenants receive confirmation and progress updates until their request is resolved.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Incoming Requests, Instantly Organized',
-        description:
-          'A shared inbox becomes an organized queue, with every request logged, prioritized and assigned.',
-        points: [
-          'Photos and documents attached to the work order',
-          'Duplicate requests grouped into one job',
-          'Response times tracked against your SLAs',
-        ],
-      },
-      {
-        title: 'Updates That Reach the Right People',
-        description:
-          'Fleet sends the right message at the right time, so teams and vendors always know what comes next.',
-        points: [
-          'Assignment and due date notifications',
-          'Escalations when deadlines approach',
-          'Completion summaries with photo proof',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Fleet Mail in Practice',
-      description: 'Email keeps working the way people expect, now with full tracking behind it.',
-      items: [
-        'A tenant emails about a broken light and a job is created automatically',
-        'A vendor replies with a quote that lands on the job history',
-        'A finance manager approves a repair cost from their inbox',
-        'A technician receives tomorrow’s assignments by email each evening',
-        'A regional manager gets a weekly email summary of overdue jobs',
-      ],
     },
   },
   workflowBuilder: {
@@ -1811,6 +1738,224 @@ export const runnerAiPage = {
     title: 'Built to Integrate',
     description:
       'RunnerAI works across Fleet’s 20+ integrations, drawing on finance, building and tenant data for a complete picture.',
+    action: { label: 'See all integrations', href: '/platform/integrations' },
+  },
+}
+
+export const fleetMailPage = {
+  hero: {
+    eyebrow: 'Fleet Mail',
+    title: 'Every Email, a Tracked Job',
+    description:
+      'Fleet Mail turns requests from tenants and vendors into work orders the moment they arrive, and keeps everyone informed with automatic email updates.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    secondaryAction: { label: 'Talk to our team', href: '/contact' },
+    hub: {
+      center: 'Fleet Mail',
+      nodes: ['Tenants', 'Vendors', 'Technicians', 'Managers'],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Requests Arrive from Everywhere',
+      description:
+        'Tenants, vendors and staff send requests, quotes and updates to shared inboxes, and each message holds part of a job.',
+      points: ['Tenant requests', 'Vendor quotes', 'Shared inboxes'],
+    },
+    answer: {
+      title: 'Fleet Mail Brings Them Together',
+      description:
+        'Every email becomes part of one structured record, with the right team assigned and everyone kept up to date.',
+    },
+  },
+  intro: {
+    title: 'Keep Every Conversation Moving, in One Place',
+    description:
+      'Requests, replies and approvals flow through one record your whole team can see, while tenants and vendors keep using the email they know.',
+  },
+  rows: [
+    {
+      tag: 'Shared inbox',
+      title: 'One Organized Queue',
+      description:
+        'A shared inbox becomes an organized queue, with every request logged, prioritized and assigned.',
+      points: [
+        'Each request logged with sender, attachments and location',
+        'Duplicate requests grouped into one job',
+        'Response times tracked against your SLAs',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'maintenance@ · Today',
+        items: [
+          {
+            title: 'Light out in lobby',
+            location: 'From: Unit 1204 tenant',
+            status: 'Work order created',
+            tone: 'info',
+          },
+          {
+            title: 'Quote for chiller service',
+            location: 'From: HVAC vendor',
+            status: 'Awaiting approval',
+            tone: 'due',
+          },
+          {
+            title: 'Re: Kitchen tap leak',
+            location: 'From: Unit 802 tenant',
+            status: 'Resolved',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Email to work order',
+      title: 'Requests Become Work Orders Instantly',
+      description:
+        'Each email turns into a work order, and every reply is added to the job history so the full conversation stays in context.',
+      points: [
+        'Photos and documents attached to the work order',
+        'Smart routing by site, category and priority',
+        'Replies kept on the job history automatically',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2318 · Email thread',
+        request: {
+          title: 'Light out in lobby',
+          location: 'Bayview Residences · Lobby',
+          status: 'Assigned',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Tenant',
+            text: 'The main light in the lobby went out this evening.',
+            time: '18:04',
+            own: false,
+          },
+          {
+            from: 'Fleet Mail',
+            text: 'Thanks. Work order WO-2318 is created and assigned to Marco L.',
+            time: '18:04',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Replaced the fitting. Photo attached.',
+            time: '09:30',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Approvals',
+      title: 'Approvals in One Click',
+      description:
+        'Managers approve or reject costs straight from the email, and the job moves on automatically.',
+      points: [
+        'Approval requests sent to the right approver',
+        'One-click approve or reject from the inbox',
+        'Every decision recorded on the job',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Approval by email',
+        steps: [
+          { kind: 'Email', text: 'Vendor quote received: $3,800' },
+          { kind: 'Approve', text: 'Finance manager approves from inbox' },
+          { kind: 'Then', text: 'Vendor notified + job scheduled' },
+        ],
+      },
+    },
+    {
+      tag: 'Updates',
+      title: 'Everyone Stays Informed',
+      description:
+        'Fleet sends the right message at the right time, so teams, vendors and tenants always know what comes next.',
+      points: [
+        'Assignment and due date notifications',
+        'Escalations as deadlines approach',
+        'Completion summaries with photo proof',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Emails sent today',
+        entries: [
+          {
+            when: '09:31',
+            who: 'Tenant, Unit 1204',
+            what: 'received a completion summary with photo',
+          },
+          { when: '08:00', who: 'Marco L.', what: 'received today’s 4 assignments' },
+          {
+            when: '07:45',
+            who: 'Regional manager',
+            what: 'received the weekly overdue jobs summary',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  flow: {
+    eyebrow: 'How it works',
+    title: 'From Inbox to Resolved Job',
+    items: [
+      {
+        title: 'Receive',
+        description: 'Tenants and vendors email your maintenance address as usual.',
+      },
+      {
+        title: 'Create',
+        description: 'Fleet Mail turns each email into a work order with its photos and location.',
+      },
+      {
+        title: 'Route',
+        description: 'The job goes to the right team or vendor by site, category and priority.',
+      },
+      {
+        title: 'Update',
+        description: 'Everyone receives progress, approvals and completion emails automatically.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Built for every sender',
+    title: 'Email That Works for Everyone',
+    description:
+      'Tenants and vendors keep using the email they know, while your team works from one structured, trackable record.',
+    action: { label: 'Talk to our team', href: '/contact' },
+  },
+  connect: {
+    title: 'Connect Your Entire Operation',
+    description:
+      'Fleet Mail is part of the Fleet platform, so every email links to your assets, documents, workflows and reports.',
+    items: [
+      {
+        title: 'Everyone on the same record',
+        description: 'Tenants, vendors and staff follow one job, with every message in context.',
+      },
+      {
+        title: 'A clear view of every request',
+        description: 'See volumes, response times and open requests across every site.',
+      },
+      {
+        title: 'More time for real work',
+        description: 'Automatic logging and updates give your team time back for on-site work.',
+      },
+    ],
+  },
+  industries: {
+    title: 'A Solution for Every Property Type',
+    description:
+      'From residential communities to logistics hubs, Fleet Mail fits the way each property communicates.',
+  },
+  integrate: {
+    title: 'Built to Integrate',
+    description:
+      'Fleet Mail works alongside Fleet’s 20+ integrations, including tenant portals, finance tools and building systems.',
     action: { label: 'See all integrations', href: '/platform/integrations' },
   },
 }

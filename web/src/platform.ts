@@ -26,9 +26,15 @@ export const detailPages = platformPages.filter(
     entry.id !== 'overview',
 )
 
-export type TemplatePageId = Exclude<PlatformDetailId, 'webAndMobile' | 'integrations' | 'runnerAi'>
+export type TemplatePageId = Exclude<
+  PlatformDetailId,
+  'webAndMobile' | 'integrations' | 'runnerAi' | 'fleetMail'
+>
 
 export const templatePages = detailPages.filter(
   (entry): entry is Extract<(typeof detailPages)[number], { id: TemplatePageId }> =>
-    entry.id !== 'webAndMobile' && entry.id !== 'integrations' && entry.id !== 'runnerAi',
+    entry.id !== 'webAndMobile' &&
+    entry.id !== 'integrations' &&
+    entry.id !== 'runnerAi' &&
+    entry.id !== 'fleetMail',
 )

@@ -1,0 +1,144 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Building from '@lucide/astro/icons/building'
+import Eye from '@lucide/astro/icons/eye'
+import Handshake from '@lucide/astro/icons/handshake'
+import Mail from '@lucide/astro/icons/mail'
+import Timer from '@lucide/astro/icons/timer'
+import Users from '@lucide/astro/icons/users'
+import Wrench from '@lucide/astro/icons/wrench'
+import ChallengeCards from './ChallengeCards.astro'
+import FeatureBanner from './FeatureBanner.astro'
+import FeatureRows from './FeatureRows.astro'
+import IndustriesIntegrate from './IndustriesIntegrate.astro'
+import StepsBand from './StepsBand.astro'
+
+const { fleetMailPage, cta } = getContent(getLocale(Astro.url)).platform
+const { hero, challenge, intro, rows, flow, banner, connect, industries, integrate } = fleetMailPage
+const nodeIcons = [Users, Handshake, Wrench, Building]
+const nodePositions = [
+  'col-start-2 row-start-1',
+  'col-start-1 row-start-2',
+  'col-start-3 row-start-2',
+  'col-start-2 row-start-3',
+]
+const connectIcons = [Users, Eye, Timer]
+---
+
+<section class="bg-rich-blue text-alice-blue">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-2 lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-sky-blue flex items-center gap-2.5">
+        <IconChip size="sm" tone="dark">
+          <Mail />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate text-white">{hero.title}</h1>
+      <p class="text-lead text-columbia-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={hero.primaryAction.href} variant="accent">
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="inverse">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+    </div>
+    <div class="relative mx-auto w-full max-w-[460px]" aria-hidden="true">
+      <div class="border-azul-blue-light absolute inset-[16%] rounded-full border-2 border-dashed"></div>
+      <div class="relative grid aspect-square grid-cols-3 grid-rows-3 place-items-center">
+        {[0, 2, 6, 8].map((cell) => (
+          <span
+            class:list={[
+              'bg-azul-blue text-sky-blue flex size-10 items-center justify-center rounded-full',
+              {
+                'col-start-1 row-start-1': cell === 0,
+                'col-start-3 row-start-1': cell === 2,
+                'col-start-1 row-start-3': cell === 6,
+                'col-start-3 row-start-3': cell === 8,
+              },
+            ]}
+          >
+            <Mail class="size-4" />
+          </span>
+        ))}
+        {hero.hub.nodes.map((node, index) => {
+          const Icon = nodeIcons[index % nodeIcons.length]
+          return (
+            <span
+              class:list={[
+                'bg-surface text-rich-blue shadow-float flex flex-col items-center gap-1.5 rounded-xl px-3 py-2.5 text-center text-xs font-semibold',
+                nodePositions[index % nodePositions.length],
+              ]}
+            >
+              <IconChip size="sm">
+                <Icon />
+              </IconChip>
+              {node}
+            </span>
+          )
+        })}
+        <span class="bg-sun-orange text-rich-blue col-start-2 row-start-2 flex flex-col items-center gap-1.5 rounded-2xl px-4 py-3.5 text-center text-sm font-bold">
+          <Mail class="size-6" />
+          {hero.hub.center}
+        </span>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
+
+<FeatureRows rows={rows}>
+  <SectionHeader title={intro.title} description={intro.description} />
+</FeatureRows>
+
+<StepsBand eyebrow={flow.eyebrow} title={flow.title} items={flow.items} />
+
+<div class="pt-24">
+  <FeatureBanner
+    eyebrow={banner.eyebrow}
+    title={banner.title}
+    description={banner.description}
+    action={banner.action}
+  >
+    <Mail class="text-sky-blue size-16" />
+  </FeatureBanner>
+</div>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-12">
+  <SectionHeader title={connect.title} description={connect.description} />
+  <ul class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    {connect.items.map((item, index) => {
+      const Icon = connectIcons[index % connectIcons.length]
+      return (
+        <li class="flex flex-col gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h3 class="text-lg font-semibold">{item.title}</h3>
+          <p class="text-azul-blue text-[15px] leading-[1.55]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<IndustriesIntegrate industries={industries} integrate={integrate} />
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>
