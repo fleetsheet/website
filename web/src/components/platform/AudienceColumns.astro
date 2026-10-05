@@ -1,0 +1,38 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import type { StatusItem } from '@/data/en/home'
+
+type Props = {
+  items: { title: string; description: string; screen: string; tasks: StatusItem[] }[]
+}
+
+const { items: audienceItems } = Astro.props
+---
+
+<ul class="grid grid-cols-1 gap-6 md:grid-cols-3">
+  {audienceItems.map((audience) => (
+    <li class="bg-page border-border flex flex-col gap-3 overflow-hidden rounded-xl border p-6">
+      <h3 class="text-lg font-semibold">{audience.title}</h3>
+      <p class="text-azul-blue text-[15px] leading-[1.55]">{audience.description}</p>
+      <div
+        class="bg-rich-blue mx-auto mt-4 -mb-6 w-full max-w-60 rounded-t-[28px] px-2.5 pt-2.5"
+        aria-hidden="true"
+      >
+        <div class="bg-page flex flex-col gap-2.5 rounded-t-[20px] px-3.5 pt-4 pb-8">
+          <p class="font-display text-sm font-semibold">{audience.screen}</p>
+          {audience.tasks.map((task) => (
+            <div class="bg-surface border-border flex flex-col gap-1.5 rounded-[10px] border p-3">
+              <div class="flex items-start justify-between gap-1.5">
+                <span class="text-[13px] font-bold">{task.title}</span>
+                <Badge tone={task.tone} class="px-1.5 py-0.5 text-[10px] font-bold">
+                  {task.status}
+                </Badge>
+              </div>
+              <p class="text-muted text-xs">{task.location}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>

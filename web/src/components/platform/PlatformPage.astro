@@ -9,20 +9,20 @@ import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
-import { detailPages, platformPages, type PlatformDetailId } from '@/platform'
+import { platformPages, templatePages, type TemplatePageId } from '@/platform'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import Check from '@lucide/astro/icons/check'
 import PlatformIcon from './PlatformIcon.astro'
 
 type Props = {
-  id: PlatformDetailId
+  id: TemplatePageId
 }
 
 const { id } = Astro.props
 const locale = getLocale(Astro.url)
 const { pages, pageActions, sectionLabels, cta } = getContent(locale).platform
 const page = pages[id]
-const current = detailPages.find((entry) => entry.id === id)
+const current = templatePages.find((entry) => entry.id === id)
 const related = platformPages.filter((entry) => entry.group === current?.group && entry.id !== id)
 ---
 

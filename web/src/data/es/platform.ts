@@ -1,7 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
   label: 'Plataforma',
@@ -37,7 +37,10 @@ export const cta = {
   secondaryAction: { label: 'Hablar con nuestro equipo', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
+  TemplatePageId,
+  PlatformPageContent
+> = {
   overview: {
     label: 'Visión general',
     summary: 'Una plataforma para mantenimiento, activos y operaciones en cada sede.',
@@ -54,80 +57,6 @@ export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, Platf
       title: 'Web y móvil | Fleet',
       description:
         'Fleet funciona en ordenador, tableta y teléfono, con iOS y Android, para que técnicos y responsables compartan los mismos datos en vivo dondequiera que trabajen.',
-    },
-    eyebrow: 'Web y móvil',
-    title: 'Su operación en cualquier pantalla',
-    description:
-      'Fleet funciona en el navegador y en iOS y Android: los responsables planifican desde el ordenador y los técnicos actualizan los trabajos en tiempo real sobre el terreno.',
-    highlights: ['iOS y Android', 'En cualquier navegador', 'Sincronización en tiempo real'],
-    features: {
-      title: 'Creado para equipos en movimiento',
-      description:
-        'La misma plataforma, adaptada a cada rol y a cada pantalla, con cada cambio sincronizado al instante.',
-      items: [
-        {
-          title: 'Actualizaciones sobre el terreno',
-          description:
-            'Los técnicos inician, actualizan y cierran trabajos con fotos, notas y firmas.',
-        },
-        {
-          title: 'Alertas al instante',
-          description:
-            'Notificaciones push y en la aplicación avisan de nuevas asignaciones, aprobaciones y tareas vencidas.',
-        },
-        {
-          title: 'Datos del activo in situ',
-          description:
-            'Escanee o busque un activo para ver manuales, historial y trabajos abiertos en segundos.',
-        },
-        {
-          title: 'Centro de control web',
-          description:
-            'Los responsables planifican, revisan paneles y aprueban costes desde un espacio web completo.',
-        },
-        {
-          title: 'Rendimiento con poca cobertura',
-          description: 'Fleet responde con fluidez en sótanos, salas técnicas y sedes remotas.',
-        },
-        {
-          title: 'Acceso rápido para proveedores',
-          description:
-            'Los proveedores externos entran con un enlace sencillo y ven solo los trabajos que tienen asignados.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Mantenimiento en tiempo real desde cualquier lugar',
-        description:
-          'En la sede o a distancia, su equipo trabaja con un único registro en vivo. Registre trabajos sobre la marcha, reciba avisos de vencimiento y pruebas fotográficas al cierre.',
-        points: [
-          'Funciona en teléfonos, tabletas y ordenadores',
-          'Pruebas en foto y vídeo en cada trabajo',
-          'Cambios de estado visibles al instante para todo el equipo',
-        ],
-      },
-      {
-        title: 'Una experiencia para cada rol',
-        description:
-          'Cada persona ve las herramientas que necesita, desde las listas de comprobación de los técnicos hasta los paneles de cartera de la dirección.',
-        points: [
-          'Vistas por rol para técnicos, supervisores y proveedores',
-          'Paneles y aprobaciones para responsables',
-          'Solicitudes de inquilinos y ocupantes registradas con fotos',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Cómo usan los equipos Fleet sobre el terreno',
-      description: 'Cada visita, inspección y reparación se registra donde ocurre.',
-      items: [
-        'Registrar una fuga de agua con fotos desde la propia vivienda',
-        'Completar la revisión de una puerta cortafuegos en una tableta',
-        'Aprobar una reparación urgente desde el teléfono entre reuniones',
-        'Consultar el manual de una enfriadora en la sala de máquinas',
-        'Compartir un trabajo con un contratista externo en segundos',
-      ],
     },
   },
   integrations: {
@@ -1364,6 +1293,182 @@ export const overview = {
       'Desarrollos de uso mixto',
       'Colegios y campus',
       'Flotas de vehículos',
+    ],
+  },
+}
+
+export const webMobile = {
+  hero: {
+    eyebrow: 'Web y móvil',
+    title: 'Su operación en cualquier pantalla',
+    description:
+      'Fleet funciona en el navegador y en iOS y Android: los responsables planifican desde el ordenador y los técnicos actualizan los trabajos en tiempo real sobre el terreno.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    highlights: ['iOS y Android', 'En cualquier navegador', 'Sincronización en tiempo real'],
+  },
+  devices: {
+    url: 'app.runfleet.com',
+    greeting: 'Bienvenido, John S.',
+    scope: 'Cartera · 14 sedes',
+    stats: [
+      { label: 'Órdenes abiertas', value: '128' },
+      { label: 'SLA cumplido', value: '96,4 %' },
+      { label: 'Preventivos pendientes', value: '37' },
+    ],
+    listTitle: 'Órdenes de trabajo',
+    items: [
+      {
+        title: 'Alarma de baja presión en enfriadora',
+        location: 'Harbour Point · Sala técnica',
+        status: 'Vencida hace 2 d',
+        tone: 'overdue',
+      },
+      {
+        title: 'Cambio de filtros de climatización',
+        location: 'Tower B · Planta 14',
+        status: 'Vence en 4 h',
+        tone: 'due',
+      },
+      {
+        title: 'Reparación puerta de muelle',
+        location: 'Westport DC · Muelle 07',
+        status: 'Completada',
+        tone: 'done',
+      },
+    ] satisfies StatusItem[],
+    phoneTitle: 'Hoy · 4 tareas',
+    phoneItems: [
+      {
+        title: 'Inspección puerta cortafuegos',
+        location: 'Planta 3 · Escalera A',
+        status: 'Vence en 2 h',
+        tone: 'due',
+      },
+      {
+        title: 'Revisión anual de caldera',
+        location: 'Sala técnica B2',
+        status: 'Programado',
+        tone: 'info',
+      },
+    ] satisfies StatusItem[],
+    phoneActions: ['Iniciar', 'Añadir foto'],
+  },
+  audiences: {
+    eyebrow: 'Una plataforma para todos',
+    title: 'Simplifique sus operaciones de mantenimiento',
+    description:
+      'Fleet conecta a todas las personas de su operación, con vistas web y móviles pensadas para responsables, equipos de campo, inquilinos y proveedores.',
+  },
+  rows: [
+    {
+      tag: 'Control',
+      title: 'Visibilidad total desde cualquier pantalla',
+      description:
+        'Siga cada sede, equipo y proveedor desde el ordenador o el teléfono, con cifras en vivo que se actualizan en cuanto cambia el trabajo.',
+      points: [
+        'Paneles en vivo de volumen de trabajos, SLA y costes',
+        'Aprobaciones y avisos dondequiera que esté',
+        'Los mismos datos en ordenador, tableta y teléfono',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'La cartera de un vistazo',
+        stats: [
+          { label: 'SLA cumplido', value: '96,4 %' },
+          { label: 'Trabajos abiertos', value: '128' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 46 },
+          { label: 'Tower B', value: 28 },
+          { label: 'Northgate', value: 19 },
+          { label: 'Bayview', value: 12 },
+          { label: 'Westport', value: 7 },
+        ],
+      },
+    },
+    {
+      tag: 'Activos in situ',
+      title: 'Cada activo, a un escaneo de distancia',
+      description:
+        'Escanee o busque un activo para abrir sus manuales, historial y trabajos abiertos en segundos, justo donde se trabaja.',
+      points: [
+        'Datos, manuales e historial del activo in situ',
+        'Inspecciones registradas con fotos y lecturas',
+        'Historial actualizado al instante para todo el equipo',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Activo escaneado',
+        name: 'Enfriadora CH-02',
+        location: 'Harbour Point · Sala técnica B2',
+        status: 'Operativa',
+        facts: [
+          { label: 'Último servicio', value: '12 sept.' },
+          { label: 'Garantía', value: 'Mar. 2028' },
+          { label: 'Manual', value: 'Manual CH-02.pdf' },
+          { label: 'Trabajos abiertos', value: '1' },
+        ],
+      },
+    },
+    {
+      tag: 'Comunicación',
+      title: 'Comunicación clara con equipos e inquilinos',
+      description:
+        'Las solicitudes llegan con fotos y ubicación, y todas las personas implicadas ven el avance y las respuestas en el mismo trabajo.',
+      points: [
+        'Los inquilinos envían solicitudes con fotos desde cualquier dispositivo',
+        'Actualizaciones y respuestas guardadas en el historial',
+        'Notificaciones en cada asignación y cierre',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'Solicitud · Vivienda 1204',
+        request: {
+          title: 'Aire acondicionado caliente',
+          location: 'Bayview Residences · Vivienda 1204',
+          status: 'Asignada',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Inquilino',
+            text: 'El equipo del salón expulsa aire caliente desde esta mañana.',
+            time: '09:12',
+            own: false,
+          },
+          {
+            from: 'Aisha K.',
+            text: 'Gracias por la foto. Pasaré a las 11:00 para revisar el equipo.',
+            time: '09:20',
+            own: true,
+          },
+          { from: 'Inquilino', text: 'Perfecto, gracias.', time: '09:21', own: false },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  field: {
+    eyebrow: 'Creado para el terreno',
+    title: 'Preparado para sótanos, salas técnicas y sedes remotas',
+    description:
+      'Fleet se mantiene rápido y fluido con poca cobertura, para que los técnicos actualicen trabajos, añadan fotos y cierren tareas estén donde estén.',
+  },
+  stories: {
+    eyebrow: 'Casos de clientes',
+    title: 'Lo que dicen los equipos inmobiliarios',
+    items: [
+      {
+        quote:
+          'Fleet ha reducido nuestro mantenimiento correctivo casi un 40 %. Por fin tenemos a los técnicos, los registros de activos y los trabajos en un solo lugar.',
+        author: 'Responsable de operaciones',
+        company: 'Desarrollo de uso mixto',
+      },
+      {
+        quote:
+          'Otras plataformas nos parecían demasiado complejas o genéricas. Fleet nos dio una solución a medida con un soporte más rápido.',
+        author: 'Director de mantenimiento',
+        company: 'Centro logístico',
+      },
     ],
   },
 }

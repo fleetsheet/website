@@ -1,7 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
   label: '平台',
@@ -36,7 +36,10 @@ export const cta = {
   secondaryAction: { label: '联系我们的团队', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
+  TemplatePageId,
+  PlatformPageContent
+> = {
   overview: {
     label: '平台概览',
     summary: '一个平台，统一管理每个站点的维护、资产和运营。',
@@ -53,73 +56,6 @@ export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, Platf
       title: '网页与移动端 | Fleet',
       description:
         'Fleet 支持电脑、平板和手机，兼容 iOS 与 Android，让技术人员和管理者无论身在何处都共享同一份实时数据。',
-    },
-    eyebrow: '网页与移动端',
-    title: '在每块屏幕上掌控运营',
-    description:
-      'Fleet 可在浏览器以及 iOS 和 Android 上运行：管理者在电脑前规划，技术人员在现场实时更新工单。',
-    highlights: ['iOS 与 Android', '支持任意浏览器', '实时同步'],
-    features: {
-      title: '为移动中的团队而生',
-      description: '同一个平台，针对每个角色和每种屏幕优化，所有更新即时同步。',
-      items: [
-        {
-          title: '现场更新工单',
-          description: '技术人员可通过照片、备注和签名开始、更新并关闭工单。',
-        },
-        {
-          title: '即时提醒',
-          description: '推送与应用内通知及时提示新的派单、审批和逾期任务。',
-        },
-        {
-          title: '现场查看资产信息',
-          description: '扫描或搜索资产，几秒内即可查看手册、历史记录和未完成工单。',
-        },
-        {
-          title: '桌面指挥中心',
-          description: '管理者可在完整的网页工作台中排程、查看看板并审批费用。',
-        },
-        {
-          title: '弱网环境表现出色',
-          description: '在地下室、设备机房和偏远站点，Fleet 依然流畅响应。',
-        },
-        {
-          title: '供应商快速接入',
-          description: '外部供应商通过简单链接即可加入，只看到分配给自己的工单。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '随时随地的实时维护',
-        description:
-          '无论在现场还是远程，团队都基于同一份实时记录工作。随时提交工单，到期自动提醒，完成后收到照片凭证。',
-        points: [
-          '支持手机、平板和电脑',
-          '每张工单都附有照片和视频凭证',
-          '状态变更即时同步给整个团队',
-        ],
-      },
-      {
-        title: '为每个角色提供合适的体验',
-        description: '每个人都能看到所需的工具，从技术人员的检查清单到管理层的资产组合看板。',
-        points: [
-          '为技术人员、主管和供应商提供按角色划分的视图',
-          '为管理者提供看板与审批',
-          '租户和使用者的报修附带照片',
-        ],
-      },
-    ],
-    useCases: {
-      title: '团队如何在现场使用 Fleet',
-      description: '每一次巡视、检查和维修，都在发生的地方被记录。',
-      items: [
-        '直接在单元内拍照上报漏水',
-        '在平板上完成防火门检查清单',
-        '会议间隙用手机审批紧急维修',
-        '站在机房里调出冷水机组手册',
-        '几秒内与外部承包商共享单张工单',
-      ],
     },
   },
   integrations: {
@@ -1111,6 +1047,149 @@ export const overview = {
       '综合体项目',
       '学校与园区',
       '车队',
+    ],
+  },
+}
+
+export const webMobile = {
+  hero: {
+    eyebrow: '网页与移动端',
+    title: '在每块屏幕上掌控运营',
+    description:
+      'Fleet 可在浏览器以及 iOS 和 Android 上运行：管理者在电脑前规划，技术人员在现场实时更新工单。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    highlights: ['iOS 与 Android', '支持任意浏览器', '实时同步'],
+  },
+  devices: {
+    url: 'app.runfleet.com',
+    greeting: '欢迎，John S.',
+    scope: '资产组合 · 14 个站点',
+    stats: [
+      { label: '未完成工单', value: '128' },
+      { label: 'SLA 达成', value: '96.4%' },
+      { label: '待预防维护', value: '37' },
+    ],
+    listTitle: '工单',
+    items: [
+      {
+        title: '冷水机组低压告警',
+        location: 'Harbour Point · 机房',
+        status: '逾期 2 天',
+        tone: 'overdue',
+      },
+      { title: '更换空调滤网', location: 'Tower B · 14 层', status: '4 小时后到期', tone: 'due' },
+      { title: '装卸口门维修', location: 'Westport DC · 07 号口', status: '已完成', tone: 'done' },
+    ] satisfies StatusItem[],
+    phoneTitle: '今天 · 4 项任务',
+    phoneItems: [
+      { title: '防火门检查', location: '3 层 · A 楼梯间', status: '2 小时后到期', tone: 'due' },
+      { title: '锅炉年度保养', location: 'B2 机房', status: '已排期', tone: 'info' },
+    ] satisfies StatusItem[],
+    phoneActions: ['开始', '添加照片'],
+  },
+  audiences: {
+    eyebrow: '人人适用的平台',
+    title: '让维护运营更顺畅',
+    description:
+      'Fleet 连接运营中的每个人，为管理者、现场团队、租户和供应商提供量身定制的网页与移动端视图。',
+  },
+  rows: [
+    {
+      tag: '掌控',
+      title: '在任何屏幕上全面掌握',
+      description: '在电脑或手机上跟进每个站点、团队和供应商，工作一有变化，实时数据随即更新。',
+      points: [
+        '工单量、SLA 和成本的实时看板',
+        '随时随地处理审批和提醒',
+        '电脑、平板和手机上的数据完全一致',
+      ],
+      visual: {
+        kind: 'chart',
+        title: '资产组合一览',
+        stats: [
+          { label: 'SLA 达成', value: '96.4%' },
+          { label: '未完成工单', value: '128' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 46 },
+          { label: 'Tower B', value: 28 },
+          { label: 'Northgate', value: 19 },
+          { label: 'Bayview', value: 12 },
+          { label: 'Westport', value: 7 },
+        ],
+      },
+    },
+    {
+      tag: '现场资产',
+      title: '扫一扫，打开任意资产',
+      description: '扫描或搜索资产，几秒内即可在工作现场打开手册、历史记录和未完成工单。',
+      points: [
+        '现场查看资产信息、手册和历史',
+        '附照片和读数记录检查结果',
+        '历史记录即时同步给整个团队',
+      ],
+      visual: {
+        kind: 'asset',
+        title: '已扫描资产',
+        name: '冷水机组 CH-02',
+        location: 'Harbour Point · B2 机房',
+        status: '运行中',
+        facts: [
+          { label: '上次保养', value: '9 月 12 日' },
+          { label: '保修至', value: '2028 年 3 月' },
+          { label: '手册', value: '运维手册.pdf' },
+          { label: '未完成工单', value: '1' },
+        ],
+      },
+    },
+    {
+      tag: '沟通',
+      title: '与团队和租户清晰沟通',
+      description: '请求附带照片和位置，所有相关人员都能在同一张工单上看到进展和回复。',
+      points: [
+        '租户可在任何设备上附照片提交请求',
+        '更新和回复保存在工单历史中',
+        '每次派单和完工都有通知',
+      ],
+      visual: {
+        kind: 'chat',
+        title: '请求 · 1204 单元',
+        request: {
+          title: '空调制冷不足',
+          location: 'Bayview Residences · 1204 单元',
+          status: '已分派',
+          tone: 'info',
+        },
+        messages: [
+          { from: '租户', text: '客厅的空调从今天早上开始一直吹热风。', time: '09:12', own: false },
+          { from: 'Aisha K.', text: '谢谢您的照片，我 11:00 过去检查。', time: '09:20', own: true },
+          { from: '租户', text: '好的，谢谢。', time: '09:21', own: false },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  field: {
+    eyebrow: '为现场而生',
+    title: '地下室、机房和偏远站点都能流畅使用',
+    description:
+      'Fleet 在弱网环境下依然快速流畅，技术人员无论身在何处都能更新工单、添加照片并完成工作。',
+  },
+  stories: {
+    eyebrow: '客户故事',
+    title: '听听房地产团队怎么说',
+    items: [
+      {
+        quote:
+          'Fleet 让我们的被动维修工作量减少了近 40%。技术人员、资产记录和工单终于集中在了一处。',
+        author: '物业运营负责人',
+        company: '综合体项目',
+      },
+      {
+        quote:
+          '其他平台对我们来说过于复杂或过于通用。Fleet 为我们提供了量身打造的方案和更快的支持。',
+        author: '维护总监',
+        company: '物流中心',
+      },
     ],
   },
 }

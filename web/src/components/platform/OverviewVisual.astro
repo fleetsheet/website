@@ -115,6 +115,36 @@ const maxBar = visual.kind === 'chart' ? Math.max(...visual.bars.map((bar) => ba
           ))}
         </div>
       )}
+      {visual.kind === 'chat' && (
+        <div class="flex flex-col gap-3">
+          <div class="bg-page flex items-center gap-3 rounded-lg p-3 text-[13px]">
+            <div class="min-w-0 flex-1">
+              <p class="truncate font-semibold">{visual.request.title}</p>
+              <p class="text-muted truncate text-xs">{visual.request.location}</p>
+            </div>
+            <Badge tone={visual.request.tone}>{visual.request.status}</Badge>
+          </div>
+          <ul class="flex flex-col gap-2.5">
+            {visual.messages.map((message) => (
+              <li class:list={['flex flex-col gap-1', message.own ? 'items-end' : 'items-start']}>
+                <span class="text-muted text-[11px]">
+                  {message.from} · {message.time}
+                </span>
+                <p
+                  class:list={[
+                    'max-w-[85%] rounded-lg px-3 py-2 text-[13px] leading-[1.45]',
+                    message.own
+                      ? 'bg-rich-blue text-alice-blue'
+                      : 'bg-columbia-blue text-rich-blue',
+                  ]}
+                >
+                  {message.text}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {visual.kind === 'log' && (
         <ul class="flex flex-col gap-3.5">
           {visual.entries.map((entry) => (

@@ -1,7 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
   label: 'Plattform',
@@ -37,7 +37,10 @@ export const cta = {
   secondaryAction: { label: 'Mit unserem Team sprechen', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
+  TemplatePageId,
+  PlatformPageContent
+> = {
   overview: {
     label: 'Überblick',
     summary: 'Eine Plattform für Instandhaltung, Anlagen und Betrieb an jedem Standort.',
@@ -54,82 +57,6 @@ export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, Platf
       title: 'Web & Mobil | Fleet',
       description:
         'Fleet läuft auf Desktop, Tablet und Smartphone mit iOS- und Android-Unterstützung, sodass Techniker und Manager überall dieselben Live-Daten nutzen.',
-    },
-    eyebrow: 'Web & Mobil',
-    title: 'Ihr Betrieb auf jedem Bildschirm',
-    description:
-      'Fleet läuft im Browser sowie auf iOS und Android: Manager planen am Desktop, Techniker aktualisieren Aufträge in Echtzeit vor Ort.',
-    highlights: ['iOS & Android', 'In jedem Browser', 'Echtzeit-Synchronisierung'],
-    features: {
-      title: 'Gemacht für Menschen in Bewegung',
-      description:
-        'Dieselbe Plattform, zugeschnitten auf jede Rolle und jede Bildschirmgröße, mit sofort synchronisierten Updates.',
-      items: [
-        {
-          title: 'Auftragsupdates vor Ort',
-          description:
-            'Techniker starten, aktualisieren und schließen Aufträge mit Fotos, Notizen und Unterschriften.',
-        },
-        {
-          title: 'Sofortige Benachrichtigungen',
-          description:
-            'Push- und In-App-Hinweise melden neue Zuweisungen, Freigaben und überfällige Aufgaben.',
-        },
-        {
-          title: 'Anlagendaten vor Ort',
-          description:
-            'Eine Anlage scannen oder suchen und in Sekunden Handbücher, Historie und offene Aufträge sehen.',
-        },
-        {
-          title: 'Steuerzentrale am Desktop',
-          description:
-            'Manager planen Termine, prüfen Dashboards und geben Kosten in einem vollständigen Web-Arbeitsbereich frei.',
-        },
-        {
-          title: 'Leistung bei schwachem Netz',
-          description:
-            'Fleet bleibt reaktionsschnell in Kellern, Technikräumen und abgelegenen Standorten.',
-        },
-        {
-          title: 'Schneller Zugang für Dienstleister',
-          description:
-            'Externe Dienstleister steigen über einen einfachen Link ein und sehen nur ihre eigenen Aufträge.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Instandhaltung in Echtzeit, von überall',
-        description:
-          'Vor Ort oder remote arbeitet Ihr Team mit einem Live-Datensatz. Aufträge unterwegs erfassen, bei Fälligkeit benachrichtigt werden und Fotonachweise nach Abschluss erhalten.',
-        points: [
-          'Läuft auf Smartphones, Tablets und Desktops',
-          'Foto- und Videonachweise an jedem Auftrag',
-          'Statusänderungen sofort für das ganze Team sichtbar',
-        ],
-      },
-      {
-        title: 'Eine Erfahrung für jede Rolle',
-        description:
-          'Jede Person sieht die Werkzeuge, die sie braucht, von Checklisten für Techniker bis zu Portfolio-Dashboards für die Leitung.',
-        points: [
-          'Rollenbasierte Ansichten für Techniker, Vorgesetzte und Dienstleister',
-          'Dashboards und Freigaben für Manager',
-          'Anfragen von Mietern und Nutzern mit Fotos erfasst',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'So nutzen Teams Fleet vor Ort',
-      description:
-        'Jeder Einsatz, jede Inspektion und jede Reparatur wird dort erfasst, wo sie stattfindet.',
-      items: [
-        'Einen Wasserschaden mit Fotos direkt aus der Einheit melden',
-        'Eine Brandschutztür-Checkliste auf dem Tablet abschließen',
-        'Eine dringende Reparatur zwischen zwei Terminen per Smartphone freigeben',
-        'Das Handbuch einer Kältemaschine direkt im Technikraum öffnen',
-        'Einen einzelnen Auftrag in Sekunden mit einem externen Dienstleister teilen',
-      ],
     },
   },
   integrations: {
@@ -1363,6 +1290,182 @@ export const overview = {
       'Gemischt genutzte Quartiere',
       'Schulen und Campus',
       'Fahrzeugflotten',
+    ],
+  },
+}
+
+export const webMobile = {
+  hero: {
+    eyebrow: 'Web & Mobil',
+    title: 'Ihr Betrieb auf jedem Bildschirm',
+    description:
+      'Fleet läuft im Browser sowie auf iOS und Android: Manager planen am Desktop, Techniker aktualisieren Aufträge in Echtzeit vor Ort.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    highlights: ['iOS & Android', 'In jedem Browser', 'Echtzeit-Synchronisierung'],
+  },
+  devices: {
+    url: 'app.runfleet.com',
+    greeting: 'Willkommen, John S.',
+    scope: 'Portfolio · 14 Standorte',
+    stats: [
+      { label: 'Offene Aufträge', value: '128' },
+      { label: 'SLA erfüllt', value: '96,4 %' },
+      { label: 'Wartung fällig', value: '37' },
+    ],
+    listTitle: 'Arbeitsaufträge',
+    items: [
+      {
+        title: 'Niederdruckalarm Kältemaschine',
+        location: 'Harbour Point · Technikraum',
+        status: '2 Tage überfällig',
+        tone: 'overdue',
+      },
+      {
+        title: 'Filterwechsel Klimaanlage',
+        location: 'Tower B · Ebene 14',
+        status: 'Fällig in 4 Std.',
+        tone: 'due',
+      },
+      {
+        title: 'Reparatur Ladetor',
+        location: 'Westport DC · Tor 07',
+        status: 'Erledigt',
+        tone: 'done',
+      },
+    ] satisfies StatusItem[],
+    phoneTitle: 'Heute · 4 Aufgaben',
+    phoneItems: [
+      {
+        title: 'Brandschutztürprüfung',
+        location: 'Ebene 3 · Treppe A',
+        status: 'Fällig in 2 Std.',
+        tone: 'due',
+      },
+      {
+        title: 'Jährliche Kesselwartung',
+        location: 'Technikraum B2',
+        status: 'Geplant',
+        tone: 'info',
+      },
+    ] satisfies StatusItem[],
+    phoneActions: ['Starten', 'Foto hinzufügen'],
+  },
+  audiences: {
+    eyebrow: 'Eine Plattform für alle',
+    title: 'Instandhaltung einfacher organisieren',
+    description:
+      'Fleet verbindet alle Beteiligten Ihres Betriebs, mit Web- und Mobilansichten für Manager, Teams vor Ort, Mieter und Dienstleister.',
+  },
+  rows: [
+    {
+      tag: 'Kontrolle',
+      title: 'Volle Transparenz auf jedem Bildschirm',
+      description:
+        'Verfolgen Sie jeden Standort, jedes Team und jeden Dienstleister am Desktop oder auf dem Smartphone, mit Live-Zahlen, die sich sofort aktualisieren.',
+      points: [
+        'Live-Dashboards zu Auftragsvolumen, SLAs und Kosten',
+        'Freigaben und Benachrichtigungen, wo immer Sie sind',
+        'Dieselben Daten auf Desktop, Tablet und Smartphone',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Portfolio auf einen Blick',
+        stats: [
+          { label: 'SLA erfüllt', value: '96,4 %' },
+          { label: 'Offene Aufträge', value: '128' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 46 },
+          { label: 'Tower B', value: 28 },
+          { label: 'Northgate', value: 19 },
+          { label: 'Bayview', value: 12 },
+          { label: 'Westport', value: 7 },
+        ],
+      },
+    },
+    {
+      tag: 'Anlagen vor Ort',
+      title: 'Jede Anlage nur einen Scan entfernt',
+      description:
+        'Scannen oder suchen Sie eine Anlage und öffnen Sie in Sekunden Handbücher, Historie und offene Aufträge, direkt am Einsatzort.',
+      points: [
+        'Anlagendaten, Handbücher und Historie vor Ort',
+        'Prüfungen mit Fotos und Messwerten dokumentiert',
+        'Historie sofort für das ganze Team aktualisiert',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Gescannte Anlage',
+        name: 'Kältemaschine CH-02',
+        location: 'Harbour Point · Technikraum B2',
+        status: 'In Betrieb',
+        facts: [
+          { label: 'Letzte Wartung', value: '12. Sep.' },
+          { label: 'Garantie', value: 'März 2028' },
+          { label: 'Handbuch', value: 'Betriebshandbuch.pdf' },
+          { label: 'Offene Aufträge', value: '1' },
+        ],
+      },
+    },
+    {
+      tag: 'Kommunikation',
+      title: 'Klare Kommunikation mit Teams und Mietern',
+      description:
+        'Anfragen kommen mit Fotos und Standort an, und alle Beteiligten sehen Fortschritt und Antworten am selben Auftrag.',
+      points: [
+        'Mieter senden Anfragen mit Fotos von jedem Gerät',
+        'Updates und Antworten in der Auftragshistorie',
+        'Benachrichtigungen bei jeder Zuweisung und jedem Abschluss',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'Anfrage · Einheit 1204',
+        request: {
+          title: 'Klimaanlage zu warm',
+          location: 'Bayview Residences · Einheit 1204',
+          status: 'Zugewiesen',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Mieter',
+            text: 'Das Gerät im Wohnzimmer bläst seit heute Morgen warme Luft.',
+            time: '09:12',
+            own: false,
+          },
+          {
+            from: 'Aisha K.',
+            text: 'Danke für das Foto. Ich bin um 11:00 Uhr da und prüfe das Gerät.',
+            time: '09:20',
+            own: true,
+          },
+          { from: 'Mieter', text: 'Perfekt, vielen Dank.', time: '09:21', own: false },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  field: {
+    eyebrow: 'Für den Einsatz gemacht',
+    title: 'Bereit für Keller, Technikräume und abgelegene Standorte',
+    description:
+      'Fleet bleibt bei schwacher Verbindung schnell und reaktionsfähig, sodass Techniker überall Aufträge aktualisieren, Fotos hinzufügen und Arbeiten abschließen.',
+  },
+  stories: {
+    eyebrow: 'Kundenstimmen',
+    title: 'Das sagen Immobilienteams',
+    items: [
+      {
+        quote:
+          'Fleet hat unsere reaktive Instandhaltung um fast 40 % reduziert. Endlich haben wir Techniker, Anlagenprotokolle und Auftragsdaten an einem Ort.',
+        author: 'Leitung Objektbetrieb',
+        company: 'Gemischt genutztes Quartier',
+      },
+      {
+        quote:
+          'Andere Plattformen waren uns zu komplex oder zu allgemein. Fleet bietet uns eine passgenaue Lösung mit schnellerem Support.',
+        author: 'Leitung Instandhaltung',
+        company: 'Logistikzentrum',
+      },
     ],
   },
 }

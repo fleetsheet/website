@@ -1,0 +1,110 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Container from '@/components/ui/Container.astro'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+import Box from '@lucide/astro/icons/box'
+import Building from '@lucide/astro/icons/building'
+import ChartLine from '@lucide/astro/icons/chart-line'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard'
+import Lock from '@lucide/astro/icons/lock'
+import Workflow from '@lucide/astro/icons/workflow'
+
+const { devices } = getContent(getLocale(Astro.url)).platform.webMobile
+const navIcons = [LayoutDashboard, ClipboardList, Building, Box, Workflow, ChartLine]
+---
+
+<section aria-hidden="true">
+  <Container width="wide" class="pb-20">
+    <div class="relative mx-auto max-w-[1080px] pb-10 lg:pe-24">
+      <div class="bg-surface border-border shadow-float overflow-hidden rounded-2xl border">
+        <div class="bg-page border-border flex items-center gap-3 border-b px-4 py-3">
+          <span class="flex gap-1.5">
+            <span class="bg-border size-2.5 rounded-full"></span>
+            <span class="bg-border size-2.5 rounded-full"></span>
+            <span class="bg-border size-2.5 rounded-full"></span>
+          </span>
+          <span class="bg-surface border-border text-muted mx-auto flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs">
+            <Lock class="size-3" />
+            {devices.url}
+          </span>
+        </div>
+        <div class="flex">
+          <nav class="bg-rich-blue hidden w-16 shrink-0 flex-col items-center gap-3 py-5 sm:flex">
+            {navIcons.map((Icon, index) => (
+              <span
+                class:list={[
+                  'flex size-9 items-center justify-center rounded-md',
+                  index === 0 ? 'bg-azul-blue text-white' : 'text-sky-blue',
+                ]}
+              >
+                <Icon class="size-[18px]" />
+              </span>
+            ))}
+          </nav>
+          <div class="flex min-w-0 flex-1 flex-col gap-4 p-5">
+            <div>
+              <p class="font-display text-lg font-semibold">{devices.greeting}</p>
+              <p class="text-azul-blue text-xs">{devices.scope}</p>
+            </div>
+            <dl class="grid grid-cols-3 gap-3">
+              {devices.stats.map((stat) => (
+                <div class="border-border rounded-lg border p-3">
+                  <dt class="text-muted text-[11px]">{stat.label}</dt>
+                  <dd class="font-display mt-1 text-xl font-semibold">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <div class="border-border rounded-lg border">
+              <p class="border-border border-b px-3 py-2 text-[13px] font-semibold">
+                {devices.listTitle}
+              </p>
+              <ul>
+                {devices.items.map((item) => (
+                  <li class="border-border flex items-center gap-3 border-b px-3 py-2.5 text-[13px] last:border-b-0">
+                    <div class="min-w-0 flex-1">
+                      <p class="truncate font-semibold">{item.title}</p>
+                      <p class="text-muted truncate text-xs">{item.location}</p>
+                    </div>
+                    <Badge tone={item.tone}>{item.status}</Badge>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-rich-blue shadow-float mx-auto -mt-6 w-60 rounded-[32px] p-2.5 lg:absolute lg:end-0 lg:bottom-0 lg:mt-0">
+        <div class="bg-page flex flex-col gap-2.5 rounded-[24px] px-3.5 pt-5 pb-6">
+          <p class="font-display text-sm font-semibold">{devices.phoneTitle}</p>
+          {devices.phoneItems.map((task, index) => (
+            <div class="bg-surface border-border flex flex-col gap-2 rounded-[10px] border p-3">
+              <div class="flex items-start justify-between gap-1.5">
+                <span class="text-[13px] font-bold">{task.title}</span>
+                <Badge tone={task.tone} class="px-1.5 py-0.5 text-[10px] font-bold">
+                  {task.status}
+                </Badge>
+              </div>
+              <p class="text-muted text-xs">{task.location}</p>
+              {index === 0 && (
+                <div class="flex gap-1.5">
+                  {devices.phoneActions.map((action, actionIndex) => (
+                    <span
+                      class:list={[
+                        'flex-1 rounded-md p-[7px] text-center text-[11px] font-semibold',
+                        actionIndex === 0 ? 'bg-rich-blue text-alice-blue' : 'border-border border',
+                      ]}
+                    >
+                      {action}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
