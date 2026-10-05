@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
@@ -47,6 +48,7 @@ export const pages: {
   overview: PlatformEntry
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
+  runnerAi: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -82,74 +84,6 @@ export const pages: {
       title: 'RunnerAI | Fleet',
       description:
         'RunnerAI 是 Fleet 为房地产和设施团队打造的安全、基于规则的 AI：用文字创建工作流，按需生成看板，实现运营自动化。',
-    },
-    eyebrow: 'RunnerAI',
-    title: '为房地产与设施管理打造的 AI 智能体',
-    description:
-      'RunnerAI 通过简单的文字指令创建工作流、提供洞察并生成看板，让团队把更多时间投入现场工作。',
-    highlights: ['自然语言指令', '基于规则、可追溯', '按组织隔离数据'],
-    features: {
-      title: 'RunnerAI 能做什么',
-      description: '内置运营智能，预判下一步、规范工作流，并即时呈现关键洞察。',
-      items: [
-        {
-          title: '文字指令创建工作流',
-          description: '输入您想完成的事，RunnerAI 即可将其转化为适用于每个站点的标准工作流。',
-        },
-        {
-          title: '实时调整',
-          description: '几秒内修改步骤、触发条件和规则，并部署到全部或选定区域。',
-        },
-        {
-          title: '行业标准模板',
-          description: '从适合您物业类型、资产构成和市场的最佳实践工作流起步。',
-        },
-        {
-          title: '按需生成看板',
-          description: '提出任意需求，例如即将到达使用寿命的设备，几秒内获得实时看板。',
-        },
-        {
-          title: '基于规则的机器学习',
-          description: '预测遵循既定规则，每项操作都可追溯、合规且一致。',
-        },
-        {
-          title: '支持您的语言',
-          description: '用英语或您的母语创建和调整工作流，并适配当地法规。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '看板随叫随到',
-        description: '提出问题，RunnerAI 即基于实时运营数据生成看板，可直接分享或固定。',
-        points: [
-          '工单趋势与积压汇总',
-          '资产停机分析与合规风险评分',
-          '供应商绩效与区域对比',
-          '资产组合整体管理摘要',
-        ],
-      },
-      {
-        title: '在您边界内运行的 AI',
-        description: 'RunnerAI 运行在为每位客户专属部署的服务器上，敏感数据始终留在您的组织内部。',
-        points: [
-          '每个组织独立的计算环境',
-          '传输与存储全程加密',
-          '每项 AI 生成操作均有审计记录',
-          '支持 GDPR、PDPL、PDPA 以及本地或混合部署',
-        ],
-      },
-    ],
-    useCases: {
-      title: '向 RunnerAI 提问',
-      description: '房地产团队每天向 RunnerAI 提出的一些请求。',
-      items: [
-        '列出所有站点中即将到达使用寿命的设备',
-        '汇总过去 30 天的工单积压情况',
-        '给我阿联酋区域的供应商绩效',
-        '为我们排名前十的购物中心创建风险看板',
-        '为每个美食广场设置每周清洁消毒流程',
-      ],
     },
   },
   fleetMail: {
@@ -1262,5 +1196,256 @@ export const integrationsPage = {
       { title: '租户门户', location: '租户', status: '已连接', tone: 'done' },
       { title: 'ERP 软件', location: '运营', status: '配置中', tone: 'info' },
     ] satisfies StatusItem[],
+  },
+}
+
+export const runnerAiPage = {
+  hero: {
+    eyebrow: 'RunnerAI',
+    title: '驱动运营的智能',
+    description:
+      'RunnerAI 是 Fleet 为房地产和设施团队打造的安全、基于规则的 AI。输入您的需求，它就能为每个站点创建工作流、提供洞察并生成看板。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    secondaryAction: { label: '咨询我们的专家', href: '/contact' },
+    demo: {
+      title: 'RunnerAI',
+      context: '实时数据 · 14 个站点',
+      prompt: '为每个美食广场设置每周清洁消毒流程，并由主管审批。',
+      reply: '已完成。我为 4 个购物中心的 9 个美食广场创建了工作流。',
+      steps: [
+        { kind: '每周', text: '周一 06:00' },
+        { kind: '然后', text: '为每个美食广场创建清洁检查清单' },
+        { kind: '然后', text: '请主管附照片审批' },
+      ],
+      action: '部署到 9 个站点',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: '多站点运营节奏飞快',
+      description:
+        '零售门店、购物中心、物流枢纽和综合体项目涉及成千上万的环节，从维护、合规到报表和资产。',
+      points: ['跨区域的数千项任务', '每个站点的本地规则', '分散在各团队的数据'],
+    },
+    answer: {
+      title: 'RunnerAI 紧跟节奏',
+      description: 'RunnerAI 预判下一步、规范工作流并即时呈现关键洞察，让团队把更多时间投入运营。',
+    },
+  },
+  capabilities: {
+    title: '帮助您提前规划的智能',
+    description: '面向维护、合规、报表和资产管理的内置运营智能，通过自然语言指令即可使用。',
+    tabs: [
+      {
+        icon: 'workflows',
+        label: '工作流',
+        title: '文字指令生成工作流',
+        description:
+          '用英语或您的母语输入需求，RunnerAI 即可将其转化为适用于每个站点的标准工作流。',
+        points: [
+          '几秒内修改步骤、触发条件和规则',
+          '将更新部署到全部或选定区域',
+          '让工作流适配当地法规',
+        ],
+        visual: {
+          kind: 'steps',
+          title: '生成的工作流',
+          steps: [
+            { kind: '触发', text: '冷水机组振动高于基线' },
+            { kind: '如果', text: '资产仍在保修期内' },
+            { kind: '那么', text: '创建工单并通知供应商' },
+          ],
+        },
+      },
+      {
+        icon: 'dashboards',
+        label: '看板',
+        title: '按需生成看板',
+        description: '提出任意视图需求，RunnerAI 几秒内即基于实时运营数据生成，可直接分享或固定。',
+        points: ['工单趋势与积压汇总', '供应商绩效与区域对比', '资产组合整体管理摘要'],
+        visual: {
+          kind: 'chart',
+          title: '工单积压 · 30 天',
+          stats: [
+            { label: '未完成', value: '128' },
+            { label: '已关闭', value: '412' },
+          ],
+          bars: [
+            { label: 'Harbour Point', value: 34 },
+            { label: 'Tower B', value: 27 },
+            { label: 'Northgate', value: 25 },
+            { label: 'Bayview', value: 22 },
+            { label: 'Westport', value: 20 },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: '预测',
+        title: '可追溯的预测',
+        description: '基于规则的机器学习识别有风险的设备并推荐下一步，每项操作都关联其背后的规则。',
+        points: [
+          '基于实时与历史数据评估设备风险',
+          '为每个站点进行合规风险评分',
+          '一键从预测生成工单',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: '风险预警',
+          items: [
+            {
+              title: 'AHU-07 振动上升',
+              location: 'Tower B · 14 层',
+              status: '高风险',
+              tone: 'overdue',
+            },
+            {
+              title: '电梯证书 30 天后到期',
+              location: 'Northgate Mall',
+              status: '中风险',
+              tone: 'due',
+            },
+            {
+              title: '水泵 P-03 恢复正常',
+              location: 'Harbour Point',
+              status: '已解决',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'templates',
+        label: '模板',
+        title: '从第一天起践行最佳实践',
+        description: '根据您的资产类型、物业类别和市场标准量身定制的即用型工作流。',
+        points: ['所有设备的自动化维护', '推荐的清洁、检查和消毒流程', '安全与合规的智能任务建议'],
+        visual: {
+          kind: 'files',
+          title: '推荐模板',
+          items: [
+            {
+              title: '购物中心暖通计划',
+              location: '零售 · 12 项任务',
+              status: '推荐',
+              tone: 'info',
+            },
+            {
+              title: '美食广场清洁消毒',
+              location: '餐饮 · 8 项任务',
+              status: '推荐',
+              tone: 'info',
+            },
+            {
+              title: '消防安全检查',
+              location: '所有物业 · 6 项任务',
+              status: '使用中',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: RunnerAiIcon; label: string })[],
+  },
+  steps: {
+    eyebrow: '工作原理',
+    title: '从需求到运行中的工作流',
+    items: [
+      { title: '提出', description: '用自然语言说明需求，从新的例行流程到资产组合报告。' },
+      { title: '构建', description: 'RunnerAI 基于您的数据和行业标准构建工作流或看板。' },
+      { title: '部署', description: '即时部署到每个站点或选定区域，并适配当地规则。' },
+      {
+        title: '优化',
+        description: '实时洞察和可追溯的预测指明调整方向，让每个站点遵循同一套标准。',
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: '效率',
+      title: '更少行政工作，更多运营时间',
+      description: 'RunnerAI 自动创建和调整维护、合规、报表和资产管理背后的工作流。',
+      points: ['用简单指令取代手动配置', '每个物业遵循同一套标准', '把更多时间留给现场工作'],
+      visual: {
+        kind: 'log',
+        title: 'RunnerAI 动态',
+        entries: [
+          { when: '09:42', who: 'RunnerAI', what: '更新了阿联酋 4 个站点的检查工作流' },
+          { when: '09:15', who: 'RunnerAI', what: '创建了每周供应商绩效看板' },
+          { when: '08:58', who: 'RunnerAI', what: '为 6 台新冷水机组推荐了预防性维护计划' },
+        ],
+      },
+    },
+    {
+      tag: '决策',
+      title: '更快做出更好的决策',
+      description: '提出问题即可获得实时答案，让管理层和现场团队基于最新数据从容行动。',
+      points: ['答案来自您的实时运营数据', '按需获取停机和预算洞察', '几秒内完成区域对比'],
+      visual: {
+        kind: 'chart',
+        title: '供应商绩效 · 阿联酋',
+        stats: [
+          { label: '按时完成', value: '94%' },
+          { label: '平均响应', value: '2.4 小时' },
+        ],
+        bars: [
+          { label: '暖通供应商', value: 96 },
+          { label: '电梯供应商', value: 91 },
+          { label: '电气供应商', value: 87 },
+          { label: '给排水供应商', value: 82 },
+        ],
+      },
+    },
+    {
+      tag: '可视化',
+      title: '清晰掌握每个站点',
+      description: '资产组合层面的摘要将运营的过去、现在和未来汇集在一处。',
+      points: ['工单趋势与资产停机分析', '按站点的合规风险评分', '预算与预防性维护洞察'],
+      visual: {
+        kind: 'jobs',
+        title: '前十购物中心 · 风险',
+        items: [
+          {
+            title: 'Northgate Mall',
+            location: '3 项合规事项待处理',
+            status: '待复核',
+            tone: 'due',
+          },
+          { title: 'Harbour Point', location: '所有检查已完成', status: '正常', tone: 'done' },
+          {
+            title: 'Marina Walk',
+            location: '1 项资产接近使用寿命',
+            status: '待规划',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  rules: {
+    eyebrow: '基于规则的设计',
+    title: '由您的规则塑造的智能',
+    description: 'RunnerAI 在您设定的规则范围内运行，每项操作都可追溯、合规，并符合企业标准。',
+    action: { label: '咨询我们的专家', href: '/contact' },
+  },
+  security: {
+    eyebrow: '安全的 AI 框架',
+    title: '在您边界内运行的 AI',
+    description: 'RunnerAI 运行在为每位客户专属部署的服务器上，敏感信息始终留在您的组织内部。',
+    items: [
+      { title: '隔离计算', description: '每个组织都有独立环境。' },
+      { title: '数据加密', description: '传输与存储全程加密。' },
+      { title: '完整审计记录', description: '每项 AI 生成的操作都有记录、可追溯。' },
+      { title: '灵活部署', description: '云端、本地或混合部署，支持 GDPR、PDPL 和 PDPA。' },
+    ],
+  },
+  industries: {
+    title: '适用于各类物业的解决方案',
+    description: '从零售资产组合到物流枢纽，RunnerAI 适配您的资产和市场。',
+  },
+  integrate: {
+    title: '为集成而生',
+    description: 'RunnerAI 依托 Fleet 的 20 多项集成，结合财务、楼宇和租户数据，呈现完整全貌。',
+    action: { label: '查看全部集成', href: '/platform/integrations' },
   },
 }
