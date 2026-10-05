@@ -1,0 +1,16 @@
+---
+import PlatformPage from '@/components/platform/PlatformPage.astro'
+import { getContent } from '@/data'
+import { getLocale, localeStaticPaths } from '@/i18n'
+import Layout from '@/layout/Layout.astro'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.url)
+const { meta } = getContent(locale).platform.pages.overview
+---
+
+<Layout meta={meta}>
+  <PlatformPage id="overview" />
+</Layout>

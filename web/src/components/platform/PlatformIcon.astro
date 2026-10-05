@@ -1,0 +1,40 @@
+---
+import type { PlatformPageId } from '@/platform'
+import BoxesIcon from '@lucide/astro/icons/boxes'
+import CalendarClock from '@lucide/astro/icons/calendar-clock'
+import ChartColumn from '@lucide/astro/icons/chart-column'
+import ClipboardCheck from '@lucide/astro/icons/clipboard-check'
+import FileText from '@lucide/astro/icons/file-text'
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard'
+import Mail from '@lucide/astro/icons/mail'
+import Plug from '@lucide/astro/icons/plug'
+import Smartphone from '@lucide/astro/icons/smartphone'
+import Sparkles from '@lucide/astro/icons/sparkles'
+import Workflow from '@lucide/astro/icons/workflow'
+import Wrench from '@lucide/astro/icons/wrench'
+
+type Props = {
+  id: PlatformPageId
+  class?: string
+}
+
+const icons = {
+  overview: LayoutDashboard,
+  webAndMobile: Smartphone,
+  integrations: Plug,
+  runnerAi: Sparkles,
+  fleetMail: Mail,
+  workflowBuilder: Workflow,
+  preventiveMaintenance: CalendarClock,
+  reactiveMaintenance: Wrench,
+  analyticsReporting: ChartColumn,
+  assetManagement: BoxesIcon,
+  documentManagement: FileText,
+  auditTracking: ClipboardCheck,
+} satisfies Record<PlatformPageId, unknown>
+
+const { id, class: className } = Astro.props
+const Icon = icons[id]
+---
+
+<Icon class={className} aria-hidden="true" />

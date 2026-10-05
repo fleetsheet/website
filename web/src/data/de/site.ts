@@ -11,7 +11,6 @@ export const actions = {
 } satisfies Record<string, NavLink>
 
 export const headerLinks: NavLink[] = [
-  { label: 'Plattform', href: '/#platform' },
   { label: 'Lösungen', href: '/#solutions' },
   { label: 'KI-Agenten', href: '/#ai' },
   { label: 'FAQ', href: '/faqs' },
@@ -22,10 +21,11 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: 'Plattform',
     links: [
-      { label: 'Facility Management', href: '/features/facility-management' },
+      { label: 'Überblick', href: '/platform' },
       { label: 'Anlagenmanagement', href: '/features/asset-management' },
       { label: 'Dokumentenmanagement', href: '/features/document-management' },
-      { label: 'Fuhrparkmanagement', href: '/features/vehicle-management' },
+      { label: 'Audit-Tracking & Inspektionen', href: '/features/audit-tracking' },
+      { label: 'RunnerAI', href: '/platform/runner-ai' },
     ],
   },
   {

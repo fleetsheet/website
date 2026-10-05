@@ -1,9 +1,13 @@
 ---
+import PlatformIcon from '@/components/platform/PlatformIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
+import IconChip from '@/components/ui/IconChip.astro'
 import Logo from '@/components/ui/Logo.astro'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
+import { platformGroups, platformPages } from '@/platform'
+import ChevronDown from '@lucide/astro/icons/chevron-down'
 import Menu from '@lucide/astro/icons/menu'
 import X from '@lucide/astro/icons/x'
 import LanguageSwitcher, { type Translation } from './LanguageSwitcher.astro'
@@ -14,8 +18,15 @@ type Props = {
 
 const { translations } = Astro.props
 const locale = getLocale(Astro.url)
-const { headerLinks, actions, labels } = getContent(locale).site
+const content = getContent(locale)
+const { headerLinks, actions, labels } = content.site
+const { menu, pages } = content.platform
 const localize = (href: string) => localizePath(href, locale)
+const menuGroups = platformGroups.map((group) => ({
+  id: group,
+  title: menu.groups[group],
+  entries: platformPages.filter((entry) => entry.group === group),
+}))
 ---
 
 <header id="site-header" class="bg-page border-border sticky top-0 z-40 border-b">
@@ -25,7 +36,22 @@ const localize = (href: string) => localizePath(href, locale)
     </a>
 
     <nav aria-label={labels.mainNav} class="hidden flex-1 lg:block">
-      <ul class="flex flex-wrap gap-6 text-[15px] font-medium">
+      <ul class="flex flex-wrap items-center gap-6 text-[15px] font-medium">
+        <li>
+          <button
+            type="button"
+            id="platform-menu-button"
+            class="group text-azul-blue hover:text-rich-blue aria-expanded:text-rich-blue flex items-center gap-1 transition-colors"
+            aria-controls="platform-menu"
+            aria-expanded="false"
+          >
+            {menu.label}
+            <ChevronDown
+              class="size-4 transition-transform group-aria-expanded:rotate-180"
+              aria-hidden="true"
+            />
+          </button>
+        </li>
         {headerLinks.map((link) => (
           <li>
             <a
@@ -70,10 +96,85 @@ const localize = (href: string) => localizePath(href, locale)
     </div>
   </Container>
 
+  <div
+    id="platform-menu"
+    class="bg-surface border-border absolute inset-x-0 top-full hidden border-b shadow-lg lg:data-open:block"
+  >
+    <Container class="grid gap-10 py-8 lg:grid-cols-[1fr_1fr_280px]">
+      {menuGroups.map((group) => (
+        <div class="flex flex-col gap-3">
+          <p class="eyebrow text-muted px-3">{group.title}</p>
+          <ul class="flex flex-col gap-1">
+            {group.entries.map((entry) => (
+              <li>
+                <a
+                  href={localize(entry.href)}
+                  class="hover:bg-page flex items-start gap-3 rounded-lg p-3 transition-colors"
+                >
+                  <IconChip>
+                    <PlatformIcon id={entry.id} />
+                  </IconChip>
+                  <span class="flex flex-col gap-0.5">
+                    <span class="text-rich-blue text-[15px] font-semibold">
+                      {pages[entry.id].label}
+                    </span>
+                    <span class="text-azul-blue text-sm leading-snug">
+                      {pages[entry.id].summary}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <div class="bg-supergraphic flex flex-col items-start gap-3 rounded-xl p-6">
+        <p class="font-display text-lg font-semibold text-white">{menu.promo.title}</p>
+        <p class="text-columbia-blue text-sm leading-relaxed">{menu.promo.description}</p>
+        <Button href={menu.promo.action.href} variant="accent" size="sm" class="mt-auto">
+          {menu.promo.action.label}
+        </Button>
+      </div>
+    </Container>
+  </div>
+
   <div id="site-menu" class="border-border bg-page hidden border-t lg:hidden">
     <Container class="flex flex-col gap-6 py-6">
       <nav aria-label={labels.mobileNav}>
         <ul class="flex flex-col gap-1 text-lg font-medium">
+          <li>
+            <details class="group">
+              <summary class="hover:bg-border flex cursor-pointer list-none items-center justify-between rounded-md px-2 py-2 [&::-webkit-details-marker]:hidden">
+                {menu.label}
+                <ChevronDown
+                  class="size-5 transition-transform group-open:rotate-180"
+                  aria-hidden="true"
+                />
+              </summary>
+              <div class="flex flex-col gap-4 py-2 ps-2">
+                {menuGroups.map((group) => (
+                  <div class="flex flex-col gap-1">
+                    <p class="eyebrow text-muted px-2 py-1">{group.title}</p>
+                    <ul class="flex flex-col">
+                      {group.entries.map((entry) => (
+                        <li>
+                          <a
+                            href={localize(entry.href)}
+                            class="hover:bg-border flex items-center gap-3 rounded-md px-2 py-2 text-base"
+                          >
+                            <IconChip size="sm">
+                              <PlatformIcon id={entry.id} />
+                            </IconChip>
+                            {pages[entry.id].label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </details>
+          </li>
           {headerLinks.map((link) => (
             <li>
               <a href={localize(link.href)} class="hover:bg-border block rounded-md px-2 py-2">
@@ -110,12 +211,40 @@ const localize = (href: string) => localizePath(href, locale)
     menu.classList.toggle('hidden', !open)
   }
 
-  document.addEventListener('keydown', (event) => {
-    const button = document.getElementById('site-menu-button')
+  let platformCloseTimer: number | undefined
 
-    if (event.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') {
+  const setPlatformOpen = (open: boolean) => {
+    const button = document.getElementById('platform-menu-button')
+    const panel = document.getElementById('platform-menu')
+
+    window.clearTimeout(platformCloseTimer)
+    button?.setAttribute('aria-expanded', String(open))
+    panel?.toggleAttribute('data-open', open)
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') {
+      return
+    }
+
+    const button = document.getElementById('site-menu-button')
+    const platformButton = document.getElementById('platform-menu-button')
+
+    if (button?.getAttribute('aria-expanded') === 'true') {
       setMenuOpen(false)
       button.focus()
+    }
+    if (platformButton?.getAttribute('aria-expanded') === 'true') {
+      setPlatformOpen(false)
+      platformButton.focus()
+    }
+  })
+
+  document.addEventListener('click', (event) => {
+    const header = document.getElementById('site-header')
+
+    if (event.target instanceof Node && !header?.contains(event.target)) {
+      setPlatformOpen(false)
     }
   })
 
@@ -129,6 +258,39 @@ const localize = (href: string) => localizePath(href, locale)
 
     menu?.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => setMenuOpen(false))
+    })
+
+    const platformButton = document.getElementById('platform-menu-button')
+    const platformPanel = document.getElementById('platform-menu')
+    const hoverTargets = [platformButton, platformPanel]
+    const canHover = window.matchMedia('(hover: hover)').matches
+
+    platformButton?.addEventListener('click', (event) => {
+      const isOpen = platformButton.getAttribute('aria-expanded') === 'true'
+      // A mouse click after hovering keeps the menu open; keyboard and touch toggle it.
+      setPlatformOpen(canHover && event.detail > 0 ? true : !isOpen)
+    })
+
+    if (canHover) {
+      hoverTargets.forEach((target) => {
+        target?.addEventListener('mouseenter', () => setPlatformOpen(true))
+        target?.addEventListener('mouseleave', () => {
+          platformCloseTimer = window.setTimeout(() => setPlatformOpen(false), 150)
+        })
+      })
+    }
+
+    platformPanel?.addEventListener('focusout', (event) => {
+      if (
+        !(event.relatedTarget instanceof Node) ||
+        (!platformPanel.contains(event.relatedTarget) && event.relatedTarget !== platformButton)
+      ) {
+        setPlatformOpen(false)
+      }
+    })
+
+    platformPanel?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setPlatformOpen(false))
     })
   })
 </script>
