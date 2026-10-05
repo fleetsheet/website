@@ -82,7 +82,7 @@ export const pages: {
   },
   runnerAi: {
     label: 'RunnerAI',
-    summary: 'Agentes de IA que crean flujos y paneles a partir de lenguaje natural.',
+    summary: 'IA que consulta datos, crea tareas, edita flujos y crea paneles.',
     meta: {
       title: 'RunnerAI | Fleet',
       description:
@@ -1321,7 +1321,7 @@ export const runnerAiPage = {
     eyebrow: 'RunnerAI',
     title: 'Inteligencia que impulsa su operación',
     description:
-      'RunnerAI es la IA segura y basada en reglas de Fleet para equipos inmobiliarios y de facility. Escriba lo que necesita y RunnerAI crea flujos, análisis y paneles para cada sede.',
+      'RunnerAI es la IA segura y basada en reglas de Fleet para equipos inmobiliarios y de facility. Escriba lo que necesita y RunnerAI consulta datos, crea tareas, edita flujos y crea paneles para cada sede.',
     primaryAction: { label: 'Reservar una demo', href: '/contact' },
     secondaryAction: { label: 'Hablar con nuestro especialista', href: '/contact' },
     demo: {
@@ -1358,32 +1358,113 @@ export const runnerAiPage = {
   capabilities: {
     title: 'Inteligencia para planificar con antelación',
     description:
-      'Inteligencia operativa integrada para mantenimiento, cumplimiento, informes y gestión de activos, con comandos en lenguaje natural.',
+      'Cuatro formas en que RunnerAI ayuda a su equipo, todas con comandos en lenguaje natural.',
     tabs: [
       {
-        icon: 'workflows',
-        label: 'Flujos',
-        title: 'Flujos con un comando de texto',
+        icon: 'data',
+        label: 'Consulta de datos',
+        title: 'Respuestas desde sus datos en vivo',
         description:
-          'Escriba lo que necesita en inglés o en su idioma. RunnerAI lo convierte en un flujo estandarizado para cada sede.',
+          'Haga una pregunta en lenguaje natural y RunnerAI obtiene la respuesta de sus datos operativos en vivo, con las órdenes de trabajo y los activos que la respaldan.',
         points: [
-          'Modifique pasos, disparadores y condiciones en segundos',
+          'Preguntas sobre costes, SLA, activos y proveedores',
+          'Respuestas con datos en vivo de todas las sedes',
+          'Fuentes indicadas en cada respuesta',
+        ],
+        visual: {
+          kind: 'chat',
+          title: 'Pregunte a RunnerAI',
+          request: {
+            title: 'Datos en vivo · 14 sedes',
+            location: 'Fuentes: 86 órdenes · 14 activos',
+            status: 'Respondida',
+            tone: 'done',
+          },
+          messages: [
+            {
+              from: 'Usted',
+              text: '¿Qué enfriadoras necesitan servicio este mes?',
+              time: '09:12',
+              own: true,
+            },
+            {
+              from: 'RunnerAI',
+              text: '6 enfriadoras en 3 sedes. Harbour Point tiene 3, incluida CH-02, prevista para el 14 de oct.',
+              time: '09:12',
+              own: false,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'tasks',
+        label: 'Creación de tareas',
+        title: 'Tareas creadas con una frase',
+        description:
+          'Describa el trabajo y RunnerAI crea la orden de trabajo o tarea con el activo, la ubicación, la persona asignada y la fecha límite adecuados.',
+        points: [
+          'Órdenes y tareas creadas en lenguaje natural',
+          'Asignadas al equipo o proveedor adecuado',
+          'Listas, activos y fechas añadidos automáticamente',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Tareas creadas por RunnerAI',
+          items: [
+            {
+              title: 'Revisar vibración de AHU-07',
+              location: 'Tower B · Planta 14 · Aisha K.',
+              status: 'Vence mañana',
+              tone: 'due',
+            },
+            {
+              title: 'Sustituir luminaria del vestíbulo',
+              location: 'Bayview Residences · Marco L.',
+              status: 'Asignada',
+              tone: 'info',
+            },
+            {
+              title: 'Revisión trimestral de puertas cortafuegos',
+              location: 'Northgate Mall · 12 puertas',
+              status: 'Programada',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workflows',
+        label: 'Edición de flujos',
+        title: 'Edite flujos en segundos',
+        description:
+          'Indique a RunnerAI qué cambiar y actualiza pasos, disparadores y condiciones, y luego despliega el cambio en todas las sedes o en regiones concretas.',
+        points: [
+          'Modifique pasos, disparadores y condiciones por texto',
           'Despliegue cambios en todas las sedes o en algunas regiones',
-          'Adapte los flujos a la normativa local',
+          'Cada cambio queda registrado y es trazable',
         ],
         visual: {
           kind: 'steps',
-          title: 'Flujo generado',
+          title: 'Flujo actualizado',
           steps: [
-            { kind: 'Disparador', text: 'Vibración de la enfriadora por encima de lo normal' },
-            { kind: 'Si', text: 'El activo está en garantía' },
-            { kind: 'Entonces', text: 'Crear orden de trabajo + avisar al proveedor' },
+            {
+              kind: 'Disparador',
+              text: 'Presupuesto de reparación recibido',
+            },
+            {
+              kind: 'Si',
+              text: 'Coste superior a 3.000 $ (antes 5.000 $)',
+            },
+            {
+              kind: 'Entonces',
+              text: 'Pedir aprobación del responsable regional',
+            },
           ],
         },
       },
       {
         icon: 'dashboards',
-        label: 'Paneles',
+        label: 'Creación de paneles',
         title: 'Paneles a petición',
         description:
           'Pida cualquier vista y RunnerAI la crea en segundos con sus datos operativos en vivo, lista para compartir o fijar.',
@@ -1396,86 +1477,35 @@ export const runnerAiPage = {
           kind: 'chart',
           title: 'Órdenes pendientes · 30 días',
           stats: [
-            { label: 'Abiertas', value: '128' },
-            { label: 'Cerradas', value: '412' },
+            {
+              label: 'Abiertas',
+              value: '128',
+            },
+            {
+              label: 'Cerradas',
+              value: '412',
+            },
           ],
           bars: [
-            { label: 'Harbour Point', value: 34 },
-            { label: 'Tower B', value: 27 },
-            { label: 'Northgate', value: 25 },
-            { label: 'Bayview', value: 22 },
-            { label: 'Westport', value: 20 },
-          ],
-        },
-      },
-      {
-        icon: 'predictions',
-        label: 'Predicciones',
-        title: 'Predicciones trazables',
-        description:
-          'El aprendizaje automático basado en reglas detecta equipos en riesgo y recomienda el siguiente paso, con cada acción vinculada a su regla.',
-        points: [
-          'Riesgo de equipos evaluado con datos en vivo e históricos',
-          'Puntuación de riesgo de cumplimiento por sede',
-          'Un clic de la predicción a la orden de trabajo',
-        ],
-        visual: {
-          kind: 'jobs',
-          title: 'Alertas de riesgo',
-          items: [
             {
-              title: 'Vibración de AHU-07 en aumento',
-              location: 'Tower B · Planta 14',
-              status: 'Riesgo alto',
-              tone: 'overdue',
+              label: 'Harbour Point',
+              value: 34,
             },
             {
-              title: 'Certificado de ascensor en 30 días',
-              location: 'Northgate Mall',
-              status: 'Riesgo medio',
-              tone: 'due',
+              label: 'Tower B',
+              value: 27,
             },
             {
-              title: 'Bomba P-03 de nuevo en rango',
-              location: 'Harbour Point',
-              status: 'Resuelto',
-              tone: 'done',
-            },
-          ],
-        },
-      },
-      {
-        icon: 'templates',
-        label: 'Plantillas',
-        title: 'Buenas prácticas desde el primer día',
-        description:
-          'Flujos listos para usar, adaptados a sus tipos de activo, su categoría de propiedad y los estándares de su mercado.',
-        points: [
-          'Mantenimiento automatizado de todos los equipos',
-          'Rutinas sugeridas de limpieza, inspección e higiene',
-          'Recomendaciones de seguridad y cumplimiento',
-        ],
-        visual: {
-          kind: 'files',
-          title: 'Plantillas sugeridas',
-          items: [
-            {
-              title: 'Plan de climatización para centro comercial',
-              location: 'Retail · 12 tareas',
-              status: 'Recomendada',
-              tone: 'info',
+              label: 'Northgate',
+              value: 25,
             },
             {
-              title: 'Higiene de zona de restauración',
-              location: 'Hostelería · 8 tareas',
-              status: 'Recomendada',
-              tone: 'info',
+              label: 'Bayview',
+              value: 22,
             },
             {
-              title: 'Inspecciones contra incendios',
-              location: 'Todas las propiedades · 6 tareas',
-              status: 'En uso',
-              tone: 'done',
+              label: 'Westport',
+              value: 20,
             },
           ],
         },

@@ -13,9 +13,9 @@ import { getLocale } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import ArrowUp from '@lucide/astro/icons/arrow-up'
 import ChartColumn from '@lucide/astro/icons/chart-column'
+import Database from '@lucide/astro/icons/database'
 import FileCheck from '@lucide/astro/icons/file-check'
-import Gauge from '@lucide/astro/icons/gauge'
-import Layers from '@lucide/astro/icons/layers'
+import ListChecks from '@lucide/astro/icons/list-checks'
 import LockKeyhole from '@lucide/astro/icons/lock-keyhole'
 import Server from '@lucide/astro/icons/server'
 import ShieldCheck from '@lucide/astro/icons/shield-check'
@@ -32,10 +32,10 @@ const { runnerAiPage, cta } = getContent(getLocale(Astro.url)).platform
 const { hero, challenge, capabilities, steps, rows, rules, security, industries, integrate } =
   runnerAiPage
 const tabIcons = {
+  data: Database,
+  tasks: ListChecks,
   workflows: Workflow,
   dashboards: ChartColumn,
-  predictions: Gauge,
-  templates: Layers,
 } satisfies Record<RunnerAiIcon, unknown>
 const securityIcons = [Server, LockKeyhole, FileCheck, ShieldCheck]
 const stepStyles = [

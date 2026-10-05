@@ -83,7 +83,8 @@ export const pages: {
   },
   runnerAi: {
     label: 'RunnerAI',
-    summary: 'Des agents IA qui créent workflows et tableaux de bord en langage naturel.',
+    summary:
+      'Une IA qui récupère les données, crée des tâches, modifie les workflows et construit des tableaux de bord.',
     meta: {
       title: 'RunnerAI | Fleet',
       description:
@@ -1318,7 +1319,7 @@ export const runnerAiPage = {
     eyebrow: 'RunnerAI',
     title: 'L’intelligence qui pilote votre exploitation',
     description:
-      'RunnerAI est l’IA sécurisée et fondée sur des règles de Fleet pour les équipes immobilières et facility. Décrivez votre besoin, et RunnerAI crée workflows, analyses et tableaux de bord pour chaque site.',
+      'RunnerAI est l’IA sécurisée et fondée sur des règles de Fleet pour les équipes immobilières et facility. Décrivez votre besoin : RunnerAI récupère les données, crée des tâches, modifie les workflows et construit des tableaux de bord pour chaque site.',
     primaryAction: { label: 'Réserver une démo', href: '/contact' },
     secondaryAction: { label: 'Parler à notre spécialiste', href: '/contact' },
     demo: {
@@ -1354,33 +1355,113 @@ export const runnerAiPage = {
   },
   capabilities: {
     title: 'Une intelligence pour planifier en amont',
-    description:
-      'Une intelligence opérationnelle intégrée pour la maintenance, la conformité, le reporting et la gestion des équipements, pilotée en langage naturel.',
+    description: 'Quatre façons dont RunnerAI aide votre équipe, toutes en langage naturel.',
     tabs: [
       {
-        icon: 'workflows',
-        label: 'Workflows',
-        title: 'Des workflows en une commande',
+        icon: 'data',
+        label: 'Récupération de données',
+        title: 'Des réponses tirées de vos données',
         description:
-          'Décrivez ce que vous voulez en anglais ou dans votre langue. RunnerAI le transforme en workflow standardisé pour chaque site.',
+          'Posez une question en langage naturel et RunnerAI récupère la réponse dans vos données d’exploitation en direct, avec les interventions et équipements concernés.',
         points: [
-          'Modifier étapes, déclencheurs et conditions en quelques secondes',
-          'Déployer sur tous les sites ou certaines régions',
-          'Adapter les workflows aux réglementations locales',
+          'Questions sur les coûts, SLA, équipements et prestataires',
+          'Réponses tirées des données en direct de chaque site',
+          'Sources indiquées pour chaque réponse',
+        ],
+        visual: {
+          kind: 'chat',
+          title: 'Demander à RunnerAI',
+          request: {
+            title: 'Données en direct · 14 sites',
+            location: 'Sources : 86 interventions · 14 équipements',
+            status: 'Répondu',
+            tone: 'done',
+          },
+          messages: [
+            {
+              from: 'Vous',
+              text: 'Quels groupes froids doivent être entretenus ce mois-ci ?',
+              time: '09:12',
+              own: true,
+            },
+            {
+              from: 'RunnerAI',
+              text: '6 groupes froids sur 3 sites. Harbour Point en compte 3, dont CH-02, prévu le 14 oct.',
+              time: '09:12',
+              own: false,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'tasks',
+        label: 'Création de tâches',
+        title: 'Des tâches créées en une phrase',
+        description:
+          'Décrivez le travail et RunnerAI crée le bon de travail ou la tâche, avec l’équipement, l’emplacement, la personne affectée et l’échéance.',
+        points: [
+          'Interventions et tâches créées en langage naturel',
+          'Affectées à la bonne équipe ou au bon prestataire',
+          'Check-lists, équipements et échéances ajoutés automatiquement',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Tâches créées par RunnerAI',
+          items: [
+            {
+              title: 'Contrôler les vibrations AHU-07',
+              location: 'Tower B · Niveau 14 · Aisha K.',
+              status: 'Pour demain',
+              tone: 'due',
+            },
+            {
+              title: 'Remplacer le luminaire du hall',
+              location: 'Bayview Residences · Marco L.',
+              status: 'Affecté',
+              tone: 'info',
+            },
+            {
+              title: 'Contrôle trimestriel portes coupe-feu',
+              location: 'Northgate Mall · 12 portes',
+              status: 'Planifié',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workflows',
+        label: 'Modification de workflows',
+        title: 'Modifiez vos workflows en quelques secondes',
+        description:
+          'Dites à RunnerAI ce qui doit changer : il met à jour étapes, déclencheurs et conditions, puis déploie la modification sur tous les sites ou certaines régions.',
+        points: [
+          'Étapes, déclencheurs et conditions modifiés par texte',
+          'Mises à jour déployées sur tous les sites ou certaines régions',
+          'Chaque modification enregistrée et traçable',
         ],
         visual: {
           kind: 'steps',
-          title: 'Workflow généré',
+          title: 'Workflow mis à jour',
           steps: [
-            { kind: 'Déclencheur', text: 'Vibrations du groupe froid au-dessus de la normale' },
-            { kind: 'Si', text: 'L’équipement est sous garantie' },
-            { kind: 'Alors', text: 'Créer une intervention + prévenir le prestataire' },
+            {
+              kind: 'Déclencheur',
+              text: 'Devis de réparation reçu',
+            },
+            {
+              kind: 'Si',
+              text: 'Coût supérieur à 3 000 $ (auparavant 5 000 $)',
+            },
+            {
+              kind: 'Alors',
+              text: 'Demander la validation du responsable régional',
+            },
           ],
         },
       },
       {
         icon: 'dashboards',
-        label: 'Tableaux de bord',
+        label: 'Création de tableaux de bord',
         title: 'Des tableaux de bord à la demande',
         description:
           'Demandez n’importe quelle vue et RunnerAI la construit en quelques secondes à partir de vos données en direct, prête à partager ou épingler.',
@@ -1393,86 +1474,35 @@ export const runnerAiPage = {
           kind: 'chart',
           title: 'Backlog des interventions · 30 jours',
           stats: [
-            { label: 'Ouvertes', value: '128' },
-            { label: 'Clôturées', value: '412' },
+            {
+              label: 'Ouvertes',
+              value: '128',
+            },
+            {
+              label: 'Clôturées',
+              value: '412',
+            },
           ],
           bars: [
-            { label: 'Harbour Point', value: 34 },
-            { label: 'Tower B', value: 27 },
-            { label: 'Northgate', value: 25 },
-            { label: 'Bayview', value: 22 },
-            { label: 'Westport', value: 20 },
-          ],
-        },
-      },
-      {
-        icon: 'predictions',
-        label: 'Prédictions',
-        title: 'Des prédictions traçables',
-        description:
-          'L’apprentissage automatique fondé sur des règles repère les équipements à risque et recommande l’action suivante, chaque action étant liée à sa règle.',
-        points: [
-          'Risque évalué à partir des données en direct et historiques',
-          'Score de risque de conformité pour chaque site',
-          'Un clic de la prédiction au bon de travail',
-        ],
-        visual: {
-          kind: 'jobs',
-          title: 'Alertes de risque',
-          items: [
             {
-              title: 'Vibrations AHU-07 en hausse',
-              location: 'Tower B · Niveau 14',
-              status: 'Risque élevé',
-              tone: 'overdue',
+              label: 'Harbour Point',
+              value: 34,
             },
             {
-              title: 'Certificat ascenseur dans 30 jours',
-              location: 'Northgate Mall',
-              status: 'Risque moyen',
-              tone: 'due',
+              label: 'Tower B',
+              value: 27,
             },
             {
-              title: 'Pompe P-03 revenue à la normale',
-              location: 'Harbour Point',
-              status: 'Résolu',
-              tone: 'done',
-            },
-          ],
-        },
-      },
-      {
-        icon: 'templates',
-        label: 'Modèles',
-        title: 'Les bonnes pratiques dès le premier jour',
-        description:
-          'Des workflows prêts à l’emploi, adaptés à vos types d’équipements, à votre catégorie d’actif et aux standards de votre marché.',
-        points: [
-          'Maintenance automatisée de tous les équipements',
-          'Routines de nettoyage, d’inspection et d’hygiène suggérées',
-          'Recommandations pour la sécurité et la conformité',
-        ],
-        visual: {
-          kind: 'files',
-          title: 'Modèles suggérés',
-          items: [
-            {
-              title: 'Plan CVC centre commercial',
-              location: 'Retail · 12 tâches',
-              status: 'Recommandé',
-              tone: 'info',
+              label: 'Northgate',
+              value: 25,
             },
             {
-              title: 'Hygiène food court',
-              location: 'Restauration · 8 tâches',
-              status: 'Recommandé',
-              tone: 'info',
+              label: 'Bayview',
+              value: 22,
             },
             {
-              title: 'Inspections sécurité incendie',
-              location: 'Tous les sites · 6 tâches',
-              status: 'Utilisé',
-              tone: 'done',
+              label: 'Westport',
+              value: 20,
             },
           ],
         },
