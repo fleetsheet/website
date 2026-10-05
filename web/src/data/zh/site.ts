@@ -10,7 +10,6 @@ export const actions = {
 } satisfies Record<string, NavLink>
 
 export const headerLinks: NavLink[] = [
-  { label: '平台', href: '/#platform' },
   { label: '解决方案', href: '/#solutions' },
   { label: 'AI 智能体', href: '/#ai' },
   { label: '常见问题', href: '/faqs' },
@@ -21,10 +20,11 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: '平台',
     links: [
-      { label: '设施管理', href: '/features/facility-management' },
+      { label: '平台概览', href: '/platform' },
       { label: '资产管理', href: '/features/asset-management' },
       { label: '文档管理', href: '/features/document-management' },
-      { label: '车辆管理', href: '/features/vehicle-management' },
+      { label: '审计追踪与检查', href: '/features/audit-tracking' },
+      { label: 'RunnerAI', href: '/platform/runner-ai' },
     ],
   },
   {

@@ -1,0 +1,27 @@
+---
+import PlatformPage from '@/components/platform/PlatformPage.astro'
+import { getContent } from '@/data'
+import { getLocale, localeStaticPaths } from '@/i18n'
+import Layout from '@/layout/Layout.astro'
+import { platformPages } from '@/platform'
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
+
+export const getStaticPaths = (() =>
+  localeStaticPaths().flatMap(({ params }) =>
+    platformPages
+      .filter((entry) => entry.href.startsWith('/features/'))
+      .map((entry) => ({
+        params: { ...params, slug: entry.href.slice('/features/'.length) },
+        props: { id: entry.id },
+      })),
+  )) satisfies GetStaticPaths
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { id } = Astro.props
+const { meta } = getContent(getLocale(Astro.url)).platform.pages[id]
+---
+
+<Layout meta={meta}>
+  <PlatformPage id={id} />
+</Layout>
