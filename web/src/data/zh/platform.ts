@@ -1,6 +1,7 @@
 import type { NavLink } from '@/config'
-import type { PlatformPageContent } from '@/data/en/platform'
-import type { PlatformGroup, PlatformPageId } from '@/platform'
+import type { StatusItem } from '@/data/en/home'
+import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type { PlatformDetailId, PlatformGroup } from '@/platform'
 
 export const menu = {
   label: '平台',
@@ -35,7 +36,7 @@ export const cta = {
   secondaryAction: { label: '联系我们的团队', href: '/contact' },
 }
 
-export const pages: Record<PlatformPageId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
     summary: '一个平台，统一管理每个站点的维护、资产和运营。',
@@ -43,76 +44,6 @@ export const pages: Record<PlatformPageId, PlatformPageContent> = {
       title: '平台概览 | Fleet',
       description:
         'Fleet 是一体化维护与运营平台，专为跨多个物业管理资产的房地产、设施和运营团队打造。',
-    },
-    eyebrow: '平台概览',
-    title: '专为房地产团队打造的一体化维护平台',
-    description:
-      'Fleet 是专为房地产、设施和运营团队打造的云平台。无论是一座购物中心还是数十栋住宅楼，从工单到报表，您都能全面掌握、全程把控。',
-    highlights: ['7 天内完成上线', 'iOS 与 Android', '99.99% 可用性'],
-    features: {
-      title: '多站点运营所需的一切',
-      description: '所有模块共享同一数据模型，站点、资产、人员和历史记录始终互联。',
-      items: [
-        {
-          title: '专为房地产团队打造',
-          description: '围绕多站点资产组合、设备密集型物业以及运营它们的团队而设计。',
-        },
-        {
-          title: '多站点管理',
-          description: '按物业设定规则、指派区域主管，并将所有报表汇总到资产组合层面。',
-        },
-        {
-          title: '预防性维护',
-          description: '为暖通空调、给排水、消防等系统安排周期性任务，保持设备高可用。',
-        },
-        {
-          title: '自定义看板与 KPI',
-          description: '通过实时看板为每个角色追踪工单量、响应时间、合规情况和成本。',
-        },
-        {
-          title: '供应商与技术人员管理',
-          description: '将工单派给内部团队或外部供应商，并实时跟进进度。',
-        },
-        {
-          title: '及时的本地化支持',
-          description: '通过在线聊天联系我们的团队，大多数请求在一小时内获得所在区域的回复。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '移动优先的设计',
-        description:
-          '您的团队在现场工作，Fleet 随时相伴。技术人员可在任何手机或平板上创建任务、上传照片并关闭工单。',
-        points: [
-          '在现场创建任务、上传照片并更新进度',
-          '面向技术人员的实时提醒与审批',
-          '在弱网环境下依然稳定运行',
-          '供应商快速接入，上手轻松',
-        ],
-      },
-      {
-        title: '可信、安全、有支持',
-        description: '您的数据始终安全可用，背后是响应迅速、熟悉您所在区域的团队。',
-        points: [
-          '基于角色的访问控制与加密云存储',
-          '完整的工单与文档审计记录',
-          '99.99% 可用性，并有 SLA 保障',
-          '在线支持，大多数请求一小时内回复',
-        ],
-      },
-    ],
-    useCases: {
-      title: '信赖 Fleet 的团队',
-      description:
-        '房地产团队借助 Fleet 将被动维修减少多达 40%，统一技术人员的工作，并全面掌握成本与合规情况。',
-      items: [
-        '购物中心与零售资产组合',
-        '酒店与餐饮运营',
-        '航运与物流枢纽',
-        '住宅社区',
-        '商业办公与综合体项目',
-      ],
     },
   },
   webAndMobile: {
@@ -892,5 +823,294 @@ export const pages: Record<PlatformPageId, PlatformPageContent> = {
         '导出日志用于年度合规审查',
       ],
     },
+  },
+}
+
+export const overview = {
+  hero: {
+    eyebrow: 'Fleet 平台',
+    title: '专为房地产团队打造的一体化维护平台',
+    description:
+      '在一个专为房地产、设施和运营团队打造的云平台中，管理每个物业的工单、资产、供应商、文档与合规。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    secondaryAction: { label: '联系我们的团队', href: '/contact' },
+  },
+  quote: {
+    text: 'Fleet 让我们的被动维修工作量减少了近 40%。技术人员、资产记录和工单终于集中在了一处。',
+    author: '综合体项目物业运营负责人',
+  },
+  learnMore: '了解更多',
+  modules: [
+    {
+      id: 'reactiveMaintenance',
+      tag: '被动维修',
+      title: '维修更快，租户更满意',
+      description: '附照片和位置记录每个问题，交给合适的团队，并按 SLA 跟进直至完成。',
+      points: [
+        '按站点和工种派给内部团队或供应商',
+        '实时 SLA 追踪，截止前自动提醒',
+        '现场实时更新并上传照片凭证',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: '工单',
+        items: [
+          {
+            title: '3B 单元漏水',
+            location: 'Bayview Residences',
+            status: '逾期 2 天',
+            tone: 'overdue',
+          },
+          {
+            title: '装卸口门维修',
+            location: 'Westport DC · 07 号口',
+            status: '4 小时后到期',
+            tone: 'due',
+          },
+          { title: '电梯告警复位', location: 'Tower B · 核心电梯', status: '处理中', tone: 'info' },
+          { title: '2 层照明故障', location: 'Northgate Mall', status: '已完成', tone: 'done' },
+        ],
+      },
+    },
+    {
+      id: 'assetManagement',
+      tag: '资产管理',
+      title: '每项资产，触手可及',
+      description: '为整个资产组合中的每项资产建立实时数字台账，历史、成本、保修和文档一点即达。',
+      points: [
+        '包含品牌、型号、序列号和保修的数字档案',
+        '每项资产的维修历史与成本',
+        '用生命周期数据规划更换与资本支出',
+      ],
+      visual: {
+        kind: 'asset',
+        title: '资产档案',
+        name: '冷水机组 CH-02',
+        location: 'Harbour Point · B2 机房',
+        status: '运行中',
+        facts: [
+          { label: '上次保养', value: '9 月 12 日' },
+          { label: '保修至', value: '2028 年 3 月' },
+          { label: '年内成本', value: '$4,210' },
+          { label: '未完成工单', value: '1' },
+        ],
+      },
+    },
+    {
+      id: 'analyticsReporting',
+      tag: '分析与报表',
+      title: '让数据转化为决策',
+      description: '实时看板和可导出报表告诉您该关注哪里，从单项资产到整个资产组合。',
+      points: [
+        '实时查看工单量、响应时间、合规和成本',
+        '按楼宇、资产、供应商或团队深入分析',
+        '可直接用于审计和董事会的导出',
+      ],
+      visual: {
+        kind: 'chart',
+        title: '各站点维护支出',
+        stats: [
+          { label: 'SLA 达成', value: '96.4%' },
+          { label: '年内支出', value: '$184k' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 82 },
+          { label: 'Tower B', value: 64 },
+          { label: 'Northgate', value: 48 },
+          { label: 'Bayview', value: 36 },
+          { label: 'Westport', value: 22 },
+        ],
+      },
+    },
+  ] satisfies OverviewModule[],
+  darkModules: [
+    {
+      id: 'workflowBuilder',
+      tag: 'Fleet 工作流构建器',
+      title: '与团队和供应商协同一致',
+      description: '按照您的运营方式设计审批、分派和升级流程，让每项任务在正确的时间到达正确的人。',
+      points: [
+        '按站点、资产类型或优先级条件分派',
+        '按费用和紧急程度多级审批',
+        '供应商通过简单链接即时接入',
+      ],
+      visual: {
+        kind: 'steps',
+        title: '工作流',
+        steps: [
+          { kind: '触发', text: '维修报价超过 5,000 美元' },
+          { kind: '如果', text: '区域经理已批准' },
+          { kind: '那么', text: '创建工单并通知供应商' },
+        ],
+      },
+    },
+    {
+      id: 'auditTracking',
+      tag: '审计追踪与检查',
+      title: '随时迎接每一次审计',
+      description: '带时间戳的记录和数字化检查，让每个站点保持合规，每项操作可追溯。',
+      points: [
+        '按用户和角色自动记录每项操作',
+        '附照片和签名的数字化检查清单',
+        '可导出任意时段或资产类型的日志',
+      ],
+      visual: {
+        kind: 'log',
+        title: '审计日志',
+        entries: [
+          { when: '09:42', who: 'Aisha K.', what: '完成了 A 楼梯间防火门检查' },
+          { when: '09:15', who: '工作流', what: '为 WO-2291 发起审批' },
+          { when: '08:58', who: 'Marco L.', what: '上传了 Tower B 电梯证书' },
+        ],
+      },
+    },
+    {
+      id: 'preventiveMaintenance',
+      tag: '预防性与预测性维护',
+      title: '今天就解决明天的问题',
+      description: '周期性计划和基于规则的预测让设备持续运行，帮助团队及早行动。',
+      points: [
+        '自动生成暖通、给排水、电梯和消防的预防性工单',
+        '预测性预警关联触发它的规则',
+        '合规日历在每个到期日前提醒',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: '计划工单',
+        items: [
+          {
+            title: '更换空调滤网',
+            location: 'Tower B · AHU-07',
+            status: '4 小时后到期',
+            tone: 'due',
+          },
+          { title: '电梯年检', location: '电梯 L1–L3', status: '已排期', tone: 'info' },
+          { title: '应急照明测试', location: 'Northgate Mall', status: '已完成', tone: 'done' },
+        ],
+      },
+    },
+    {
+      id: 'documentManagement',
+      tag: '文档管理',
+      title: '每份文件都在需要的地方',
+      description: '手册、许可证、证书和合同井然有序，与相关工作关联，随时备查。',
+      points: [
+        '文档关联资产、工单、位置和供应商',
+        '版本控制与完整修改历史',
+        '许可证和合同到期前提醒',
+      ],
+      visual: {
+        kind: 'files',
+        title: '文档',
+        items: [
+          {
+            title: '消防安全证书.pdf',
+            location: 'Tower B · 许可证',
+            status: '30 天后到期',
+            tone: 'due',
+          },
+          {
+            title: 'CH-02 运维手册.pdf',
+            location: '冷水机组 CH-02 · 手册',
+            status: '已关联',
+            tone: 'info',
+          },
+          { title: 'Q3 电梯检查.pdf', location: '核心电梯 · 报告', status: '已核验', tone: 'done' },
+        ],
+      },
+    },
+  ] satisfies OverviewModule[],
+  extend: {
+    title: '按您的方式扩展 Fleet',
+    description: '连接现有工具，让 AI 和邮件服务于整个运营。',
+    items: [
+      {
+        id: 'integrations',
+        title: '20+ 项集成',
+        description: '通过现成集成和 REST API 连接财务、ERP、门禁、租户门户和楼宇系统。',
+        action: '查看集成',
+      },
+      {
+        id: 'runnerAi',
+        title: 'RunnerAI',
+        description: '在安全隔离的服务器上，用自然语言指令创建工作流和看板。',
+        action: '了解 RunnerAI',
+      },
+      {
+        id: 'fleetMail',
+        title: 'Fleet Mail',
+        description: '将来信转为可追踪的工单，并通过邮件让员工和供应商掌握进展。',
+        action: '探索 Fleet Mail',
+      },
+    ] satisfies { id: PlatformDetailId; title: string; description: string; action: string }[],
+  },
+  audiences: {
+    eyebrow: '网页与移动端',
+    title: '人人适用的平台',
+    description:
+      'Fleet 支持电脑、平板和手机，提供 iOS 和 Android 应用，让每个人都能以合适的视角查看同一份实时数据。',
+    action: { label: '探索网页与移动端', href: '/platform/web-and-mobile' },
+    items: [
+      {
+        title: '面向管理者',
+        description: '在实时看板上排程、审批费用并掌握每个站点。',
+        screen: '资产组合 · 14 个站点',
+        tasks: [
+          { title: '审批维修报价', location: 'Harbour Point', status: '今天到期', tone: 'due' },
+          { title: '9 月 SLA 报告', location: '所有区域', status: '已就绪', tone: 'done' },
+        ],
+      },
+      {
+        title: '面向现场团队',
+        description: '在现场通过照片、检查清单和签名开始、更新并关闭工单。',
+        screen: '今天 · 4 项任务',
+        tasks: [
+          { title: '防火门检查', location: '3 层 · A 楼梯间', status: '2 小时后到期', tone: 'due' },
+          { title: '锅炉年度保养', location: 'B2 机房', status: '已排期', tone: 'info' },
+        ],
+      },
+      {
+        title: '面向租户和供应商',
+        description: '附照片提交请求、接收进展，并通过简单链接查看分配的工单。',
+        screen: '我的请求',
+        tasks: [
+          { title: '空调制冷不足', location: '1204 单元', status: '已分派', tone: 'info' },
+          { title: '厨房水龙头漏水', location: '1204 单元', status: '已解决', tone: 'done' },
+        ],
+      },
+    ] satisfies { title: string; description: string; screen: string; tasks: StatusItem[] }[],
+  },
+  why: {
+    eyebrow: '为什么选择 Fleet',
+    title: '为房地产打造，由专业团队支持',
+    description:
+      'Fleet 专为多站点房地产团队打造，上线迅速、按用量透明计费，并提供熟悉您所在区域的支持。',
+    stats: [
+      { value: '多达 40%', label: '被动维修减少' },
+      { value: '7 天内', label: '团队即可上线' },
+      { value: '99.99%', label: '可用性，SLA 保障' },
+    ],
+    points: [
+      { title: '为多站点团队打造', description: '按物业、区域或资产组合设定规则、报表和权限。' },
+      { title: '安全设计', description: '基于角色的访问、加密存储和完整的审计记录。' },
+      {
+        title: '及时的本地化支持',
+        description: '通过在线聊天联系我们的团队，大多数请求一小时内回复。',
+      },
+    ],
+  },
+  industries: {
+    eyebrow: '行业',
+    title: '适用于各类物业的解决方案',
+    items: [
+      '购物中心与零售',
+      '酒店与餐饮',
+      '航运与物流',
+      '住宅社区',
+      '商业办公',
+      '综合体项目',
+      '学校与园区',
+      '车队',
+    ],
   },
 }

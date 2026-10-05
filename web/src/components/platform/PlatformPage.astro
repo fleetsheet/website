@@ -9,30 +9,25 @@ import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
-import { platformGroups, platformPages, type PlatformPageId } from '@/platform'
+import { detailPages, platformPages, type PlatformDetailId } from '@/platform'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import Check from '@lucide/astro/icons/check'
 import PlatformIcon from './PlatformIcon.astro'
 
 type Props = {
-  id: PlatformPageId
+  id: PlatformDetailId
 }
 
 const { id } = Astro.props
 const locale = getLocale(Astro.url)
-const { pages, pageActions, sectionLabels, menu, cta } = getContent(locale).platform
+const { pages, pageActions, sectionLabels, cta } = getContent(locale).platform
 const page = pages[id]
-const current = platformPages.find((entry) => entry.id === id)
-const relatedGroups = platformGroups
-  .filter((group) => id === 'overview' || group === current?.group)
-  .map((group) => ({
-    title: menu.groups[group],
-    entries: platformPages.filter((entry) => entry.group === group && entry.id !== id),
-  }))
+const current = detailPages.find((entry) => entry.id === id)
+const related = platformPages.filter((entry) => entry.group === current?.group && entry.id !== id)
 ---
 
 <section>
-  <Container class="grid items-center gap-12 pt-20 pb-16 lg:grid-cols-[1.1fr_1fr]">
+  <Container class="grid grid-cols-1 items-center gap-12 pt-20 pb-16 lg:grid-cols-[1.1fr_1fr]">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
         <IconChip size="sm">
@@ -40,18 +35,16 @@ const relatedGroups = platformGroups
         </IconChip>
         {page.eyebrow}
       </p>
-      <h1 class="text-display-xl">{page.title}</h1>
+      <h1 class="text-display-xl hyphenate">{page.title}</h1>
       <p class="text-lead text-azul-blue text-pretty">{page.description}</p>
       <div class="flex flex-wrap gap-3">
         <Button href={pageActions.primary.href}>
           {pageActions.primary.label}
           <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
         </Button>
-        {id !== 'overview' && (
-          <Button href={pageActions.secondary.href} variant="secondary">
-            {pageActions.secondary.label}
-          </Button>
-        )}
+        <Button href={pageActions.secondary.href} variant="secondary">
+          {pageActions.secondary.label}
+        </Button>
       </div>
     </div>
     <MockPanel elevation="float" class="flex flex-col gap-5 p-6">
@@ -82,7 +75,7 @@ const relatedGroups = platformGroups
     title={page.features.title}
     description={page.features.description}
   />
-  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {page.features.items.map((item) => (
       <li class="bg-page border-border flex flex-col gap-3 rounded-xl border p-6">
         <IconChip>
@@ -97,7 +90,7 @@ const relatedGroups = platformGroups
 
 <PageSection containerClass="flex flex-col gap-20">
   {page.details.map((detail, index) => (
-    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <SectionHeader
         title={detail.title}
         description={detail.description}
@@ -110,7 +103,10 @@ const relatedGroups = platformGroups
   ))}
 </PageSection>
 
-<PageSection tone="inverse" containerClass="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+<PageSection
+  tone="inverse"
+  containerClass="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16"
+>
   <SectionHeader
     eyebrow={sectionLabels.useCases}
     title={page.useCases.title}
@@ -131,38 +127,31 @@ const relatedGroups = platformGroups
 
 <PageSection containerClass="flex flex-col gap-10">
   <SectionHeader eyebrow={sectionLabels.related} title={sectionLabels.relatedTitle} />
-  {relatedGroups.map((group) => (
-    <div class="flex flex-col gap-4">
-      {relatedGroups.length > 1 && <h3 class="text-lg font-semibold">{group.title}</h3>}
-      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {group.entries.map((entry) => (
-          <li>
-            <a
-              href={localizePath(entry.href, locale)}
-              class="group bg-surface border-border hover:border-celestial-blue flex h-full flex-col gap-3 rounded-xl border p-6 shadow-xs transition-colors"
-            >
-              <IconChip>
-                <PlatformIcon id={entry.id} />
-              </IconChip>
-              <span class="font-display text-rich-blue text-lg font-semibold">
-                {pages[entry.id].label}
-              </span>
-              <span class="text-azul-blue text-[15px] leading-[1.55]">
-                {pages[entry.id].summary}
-              </span>
-              <span class="text-celestial-blue mt-auto flex items-center gap-1.5 text-sm font-semibold">
-                {sectionLabels.learnMore}
-                <ArrowRight
-                  class="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  ))}
+  <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {related.map((entry) => (
+      <li>
+        <a
+          href={localizePath(entry.href, locale)}
+          class="group bg-surface border-border hover:border-celestial-blue flex h-full flex-col gap-3 rounded-xl border p-6 shadow-xs transition-colors"
+        >
+          <IconChip>
+            <PlatformIcon id={entry.id} />
+          </IconChip>
+          <span class="font-display text-rich-blue text-lg font-semibold">
+            {pages[entry.id].label}
+          </span>
+          <span class="text-azul-blue text-[15px] leading-[1.55]">{pages[entry.id].summary}</span>
+          <span class="text-celestial-blue mt-auto flex items-center gap-1.5 text-sm font-semibold">
+            {sectionLabels.learnMore}
+            <ArrowRight
+              class="size-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
+              aria-hidden="true"
+            />
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
 </PageSection>
 
 <CtaBanner

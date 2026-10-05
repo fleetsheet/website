@@ -1,5 +1,5 @@
 ---
-import PlatformPage from '@/components/platform/PlatformPage.astro'
+import PlatformOverview from '@/components/platform/PlatformOverview.astro'
 import { getContent } from '@/data'
 import { getLocale, localeStaticPaths } from '@/i18n'
 import Layout from '@/layout/Layout.astro'
@@ -12,5 +12,5 @@ const { meta } = getContent(locale).platform.pages.overview
 ---
 
 <Layout meta={meta}>
-  <PlatformPage id="overview" />
+  <PlatformOverview />
 </Layout>
