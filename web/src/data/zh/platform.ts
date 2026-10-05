@@ -81,7 +81,7 @@ export const pages: {
   },
   runnerAi: {
     label: 'RunnerAI',
-    summary: '用自然语言创建工作流和看板的 AI 智能体。',
+    summary: '可获取数据、创建任务、编辑工作流并生成看板的 AI。',
     meta: {
       title: 'RunnerAI | Fleet',
       description:
@@ -1086,7 +1086,7 @@ export const runnerAiPage = {
     eyebrow: 'RunnerAI',
     title: '驱动运营的智能',
     description:
-      'RunnerAI 是 Fleet 为房地产和设施团队打造的安全、基于规则的 AI。输入您的需求，它就能为每个站点创建工作流、提供洞察并生成看板。',
+      'RunnerAI 是 Fleet 为房地产和设施团队打造的安全、基于规则的 AI。输入您的需求，它就能为每个站点获取数据、创建任务、编辑工作流并生成看板。',
     primaryAction: { label: '预约演示', href: '/contact' },
     secondaryAction: { label: '咨询我们的专家', href: '/contact' },
     demo: {
@@ -1116,32 +1116,109 @@ export const runnerAiPage = {
   },
   capabilities: {
     title: '帮助您提前规划的智能',
-    description: '面向维护、合规、报表和资产管理的内置运营智能，通过自然语言指令即可使用。',
+    description: 'RunnerAI 以四种方式助力团队，全部通过自然语言指令完成。',
     tabs: [
       {
-        icon: 'workflows',
-        label: '工作流',
-        title: '文字指令生成工作流',
+        icon: 'data',
+        label: '数据获取',
+        title: '从实时数据中获得答案',
         description:
-          '用英语或您的母语输入需求，RunnerAI 即可将其转化为适用于每个站点的标准工作流。',
+          '用自然语言提问，RunnerAI 从您的实时运营数据中获取答案，并附上相关的工单和资产。',
+        points: ['询问成本、SLA、资产和供应商', '答案来自所有站点的实时数据', '每个答案都标注来源'],
+        visual: {
+          kind: 'chat',
+          title: '向 RunnerAI 提问',
+          request: {
+            title: '实时数据 · 14 个站点',
+            location: '来源：86 张工单 · 14 项资产',
+            status: '已回答',
+            tone: 'done',
+          },
+          messages: [
+            {
+              from: '您',
+              text: '本月有哪些冷水机组需要保养？',
+              time: '09:12',
+              own: true,
+            },
+            {
+              from: 'RunnerAI',
+              text: '3 个站点共有 6 台冷水机组到期。Harbour Point 有 3 台，其中 CH-02 于 10 月 14 日到期。',
+              time: '09:12',
+              own: false,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'tasks',
+        label: '任务创建',
+        title: '一句话创建任务',
+        description:
+          '描述工作内容，RunnerAI 即可创建工单或任务，并填写对应的资产、位置、负责人和截止日期。',
         points: [
-          '几秒内修改步骤、触发条件和规则',
+          '用自然语言创建工单和任务',
+          '分派给合适的团队或供应商',
+          '自动添加检查清单、资产和截止日期',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'RunnerAI 创建的任务',
+          items: [
+            {
+              title: '检查 AHU-07 振动',
+              location: 'Tower B · 14 层 · Aisha K.',
+              status: '明天到期',
+              tone: 'due',
+            },
+            {
+              title: '更换大堂灯具',
+              location: 'Bayview Residences · Marco L.',
+              status: '已分派',
+              tone: 'info',
+            },
+            {
+              title: '防火门季度检查',
+              location: 'Northgate Mall · 12 扇门',
+              status: '已排期',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workflows',
+        label: '工作流编辑',
+        title: '几秒内编辑工作流',
+        description:
+          '告诉 RunnerAI 要修改什么，它会更新步骤、触发条件和规则，并将更改部署到全部站点或选定区域。',
+        points: [
+          '用文字修改步骤、触发条件和规则',
           '将更新部署到全部或选定区域',
-          '让工作流适配当地法规',
+          '每次修改都有记录、可追溯',
         ],
         visual: {
           kind: 'steps',
-          title: '生成的工作流',
+          title: '工作流已更新',
           steps: [
-            { kind: '触发', text: '冷水机组振动高于基线' },
-            { kind: '如果', text: '资产仍在保修期内' },
-            { kind: '那么', text: '创建工单并通知供应商' },
+            {
+              kind: '触发',
+              text: '收到维修报价',
+            },
+            {
+              kind: '如果',
+              text: '费用超过 3,000 美元（原为 5,000 美元）',
+            },
+            {
+              kind: '那么',
+              text: '请区域经理审批',
+            },
           ],
         },
       },
       {
         icon: 'dashboards',
-        label: '看板',
+        label: '看板创建',
         title: '按需生成看板',
         description: '提出任意视图需求，RunnerAI 几秒内即基于实时运营数据生成，可直接分享或固定。',
         points: ['工单趋势与积压汇总', '供应商绩效与区域对比', '资产组合整体管理摘要'],
@@ -1149,80 +1226,35 @@ export const runnerAiPage = {
           kind: 'chart',
           title: '工单积压 · 30 天',
           stats: [
-            { label: '未完成', value: '128' },
-            { label: '已关闭', value: '412' },
+            {
+              label: '未完成',
+              value: '128',
+            },
+            {
+              label: '已关闭',
+              value: '412',
+            },
           ],
           bars: [
-            { label: 'Harbour Point', value: 34 },
-            { label: 'Tower B', value: 27 },
-            { label: 'Northgate', value: 25 },
-            { label: 'Bayview', value: 22 },
-            { label: 'Westport', value: 20 },
-          ],
-        },
-      },
-      {
-        icon: 'predictions',
-        label: '预测',
-        title: '可追溯的预测',
-        description: '基于规则的机器学习识别有风险的设备并推荐下一步，每项操作都关联其背后的规则。',
-        points: [
-          '基于实时与历史数据评估设备风险',
-          '为每个站点进行合规风险评分',
-          '一键从预测生成工单',
-        ],
-        visual: {
-          kind: 'jobs',
-          title: '风险预警',
-          items: [
             {
-              title: 'AHU-07 振动上升',
-              location: 'Tower B · 14 层',
-              status: '高风险',
-              tone: 'overdue',
+              label: 'Harbour Point',
+              value: 34,
             },
             {
-              title: '电梯证书 30 天后到期',
-              location: 'Northgate Mall',
-              status: '中风险',
-              tone: 'due',
+              label: 'Tower B',
+              value: 27,
             },
             {
-              title: '水泵 P-03 恢复正常',
-              location: 'Harbour Point',
-              status: '已解决',
-              tone: 'done',
-            },
-          ],
-        },
-      },
-      {
-        icon: 'templates',
-        label: '模板',
-        title: '从第一天起践行最佳实践',
-        description: '根据您的资产类型、物业类别和市场标准量身定制的即用型工作流。',
-        points: ['所有设备的自动化维护', '推荐的清洁、检查和消毒流程', '安全与合规的智能任务建议'],
-        visual: {
-          kind: 'files',
-          title: '推荐模板',
-          items: [
-            {
-              title: '购物中心暖通计划',
-              location: '零售 · 12 项任务',
-              status: '推荐',
-              tone: 'info',
+              label: 'Northgate',
+              value: 25,
             },
             {
-              title: '美食广场清洁消毒',
-              location: '餐饮 · 8 项任务',
-              status: '推荐',
-              tone: 'info',
+              label: 'Bayview',
+              value: 22,
             },
             {
-              title: '消防安全检查',
-              location: '所有物业 · 6 项任务',
-              status: '使用中',
-              tone: 'done',
+              label: 'Westport',
+              value: 20,
             },
           ],
         },

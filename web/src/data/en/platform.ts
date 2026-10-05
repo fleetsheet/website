@@ -150,7 +150,7 @@ export const pages: {
   },
   runnerAi: {
     label: 'RunnerAI',
-    summary: 'AI agents that build workflows and dashboards from plain language.',
+    summary: 'AI that fetches data, creates tasks, edits workflows and builds dashboards.',
     meta: {
       title: 'RunnerAI | Fleet',
       description:
@@ -1348,14 +1348,14 @@ export const integrationsPage = {
   },
 }
 
-export type RunnerAiIcon = 'workflows' | 'dashboards' | 'predictions' | 'templates'
+export type RunnerAiIcon = 'data' | 'tasks' | 'workflows' | 'dashboards'
 
 export const runnerAiPage = {
   hero: {
     eyebrow: 'RunnerAI',
     title: 'Intelligence That Runs Your Operations',
     description:
-      'RunnerAI is Fleet’s secure, rule-based AI for real estate and facilities teams. Type what you need, and it builds workflows, surfaces insights and creates dashboards across every site.',
+      'RunnerAI is Fleet’s secure, rule-based AI for real estate and facilities teams. Type what you need, and it fetches data, creates tasks, edits workflows and builds dashboards across every site.',
     primaryAction: { label: 'Book a demo', href: '/contact' },
     secondaryAction: { label: 'Talk to our specialist', href: '/contact' },
     demo: {
@@ -1390,33 +1390,113 @@ export const runnerAiPage = {
   },
   capabilities: {
     title: 'Intelligence That Helps You Plan Ahead',
-    description:
-      'Embedded operational intelligence for maintenance, compliance, reporting and asset management, all from plain-language commands.',
+    description: 'Four ways RunnerAI works for your team, all from plain-language commands.',
     tabs: [
       {
-        icon: 'workflows',
-        label: 'Workflows',
-        title: 'Workflows from a Text Command',
+        icon: 'data',
+        label: 'Data fetching',
+        title: 'Answers from Your Live Data',
         description:
-          'Type what you want done in plain English or your native language. RunnerAI turns it into a standardized workflow for every location.',
+          'Ask a question in plain language and RunnerAI fetches the answer from your live operational data, with the work orders and assets behind it.',
         points: [
-          'Modify steps, triggers and conditions in seconds',
+          'Questions about costs, SLAs, assets and vendors',
+          'Answers drawn from live data across every site',
+          'Sources shown for every answer',
+        ],
+        visual: {
+          kind: 'chat',
+          title: 'Ask RunnerAI',
+          request: {
+            title: 'Live data · 14 locations',
+            location: 'Sources: 86 work orders · 14 assets',
+            status: 'Answered',
+            tone: 'done',
+          },
+          messages: [
+            {
+              from: 'You',
+              text: 'Which chillers are due for service this month?',
+              time: '09:12',
+              own: true,
+            },
+            {
+              from: 'RunnerAI',
+              text: '6 chillers across 3 sites are due. Harbour Point has 3, including CH-02, which is due on 14 Oct.',
+              time: '09:12',
+              own: false,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'tasks',
+        label: 'Task creation',
+        title: 'Tasks Created from a Sentence',
+        description:
+          'Describe the job and RunnerAI creates the work order or task, with the right asset, location, assignee and due date.',
+        points: [
+          'Work orders and tasks created from plain language',
+          'Assigned to the right team or vendor',
+          'Checklists, assets and due dates added automatically',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Tasks created by RunnerAI',
+          items: [
+            {
+              title: 'Inspect AHU-07 vibration',
+              location: 'Tower B · Level 14 · Aisha K.',
+              status: 'Due tomorrow',
+              tone: 'due',
+            },
+            {
+              title: 'Replace lobby light fitting',
+              location: 'Bayview Residences · Marco L.',
+              status: 'Assigned',
+              tone: 'info',
+            },
+            {
+              title: 'Quarterly fire door check',
+              location: 'Northgate Mall · 12 doors',
+              status: 'Scheduled',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workflows',
+        label: 'Workflow editing',
+        title: 'Edit Workflows in Seconds',
+        description:
+          'Tell RunnerAI what to change and it updates the steps, triggers and conditions, then rolls the change out to every site or selected regions.',
+        points: [
+          'Modify steps, triggers and conditions by text',
           'Deploy updates to all sites or selected regions',
-          'Adapt workflows to local regulations',
+          'Every change logged and traceable',
         ],
         visual: {
           kind: 'steps',
-          title: 'Generated workflow',
+          title: 'Workflow updated',
           steps: [
-            { kind: 'Trigger', text: 'Chiller vibration above baseline' },
-            { kind: 'If', text: 'Asset is under warranty' },
-            { kind: 'Then', text: 'Create a work order + notify vendor' },
+            {
+              kind: 'Trigger',
+              text: 'Repair quote received',
+            },
+            {
+              kind: 'If',
+              text: 'Cost above $3,000 (was $5,000)',
+            },
+            {
+              kind: 'Then',
+              text: 'Request regional manager approval',
+            },
           ],
         },
       },
       {
         icon: 'dashboards',
-        label: 'Dashboards',
+        label: 'Dashboard creation',
         title: 'Dashboards on Request',
         description:
           'Ask for any view and RunnerAI builds it in seconds from your live operational data, ready to share or pin.',
@@ -1429,86 +1509,35 @@ export const runnerAiPage = {
           kind: 'chart',
           title: 'Work order backlog · 30 days',
           stats: [
-            { label: 'Open', value: '128' },
-            { label: 'Closed', value: '412' },
+            {
+              label: 'Open',
+              value: '128',
+            },
+            {
+              label: 'Closed',
+              value: '412',
+            },
           ],
           bars: [
-            { label: 'Harbour Point', value: 34 },
-            { label: 'Tower B', value: 27 },
-            { label: 'Northgate', value: 25 },
-            { label: 'Bayview', value: 22 },
-            { label: 'Westport', value: 20 },
-          ],
-        },
-      },
-      {
-        icon: 'predictions',
-        label: 'Predictions',
-        title: 'Predictions You Can Trace',
-        description:
-          'Rule-based machine learning flags equipment at risk and recommends the next step, with every action linked to the rule behind it.',
-        points: [
-          'Equipment risk scored from live and historical data',
-          'Compliance risk scoring for every site',
-          'One click from prediction to work order',
-        ],
-        visual: {
-          kind: 'jobs',
-          title: 'Risk alerts',
-          items: [
             {
-              title: 'AHU-07 vibration trending up',
-              location: 'Tower B · Level 14',
-              status: 'High risk',
-              tone: 'overdue',
+              label: 'Harbour Point',
+              value: 34,
             },
             {
-              title: 'Lift certificate due in 30 days',
-              location: 'Northgate Mall',
-              status: 'Medium risk',
-              tone: 'due',
+              label: 'Tower B',
+              value: 27,
             },
             {
-              title: 'Pump P-03 back within range',
-              location: 'Harbour Point',
-              status: 'Resolved',
-              tone: 'done',
-            },
-          ],
-        },
-      },
-      {
-        icon: 'templates',
-        label: 'Templates',
-        title: 'Best Practice from Day One',
-        description:
-          'Ready-to-use workflows tailored to your asset types, property category and market standards.',
-        points: [
-          'Automated maintenance for all equipment',
-          'Suggested cleaning, inspection and sanitation routines',
-          'Smart task recommendations for safety and compliance',
-        ],
-        visual: {
-          kind: 'files',
-          title: 'Suggested templates',
-          items: [
-            {
-              title: 'Shopping mall HVAC plan',
-              location: 'Retail · 12 tasks',
-              status: 'Recommended',
-              tone: 'info',
+              label: 'Northgate',
+              value: 25,
             },
             {
-              title: 'Food court sanitation',
-              location: 'Hospitality · 8 tasks',
-              status: 'Recommended',
-              tone: 'info',
+              label: 'Bayview',
+              value: 22,
             },
             {
-              title: 'Fire safety inspections',
-              location: 'All properties · 6 tasks',
-              status: 'In use',
-              tone: 'done',
+              label: 'Westport',
+              value: 20,
             },
           ],
         },

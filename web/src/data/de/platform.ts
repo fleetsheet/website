@@ -82,7 +82,7 @@ export const pages: {
   },
   runnerAi: {
     label: 'RunnerAI',
-    summary: 'KI-Agenten, die Workflows und Dashboards aus einfacher Sprache erstellen.',
+    summary: 'KI, die Daten abruft, Aufgaben erstellt, Workflows bearbeitet und Dashboards baut.',
     meta: {
       title: 'RunnerAI | Fleet',
       description:
@@ -1323,7 +1323,7 @@ export const runnerAiPage = {
     eyebrow: 'RunnerAI',
     title: 'Intelligenz, die Ihren Betrieb steuert',
     description:
-      'RunnerAI ist die sichere, regelbasierte KI von Fleet für Immobilien- und Facility-Teams. Beschreiben Sie, was Sie brauchen, und RunnerAI erstellt Workflows, liefert Erkenntnisse und baut Dashboards für jeden Standort.',
+      'RunnerAI ist die sichere, regelbasierte KI von Fleet für Immobilien- und Facility-Teams. Beschreiben Sie, was Sie brauchen, und RunnerAI ruft Daten ab, erstellt Aufgaben, bearbeitet Workflows und baut Dashboards für jeden Standort.',
     primaryAction: { label: 'Demo buchen', href: '/contact' },
     secondaryAction: { label: 'Mit unserem Experten sprechen', href: '/contact' },
     demo: {
@@ -1360,32 +1360,113 @@ export const runnerAiPage = {
   capabilities: {
     title: 'Intelligenz, die vorausschauende Planung ermöglicht',
     description:
-      'Eingebaute operative Intelligenz für Instandhaltung, Compliance, Berichte und Anlagenmanagement, gesteuert über Befehle in natürlicher Sprache.',
+      'Vier Wege, wie RunnerAI Ihr Team unterstützt, alle über Befehle in natürlicher Sprache.',
     tabs: [
       {
-        icon: 'workflows',
-        label: 'Workflows',
-        title: 'Workflows per Textbefehl',
+        icon: 'data',
+        label: 'Datenabruf',
+        title: 'Antworten aus Ihren Live-Daten',
         description:
-          'Beschreiben Sie auf Englisch oder in Ihrer Muttersprache, was erledigt werden soll. RunnerAI macht daraus einen einheitlichen Workflow für jeden Standort.',
+          'Stellen Sie eine Frage in einfacher Sprache, und RunnerAI holt die Antwort aus Ihren Live-Betriebsdaten, mit den zugrunde liegenden Aufträgen und Anlagen.',
         points: [
-          'Schritte, Auslöser und Bedingungen in Sekunden ändern',
+          'Fragen zu Kosten, SLAs, Anlagen und Dienstleistern',
+          'Antworten aus Live-Daten aller Standorte',
+          'Quellen zu jeder Antwort',
+        ],
+        visual: {
+          kind: 'chat',
+          title: 'RunnerAI fragen',
+          request: {
+            title: 'Live-Daten · 14 Standorte',
+            location: 'Quellen: 86 Aufträge · 14 Anlagen',
+            status: 'Beantwortet',
+            tone: 'done',
+          },
+          messages: [
+            {
+              from: 'Sie',
+              text: 'Welche Kältemaschinen sind diesen Monat zur Wartung fällig?',
+              time: '09:12',
+              own: true,
+            },
+            {
+              from: 'RunnerAI',
+              text: '6 Kältemaschinen an 3 Standorten sind fällig. Harbour Point hat 3, darunter CH-02, fällig am 14. Okt.',
+              time: '09:12',
+              own: false,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'tasks',
+        label: 'Aufgaben erstellen',
+        title: 'Aufgaben aus einem Satz',
+        description:
+          'Beschreiben Sie die Arbeit, und RunnerAI erstellt Arbeitsauftrag oder Aufgabe mit der richtigen Anlage, dem Standort, der zuständigen Person und dem Fälligkeitsdatum.',
+        points: [
+          'Aufträge und Aufgaben aus natürlicher Sprache',
+          'Dem richtigen Team oder Dienstleister zugewiesen',
+          'Checklisten, Anlagen und Fristen automatisch ergänzt',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Von RunnerAI erstellte Aufgaben',
+          items: [
+            {
+              title: 'Vibration AHU-07 prüfen',
+              location: 'Tower B · Ebene 14 · Aisha K.',
+              status: 'Morgen fällig',
+              tone: 'due',
+            },
+            {
+              title: 'Lobbyleuchte ersetzen',
+              location: 'Bayview Residences · Marco L.',
+              status: 'Zugewiesen',
+              tone: 'info',
+            },
+            {
+              title: 'Quartalsprüfung Brandschutztüren',
+              location: 'Northgate Mall · 12 Türen',
+              status: 'Geplant',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workflows',
+        label: 'Workflows bearbeiten',
+        title: 'Workflows in Sekunden bearbeiten',
+        description:
+          'Sagen Sie RunnerAI, was sich ändern soll, und es passt Schritte, Auslöser und Bedingungen an und verteilt die Änderung an alle oder ausgewählte Regionen.',
+        points: [
+          'Schritte, Auslöser und Bedingungen per Text ändern',
           'Updates an alle oder ausgewählte Regionen verteilen',
-          'Workflows an lokale Vorschriften anpassen',
+          'Jede Änderung protokolliert und nachvollziehbar',
         ],
         visual: {
           kind: 'steps',
-          title: 'Erstellter Workflow',
+          title: 'Workflow aktualisiert',
           steps: [
-            { kind: 'Auslöser', text: 'Vibration der Kältemaschine über Normalwert' },
-            { kind: 'Wenn', text: 'Anlage ist in der Garantie' },
-            { kind: 'Dann', text: 'Auftrag erstellen + Dienstleister informieren' },
+            {
+              kind: 'Auslöser',
+              text: 'Reparaturangebot eingegangen',
+            },
+            {
+              kind: 'Wenn',
+              text: 'Kosten über 3.000 $ (bisher 5.000 $)',
+            },
+            {
+              kind: 'Dann',
+              text: 'Freigabe der Regionalleitung anfordern',
+            },
           ],
         },
       },
       {
         icon: 'dashboards',
-        label: 'Dashboards',
+        label: 'Dashboards erstellen',
         title: 'Dashboards auf Anfrage',
         description:
           'Fordern Sie jede Ansicht an, und RunnerAI baut sie in Sekunden aus Ihren Live-Betriebsdaten, bereit zum Teilen oder Anheften.',
@@ -1398,86 +1479,35 @@ export const runnerAiPage = {
           kind: 'chart',
           title: 'Auftragsrückstand · 30 Tage',
           stats: [
-            { label: 'Offen', value: '128' },
-            { label: 'Erledigt', value: '412' },
+            {
+              label: 'Offen',
+              value: '128',
+            },
+            {
+              label: 'Erledigt',
+              value: '412',
+            },
           ],
           bars: [
-            { label: 'Harbour Point', value: 34 },
-            { label: 'Tower B', value: 27 },
-            { label: 'Northgate', value: 25 },
-            { label: 'Bayview', value: 22 },
-            { label: 'Westport', value: 20 },
-          ],
-        },
-      },
-      {
-        icon: 'predictions',
-        label: 'Vorhersagen',
-        title: 'Nachvollziehbare Vorhersagen',
-        description:
-          'Regelbasiertes maschinelles Lernen erkennt gefährdete Anlagen und empfiehlt den nächsten Schritt, jede Aktion verknüpft mit der zugrunde liegenden Regel.',
-        points: [
-          'Anlagenrisiko aus Live- und Verlaufsdaten bewertet',
-          'Compliance-Risikobewertung für jeden Standort',
-          'Mit einem Klick von der Vorhersage zum Auftrag',
-        ],
-        visual: {
-          kind: 'jobs',
-          title: 'Risikowarnungen',
-          items: [
             {
-              title: 'AHU-07 Vibration steigt',
-              location: 'Tower B · Ebene 14',
-              status: 'Hohes Risiko',
-              tone: 'overdue',
+              label: 'Harbour Point',
+              value: 34,
             },
             {
-              title: 'Aufzugszertifikat in 30 Tagen fällig',
-              location: 'Northgate Mall',
-              status: 'Mittleres Risiko',
-              tone: 'due',
+              label: 'Tower B',
+              value: 27,
             },
             {
-              title: 'Pumpe P-03 wieder im Normbereich',
-              location: 'Harbour Point',
-              status: 'Behoben',
-              tone: 'done',
-            },
-          ],
-        },
-      },
-      {
-        icon: 'templates',
-        label: 'Vorlagen',
-        title: 'Bewährte Praxis vom ersten Tag an',
-        description:
-          'Einsatzbereite Workflows, zugeschnitten auf Ihre Anlagentypen, Objektkategorie und Marktstandards.',
-        points: [
-          'Automatisierte Wartung für alle Anlagen',
-          'Vorgeschlagene Reinigungs-, Prüf- und Hygieneroutinen',
-          'Intelligente Empfehlungen für Sicherheit und Compliance',
-        ],
-        visual: {
-          kind: 'files',
-          title: 'Vorgeschlagene Vorlagen',
-          items: [
-            {
-              title: 'Klimaplan Einkaufszentrum',
-              location: 'Einzelhandel · 12 Aufgaben',
-              status: 'Empfohlen',
-              tone: 'info',
+              label: 'Northgate',
+              value: 25,
             },
             {
-              title: 'Hygiene Food Court',
-              location: 'Gastronomie · 8 Aufgaben',
-              status: 'Empfohlen',
-              tone: 'info',
+              label: 'Bayview',
+              value: 22,
             },
             {
-              title: 'Brandschutzprüfungen',
-              location: 'Alle Objekte · 6 Aufgaben',
-              status: 'Im Einsatz',
-              tone: 'done',
+              label: 'Westport',
+              value: 20,
             },
           ],
         },
