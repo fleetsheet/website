@@ -1,0 +1,331 @@
+---
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import type { RunnerAiIcon } from '@/data/en/platform'
+import { getLocale } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import ArrowUp from '@lucide/astro/icons/arrow-up'
+import ChartColumn from '@lucide/astro/icons/chart-column'
+import Check from '@lucide/astro/icons/check'
+import FileCheck from '@lucide/astro/icons/file-check'
+import Gauge from '@lucide/astro/icons/gauge'
+import Layers from '@lucide/astro/icons/layers'
+import LockKeyhole from '@lucide/astro/icons/lock-keyhole'
+import Plug from '@lucide/astro/icons/plug'
+import Server from '@lucide/astro/icons/server'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
+import Sparkles from '@lucide/astro/icons/sparkles'
+import Workflow from '@lucide/astro/icons/workflow'
+import OverviewVisual from './OverviewVisual.astro'
+
+const { runnerAiPage, overview, cta } = getContent(getLocale(Astro.url)).platform
+const { hero, challenge, capabilities, steps, rows, rules, security, industries, integrate } =
+  runnerAiPage
+const tabIcons = {
+  workflows: Workflow,
+  dashboards: ChartColumn,
+  predictions: Gauge,
+  templates: Layers,
+} satisfies Record<RunnerAiIcon, unknown>
+const securityIcons = [Server, LockKeyhole, FileCheck, ShieldCheck]
+const stepStyles = [
+  'bg-columbia-blue text-azul-blue',
+  'bg-cream-peach text-cream-peach-foreground',
+  'bg-rich-blue text-alice-blue',
+]
+---
+
+<section class="bg-rich-blue text-alice-blue">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-sky-blue flex items-center gap-2.5">
+        <IconChip size="sm" tone="dark">
+          <Sparkles />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate text-white">{hero.title}</h1>
+      <p class="text-lead text-columbia-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={hero.primaryAction.href} variant="accent">
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="inverse">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+    </div>
+    <div aria-hidden="true">
+      <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
+        <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
+          <IconChip size="sm">
+            <Sparkles />
+          </IconChip>
+          <p class="font-display text-sm font-semibold">{hero.demo.title}</p>
+          <span class="text-muted ms-auto text-xs">{hero.demo.context}</span>
+        </div>
+        <div class="flex flex-col gap-4 p-5">
+          <p class="bg-rich-blue text-alice-blue max-w-[85%] self-end rounded-lg px-3.5 py-2.5 text-sm leading-[1.5]">
+            {hero.demo.prompt}
+          </p>
+          <div class="flex flex-col gap-3">
+            <p class="text-sm font-semibold">{hero.demo.reply}</p>
+            <div class="flex flex-col">
+              {hero.demo.steps.map((step, index) => (
+                <div class="flex flex-col items-start">
+                  <div class="bg-surface border-border flex w-full items-center gap-2.5 rounded-md border px-3 py-2.5 text-[13px] shadow-xs">
+                    <span
+                      class:list={[
+                        'rounded-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.04em] uppercase',
+                        stepStyles[index % stepStyles.length],
+                      ]}
+                    >
+                      {step.kind}
+                    </span>
+                    <span class="font-semibold">{step.text}</span>
+                  </div>
+                  {index < hero.demo.steps.length - 1 && (
+                    <div class="bg-uranian-blue ms-6 h-3 w-0.5" />
+                  )}
+                </div>
+              ))}
+            </div>
+            <span class="bg-rich-blue text-alice-blue flex items-center gap-2 self-start rounded-md px-3 py-2 text-xs font-semibold">
+              <ArrowUp class="size-3.5" />
+              {hero.demo.action}
+            </span>
+          </div>
+        </div>
+      </MockPanel>
+    </div>
+  </Container>
+</section>
+
+<PageSection containerClass="grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
+  <div class="bg-azul-blue text-alice-blue flex flex-col gap-5 rounded-2xl p-8 lg:p-10">
+    <h2 class="text-display-md text-white">{challenge.pressure.title}</h2>
+    <p class="text-columbia-blue text-[17px] leading-[1.65]">{challenge.pressure.description}</p>
+    <ul class="mt-auto flex flex-wrap gap-2">
+      {challenge.pressure.points.map((point) => (
+        <li class="bg-rich-blue text-sky-blue rounded-md px-3 py-1.5 text-sm font-medium">
+          {point}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="bg-surface border-border flex flex-col gap-5 rounded-2xl border p-8 shadow-xs lg:p-10">
+    <IconChip size="lg">
+      <Sparkles />
+    </IconChip>
+    <h2 class="text-display-md">{challenge.answer.title}</h2>
+    <p class="text-azul-blue text-[17px] leading-[1.65]">{challenge.answer.description}</p>
+  </div>
+</PageSection>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-10">
+  <SectionHeader title={capabilities.title} description={capabilities.description} />
+  <div
+    role="tablist"
+    aria-label={capabilities.title}
+    class="border-border grid grid-cols-2 gap-2 border-b pb-4 sm:grid-cols-4"
+    data-runner-tabs
+  >
+    {capabilities.tabs.map((tab, index) => {
+      const Icon = tabIcons[tab.icon]
+      return (
+        <button
+          type="button"
+          role="tab"
+          id={`runner-tab-${index}`}
+          aria-controls={`runner-panel-${index}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          tabindex={index === 0 ? 0 : -1}
+          class="text-azul-blue hover:bg-page aria-selected:bg-rich-blue aria-selected:text-alice-blue flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-[15px] font-semibold transition-colors"
+        >
+          <Icon class="size-[18px]" aria-hidden="true" />
+          {tab.label}
+        </button>
+      )
+    })}
+  </div>
+  {capabilities.tabs.map((tab, index) => (
+    <div
+      role="tabpanel"
+      id={`runner-panel-${index}`}
+      aria-labelledby={`runner-tab-${index}`}
+      hidden={index !== 0}
+      class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16"
+    >
+      <div class="flex flex-col gap-5">
+        <h3 class="text-display-md">{tab.title}</h3>
+        <p class="text-azul-blue text-[17px] leading-[1.65]">{tab.description}</p>
+        <CheckList items={tab.points} class="gap-3" />
+      </div>
+      <OverviewVisual visual={tab.visual} />
+    </div>
+  ))}
+</PageSection>
+
+<PageSection tone="inverse" containerClass="flex flex-col gap-12">
+  <SectionHeader eyebrow={steps.eyebrow} title={steps.title} tone="dark" />
+  <ol class="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-6">
+    {steps.items.map((step, index) => (
+      <li class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <span class="font-display bg-sky-blue text-rich-blue flex size-8 shrink-0 items-center justify-center rounded-md text-sm font-semibold">
+            {index + 1}
+          </span>
+          {index < steps.items.length - 1 && (
+            <span class="bg-azul-blue-light hidden h-0.5 flex-1 md:block" />
+          )}
+        </div>
+        <h3 class="text-xl font-semibold text-white">{step.title}</h3>
+        <p class="text-columbia-blue text-[15px] leading-[1.6]">{step.description}</p>
+      </li>
+    ))}
+  </ol>
+</PageSection>
+
+<PageSection containerClass="flex flex-col gap-24">
+  {rows.map((row, index) => (
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
+      <div class:list={['flex flex-col items-start gap-5', index % 2 === 1 && 'lg:order-2']}>
+        <SectionHeader eyebrow={row.tag} title={row.title} description={row.description} />
+        <CheckList items={row.points} class="gap-3" />
+      </div>
+      <OverviewVisual visual={row.visual} />
+    </div>
+  ))}
+</PageSection>
+
+<section>
+  <Container width="wide" class="pb-24">
+    <div class="bg-azul-blue grid grid-cols-1 items-center gap-8 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-[1fr_auto]">
+      <div class="flex flex-col items-start gap-6">
+        <SectionHeader
+          eyebrow={rules.eyebrow}
+          title={rules.title}
+          description={rules.description}
+          tone="dark"
+        />
+        <Button href={rules.action.href} variant="inverse">
+          {rules.action.label}
+        </Button>
+      </div>
+      <div
+        class="bg-rich-blue hidden size-40 items-center justify-center rounded-2xl lg:flex"
+        aria-hidden="true"
+      >
+        <Sparkles class="text-sky-blue size-16" />
+      </div>
+    </div>
+  </Container>
+</section>
+
+<PageSection tone="inverse" containerClass="flex flex-col gap-12">
+  <SectionHeader
+    eyebrow={security.eyebrow}
+    title={security.title}
+    description={security.description}
+    tone="dark"
+    align="center"
+  />
+  <ul class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {security.items.map((item, index) => {
+      const Icon = securityIcons[index % securityIcons.length]
+      return (
+        <li class="bg-azul-blue flex flex-col items-center gap-3 rounded-xl p-6 text-center">
+          <IconChip size="lg" tone="dark">
+            <Icon />
+          </IconChip>
+          <h3 class="text-lg font-semibold text-white">{item.title}</h3>
+          <p class="text-columbia-blue text-[15px] leading-[1.55]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<PageSection containerClass="flex flex-col gap-10">
+  <SectionHeader title={industries.title} description={industries.description} align="center" />
+  <ul class="grid grid-cols-2 gap-4 md:grid-cols-4">
+    {overview.industries.items.map((item) => (
+      <li class="bg-surface border-border flex min-h-28 flex-col justify-between gap-4 rounded-xl border p-5 shadow-xs">
+        <Check class="text-celestial-blue size-5" aria-hidden="true" />
+        <span class="font-display text-[15px] font-semibold">{item}</span>
+      </li>
+    ))}
+  </ul>
+  <div class="bg-surface border-border flex flex-col items-center gap-4 rounded-2xl border p-8 text-center shadow-xs">
+    <IconChip size="lg">
+      <Plug />
+    </IconChip>
+    <h2 class="text-display-md">{integrate.title}</h2>
+    <p class="text-azul-blue max-w-[620px] text-[17px] leading-[1.65]">{integrate.description}</p>
+    <Button href={integrate.action.href} variant="secondary">
+      {integrate.action.label}
+      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+    </Button>
+  </div>
+</PageSection>
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const list = document.querySelector('[data-runner-tabs]')
+    if (!list) {
+      return
+    }
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+
+    const select = (next: HTMLButtonElement) => {
+      tabs.forEach((tab) => {
+        const selected = tab === next
+        tab.setAttribute('aria-selected', String(selected))
+        tab.tabIndex = selected ? 0 : -1
+        const panel = document.getElementById(tab.getAttribute('aria-controls') ?? '')
+        if (panel) {
+          panel.hidden = !selected
+        }
+      })
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(tab))
+      tab.addEventListener('keydown', (event) => {
+        const rtl = document.documentElement.dir === 'rtl'
+        const forward = rtl ? 'ArrowLeft' : 'ArrowRight'
+        const back = rtl ? 'ArrowRight' : 'ArrowLeft'
+        let target: HTMLButtonElement | undefined
+        if (event.key === forward) {
+          target = tabs[(index + 1) % tabs.length]
+        } else if (event.key === back) {
+          target = tabs[(index - 1 + tabs.length) % tabs.length]
+        } else if (event.key === 'Home') {
+          target = tabs[0]
+        } else if (event.key === 'End') {
+          target = tabs[tabs.length - 1]
+        }
+        if (target) {
+          event.preventDefault()
+          select(target)
+          target.focus()
+        }
+      })
+    })
+  })
+</script>

@@ -117,6 +117,7 @@ export const pages: {
   overview: PlatformEntry
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
+  runnerAi: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -152,87 +153,6 @@ export const pages: {
       title: 'RunnerAI | Fleet',
       description:
         'RunnerAI is Fleet’s secure, rule-based AI for real estate and facilities teams: create workflows by text, generate dashboards on request and automate operations.',
-    },
-    eyebrow: 'RunnerAI',
-    title: 'AI Agents Built for Real Estate and Facilities',
-    description:
-      'RunnerAI creates workflows, surfaces insights and builds dashboards from simple text commands, giving your teams more time for the work that matters on site.',
-    highlights: [
-      'Plain-language commands',
-      'Rule-based and traceable',
-      'Ring-fenced data per organization',
-    ],
-    features: {
-      title: 'What RunnerAI Does',
-      description:
-        'Embedded operational intelligence that anticipates next steps, structures workflows and surfaces the right insight instantly.',
-      items: [
-        {
-          title: 'Workflows by text command',
-          description:
-            'Type what you want done and RunnerAI turns it into a standardized workflow across every site.',
-        },
-        {
-          title: 'Real-time adjustments',
-          description:
-            'Modify steps, triggers and conditions in seconds and deploy them to all or selected regions.',
-        },
-        {
-          title: 'Industry-standard templates',
-          description:
-            'Start with best-practice workflows for your property type, asset mix and market.',
-        },
-        {
-          title: 'Dashboards on request',
-          description:
-            'Ask for any view, such as equipment nearing end of life, and get a live dashboard in seconds.',
-        },
-        {
-          title: 'Rule-based machine learning',
-          description:
-            'Predictions follow defined rules, so every action stays traceable, compliant and consistent.',
-        },
-        {
-          title: 'Works in your language',
-          description:
-            'Create and adjust workflows in English or your native language, adapted to local regulations.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Dashboards at Your Command',
-        description:
-          'Ask a question and RunnerAI builds the dashboard from your live operational data, ready to share or pin.',
-        points: [
-          'Work order trends and backlog summaries',
-          'Asset downtime and compliance risk scoring',
-          'Vendor performance and regional comparisons',
-          'Portfolio-wide executive summaries',
-        ],
-      },
-      {
-        title: 'AI That Stays Within Your Perimeter',
-        description:
-          'RunnerAI runs on dedicated, client-specific servers, keeping sensitive data inside your organizational boundary.',
-        points: [
-          'Isolated compute environments for each organization',
-          'Encryption in transit and at rest',
-          'Audit trails for every AI-generated action',
-          'Support for GDPR, PDPL, PDPA and on-premise or hybrid deployment',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Ask RunnerAI',
-      description: 'A few of the requests property teams give RunnerAI every day.',
-      items: [
-        'Show me equipment nearing end of life across all sites',
-        'Summarize the work order backlog for the last 30 days',
-        'Give me vendor performance for the UAE region',
-        'Create a risk dashboard for our top 10 malls',
-        'Set up a weekly sanitation routine for every food court',
-      ],
     },
   },
   fleetMail: {
@@ -1571,5 +1491,326 @@ export const integrationsPage = {
       { title: 'Tenant portal', location: 'Tenants', status: 'Connected', tone: 'done' },
       { title: 'ERP software', location: 'Operations', status: 'In setup', tone: 'info' },
     ] satisfies StatusItem[],
+  },
+}
+
+export type RunnerAiIcon = 'workflows' | 'dashboards' | 'predictions' | 'templates'
+
+export const runnerAiPage = {
+  hero: {
+    eyebrow: 'RunnerAI',
+    title: 'Intelligence That Runs Your Operations',
+    description:
+      'RunnerAI is Fleet’s secure, rule-based AI for real estate and facilities teams. Type what you need, and it builds workflows, surfaces insights and creates dashboards across every site.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    secondaryAction: { label: 'Talk to our specialist', href: '/contact' },
+    demo: {
+      title: 'RunnerAI',
+      context: 'Live data · 14 locations',
+      prompt: 'Set up a weekly sanitation routine for every food court, with supervisor sign-off.',
+      reply: 'Done. I created a workflow for 9 food courts across 4 malls.',
+      steps: [
+        { kind: 'Every', text: 'Monday, 06:00' },
+        { kind: 'Then', text: 'Create a sanitation checklist per food court' },
+        { kind: 'Then', text: 'Request supervisor sign-off with photos' },
+      ],
+      action: 'Deploy to 9 sites',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Multi-Site Operations Move Fast',
+      description:
+        'Retail stores, shopping malls, logistics hubs and mixed-use developments each bring thousands of moving parts, from maintenance and compliance to reporting and assets.',
+      points: [
+        'Thousands of tasks across regions',
+        'Local rules for every site',
+        'Data spread across teams',
+      ],
+    },
+    answer: {
+      title: 'RunnerAI Keeps Pace',
+      description:
+        'RunnerAI anticipates next steps, structures workflows and surfaces the right insight instantly, so your teams spend more time on operations.',
+    },
+  },
+  capabilities: {
+    title: 'Intelligence That Helps You Plan Ahead',
+    description:
+      'Embedded operational intelligence for maintenance, compliance, reporting and asset management, all from plain-language commands.',
+    tabs: [
+      {
+        icon: 'workflows',
+        label: 'Workflows',
+        title: 'Workflows from a Text Command',
+        description:
+          'Type what you want done in plain English or your native language. RunnerAI turns it into a standardized workflow for every location.',
+        points: [
+          'Modify steps, triggers and conditions in seconds',
+          'Deploy updates to all sites or selected regions',
+          'Adapt workflows to local regulations',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Generated workflow',
+          steps: [
+            { kind: 'Trigger', text: 'Chiller vibration above baseline' },
+            { kind: 'If', text: 'Asset is under warranty' },
+            { kind: 'Then', text: 'Create a work order + notify vendor' },
+          ],
+        },
+      },
+      {
+        icon: 'dashboards',
+        label: 'Dashboards',
+        title: 'Dashboards on Request',
+        description:
+          'Ask for any view and RunnerAI builds it in seconds from your live operational data, ready to share or pin.',
+        points: [
+          'Work order trends and backlog summaries',
+          'Vendor performance and regional comparisons',
+          'Portfolio-wide executive summaries',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Work order backlog · 30 days',
+          stats: [
+            { label: 'Open', value: '128' },
+            { label: 'Closed', value: '412' },
+          ],
+          bars: [
+            { label: 'Harbour Point', value: 34 },
+            { label: 'Tower B', value: 27 },
+            { label: 'Northgate', value: 25 },
+            { label: 'Bayview', value: 22 },
+            { label: 'Westport', value: 20 },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Predictions',
+        title: 'Predictions You Can Trace',
+        description:
+          'Rule-based machine learning flags equipment at risk and recommends the next step, with every action linked to the rule behind it.',
+        points: [
+          'Equipment risk scored from live and historical data',
+          'Compliance risk scoring for every site',
+          'One click from prediction to work order',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Risk alerts',
+          items: [
+            {
+              title: 'AHU-07 vibration trending up',
+              location: 'Tower B · Level 14',
+              status: 'High risk',
+              tone: 'overdue',
+            },
+            {
+              title: 'Lift certificate due in 30 days',
+              location: 'Northgate Mall',
+              status: 'Medium risk',
+              tone: 'due',
+            },
+            {
+              title: 'Pump P-03 back within range',
+              location: 'Harbour Point',
+              status: 'Resolved',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'templates',
+        label: 'Templates',
+        title: 'Best Practice from Day One',
+        description:
+          'Ready-to-use workflows tailored to your asset types, property category and market standards.',
+        points: [
+          'Automated maintenance for all equipment',
+          'Suggested cleaning, inspection and sanitation routines',
+          'Smart task recommendations for safety and compliance',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Suggested templates',
+          items: [
+            {
+              title: 'Shopping mall HVAC plan',
+              location: 'Retail · 12 tasks',
+              status: 'Recommended',
+              tone: 'info',
+            },
+            {
+              title: 'Food court sanitation',
+              location: 'Hospitality · 8 tasks',
+              status: 'Recommended',
+              tone: 'info',
+            },
+            {
+              title: 'Fire safety inspections',
+              location: 'All properties · 6 tasks',
+              status: 'In use',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: RunnerAiIcon; label: string })[],
+  },
+  steps: {
+    eyebrow: 'How it works',
+    title: 'From Request to Running Workflow',
+    items: [
+      {
+        title: 'Ask',
+        description:
+          'Type what you need in plain language, from a new routine to a portfolio report.',
+      },
+      {
+        title: 'Build',
+        description:
+          'RunnerAI structures the workflow or dashboard using your data and industry standards.',
+      },
+      {
+        title: 'Deploy',
+        description:
+          'Roll it out instantly to every site or selected regions, adapted to local rules.',
+      },
+      {
+        title: 'Improve',
+        description:
+          'Live insights and traceable predictions show where to adjust next, keeping every site on the same playbook.',
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Productivity',
+      title: 'Less Admin, More Operations',
+      description:
+        'RunnerAI automates the creation and adjustment of the workflows behind maintenance, compliance, reporting and asset management.',
+      points: [
+        'Manual configuration replaced by simple commands',
+        'Every property runs on the same playbook',
+        'More time for on-site work',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'RunnerAI activity',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'updated the inspection workflow for 4 UAE sites',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'created the weekly vendor performance dashboard',
+          },
+          { when: '08:58', who: 'RunnerAI', what: 'suggested a PPM plan for 6 new chillers' },
+        ],
+      },
+    },
+    {
+      tag: 'Decisions',
+      title: 'Smarter Decisions, Faster',
+      description:
+        'Ask a question and get a live answer, so leaders and site teams act on current data with confidence.',
+      points: [
+        'Answers drawn from your live operational data',
+        'Asset downtime and budget insights on request',
+        'Regional comparisons in seconds',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Vendor performance · UAE',
+        stats: [
+          { label: 'On-time jobs', value: '94%' },
+          { label: 'Avg. response', value: '2.4h' },
+        ],
+        bars: [
+          { label: 'HVAC vendor', value: 96 },
+          { label: 'Lift vendor', value: 91 },
+          { label: 'Electrical vendor', value: 87 },
+          { label: 'Plumbing vendor', value: 82 },
+        ],
+      },
+    },
+    {
+      tag: 'Visibility',
+      title: 'A Clear View of Every Site',
+      description:
+        'Portfolio-wide summaries bring the past, present and future of your operation together in one place.',
+      points: [
+        'Work order trends and asset downtime analysis',
+        'Compliance risk scoring by site',
+        'Budget and preventive maintenance insights',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Top 10 malls · Risk',
+        items: [
+          {
+            title: 'Northgate Mall',
+            location: '3 open compliance items',
+            status: 'Review',
+            tone: 'due',
+          },
+          {
+            title: 'Harbour Point',
+            location: 'All checks complete',
+            status: 'On track',
+            tone: 'done',
+          },
+          {
+            title: 'Marina Walk',
+            location: '1 asset near end of life',
+            status: 'Plan',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  rules: {
+    eyebrow: 'Rule-based by design',
+    title: 'Intelligence Shaped by Your Rules',
+    description:
+      'RunnerAI works within the rules you define, so every action stays traceable, compliant and aligned with your enterprise standards.',
+    action: { label: 'Talk to our specialist', href: '/contact' },
+  },
+  security: {
+    eyebrow: 'Secure AI framework',
+    title: 'AI That Stays Within Your Perimeter',
+    description:
+      'RunnerAI runs on dedicated, client-specific servers, so sensitive information stays inside your organizational boundary.',
+    items: [
+      { title: 'Isolated compute', description: 'A dedicated environment for each organization.' },
+      { title: 'Encrypted data', description: 'Encryption in transit and at rest.' },
+      {
+        title: 'Full audit trails',
+        description: 'Every AI-generated action is logged and traceable.',
+      },
+      {
+        title: 'Flexible deployment',
+        description: 'Cloud, on-premise or hybrid, with GDPR, PDPL and PDPA support.',
+      },
+    ],
+  },
+  industries: {
+    title: 'A Solution for Every Property Type',
+    description:
+      'From retail portfolios to logistics hubs, RunnerAI adapts to your assets and your market.',
+  },
+  integrate: {
+    title: 'Built to Integrate',
+    description:
+      'RunnerAI works across Fleet’s 20+ integrations, drawing on finance, building and tenant data for a complete picture.',
+    action: { label: 'See all integrations', href: '/platform/integrations' },
   },
 }

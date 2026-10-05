@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
@@ -48,6 +49,7 @@ export const pages: {
   overview: PlatformEntry
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
+  runnerAi: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -83,87 +85,6 @@ export const pages: {
       title: 'RunnerAI | Fleet',
       description:
         'RunnerAI ist die sichere, regelbasierte KI von Fleet für Immobilien- und Facility-Teams: Workflows per Text erstellen, Dashboards auf Anfrage erzeugen und den Betrieb automatisieren.',
-    },
-    eyebrow: 'RunnerAI',
-    title: 'KI-Agenten für Immobilien und Facility Management',
-    description:
-      'RunnerAI erstellt Workflows, liefert Erkenntnisse und baut Dashboards aus einfachen Textbefehlen, damit Ihre Teams mehr Zeit für die Arbeit vor Ort haben.',
-    highlights: [
-      'Befehle in natürlicher Sprache',
-      'Regelbasiert und nachvollziehbar',
-      'Abgeschottete Daten je Organisation',
-    ],
-    features: {
-      title: 'Was RunnerAI leistet',
-      description:
-        'Eingebaute operative Intelligenz, die nächste Schritte vorausdenkt, Workflows strukturiert und sofort die passende Erkenntnis liefert.',
-      items: [
-        {
-          title: 'Workflows per Textbefehl',
-          description:
-            'Beschreiben Sie, was erledigt werden soll, und RunnerAI macht daraus einen einheitlichen Workflow für jeden Standort.',
-        },
-        {
-          title: 'Anpassungen in Echtzeit',
-          description:
-            'Schritte, Auslöser und Bedingungen in Sekunden ändern und für alle oder ausgewählte Regionen ausrollen.',
-        },
-        {
-          title: 'Vorlagen nach Branchenstandard',
-          description:
-            'Mit bewährten Workflows für Ihren Objekttyp, Ihren Anlagenmix und Ihren Markt starten.',
-        },
-        {
-          title: 'Dashboards auf Anfrage',
-          description:
-            'Jede Ansicht anfordern, etwa Anlagen am Ende ihrer Lebensdauer, und in Sekunden ein Live-Dashboard erhalten.',
-        },
-        {
-          title: 'Regelbasiertes maschinelles Lernen',
-          description:
-            'Vorhersagen folgen festgelegten Regeln, sodass jede Aktion nachvollziehbar, konform und konsistent bleibt.',
-        },
-        {
-          title: 'In Ihrer Sprache',
-          description:
-            'Workflows auf Englisch oder in Ihrer Muttersprache erstellen und an lokale Vorschriften anpassen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Dashboards auf Befehl',
-        description:
-          'Stellen Sie eine Frage, und RunnerAI baut das Dashboard aus Ihren Live-Betriebsdaten, bereit zum Teilen oder Anheften.',
-        points: [
-          'Trends und Rückstände bei Arbeitsaufträgen',
-          'Anlagenausfälle und Compliance-Risikobewertung',
-          'Dienstleisterleistung und regionale Vergleiche',
-          'Portfolioweite Zusammenfassungen für die Geschäftsleitung',
-        ],
-      },
-      {
-        title: 'KI innerhalb Ihres Sicherheitsbereichs',
-        description:
-          'RunnerAI läuft auf dedizierten, kundenspezifischen Servern und hält sensible Daten innerhalb Ihrer Organisation.',
-        points: [
-          'Isolierte Rechenumgebungen für jede Organisation',
-          'Verschlüsselung bei Übertragung und Speicherung',
-          'Prüfpfade für jede KI-generierte Aktion',
-          'Unterstützung für DSGVO, PDPL, PDPA sowie On-Premise- oder Hybridbetrieb',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Fragen Sie RunnerAI',
-      description: 'Einige der Anfragen, die Immobilienteams RunnerAI täglich stellen.',
-      items: [
-        'Zeige mir Anlagen am Ende ihrer Lebensdauer an allen Standorten',
-        'Fasse den Auftragsrückstand der letzten 30 Tage zusammen',
-        'Zeige mir die Dienstleisterleistung für die Region VAE',
-        'Erstelle ein Risiko-Dashboard für unsere zehn größten Einkaufszentren',
-        'Richte eine wöchentliche Hygieneroutine für jeden Food Court ein',
-      ],
     },
   },
   fleetMail: {
@@ -1542,5 +1463,335 @@ export const integrationsPage = {
       { title: 'Mieterportal', location: 'Mieter', status: 'Verbunden', tone: 'done' },
       { title: 'ERP-Software', location: 'Betrieb', status: 'In Einrichtung', tone: 'info' },
     ] satisfies StatusItem[],
+  },
+}
+
+export const runnerAiPage = {
+  hero: {
+    eyebrow: 'RunnerAI',
+    title: 'Intelligenz, die Ihren Betrieb steuert',
+    description:
+      'RunnerAI ist die sichere, regelbasierte KI von Fleet für Immobilien- und Facility-Teams. Beschreiben Sie, was Sie brauchen, und RunnerAI erstellt Workflows, liefert Erkenntnisse und baut Dashboards für jeden Standort.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    secondaryAction: { label: 'Mit unserem Experten sprechen', href: '/contact' },
+    demo: {
+      title: 'RunnerAI',
+      context: 'Live-Daten · 14 Standorte',
+      prompt:
+        'Richte eine wöchentliche Hygieneroutine für jeden Food Court ein, mit Freigabe durch die Aufsicht.',
+      reply: 'Erledigt. Ich habe einen Workflow für 9 Food Courts in 4 Einkaufszentren erstellt.',
+      steps: [
+        { kind: 'Jeden', text: 'Montag, 06:00 Uhr' },
+        { kind: 'Dann', text: 'Hygiene-Checkliste je Food Court erstellen' },
+        { kind: 'Dann', text: 'Freigabe der Aufsicht mit Fotos anfordern' },
+      ],
+      action: 'An 9 Standorte verteilen',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Betrieb an vielen Standorten ist schnell',
+      description:
+        'Filialen, Einkaufszentren, Logistikzentren und gemischt genutzte Quartiere bringen Tausende bewegliche Teile mit sich, von Instandhaltung und Compliance bis zu Berichten und Anlagen.',
+      points: [
+        'Tausende Aufgaben in vielen Regionen',
+        'Lokale Regeln für jeden Standort',
+        'Daten in vielen Teams',
+      ],
+    },
+    answer: {
+      title: 'RunnerAI hält Schritt',
+      description:
+        'RunnerAI denkt nächste Schritte voraus, strukturiert Workflows und liefert sofort die passende Erkenntnis, damit Ihre Teams mehr Zeit für den Betrieb haben.',
+    },
+  },
+  capabilities: {
+    title: 'Intelligenz, die vorausschauende Planung ermöglicht',
+    description:
+      'Eingebaute operative Intelligenz für Instandhaltung, Compliance, Berichte und Anlagenmanagement, gesteuert über Befehle in natürlicher Sprache.',
+    tabs: [
+      {
+        icon: 'workflows',
+        label: 'Workflows',
+        title: 'Workflows per Textbefehl',
+        description:
+          'Beschreiben Sie auf Englisch oder in Ihrer Muttersprache, was erledigt werden soll. RunnerAI macht daraus einen einheitlichen Workflow für jeden Standort.',
+        points: [
+          'Schritte, Auslöser und Bedingungen in Sekunden ändern',
+          'Updates an alle oder ausgewählte Regionen verteilen',
+          'Workflows an lokale Vorschriften anpassen',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Erstellter Workflow',
+          steps: [
+            { kind: 'Auslöser', text: 'Vibration der Kältemaschine über Normalwert' },
+            { kind: 'Wenn', text: 'Anlage ist in der Garantie' },
+            { kind: 'Dann', text: 'Auftrag erstellen + Dienstleister informieren' },
+          ],
+        },
+      },
+      {
+        icon: 'dashboards',
+        label: 'Dashboards',
+        title: 'Dashboards auf Anfrage',
+        description:
+          'Fordern Sie jede Ansicht an, und RunnerAI baut sie in Sekunden aus Ihren Live-Betriebsdaten, bereit zum Teilen oder Anheften.',
+        points: [
+          'Trends und Rückstände bei Arbeitsaufträgen',
+          'Dienstleisterleistung und regionale Vergleiche',
+          'Portfolioweite Zusammenfassungen für die Geschäftsleitung',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Auftragsrückstand · 30 Tage',
+          stats: [
+            { label: 'Offen', value: '128' },
+            { label: 'Erledigt', value: '412' },
+          ],
+          bars: [
+            { label: 'Harbour Point', value: 34 },
+            { label: 'Tower B', value: 27 },
+            { label: 'Northgate', value: 25 },
+            { label: 'Bayview', value: 22 },
+            { label: 'Westport', value: 20 },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Vorhersagen',
+        title: 'Nachvollziehbare Vorhersagen',
+        description:
+          'Regelbasiertes maschinelles Lernen erkennt gefährdete Anlagen und empfiehlt den nächsten Schritt, jede Aktion verknüpft mit der zugrunde liegenden Regel.',
+        points: [
+          'Anlagenrisiko aus Live- und Verlaufsdaten bewertet',
+          'Compliance-Risikobewertung für jeden Standort',
+          'Mit einem Klick von der Vorhersage zum Auftrag',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Risikowarnungen',
+          items: [
+            {
+              title: 'AHU-07 Vibration steigt',
+              location: 'Tower B · Ebene 14',
+              status: 'Hohes Risiko',
+              tone: 'overdue',
+            },
+            {
+              title: 'Aufzugszertifikat in 30 Tagen fällig',
+              location: 'Northgate Mall',
+              status: 'Mittleres Risiko',
+              tone: 'due',
+            },
+            {
+              title: 'Pumpe P-03 wieder im Normbereich',
+              location: 'Harbour Point',
+              status: 'Behoben',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'templates',
+        label: 'Vorlagen',
+        title: 'Bewährte Praxis vom ersten Tag an',
+        description:
+          'Einsatzbereite Workflows, zugeschnitten auf Ihre Anlagentypen, Objektkategorie und Marktstandards.',
+        points: [
+          'Automatisierte Wartung für alle Anlagen',
+          'Vorgeschlagene Reinigungs-, Prüf- und Hygieneroutinen',
+          'Intelligente Empfehlungen für Sicherheit und Compliance',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Vorgeschlagene Vorlagen',
+          items: [
+            {
+              title: 'Klimaplan Einkaufszentrum',
+              location: 'Einzelhandel · 12 Aufgaben',
+              status: 'Empfohlen',
+              tone: 'info',
+            },
+            {
+              title: 'Hygiene Food Court',
+              location: 'Gastronomie · 8 Aufgaben',
+              status: 'Empfohlen',
+              tone: 'info',
+            },
+            {
+              title: 'Brandschutzprüfungen',
+              location: 'Alle Objekte · 6 Aufgaben',
+              status: 'Im Einsatz',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: RunnerAiIcon; label: string })[],
+  },
+  steps: {
+    eyebrow: 'So funktioniert es',
+    title: 'Von der Anfrage zum laufenden Workflow',
+    items: [
+      {
+        title: 'Fragen',
+        description:
+          'Beschreiben Sie in einfacher Sprache, was Sie brauchen, von einer neuen Routine bis zum Portfoliobericht.',
+      },
+      {
+        title: 'Erstellen',
+        description:
+          'RunnerAI strukturiert Workflow oder Dashboard auf Basis Ihrer Daten und Branchenstandards.',
+      },
+      {
+        title: 'Ausrollen',
+        description:
+          'Sofort an jeden Standort oder ausgewählte Regionen verteilen, angepasst an lokale Regeln.',
+      },
+      {
+        title: 'Verbessern',
+        description:
+          'Live-Erkenntnisse und nachvollziehbare Vorhersagen zeigen, wo Sie nachjustieren, damit jeder Standort nach demselben Playbook arbeitet.',
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Produktivität',
+      title: 'Weniger Verwaltung, mehr Betrieb',
+      description:
+        'RunnerAI automatisiert das Erstellen und Anpassen der Workflows für Instandhaltung, Compliance, Berichte und Anlagenmanagement.',
+      points: [
+        'Einfache Befehle statt manueller Konfiguration',
+        'Jedes Objekt arbeitet nach demselben Playbook',
+        'Mehr Zeit für die Arbeit vor Ort',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'RunnerAI-Aktivität',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'hat den Prüf-Workflow für 4 Standorte in den VAE aktualisiert',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'hat das wöchentliche Dashboard zur Dienstleisterleistung erstellt',
+          },
+          {
+            when: '08:58',
+            who: 'RunnerAI',
+            what: 'hat einen Wartungsplan für 6 neue Kältemaschinen vorgeschlagen',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Entscheidungen',
+      title: 'Bessere Entscheidungen, schneller',
+      description:
+        'Stellen Sie eine Frage und erhalten Sie eine Live-Antwort, damit Leitung und Teams vor Ort sicher auf Basis aktueller Daten handeln.',
+      points: [
+        'Antworten aus Ihren Live-Betriebsdaten',
+        'Erkenntnisse zu Ausfällen und Budgets auf Anfrage',
+        'Regionale Vergleiche in Sekunden',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Dienstleisterleistung · VAE',
+        stats: [
+          { label: 'Pünktliche Aufträge', value: '94 %' },
+          { label: 'Ø Reaktion', value: '2,4 Std.' },
+        ],
+        bars: [
+          { label: 'Klimadienstleister', value: 96 },
+          { label: 'Aufzugsdienstleister', value: 91 },
+          { label: 'Elektrodienstleister', value: 87 },
+          { label: 'Sanitärdienstleister', value: 82 },
+        ],
+      },
+    },
+    {
+      tag: 'Transparenz',
+      title: 'Klare Sicht auf jeden Standort',
+      description:
+        'Portfolioweite Zusammenfassungen bringen Vergangenheit, Gegenwart und Zukunft Ihres Betriebs an einem Ort zusammen.',
+      points: [
+        'Auftragstrends und Analyse von Anlagenausfällen',
+        'Compliance-Risikobewertung je Standort',
+        'Erkenntnisse zu Budget und vorbeugender Wartung',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Top 10 Einkaufszentren · Risiko',
+        items: [
+          {
+            title: 'Northgate Mall',
+            location: '3 offene Compliance-Punkte',
+            status: 'Prüfen',
+            tone: 'due',
+          },
+          {
+            title: 'Harbour Point',
+            location: 'Alle Prüfungen erledigt',
+            status: 'Im Plan',
+            tone: 'done',
+          },
+          {
+            title: 'Marina Walk',
+            location: '1 Anlage am Ende der Lebensdauer',
+            status: 'Planen',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  rules: {
+    eyebrow: 'Regelbasiert by Design',
+    title: 'Intelligenz nach Ihren Regeln',
+    description:
+      'RunnerAI arbeitet innerhalb der Regeln, die Sie festlegen, sodass jede Aktion nachvollziehbar, konform und auf Ihre Unternehmensstandards abgestimmt bleibt.',
+    action: { label: 'Mit unserem Experten sprechen', href: '/contact' },
+  },
+  security: {
+    eyebrow: 'Sicheres KI-Framework',
+    title: 'KI innerhalb Ihres Sicherheitsbereichs',
+    description:
+      'RunnerAI läuft auf dedizierten, kundenspezifischen Servern, sodass sensible Daten innerhalb Ihrer Organisation bleiben.',
+    items: [
+      {
+        title: 'Isolierte Rechenumgebung',
+        description: 'Eine eigene Umgebung für jede Organisation.',
+      },
+      {
+        title: 'Verschlüsselte Daten',
+        description: 'Verschlüsselung bei Übertragung und Speicherung.',
+      },
+      {
+        title: 'Vollständige Prüfpfade',
+        description: 'Jede KI-generierte Aktion wird protokolliert und ist nachvollziehbar.',
+      },
+      {
+        title: 'Flexibler Betrieb',
+        description: 'Cloud, On-Premise oder hybrid, mit Unterstützung für DSGVO, PDPL und PDPA.',
+      },
+    ],
+  },
+  industries: {
+    title: 'Eine Lösung für jede Objektart',
+    description:
+      'Vom Einzelhandelsportfolio bis zum Logistikzentrum passt sich RunnerAI Ihren Anlagen und Ihrem Markt an.',
+  },
+  integrate: {
+    title: 'Für Integration gemacht',
+    description:
+      'RunnerAI arbeitet mit den mehr als 20 Integrationen von Fleet und nutzt Finanz-, Gebäude- und Mieterdaten für ein vollständiges Bild.',
+    action: { label: 'Alle Integrationen ansehen', href: '/platform/integrations' },
   },
 }

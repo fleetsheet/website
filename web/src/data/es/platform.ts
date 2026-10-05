@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
@@ -48,6 +49,7 @@ export const pages: {
   overview: PlatformEntry
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
+  runnerAi: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -83,88 +85,6 @@ export const pages: {
       title: 'RunnerAI | Fleet',
       description:
         'RunnerAI es la IA segura y basada en reglas de Fleet para equipos inmobiliarios y de facility: flujos creados por texto, paneles a petición y operaciones automatizadas.',
-    },
-    eyebrow: 'RunnerAI',
-    title: 'Agentes de IA para el sector inmobiliario y facility management',
-    description:
-      'RunnerAI crea flujos de trabajo, ofrece análisis y genera paneles a partir de simples comandos de texto, para que sus equipos dediquen más tiempo al trabajo sobre el terreno.',
-    highlights: [
-      'Comandos en lenguaje natural',
-      'Basado en reglas y trazable',
-      'Datos aislados por organización',
-    ],
-    features: {
-      title: 'Qué hace RunnerAI',
-      description:
-        'Inteligencia operativa integrada que anticipa los siguientes pasos, estructura los flujos y muestra el dato adecuado al instante.',
-      items: [
-        {
-          title: 'Flujos por comando de texto',
-          description:
-            'Escriba lo que necesita y RunnerAI lo convierte en un flujo estandarizado para cada sede.',
-        },
-        {
-          title: 'Ajustes en tiempo real',
-          description:
-            'Modifique pasos, disparadores y condiciones en segundos y despliéguelos en todas o en algunas regiones.',
-        },
-        {
-          title: 'Plantillas según estándares del sector',
-          description:
-            'Empiece con flujos de buenas prácticas para su tipo de propiedad, sus activos y su mercado.',
-        },
-        {
-          title: 'Paneles a petición',
-          description:
-            'Pida cualquier vista, como los equipos al final de su vida útil, y obtenga un panel en vivo en segundos.',
-        },
-        {
-          title: 'Aprendizaje automático basado en reglas',
-          description:
-            'Las predicciones siguen reglas definidas, de modo que cada acción es trazable, conforme y coherente.',
-        },
-        {
-          title: 'En su idioma',
-          description:
-            'Cree y ajuste flujos en inglés o en su idioma, adaptados a la normativa local.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Paneles a sus órdenes',
-        description:
-          'Haga una pregunta y RunnerAI crea el panel con sus datos operativos en vivo, listo para compartir o fijar.',
-        points: [
-          'Tendencias y acumulación de órdenes de trabajo',
-          'Análisis de paradas de activos y puntuación de riesgo de cumplimiento',
-          'Rendimiento de proveedores y comparativas regionales',
-          'Resúmenes ejecutivos de toda la cartera',
-        ],
-      },
-      {
-        title: 'IA dentro de su perímetro',
-        description:
-          'RunnerAI funciona en servidores dedicados a cada cliente, de modo que los datos sensibles permanecen dentro de su organización.',
-        points: [
-          'Entornos de cómputo aislados para cada organización',
-          'Cifrado en tránsito y en reposo',
-          'Registros de auditoría de cada acción generada por la IA',
-          'Compatibilidad con RGPD, PDPL, PDPA y despliegue local o híbrido',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Pregunte a RunnerAI',
-      description:
-        'Algunas de las peticiones que los equipos inmobiliarios hacen a RunnerAI cada día.',
-      items: [
-        'Muéstrame los equipos cerca del final de su vida útil en todas las sedes',
-        'Resume la acumulación de órdenes de trabajo de los últimos 30 días',
-        'Dame el rendimiento de proveedores en la región de EAU',
-        'Crea un panel de riesgos para nuestros 10 principales centros comerciales',
-        'Configura una rutina semanal de higiene para cada zona de restauración',
-      ],
     },
   },
   fleetMail: {
@@ -1544,5 +1464,329 @@ export const integrationsPage = {
       { title: 'Portal de inquilinos', location: 'Inquilinos', status: 'Conectado', tone: 'done' },
       { title: 'Software ERP', location: 'Operaciones', status: 'En configuración', tone: 'info' },
     ] satisfies StatusItem[],
+  },
+}
+
+export const runnerAiPage = {
+  hero: {
+    eyebrow: 'RunnerAI',
+    title: 'Inteligencia que impulsa su operación',
+    description:
+      'RunnerAI es la IA segura y basada en reglas de Fleet para equipos inmobiliarios y de facility. Escriba lo que necesita y RunnerAI crea flujos, análisis y paneles para cada sede.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    secondaryAction: { label: 'Hablar con nuestro especialista', href: '/contact' },
+    demo: {
+      title: 'RunnerAI',
+      context: 'Datos en vivo · 14 sedes',
+      prompt:
+        'Configura una rutina semanal de higiene para cada zona de restauración, con aprobación del supervisor.',
+      reply: 'Hecho. He creado un flujo para 9 zonas de restauración en 4 centros comerciales.',
+      steps: [
+        { kind: 'Cada', text: 'Lunes, 06:00' },
+        { kind: 'Luego', text: 'Crear una lista de higiene por zona de restauración' },
+        { kind: 'Luego', text: 'Pedir aprobación del supervisor con fotos' },
+      ],
+      action: 'Desplegar en 9 sedes',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Las operaciones multisede avanzan rápido',
+      description:
+        'Tiendas, centros comerciales, centros logísticos y desarrollos de uso mixto suman miles de piezas en movimiento, del mantenimiento y el cumplimiento a los informes y los activos.',
+      points: [
+        'Miles de tareas en varias regiones',
+        'Normas locales para cada sede',
+        'Datos repartidos entre equipos',
+      ],
+    },
+    answer: {
+      title: 'RunnerAI mantiene el ritmo',
+      description:
+        'RunnerAI anticipa los siguientes pasos, estructura los flujos y muestra el dato adecuado al instante, para que sus equipos dediquen más tiempo a la operación.',
+    },
+  },
+  capabilities: {
+    title: 'Inteligencia para planificar con antelación',
+    description:
+      'Inteligencia operativa integrada para mantenimiento, cumplimiento, informes y gestión de activos, con comandos en lenguaje natural.',
+    tabs: [
+      {
+        icon: 'workflows',
+        label: 'Flujos',
+        title: 'Flujos con un comando de texto',
+        description:
+          'Escriba lo que necesita en inglés o en su idioma. RunnerAI lo convierte en un flujo estandarizado para cada sede.',
+        points: [
+          'Modifique pasos, disparadores y condiciones en segundos',
+          'Despliegue cambios en todas las sedes o en algunas regiones',
+          'Adapte los flujos a la normativa local',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Flujo generado',
+          steps: [
+            { kind: 'Disparador', text: 'Vibración de la enfriadora por encima de lo normal' },
+            { kind: 'Si', text: 'El activo está en garantía' },
+            { kind: 'Entonces', text: 'Crear orden de trabajo + avisar al proveedor' },
+          ],
+        },
+      },
+      {
+        icon: 'dashboards',
+        label: 'Paneles',
+        title: 'Paneles a petición',
+        description:
+          'Pida cualquier vista y RunnerAI la crea en segundos con sus datos operativos en vivo, lista para compartir o fijar.',
+        points: [
+          'Tendencias y acumulación de órdenes de trabajo',
+          'Rendimiento de proveedores y comparativas regionales',
+          'Resúmenes ejecutivos de toda la cartera',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Órdenes pendientes · 30 días',
+          stats: [
+            { label: 'Abiertas', value: '128' },
+            { label: 'Cerradas', value: '412' },
+          ],
+          bars: [
+            { label: 'Harbour Point', value: 34 },
+            { label: 'Tower B', value: 27 },
+            { label: 'Northgate', value: 25 },
+            { label: 'Bayview', value: 22 },
+            { label: 'Westport', value: 20 },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Predicciones',
+        title: 'Predicciones trazables',
+        description:
+          'El aprendizaje automático basado en reglas detecta equipos en riesgo y recomienda el siguiente paso, con cada acción vinculada a su regla.',
+        points: [
+          'Riesgo de equipos evaluado con datos en vivo e históricos',
+          'Puntuación de riesgo de cumplimiento por sede',
+          'Un clic de la predicción a la orden de trabajo',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Alertas de riesgo',
+          items: [
+            {
+              title: 'Vibración de AHU-07 en aumento',
+              location: 'Tower B · Planta 14',
+              status: 'Riesgo alto',
+              tone: 'overdue',
+            },
+            {
+              title: 'Certificado de ascensor en 30 días',
+              location: 'Northgate Mall',
+              status: 'Riesgo medio',
+              tone: 'due',
+            },
+            {
+              title: 'Bomba P-03 de nuevo en rango',
+              location: 'Harbour Point',
+              status: 'Resuelto',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'templates',
+        label: 'Plantillas',
+        title: 'Buenas prácticas desde el primer día',
+        description:
+          'Flujos listos para usar, adaptados a sus tipos de activo, su categoría de propiedad y los estándares de su mercado.',
+        points: [
+          'Mantenimiento automatizado de todos los equipos',
+          'Rutinas sugeridas de limpieza, inspección e higiene',
+          'Recomendaciones de seguridad y cumplimiento',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Plantillas sugeridas',
+          items: [
+            {
+              title: 'Plan de climatización para centro comercial',
+              location: 'Retail · 12 tareas',
+              status: 'Recomendada',
+              tone: 'info',
+            },
+            {
+              title: 'Higiene de zona de restauración',
+              location: 'Hostelería · 8 tareas',
+              status: 'Recomendada',
+              tone: 'info',
+            },
+            {
+              title: 'Inspecciones contra incendios',
+              location: 'Todas las propiedades · 6 tareas',
+              status: 'En uso',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: RunnerAiIcon; label: string })[],
+  },
+  steps: {
+    eyebrow: 'Cómo funciona',
+    title: 'De la petición al flujo en marcha',
+    items: [
+      {
+        title: 'Pedir',
+        description:
+          'Escriba lo que necesita en lenguaje natural, de una nueva rutina a un informe de cartera.',
+      },
+      {
+        title: 'Crear',
+        description:
+          'RunnerAI estructura el flujo o el panel con sus datos y los estándares del sector.',
+      },
+      {
+        title: 'Desplegar',
+        description:
+          'Llévelo al instante a cada sede o a regiones concretas, adaptado a las normas locales.',
+      },
+      {
+        title: 'Mejorar',
+        description:
+          'Los análisis en vivo y las predicciones trazables muestran dónde ajustar, con todas las sedes siguiendo el mismo manual.',
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Productividad',
+      title: 'Menos gestión, más operación',
+      description:
+        'RunnerAI automatiza la creación y el ajuste de los flujos de mantenimiento, cumplimiento, informes y gestión de activos.',
+      points: [
+        'Comandos sencillos en lugar de configuración manual',
+        'Todas las propiedades siguen el mismo manual',
+        'Más tiempo para el trabajo in situ',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Actividad de RunnerAI',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'actualizó el flujo de inspección de 4 sedes en EAU',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'creó el panel semanal de rendimiento de proveedores',
+          },
+          {
+            when: '08:58',
+            who: 'RunnerAI',
+            what: 'sugirió un plan preventivo para 6 nuevas enfriadoras',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Decisiones',
+      title: 'Decisiones mejores y más rápidas',
+      description:
+        'Haga una pregunta y obtenga una respuesta en vivo, para que la dirección y los equipos actúen con datos actuales y con confianza.',
+      points: [
+        'Respuestas basadas en sus datos operativos en vivo',
+        'Análisis de paradas y presupuesto a petición',
+        'Comparativas regionales en segundos',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Rendimiento de proveedores · EAU',
+        stats: [
+          { label: 'Trabajos a tiempo', value: '94 %' },
+          { label: 'Respuesta media', value: '2,4 h' },
+        ],
+        bars: [
+          { label: 'Proveedor de climatización', value: 96 },
+          { label: 'Proveedor de ascensores', value: 91 },
+          { label: 'Proveedor eléctrico', value: 87 },
+          { label: 'Proveedor de fontanería', value: 82 },
+        ],
+      },
+    },
+    {
+      tag: 'Visibilidad',
+      title: 'Una visión clara de cada sede',
+      description:
+        'Los resúmenes de toda la cartera reúnen el pasado, el presente y el futuro de su operación en un solo lugar.',
+      points: [
+        'Tendencias de órdenes de trabajo y análisis de paradas',
+        'Puntuación de riesgo de cumplimiento por sede',
+        'Información de presupuesto y mantenimiento preventivo',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Top 10 centros · Riesgo',
+        items: [
+          {
+            title: 'Northgate Mall',
+            location: '3 puntos de cumplimiento abiertos',
+            status: 'Revisar',
+            tone: 'due',
+          },
+          {
+            title: 'Harbour Point',
+            location: 'Todas las revisiones completas',
+            status: 'En plazo',
+            tone: 'done',
+          },
+          {
+            title: 'Marina Walk',
+            location: '1 activo al final de su vida útil',
+            status: 'Planificar',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  rules: {
+    eyebrow: 'Basado en reglas',
+    title: 'Inteligencia guiada por sus reglas',
+    description:
+      'RunnerAI trabaja dentro de las reglas que usted define, para que cada acción sea trazable, conforme y coherente con sus estándares corporativos.',
+    action: { label: 'Hablar con nuestro especialista', href: '/contact' },
+  },
+  security: {
+    eyebrow: 'Marco de IA seguro',
+    title: 'IA dentro de su perímetro',
+    description:
+      'RunnerAI funciona en servidores dedicados a cada cliente, de modo que la información sensible permanece dentro de su organización.',
+    items: [
+      { title: 'Cómputo aislado', description: 'Un entorno dedicado para cada organización.' },
+      { title: 'Datos cifrados', description: 'Cifrado en tránsito y en reposo.' },
+      {
+        title: 'Registros de auditoría completos',
+        description: 'Cada acción generada por la IA queda registrada y es trazable.',
+      },
+      {
+        title: 'Despliegue flexible',
+        description: 'Nube, local o híbrido, compatible con RGPD, PDPL y PDPA.',
+      },
+    ],
+  },
+  industries: {
+    title: 'Una solución para cada tipo de propiedad',
+    description:
+      'De carteras de retail a centros logísticos, RunnerAI se adapta a sus activos y a su mercado.',
+  },
+  integrate: {
+    title: 'Creado para integrarse',
+    description:
+      'RunnerAI trabaja con las más de 20 integraciones de Fleet y aprovecha datos financieros, del edificio y de inquilinos para una visión completa.',
+    action: { label: 'Ver todas las integraciones', href: '/platform/integrations' },
   },
 }
