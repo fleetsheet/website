@@ -1,0 +1,26 @@
+---
+import CheckList from '@/components/ui/CheckList.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import type { OverviewModule } from '@/data/en/platform'
+import OverviewVisual from './OverviewVisual.astro'
+
+type Props = {
+  rows: Omit<OverviewModule, 'id'>[]
+}
+
+const { rows } = Astro.props
+---
+
+<PageSection containerClass="flex flex-col gap-24">
+  <slot />
+  {rows.map((row, index) => (
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
+      <div class:list={['flex flex-col items-start gap-5', index % 2 === 1 && 'lg:order-2']}>
+        <SectionHeader eyebrow={row.tag} title={row.title} description={row.description} />
+        <CheckList items={row.points} class="gap-3" />
+      </div>
+      <OverviewVisual visual={row.visual} />
+    </div>
+  ))}
+</PageSection>

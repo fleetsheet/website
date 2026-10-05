@@ -50,6 +50,7 @@ export const pages: {
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
   runnerAi: PlatformEntry
+  fleetMail: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -94,85 +95,6 @@ export const pages: {
       title: 'Fleet Mail | Fleet',
       description:
         'Fleet Mail convierte los correos de inquilinos y proveedores en órdenes de trabajo con seguimiento y envía alertas, aprobaciones y recordatorios por email.',
-    },
-    eyebrow: 'Fleet Mail',
-    title: 'Cada correo, un trabajo con seguimiento',
-    description:
-      'Fleet Mail convierte las solicitudes de inquilinos y proveedores en órdenes de trabajo en cuanto llegan y mantiene informados a equipos y proveedores con correos automáticos.',
-    highlights: [
-      'Del correo a la orden',
-      'Respuestas en el trabajo',
-      'Actualizaciones automáticas',
-    ],
-    features: {
-      title: 'Su bandeja de entrada, conectada con la operación',
-      description:
-        'Solicitudes, respuestas y aprobaciones circulan por un único registro estructurado que todo el equipo puede ver.',
-      items: [
-        {
-          title: 'Del correo a la orden de trabajo',
-          description:
-            'Cada solicitud entrante se convierte en una orden con su remitente, adjuntos y ubicación.',
-        },
-        {
-          title: 'Historial de conversaciones',
-          description:
-            'Las respuestas se añaden automáticamente al historial del trabajo y mantienen todo en contexto.',
-        },
-        {
-          title: 'Asignación inteligente',
-          description:
-            'Las solicitudes llegan al equipo o proveedor adecuado según sede, categoría y prioridad.',
-        },
-        {
-          title: 'Alertas por correo',
-          description:
-            'Equipos y proveedores reciben asignaciones, vencimientos y recordatorios directamente en su bandeja.',
-        },
-        {
-          title: 'Aprobaciones por correo',
-          description:
-            'Los responsables aprueban o rechazan costes con un clic desde el propio correo.',
-        },
-        {
-          title: 'Seguimiento para solicitantes',
-          description:
-            'Los inquilinos reciben confirmación y avances hasta que su solicitud queda resuelta.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Solicitudes organizadas al instante',
-        description:
-          'Un buzón compartido se convierte en una cola ordenada, con cada solicitud registrada, priorizada y asignada.',
-        points: [
-          'Fotos y documentos adjuntos a la orden de trabajo',
-          'Solicitudes duplicadas agrupadas en un solo trabajo',
-          'Tiempos de respuesta medidos según sus SLA',
-        ],
-      },
-      {
-        title: 'Avisos que llegan a las personas adecuadas',
-        description:
-          'Fleet envía el mensaje adecuado en el momento adecuado, para que equipos y proveedores sepan siempre el siguiente paso.',
-        points: [
-          'Notificaciones de asignación y vencimiento',
-          'Escalados cuando se acercan los plazos',
-          'Resúmenes de cierre con prueba fotográfica',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Fleet Mail en la práctica',
-      description: 'El correo funciona como todos esperan, ahora con seguimiento completo.',
-      items: [
-        'Un inquilino avisa por correo de una luz averiada y se crea un trabajo automáticamente',
-        'Un proveedor responde con un presupuesto que queda en el historial del trabajo',
-        'Una responsable financiera aprueba un coste de reparación desde su bandeja',
-        'Un técnico recibe cada tarde por correo los trabajos del día siguiente',
-        'Un responsable regional recibe cada semana un resumen de trabajos vencidos',
-      ],
     },
   },
   workflowBuilder: {
@@ -1787,6 +1709,225 @@ export const runnerAiPage = {
     title: 'Creado para integrarse',
     description:
       'RunnerAI trabaja con las más de 20 integraciones de Fleet y aprovecha datos financieros, del edificio y de inquilinos para una visión completa.',
+    action: { label: 'Ver todas las integraciones', href: '/platform/integrations' },
+  },
+}
+
+export const fleetMailPage = {
+  hero: {
+    eyebrow: 'Fleet Mail',
+    title: 'Cada correo, un trabajo con seguimiento',
+    description:
+      'Fleet Mail convierte las solicitudes de inquilinos y proveedores en órdenes de trabajo en cuanto llegan y mantiene a todos informados con correos automáticos.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    secondaryAction: { label: 'Hablar con nuestro equipo', href: '/contact' },
+    hub: { center: 'Fleet Mail', nodes: ['Inquilinos', 'Proveedores', 'Técnicos', 'Responsables'] },
+  },
+  challenge: {
+    pressure: {
+      title: 'Las solicitudes llegan desde todas partes',
+      description:
+        'Inquilinos, proveedores y personal envían solicitudes, presupuestos y novedades a buzones compartidos, y cada mensaje contiene parte de un trabajo.',
+      points: ['Solicitudes de inquilinos', 'Presupuestos de proveedores', 'Buzones compartidos'],
+    },
+    answer: {
+      title: 'Fleet Mail lo reúne todo',
+      description:
+        'Cada correo pasa a formar parte de un registro estructurado, con el equipo adecuado asignado y todos al día.',
+    },
+  },
+  intro: {
+    title: 'Cada conversación avanza, en un solo lugar',
+    description:
+      'Solicitudes, respuestas y aprobaciones circulan por un registro que todo su equipo puede ver, mientras inquilinos y proveedores siguen usando el correo de siempre.',
+  },
+  rows: [
+    {
+      tag: 'Buzón compartido',
+      title: 'Una cola organizada',
+      description:
+        'Un buzón compartido se convierte en una cola ordenada, con cada solicitud registrada, priorizada y asignada.',
+      points: [
+        'Cada solicitud con remitente, adjuntos y ubicación',
+        'Solicitudes duplicadas agrupadas en un solo trabajo',
+        'Tiempos de respuesta medidos según sus SLA',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'maintenance@ · Hoy',
+        items: [
+          {
+            title: 'Luz apagada en el vestíbulo',
+            location: 'De: inquilino vivienda 1204',
+            status: 'Orden creada',
+            tone: 'info',
+          },
+          {
+            title: 'Presupuesto revisión enfriadora',
+            location: 'De: proveedor de climatización',
+            status: 'Pendiente de aprobación',
+            tone: 'due',
+          },
+          {
+            title: 'RE: fuga en grifo de cocina',
+            location: 'De: inquilino vivienda 802',
+            status: 'Resuelta',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Del correo a la orden',
+      title: 'Las solicitudes se convierten en órdenes al instante',
+      description:
+        'Cada correo se convierte en una orden de trabajo y cada respuesta se añade a su historial, para mantener toda la conversación en contexto.',
+      points: [
+        'Fotos y documentos adjuntos a la orden de trabajo',
+        'Asignación inteligente por sede, categoría y prioridad',
+        'Respuestas guardadas automáticamente en el historial',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2318 · Hilo de correo',
+        request: {
+          title: 'Luz apagada en el vestíbulo',
+          location: 'Bayview Residences · Vestíbulo',
+          status: 'Asignada',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Inquilino',
+            text: 'La luz principal del vestíbulo se apagó esta tarde.',
+            time: '18:04',
+            own: false,
+          },
+          {
+            from: 'Fleet Mail',
+            text: 'Gracias. La orden WO-2318 está creada y asignada a Marco L.',
+            time: '18:04',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Luminaria sustituida. Foto adjunta.',
+            time: '09:30',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Aprobaciones',
+      title: 'Aprobaciones con un clic',
+      description:
+        'Los responsables aprueban o rechazan costes desde el propio correo y el trabajo avanza automáticamente.',
+      points: [
+        'Solicitudes de aprobación enviadas a la persona adecuada',
+        'Aprobar o rechazar con un clic desde la bandeja',
+        'Cada decisión queda registrada en el trabajo',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Aprobación por correo',
+        steps: [
+          { kind: 'Correo', text: 'Presupuesto recibido: 3.800 $' },
+          { kind: 'Aprobar', text: 'La responsable financiera aprueba desde su bandeja' },
+          { kind: 'Luego', text: 'Proveedor avisado + trabajo programado' },
+        ],
+      },
+    },
+    {
+      tag: 'Novedades',
+      title: 'Todos siguen informados',
+      description:
+        'Fleet envía el mensaje adecuado en el momento adecuado, para que equipos, proveedores e inquilinos sepan siempre el siguiente paso.',
+      points: [
+        'Notificaciones de asignación y vencimiento',
+        'Escalados cuando se acercan los plazos',
+        'Resúmenes de cierre con prueba fotográfica',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Correos enviados hoy',
+        entries: [
+          {
+            when: '09:31',
+            who: 'Inquilino, vivienda 1204',
+            what: 'recibió un resumen de cierre con foto',
+          },
+          { when: '08:00', who: 'Marco L.', what: 'recibió sus 4 tareas de hoy' },
+          {
+            when: '07:45',
+            who: 'Responsable regional',
+            what: 'recibió el resumen semanal de trabajos vencidos',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  flow: {
+    eyebrow: 'Cómo funciona',
+    title: 'Del buzón al trabajo resuelto',
+    items: [
+      {
+        title: 'Recibir',
+        description:
+          'Inquilinos y proveedores escriben a su dirección de mantenimiento como siempre.',
+      },
+      {
+        title: 'Crear',
+        description:
+          'Fleet Mail convierte cada correo en una orden de trabajo con sus fotos y ubicación.',
+      },
+      {
+        title: 'Asignar',
+        description:
+          'El trabajo llega al equipo o proveedor adecuado según sede, categoría y prioridad.',
+      },
+      {
+        title: 'Informar',
+        description: 'Todos reciben automáticamente correos de avance, aprobación y cierre.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Pensado para cada remitente',
+    title: 'Un correo que funciona para todos',
+    description:
+      'Inquilinos y proveedores siguen usando el correo de siempre, mientras su equipo trabaja con un registro estructurado y con seguimiento.',
+    action: { label: 'Hablar con nuestro equipo', href: '/contact' },
+  },
+  connect: {
+    title: 'Conecte toda su operación',
+    description:
+      'Fleet Mail forma parte de la plataforma Fleet, así que cada correo se vincula a sus activos, documentos, flujos e informes.',
+    items: [
+      {
+        title: 'Todos en el mismo registro',
+        description:
+          'Inquilinos, proveedores y personal siguen un mismo trabajo, con cada mensaje en contexto.',
+      },
+      {
+        title: 'Una visión clara de cada solicitud',
+        description: 'Volúmenes, tiempos de respuesta y solicitudes abiertas en todas las sedes.',
+      },
+      {
+        title: 'Más tiempo para el trabajo real',
+        description: 'El registro y las novedades automáticas devuelven tiempo al trabajo in situ.',
+      },
+    ],
+  },
+  industries: {
+    title: 'Una solución para cada tipo de propiedad',
+    description:
+      'De comunidades residenciales a centros logísticos, Fleet Mail se adapta a cómo se comunica cada propiedad.',
+  },
+  integrate: {
+    title: 'Creado para integrarse',
+    description:
+      'Fleet Mail funciona junto a las más de 20 integraciones de Fleet, incluidos portales de inquilinos, herramientas financieras y sistemas del edificio.',
     action: { label: 'Ver todas las integraciones', href: '/platform/integrations' },
   },
 }

@@ -49,6 +49,7 @@ export const pages: {
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
   runnerAi: PlatformEntry
+  fleetMail: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -93,64 +94,6 @@ export const pages: {
       title: 'Fleet Mail | Fleet',
       description:
         'Fleet Mail 将租户和供应商的来信转为可追踪的工单，并通过邮件发送提醒、审批和通知。',
-    },
-    eyebrow: 'Fleet Mail',
-    title: '每一封邮件，都是一张可追踪的工单',
-    description:
-      'Fleet Mail 在租户和供应商的请求到达时即刻生成工单，并通过自动邮件让员工和供应商随时了解进展。',
-    highlights: ['邮件转工单', '回复归档到工单', '自动更新'],
-    features: {
-      title: '与运营相连的收件箱',
-      description: '请求、回复和审批都汇入同一份结构化记录，整个团队一目了然。',
-      items: [
-        {
-          title: '邮件转工单',
-          description: '每封来信都会生成工单，并带上发件人、附件和位置。',
-        },
-        {
-          title: '完整的沟通记录',
-          description: '回复自动追加到工单历史，每段沟通都有上下文。',
-        },
-        {
-          title: '智能分派',
-          description: '根据站点、类别和优先级，将请求分派给合适的团队或供应商。',
-        },
-        {
-          title: '邮件提醒',
-          description: '员工和供应商直接在收件箱中收到派单、截止日期和逾期提醒。',
-        },
-        {
-          title: '邮件审批',
-          description: '管理者在邮件中一键批准或驳回费用。',
-        },
-        {
-          title: '向请求人同步进度',
-          description: '租户会收到确认和进展通知，直到请求处理完毕。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '来信即刻井然有序',
-        description: '共享邮箱变成有序队列，每个请求都被记录、排定优先级并分派。',
-        points: ['照片和文档附在工单上', '重复请求自动合并为一张工单', '按 SLA 追踪响应时间'],
-      },
-      {
-        title: '把更新送到对的人手中',
-        description: 'Fleet 在恰当时机发送恰当的消息，让团队和供应商始终清楚下一步。',
-        points: ['派单与截止日期通知', '临近期限时自动升级', '附照片凭证的完工总结'],
-      },
-    ],
-    useCases: {
-      title: 'Fleet Mail 实践',
-      description: '邮件依旧是大家熟悉的方式，如今背后有完整的追踪。',
-      items: [
-        '租户发邮件报修灯具，系统自动创建工单',
-        '供应商回复报价，自动归入工单历史',
-        '财务经理直接在收件箱中批准维修费用',
-        '技术人员每晚通过邮件收到次日任务',
-        '区域经理每周收到逾期工单的邮件摘要',
-      ],
     },
   },
   workflowBuilder: {
@@ -1446,6 +1389,169 @@ export const runnerAiPage = {
   integrate: {
     title: '为集成而生',
     description: 'RunnerAI 依托 Fleet 的 20 多项集成，结合财务、楼宇和租户数据，呈现完整全貌。',
+    action: { label: '查看全部集成', href: '/platform/integrations' },
+  },
+}
+
+export const fleetMailPage = {
+  hero: {
+    eyebrow: 'Fleet Mail',
+    title: '每一封邮件，都是一张可追踪的工单',
+    description:
+      'Fleet Mail 在租户和供应商的请求到达时即刻生成工单，并通过自动邮件让每个人随时了解进展。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    secondaryAction: { label: '联系我们的团队', href: '/contact' },
+    hub: { center: 'Fleet Mail', nodes: ['租户', '供应商', '技术人员', '管理者'] },
+  },
+  challenge: {
+    pressure: {
+      title: '请求来自四面八方',
+      description:
+        '租户、供应商和员工把请求、报价和更新发送到共享邮箱，每封邮件都承载着工单的一部分。',
+      points: ['租户请求', '供应商报价', '共享邮箱'],
+    },
+    answer: {
+      title: 'Fleet Mail 将它们汇聚一处',
+      description:
+        '每封邮件都成为同一份结构化记录的一部分，分派给合适的团队，并让每个人掌握最新进展。',
+    },
+  },
+  intro: {
+    title: '每段沟通顺畅推进，尽在一处',
+    description:
+      '请求、回复和审批都汇入整个团队可见的同一份记录，租户和供应商则继续使用熟悉的邮件。',
+  },
+  rows: [
+    {
+      tag: '共享邮箱',
+      title: '井然有序的队列',
+      description: '共享邮箱变成有序队列，每个请求都被记录、排定优先级并分派。',
+      points: [
+        '每个请求都记录发件人、附件和位置',
+        '重复请求自动合并为一张工单',
+        '按 SLA 追踪响应时间',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'maintenance@ · 今天',
+        items: [
+          {
+            title: '大堂灯不亮',
+            location: '来自：1204 单元租户',
+            status: '已创建工单',
+            tone: 'info',
+          },
+          {
+            title: '冷水机组保养报价',
+            location: '来自：暖通供应商',
+            status: '待审批',
+            tone: 'due',
+          },
+          {
+            title: '回复：厨房水龙头漏水',
+            location: '来自：802 单元租户',
+            status: '已解决',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: '邮件转工单',
+      title: '请求即刻变为工单',
+      description: '每封邮件都会生成工单，每条回复都会追加到工单历史，完整沟通始终有上下文。',
+      points: ['照片和文档附在工单上', '按站点、类别和优先级智能分派', '回复自动保存到工单历史'],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2318 · 邮件往来',
+        request: {
+          title: '大堂灯不亮',
+          location: 'Bayview Residences · 大堂',
+          status: '已分派',
+          tone: 'info',
+        },
+        messages: [
+          { from: '租户', text: '大堂的主灯今晚不亮了。', time: '18:04', own: false },
+          {
+            from: 'Fleet Mail',
+            text: '谢谢。工单 WO-2318 已创建并分派给 Marco L.。',
+            time: '18:04',
+            own: true,
+          },
+          { from: 'Marco L.', text: '已更换灯具，照片见附件。', time: '09:30', own: true },
+        ],
+      },
+    },
+    {
+      tag: '审批',
+      title: '一键审批',
+      description: '管理者直接在邮件中批准或驳回费用，工单随即自动推进。',
+      points: ['审批请求发送给对应审批人', '在收件箱中一键批准或驳回', '每项决定都记录在工单上'],
+      visual: {
+        kind: 'steps',
+        title: '邮件审批',
+        steps: [
+          { kind: '邮件', text: '收到供应商报价：$3,800' },
+          { kind: '审批', text: '财务经理在收件箱中批准' },
+          { kind: '然后', text: '通知供应商并安排工单' },
+        ],
+      },
+    },
+    {
+      tag: '更新',
+      title: '每个人都掌握进展',
+      description: 'Fleet 在恰当时机发送恰当的消息，让团队、供应商和租户始终清楚下一步。',
+      points: ['派单与截止日期通知', '临近期限时自动升级', '附照片凭证的完工总结'],
+      visual: {
+        kind: 'log',
+        title: '今日已发送邮件',
+        entries: [
+          { when: '09:31', who: '1204 单元租户', what: '收到附照片的完工总结' },
+          { when: '08:00', who: 'Marco L.', what: '收到今天的 4 项任务' },
+          { when: '07:45', who: '区域经理', what: '收到每周逾期工单摘要' },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  flow: {
+    eyebrow: '工作原理',
+    title: '从收件箱到工单解决',
+    items: [
+      { title: '接收', description: '租户和供应商照常发送邮件到您的维护邮箱。' },
+      { title: '创建', description: 'Fleet Mail 将每封邮件转为附带照片和位置的工单。' },
+      { title: '分派', description: '工单按站点、类别和优先级分派给合适的团队或供应商。' },
+      { title: '通知', description: '每个人都会自动收到进展、审批和完工邮件。' },
+    ],
+  },
+  banner: {
+    eyebrow: '适合每位发件人',
+    title: '人人适用的邮件体验',
+    description: '租户和供应商继续使用熟悉的邮件，您的团队则基于结构化、可追踪的记录工作。',
+    action: { label: '联系我们的团队', href: '/contact' },
+  },
+  connect: {
+    title: '连接整个运营',
+    description:
+      'Fleet Mail 是 Fleet 平台的一部分，每封邮件都与您的资产、文档、工作流和报表相关联。',
+    items: [
+      {
+        title: '所有人基于同一份记录',
+        description: '租户、供应商和员工跟进同一张工单，每条消息都有上下文。',
+      },
+      { title: '清楚掌握每个请求', description: '查看所有站点的请求量、响应时间和未完成请求。' },
+      {
+        title: '把时间留给真正的工作',
+        description: '自动记录和更新为团队节省时间，专注现场工作。',
+      },
+    ],
+  },
+  industries: {
+    title: '适用于各类物业的解决方案',
+    description: '从住宅社区到物流枢纽，Fleet Mail 适配每个物业的沟通方式。',
+  },
+  integrate: {
+    title: '为集成而生',
+    description: 'Fleet Mail 与 Fleet 的 20 多项集成协同工作，包括租户门户、财务工具和楼宇系统。',
     action: { label: '查看全部集成', href: '/platform/integrations' },
   },
 }

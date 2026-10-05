@@ -50,6 +50,7 @@ export const pages: {
   webAndMobile: PlatformEntry
   integrations: PlatformEntry
   runnerAi: PlatformEntry
+  fleetMail: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
@@ -95,84 +96,6 @@ export const pages: {
       title: 'Fleet Mail | Fleet',
       description:
         'Fleet Mail transforme les e-mails des locataires et prestataires en bons de travail suivis et envoie alertes, validations et rappels par e-mail.',
-    },
-    eyebrow: 'Fleet Mail',
-    title: 'Chaque e-mail devient une intervention suivie',
-    description:
-      'Fleet Mail transforme les demandes des locataires et prestataires en bons de travail dès leur arrivée et tient équipes et prestataires informés par e-mails automatiques.',
-    highlights: [
-      'De l’e-mail au bon de travail',
-      'Réponses rattachées',
-      'Mises à jour automatiques',
-    ],
-    features: {
-      title: 'Votre boîte mail, connectée à l’exploitation',
-      description:
-        'Demandes, réponses et validations passent par un même dossier structuré, visible par toute l’équipe.',
-      items: [
-        {
-          title: 'De l’e-mail au bon de travail',
-          description:
-            'Chaque demande reçue devient un bon de travail avec son expéditeur, ses pièces jointes et son site.',
-        },
-        {
-          title: 'Historique des échanges',
-          description:
-            'Les réponses sont ajoutées automatiquement à l’historique de l’intervention, dans leur contexte.',
-        },
-        {
-          title: 'Routage intelligent',
-          description:
-            'Les demandes sont confiées à la bonne équipe ou au bon prestataire selon le site, la catégorie et la priorité.',
-        },
-        {
-          title: 'Alertes par e-mail',
-          description:
-            'Équipes et prestataires reçoivent affectations, échéances et rappels directement dans leur boîte mail.',
-        },
-        {
-          title: 'Validations par e-mail',
-          description: 'Les responsables valident ou refusent un coût en un clic depuis l’e-mail.',
-        },
-        {
-          title: 'Suivi pour les demandeurs',
-          description:
-            'Les locataires reçoivent une confirmation et des nouvelles jusqu’à la résolution de leur demande.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Des demandes organisées dès leur arrivée',
-        description:
-          'Une boîte partagée devient une file organisée, où chaque demande est enregistrée, priorisée et affectée.',
-        points: [
-          'Photos et documents rattachés au bon de travail',
-          'Demandes en double regroupées en une seule intervention',
-          'Délais de réponse suivis selon vos SLA',
-        ],
-      },
-      {
-        title: 'Des messages qui atteignent les bonnes personnes',
-        description:
-          'Fleet envoie le bon message au bon moment, pour que chacun sache quelle est la prochaine étape.',
-        points: [
-          'Notifications d’affectation et d’échéance',
-          'Escalades à l’approche des délais',
-          'Comptes rendus de clôture avec preuve photo',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Fleet Mail en pratique',
-      description: 'L’e-mail fonctionne comme chacun l’attend, avec un suivi complet en coulisses.',
-      items: [
-        'Un locataire signale une lampe en panne par e-mail et une intervention est créée',
-        'Un prestataire répond avec un devis ajouté à l’historique',
-        'Une responsable financière valide un coût de réparation depuis sa boîte mail',
-        'Un technicien reçoit chaque soir ses interventions du lendemain par e-mail',
-        'Un responsable régional reçoit chaque semaine la synthèse des retards',
-      ],
     },
   },
   workflowBuilder: {
@@ -1789,6 +1712,225 @@ export const runnerAiPage = {
     title: 'Conçu pour s’intégrer',
     description:
       'RunnerAI s’appuie sur les plus de 20 intégrations de Fleet et sur vos données financières, techniques et locataires pour une vision complète.',
+    action: { label: 'Voir toutes les intégrations', href: '/platform/integrations' },
+  },
+}
+
+export const fleetMailPage = {
+  hero: {
+    eyebrow: 'Fleet Mail',
+    title: 'Chaque e-mail devient une intervention suivie',
+    description:
+      'Fleet Mail transforme les demandes des locataires et prestataires en bons de travail dès leur arrivée et tient chacun informé par e-mails automatiques.',
+    primaryAction: { label: 'Réserver une démo', href: '/contact' },
+    secondaryAction: { label: 'Parler à notre équipe', href: '/contact' },
+    hub: {
+      center: 'Fleet Mail',
+      nodes: ['Locataires', 'Prestataires', 'Techniciens', 'Responsables'],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Les demandes arrivent de partout',
+      description:
+        'Locataires, prestataires et équipes envoient demandes, devis et mises à jour vers des boîtes partagées, et chaque message contient une partie d’une intervention.',
+      points: ['Demandes des locataires', 'Devis des prestataires', 'Boîtes partagées'],
+    },
+    answer: {
+      title: 'Fleet Mail les réunit',
+      description:
+        'Chaque e-mail rejoint un dossier structuré unique, avec la bonne équipe affectée et chacun tenu informé.',
+    },
+  },
+  intro: {
+    title: 'Chaque échange avance, au même endroit',
+    description:
+      'Demandes, réponses et validations passent par un même dossier visible par toute l’équipe, tandis que locataires et prestataires gardent l’e-mail qu’ils connaissent.',
+  },
+  rows: [
+    {
+      tag: 'Boîte partagée',
+      title: 'Une file organisée',
+      description:
+        'Une boîte partagée devient une file organisée, où chaque demande est enregistrée, priorisée et affectée.',
+      points: [
+        'Chaque demande enregistrée avec expéditeur, pièces jointes et emplacement',
+        'Demandes en double regroupées en une seule intervention',
+        'Délais de réponse suivis selon vos SLA',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'maintenance@ · Aujourd’hui',
+        items: [
+          {
+            title: 'Lumière éteinte dans le hall',
+            location: 'De : locataire logement 1204',
+            status: 'Intervention créée',
+            tone: 'info',
+          },
+          {
+            title: 'Devis entretien groupe froid',
+            location: 'De : prestataire CVC',
+            status: 'En attente de validation',
+            tone: 'due',
+          },
+          {
+            title: 'RE : fuite robinet cuisine',
+            location: 'De : locataire logement 802',
+            status: 'Résolu',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'De l’e-mail à l’intervention',
+      title: 'Les demandes deviennent des interventions',
+      description:
+        'Chaque e-mail devient un bon de travail, et chaque réponse rejoint l’historique pour garder tout l’échange en contexte.',
+      points: [
+        'Photos et documents rattachés au bon de travail',
+        'Routage intelligent par site, catégorie et priorité',
+        'Réponses ajoutées automatiquement à l’historique',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2318 · Fil d’e-mails',
+        request: {
+          title: 'Lumière éteinte dans le hall',
+          location: 'Bayview Residences · Hall',
+          status: 'Affecté',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Locataire',
+            text: 'La lumière principale du hall s’est éteinte ce soir.',
+            time: '18:04',
+            own: false,
+          },
+          {
+            from: 'Fleet Mail',
+            text: 'Merci. L’intervention WO-2318 est créée et affectée à Marco L.',
+            time: '18:04',
+            own: true,
+          },
+          { from: 'Marco L.', text: 'Luminaire remplacé. Photo jointe.', time: '09:30', own: true },
+        ],
+      },
+    },
+    {
+      tag: 'Validations',
+      title: 'Des validations en un clic',
+      description:
+        'Les responsables valident ou refusent un coût depuis l’e-mail, et l’intervention avance automatiquement.',
+      points: [
+        'Demandes de validation envoyées au bon valideur',
+        'Validation ou refus en un clic depuis la boîte mail',
+        'Chaque décision enregistrée sur l’intervention',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Validation par e-mail',
+        steps: [
+          { kind: 'E-mail', text: 'Devis prestataire reçu : 3 800 $' },
+          { kind: 'Valider', text: 'La responsable financière valide depuis sa boîte' },
+          { kind: 'Puis', text: 'Prestataire prévenu + intervention planifiée' },
+        ],
+      },
+    },
+    {
+      tag: 'Mises à jour',
+      title: 'Chacun reste informé',
+      description:
+        'Fleet envoie le bon message au bon moment, pour que équipes, prestataires et locataires sachent toujours quelle est la suite.',
+      points: [
+        'Notifications d’affectation et d’échéance',
+        'Escalades à l’approche des délais',
+        'Comptes rendus de clôture avec preuve photo',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'E-mails envoyés aujourd’hui',
+        entries: [
+          {
+            when: '09:31',
+            who: 'Locataire, logement 1204',
+            what: 'a reçu un compte rendu de clôture avec photo',
+          },
+          { when: '08:00', who: 'Marco L.', what: 'a reçu ses 4 interventions du jour' },
+          {
+            when: '07:45',
+            who: 'Responsable régional',
+            what: 'a reçu la synthèse hebdomadaire des retards',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  flow: {
+    eyebrow: 'Fonctionnement',
+    title: 'De la boîte mail à l’intervention résolue',
+    items: [
+      {
+        title: 'Recevoir',
+        description:
+          'Locataires et prestataires écrivent à votre adresse maintenance comme d’habitude.',
+      },
+      {
+        title: 'Créer',
+        description:
+          'Fleet Mail transforme chaque e-mail en bon de travail avec photos et emplacement.',
+      },
+      {
+        title: 'Affecter',
+        description:
+          'L’intervention part vers la bonne équipe ou le bon prestataire selon le site, la catégorie et la priorité.',
+      },
+      {
+        title: 'Informer',
+        description:
+          'Chacun reçoit automatiquement les e-mails d’avancement, de validation et de clôture.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Pensé pour chaque expéditeur',
+    title: 'Un e-mail qui fonctionne pour tous',
+    description:
+      'Locataires et prestataires gardent l’e-mail qu’ils connaissent, tandis que votre équipe travaille sur un dossier structuré et suivi.',
+    action: { label: 'Parler à notre équipe', href: '/contact' },
+  },
+  connect: {
+    title: 'Connectez toute votre exploitation',
+    description:
+      'Fleet Mail fait partie de la plateforme Fleet : chaque e-mail est relié à vos équipements, documents, workflows et rapports.',
+    items: [
+      {
+        title: 'Tous sur le même dossier',
+        description:
+          'Locataires, prestataires et équipes suivent une même intervention, chaque message en contexte.',
+      },
+      {
+        title: 'Une vue claire de chaque demande',
+        description: 'Volumes, délais de réponse et demandes ouvertes sur tous les sites.',
+      },
+      {
+        title: 'Plus de temps pour le terrain',
+        description:
+          'L’enregistrement et les mises à jour automatiques libèrent du temps pour le travail sur site.',
+      },
+    ],
+  },
+  industries: {
+    title: 'Une solution pour chaque type d’actif',
+    description:
+      'Des résidences aux plateformes logistiques, Fleet Mail s’adapte à la façon dont chaque site communique.',
+  },
+  integrate: {
+    title: 'Conçu pour s’intégrer',
+    description:
+      'Fleet Mail fonctionne avec les plus de 20 intégrations de Fleet, dont les portails locataires, les outils financiers et les systèmes du bâtiment.',
     action: { label: 'Voir toutes les intégrations', href: '/platform/integrations' },
   },
 }

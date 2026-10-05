@@ -13,19 +13,22 @@ import { getLocale } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import ArrowUp from '@lucide/astro/icons/arrow-up'
 import ChartColumn from '@lucide/astro/icons/chart-column'
-import Check from '@lucide/astro/icons/check'
 import FileCheck from '@lucide/astro/icons/file-check'
 import Gauge from '@lucide/astro/icons/gauge'
 import Layers from '@lucide/astro/icons/layers'
 import LockKeyhole from '@lucide/astro/icons/lock-keyhole'
-import Plug from '@lucide/astro/icons/plug'
 import Server from '@lucide/astro/icons/server'
 import ShieldCheck from '@lucide/astro/icons/shield-check'
 import Sparkles from '@lucide/astro/icons/sparkles'
 import Workflow from '@lucide/astro/icons/workflow'
+import ChallengeCards from './ChallengeCards.astro'
+import FeatureBanner from './FeatureBanner.astro'
+import FeatureRows from './FeatureRows.astro'
+import IndustriesIntegrate from './IndustriesIntegrate.astro'
 import OverviewVisual from './OverviewVisual.astro'
+import StepsBand from './StepsBand.astro'
 
-const { runnerAiPage, overview, cta } = getContent(getLocale(Astro.url)).platform
+const { runnerAiPage, cta } = getContent(getLocale(Astro.url)).platform
 const { hero, challenge, capabilities, steps, rows, rules, security, industries, integrate } =
   runnerAiPage
 const tabIcons = {
@@ -109,26 +112,7 @@ const stepStyles = [
   </Container>
 </section>
 
-<PageSection containerClass="grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
-  <div class="bg-azul-blue text-alice-blue flex flex-col gap-5 rounded-2xl p-8 lg:p-10">
-    <h2 class="text-display-md text-white">{challenge.pressure.title}</h2>
-    <p class="text-columbia-blue text-[17px] leading-[1.65]">{challenge.pressure.description}</p>
-    <ul class="mt-auto flex flex-wrap gap-2">
-      {challenge.pressure.points.map((point) => (
-        <li class="bg-rich-blue text-sky-blue rounded-md px-3 py-1.5 text-sm font-medium">
-          {point}
-        </li>
-      ))}
-    </ul>
-  </div>
-  <div class="bg-surface border-border flex flex-col gap-5 rounded-2xl border p-8 shadow-xs lg:p-10">
-    <IconChip size="lg">
-      <Sparkles />
-    </IconChip>
-    <h2 class="text-display-md">{challenge.answer.title}</h2>
-    <p class="text-azul-blue text-[17px] leading-[1.65]">{challenge.answer.description}</p>
-  </div>
-</PageSection>
+<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
 
 <PageSection tone="surface" containerClass="flex flex-col gap-10">
   <SectionHeader title={capabilities.title} description={capabilities.description} />
@@ -174,61 +158,16 @@ const stepStyles = [
   ))}
 </PageSection>
 
-<PageSection tone="inverse" containerClass="flex flex-col gap-12">
-  <SectionHeader eyebrow={steps.eyebrow} title={steps.title} tone="dark" />
-  <ol class="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-6">
-    {steps.items.map((step, index) => (
-      <li class="flex flex-col gap-3">
-        <div class="flex items-center gap-3">
-          <span class="font-display bg-sky-blue text-rich-blue flex size-8 shrink-0 items-center justify-center rounded-md text-sm font-semibold">
-            {index + 1}
-          </span>
-          {index < steps.items.length - 1 && (
-            <span class="bg-azul-blue-light hidden h-0.5 flex-1 md:block" />
-          )}
-        </div>
-        <h3 class="text-xl font-semibold text-white">{step.title}</h3>
-        <p class="text-columbia-blue text-[15px] leading-[1.6]">{step.description}</p>
-      </li>
-    ))}
-  </ol>
-</PageSection>
+<StepsBand eyebrow={steps.eyebrow} title={steps.title} items={steps.items} />
 
-<PageSection containerClass="flex flex-col gap-24">
-  {rows.map((row, index) => (
-    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
-      <div class:list={['flex flex-col items-start gap-5', index % 2 === 1 && 'lg:order-2']}>
-        <SectionHeader eyebrow={row.tag} title={row.title} description={row.description} />
-        <CheckList items={row.points} class="gap-3" />
-      </div>
-      <OverviewVisual visual={row.visual} />
-    </div>
-  ))}
-</PageSection>
+<FeatureRows rows={rows} />
 
-<section>
-  <Container width="wide" class="pb-24">
-    <div class="bg-azul-blue grid grid-cols-1 items-center gap-8 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-[1fr_auto]">
-      <div class="flex flex-col items-start gap-6">
-        <SectionHeader
-          eyebrow={rules.eyebrow}
-          title={rules.title}
-          description={rules.description}
-          tone="dark"
-        />
-        <Button href={rules.action.href} variant="inverse">
-          {rules.action.label}
-        </Button>
-      </div>
-      <div
-        class="bg-rich-blue hidden size-40 items-center justify-center rounded-2xl lg:flex"
-        aria-hidden="true"
-      >
-        <Sparkles class="text-sky-blue size-16" />
-      </div>
-    </div>
-  </Container>
-</section>
+<FeatureBanner
+  eyebrow={rules.eyebrow}
+  title={rules.title}
+  description={rules.description}
+  action={rules.action}
+/>
 
 <PageSection tone="inverse" containerClass="flex flex-col gap-12">
   <SectionHeader
@@ -254,28 +193,7 @@ const stepStyles = [
   </ul>
 </PageSection>
 
-<PageSection containerClass="flex flex-col gap-10">
-  <SectionHeader title={industries.title} description={industries.description} align="center" />
-  <ul class="grid grid-cols-2 gap-4 md:grid-cols-4">
-    {overview.industries.items.map((item) => (
-      <li class="bg-surface border-border flex min-h-28 flex-col justify-between gap-4 rounded-xl border p-5 shadow-xs">
-        <Check class="text-celestial-blue size-5" aria-hidden="true" />
-        <span class="font-display text-[15px] font-semibold">{item}</span>
-      </li>
-    ))}
-  </ul>
-  <div class="bg-surface border-border flex flex-col items-center gap-4 rounded-2xl border p-8 text-center shadow-xs">
-    <IconChip size="lg">
-      <Plug />
-    </IconChip>
-    <h2 class="text-display-md">{integrate.title}</h2>
-    <p class="text-azul-blue max-w-[620px] text-[17px] leading-[1.65]">{integrate.description}</p>
-    <Button href={integrate.action.href} variant="secondary">
-      {integrate.action.label}
-      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-    </Button>
-  </div>
-</PageSection>
+<IndustriesIntegrate industries={industries} integrate={integrate} />
 
 <CtaBanner
   title={cta.title}
