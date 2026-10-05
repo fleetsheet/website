@@ -1,6 +1,6 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { PlatformDetailId, PlatformGroup } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export type PlatformItem = {
   title: string
@@ -42,6 +42,12 @@ export type OverviewVisual =
     }
   | { kind: 'steps'; title: string; steps: { kind: string; text: string }[] }
   | { kind: 'log'; title: string; entries: { when: string; who: string; what: string }[] }
+  | {
+      kind: 'chat'
+      title: string
+      request: StatusItem
+      messages: { from: string; text: string; time: string; own: boolean }[]
+    }
 
 export type OverviewModule = {
   id: PlatformDetailId
@@ -86,7 +92,10 @@ export const cta = {
   secondaryAction: { label: 'Talk to our team', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
+  TemplatePageId,
+  PlatformPageContent
+> = {
   overview: {
     label: 'Overview',
     summary: 'One platform for maintenance, assets and operations across every site.',
@@ -103,81 +112,6 @@ export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, Platf
       title: 'Web & Mobile | Fleet',
       description:
         'Fleet works on desktop, tablet and phone, with iOS and Android support, so technicians and managers share the same live data wherever they work.',
-    },
-    eyebrow: 'Web & Mobile',
-    title: 'Your Operations, on Every Screen',
-    description:
-      'Fleet runs in the browser and on iOS and Android, so managers plan from the desktop while technicians update jobs in real time from the field.',
-    highlights: ['iOS & Android', 'Works in any browser', 'Real-time sync'],
-    features: {
-      title: 'Built for People on the Move',
-      description:
-        'The same platform, shaped for each role and each screen size, with every update synced instantly.',
-      items: [
-        {
-          title: 'Field-ready job updates',
-          description:
-            'Technicians start, update and close jobs on site with photos, notes and signatures.',
-        },
-        {
-          title: 'Instant alerts',
-          description:
-            'Push and in-app notifications flag new assignments, approvals and overdue tasks.',
-        },
-        {
-          title: 'Asset details on site',
-          description:
-            'Scan or search an asset to see its manuals, history and open work orders in seconds.',
-        },
-        {
-          title: 'Desktop command center',
-          description:
-            'Managers plan schedules, review dashboards and approve costs from a full web workspace.',
-        },
-        {
-          title: 'Low-bandwidth performance',
-          description:
-            'Fleet stays responsive in basements, plant rooms and remote sites with weak signal.',
-        },
-        {
-          title: 'Fast vendor access',
-          description:
-            'External vendors join through a simple link and see only the jobs assigned to them.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Real-Time Maintenance from Anywhere',
-        description:
-          'On site or remote, your team works from one live record. Submit jobs on the go, get alerts when tasks are due, and receive photo proof when they are done.',
-        points: [
-          'Works on phones, tablets and desktops',
-          'Photo and video evidence attached to every job',
-          'Status changes visible to the whole team instantly',
-        ],
-      },
-      {
-        title: 'One Experience for Every Role',
-        description:
-          'Each person sees the tools they need, from technician checklists to portfolio dashboards for leadership.',
-        points: [
-          'Role-based views for technicians, supervisors and vendors',
-          'Dashboards and approvals for managers',
-          'Tenant and occupant requests captured with photos',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'How Teams Use Fleet in the Field',
-      description: 'Every visit, inspection and repair is captured where it happens.',
-      items: [
-        'Log a water leak with photos straight from the unit',
-        'Complete a fire door inspection checklist on a tablet',
-        'Approve an urgent repair from a phone between meetings',
-        'Pull up a chiller manual while standing in the plant room',
-        'Share a single job with an external contractor in seconds',
-      ],
     },
   },
   integrations: {
@@ -1368,6 +1302,187 @@ export const overview = {
       'Mixed-use developments',
       'Schools and campuses',
       'Vehicle fleets',
+    ],
+  },
+}
+
+export const webMobile = {
+  hero: {
+    eyebrow: 'Web & Mobile',
+    title: 'Your Operations, on Every Screen',
+    description:
+      'Fleet runs in the browser and on iOS and Android, so managers plan from the desktop while technicians update jobs in real time from the field.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    highlights: ['iOS & Android', 'Works in any browser', 'Real-time sync'],
+  },
+  devices: {
+    url: 'app.runfleet.com',
+    greeting: 'Welcome, John S.',
+    scope: 'Portfolio · 14 locations',
+    stats: [
+      { label: 'Open work orders', value: '128' },
+      { label: 'SLA met', value: '96.4%' },
+      { label: 'Preventive due', value: '37' },
+    ],
+    listTitle: 'Work orders',
+    items: [
+      {
+        title: 'Chiller low pressure alarm',
+        location: 'Harbour Point · Plant room',
+        status: 'Overdue by 2d',
+        tone: 'overdue',
+      },
+      {
+        title: 'HVAC filter replacement',
+        location: 'Tower B · Level 14',
+        status: 'Due in 4h',
+        tone: 'due',
+      },
+      {
+        title: 'Loading bay door repair',
+        location: 'Westport DC · Bay 07',
+        status: 'Completed',
+        tone: 'done',
+      },
+    ] satisfies StatusItem[],
+    phoneTitle: 'Today · 4 tasks',
+    phoneItems: [
+      {
+        title: 'Fire door inspection',
+        location: 'Level 3 · Stair A',
+        status: 'Due in 2h',
+        tone: 'due',
+      },
+      {
+        title: 'Boiler annual service',
+        location: 'Plant room B2',
+        status: 'Scheduled',
+        tone: 'info',
+      },
+    ] satisfies StatusItem[],
+    phoneActions: ['Start', 'Add photo'],
+  },
+  audiences: {
+    eyebrow: 'A platform for everyone',
+    title: 'Streamline Your Maintenance Operations',
+    description:
+      'Fleet connects everyone in your operation, with web and mobile views shaped around the needs of managers, field teams, tenants and vendors.',
+  },
+  rows: [
+    {
+      tag: 'Control',
+      title: 'Full Visibility from Any Screen',
+      description:
+        'Follow every site, team and vendor from the desktop or your phone, with live numbers that update the moment work changes.',
+      points: [
+        'Live dashboards for job volume, SLAs and costs',
+        'Approvals and alerts wherever you are',
+        'The same data on desktop, tablet and phone',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Portfolio at a glance',
+        stats: [
+          { label: 'SLA met', value: '96.4%' },
+          { label: 'Open jobs', value: '128' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 46 },
+          { label: 'Tower B', value: 28 },
+          { label: 'Northgate', value: 19 },
+          { label: 'Bayview', value: 12 },
+          { label: 'Westport', value: 7 },
+        ],
+      },
+    },
+    {
+      tag: 'Assets on site',
+      title: 'Every Asset, One Scan Away',
+      description:
+        'Scan or search an asset to open its manuals, history and open work orders in seconds, right where the work happens.',
+      points: [
+        'Asset details, manuals and history on site',
+        'Inspections recorded with photos and readings',
+        'History updated for the whole team instantly',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Scanned asset',
+        name: 'Chiller CH-02',
+        location: 'Harbour Point · Plant room B2',
+        status: 'Operational',
+        facts: [
+          { label: 'Last service', value: '12 Sep' },
+          { label: 'Warranty', value: 'Mar 2028' },
+          { label: 'Manual', value: 'O&M manual.pdf' },
+          { label: 'Open jobs', value: '1' },
+        ],
+      },
+    },
+    {
+      tag: 'Communication',
+      title: 'Clear Communication with Teams and Tenants',
+      description:
+        'Requests arrive with photos and location, and everyone involved sees progress and replies on the same job.',
+      points: [
+        'Tenants submit requests with photos from any device',
+        'Updates and replies kept on the job history',
+        'Notifications for every assignment and completion',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'Request · Unit 1204',
+        request: {
+          title: 'Air conditioning too warm',
+          location: 'Bayview Residences · Unit 1204',
+          status: 'Assigned',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Tenant',
+            text: 'The living room unit is blowing warm air since this morning.',
+            time: '09:12',
+            own: false,
+          },
+          {
+            from: 'Aisha K.',
+            text: 'Thanks for the photo. I’ll be there at 11:00 to check the unit.',
+            time: '09:20',
+            own: true,
+          },
+          {
+            from: 'Tenant',
+            text: 'Perfect, thank you.',
+            time: '09:21',
+            own: false,
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  field: {
+    eyebrow: 'Built for the field',
+    title: 'Ready for Basements, Plant Rooms and Remote Sites',
+    description:
+      'Fleet stays fast and responsive in low-bandwidth areas, so technicians keep updating jobs, adding photos and closing work wherever they are.',
+  },
+  stories: {
+    eyebrow: 'Customer stories',
+    title: 'Hear It from Property Teams',
+    items: [
+      {
+        quote:
+          'Fleet has cut our reactive maintenance load by nearly 40%. We’ve finally got our technicians, asset logs, and job records in one place.',
+        author: 'Property Ops Lead',
+        company: 'Mixed-Use Development',
+      },
+      {
+        quote:
+          'Other platforms felt too complex or generic. Fleet gave us a purpose-built solution with faster support.',
+        author: 'Director of Maintenance',
+        company: 'Logistics Hub',
+      },
     ],
   },
 }

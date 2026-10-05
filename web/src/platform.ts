@@ -25,3 +25,10 @@ export const detailPages = platformPages.filter(
   (entry): entry is Extract<(typeof platformPages)[number], { id: PlatformDetailId }> =>
     entry.id !== 'overview',
 )
+
+export type TemplatePageId = Exclude<PlatformDetailId, 'webAndMobile'>
+
+export const templatePages = detailPages.filter(
+  (entry): entry is Extract<(typeof detailPages)[number], { id: TemplatePageId }> =>
+    entry.id !== 'webAndMobile',
+)
