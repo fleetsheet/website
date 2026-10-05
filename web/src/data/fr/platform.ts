@@ -1,6 +1,7 @@
 import type { NavLink } from '@/config'
-import type { PlatformPageContent } from '@/data/en/platform'
-import type { PlatformGroup, PlatformPageId } from '@/platform'
+import type { StatusItem } from '@/data/en/home'
+import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type { PlatformDetailId, PlatformGroup } from '@/platform'
 
 export const menu = {
   label: 'Plateforme',
@@ -36,7 +37,7 @@ export const cta = {
   secondaryAction: { label: 'Parler à notre équipe', href: '/contact' },
 }
 
-export const pages: Record<PlatformPageId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
     summary:
@@ -45,84 +46,6 @@ export const pages: Record<PlatformPageId, PlatformPageContent> = {
       title: 'Vue d’ensemble de la plateforme | Fleet',
       description:
         'Fleet est la plateforme tout-en-un de maintenance et d’exploitation pour les équipes immobilières, facility et opérations qui gèrent des équipements sur plusieurs sites.',
-    },
-    eyebrow: 'Vue d’ensemble',
-    title: 'La plateforme de maintenance tout-en-un pour l’immobilier',
-    description:
-      'Fleet est une plateforme cloud conçue pour les équipes immobilières, facility et opérations. D’un centre commercial à des dizaines de résidences, vous gagnez en visibilité et en maîtrise, du bon de travail au reporting.',
-    highlights: ['Déploiement en moins de 7 jours', 'iOS et Android', 'Disponibilité de 99,99 %'],
-    features: {
-      title: 'Tout ce dont votre exploitation multisite a besoin',
-      description:
-        'Chaque module partage le même modèle de données : sites, équipements, personnes et historique restent connectés.',
-      items: [
-        {
-          title: 'Conçu pour l’immobilier',
-          description:
-            'Pensé pour les portefeuilles multisites, les actifs riches en équipements et les équipes qui les font vivre.',
-        },
-        {
-          title: 'Gestion multisite',
-          description:
-            'Définissez des règles par site, nommez des responsables régionaux et consolidez chaque rapport à l’échelle du portefeuille.',
-        },
-        {
-          title: 'Maintenance préventive',
-          description:
-            'Planifiez les tâches récurrentes de CVC, plomberie, sécurité incendie et plus encore pour garder une disponibilité élevée.',
-        },
-        {
-          title: 'Tableaux de bord et KPI sur mesure',
-          description:
-            'Suivez volume d’interventions, délais de réponse, conformité et coûts sur des tableaux de bord en direct pour chaque rôle.',
-        },
-        {
-          title: 'Gestion des prestataires et techniciens',
-          description:
-            'Confiez les interventions à vos équipes internes ou à des prestataires et suivez leur avancement en temps réel.',
-        },
-        {
-          title: 'Support réactif et local',
-          description:
-            'Contactez notre équipe par chat, avec une réponse en moins d’une heure pour la plupart des demandes dans votre région.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Pensé d’abord pour le mobile',
-        description:
-          'Votre équipe travaille sur le terrain, et Fleet l’accompagne. Les techniciens créent des tâches, ajoutent des photos et clôturent les interventions depuis un téléphone ou une tablette.',
-        points: [
-          'Création de tâches, photos et mises à jour depuis le terrain',
-          'Alertes et validations en temps réel pour les techniciens',
-          'Performances fiables dans les zones à faible réseau',
-          'Accès immédiat pour les prestataires avec une prise en main légère',
-        ],
-      },
-      {
-        title: 'Confiance, sécurité et support',
-        description:
-          'Vos données restent protégées et disponibles, avec une équipe réactive qui connaît votre région.',
-        points: [
-          'Contrôle d’accès par rôle et stockage cloud chiffré',
-          'Pistes d’audit complètes pour les interventions et les documents',
-          'Disponibilité de 99,99 % garantie par SLA',
-          'Support en direct avec réponse en moins d’une heure pour la plupart des demandes',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Les équipes qui s’appuient sur Fleet',
-      description:
-        'Les équipes immobilières réduisent jusqu’à 40 % la maintenance corrective, unifient l’activité des techniciens et gagnent une visibilité complète sur les coûts et la conformité.',
-      items: [
-        'Centres commerciaux et portefeuilles retail',
-        'Hôtellerie et restauration',
-        'Transport maritime et plateformes logistiques',
-        'Résidences et copropriétés',
-        'Bureaux et projets à usage mixte',
-      ],
     },
   },
   webAndMobile: {
@@ -1076,5 +999,374 @@ export const pages: Record<PlatformPageId, PlatformPageContent> = {
         'Exporter les journaux pour la revue annuelle de conformité',
       ],
     },
+  },
+}
+
+export const overview = {
+  hero: {
+    eyebrow: 'La plateforme Fleet',
+    title: 'La plateforme de maintenance tout-en-un pour l’immobilier',
+    description:
+      'Gérez interventions, équipements, prestataires, documents et conformité sur chaque site, dans une plateforme cloud conçue pour les équipes immobilières, facility et opérations.',
+    primaryAction: { label: 'Réserver une démo', href: '/contact' },
+    secondaryAction: { label: 'Parler à notre équipe', href: '/contact' },
+  },
+  quote: {
+    text: 'Fleet a réduit notre maintenance corrective de près de 40 %. Nos techniciens, nos registres d’équipements et nos interventions sont enfin réunis au même endroit.',
+    author: 'Responsable exploitation, projet à usage mixte',
+  },
+  learnMore: 'En savoir plus',
+  modules: [
+    {
+      id: 'reactiveMaintenance',
+      tag: 'Maintenance corrective',
+      title: 'Des réparations plus rapides, des locataires satisfaits',
+      description:
+        'Enregistrez chaque incident avec photos et emplacement, confiez-le à la bonne équipe et suivez-le jusqu’à la clôture selon vos SLA.',
+      points: [
+        'Interventions confiées aux équipes internes ou prestataires selon le site et le métier',
+        'Suivi des SLA en direct avec alertes avant échéance',
+        'Mises à jour et preuves photo depuis le terrain',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Bons de travail',
+        items: [
+          {
+            title: 'Fuite d’eau, logement 3B',
+            location: 'Bayview Residences',
+            status: 'En retard de 2 j',
+            tone: 'overdue',
+          },
+          {
+            title: 'Réparation porte de quai',
+            location: 'Westport DC · Quai 07',
+            status: 'Dans 4 h',
+            tone: 'due',
+          },
+          {
+            title: 'Réinitialisation alarme ascenseur',
+            location: 'Tower B · Ascenseurs',
+            status: 'En cours',
+            tone: 'info',
+          },
+          {
+            title: 'Panne d’éclairage, niveau 2',
+            location: 'Northgate Mall',
+            status: 'Terminé',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      id: 'assetManagement',
+      tag: 'Gestion des équipements',
+      title: 'Chaque équipement à portée de main',
+      description:
+        'Un registre numérique en direct de tous les équipements du portefeuille, avec historique, coûts, garanties et documents en un geste.',
+      points: [
+        'Fiches avec marque, modèle, numéro de série et garantie',
+        'Historique et coûts des réparations pour chaque équipement',
+        'Données de cycle de vie pour planifier remplacements et investissements',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Fiche équipement',
+        name: 'Groupe froid CH-02',
+        location: 'Harbour Point · Local technique B2',
+        status: 'En service',
+        facts: [
+          { label: 'Dernier entretien', value: '12 sept.' },
+          { label: 'Garantie', value: 'Mars 2028' },
+          { label: 'Coût annuel', value: '4 210 $' },
+          { label: 'Interventions ouvertes', value: '1' },
+        ],
+      },
+    },
+    {
+      id: 'analyticsReporting',
+      tag: 'Analyses et reporting',
+      title: 'Des données aux décisions',
+      description:
+        'Tableaux de bord en direct et rapports exportables montrent où agir, d’un équipement au portefeuille entier.',
+      points: [
+        'Volume, délais, conformité et coûts en temps réel',
+        'Analyse par bâtiment, équipement, prestataire ou équipe',
+        'Exports prêts pour les audits et les comités',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Dépenses de maintenance par site',
+        stats: [
+          { label: 'SLA respectés', value: '96,4 %' },
+          { label: 'Dépenses annuelles', value: '184 k$' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 82 },
+          { label: 'Tower B', value: 64 },
+          { label: 'Northgate', value: 48 },
+          { label: 'Bayview', value: 36 },
+          { label: 'Westport', value: 22 },
+        ],
+      },
+    },
+  ] satisfies OverviewModule[],
+  darkModules: [
+    {
+      id: 'workflowBuilder',
+      tag: 'Fleet Workflow Builder',
+      title: 'Avancez ensemble avec vos équipes et prestataires',
+      description:
+        'Concevez validations, routage et escalades à l’image de votre organisation, pour que chaque tâche atteigne la bonne personne au bon moment.',
+      points: [
+        'Routage conditionnel par site, type d’équipement ou priorité',
+        'Validations à plusieurs niveaux selon le coût et l’urgence',
+        'Accès immédiat des prestataires via un simple lien',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Workflow',
+        steps: [
+          { kind: 'Déclencheur', text: 'Devis de réparation supérieur à 5 000 $' },
+          { kind: 'Si', text: 'Validé par le responsable régional' },
+          { kind: 'Alors', text: 'Créer une intervention + prévenir le prestataire' },
+        ],
+      },
+    },
+    {
+      id: 'auditTracking',
+      tag: 'Suivi d’audit et inspections',
+      title: 'Prêt pour chaque audit',
+      description:
+        'Journaux horodatés et inspections numériques gardent chaque site conforme et chaque action traçable.',
+      points: [
+        'Chaque action enregistrée automatiquement par utilisateur et rôle',
+        'Check-lists d’inspection numériques avec photos et signatures',
+        'Journaux exportables pour toute période ou type d’équipement',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Journal d’audit',
+        entries: [
+          {
+            when: '09:42',
+            who: 'Aisha K.',
+            what: 'a terminé l’inspection de la porte coupe-feu, escalier A',
+          },
+          { when: '09:15', who: 'Workflow', what: 'a demandé la validation de WO-2291' },
+          { when: '08:58', who: 'Marco L.', what: 'a déposé le certificat ascenseur de Tower B' },
+        ],
+      },
+    },
+    {
+      id: 'preventiveMaintenance',
+      tag: 'Maintenance préventive et prédictive',
+      title: 'Résolvez dès aujourd’hui les problèmes de demain',
+      description:
+        'Plans récurrents et prédictions fondées sur des règles maintiennent les installations en service et aident votre équipe à agir tôt.',
+      points: [
+        'Interventions préventives automatiques pour CVC, plomberie, ascenseurs et incendie',
+        'Alertes prédictives liées à la règle qui les a déclenchées',
+        'Calendrier de conformité avec rappels avant chaque échéance',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Interventions planifiées',
+        items: [
+          {
+            title: 'Remplacement filtres CVC',
+            location: 'Tower B · AHU-07',
+            status: 'Dans 4 h',
+            tone: 'due',
+          },
+          {
+            title: 'Contrôle annuel ascenseurs',
+            location: 'Ascenseurs L1–L3',
+            status: 'Planifié',
+            tone: 'info',
+          },
+          {
+            title: 'Test éclairage de secours',
+            location: 'Northgate Mall',
+            status: 'Terminé',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      id: 'documentManagement',
+      tag: 'Gestion documentaire',
+      title: 'Chaque fichier là où vous en avez besoin',
+      description:
+        'Notices, permis, certificats et contrats restent organisés, liés au travail qu’ils accompagnent et prêts pour l’inspection.',
+      points: [
+        'Documents rattachés aux équipements, interventions, sites et prestataires',
+        'Gestion des versions avec historique complet',
+        'Rappels avant l’expiration des permis et contrats',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'Documents',
+        items: [
+          {
+            title: 'Certificat sécurité incendie.pdf',
+            location: 'Tower B · Permis',
+            status: 'Expire dans 30 j',
+            tone: 'due',
+          },
+          {
+            title: 'Notice CH-02.pdf',
+            location: 'Groupe froid CH-02 · Notice',
+            status: 'Lié',
+            tone: 'info',
+          },
+          {
+            title: 'Inspection ascenseurs T3.pdf',
+            location: 'Ascenseurs · Rapport',
+            status: 'Vérifié',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ] satisfies OverviewModule[],
+  extend: {
+    title: 'Étendez Fleet à votre façon',
+    description:
+      'Connectez vos outils existants et mettez l’IA et l’e-mail au service de toute votre exploitation.',
+    items: [
+      {
+        id: 'integrations',
+        title: '20+ intégrations',
+        description:
+          'Connectez finance, ERP, contrôle d’accès, portails locataires et systèmes du bâtiment via des intégrations prêtes et une API REST.',
+        action: 'Voir les intégrations',
+      },
+      {
+        id: 'runnerAi',
+        title: 'RunnerAI',
+        description:
+          'Créez workflows et tableaux de bord en langage naturel, sur des serveurs sécurisés et cloisonnés.',
+        action: 'Découvrir RunnerAI',
+      },
+      {
+        id: 'fleetMail',
+        title: 'Fleet Mail',
+        description:
+          'Transformez les e-mails reçus en bons de travail suivis et informez équipes et prestataires par e-mail.',
+        action: 'Explorer Fleet Mail',
+      },
+    ] satisfies { id: PlatformDetailId; title: string; description: string; action: string }[],
+  },
+  audiences: {
+    eyebrow: 'Web et mobile',
+    title: 'Une plateforme pour tous',
+    description:
+      'Fleet fonctionne sur ordinateur, tablette et smartphone, avec des applications iOS et Android, et donne à chacun la bonne vue sur les mêmes données en direct.',
+    action: { label: 'Découvrir le web et mobile', href: '/platform/web-and-mobile' },
+    items: [
+      {
+        title: 'Pour les responsables',
+        description:
+          'Planifiez, validez les coûts et suivez chaque site sur des tableaux de bord en direct.',
+        screen: 'Portefeuille · 14 sites',
+        tasks: [
+          {
+            title: 'Valider un devis',
+            location: 'Harbour Point',
+            status: 'Aujourd’hui',
+            tone: 'due',
+          },
+          {
+            title: 'Rapport SLA, septembre',
+            location: 'Toutes régions',
+            status: 'Prêt',
+            tone: 'done',
+          },
+        ],
+      },
+      {
+        title: 'Pour les équipes terrain',
+        description:
+          'Démarrez, mettez à jour et clôturez les interventions avec photos, check-lists et signatures.',
+        screen: 'Aujourd’hui · 4 tâches',
+        tasks: [
+          {
+            title: 'Inspection porte coupe-feu',
+            location: 'Niveau 3 · Escalier A',
+            status: 'Dans 2 h',
+            tone: 'due',
+          },
+          {
+            title: 'Entretien annuel chaudière',
+            location: 'Local technique B2',
+            status: 'Planifié',
+            tone: 'info',
+          },
+        ],
+      },
+      {
+        title: 'Pour les locataires et prestataires',
+        description:
+          'Envoyez des demandes avec photos, recevez des nouvelles et consultez vos interventions via un simple lien.',
+        screen: 'Mes demandes',
+        tasks: [
+          {
+            title: 'Climatisation trop chaude',
+            location: 'Logement 1204',
+            status: 'Affecté',
+            tone: 'info',
+          },
+          {
+            title: 'Fuite robinet cuisine',
+            location: 'Logement 1204',
+            status: 'Résolu',
+            tone: 'done',
+          },
+        ],
+      },
+    ] satisfies { title: string; description: string; screen: string; tasks: StatusItem[] }[],
+  },
+  why: {
+    eyebrow: 'Pourquoi Fleet',
+    title: 'Conçu pour l’immobilier, porté par une équipe',
+    description:
+      'Fleet est pensé pour les équipes immobilières multisites, avec un déploiement rapide, une tarification transparente à l’usage et un support qui connaît votre région.',
+    stats: [
+      { value: 'Jusqu’à 40 %', label: 'de maintenance corrective en moins' },
+      { value: 'Moins de 7 jours', label: 'pour embarquer votre équipe' },
+      { value: '99,99 %', label: 'de disponibilité garantie par SLA' },
+    ],
+    points: [
+      {
+        title: 'Pensé pour le multisite',
+        description: 'Règles, rapports et droits définis par site, région ou portefeuille.',
+      },
+      {
+        title: 'Sécurisé dès la conception',
+        description: 'Accès par rôle, stockage chiffré et pistes d’audit complètes.',
+      },
+      {
+        title: 'Support réactif et local',
+        description:
+          'Échangez avec notre équipe par chat, avec une réponse en moins d’une heure pour la plupart des demandes.',
+      },
+    ],
+  },
+  industries: {
+    eyebrow: 'Secteurs',
+    title: 'Une solution pour chaque type d’actif',
+    items: [
+      'Centres commerciaux et retail',
+      'Hôtellerie et restauration',
+      'Transport maritime et logistique',
+      'Résidences',
+      'Bureaux',
+      'Projets à usage mixte',
+      'Écoles et campus',
+      'Flottes de véhicules',
+    ],
   },
 }

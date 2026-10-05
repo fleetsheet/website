@@ -1,15 +1,19 @@
 import type { NavLink } from '@/config'
-import type { PlatformGroup, PlatformPageId } from '@/platform'
+import type { StatusItem } from '@/data/en/home'
+import type { PlatformDetailId, PlatformGroup } from '@/platform'
 
 export type PlatformItem = {
   title: string
   description: string
 }
 
-export type PlatformPageContent = {
+export type PlatformEntry = {
   label: string
   summary: string
   meta: { title: string; description: string }
+}
+
+export type PlatformPageContent = PlatformEntry & {
   eyebrow: string
   title: string
   description: string
@@ -17,6 +21,35 @@ export type PlatformPageContent = {
   features: { title: string; description: string; items: PlatformItem[] }
   details: (PlatformItem & { points: string[] })[]
   useCases: { title: string; description: string; items: string[] }
+}
+
+export type OverviewVisual =
+  | { kind: 'jobs'; title: string; items: StatusItem[] }
+  | { kind: 'files'; title: string; items: StatusItem[] }
+  | {
+      kind: 'asset'
+      title: string
+      name: string
+      location: string
+      status: string
+      facts: { label: string; value: string }[]
+    }
+  | {
+      kind: 'chart'
+      title: string
+      stats: { label: string; value: string }[]
+      bars: { label: string; value: number }[]
+    }
+  | { kind: 'steps'; title: string; steps: { kind: string; text: string }[] }
+  | { kind: 'log'; title: string; entries: { when: string; who: string; what: string }[] }
+
+export type OverviewModule = {
+  id: PlatformDetailId
+  tag: string
+  title: string
+  description: string
+  points: string[]
+  visual: OverviewVisual
 }
 
 export const menu = {
@@ -53,7 +86,7 @@ export const cta = {
   secondaryAction: { label: 'Talk to our team', href: '/contact' },
 }
 
-export const pages: Record<PlatformPageId, PlatformPageContent> = {
+export const pages: { overview: PlatformEntry } & Record<PlatformDetailId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
     summary: 'One platform for maintenance, assets and operations across every site.',
@@ -61,84 +94,6 @@ export const pages: Record<PlatformPageId, PlatformPageContent> = {
       title: 'Platform Overview | Fleet',
       description:
         'Fleet is the all-in-one maintenance and operations platform for real estate, facility and operations teams managing assets across multiple properties.',
-    },
-    eyebrow: 'Platform overview',
-    title: 'All-in-One Maintenance Platform for Real Estate Teams',
-    description:
-      'Fleet is a cloud-based platform purpose-built for real estate, facility and operations teams. From a single mall to dozens of residential blocks, it gives you full visibility and control, from work orders to reporting.',
-    highlights: ['Onboarding in under 7 days', 'iOS & Android', '99.99% uptime'],
-    features: {
-      title: 'Everything Your Multi-Site Operation Runs On',
-      description:
-        'Each module shares the same data model, so locations, assets, people and history stay connected.',
-      items: [
-        {
-          title: 'Built for real estate teams',
-          description:
-            'Designed around multi-site portfolios, asset-heavy properties and the people who keep them running.',
-        },
-        {
-          title: 'Multi-site management',
-          description:
-            'Set rules by property, assign regional supervisors and roll every report up to the portfolio.',
-        },
-        {
-          title: 'Preventive maintenance',
-          description:
-            'Schedule recurring tasks for HVAC, plumbing, fire safety and more, and keep uptime high.',
-        },
-        {
-          title: 'Custom dashboards and KPIs',
-          description:
-            'Track job volume, response times, compliance and costs on live dashboards for every role.',
-        },
-        {
-          title: 'Vendor and technician management',
-          description:
-            'Route jobs to in-house teams or external vendors and follow progress in real time.',
-        },
-        {
-          title: 'Live, localized support',
-          description:
-            'Reach our team by live chat, with most tickets answered within the hour in your region.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Mobile-First by Design',
-        description:
-          'Your team works on site, and Fleet goes with them. Technicians create tasks, upload photos and close jobs from any phone or tablet.',
-        points: [
-          'Task creation, photo uploads and updates from the field',
-          'Real-time technician alerts and approvals',
-          'Reliable performance in low-bandwidth areas',
-          'Instant vendor access with a light onboarding',
-        ],
-      },
-      {
-        title: 'Trust, Security and Support',
-        description:
-          'Your data stays protected and available, backed by a team that responds quickly and knows your region.',
-        points: [
-          'Role-based access control and encrypted cloud storage',
-          'Full job and document audit trails',
-          '99.99% uptime with SLA-backed reliability',
-          'Live support with responses within one hour for most tickets',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Teams That Run on Fleet',
-      description:
-        'Property teams use Fleet to cut reactive maintenance by up to 40%, unify technician activity and gain full visibility into cost and compliance.',
-      items: [
-        'Shopping malls and retail portfolios',
-        'Hospitality and F&B operations',
-        'Shipping and logistics hubs',
-        'Residential communities',
-        'Commercial offices and mixed-use developments',
-      ],
     },
   },
   webAndMobile: {
@@ -1058,5 +1013,361 @@ export const pages: Record<PlatformPageId, PlatformPageContent> = {
         'Export logs for annual compliance reviews',
       ],
     },
+  },
+}
+
+export const overview = {
+  hero: {
+    eyebrow: 'The Fleet Platform',
+    title: 'All-in-One Maintenance Platform for Real Estate Teams',
+    description:
+      'Manage work orders, assets, vendors, documents and compliance across every property, in one cloud-based platform built for real estate, facility and operations teams.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    secondaryAction: { label: 'Talk to our team', href: '/contact' },
+  },
+  quote: {
+    text: 'Fleet has cut our reactive maintenance load by nearly 40%. We’ve finally got our technicians, asset logs, and job records in one place.',
+    author: 'Property Ops Lead, Mixed-Use Development',
+  },
+  learnMore: 'Learn more',
+  modules: [
+    {
+      id: 'reactiveMaintenance',
+      tag: 'Reactive Maintenance',
+      title: 'Faster Repairs, Happier Tenants',
+      description:
+        'Capture every issue with photos and location, route it to the right team and track it to completion against your SLAs.',
+      points: [
+        'Route jobs to in-house teams or vendors by site and trade',
+        'Live SLA tracking with alerts before deadlines pass',
+        'Real-time updates and photo proof from the field',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Work orders',
+        items: [
+          {
+            title: 'Water leak, Unit 3B',
+            location: 'Bayview Residences',
+            status: 'Overdue by 2d',
+            tone: 'overdue',
+          },
+          {
+            title: 'Loading bay door repair',
+            location: 'Westport DC · Bay 07',
+            status: 'Due in 4h',
+            tone: 'due',
+          },
+          {
+            title: 'Lift alarm reset',
+            location: 'Tower B · Core lifts',
+            status: 'In progress',
+            tone: 'info',
+          },
+          {
+            title: 'Lighting fault, Level 2',
+            location: 'Northgate Mall',
+            status: 'Completed',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      id: 'assetManagement',
+      tag: 'Asset Management',
+      title: 'Every Asset at Your Fingertips',
+      description:
+        'A live digital register of every asset across your portfolio, with history, costs, warranties and documents one tap away.',
+      points: [
+        'Digital profiles with make, model, serial number and warranty',
+        'Repair history and costs for every asset',
+        'Lifecycle insights to plan replacements and capital spend',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Asset profile',
+        name: 'Chiller CH-02',
+        location: 'Harbour Point · Plant room B2',
+        status: 'Operational',
+        facts: [
+          { label: 'Last service', value: '12 Sep' },
+          { label: 'Warranty', value: 'Mar 2028' },
+          { label: 'Cost YTD', value: '$4,210' },
+          { label: 'Open jobs', value: '1' },
+        ],
+      },
+    },
+    {
+      id: 'analyticsReporting',
+      tag: 'Analytics and Reporting',
+      title: 'Turn Data into Decisions',
+      description:
+        'Live dashboards and exportable reports show where to focus, from a single asset to the whole portfolio.',
+      points: [
+        'Job volume, response times, compliance and costs in real time',
+        'Drill down by building, asset, vendor or team',
+        'Exports ready for audits and board reviews',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Maintenance spend by site',
+        stats: [
+          { label: 'SLA met', value: '96.4%' },
+          { label: 'Spend YTD', value: '$184k' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 82 },
+          { label: 'Tower B', value: 64 },
+          { label: 'Northgate', value: 48 },
+          { label: 'Bayview', value: 36 },
+          { label: 'Westport', value: 22 },
+        ],
+      },
+    },
+  ] satisfies OverviewModule[],
+  darkModules: [
+    {
+      id: 'workflowBuilder',
+      tag: 'Fleet Workflow Builder',
+      title: 'Work as One with Your Teams and Vendors',
+      description:
+        'Design approvals, routing and escalations that match how you operate, so every task reaches the right person at the right time.',
+      points: [
+        'Conditional routing by site, asset type or priority',
+        'Multi-step approvals based on cost and urgency',
+        'Instant vendor access through a simple link',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Workflow',
+        steps: [
+          { kind: 'Trigger', text: 'Repair quote above $5,000' },
+          { kind: 'If', text: 'Approved by regional manager' },
+          { kind: 'Then', text: 'Create a work order + notify vendor' },
+        ],
+      },
+    },
+    {
+      id: 'auditTracking',
+      tag: 'Audit Tracking & Inspections',
+      title: 'Ready for Every Audit',
+      description:
+        'Time-stamped records and digital inspections keep every site compliant and every action accountable.',
+      points: [
+        'Every action logged automatically by user and role',
+        'Digital inspection checklists with photos and signatures',
+        'Exportable logs for any time frame or asset type',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Audit log',
+        entries: [
+          { when: '09:42', who: 'Aisha K.', what: 'completed fire door inspection, Stair A' },
+          { when: '09:15', who: 'Workflow', what: 'requested approval for WO-2291' },
+          { when: '08:58', who: 'Marco L.', what: 'uploaded lift certificate to Tower B' },
+        ],
+      },
+    },
+    {
+      id: 'preventiveMaintenance',
+      tag: 'Preventive & Predictive Maintenance',
+      title: 'Solve Tomorrow’s Problems Today',
+      description:
+        'Recurring schedules and rule-based predictions keep equipment running and help your team act early.',
+      points: [
+        'Automatic PPM jobs for HVAC, plumbing, lifts and fire safety',
+        'Predictive alerts linked to the rule that triggered them',
+        'Compliance calendar with reminders before every due date',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Planned jobs',
+        items: [
+          {
+            title: 'HVAC filter replacement',
+            location: 'Tower B · AHU-07',
+            status: 'Due in 4h',
+            tone: 'due',
+          },
+          {
+            title: 'Lift annual certification',
+            location: 'Core lifts L1–L3',
+            status: 'Scheduled',
+            tone: 'info',
+          },
+          {
+            title: 'Emergency lighting test',
+            location: 'Northgate Mall',
+            status: 'Completed',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      id: 'documentManagement',
+      tag: 'Document Management',
+      title: 'Every File Where You Need It',
+      description:
+        'Manuals, permits, certificates and contracts stay organized, linked to the work they support and ready for inspection.',
+      points: [
+        'Documents attached to assets, jobs, locations and vendors',
+        'Version control with a full edit history',
+        'Expiry reminders for permits and contracts',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'Documents',
+        items: [
+          {
+            title: 'Fire safety certificate.pdf',
+            location: 'Tower B · Permit',
+            status: 'Expires in 30d',
+            tone: 'due',
+          },
+          {
+            title: 'CH-02 O&M manual.pdf',
+            location: 'Chiller CH-02 · Manual',
+            status: 'Linked',
+            tone: 'info',
+          },
+          {
+            title: 'Q3 lift inspection.pdf',
+            location: 'Core lifts · Report',
+            status: 'Verified',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ] satisfies OverviewModule[],
+  extend: {
+    title: 'Extend Fleet Your Way',
+    description: 'Connect your existing tools and put AI and email to work across your operations.',
+    items: [
+      {
+        id: 'integrations',
+        title: '20+ integrations',
+        description:
+          'Connect finance, ERP, access control, tenant portals and building systems through ready integrations and a REST API.',
+        action: 'View integrations',
+      },
+      {
+        id: 'runnerAi',
+        title: 'RunnerAI',
+        description:
+          'Create workflows and dashboards from plain-language commands, on secure, ring-fenced servers.',
+        action: 'Meet RunnerAI',
+      },
+      {
+        id: 'fleetMail',
+        title: 'Fleet Mail',
+        description:
+          'Turn incoming emails into tracked work orders and keep staff and vendors updated by email.',
+        action: 'Explore Fleet Mail',
+      },
+    ] satisfies { id: PlatformDetailId; title: string; description: string; action: string }[],
+  },
+  audiences: {
+    eyebrow: 'Web & Mobile',
+    title: 'A Platform for Everyone',
+    description:
+      'Fleet works on desktop, tablet and phone, with iOS and Android apps, giving every person the right view of the same live data.',
+    action: { label: 'Explore Web & Mobile', href: '/platform/web-and-mobile' },
+    items: [
+      {
+        title: 'For managers',
+        description: 'Plan schedules, approve costs and follow every site from live dashboards.',
+        screen: 'Portfolio · 14 locations',
+        tasks: [
+          {
+            title: 'Approve repair quote',
+            location: 'Harbour Point',
+            status: 'Due today',
+            tone: 'due',
+          },
+          {
+            title: 'SLA report, September',
+            location: 'All regions',
+            status: 'Ready',
+            tone: 'done',
+          },
+        ],
+      },
+      {
+        title: 'For field teams',
+        description: 'Start, update and close jobs on site with photos, checklists and signatures.',
+        screen: 'Today · 4 tasks',
+        tasks: [
+          {
+            title: 'Fire door inspection',
+            location: 'Level 3 · Stair A',
+            status: 'Due in 2h',
+            tone: 'due',
+          },
+          {
+            title: 'Boiler annual service',
+            location: 'Plant room B2',
+            status: 'Scheduled',
+            tone: 'info',
+          },
+        ],
+      },
+      {
+        title: 'For tenants and vendors',
+        description:
+          'Submit requests with photos, receive updates and see assigned jobs through a simple link.',
+        screen: 'My requests',
+        tasks: [
+          {
+            title: 'Air conditioning too warm',
+            location: 'Unit 1204',
+            status: 'Assigned',
+            tone: 'info',
+          },
+          { title: 'Kitchen tap leak', location: 'Unit 1204', status: 'Resolved', tone: 'done' },
+        ],
+      },
+    ] satisfies { title: string; description: string; screen: string; tasks: StatusItem[] }[],
+  },
+  why: {
+    eyebrow: 'Why Fleet',
+    title: 'Built for Real Estate, Backed by People',
+    description:
+      'Fleet is purpose-built for multi-site real estate teams, with fast onboarding, transparent usage-based pricing and support that knows your region.',
+    stats: [
+      { value: 'Up to 40%', label: 'less reactive maintenance' },
+      { value: 'Under 7 days', label: 'to onboard your team' },
+      { value: '99.99%', label: 'uptime, backed by SLA' },
+    ],
+    points: [
+      {
+        title: 'Built for multi-site teams',
+        description: 'Rules, reports and permissions set by property, region or portfolio.',
+      },
+      {
+        title: 'Secure by design',
+        description: 'Role-based access, encrypted storage and full audit trails.',
+      },
+      {
+        title: 'Live, localized support',
+        description: 'Chat with our team, with most tickets answered within the hour.',
+      },
+    ],
+  },
+  industries: {
+    eyebrow: 'Industries',
+    title: 'A Solution for Every Property Type',
+    items: [
+      'Shopping malls and retail',
+      'Hospitality and F&B',
+      'Shipping and logistics',
+      'Residential communities',
+      'Commercial offices',
+      'Mixed-use developments',
+      'Schools and campuses',
+      'Vehicle fleets',
+    ],
   },
 }

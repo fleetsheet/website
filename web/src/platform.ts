@@ -18,3 +18,10 @@ export const platformPages = [
 ] as const satisfies readonly { id: string; group: PlatformGroup; href: string }[]
 
 export type PlatformPageId = (typeof platformPages)[number]['id']
+
+export type PlatformDetailId = Exclude<PlatformPageId, 'overview'>
+
+export const detailPages = platformPages.filter(
+  (entry): entry is Extract<(typeof platformPages)[number], { id: PlatformDetailId }> =>
+    entry.id !== 'overview',
+)

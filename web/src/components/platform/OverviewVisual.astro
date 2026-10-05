@@ -1,0 +1,132 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import type { OverviewVisual } from '@/data/en/platform'
+import Box from '@lucide/astro/icons/box'
+import FileText from '@lucide/astro/icons/file-text'
+
+type Props = {
+  visual: OverviewVisual
+}
+
+const { visual } = Astro.props
+
+const stepStyles = [
+  'bg-columbia-blue text-azul-blue',
+  'bg-cream-peach text-cream-peach-foreground',
+  'bg-rich-blue text-alice-blue',
+]
+const maxBar = visual.kind === 'chart' ? Math.max(...visual.bars.map((bar) => bar.value)) : 1
+---
+
+<div aria-hidden="true">
+  <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
+    <div class="border-border flex items-center gap-2 border-b px-4 py-3">
+      <span class="bg-border size-2.5 rounded-full"></span>
+      <span class="bg-border size-2.5 rounded-full"></span>
+      <span class="bg-border size-2.5 rounded-full"></span>
+      <p class="font-display ms-2 text-sm font-semibold">{visual.title}</p>
+    </div>
+    <div class="p-4">
+      {(visual.kind === 'jobs' || visual.kind === 'files') && (
+        <ul class="flex flex-col gap-2">
+          {visual.items.map((item) => (
+            <li class="border-border flex items-center gap-3 rounded-lg border p-3 text-[13px]">
+              {visual.kind === 'files' && (
+                <FileText class="text-celestial-blue size-[18px] shrink-0" />
+              )}
+              <div class="min-w-0 flex-1">
+                <p class="truncate font-semibold">{item.title}</p>
+                {item.location && <p class="text-muted truncate text-xs">{item.location}</p>}
+              </div>
+              <Badge tone={item.tone}>{item.status}</Badge>
+            </li>
+          ))}
+        </ul>
+      )}
+      {visual.kind === 'asset' && (
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <IconChip size="lg">
+              <Box />
+            </IconChip>
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-bold">{visual.name}</p>
+              <p class="text-muted text-xs">{visual.location}</p>
+            </div>
+            <Badge tone="done">{visual.status}</Badge>
+          </div>
+          <dl class="grid grid-cols-2 gap-2 text-xs">
+            {visual.facts.map((fact) => (
+              <div class="bg-page rounded-md p-3">
+                <dt class="text-muted">{fact.label}</dt>
+                <dd class="mt-0.5 text-sm font-bold">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
+      {visual.kind === 'chart' && (
+        <div class="flex flex-col gap-4">
+          <dl class="grid grid-cols-2 gap-2">
+            {visual.stats.map((stat) => (
+              <div class="bg-page rounded-md p-3">
+                <dt class="text-muted text-xs">{stat.label}</dt>
+                <dd class="font-display mt-0.5 text-xl font-semibold">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <ul class="flex flex-col gap-2.5">
+            {visual.bars.map((bar, index) => (
+              <li class="grid grid-cols-[96px_1fr] items-center gap-3 text-xs">
+                <span class="text-azul-blue truncate">{bar.label}</span>
+                <span class="bg-page h-2.5 overflow-hidden rounded-full">
+                  <span
+                    class:list={[
+                      'block h-full rounded-full',
+                      index === 0 ? 'bg-rich-blue' : 'bg-celestial-blue',
+                    ]}
+                    style={`width: ${Math.round((bar.value / maxBar) * 100)}%`}
+                  />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {visual.kind === 'steps' && (
+        <div class="flex flex-col">
+          {visual.steps.map((step, index) => (
+            <div class="flex flex-col items-start">
+              <div class="bg-surface border-border flex w-full items-center gap-2.5 rounded-md border px-3 py-2.5 text-[13px] shadow-xs">
+                <span
+                  class:list={[
+                    'rounded-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.04em] uppercase',
+                    stepStyles[index % stepStyles.length],
+                  ]}
+                >
+                  {step.kind}
+                </span>
+                <span class="font-semibold">{step.text}</span>
+              </div>
+              {index < visual.steps.length - 1 && <div class="bg-uranian-blue ms-6 h-3.5 w-0.5" />}
+            </div>
+          ))}
+        </div>
+      )}
+      {visual.kind === 'log' && (
+        <ul class="flex flex-col gap-3.5">
+          {visual.entries.map((entry) => (
+            <li class="flex gap-2.5 text-[13px] leading-[1.4]">
+              <span class="text-muted w-10 shrink-0 pt-px font-mono text-[11px]">{entry.when}</span>
+              <p class="flex-1">
+                <span class="font-bold">{entry.who}</span> {entry.what}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </MockPanel>
+</div>
