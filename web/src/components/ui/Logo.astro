@@ -1,34 +1,49 @@
 ---
 import logo from '@/assets/brand/fleet-logo-dark-bg.png'
+import wordmark from '@/assets/brand/fleet-logo-wordmark.png'
 import { websiteConfig } from '@/config'
 import { Image } from 'astro:assets'
 
 type Props = {
   size?: 'sm' | 'md' | 'lg'
   tone?: 'dark' | 'light'
+  variant?: 'badge' | 'wordmark'
   class?: string
 }
 
-const { size = 'md', tone = 'dark', class: className } = Astro.props
+const { size = 'md', tone = 'dark', variant = 'badge', class: className } = Astro.props
 
 const iconSize = { sm: 24, md: 28, lg: 32 }[size]
+const wordmarkWidth = Math.round((iconSize * wordmark.width) / wordmark.height)
 ---
 
-<span class:list={['inline-flex items-center gap-2.5', className]}>
+{variant === 'wordmark' ? (
   <Image
-    src={logo}
-    alt=""
-    width={iconSize}
+    src={wordmark}
+    alt={websiteConfig.name}
+    width={wordmarkWidth}
     height={iconSize}
-    class:list={[size === 'sm' ? 'rounded-md' : 'rounded-lg', 'block']}
+    densities={[1, 2, 3]}
+    loading="eager"
+    class:list={['block', className]}
   />
-  <span
-    class:list={[
-      'font-display font-semibold tracking-[-0.02em]',
-      { 'text-[15px]': size === 'sm', 'text-lg': size === 'md', 'text-xl': size === 'lg' },
-      tone === 'dark' ? 'text-rich-blue' : 'text-alice-blue',
-    ]}
-  >
-    {websiteConfig.name}
+) : (
+  <span class:list={['inline-flex items-center gap-2.5', className]}>
+    <Image
+      src={logo}
+      alt=""
+      width={iconSize}
+      height={iconSize}
+      class:list={[size === 'sm' ? 'rounded-md' : 'rounded-lg', 'block']}
+    />
+    <span
+      class:list={[
+        'font-display font-semibold tracking-[-0.02em]',
+        { 'text-[15px]': size === 'sm', 'text-lg': size === 'md', 'text-xl': size === 'lg' },
+        tone === 'dark' ? 'text-rich-blue' : 'text-alice-blue',
+      ]}
+    >
+      {websiteConfig.name}
+    </span>
   </span>
-</span>
+)}
