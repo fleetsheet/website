@@ -119,6 +119,7 @@ export const pages: {
   integrations: PlatformEntry
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
+  workflowBuilder: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -172,80 +173,6 @@ export const pages: {
       title: 'Fleet Workflow Builder | Fleet',
       description:
         'Shape maintenance operations around your structure, approval chains, vendor policies and cost thresholds with Fleet’s visual workflow builder.',
-    },
-    eyebrow: 'Fleet Workflow Builder',
-    title: 'Workflows That Adapt to How You Operate',
-    description:
-      'Shape your maintenance operations around your structure, approval chains, vendor policies and cost thresholds with a visual builder anyone on your team can use.',
-    highlights: ['Visual builder', 'Multi-step approvals', 'Live in your first week'],
-    features: {
-      title: 'Build Once, Run It Everywhere',
-      description:
-        'You define the process and Fleet follows it, so tasks reach the right people at the right time.',
-      items: [
-        {
-          title: 'Conditional task routing',
-          description:
-            'Assign jobs by location, type, priority or asset category, such as lifts to a set vendor.',
-        },
-        {
-          title: 'Multi-step approvals',
-          description:
-            'Require management or finance sign-off based on job cost, urgency or scope.',
-        },
-        {
-          title: 'Role-based responsibilities',
-          description:
-            'Define who can view, approve, assign or close tasks for technicians, supervisors and vendors.',
-        },
-        {
-          title: 'Notifications and escalations',
-          description:
-            'Alert teams automatically when deadlines approach or a job is waiting for assignment.',
-        },
-        {
-          title: 'Location-specific workflows',
-          description: 'Tailor each building or region to its own standard operating procedures.',
-        },
-        {
-          title: 'Connected to every module',
-          description:
-            'Workflows act on your documents, assets, permissions and vendors in one system.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Simple to Set Up, Powerful in Action',
-        description:
-          'Drag, drop and publish. Our onboarding team helps you map your workflows to Fleet in your first week.',
-        points: [
-          'Visual builder designed for operations teams',
-          'Ready-made templates for common processes',
-          'Test changes before rolling them out',
-        ],
-      },
-      {
-        title: 'Consistency, Efficiency and Insight',
-        description:
-          'Every job follows the same steps, which keeps operations accurate and makes reporting cleaner.',
-        points: [
-          'Compliance steps such as document checks enforced automatically',
-          'Fewer manual handovers from job creation to closeout',
-          'Structured data for more actionable reports',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Workflows Teams Build',
-      description: 'Common workflows property teams set up in their first month.',
-      items: [
-        'Send plumbing jobs to a vendor in Building A and in-house staff in Building B',
-        'Require supervisor approval for any job over $5,000',
-        'Route preventive jobs to dedicated staff and reactive jobs to general teams',
-        'Alert regional managers as SLA deadlines approach',
-        'Run a tenant move-in flow with inspection, asset checks and documents',
-      ],
     },
   },
   preventiveMaintenance: {
@@ -1957,5 +1884,114 @@ export const fleetMailPage = {
     description:
       'Fleet Mail works alongside Fleet’s 20+ integrations, including tenant portals, finance tools and building systems.',
     action: { label: 'See all integrations', href: '/platform/integrations' },
+  },
+}
+
+export const workflowBuilderPage = {
+  hero: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Workflows That Adapt to How You Operate',
+    description:
+      'Shape your maintenance operations around your structure, approval chains, vendor policies and cost thresholds with a visual builder anyone on your team can use.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    highlights: ['Visual builder', 'Multi-step approvals', 'Live in your first week'],
+  },
+  build: {
+    eyebrow: 'Fleet Workflow Builder',
+    title: 'Build Your Own Fleet',
+    description:
+      'You define the process and Fleet follows it, so tasks reach the right people at the right time, every time.',
+    helpTitle: 'We Help You Map Every Process',
+    helpDescription:
+      'Our onboarding team works with you to map your approvals, routing and escalations into Fleet during your first week.',
+    action: { label: 'Talk to our team', href: '/contact' },
+    center: 'Workflow',
+    nodes: ['Approvals', 'Routing', 'Escalations', 'Notifications', 'Roles', 'Sites'],
+  },
+  panels: {
+    blocks: {
+      title: 'Every Building Block in One Place',
+      description:
+        'Combine triggers, conditions and actions to match your standard operating procedures across every site.',
+      panelTitle: 'Workflow building blocks',
+      status: 'Added',
+      items: [
+        {
+          title: 'Trigger',
+          description: 'New request, cost above threshold or deadline approaching',
+        },
+        { title: 'Condition', description: 'Site, asset type, priority, vendor or cost' },
+        { title: 'Approval', description: 'Supervisor, manager or finance sign-off' },
+        { title: 'Action', description: 'Assign, notify, escalate or create a work order' },
+      ],
+    },
+    integrations: {
+      title: 'Integration Is Key',
+      description:
+        'Workflows act on your documents, assets, permissions and vendors, and connect to finance, building and tenant systems.',
+      panelTitle: 'Connected to your workflows',
+      action: { label: 'View integrations', href: '/platform/integrations' },
+      items: [
+        {
+          title: 'Accounting software',
+          location: 'Approved costs sync automatically',
+          status: 'Connected',
+          tone: 'done',
+        },
+        {
+          title: 'Building management system',
+          location: 'Alarms trigger workflows',
+          status: 'Connected',
+          tone: 'done',
+        },
+        { title: 'Fleet Mail', location: 'Approvals by email', status: 'Connected', tone: 'done' },
+      ] satisfies StatusItem[],
+    },
+  },
+  templates: {
+    title: 'All Your Processes in a Single Platform',
+    description:
+      'Start from ready-made workflows for common processes, then adapt each one to your sites, roles and thresholds.',
+    tag: 'Template',
+    items: [
+      { title: 'Cost approval over $5,000', description: 'Supervisor sign-off before scheduling' },
+      {
+        title: 'Vendor routing by building',
+        description: 'Plumbing to vendors in Building A, in-house in Building B',
+      },
+      {
+        title: 'Preventive and reactive split',
+        description: 'PPM to dedicated staff, reactive to general teams',
+      },
+      {
+        title: 'SLA deadline alerts',
+        description: 'Regional managers alerted as deadlines approach',
+      },
+      { title: 'Tenant move-in', description: 'Inspection, asset checks and documents' },
+      {
+        title: 'Compliance document check',
+        description: 'Required documents attached before closing',
+      },
+    ],
+  },
+  benefits: {
+    learnMore: 'Learn more',
+    items: [
+      {
+        href: '/features/audit-tracking',
+        title: 'Consistency',
+        description: 'Every job follows the same steps, keeping operations accurate and compliant.',
+      },
+      {
+        href: '/features/reactive-maintenance',
+        title: 'Efficiency',
+        description: 'Repeatable logic reduces manual handovers from job creation to closeout.',
+      },
+      {
+        href: '/features/analytics-and-reporting',
+        title: 'Insights',
+        description: 'Structured workflows produce cleaner data and more actionable reports.',
+      },
+    ],
   },
 }

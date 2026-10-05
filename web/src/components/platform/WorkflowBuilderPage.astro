@@ -1,0 +1,236 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Bell from '@lucide/astro/icons/bell'
+import ChartColumn from '@lucide/astro/icons/chart-column'
+import Check from '@lucide/astro/icons/check'
+import CircleCheck from '@lucide/astro/icons/circle-check'
+import GitBranch from '@lucide/astro/icons/git-branch'
+import Layers from '@lucide/astro/icons/layers'
+import MapPin from '@lucide/astro/icons/map-pin'
+import Plug from '@lucide/astro/icons/plug'
+import Quote from '@lucide/astro/icons/quote'
+import Route from '@lucide/astro/icons/route'
+import Siren from '@lucide/astro/icons/siren'
+import Users from '@lucide/astro/icons/users'
+import Workflow from '@lucide/astro/icons/workflow'
+import Zap from '@lucide/astro/icons/zap'
+
+const locale = getLocale(Astro.url)
+const { workflowBuilderPage, webMobile, cta } = getContent(locale).platform
+const { hero, build, panels, templates, benefits } = workflowBuilderPage
+const { stories } = webMobile
+const nodeIcons = [CircleCheck, Route, Siren, Bell, Users, MapPin]
+const orbit = build.nodes.map((label, index) => {
+  const angle = (index / build.nodes.length) * Math.PI * 2 - Math.PI / 2
+  return {
+    label,
+    Icon: nodeIcons[index % nodeIcons.length],
+    style: `left: ${50 + 40 * Math.cos(angle)}%; top: ${50 + 40 * Math.sin(angle)}%`,
+  }
+})
+const blockIcons = [Zap, GitBranch, CircleCheck, Workflow]
+const benefitIcons = [Layers, Zap, ChartColumn]
+---
+
+<section>
+  <Container class="flex flex-col items-center gap-6 pt-20 pb-16 text-center">
+    <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
+    <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
+    <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
+    <Button href={hero.primaryAction.href}>
+      {hero.primaryAction.label}
+      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+    </Button>
+    <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
+      {hero.highlights.map((highlight) => (
+        <li class="flex items-center gap-1.5">
+          <Check class="text-celestial-blue size-4" aria-hidden="true" />
+          {highlight}
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<section>
+  <Container width="wide" class="pb-24">
+    <div class="bg-rich-blue text-alice-blue grid grid-cols-1 items-center gap-12 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-2">
+      <div class="flex flex-col items-start gap-10">
+        <SectionHeader
+          eyebrow={build.eyebrow}
+          title={build.title}
+          description={build.description}
+          tone="dark"
+        />
+        <div class="border-azul-blue flex flex-col items-start gap-4 border-t pt-8">
+          <h3 class="text-xl font-semibold text-white">{build.helpTitle}</h3>
+          <p class="text-columbia-blue text-[15px] leading-[1.6]">{build.helpDescription}</p>
+          <Button href={build.action.href} variant="accent">
+            {build.action.label}
+          </Button>
+        </div>
+      </div>
+      <div class="relative mx-auto aspect-square w-full max-w-[440px]" aria-hidden="true">
+        <div class="border-azul-blue-light absolute inset-[10%] rounded-full border-2 border-dashed"></div>
+        <div class="border-azul-blue absolute inset-[30%] rounded-full border-2"></div>
+        <span class="bg-sun-orange text-rich-blue absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5 rounded-2xl px-4 py-3.5 text-sm font-bold">
+          <Workflow class="size-6" />
+          {build.center}
+        </span>
+        {orbit.map((node) => (
+          <span
+            class="bg-surface text-rich-blue shadow-float absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-semibold whitespace-nowrap"
+            style={node.style}
+          >
+            <IconChip size="sm">
+              <node.Icon />
+            </IconChip>
+            <span class="hidden sm:inline">{node.label}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<PageSection tone="surface" containerClass="grid grid-cols-1 gap-12 lg:grid-cols-2">
+  <div class="flex flex-col gap-8">
+    <SectionHeader title={panels.blocks.title} description={panels.blocks.description} />
+    <div aria-hidden="true">
+      <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
+        <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
+          <IconChip size="sm">
+            <Workflow />
+          </IconChip>
+          <p class="font-display text-sm font-semibold">{panels.blocks.panelTitle}</p>
+        </div>
+        <ul class="flex flex-col gap-2 p-4">
+          {panels.blocks.items.map((item, index) => {
+            const Icon = blockIcons[index % blockIcons.length]
+            return (
+              <li class="border-border flex items-center gap-3 rounded-lg border p-3 text-[13px]">
+                <IconChip size="sm">
+                  <Icon />
+                </IconChip>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold">{item.title}</p>
+                  <p class="text-muted text-xs">{item.description}</p>
+                </div>
+                <Badge tone="done">{panels.blocks.status}</Badge>
+              </li>
+            )
+          })}
+        </ul>
+      </MockPanel>
+    </div>
+  </div>
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-col items-start gap-5">
+      <SectionHeader
+        title={panels.integrations.title}
+        description={panels.integrations.description}
+      />
+      <Button href={panels.integrations.action.href} variant="secondary">
+        {panels.integrations.action.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+    </div>
+    <div aria-hidden="true">
+      <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
+        <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
+          <IconChip size="sm">
+            <Plug />
+          </IconChip>
+          <p class="font-display text-sm font-semibold">{panels.integrations.panelTitle}</p>
+        </div>
+        <ul class="flex flex-col gap-2 p-4">
+          {panels.integrations.items.map((item) => (
+            <li class="border-border flex items-center gap-3 rounded-lg border p-3 text-[13px]">
+              <div class="min-w-0 flex-1">
+                <p class="truncate font-semibold">{item.title}</p>
+                <p class="text-muted truncate text-xs">{item.location}</p>
+              </div>
+              <Badge tone={item.tone}>{item.status}</Badge>
+            </li>
+          ))}
+        </ul>
+      </MockPanel>
+    </div>
+  </div>
+</PageSection>
+
+<PageSection containerClass="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+  <SectionHeader title={templates.title} description={templates.description} />
+  <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2" aria-label={templates.title}>
+    {templates.items.map((item) => (
+      <li class="bg-surface border-border flex flex-col gap-3 rounded-xl border p-5 shadow-xs">
+        <IconChip size="sm">
+          <Workflow />
+        </IconChip>
+        <p class="font-display text-[15px] font-semibold">{item.title}</p>
+        <p class="text-azul-blue text-sm leading-[1.5]">{item.description}</p>
+        <Badge tone="info" class="mt-auto self-start">
+          {templates.tag}
+        </Badge>
+      </li>
+    ))}
+  </ul>
+</PageSection>
+
+<PageSection tone="surface" containerClass="flex flex-col">
+  <ul class="grid grid-cols-1 gap-10 md:grid-cols-3">
+    {benefits.items.map((item, index) => {
+      const Icon = benefitIcons[index % benefitIcons.length]
+      return (
+        <li class="flex flex-col items-start gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h2 class="text-xl font-semibold">{item.title}</h2>
+          <p class="text-azul-blue text-[15px] leading-[1.6]">{item.description}</p>
+          <a
+            href={localizePath(item.href, locale)}
+            class="text-celestial-blue hover:text-rich-blue flex items-center gap-1.5 text-sm font-semibold"
+          >
+            {benefits.learnMore}
+            <span class="sr-only">: {item.title}</span>
+            <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+          </a>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<PageSection containerClass="flex flex-col gap-12">
+  <SectionHeader eyebrow={stories.eyebrow} title={stories.title} />
+  <ul class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {stories.items.map((story) => (
+      <li class="bg-surface border-border flex flex-col gap-6 rounded-xl border p-8 shadow-xs">
+        <Quote class="text-celestial-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
+        <blockquote class="font-display text-xl leading-snug font-medium">{story.quote}</blockquote>
+        <p class="mt-auto text-sm">
+          <span class="block font-semibold">{story.author}</span>
+          <span class="text-azul-blue">{story.company}</span>
+        </p>
+      </li>
+    ))}
+  </ul>
+</PageSection>
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>
