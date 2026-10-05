@@ -1,6 +1,13 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type {
+  IntegrationCategory,
+  IntegrationIcon,
+  IntegrationItem,
+  OverviewModule,
+  PlatformEntry,
+  PlatformPageContent,
+} from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
@@ -37,10 +44,11 @@ export const cta = {
   secondaryAction: { label: 'Hablar con nuestro equipo', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
-  TemplatePageId,
-  PlatformPageContent
-> = {
+export const pages: {
+  overview: PlatformEntry
+  webAndMobile: PlatformEntry
+  integrations: PlatformEntry
+} & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
     summary: 'Una plataforma para mantenimiento, activos y operaciones en cada sede.',
@@ -66,82 +74,6 @@ export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & R
       title: 'Integraciones | Fleet',
       description:
         'Fleet se conecta con sistemas contables y de cuentas por pagar y cobrar, ERP, control de accesos, portales de inquilinos y sistemas de gestión de edificios mediante más de 20 integraciones y una API REST.',
-    },
-    eyebrow: 'Integraciones',
-    title: 'Conecte Fleet con las herramientas que ya utiliza',
-    description:
-      'Fleet se integra en su ecosistema tecnológico con más de 20 integraciones y una API REST abierta, para una operación conectada de principio a fin.',
-    highlights: ['Más de 20 integraciones', 'API REST abierta', 'Configuración acompañada'],
-    features: {
-      title: 'Integraciones para toda su operación',
-      description:
-        'Reúna datos financieros, inmobiliarios y del edificio para que cada equipo trabaje con la misma información.',
-      items: [
-        {
-          title: 'Contabilidad y cuentas por pagar y cobrar',
-          description:
-            'Sincronice costes, facturas y aprobaciones con sus herramientas financieras para mantener presupuestos exactos.',
-        },
-        {
-          title: 'Sistemas ERP',
-          description:
-            'Comparta activos, proveedores y compras con su ERP para informes unificados.',
-        },
-        {
-          title: 'Control de accesos',
-          description:
-            'Conecte sus sistemas de acceso para registrar automáticamente visitas y presencia de proveedores.',
-        },
-        {
-          title: 'Portales de inquilinos',
-          description:
-            'Convierta las solicitudes de inquilinos en órdenes de trabajo con seguimiento e informe a los ocupantes.',
-        },
-        {
-          title: 'Sistemas de gestión de edificios',
-          description:
-            'Lleve alarmas y lecturas del BMS a Fleet para generar trabajos en el momento adecuado.',
-        },
-        {
-          title: 'API REST',
-          description:
-            'Cree conexiones propias con cualquier sistema mediante una API REST documentada y segura.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Finanzas y operaciones sincronizadas',
-        description:
-          'Mantenimiento y finanzas avanzan alineados, desde el primer presupuesto hasta la última factura.',
-        points: [
-          'Las aprobaciones de costes llegan directamente a su proceso de cuentas por pagar',
-          'Seguimiento presupuestario por edificio, activo y proveedor',
-          'Informes exportables para finanzas y consejo',
-        ],
-      },
-      {
-        title: 'Seguro desde el diseño',
-        description:
-          'Cada integración sigue su gobierno de TI, con permisos claros y trazabilidad completa.',
-        points: [
-          'Datos cifrados en tránsito y en reposo',
-          'Puntos de conexión autorizados según sus políticas de TI',
-          'Registros de auditoría de cada dato sincronizado',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Integraciones en la práctica',
-      description:
-        'Los equipos conectan Fleet para evitar la doble introducción de datos y mantener cada sistema al día.',
-      items: [
-        'Enviar los costes de reparación aprobados a su sistema contable',
-        'Crear órdenes de trabajo automáticamente a partir de alarmas del BMS',
-        'Sincronizar los datos de proveedores entre Fleet y su ERP',
-        'Registrar como trabajos las solicitudes del portal de inquilinos',
-        'Alimentar sus paneles de BI corporativos con datos de Fleet',
-      ],
     },
   },
   runnerAi: {
@@ -1470,5 +1402,147 @@ export const webMobile = {
         company: 'Centro logístico',
       },
     ],
+  },
+}
+
+export const integrationsPage = {
+  hero: {
+    eyebrow: 'Integraciones',
+    title: 'Conecte Fleet con las herramientas que ya utiliza',
+    description:
+      'Fleet se integra en su ecosistema con más de 20 integraciones y una API REST abierta, para que sus sistemas financieros, del edificio y de inquilinos trabajen con los mismos datos en vivo.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    highlights: ['Más de 20 integraciones', 'API REST abierta', 'Configuración acompañada'],
+  },
+  featured: {
+    eyebrow: 'Destacadas',
+    title: 'Integraciones destacadas',
+    items: [
+      {
+        icon: 'accounting',
+        title: 'Contabilidad y cuentas por pagar y cobrar',
+        description:
+          'Los costes y facturas aprobados llegan a sus sistemas financieros y mantienen el presupuesto exacto del primer presupuesto al pago final.',
+      },
+      {
+        icon: 'bms',
+        title: 'Sistemas de gestión de edificios',
+        description:
+          'Las alarmas y lecturas del BMS crean órdenes de trabajo automáticamente, para que el equipo adecuado actúe en el momento justo.',
+      },
+      {
+        icon: 'api',
+        title: 'API REST',
+        description:
+          'Conecte cualquier sistema con una API REST documentada y segura, alineada con su gobierno de TI.',
+      },
+    ] satisfies { icon: IntegrationIcon; title: string; description: string }[],
+    action: { label: 'Hablar con nuestro equipo', href: '/contact' },
+  },
+  directory: {
+    title: 'Todas las integraciones',
+    searchLabel: 'Buscar integraciones',
+    searchPlaceholder: 'Buscar por sistema o uso',
+    filterLabel: 'Categorías',
+    all: 'Todas',
+    results: '{count} integraciones',
+    empty: 'Pruebe otra búsqueda o categoría, o hable con nuestro equipo sobre su sistema.',
+    action: { label: 'Hablar con nuestro equipo', href: '/contact' },
+    categories: {
+      finance: 'Finanzas',
+      operations: 'Operaciones',
+      building: 'Sistemas del edificio',
+      tenants: 'Inquilinos y comunicación',
+      developers: 'Desarrolladores',
+    } satisfies Record<IntegrationCategory, string>,
+    items: [
+      {
+        icon: 'accounting',
+        category: 'finance',
+        title: 'Software contable',
+        description:
+          'Sincronice costes y facturas aprobados con su contabilidad para mantener presupuestos exactos.',
+      },
+      {
+        icon: 'apAr',
+        category: 'finance',
+        title: 'Cuentas por pagar y cobrar',
+        description:
+          'Envíe los costes de reparación aprobados directamente a sus procesos de pagos y cobros.',
+      },
+      {
+        icon: 'finance',
+        category: 'finance',
+        title: 'Herramientas financieras',
+        description:
+          'Siga el gasto de mantenimiento por edificio, activo y proveedor junto a sus informes financieros.',
+      },
+      {
+        icon: 'erp',
+        category: 'operations',
+        title: 'Software ERP',
+        description: 'Comparta activos, proveedores y compras con su ERP para informes unificados.',
+      },
+      {
+        icon: 'vendors',
+        category: 'operations',
+        title: 'Portales de proveedores',
+        description:
+          'Mantenga datos, trabajos y documentos alineados con los portales de sus contratistas.',
+      },
+      {
+        icon: 'access',
+        category: 'building',
+        title: 'Control de accesos',
+        description: 'Registre automáticamente las visitas in situ y la presencia de proveedores.',
+      },
+      {
+        icon: 'bms',
+        category: 'building',
+        title: 'Sistemas de gestión de edificios',
+        description:
+          'Convierta alarmas y lecturas del BMS en órdenes de trabajo en el momento adecuado.',
+      },
+      {
+        icon: 'tenants',
+        category: 'tenants',
+        title: 'Portales de inquilinos',
+        description:
+          'Registre las solicitudes de inquilinos como trabajos con seguimiento e informe a los ocupantes.',
+      },
+      {
+        icon: 'email',
+        category: 'tenants',
+        title: 'Correo con Fleet Mail',
+        description:
+          'Convierta los correos entrantes en trabajos y envíe novedades y aprobaciones por correo.',
+      },
+      {
+        icon: 'api',
+        category: 'developers',
+        title: 'API REST',
+        description:
+          'Cree conexiones propias con cualquier sistema mediante una API REST documentada y segura.',
+      },
+    ] satisfies IntegrationItem[],
+  },
+  cta: {
+    eyebrow: 'Empiece ahora',
+    title: '¿Listo para conectar sus sistemas?',
+    description:
+      'Cuéntenos qué sistemas utiliza hoy y nuestro equipo planificará cómo se conecta Fleet con ellos durante la implantación.',
+    action: { label: 'Reservar una demo', href: '/contact' },
+    panelTitle: 'Sistemas conectados',
+    panelItems: [
+      { title: 'Software contable', location: 'Finanzas', status: 'Conectado', tone: 'done' },
+      {
+        title: 'Sistema de gestión del edificio',
+        location: 'Sistemas del edificio',
+        status: 'Conectado',
+        tone: 'done',
+      },
+      { title: 'Portal de inquilinos', location: 'Inquilinos', status: 'Conectado', tone: 'done' },
+      { title: 'Software ERP', location: 'Operaciones', status: 'En configuración', tone: 'info' },
+    ] satisfies StatusItem[],
   },
 }

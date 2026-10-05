@@ -1,6 +1,13 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type {
+  IntegrationCategory,
+  IntegrationIcon,
+  IntegrationItem,
+  OverviewModule,
+  PlatformEntry,
+  PlatformPageContent,
+} from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
@@ -37,10 +44,11 @@ export const cta = {
   secondaryAction: { label: 'Mit unserem Team sprechen', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
-  TemplatePageId,
-  PlatformPageContent
-> = {
+export const pages: {
+  overview: PlatformEntry
+  webAndMobile: PlatformEntry
+  integrations: PlatformEntry
+} & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
     summary: 'Eine Plattform für Instandhaltung, Anlagen und Betrieb an jedem Standort.',
@@ -66,82 +74,6 @@ export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & R
       title: 'Integrationen | Fleet',
       description:
         'Fleet verbindet sich über mehr als 20 Integrationen und eine REST-API mit Buchhaltungs- und Kreditorensystemen, ERP, Zutrittskontrolle, Mieterportalen und Gebäudeleittechnik.',
-    },
-    eyebrow: 'Integrationen',
-    title: 'Fleet mit Ihren bestehenden Tools verbinden',
-    description:
-      'Fleet fügt sich mit mehr als 20 Integrationen und einer offenen REST-API in Ihre Systemlandschaft ein und schafft ein durchgängig vernetztes Betriebs-Ökosystem.',
-    highlights: ['20+ Integrationen', 'Offene REST-API', 'Begleitete Einrichtung'],
-    features: {
-      title: 'Integrationen für Ihren gesamten Betrieb',
-      description:
-        'Finanz-, Immobilien- und Gebäudedaten zusammenführen, damit jedes Team mit denselben Daten arbeitet.',
-      items: [
-        {
-          title: 'Buchhaltung und Kreditoren/Debitoren',
-          description:
-            'Kosten, Rechnungen und Freigaben mit Ihren Finanztools synchronisieren und Budgets genau halten.',
-        },
-        {
-          title: 'ERP-Systeme',
-          description:
-            'Anlagen-, Dienstleister- und Einkaufsdaten mit Ihrem ERP teilen und einheitlich berichten.',
-        },
-        {
-          title: 'Zutrittskontrolle',
-          description:
-            'Zutrittssysteme anbinden, damit Einsätze und Anwesenheit von Dienstleistern automatisch erfasst werden.',
-        },
-        {
-          title: 'Mieterportale',
-          description:
-            'Mieteranfragen in verfolgte Arbeitsaufträge umwandeln und Nutzer über den Fortschritt informieren.',
-        },
-        {
-          title: 'Gebäudeleittechnik',
-          description:
-            'Alarme und Messwerte der GLT in Fleet übernehmen und Aufträge zum richtigen Zeitpunkt auslösen.',
-        },
-        {
-          title: 'REST-API',
-          description:
-            'Eigene Verbindungen zu jedem System über eine dokumentierte, sichere REST-API aufbauen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Finanzen und Betrieb im Gleichklang',
-        description:
-          'Instandhaltung und Finanzen bleiben abgestimmt, vom ersten Angebot bis zur letzten Rechnung.',
-        points: [
-          'Kostenfreigaben fließen direkt in Ihren Kreditorenprozess',
-          'Budgetverfolgung nach Gebäude, Anlage und Dienstleister',
-          'Exportierbare Berichte für Finanzen und Gremien',
-        ],
-      },
-      {
-        title: 'Sicher von Anfang an',
-        description:
-          'Jede Integration folgt Ihrer IT-Governance, mit klaren Berechtigungen und voller Nachvollziehbarkeit.',
-        points: [
-          'Verschlüsselung bei Übertragung und Speicherung',
-          'Freigegebene Endpunkte gemäß Ihren IT-Richtlinien',
-          'Prüfpfade für jeden synchronisierten Datensatz',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Integrationen in der Praxis',
-      description:
-        'Teams verbinden Fleet, um Doppelerfassungen zu vermeiden und jedes System aktuell zu halten.',
-      items: [
-        'Freigegebene Reparaturkosten an Ihr Buchhaltungssystem übertragen',
-        'Arbeitsaufträge automatisch aus GLT-Alarmen erstellen',
-        'Dienstleisterdaten zwischen Fleet und Ihrem ERP synchronisieren',
-        'Mieteranfragen aus Ihrem Mieterportal als Aufträge erfassen',
-        'Fleet-Daten in unternehmensweite BI-Dashboards einspeisen',
-      ],
     },
   },
   runnerAi: {
@@ -1467,5 +1399,148 @@ export const webMobile = {
         company: 'Logistikzentrum',
       },
     ],
+  },
+}
+
+export const integrationsPage = {
+  hero: {
+    eyebrow: 'Integrationen',
+    title: 'Fleet mit Ihren bestehenden Tools verbinden',
+    description:
+      'Fleet fügt sich mit mehr als 20 Integrationen und einer offenen REST-API in Ihre Systemlandschaft ein, sodass Finanz-, Gebäude- und Mietersysteme mit denselben Live-Daten arbeiten.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    highlights: ['20+ Integrationen', 'Offene REST-API', 'Begleitete Einrichtung'],
+  },
+  featured: {
+    eyebrow: 'Highlights',
+    title: 'Ausgewählte Integrationen',
+    items: [
+      {
+        icon: 'accounting',
+        title: 'Buchhaltung und Kreditoren/Debitoren',
+        description:
+          'Freigegebene Kosten und Rechnungen fließen in Ihre Finanzsysteme und halten Budgets vom ersten Angebot bis zur Zahlung genau.',
+      },
+      {
+        icon: 'bms',
+        title: 'Gebäudeleittechnik',
+        description:
+          'Alarme und Messwerte der GLT erzeugen automatisch Arbeitsaufträge, damit das richtige Team im richtigen Moment handelt.',
+      },
+      {
+        icon: 'api',
+        title: 'REST-API',
+        description:
+          'Verbinden Sie jedes System über eine dokumentierte, sichere REST-API, die Ihrer IT-Governance folgt.',
+      },
+    ] satisfies { icon: IntegrationIcon; title: string; description: string }[],
+    action: { label: 'Mit unserem Team sprechen', href: '/contact' },
+  },
+  directory: {
+    title: 'Alle Integrationen',
+    searchLabel: 'Integrationen durchsuchen',
+    searchPlaceholder: 'Nach System oder Einsatz suchen',
+    filterLabel: 'Kategorien',
+    all: 'Alle',
+    results: '{count} Integrationen',
+    empty:
+      'Versuchen Sie eine andere Suche oder Kategorie, oder sprechen Sie mit unserem Team über Ihr System.',
+    action: { label: 'Mit unserem Team sprechen', href: '/contact' },
+    categories: {
+      finance: 'Finanzen',
+      operations: 'Betrieb',
+      building: 'Gebäudesysteme',
+      tenants: 'Mieter und Kommunikation',
+      developers: 'Entwickler',
+    } satisfies Record<IntegrationCategory, string>,
+    items: [
+      {
+        icon: 'accounting',
+        category: 'finance',
+        title: 'Buchhaltungssoftware',
+        description:
+          'Freigegebene Kosten und Rechnungen mit Ihrer Buchhaltung synchronisieren und Budgets genau halten.',
+      },
+      {
+        icon: 'apAr',
+        category: 'finance',
+        title: 'Kreditoren- und Debitorensysteme',
+        description:
+          'Freigegebene Reparaturkosten direkt in Ihren Kreditoren- und Debitorenprozess übertragen.',
+      },
+      {
+        icon: 'finance',
+        category: 'finance',
+        title: 'Finanztools',
+        description:
+          'Instandhaltungskosten nach Gebäude, Anlage und Dienstleister neben Ihrem Finanzreporting verfolgen.',
+      },
+      {
+        icon: 'erp',
+        category: 'operations',
+        title: 'ERP-Software',
+        description:
+          'Anlagen-, Dienstleister- und Einkaufsdaten mit Ihrem ERP teilen und einheitlich berichten.',
+      },
+      {
+        icon: 'vendors',
+        category: 'operations',
+        title: 'Dienstleisterportale',
+        description:
+          'Dienstleisterdaten, Aufträge und Dokumente mit den Portalen Ihrer Auftragnehmer abgleichen.',
+      },
+      {
+        icon: 'access',
+        category: 'building',
+        title: 'Zutrittskontrolle',
+        description: 'Einsätze vor Ort und Anwesenheit von Dienstleistern automatisch erfassen.',
+      },
+      {
+        icon: 'bms',
+        category: 'building',
+        title: 'Gebäudeleittechnik',
+        description: 'GLT-Alarme und Messwerte im richtigen Moment in Arbeitsaufträge verwandeln.',
+      },
+      {
+        icon: 'tenants',
+        category: 'tenants',
+        title: 'Mieterportale',
+        description:
+          'Mieteranfragen als verfolgte Arbeitsaufträge erfassen und Nutzer informieren.',
+      },
+      {
+        icon: 'email',
+        category: 'tenants',
+        title: 'E-Mail mit Fleet Mail',
+        description:
+          'Eingehende E-Mails in Aufträge verwandeln und Updates und Freigaben per E-Mail senden.',
+      },
+      {
+        icon: 'api',
+        category: 'developers',
+        title: 'REST-API',
+        description:
+          'Eigene Verbindungen zu jedem System über eine dokumentierte, sichere REST-API aufbauen.',
+      },
+    ] satisfies IntegrationItem[],
+  },
+  cta: {
+    eyebrow: 'Jetzt starten',
+    title: 'Bereit, Ihre Systeme zu verbinden?',
+    description:
+      'Erzählen Sie uns, welche Systeme Sie heute nutzen, und unser Team plant beim Onboarding, wie Fleet sich mit ihnen verbindet.',
+    action: { label: 'Demo buchen', href: '/contact' },
+    panelTitle: 'Verbundene Systeme',
+    panelItems: [
+      { title: 'Buchhaltungssoftware', location: 'Finanzen', status: 'Verbunden', tone: 'done' },
+      {
+        title: 'Gebäudeleittechnik',
+        location: 'Gebäudesysteme',
+        status: 'Verbunden',
+        tone: 'done',
+      },
+      { title: 'Mieterportal', location: 'Mieter', status: 'Verbunden', tone: 'done' },
+      { title: 'ERP-Software', location: 'Betrieb', status: 'In Einrichtung', tone: 'info' },
+    ] satisfies StatusItem[],
   },
 }

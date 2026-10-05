@@ -1,6 +1,13 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type {
+  IntegrationCategory,
+  IntegrationIcon,
+  IntegrationItem,
+  OverviewModule,
+  PlatformEntry,
+  PlatformPageContent,
+} from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
@@ -37,10 +44,11 @@ export const cta = {
   secondaryAction: { label: 'Parler à notre équipe', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
-  TemplatePageId,
-  PlatformPageContent
-> = {
+export const pages: {
+  overview: PlatformEntry
+  webAndMobile: PlatformEntry
+  integrations: PlatformEntry
+} & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
     summary:
@@ -67,82 +75,6 @@ export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & R
       title: 'Intégrations | Fleet',
       description:
         'Fleet se connecte à vos outils de comptabilité et fournisseurs/clients, ERP, contrôle d’accès, portails locataires et GTB grâce à plus de 20 intégrations et une API REST.',
-    },
-    eyebrow: 'Intégrations',
-    title: 'Connectez Fleet aux outils que vous utilisez déjà',
-    description:
-      'Fleet s’intègre à votre environnement avec plus de 20 intégrations et une API REST ouverte, pour un écosystème d’exploitation connecté de bout en bout.',
-    highlights: ['20+ intégrations', 'API REST ouverte', 'Mise en place accompagnée'],
-    features: {
-      title: 'Des intégrations pour toute votre exploitation',
-      description:
-        'Réunissez données financières, immobilières et techniques pour que chaque équipe travaille sur la même base.',
-      items: [
-        {
-          title: 'Comptabilité, fournisseurs et clients',
-          description:
-            'Synchronisez coûts, factures et validations avec vos outils financiers pour des budgets exacts.',
-        },
-        {
-          title: 'ERP',
-          description:
-            'Partagez équipements, prestataires et achats avec votre ERP pour un reporting unifié.',
-        },
-        {
-          title: 'Contrôle d’accès',
-          description:
-            'Connectez vos systèmes d’accès pour enregistrer automatiquement visites et présence des prestataires.',
-        },
-        {
-          title: 'Portails locataires',
-          description:
-            'Transformez les demandes des locataires en bons de travail suivis et tenez les occupants informés.',
-        },
-        {
-          title: 'Gestion technique du bâtiment',
-          description:
-            'Intégrez alarmes et mesures de la GTB dans Fleet pour déclencher les interventions au bon moment.',
-        },
-        {
-          title: 'API REST',
-          description:
-            'Créez vos propres connexions vers tout système grâce à une API REST documentée et sécurisée.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Finance et exploitation alignées',
-        description:
-          'Maintenance et finance avancent ensemble, du premier devis à la dernière facture.',
-        points: [
-          'Validations de coûts transmises directement à votre processus fournisseurs',
-          'Suivi budgétaire par bâtiment, équipement et prestataire',
-          'Rapports exportables pour la finance et la gouvernance',
-        ],
-      },
-      {
-        title: 'Sécurisé dès la conception',
-        description:
-          'Chaque intégration respecte votre gouvernance informatique, avec des droits clairs et une traçabilité complète.',
-        points: [
-          'Données chiffrées en transit et au repos',
-          'Points d’accès autorisés selon vos politiques informatiques',
-          'Pistes d’audit pour chaque enregistrement synchronisé',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Les intégrations en pratique',
-      description:
-        'Les équipes connectent Fleet pour supprimer la double saisie et garder chaque système à jour.',
-      items: [
-        'Envoyer les coûts de réparation validés vers votre logiciel comptable',
-        'Créer automatiquement des bons de travail à partir des alarmes GTB',
-        'Synchroniser les fiches prestataires entre Fleet et votre ERP',
-        'Enregistrer les demandes du portail locataires comme interventions',
-        'Alimenter vos tableaux de bord BI avec les données Fleet',
-      ],
     },
   },
   runnerAi: {
@@ -1472,5 +1404,147 @@ export const webMobile = {
         company: 'Plateforme logistique',
       },
     ],
+  },
+}
+
+export const integrationsPage = {
+  hero: {
+    eyebrow: 'Intégrations',
+    title: 'Connectez Fleet aux outils que vous utilisez déjà',
+    description:
+      'Fleet s’intègre à votre environnement avec plus de 20 intégrations et une API REST ouverte, pour que vos systèmes financiers, techniques et locataires partagent les mêmes données en direct.',
+    primaryAction: { label: 'Réserver une démo', href: '/contact' },
+    highlights: ['20+ intégrations', 'API REST ouverte', 'Mise en place accompagnée'],
+  },
+  featured: {
+    eyebrow: 'À la une',
+    title: 'Intégrations phares',
+    items: [
+      {
+        icon: 'accounting',
+        title: 'Comptabilité, fournisseurs et clients',
+        description:
+          'Les coûts et factures validés alimentent vos systèmes financiers, pour des budgets exacts du premier devis au paiement.',
+      },
+      {
+        icon: 'bms',
+        title: 'Gestion technique du bâtiment',
+        description:
+          'Les alarmes et mesures de la GTB créent automatiquement des bons de travail, pour que la bonne équipe agisse au bon moment.',
+      },
+      {
+        icon: 'api',
+        title: 'API REST',
+        description:
+          'Connectez tout système grâce à une API REST documentée et sécurisée, conforme à votre gouvernance informatique.',
+      },
+    ] satisfies { icon: IntegrationIcon; title: string; description: string }[],
+    action: { label: 'Parler à notre équipe', href: '/contact' },
+  },
+  directory: {
+    title: 'Toutes les intégrations',
+    searchLabel: 'Rechercher une intégration',
+    searchPlaceholder: 'Rechercher par système ou usage',
+    filterLabel: 'Catégories',
+    all: 'Toutes',
+    results: '{count} intégrations',
+    empty: 'Essayez une autre recherche ou catégorie, ou parlez de votre système à notre équipe.',
+    action: { label: 'Parler à notre équipe', href: '/contact' },
+    categories: {
+      finance: 'Finance',
+      operations: 'Exploitation',
+      building: 'Systèmes du bâtiment',
+      tenants: 'Locataires et communication',
+      developers: 'Développeurs',
+    } satisfies Record<IntegrationCategory, string>,
+    items: [
+      {
+        icon: 'accounting',
+        category: 'finance',
+        title: 'Logiciels comptables',
+        description:
+          'Synchronisez coûts et factures validés avec votre comptabilité pour des budgets exacts.',
+      },
+      {
+        icon: 'apAr',
+        category: 'finance',
+        title: 'Fournisseurs et clients',
+        description:
+          'Envoyez les coûts de réparation validés directement dans vos processus fournisseurs et clients.',
+      },
+      {
+        icon: 'finance',
+        category: 'finance',
+        title: 'Outils financiers',
+        description:
+          'Suivez les dépenses de maintenance par bâtiment, équipement et prestataire avec votre reporting financier.',
+      },
+      {
+        icon: 'erp',
+        category: 'operations',
+        title: 'ERP',
+        description:
+          'Partagez équipements, prestataires et achats avec votre ERP pour un reporting unifié.',
+      },
+      {
+        icon: 'vendors',
+        category: 'operations',
+        title: 'Portails prestataires',
+        description:
+          'Gardez fiches, interventions et documents alignés avec les portails de vos prestataires.',
+      },
+      {
+        icon: 'access',
+        category: 'building',
+        title: 'Contrôle d’accès',
+        description: 'Enregistrez automatiquement visites sur site et présence des prestataires.',
+      },
+      {
+        icon: 'bms',
+        category: 'building',
+        title: 'Gestion technique du bâtiment',
+        description: 'Transformez alarmes et mesures de la GTB en bons de travail au bon moment.',
+      },
+      {
+        icon: 'tenants',
+        category: 'tenants',
+        title: 'Portails locataires',
+        description:
+          'Enregistrez les demandes des locataires comme interventions suivies et tenez les occupants informés.',
+      },
+      {
+        icon: 'email',
+        category: 'tenants',
+        title: 'E-mail avec Fleet Mail',
+        description:
+          'Transformez les e-mails reçus en interventions et envoyez mises à jour et validations par e-mail.',
+      },
+      {
+        icon: 'api',
+        category: 'developers',
+        title: 'API REST',
+        description:
+          'Créez vos propres connexions vers tout système grâce à une API REST documentée et sécurisée.',
+      },
+    ] satisfies IntegrationItem[],
+  },
+  cta: {
+    eyebrow: 'Commencer',
+    title: 'Prêt à connecter vos systèmes ?',
+    description:
+      'Présentez-nous les systèmes que vous utilisez aujourd’hui, et notre équipe planifie leur connexion à Fleet pendant le déploiement.',
+    action: { label: 'Réserver une démo', href: '/contact' },
+    panelTitle: 'Systèmes connectés',
+    panelItems: [
+      { title: 'Logiciel comptable', location: 'Finance', status: 'Connecté', tone: 'done' },
+      {
+        title: 'Gestion technique du bâtiment',
+        location: 'Systèmes du bâtiment',
+        status: 'Connecté',
+        tone: 'done',
+      },
+      { title: 'Portail locataires', location: 'Locataires', status: 'Connecté', tone: 'done' },
+      { title: 'ERP', location: 'Exploitation', status: 'En configuration', tone: 'info' },
+    ] satisfies StatusItem[],
   },
 }
