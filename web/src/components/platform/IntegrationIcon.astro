@@ -1,0 +1,36 @@
+---
+import type { IntegrationIcon } from '@/data/en/platform'
+import Building from '@lucide/astro/icons/building'
+import Calculator from '@lucide/astro/icons/calculator'
+import Code from '@lucide/astro/icons/code'
+import Database from '@lucide/astro/icons/database'
+import Handshake from '@lucide/astro/icons/handshake'
+import KeyRound from '@lucide/astro/icons/key-round'
+import Mail from '@lucide/astro/icons/mail'
+import Receipt from '@lucide/astro/icons/receipt'
+import Users from '@lucide/astro/icons/users'
+import Wallet from '@lucide/astro/icons/wallet'
+
+type Props = {
+  icon: IntegrationIcon
+  class?: string
+}
+
+const icons = {
+  accounting: Calculator,
+  apAr: Receipt,
+  finance: Wallet,
+  erp: Database,
+  vendors: Handshake,
+  access: KeyRound,
+  bms: Building,
+  tenants: Users,
+  email: Mail,
+  api: Code,
+} satisfies Record<IntegrationIcon, unknown>
+
+const { icon, class: className } = Astro.props
+const Icon = icons[icon]
+---
+
+<Icon class={className} aria-hidden="true" />

@@ -58,6 +58,27 @@ export type OverviewModule = {
   visual: OverviewVisual
 }
 
+export type IntegrationCategory = 'finance' | 'operations' | 'building' | 'tenants' | 'developers'
+
+export type IntegrationIcon =
+  | 'accounting'
+  | 'apAr'
+  | 'finance'
+  | 'erp'
+  | 'vendors'
+  | 'access'
+  | 'bms'
+  | 'tenants'
+  | 'email'
+  | 'api'
+
+export type IntegrationItem = {
+  icon: IntegrationIcon
+  category: IntegrationCategory
+  title: string
+  description: string
+}
+
 export const menu = {
   label: 'Platform',
   groups: {
@@ -92,10 +113,11 @@ export const cta = {
   secondaryAction: { label: 'Talk to our team', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
-  TemplatePageId,
-  PlatformPageContent
-> = {
+export const pages: {
+  overview: PlatformEntry
+  webAndMobile: PlatformEntry
+  integrations: PlatformEntry
+} & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
     summary: 'One platform for maintenance, assets and operations across every site.',
@@ -121,80 +143,6 @@ export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & R
       title: 'Integrations | Fleet',
       description:
         'Fleet connects with accounting and AP/AR systems, ERPs, access control, tenant portals and building management systems through 20+ integrations and a REST API.',
-    },
-    eyebrow: 'Integrations',
-    title: 'Connect Fleet to the Tools You Already Use',
-    description:
-      'Fleet plugs into your existing tech stack with 20+ integrations and an open REST API, building a connected, end-to-end operations ecosystem.',
-    highlights: ['20+ integrations', 'Open REST API', 'Guided setup'],
-    features: {
-      title: 'Integrations Across Your Operations',
-      description:
-        'Bring finance, property and building data together so every team works from the same record.',
-      items: [
-        {
-          title: 'Accounting and AP/AR',
-          description:
-            'Sync costs, invoices and approvals with your finance tools to keep budgets accurate.',
-        },
-        {
-          title: 'ERP systems',
-          description:
-            'Share assets, vendors and purchase data with your ERP for unified reporting.',
-        },
-        {
-          title: 'Access control',
-          description:
-            'Connect access systems so on-site visits and vendor attendance are recorded automatically.',
-        },
-        {
-          title: 'Tenant portals',
-          description:
-            'Turn tenant requests into tracked work orders and keep occupants updated on progress.',
-        },
-        {
-          title: 'Building management systems',
-          description:
-            'Bring BMS alarms and readings into Fleet to trigger work orders at the right moment.',
-        },
-        {
-          title: 'REST API',
-          description: 'Build custom connections to any system with a documented, secure REST API.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Finance and Operations in Sync',
-        description:
-          'Maintenance work and finance stay aligned, from the first quote to the final invoice.',
-        points: [
-          'Cost approvals flow straight into your AP process',
-          'Budget tracking by building, asset and vendor',
-          'Exportable reports for finance and board reviews',
-        ],
-      },
-      {
-        title: 'Secure by Default',
-        description:
-          'Every integration follows your IT governance, with clear permissions and full traceability.',
-        points: [
-          'Encrypted data in transit and at rest',
-          'Whitelisted endpoints aligned with your IT policies',
-          'Audit trails for every synced record',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Integrations in Practice',
-      description: 'Teams connect Fleet to remove double entry and keep every system current.',
-      items: [
-        'Push approved repair costs to your accounting system',
-        'Create work orders automatically from BMS alarms',
-        'Sync vendor records between Fleet and your ERP',
-        'Log tenant requests from your tenant portal as jobs',
-        'Feed Fleet data into your company-wide BI dashboards',
-      ],
     },
   },
   runnerAi: {
@@ -1484,5 +1432,144 @@ export const webMobile = {
         company: 'Logistics Hub',
       },
     ],
+  },
+}
+
+export const integrationsPage = {
+  hero: {
+    eyebrow: 'Integrations',
+    title: 'Connect Fleet to the Tools You Already Use',
+    description:
+      'Fleet plugs into your existing tech stack with 20+ integrations and an open REST API, so finance, building and tenant systems work from the same live record.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    highlights: ['20+ integrations', 'Open REST API', 'Guided setup'],
+  },
+  featured: {
+    eyebrow: 'Highlights',
+    title: 'Featured Integrations',
+    items: [
+      {
+        icon: 'accounting',
+        title: 'Accounting and AP/AR',
+        description:
+          'Approved costs and invoices flow into your finance systems, keeping budgets accurate from first quote to final payment.',
+      },
+      {
+        icon: 'bms',
+        title: 'Building management systems',
+        description:
+          'BMS alarms and readings create work orders automatically, so the right team acts at the right moment.',
+      },
+      {
+        icon: 'api',
+        title: 'REST API',
+        description:
+          'Connect any system with a documented, secure REST API that follows your IT governance.',
+      },
+    ] satisfies { icon: IntegrationIcon; title: string; description: string }[],
+    action: { label: 'Talk to our team', href: '/contact' },
+  },
+  directory: {
+    title: 'All Integrations',
+    searchLabel: 'Search integrations',
+    searchPlaceholder: 'Search by system or use',
+    filterLabel: 'Categories',
+    all: 'All',
+    results: '{count} integrations',
+    empty: 'Try another search or category, or talk to our team about your system.',
+    action: { label: 'Talk to our team', href: '/contact' },
+    categories: {
+      finance: 'Finance',
+      operations: 'Operations',
+      building: 'Building systems',
+      tenants: 'Tenants and communication',
+      developers: 'Developers',
+    } satisfies Record<IntegrationCategory, string>,
+    items: [
+      {
+        icon: 'accounting',
+        category: 'finance',
+        title: 'Accounting software',
+        description:
+          'Sync approved costs and invoices with your accounting system to keep budgets accurate.',
+      },
+      {
+        icon: 'apAr',
+        category: 'finance',
+        title: 'AP/AR systems',
+        description:
+          'Send approved repair costs straight into your payables and receivables process.',
+      },
+      {
+        icon: 'finance',
+        category: 'finance',
+        title: 'Finance tools',
+        description:
+          'Track maintenance spend by building, asset and vendor alongside your financial reporting.',
+      },
+      {
+        icon: 'erp',
+        category: 'operations',
+        title: 'ERP software',
+        description: 'Share assets, vendors and purchase data with your ERP for unified reporting.',
+      },
+      {
+        icon: 'vendors',
+        category: 'operations',
+        title: 'Vendor portals',
+        description:
+          'Keep vendor records, jobs and documents in step with the portals your contractors use.',
+      },
+      {
+        icon: 'access',
+        category: 'building',
+        title: 'Access control',
+        description: 'Record on-site visits and vendor attendance automatically.',
+      },
+      {
+        icon: 'bms',
+        category: 'building',
+        title: 'Building management systems',
+        description: 'Turn BMS alarms and readings into work orders at the right moment.',
+      },
+      {
+        icon: 'tenants',
+        category: 'tenants',
+        title: 'Tenant portals',
+        description: 'Log tenant requests as tracked work orders and keep occupants updated.',
+      },
+      {
+        icon: 'email',
+        category: 'tenants',
+        title: 'Email with Fleet Mail',
+        description:
+          'Turn incoming emails into work orders and send updates and approvals by email.',
+      },
+      {
+        icon: 'api',
+        category: 'developers',
+        title: 'REST API',
+        description: 'Build custom connections to any system with a documented, secure REST API.',
+      },
+    ] satisfies IntegrationItem[],
+  },
+  cta: {
+    eyebrow: 'Get started',
+    title: 'Ready to Connect Your Stack?',
+    description:
+      'Tell us about the systems you use today, and our team will map out how Fleet connects to them during onboarding.',
+    action: { label: 'Book a demo', href: '/contact' },
+    panelTitle: 'Connected systems',
+    panelItems: [
+      { title: 'Accounting software', location: 'Finance', status: 'Connected', tone: 'done' },
+      {
+        title: 'Building management system',
+        location: 'Building systems',
+        status: 'Connected',
+        tone: 'done',
+      },
+      { title: 'Tenant portal', location: 'Tenants', status: 'Connected', tone: 'done' },
+      { title: 'ERP software', location: 'Operations', status: 'In setup', tone: 'info' },
+    ] satisfies StatusItem[],
   },
 }

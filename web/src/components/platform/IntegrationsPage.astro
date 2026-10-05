@@ -1,0 +1,245 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import type { IntegrationCategory } from '@/data/en/platform'
+import { getLocale } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Check from '@lucide/astro/icons/check'
+import Plug from '@lucide/astro/icons/plug'
+import Quote from '@lucide/astro/icons/quote'
+import Search from '@lucide/astro/icons/search'
+import IntegrationIcon from './IntegrationIcon.astro'
+
+const { integrationsPage, webMobile } = getContent(getLocale(Astro.url)).platform
+const { hero, featured, directory, cta } = integrationsPage
+const { stories } = webMobile
+const categoryKeys = Object.keys(directory.categories).filter(
+  (key): key is IntegrationCategory => key in directory.categories,
+)
+const filters: { key: IntegrationCategory | 'all'; label: string }[] = [
+  { key: 'all', label: directory.all },
+  ...categoryKeys.map((key) => ({ key, label: directory.categories[key] })),
+]
+---
+
+<section>
+  <Container class="flex flex-col items-center gap-6 pt-20 pb-16 text-center">
+    <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
+    <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
+    <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
+    <Button href={hero.primaryAction.href}>
+      {hero.primaryAction.label}
+      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+    </Button>
+    <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
+      {hero.highlights.map((highlight) => (
+        <li class="flex items-center gap-1.5">
+          <Check class="text-celestial-blue size-4" aria-hidden="true" />
+          {highlight}
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-10">
+  <SectionHeader eyebrow={featured.eyebrow} title={featured.title} align="center" />
+  <ul class="grid grid-cols-1 gap-5 md:grid-cols-3">
+    {featured.items.map((item) => (
+      <li class="bg-page border-border flex flex-col gap-4 rounded-xl border p-7">
+        <IconChip size="lg">
+          <IntegrationIcon icon={item.icon} />
+        </IconChip>
+        <h3 class="text-xl font-semibold">{item.title}</h3>
+        <p class="text-azul-blue text-[15px] leading-[1.6]">{item.description}</p>
+        <a
+          href={featured.action.href}
+          class="text-celestial-blue hover:text-rich-blue mt-auto flex items-center gap-1.5 text-sm font-semibold"
+        >
+          {featured.action.label}
+          <span class="sr-only">: {item.title}</span>
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </a>
+      </li>
+    ))}
+  </ul>
+</PageSection>
+
+<PageSection containerClass="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-12">
+  <div class="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">
+    <h2 class="text-display-md">{directory.title}</h2>
+    <label class="flex flex-col gap-2">
+      <span class="sr-only">{directory.searchLabel}</span>
+      <span class="bg-surface border-border focus-within:outline-celestial-blue flex items-center gap-2 rounded-md border px-3 py-2.5 focus-within:outline-2">
+        <Search class="text-muted size-4 shrink-0" aria-hidden="true" />
+        <input
+          id="integration-search"
+          type="search"
+          placeholder={directory.searchPlaceholder}
+          class="placeholder:text-muted min-w-0 flex-1 bg-transparent text-[15px] outline-none"
+        />
+      </span>
+    </label>
+    <div class="flex flex-col gap-3">
+      <p class="text-sm font-semibold">{directory.filterLabel}</p>
+      <ul class="flex flex-wrap gap-2" aria-label={directory.filterLabel}>
+        {filters.map((filter) => (
+          <li>
+            <button
+              type="button"
+              data-integration-filter={filter.key}
+              aria-pressed={filter.key === 'all' ? 'true' : 'false'}
+              class="border-border text-azul-blue hover:border-celestial-blue aria-pressed:bg-rich-blue aria-pressed:border-rich-blue aria-pressed:text-alice-blue rounded-md border bg-white px-3 py-1.5 text-sm font-medium transition-colors"
+            >
+              {filter.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="flex flex-col gap-5">
+    <p
+      id="integration-count"
+      class="text-azul-blue text-sm"
+      aria-live="polite"
+      data-template={directory.results}
+    >
+      {directory.results.replace('{count}', String(directory.items.length))}
+    </p>
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {directory.items.map((item) => (
+        <li
+          data-integration
+          data-category={item.category}
+          data-search={`${item.title} ${item.description} ${directory.categories[item.category]}`.toLowerCase()}
+          class="bg-surface border-border flex flex-col gap-4 rounded-xl border p-6 shadow-xs"
+        >
+          <div class="flex items-start justify-between gap-3">
+            <IconChip size="lg">
+              <IntegrationIcon icon={item.icon} />
+            </IconChip>
+            <Badge tone="neutral">{directory.categories[item.category]}</Badge>
+          </div>
+          <h3 class="text-lg font-semibold">{item.title}</h3>
+          <p class="text-azul-blue text-[15px] leading-[1.55]">{item.description}</p>
+          <a
+            href={directory.action.href}
+            class="text-celestial-blue hover:text-rich-blue mt-auto flex items-center gap-1.5 text-sm font-semibold"
+          >
+            {directory.action.label}
+            <span class="sr-only">: {item.title}</span>
+            <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p id="integration-empty" class="text-azul-blue hidden py-10 text-center">
+      {directory.empty}
+    </p>
+  </div>
+</PageSection>
+
+<PageSection tone="inverse" containerClass="flex flex-col gap-12">
+  <SectionHeader eyebrow={stories.eyebrow} title={stories.title} tone="dark" />
+  <ul class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {stories.items.map((story) => (
+      <li class="bg-azul-blue flex flex-col gap-6 rounded-xl p-8">
+        <Quote class="text-sky-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
+        <blockquote class="text-alice-blue font-display text-xl leading-snug font-medium">
+          {story.quote}
+        </blockquote>
+        <p class="mt-auto text-sm">
+          <span class="block font-semibold text-white">{story.author}</span>
+          <span class="text-columbia-blue">{story.company}</span>
+        </p>
+      </li>
+    ))}
+  </ul>
+</PageSection>
+
+<section>
+  <Container width="wide" class="py-24">
+    <div class="bg-azul-blue grid grid-cols-1 items-center gap-10 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-2">
+      <div class="flex flex-col items-start gap-6">
+        <SectionHeader
+          eyebrow={cta.eyebrow}
+          title={cta.title}
+          description={cta.description}
+          tone="dark"
+        />
+        <Button href={cta.action.href} variant="accent" size="lg">
+          {cta.action.label}
+        </Button>
+      </div>
+      <div aria-hidden="true">
+        <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
+          <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
+            <IconChip size="sm">
+              <Plug />
+            </IconChip>
+            <p class="font-display text-sm font-semibold">{cta.panelTitle}</p>
+          </div>
+          <ul class="flex flex-col gap-2 p-4">
+            {cta.panelItems.map((item) => (
+              <li class="border-border flex items-center gap-3 rounded-lg border p-3 text-[13px]">
+                <div class="min-w-0 flex-1">
+                  <p class="truncate font-semibold">{item.title}</p>
+                  <p class="text-muted truncate text-xs">{item.location}</p>
+                </div>
+                <Badge tone={item.tone}>{item.status}</Badge>
+              </li>
+            ))}
+          </ul>
+        </MockPanel>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const search = document.getElementById('integration-search')
+    const count = document.getElementById('integration-count')
+    const empty = document.getElementById('integration-empty')
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-integration-filter]')]
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-integration]')]
+
+    if (!(search instanceof HTMLInputElement) || !count || !empty || cards.length === 0) {
+      return
+    }
+
+    let category = 'all'
+
+    const update = () => {
+      const query = search.value.trim().toLowerCase()
+      let visible = 0
+      cards.forEach((card) => {
+        const matches =
+          (category === 'all' || card.dataset.category === category) &&
+          (query === '' || (card.dataset.search ?? '').includes(query))
+        card.hidden = !matches
+        if (matches) {
+          visible += 1
+        }
+      })
+      count.textContent = (count.dataset.template ?? '').replace('{count}', String(visible))
+      empty.classList.toggle('hidden', visible > 0)
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        category = button.dataset.integrationFilter ?? 'all'
+        buttons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)))
+        update()
+      })
+    })
+    search.addEventListener('input', update)
+  })
+</script>

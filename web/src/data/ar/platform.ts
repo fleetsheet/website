@@ -1,6 +1,13 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type {
+  IntegrationCategory,
+  IntegrationIcon,
+  IntegrationItem,
+  OverviewModule,
+  PlatformEntry,
+  PlatformPageContent,
+} from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
@@ -36,10 +43,11 @@ export const cta = {
   secondaryAction: { label: 'تحدث إلى فريقنا', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
-  TemplatePageId,
-  PlatformPageContent
-> = {
+export const pages: {
+  overview: PlatformEntry
+  webAndMobile: PlatformEntry
+  integrations: PlatformEntry
+} & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'نظرة عامة',
     summary: 'منصة واحدة للصيانة والأصول والعمليات في كل موقع.',
@@ -65,75 +73,6 @@ export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & R
       title: 'التكاملات | Fleet',
       description:
         'تتصل Fleet بأنظمة المحاسبة والحسابات الدائنة والمدينة وتخطيط موارد المؤسسة والتحكم بالدخول وبوابات المستأجرين وأنظمة إدارة المباني عبر أكثر من 20 تكاملًا وواجهة REST API.',
-    },
-    eyebrow: 'التكاملات',
-    title: 'اربط Fleet بالأدوات التي تستخدمها بالفعل',
-    description:
-      'تندمج Fleet في بيئتك التقنية عبر أكثر من 20 تكاملًا وواجهة REST API مفتوحة، لبناء منظومة عمليات مترابطة من البداية إلى النهاية.',
-    highlights: ['أكثر من 20 تكاملًا', 'واجهة REST API مفتوحة', 'إعداد بمرافقة فريقنا'],
-    features: {
-      title: 'تكاملات تشمل عملياتك كلها',
-      description: 'اجمع بيانات المالية والعقارات والمباني ليعمل كل فريق على السجل نفسه.',
-      items: [
-        {
-          title: 'المحاسبة والحسابات الدائنة والمدينة',
-          description:
-            'زامن التكاليف والفواتير والموافقات مع أدواتك المالية لتبقى الميزانيات دقيقة.',
-        },
-        {
-          title: 'أنظمة تخطيط موارد المؤسسة',
-          description: 'شارك بيانات الأصول والمورّدين والمشتريات مع نظامك لتقارير موحدة.',
-        },
-        {
-          title: 'التحكم بالدخول',
-          description: 'اربط أنظمة الدخول لتسجيل الزيارات وحضور المورّدين تلقائيًا.',
-        },
-        {
-          title: 'بوابات المستأجرين',
-          description:
-            'حوّل طلبات المستأجرين إلى أوامر عمل قابلة للتتبع وأطلع الشاغلين على التقدم.',
-        },
-        {
-          title: 'أنظمة إدارة المباني',
-          description:
-            'أدخل إنذارات وقراءات نظام إدارة المبنى إلى Fleet لإطلاق الأعمال في الوقت المناسب.',
-        },
-        {
-          title: 'واجهة REST API',
-          description: 'أنشئ اتصالات مخصصة مع أي نظام عبر واجهة REST API موثقة وآمنة.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'المالية والعمليات بتناغم',
-        description: 'تبقى الصيانة والمالية متوافقتين، من أول عرض سعر حتى آخر فاتورة.',
-        points: [
-          'موافقات التكاليف تنتقل مباشرة إلى عملية الحسابات الدائنة',
-          'تتبع الميزانية حسب المبنى والأصل والمورّد',
-          'تقارير قابلة للتصدير للمالية ومجلس الإدارة',
-        ],
-      },
-      {
-        title: 'آمنة منذ البداية',
-        description: 'يلتزم كل تكامل بحوكمة تقنية المعلومات لديك، مع صلاحيات واضحة وتتبع كامل.',
-        points: [
-          'تشفير البيانات أثناء النقل والتخزين',
-          'نقاط اتصال معتمدة وفق سياسات تقنية المعلومات لديك',
-          'سجلات تدقيق لكل سجل تتم مزامنته',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'التكاملات عمليًا',
-      description: 'تربط الفرق Fleet لتجنب الإدخال المزدوج وإبقاء كل نظام محدّثًا.',
-      items: [
-        'إرسال تكاليف الإصلاح المعتمدة إلى نظام المحاسبة',
-        'إنشاء أوامر العمل تلقائيًا من إنذارات نظام إدارة المبنى',
-        'مزامنة بيانات المورّدين بين Fleet ونظام تخطيط الموارد',
-        'تسجيل طلبات بوابة المستأجرين كأعمال',
-        'تغذية لوحات ذكاء الأعمال في الشركة ببيانات Fleet',
-      ],
     },
   },
   runnerAi: {
@@ -1367,5 +1306,134 @@ export const webMobile = {
         company: 'مركز لوجستي',
       },
     ],
+  },
+}
+
+export const integrationsPage = {
+  hero: {
+    eyebrow: 'التكاملات',
+    title: 'اربط Fleet بالأدوات التي تستخدمها بالفعل',
+    description:
+      'تندمج Fleet في بيئتك التقنية عبر أكثر من 20 تكاملًا وواجهة REST API مفتوحة، لتعمل أنظمة المالية والمباني والمستأجرين على البيانات المباشرة نفسها.',
+    primaryAction: { label: 'احجز عرضًا توضيحيًا', href: '/contact' },
+    highlights: ['أكثر من 20 تكاملًا', 'واجهة REST API مفتوحة', 'إعداد بمرافقة فريقنا'],
+  },
+  featured: {
+    eyebrow: 'أبرز التكاملات',
+    title: 'تكاملات مميزة',
+    items: [
+      {
+        icon: 'accounting',
+        title: 'المحاسبة والحسابات الدائنة والمدينة',
+        description:
+          'تنتقل التكاليف والفواتير المعتمدة إلى أنظمتك المالية، فتبقى الميزانيات دقيقة من أول عرض سعر حتى الدفع.',
+      },
+      {
+        icon: 'bms',
+        title: 'أنظمة إدارة المباني',
+        description:
+          'تنشئ إنذارات وقراءات نظام إدارة المبنى أوامر العمل تلقائيًا، ليتصرف الفريق المناسب في الوقت المناسب.',
+      },
+      {
+        icon: 'api',
+        title: 'واجهة REST API',
+        description: 'اربط أي نظام عبر واجهة REST API موثقة وآمنة تتبع حوكمة تقنية المعلومات لديك.',
+      },
+    ] satisfies { icon: IntegrationIcon; title: string; description: string }[],
+    action: { label: 'تحدث إلى فريقنا', href: '/contact' },
+  },
+  directory: {
+    title: 'كل التكاملات',
+    searchLabel: 'ابحث في التكاملات',
+    searchPlaceholder: 'ابحث حسب النظام أو الاستخدام',
+    filterLabel: 'الفئات',
+    all: 'الكل',
+    results: '{count} تكاملات',
+    empty: 'جرّب بحثًا أو فئة أخرى، أو تحدث إلى فريقنا عن نظامك.',
+    action: { label: 'تحدث إلى فريقنا', href: '/contact' },
+    categories: {
+      finance: 'المالية',
+      operations: 'العمليات',
+      building: 'أنظمة المباني',
+      tenants: 'المستأجرون والتواصل',
+      developers: 'المطورون',
+    } satisfies Record<IntegrationCategory, string>,
+    items: [
+      {
+        icon: 'accounting',
+        category: 'finance',
+        title: 'برامج المحاسبة',
+        description: 'زامن التكاليف والفواتير المعتمدة مع نظام المحاسبة لتبقى الميزانيات دقيقة.',
+      },
+      {
+        icon: 'apAr',
+        category: 'finance',
+        title: 'أنظمة الحسابات الدائنة والمدينة',
+        description: 'أرسل تكاليف الإصلاح المعتمدة مباشرة إلى عمليات الدفع والتحصيل.',
+      },
+      {
+        icon: 'finance',
+        category: 'finance',
+        title: 'الأدوات المالية',
+        description: 'تابع إنفاق الصيانة حسب المبنى والأصل والمورّد إلى جانب تقاريرك المالية.',
+      },
+      {
+        icon: 'erp',
+        category: 'operations',
+        title: 'برامج تخطيط موارد المؤسسة',
+        description: 'شارك بيانات الأصول والمورّدين والمشتريات مع نظامك لتقارير موحدة.',
+      },
+      {
+        icon: 'vendors',
+        category: 'operations',
+        title: 'بوابات المورّدين',
+        description:
+          'حافظ على توافق بيانات المورّدين والأعمال والمستندات مع البوابات التي يستخدمها مقاولوك.',
+      },
+      {
+        icon: 'access',
+        category: 'building',
+        title: 'التحكم بالدخول',
+        description: 'سجّل الزيارات الميدانية وحضور المورّدين تلقائيًا.',
+      },
+      {
+        icon: 'bms',
+        category: 'building',
+        title: 'أنظمة إدارة المباني',
+        description: 'حوّل إنذارات وقراءات نظام إدارة المبنى إلى أوامر عمل في الوقت المناسب.',
+      },
+      {
+        icon: 'tenants',
+        category: 'tenants',
+        title: 'بوابات المستأجرين',
+        description: 'سجّل طلبات المستأجرين كأوامر عمل قابلة للتتبع وأطلع الشاغلين على التقدم.',
+      },
+      {
+        icon: 'email',
+        category: 'tenants',
+        title: 'البريد عبر Fleet Mail',
+        description: 'حوّل الرسائل الواردة إلى أعمال وأرسل التحديثات والموافقات بالبريد.',
+      },
+      {
+        icon: 'api',
+        category: 'developers',
+        title: 'واجهة REST API',
+        description: 'أنشئ اتصالات مخصصة مع أي نظام عبر واجهة REST API موثقة وآمنة.',
+      },
+    ] satisfies IntegrationItem[],
+  },
+  cta: {
+    eyebrow: 'ابدأ الآن',
+    title: 'هل أنت مستعد لربط أنظمتك؟',
+    description:
+      'أخبرنا بالأنظمة التي تستخدمها اليوم، وسيخطط فريقنا لربطها بـ Fleet أثناء التشغيل.',
+    action: { label: 'احجز عرضًا توضيحيًا', href: '/contact' },
+    panelTitle: 'الأنظمة المتصلة',
+    panelItems: [
+      { title: 'برنامج المحاسبة', location: 'المالية', status: 'متصل', tone: 'done' },
+      { title: 'نظام إدارة المبنى', location: 'أنظمة المباني', status: 'متصل', tone: 'done' },
+      { title: 'بوابة المستأجرين', location: 'المستأجرون', status: 'متصل', tone: 'done' },
+      { title: 'برنامج تخطيط الموارد', location: 'العمليات', status: 'قيد الإعداد', tone: 'info' },
+    ] satisfies StatusItem[],
   },
 }

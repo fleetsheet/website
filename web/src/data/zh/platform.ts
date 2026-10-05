@@ -1,6 +1,13 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { OverviewModule, PlatformEntry, PlatformPageContent } from '@/data/en/platform'
+import type {
+  IntegrationCategory,
+  IntegrationIcon,
+  IntegrationItem,
+  OverviewModule,
+  PlatformEntry,
+  PlatformPageContent,
+} from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
 
 export const menu = {
@@ -36,10 +43,11 @@ export const cta = {
   secondaryAction: { label: '联系我们的团队', href: '/contact' },
 }
 
-export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & Record<
-  TemplatePageId,
-  PlatformPageContent
-> = {
+export const pages: {
+  overview: PlatformEntry
+  webAndMobile: PlatformEntry
+  integrations: PlatformEntry
+} & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
     summary: '一个平台，统一管理每个站点的维护、资产和运营。',
@@ -65,68 +73,6 @@ export const pages: { overview: PlatformEntry; webAndMobile: PlatformEntry } & R
       title: '集成 | Fleet',
       description:
         'Fleet 通过 20 多项集成和 REST API 连接会计及应付应收系统、ERP、门禁、租户门户和楼宇管理系统。',
-    },
-    eyebrow: '集成',
-    title: '将 Fleet 连接到您已在使用的工具',
-    description:
-      'Fleet 通过 20 多项集成和开放的 REST API 融入您的技术体系，打造端到端互联的运营生态。',
-    highlights: ['20+ 项集成', '开放 REST API', '专人协助配置'],
-    features: {
-      title: '覆盖整个运营的集成',
-      description: '汇聚财务、物业和楼宇数据，让每个团队基于同一份记录工作。',
-      items: [
-        {
-          title: '会计与应付应收',
-          description: '与财务工具同步成本、发票和审批，保持预算准确。',
-        },
-        {
-          title: 'ERP 系统',
-          description: '与 ERP 共享资产、供应商和采购数据，实现统一报表。',
-        },
-        {
-          title: '门禁系统',
-          description: '连接门禁系统，自动记录现场到访和供应商出勤。',
-        },
-        {
-          title: '租户门户',
-          description: '将租户请求转为可追踪的工单，并向使用者同步进展。',
-        },
-        {
-          title: '楼宇管理系统',
-          description: '将 BMS 告警和读数接入 Fleet，在恰当时机触发工单。',
-        },
-        {
-          title: 'REST API',
-          description: '通过有文档、安全的 REST API 与任何系统建立自定义连接。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '财务与运营同步',
-        description: '从第一份报价到最后一张发票，维护与财务始终保持一致。',
-        points: [
-          '费用审批直接进入您的应付流程',
-          '按楼宇、资产和供应商追踪预算',
-          '可导出的财务及董事会报告',
-        ],
-      },
-      {
-        title: '默认安全',
-        description: '每项集成都遵循您的 IT 治理要求，权限清晰，全程可追溯。',
-        points: ['传输与存储全程加密', '符合 IT 政策的白名单接口', '每条同步记录均有审计记录'],
-      },
-    ],
-    useCases: {
-      title: '集成实践',
-      description: '团队通过连接 Fleet 免去重复录入，让每个系统保持最新。',
-      items: [
-        '将已审批的维修费用推送到会计系统',
-        '根据 BMS 告警自动创建工单',
-        '在 Fleet 与 ERP 之间同步供应商信息',
-        '将租户门户中的请求记录为工单',
-        '将 Fleet 数据接入企业 BI 看板',
-      ],
     },
   },
   runnerAi: {
@@ -1191,5 +1137,130 @@ export const webMobile = {
         company: '物流中心',
       },
     ],
+  },
+}
+
+export const integrationsPage = {
+  hero: {
+    eyebrow: '集成',
+    title: '将 Fleet 连接到您已在使用的工具',
+    description:
+      'Fleet 通过 20 多项集成和开放的 REST API 融入您的技术体系，让财务、楼宇和租户系统基于同一份实时数据工作。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    highlights: ['20+ 项集成', '开放 REST API', '专人协助配置'],
+  },
+  featured: {
+    eyebrow: '亮点',
+    title: '精选集成',
+    items: [
+      {
+        icon: 'accounting',
+        title: '会计与应付应收',
+        description: '已审批的费用和发票直接进入财务系统，从首次报价到最终付款，预算始终准确。',
+      },
+      {
+        icon: 'bms',
+        title: '楼宇管理系统',
+        description: 'BMS 告警和读数自动生成工单，让合适的团队在恰当时机行动。',
+      },
+      {
+        icon: 'api',
+        title: 'REST API',
+        description: '通过有文档、安全且符合 IT 治理要求的 REST API 连接任何系统。',
+      },
+    ] satisfies { icon: IntegrationIcon; title: string; description: string }[],
+    action: { label: '联系我们的团队', href: '/contact' },
+  },
+  directory: {
+    title: '全部集成',
+    searchLabel: '搜索集成',
+    searchPlaceholder: '按系统或用途搜索',
+    filterLabel: '类别',
+    all: '全部',
+    results: '{count} 项集成',
+    empty: '试试其他关键词或类别，或与我们的团队聊聊您的系统。',
+    action: { label: '联系我们的团队', href: '/contact' },
+    categories: {
+      finance: '财务',
+      operations: '运营',
+      building: '楼宇系统',
+      tenants: '租户与沟通',
+      developers: '开发者',
+    } satisfies Record<IntegrationCategory, string>,
+    items: [
+      {
+        icon: 'accounting',
+        category: 'finance',
+        title: '会计软件',
+        description: '与会计系统同步已审批的费用和发票，保持预算准确。',
+      },
+      {
+        icon: 'apAr',
+        category: 'finance',
+        title: '应付应收系统',
+        description: '将已审批的维修费用直接送入应付和应收流程。',
+      },
+      {
+        icon: 'finance',
+        category: 'finance',
+        title: '财务工具',
+        description: '按楼宇、资产和供应商追踪维护支出，并与财务报表并列查看。',
+      },
+      {
+        icon: 'erp',
+        category: 'operations',
+        title: 'ERP 软件',
+        description: '与 ERP 共享资产、供应商和采购数据，实现统一报表。',
+      },
+      {
+        icon: 'vendors',
+        category: 'operations',
+        title: '供应商门户',
+        description: '让供应商信息、工单和文档与承包商使用的门户保持同步。',
+      },
+      {
+        icon: 'access',
+        category: 'building',
+        title: '门禁系统',
+        description: '自动记录现场到访和供应商出勤。',
+      },
+      {
+        icon: 'bms',
+        category: 'building',
+        title: '楼宇管理系统',
+        description: '在恰当时机将 BMS 告警和读数转为工单。',
+      },
+      {
+        icon: 'tenants',
+        category: 'tenants',
+        title: '租户门户',
+        description: '将租户请求记录为可追踪的工单，并向使用者同步进展。',
+      },
+      {
+        icon: 'email',
+        category: 'tenants',
+        title: 'Fleet Mail 邮件',
+        description: '将来信转为工单，并通过邮件发送更新和审批。',
+      },
+      {
+        icon: 'api',
+        category: 'developers',
+        title: 'REST API',
+        description: '通过有文档、安全的 REST API 与任何系统建立自定义连接。',
+      },
+    ] satisfies IntegrationItem[],
+  },
+  cta: {
+    eyebrow: '开始使用',
+    title: '准备好连接您的系统了吗？',
+    description: '告诉我们您目前使用的系统，我们的团队会在上线期间规划 Fleet 与它们的连接方式。',
+    action: { label: '预约演示', href: '/contact' },
+    panelTitle: '已连接的系统',
+    panelItems: [
+      { title: '会计软件', location: '财务', status: '已连接', tone: 'done' },
+      { title: '楼宇管理系统', location: '楼宇系统', status: '已连接', tone: 'done' },
+      { title: '租户门户', location: '租户', status: '已连接', tone: 'done' },
+      { title: 'ERP 软件', location: '运营', status: '配置中', tone: 'info' },
+    ] satisfies StatusItem[],
   },
 }
