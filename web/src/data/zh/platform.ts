@@ -8,12 +8,11 @@ import type {
   OverviewModule,
   OverviewVisual,
   PlatformEntry,
-  PlatformPageContent,
   PreventiveIcon,
   ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, PlatformPageId } from '@/platform'
 
 export const menu = {
   label: '平台',
@@ -28,19 +27,6 @@ export const menu = {
   },
 }
 
-export const pageActions = {
-  primary: { label: '预约演示', href: '/contact' },
-  secondary: { label: '探索平台', href: '/platform' },
-} satisfies Record<string, NavLink>
-
-export const sectionLabels = {
-  features: '核心功能',
-  useCases: '应用场景',
-  related: '了解更多',
-  relatedTitle: '探索 Fleet 平台的更多功能',
-  learnMore: '了解更多',
-}
-
 export const cta = {
   title: '亲身体验 Fleet',
   description: '预约演示，了解 Fleet 如何将每个站点、每项资产和每张工单汇集到同一处。',
@@ -48,19 +34,7 @@ export const cta = {
   secondaryAction: { label: '联系我们的团队', href: '/contact' },
 }
 
-export const pages: {
-  overview: PlatformEntry
-  webAndMobile: PlatformEntry
-  integrations: PlatformEntry
-  runnerAi: PlatformEntry
-  fleetMail: PlatformEntry
-  workflowBuilder: PlatformEntry
-  preventiveMaintenance: PlatformEntry
-  reactiveMaintenance: PlatformEntry
-  analyticsReporting: PlatformEntry
-  assetManagement: PlatformEntry
-  documentManagement: PlatformEntry
-} & Record<TemplatePageId, PlatformPageContent> = {
+export const pages: Record<PlatformPageId, PlatformEntry> = {
   overview: {
     label: '平台概览',
     summary: '一个平台，统一管理每个站点的维护、资产和运营。',
@@ -167,68 +141,6 @@ export const pages: {
       title: '审计追踪与检查 | Fleet',
       description:
         '为每项操作保留带时间戳的详细日志，并以数字化方式开展检查，让每个站点随时应对安全检查和合规审计。',
-    },
-    eyebrow: '审计追踪与检查',
-    title: '始终合规，责任清晰',
-    description:
-      'Fleet 记录何时、由谁完成了什么，并以数字化方式执行检查，让每个站点随时应对内部或外部审计。',
-    highlights: ['带时间戳的日志', '数字化检查', '可导出的审计报告'],
-    features: {
-      title: '审计追踪的核心功能',
-      description: '让审计准备融入日常运营，在后台自动完成。',
-      items: [
-        {
-          title: '带时间戳的操作日志',
-          description: '从创建工单到完成和评论，每项操作都自动记录。',
-        },
-        {
-          title: '责任到人',
-          description: '按用户或角色追踪操作，从技术人员关闭工单到经理审批费用。',
-        },
-        {
-          title: '数字化检查',
-          description: '在移动端执行检查清单，附照片、读数和签名。',
-        },
-        {
-          title: '工单与资产级日志',
-          description: '深入查看任意资产或工单的完整历史、成本和文档。',
-        },
-        {
-          title: '可配置的审批',
-          description: '设置必经检查点，让每个站点以相同方式执行合规步骤。',
-        },
-        {
-          title: '可导出的审计报告',
-          description: '几次点击即可生成任意时间段或资产类型的详细日志。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '每天都准备好接受审计',
-        description: 'Fleet 在工作进行时同步整理记录，让检查周从容有序。',
-        points: [
-          '每条记录附带证书和合规表单',
-          '检查结果关联资产和位置',
-          '物业交接时提供完整的数字记录',
-        ],
-      },
-      {
-        title: '清楚掌控谁做什么',
-        description: '基于角色的访问保护关键字段，同时让监督团队全面可见。',
-        points: ['编辑权限仅限授权人员', '管理层和审计人员可查看', '附备注和版本历史的变更日志'],
-      },
-    ],
-    useCases: {
-      title: '审计追踪实践',
-      description: '从一个站点到一百个站点，Fleet 帮您证明团队始终在做正确的事。',
-      items: [
-        '证明所有站点的例行检查均按时完成',
-        '向监管机构展示消防维护历史',
-        '查看谁批准了一项高额维修',
-        '在物业交接时提供数字记录',
-        '导出日志用于年度合规审查',
-      ],
     },
   },
 }
@@ -2712,4 +2624,207 @@ export const documentPage: ProductPageContent = {
       },
     ],
   },
+}
+
+export const auditPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: '审计追踪与检查',
+    title: '始终合规，责任清晰',
+    description:
+      'Fleet 记录何时、由谁完成了什么，并以数字化方式执行检查，让每个站点随时应对内部或外部审计。',
+    primaryAction: {
+      label: '预约演示',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: '探索平台',
+      href: '/platform',
+    },
+    highlights: ['带时间戳的日志', '数字化检查', '可导出的审计报告'],
+    visual: {
+      kind: 'log',
+      title: '审计追踪 · Tower B',
+      entries: [
+        {
+          when: '09:42',
+          who: 'Marco L.',
+          what: '完成防火门巡检 WO-2291，附 6 张照片',
+        },
+        {
+          when: '09:15',
+          who: 'Aisha K.',
+          what: '批准了一项 $6,800 的冷水机组维修',
+        },
+        {
+          when: '08:58',
+          who: 'Fleet',
+          what: '记录电梯 L2 状态变更为待保养',
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: '带时间戳的操作日志',
+      description: '每项操作都会自动记录，从创建工单到完成，再到技术人员的备注。',
+    },
+    {
+      title: '明确的责任归属',
+      description: '按用户或角色查看谁做了什么，从技术人员关闭工单到经理批准费用。',
+    },
+    {
+      title: '可导出的审计报告',
+      description: '几次点击即可生成任意时间段、项目或资产类型的详细日志。',
+    },
+  ],
+  rows: [
+    {
+      tag: '巡检',
+      title: '每个项目的数字化巡检',
+      description: '在任何手机或平板上执行巡检清单，现场记录照片、读数和签名。',
+      points: [
+        '涵盖消防、电梯、暖通等的检查清单',
+        '每次巡检都有照片、读数和签名',
+        '结果关联资产和位置',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: '本周巡检 · Northgate Mall',
+        items: [
+          {
+            title: '防火门巡检',
+            location: '2 层 · 14 扇门',
+            status: '已完成',
+            tone: 'done',
+          },
+          {
+            title: '应急照明测试',
+            location: '所有楼层',
+            status: '今日到期',
+            tone: 'due',
+          },
+          {
+            title: '电梯 L2 月度检查',
+            location: '核心筒电梯',
+            status: '已排期',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+    {
+      tag: '历史',
+      title: '每张工单和每项资产的完整历史',
+      description: '打开任意资产或工单，查看其活动、成本、文档和每次变更，附带备注和版本历史。',
+      points: ['自动记录状态变更和更新', '成本和文档在同一时间线', '变更备注与版本历史'],
+      visual: {
+        kind: 'asset',
+        title: '资产历史',
+        name: '消防泵 FP-01',
+        location: 'Tower B · 水泵房',
+        status: '已巡检',
+        facts: [
+          {
+            label: '上次巡检',
+            value: '10月3日',
+          },
+          {
+            label: '巡检记录',
+            value: '48',
+          },
+          {
+            label: '证书',
+            value: '有效至 2027年6月',
+          },
+          {
+            label: '本年变更',
+            value: '12',
+          },
+        ],
+      },
+    },
+    {
+      tag: '审批',
+      title: '各地一致的审批流程',
+      description: '用工作流构建器设置必经审批节点和流转规则，让合规步骤在每个地点一致执行。',
+      points: [
+        '高成本工作的必经审批',
+        '按项目、成本或资产类型设置流转规则',
+        '每次审批都记录姓名和时间',
+      ],
+      visual: {
+        kind: 'steps',
+        title: '审批节点',
+        steps: [
+          {
+            kind: '触发',
+            text: '维修报价超过 $5,000',
+          },
+          {
+            kind: '审批',
+            text: '区域经理签批',
+          },
+          {
+            kind: '记录',
+            text: '审批写入审计追踪',
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: '审计就绪',
+    title: '随时准备好迎接任何审计',
+    description: 'Fleet 在工作进行时自动整理记录，让每次审查都从完整、有序的证据开始。',
+    points: [
+      '证书和合规表单随记录保存',
+      '编辑权限仅限授权人员',
+      '管理层和审计方可查看',
+      '物业交接时提供完整的数字记录',
+    ],
+    visual: {
+      kind: 'files',
+      title: '审计文档包 · Tower B · 2026',
+      items: [
+        {
+          title: '消防巡检记录.pdf',
+          location: '52 条记录',
+          status: '完整',
+          tone: 'done',
+        },
+        {
+          title: '电梯证书.pdf',
+          location: '4 部电梯',
+          status: '有效',
+          tone: 'done',
+        },
+        {
+          title: '审批日志.csv',
+          location: '31 项审批',
+          status: '已导出',
+          tone: 'info',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: '用 RunnerAI 随时获取审计答案',
+      description: '询问哪些巡检即将到期或谁批准了某项维修，RunnerAI 几秒内根据实时数据作答。',
+      action: {
+        label: '了解 RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'workflow',
+      title: '将合规融入每个工作流',
+      description: '用工作流构建器设计审批步骤、检查清单和签核，每一步都会自动记录。',
+      action: {
+        label: '探索工作流构建器',
+        href: '/platform/workflow-builder',
+      },
+    },
+  ],
 }

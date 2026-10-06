@@ -8,12 +8,11 @@ import type {
   OverviewModule,
   OverviewVisual,
   PlatformEntry,
-  PlatformPageContent,
   PreventiveIcon,
   ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, PlatformPageId } from '@/platform'
 
 export const menu = {
   label: 'Plateforme',
@@ -28,19 +27,6 @@ export const menu = {
   },
 }
 
-export const pageActions = {
-  primary: { label: 'Réserver une démo', href: '/contact' },
-  secondary: { label: 'Explorer la plateforme', href: '/platform' },
-} satisfies Record<string, NavLink>
-
-export const sectionLabels = {
-  features: 'Fonctionnalités clés',
-  useCases: 'Cas d’usage',
-  related: 'Pour aller plus loin',
-  relatedTitle: 'Découvrez la plateforme Fleet',
-  learnMore: 'En savoir plus',
-}
-
 export const cta = {
   title: 'Découvrez Fleet en action',
   description:
@@ -49,19 +35,7 @@ export const cta = {
   secondaryAction: { label: 'Parler à notre équipe', href: '/contact' },
 }
 
-export const pages: {
-  overview: PlatformEntry
-  webAndMobile: PlatformEntry
-  integrations: PlatformEntry
-  runnerAi: PlatformEntry
-  fleetMail: PlatformEntry
-  workflowBuilder: PlatformEntry
-  preventiveMaintenance: PlatformEntry
-  reactiveMaintenance: PlatformEntry
-  analyticsReporting: PlatformEntry
-  assetManagement: PlatformEntry
-  documentManagement: PlatformEntry
-} & Record<TemplatePageId, PlatformPageContent> = {
+export const pages: Record<PlatformPageId, PlatformEntry> = {
   overview: {
     label: 'Vue d’ensemble',
     summary:
@@ -170,82 +144,6 @@ export const pages: {
       title: 'Suivi d’audit et inspections | Fleet',
       description:
         'Conservez des journaux horodatés de chaque action et réalisez des inspections numériques pour que chaque site soit prêt pour les contrôles santé-sécurité et les audits de conformité.',
-    },
-    eyebrow: 'Suivi d’audit et inspections',
-    title: 'Conforme. Responsable.',
-    description:
-      'Fleet enregistre ce qui a été fait, quand et par qui, et numérise vos inspections, pour que chaque site soit prêt pour tout audit interne ou externe.',
-    highlights: ['Journaux horodatés', 'Inspections numériques', 'Rapports d’audit exportables'],
-    features: {
-      title: 'Les fonctionnalités clés du suivi d’audit',
-      description:
-        'La préparation aux audits intégrée à votre exploitation quotidienne, en arrière-plan.',
-      items: [
-        {
-          title: 'Journaux d’activité horodatés',
-          description:
-            'Chaque action est enregistrée automatiquement, de la création à la clôture en passant par les commentaires.',
-        },
-        {
-          title: 'Responsabilité claire',
-          description:
-            'Suivez les actions par utilisateur ou rôle, de la clôture par un technicien à la validation d’un coût.',
-        },
-        {
-          title: 'Inspections numériques',
-          description:
-            'Réalisez les check-lists d’inspection sur mobile avec photos, relevés et signatures.',
-        },
-        {
-          title: 'Journaux par intervention et équipement',
-          description:
-            'Consultez l’historique complet, les coûts et les documents de chaque équipement ou intervention.',
-        },
-        {
-          title: 'Validations configurables',
-          description:
-            'Définissez des points de contrôle obligatoires pour une conformité identique sur chaque site.',
-        },
-        {
-          title: 'Rapports d’audit exportables',
-          description:
-            'Générez des journaux détaillés pour toute période ou type d’équipement en quelques clics.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Prêt pour l’audit chaque jour',
-        description:
-          'Fleet constitue vos preuves au fil du travail, pour aborder la semaine d’inspection sereinement.',
-        points: [
-          'Certificats et formulaires de conformité rattachés à chaque dossier',
-          'Résultats d’inspection liés aux équipements et aux sites',
-          'Traçabilité numérique complète lors des passations d’actifs',
-        ],
-      },
-      {
-        title: 'Une maîtrise claire des responsabilités',
-        description:
-          'Les accès par rôle protègent les champs critiques et offrent une visibilité complète aux équipes de contrôle.',
-        points: [
-          'Droits de modification réservés au personnel autorisé',
-          'Accès en lecture pour la direction et les auditeurs',
-          'Journaux de modifications avec notes et historique des versions',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Le suivi d’audit en pratique',
-      description:
-        'D’un site à cent, Fleet démontre que votre équipe réalise le bon travail, avec constance.',
-      items: [
-        'Prouver que les inspections de routine ont été réalisées à temps sur tous les sites',
-        'Présenter l’historique de maintenance incendie aux autorités',
-        'Voir qui a validé une réparation coûteuse',
-        'Fournir une traçabilité numérique lors d’une passation d’actif',
-        'Exporter les journaux pour la revue annuelle de conformité',
-      ],
     },
   },
 }
@@ -3246,4 +3144,220 @@ export const documentPage: ProductPageContent = {
       },
     ],
   },
+}
+
+export const auditPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Suivi d’audit et inspections',
+    title: 'Conforme. Responsable.',
+    description:
+      'Fleet enregistre ce qui a été fait, quand et par qui, et numérise vos inspections, pour que chaque site soit prêt pour tout audit interne ou externe.',
+    primaryAction: {
+      label: 'Réserver une démo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorer la plateforme',
+      href: '/platform',
+    },
+    highlights: ['Journaux horodatés', 'Inspections numériques', 'Rapports d’audit exportables'],
+    visual: {
+      kind: 'log',
+      title: 'Piste d’audit · Tower B',
+      entries: [
+        {
+          when: '09:42',
+          who: 'Marco L.',
+          what: 'a clôturé l’inspection des portes coupe-feu WO-2291 avec 6 photos',
+        },
+        {
+          when: '09:15',
+          who: 'Aisha K.',
+          what: 'a validé une réparation de groupe froid de 6 800 $',
+        },
+        {
+          when: '08:58',
+          who: 'Fleet',
+          what: 'a enregistré le passage de l’ascenseur L2 à Entretien à prévoir',
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'Journaux horodatés',
+      description:
+        'Chaque action est enregistrée automatiquement, de la création de l’intervention à sa clôture et aux commentaires des techniciens.',
+    },
+    {
+      title: 'Responsabilité claire',
+      description:
+        'Voyez qui a fait quoi, par personne ou par rôle, du technicien qui clôture une intervention au responsable qui valide un coût.',
+    },
+    {
+      title: 'Rapports d’audit exportables',
+      description:
+        'Générez des journaux détaillés pour toute période, tout site ou tout type d’équipement en quelques clics.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Inspections',
+      title: 'Des inspections numériques sur chaque site',
+      description:
+        'Réalisez vos check-lists d’inspection sur téléphone ou tablette, avec photos, relevés et signatures recueillis sur place.',
+      points: [
+        'Check-lists pour la sécurité incendie, les ascenseurs, le CVC et plus',
+        'Photos, relevés et signatures à chaque inspection',
+        'Résultats liés aux équipements et aux sites',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Inspections de la semaine · Northgate Mall',
+        items: [
+          {
+            title: 'Inspection des portes coupe-feu',
+            location: 'Niveau 2 · 14 portes',
+            status: 'Terminée',
+            tone: 'done',
+          },
+          {
+            title: 'Test de l’éclairage de secours',
+            location: 'Tous les étages',
+            status: 'Prévu aujourd’hui',
+            tone: 'due',
+          },
+          {
+            title: 'Contrôle mensuel ascenseur L2',
+            location: 'Ascenseurs centraux',
+            status: 'Planifié',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Historique',
+      title: 'L’historique complet de chaque intervention et équipement',
+      description:
+        'Ouvrez n’importe quel équipement ou intervention pour voir son activité, ses coûts, ses documents et chaque modification, avec notes et versions.',
+      points: [
+        'Changements de statut et mises à jour enregistrés automatiquement',
+        'Coûts et documents sur une même chronologie',
+        'Notes de modification avec historique des versions',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Historique équipement',
+        name: 'Pompe incendie FP-01',
+        location: 'Tower B · Local pompes',
+        status: 'Inspectée',
+        facts: [
+          {
+            label: 'Dernière inspection',
+            value: '3 oct.',
+          },
+          {
+            label: 'Inspections enregistrées',
+            value: '48',
+          },
+          {
+            label: 'Certificat',
+            value: 'Valide jusqu’en juin 2027',
+          },
+          {
+            label: 'Modifications cette année',
+            value: '12',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Validations',
+      title: 'Des validations identiques sur tous les sites',
+      description:
+        'Définissez des points de validation obligatoires et des règles d’acheminement avec le Workflow Builder, pour des étapes de conformité homogènes sur chaque site.',
+      points: [
+        'Validations obligatoires pour les travaux coûteux',
+        'Règles d’acheminement par site, coût ou type d’équipement',
+        'Chaque validation enregistrée avec nom et heure',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Point de validation',
+        steps: [
+          {
+            kind: 'Déclencheur',
+            text: 'Devis de réparation au-delà de 5 000 $',
+          },
+          {
+            kind: 'Valider',
+            text: 'Le responsable régional approuve',
+          },
+          {
+            kind: 'Journal',
+            text: 'Validation ajoutée à la piste d’audit',
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Préparation aux audits',
+    title: 'Prêt pour tout audit, à tout moment',
+    description:
+      'Fleet constitue vos preuves au fil du travail, pour que chaque revue commence avec des éléments complets et organisés.',
+    points: [
+      'Certificats et formulaires de conformité joints à chaque enregistrement',
+      'Droits de modification réservés aux personnes autorisées',
+      'Accès en lecture pour la direction et les auditeurs',
+      'Une piste documentaire complète pour les transferts d’actifs',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'Dossier d’audit · Tower B · 2026',
+      items: [
+        {
+          title: 'Inspections sécurité incendie.pdf',
+          location: '52 enregistrements',
+          status: 'Complet',
+          tone: 'done',
+        },
+        {
+          title: 'Certificats ascenseurs.pdf',
+          location: '4 ascenseurs',
+          status: 'Valides',
+          tone: 'done',
+        },
+        {
+          title: 'Journal des validations.csv',
+          location: '31 validations',
+          status: 'Exporté',
+          tone: 'info',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Des réponses d’audit à la demande avec RunnerAI',
+      description:
+        'Demandez quelles inspections sont à prévoir ou qui a validé une réparation, et RunnerAI répond en quelques secondes à partir de vos données en direct.',
+      action: {
+        label: 'Découvrir RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'workflow',
+      title: 'La conformité intégrée à chaque workflow',
+      description:
+        'Concevez étapes de validation, check-lists et signatures avec le Workflow Builder, et chaque étape est consignée automatiquement.',
+      action: {
+        label: 'Découvrir le Workflow Builder',
+        href: '/platform/workflow-builder',
+      },
+    },
+  ],
 }

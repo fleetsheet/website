@@ -7,9 +7,9 @@ import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
 
-const { meta } = getContent(getLocale(Astro.url)).platform.pages.analyticsReporting
+const { meta } = getContent(getLocale(Astro.url)).platform.pages.auditTracking
 ---
 
 <Layout meta={meta}>
-  <AnalyticsPage page="analytics" />
+  <AnalyticsPage page="audit" />
 </Layout>

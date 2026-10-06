@@ -8,12 +8,11 @@ import type {
   OverviewModule,
   OverviewVisual,
   PlatformEntry,
-  PlatformPageContent,
   PreventiveIcon,
   ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, PlatformPageId } from '@/platform'
 
 export const menu = {
   label: 'المنصة',
@@ -28,19 +27,6 @@ export const menu = {
   },
 }
 
-export const pageActions = {
-  primary: { label: 'احجز عرضًا توضيحيًا', href: '/contact' },
-  secondary: { label: 'استكشف المنصة', href: '/platform' },
-} satisfies Record<string, NavLink>
-
-export const sectionLabels = {
-  features: 'الميزات الأساسية',
-  useCases: 'حالات الاستخدام',
-  related: 'اكتشف المزيد',
-  relatedTitle: 'المزيد من منصة Fleet',
-  learnMore: 'اعرف المزيد',
-}
-
 export const cta = {
   title: 'شاهد Fleet أثناء العمل',
   description: 'احجز جولة واكتشف كيف تجمع Fleet كل موقع وكل أصل وكل أمر عمل في مكان واحد.',
@@ -48,19 +34,7 @@ export const cta = {
   secondaryAction: { label: 'تحدث إلى فريقنا', href: '/contact' },
 }
 
-export const pages: {
-  overview: PlatformEntry
-  webAndMobile: PlatformEntry
-  integrations: PlatformEntry
-  runnerAi: PlatformEntry
-  fleetMail: PlatformEntry
-  workflowBuilder: PlatformEntry
-  preventiveMaintenance: PlatformEntry
-  reactiveMaintenance: PlatformEntry
-  analyticsReporting: PlatformEntry
-  assetManagement: PlatformEntry
-  documentManagement: PlatformEntry
-} & Record<TemplatePageId, PlatformPageContent> = {
+export const pages: Record<PlatformPageId, PlatformEntry> = {
   overview: {
     label: 'نظرة عامة',
     summary: 'منصة واحدة للصيانة والأصول والعمليات في كل موقع.',
@@ -167,74 +141,6 @@ export const pages: {
       title: 'تتبع التدقيق والفحوصات | Fleet',
       description:
         'احتفظ بسجلات مفصلة مؤرخة بالوقت لكل إجراء، ونفّذ فحوصات رقمية ليبقى كل موقع جاهزًا لمراجعات الصحة والسلامة وتدقيقات الامتثال.',
-    },
-    eyebrow: 'تتبع التدقيق والفحوصات',
-    title: 'امتثال دائم ومسؤولية واضحة',
-    description:
-      'تسجّل Fleet ما حدث ومتى ومن قام به، وتنفذ فحوصاتك رقميًا، ليبقى كل موقع جاهزًا لأي تدقيق داخلي أو خارجي.',
-    highlights: ['سجلات مؤرخة بالوقت', 'فحوصات رقمية', 'تقارير تدقيق قابلة للتصدير'],
-    features: {
-      title: 'الميزات الأساسية لتتبع التدقيق',
-      description: 'الجاهزية للتدقيق جزء من عملياتك اليومية، تعمل بهدوء في الخلفية.',
-      items: [
-        {
-          title: 'سجلات نشاط مؤرخة بالوقت',
-          description: 'يُسجَّل كل إجراء تلقائيًا، من إنشاء العمل حتى إنجازه والتعليقات عليه.',
-        },
-        {
-          title: 'مساءلة المستخدمين',
-          description:
-            'تابع الإجراءات حسب المستخدم أو الدور، من إغلاق الفني للعمل إلى اعتماد المدير للتكلفة.',
-        },
-        {
-          title: 'فحوصات رقمية',
-          description: 'نفّذ قوائم الفحص على الجوال مع الصور والقراءات والتواقيع.',
-        },
-        {
-          title: 'سجلات على مستوى العمل والأصل',
-          description: 'اطّلع على السجل الكامل والتكاليف والمستندات لأي أصل أو عمل.',
-        },
-        {
-          title: 'موافقات قابلة للتهيئة',
-          description: 'حدد نقاط تحقق إلزامية لتُطبَّق خطوات الامتثال بالطريقة نفسها في كل موقع.',
-        },
-        {
-          title: 'تقارير تدقيق قابلة للتصدير',
-          description: 'أنشئ سجلات مفصلة لأي فترة أو نوع أصل بنقرات قليلة.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'جاهزون للتدقيق كل يوم',
-        description: 'تجمع Fleet سجلاتك أثناء العمل، فيمر أسبوع التفتيش بهدوء وتحضير جيد.',
-        points: [
-          'الشهادات ونماذج الامتثال محفوظة مع كل سجل',
-          'نتائج الفحص مرتبطة بالأصول والمواقع',
-          'أثر رقمي كامل عند تسليم العقارات',
-        ],
-      },
-      {
-        title: 'تحكم واضح فيمن يفعل ماذا',
-        description: 'يحمي الوصول حسب الدور الحقول الحساسة ويمنح فرق الرقابة رؤية كاملة.',
-        points: [
-          'صلاحيات التعديل للموظفين المخوّلين',
-          'صلاحيات العرض للإدارة والمدققين',
-          'سجلات التغيير مع الملاحظات وتاريخ الإصدارات',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'تتبع التدقيق عمليًا',
-      description:
-        'من موقع واحد إلى مئة موقع، تساعدك Fleet على إثبات أن فريقك يؤدي العمل الصحيح باستمرار.',
-      items: [
-        'إثبات إنجاز الفحوصات الدورية في موعدها في كل المواقع',
-        'عرض سجل صيانة أنظمة الحريق على الجهات التنظيمية',
-        'معرفة من اعتمد إصلاحًا مرتفع التكلفة',
-        'تقديم أثر رقمي كامل عند تسليم العقار',
-        'تصدير السجلات لمراجعة الامتثال السنوية',
-      ],
     },
   },
 }
@@ -3056,4 +2962,217 @@ export const documentPage: ProductPageContent = {
       },
     ],
   },
+}
+
+export const auditPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'تتبع التدقيق والفحوصات',
+    title: 'امتثال دائم ومسؤولية واضحة',
+    description:
+      'تسجّل Fleet ما حدث ومتى ومن قام به، وتنفذ فحوصاتك رقميًا، ليبقى كل موقع جاهزًا لأي تدقيق داخلي أو خارجي.',
+    primaryAction: {
+      label: 'احجز عرضًا توضيحيًا',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'استكشف المنصة',
+      href: '/platform',
+    },
+    highlights: ['سجلات مؤرخة بالوقت', 'فحوصات رقمية', 'تقارير تدقيق قابلة للتصدير'],
+    visual: {
+      kind: 'log',
+      title: 'سجل التدقيق · Tower B',
+      entries: [
+        {
+          when: '09:42',
+          who: 'Marco L.',
+          what: 'أغلق فحص أبواب الحريق WO-2291 مع 6 صور',
+        },
+        {
+          when: '09:15',
+          who: 'Aisha K.',
+          what: 'وافقت على إصلاح مبرّد بقيمة 6,800 $',
+        },
+        {
+          when: '08:58',
+          who: 'Fleet',
+          what: 'سجّلت تغيّر حالة المصعد L2 إلى صيانة مستحقة',
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'سجلات نشاط مؤرخة',
+      description: 'تُسجَّل كل عملية تلقائيًا، من إنشاء أمر العمل حتى إنجازه وتعليقات الفنيين.',
+    },
+    {
+      title: 'مساءلة واضحة',
+      description:
+        'اعرف من فعل ماذا حسب المستخدم أو الدور، من فني يغلق عملًا إلى مدير يوافق على تكلفة.',
+    },
+    {
+      title: 'تقارير تدقيق قابلة للتصدير',
+      description: 'أنشئ سجلات مفصلة لأي فترة أو موقع أو نوع أصل ببضع نقرات.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'الفحوصات',
+      title: 'فحوصات رقمية في كل موقع',
+      description:
+        'نفّذ قوائم الفحص على أي هاتف أو جهاز لوحي، مع الصور والقراءات والتوقيعات في الموقع.',
+      points: [
+        'قوائم للسلامة من الحريق والمصاعد والتكييف وغيرها',
+        'صور وقراءات وتوقيعات في كل فحص',
+        'نتائج مرتبطة بالأصول والمواقع',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'فحوصات هذا الأسبوع · Northgate Mall',
+        items: [
+          {
+            title: 'فحص أبواب الحريق',
+            location: 'الطابق 2 · 14 بابًا',
+            status: 'مكتمل',
+            tone: 'done',
+          },
+          {
+            title: 'اختبار إنارة الطوارئ',
+            location: 'كل الطوابق',
+            status: 'مستحق اليوم',
+            tone: 'due',
+          },
+          {
+            title: 'الفحص الشهري للمصعد L2',
+            location: 'المصاعد المركزية',
+            status: 'مجدول',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'السجل',
+      title: 'سجل كامل لكل عمل وأصل',
+      description:
+        'افتح أي أصل أو عمل لترى نشاطه وتكاليفه ومستنداته وكل تغيير، مع الملاحظات وسجل الإصدارات.',
+      points: [
+        'تغييرات الحالة والتحديثات تُسجَّل تلقائيًا',
+        'التكاليف والمستندات في خط زمني واحد',
+        'ملاحظات التغيير مع سجل الإصدارات',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'سجل الأصل',
+        name: 'مضخة الحريق FP-01',
+        location: 'Tower B · غرفة المضخات',
+        status: 'تم الفحص',
+        facts: [
+          {
+            label: 'آخر فحص',
+            value: '3 أكتوبر',
+          },
+          {
+            label: 'فحوصات مسجلة',
+            value: '48',
+          },
+          {
+            label: 'الشهادة',
+            value: 'سارية حتى يونيو 2027',
+          },
+          {
+            label: 'تغييرات هذا العام',
+            value: '12',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'الموافقات',
+      title: 'موافقات تسير بالطريقة نفسها في كل مكان',
+      description:
+        'حدّد نقاط موافقة إلزامية وقواعد توجيه عبر منشئ سير العمل، لتسير خطوات الامتثال بالطريقة نفسها في كل موقع.',
+      points: [
+        'موافقات إلزامية للأعمال مرتفعة التكلفة',
+        'قواعد توجيه حسب الموقع أو التكلفة أو نوع الأصل',
+        'كل موافقة مسجلة بالاسم والوقت',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'نقطة موافقة',
+        steps: [
+          {
+            kind: 'المحفّز',
+            text: 'عرض إصلاح يتجاوز 5,000 $',
+          },
+          {
+            kind: 'الموافقة',
+            text: 'المدير الإقليمي يعتمد',
+          },
+          {
+            kind: 'السجل',
+            text: 'إضافة الموافقة إلى سجل التدقيق',
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'الجاهزية للتدقيق',
+    title: 'جاهز لأي تدقيق في أي وقت',
+    description: 'تجمع Fleet سجلاتك أثناء العمل، لتبدأ كل مراجعة بأدلة كاملة ومنظمة.',
+    points: [
+      'الشهادات ونماذج الامتثال محفوظة مع كل سجل',
+      'صلاحيات التعديل للموظفين المخوّلين فقط',
+      'صلاحية عرض للإدارة والمدققين',
+      'سجل رقمي كامل عند تسليم العقارات',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'حزمة التدقيق · Tower B · 2026',
+      items: [
+        {
+          title: 'فحوصات السلامة من الحريق.pdf',
+          location: '52 سجلًا',
+          status: 'مكتمل',
+          tone: 'done',
+        },
+        {
+          title: 'شهادات المصاعد.pdf',
+          location: '4 مصاعد',
+          status: 'سارية',
+          tone: 'done',
+        },
+        {
+          title: 'سجل الموافقات.csv',
+          location: '31 موافقة',
+          status: 'تم التصدير',
+          tone: 'info',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'إجابات التدقيق عند الطلب مع RunnerAI',
+      description:
+        'اسأل عن الفحوصات المستحقة أو عمّن وافق على إصلاح، ويجيبك RunnerAI من بياناتك المباشرة في ثوانٍ.',
+      action: {
+        label: 'تعرّف على RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'workflow',
+      title: 'امتثال مدمج في كل سير عمل',
+      description:
+        'صمّم خطوات الموافقة وقوائم التحقق والاعتمادات عبر منشئ سير العمل، وتُسجَّل كل خطوة تلقائيًا.',
+      action: {
+        label: 'استكشف منشئ سير العمل',
+        href: '/platform/workflow-builder',
+      },
+    },
+  ],
 }
