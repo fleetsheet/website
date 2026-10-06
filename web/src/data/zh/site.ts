@@ -10,7 +10,6 @@ export const actions = {
 } satisfies Record<string, NavLink>
 
 export const headerLinks: NavLink[] = [
-  { label: '解决方案', href: '/#solutions' },
   { label: 'AI 智能体', href: '/#ai' },
   { label: '常见问题', href: '/faqs' },
   { label: '洞察', href: '/insights' },

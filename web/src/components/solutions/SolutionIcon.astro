@@ -1,0 +1,28 @@
+---
+import type { SolutionPageId } from '@/solutions'
+import BriefcaseBusiness from '@lucide/astro/icons/briefcase-business'
+import Building from '@lucide/astro/icons/building'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import Handshake from '@lucide/astro/icons/handshake'
+import Route from '@lucide/astro/icons/route'
+import Users from '@lucide/astro/icons/users'
+
+type Props = {
+  id: SolutionPageId
+  class?: string
+}
+
+const icons = {
+  cafm: Building,
+  pms: BriefcaseBusiness,
+  workOrders: ClipboardList,
+  fieldService: Route,
+  tenants: Users,
+  vendors: Handshake,
+} satisfies Record<SolutionPageId, unknown>
+
+const { id, class: className } = Astro.props
+const Icon = icons[id]
+---
+
+<Icon class={className} aria-hidden="true" />

@@ -1,0 +1,231 @@
+---
+import CapabilityTabs from '@/components/platform/CapabilityTabs.astro'
+import ChallengeCards from '@/components/platform/ChallengeCards.astro'
+import FaqSection from '@/components/platform/FaqSection.astro'
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import Photo from '@/components/ui/Photo.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import type { CategoryIcon } from '@/data/en/solutions'
+import { getLocale } from '@/i18n'
+import type { CategoryPageId } from '@/solutions'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import BadgeCheck from '@lucide/astro/icons/badge-check'
+import Boxes from '@lucide/astro/icons/boxes'
+import CalendarClock from '@lucide/astro/icons/calendar-clock'
+import CalendarDays from '@lucide/astro/icons/calendar-days'
+import ChartColumn from '@lucide/astro/icons/chart-column'
+import Check from '@lucide/astro/icons/check'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import Contact from '@lucide/astro/icons/contact'
+import FolderOpen from '@lucide/astro/icons/folder-open'
+import Inbox from '@lucide/astro/icons/inbox'
+import MapIcon from '@lucide/astro/icons/map'
+import MessageSquare from '@lucide/astro/icons/message-square'
+import Plug from '@lucide/astro/icons/plug'
+import Quote from '@lucide/astro/icons/quote'
+import Route from '@lucide/astro/icons/route'
+import SlidersHorizontal from '@lucide/astro/icons/sliders-horizontal'
+import Smartphone from '@lucide/astro/icons/smartphone'
+import Sparkles from '@lucide/astro/icons/sparkles'
+import Users from '@lucide/astro/icons/users'
+import Wallet from '@lucide/astro/icons/wallet'
+import PhotoWithCard from './PhotoWithCard.astro'
+import SolutionIcon from './SolutionIcon.astro'
+
+type Props = {
+  page: CategoryPageId
+}
+
+const { page } = Astro.props
+const { categories, shared } = getContent(getLocale(Astro.url)).solutions
+const { hero, challenge, capabilities, rows, quote, faq } = categories[page]
+const { actions, results, why, industries, integrate, faqTitle, cta } = shared
+const tabIcons = {
+  workOrders: ClipboardList,
+  preventive: CalendarClock,
+  assets: Boxes,
+  analytics: ChartColumn,
+  portfolio: MapIcon,
+  budget: Wallet,
+  documents: FolderOpen,
+  requests: Inbox,
+  routing: Route,
+  mobile: Smartphone,
+  scheduling: CalendarDays,
+  communication: MessageSquare,
+  vendors: Contact,
+  approvals: BadgeCheck,
+} satisfies Record<CategoryIcon, unknown>
+const whyIcons = [SlidersHorizontal, Sparkles, Users]
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-azul-blue flex items-center gap-2.5">
+        <IconChip size="sm">
+          <SolutionIcon id={page} />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate">{hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={actions.primary.href}>
+          {actions.primary.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={actions.secondary.href} variant="secondary">
+          {actions.secondary.label}
+        </Button>
+      </div>
+      <ul class="text-azul-blue flex flex-wrap gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <PhotoWithCard photo={hero.photo} visual={hero.visual} loading="eager" />
+  </Container>
+</section>
+
+<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
+
+<CapabilityTabs
+  idPrefix={page}
+  title={capabilities.title}
+  description={capabilities.description}
+  tabs={capabilities.tabs}
+  icons={capabilities.tabs.map((tab) => tabIcons[tab.icon])}
+/>
+
+<PageSection containerClass="flex flex-col gap-24">
+  {rows.map((row, index) => (
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
+      <div class:list={['flex flex-col items-start gap-5', index % 2 === 1 && 'lg:order-2']}>
+        <SectionHeader eyebrow={row.tag} title={row.title} description={row.description} />
+        <CheckList items={row.points} class="gap-3" />
+      </div>
+      <PhotoWithCard
+        photo={row.photo}
+        visual={row.visual}
+        cardSide={index % 2 === 1 ? 'start' : 'end'}
+      />
+    </div>
+  ))}
+</PageSection>
+
+<section class="bg-rich-blue text-alice-blue">
+  <Container class="flex flex-col gap-12 py-20">
+    <SectionHeader
+      eyebrow={results.eyebrow}
+      title={results.title}
+      description={results.description}
+      tone="dark"
+      align="center"
+    />
+    <ul class="grid grid-cols-2 gap-8 text-center lg:grid-cols-4">
+      {results.items.map((item) => (
+        <li class="flex flex-col gap-2">
+          <span class="font-display text-display-md text-white">{item.value}</span>
+          <span class="text-columbia-blue text-[15px]">{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<PageSection containerClass="flex flex-col gap-12">
+  <SectionHeader title={why.title} description={why.description} />
+  <ul class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    {why.items.map((item, index) => {
+      const Icon = whyIcons[index % whyIcons.length]
+      return (
+        <li class="flex flex-col gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h3 class="text-lg font-semibold">{item.title}</h3>
+          <p class="text-azul-blue text-[15px] leading-[1.55]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<section>
+  <Container width="wide">
+    <figure class="bg-azul-blue text-alice-blue grid grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-[1.3fr_1fr]">
+      <div class="flex flex-col gap-6 p-[clamp(32px,5vw,64px)]">
+        <Quote class="text-sky-blue size-10 rtl:-scale-x-100" aria-hidden="true" />
+        <blockquote class="font-display text-display-md text-white">{quote.text}</blockquote>
+        <figcaption class="mt-auto text-sm">
+          <span class="block font-semibold text-white">{quote.author}</span>
+          <span class="text-columbia-blue">{quote.company}</span>
+        </figcaption>
+      </div>
+      <div class="min-h-64">
+        <Photo photo={quote.photo} sizes="(min-width: 1024px) 40vw, 100vw" />
+      </div>
+    </figure>
+  </Container>
+</section>
+
+<PageSection containerClass="flex flex-col gap-10">
+  <SectionHeader title={industries.title} description={industries.description} align="center" />
+  <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+    {industries.items.map((item) => (
+      <li class="bg-surface border-border flex flex-col overflow-hidden rounded-xl border shadow-xs">
+        <div class="bg-columbia-blue aspect-[4/3]">
+          <Photo photo={item.photo} sizes="(min-width: 1024px) 200px, 50vw" />
+        </div>
+        <span class="font-display hyphenate p-4 text-[15px] leading-snug font-semibold">
+          {item.label}
+        </span>
+      </li>
+    ))}
+  </ul>
+  <div class="bg-surface border-border flex flex-col items-center gap-4 rounded-2xl border p-8 text-center shadow-xs">
+    <IconChip size="lg">
+      <Plug />
+    </IconChip>
+    <h2 class="text-display-md">{integrate.title}</h2>
+    <p class="text-azul-blue max-w-[620px] text-[17px] leading-[1.65]">{integrate.description}</p>
+    <Button href={integrate.action.href} variant="secondary">
+      {integrate.action.label}
+      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+    </Button>
+  </div>
+</PageSection>
+
+<FaqSection title={faqTitle} items={faq} />
+
+<section>
+  <Container width="wide" class="py-24">
+    <div class="bg-rich-blue grid grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-2">
+      <div class="min-h-72">
+        <Photo photo={cta.photo} sizes="(min-width: 1024px) 50vw, 100vw" />
+      </div>
+      <div class="flex flex-col items-start justify-center gap-5 p-[clamp(32px,5vw,64px)]">
+        <h2 class="text-display-lg text-white">{cta.title}</h2>
+        <p class="text-columbia-blue text-lg leading-relaxed">{cta.description}</p>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <Button href={cta.primaryAction.href} variant="accent" size="lg">
+            {cta.primaryAction.label}
+          </Button>
+          <Button href={cta.secondaryAction.href} variant="inverse" size="lg">
+            {cta.secondaryAction.label}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

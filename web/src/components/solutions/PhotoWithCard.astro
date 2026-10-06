@@ -1,0 +1,29 @@
+---
+import OverviewVisual from '@/components/platform/OverviewVisual.astro'
+import Photo from '@/components/ui/Photo.astro'
+import type { OverviewVisual as Visual } from '@/data/en/platform'
+import type { Photo as PhotoData } from '@/photos'
+
+type Props = {
+  photo: PhotoData
+  visual: Visual
+  cardSide?: 'start' | 'end'
+  loading?: 'eager' | 'lazy'
+}
+
+const { photo, visual, cardSide = 'end', loading = 'lazy' } = Astro.props
+---
+
+<div class="relative sm:pb-12">
+  <div class="bg-columbia-blue aspect-[4/3] overflow-hidden rounded-2xl">
+    <Photo photo={photo} loading={loading} sizes="(min-width: 1024px) 560px, 100vw" />
+  </div>
+  <div
+    class:list={[
+      'relative -mt-16 w-[min(90%,360px)] sm:absolute sm:bottom-0 sm:mt-0',
+      cardSide === 'end' ? 'ms-auto me-3 sm:-end-4 sm:me-0' : 'ms-3 sm:-start-4 sm:ms-0',
+    ]}
+  >
+    <OverviewVisual visual={visual} />
+  </div>
+</div>

@@ -1,0 +1,27 @@
+---
+import { photos, type Photo } from '@/photos'
+import { Image } from 'astro:assets'
+
+type Props = {
+  photo: Photo
+  sizes?: string
+  loading?: 'eager' | 'lazy'
+  class?: string
+}
+
+const {
+  photo,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  loading = 'lazy',
+  class: className,
+} = Astro.props
+---
+
+<Image
+  src={photos[photo.id]}
+  alt={photo.alt}
+  widths={[480, 800, 1200, 1600]}
+  sizes={sizes}
+  loading={loading}
+  class:list={['size-full object-cover', className]}
+/>
