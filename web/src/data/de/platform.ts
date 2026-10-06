@@ -8,12 +8,11 @@ import type {
   OverviewModule,
   OverviewVisual,
   PlatformEntry,
-  PlatformPageContent,
   PreventiveIcon,
   ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, PlatformPageId } from '@/platform'
 
 export const menu = {
   label: 'Plattform',
@@ -28,19 +27,6 @@ export const menu = {
   },
 }
 
-export const pageActions = {
-  primary: { label: 'Demo buchen', href: '/contact' },
-  secondary: { label: 'Plattform entdecken', href: '/platform' },
-} satisfies Record<string, NavLink>
-
-export const sectionLabels = {
-  features: 'Kernfunktionen',
-  useCases: 'Anwendungsfälle',
-  related: 'Mehr entdecken',
-  relatedTitle: 'Mehr von der Fleet-Plattform',
-  learnMore: 'Mehr erfahren',
-}
-
 export const cta = {
   title: 'Fleet in Aktion erleben',
   description:
@@ -49,19 +35,7 @@ export const cta = {
   secondaryAction: { label: 'Mit unserem Team sprechen', href: '/contact' },
 }
 
-export const pages: {
-  overview: PlatformEntry
-  webAndMobile: PlatformEntry
-  integrations: PlatformEntry
-  runnerAi: PlatformEntry
-  fleetMail: PlatformEntry
-  workflowBuilder: PlatformEntry
-  preventiveMaintenance: PlatformEntry
-  reactiveMaintenance: PlatformEntry
-  analyticsReporting: PlatformEntry
-  assetManagement: PlatformEntry
-  documentManagement: PlatformEntry
-} & Record<TemplatePageId, PlatformPageContent> = {
+export const pages: Record<PlatformPageId, PlatformEntry> = {
   overview: {
     label: 'Überblick',
     summary: 'Eine Plattform für Instandhaltung, Anlagen und Betrieb an jedem Standort.',
@@ -168,85 +142,6 @@ export const pages: {
       title: 'Audit-Tracking & Inspektionen | Fleet',
       description:
         'Führen Sie detaillierte Protokolle mit Zeitstempel zu jeder Aktion und digitale Inspektionen, damit jeder Standort für Arbeitsschutzprüfungen und Compliance-Audits bereit ist.',
-    },
-    eyebrow: 'Audit-Tracking & Inspektionen',
-    title: 'Konform bleiben. Verantwortung zeigen.',
-    description:
-      'Fleet dokumentiert, was wann von wem erledigt wurde, und führt Ihre Inspektionen digital durch, damit jeder Standort für jedes interne oder externe Audit bereit ist.',
-    highlights: [
-      'Protokolle mit Zeitstempel',
-      'Digitale Inspektionen',
-      'Exportierbare Auditberichte',
-    ],
-    features: {
-      title: 'Kernfunktionen des Audit-Trackings',
-      description: 'Audit-Bereitschaft als fester Teil des Betriebsalltags, im Hintergrund.',
-      items: [
-        {
-          title: 'Aktivitätsprotokolle mit Zeitstempel',
-          description:
-            'Jede Aktion wird automatisch erfasst, von der Auftragserstellung bis zum Abschluss und zu Kommentaren.',
-        },
-        {
-          title: 'Klare Verantwortlichkeit',
-          description:
-            'Aktionen nach Person oder Rolle verfolgen, vom Abschluss durch Techniker bis zur Kostenfreigabe.',
-        },
-        {
-          title: 'Digitale Inspektionen',
-          description:
-            'Prüfchecklisten mobil mit Fotos, Messwerten und Unterschriften durchführen.',
-        },
-        {
-          title: 'Protokolle je Auftrag und Anlage',
-          description:
-            'Für jede Anlage und jeden Auftrag die vollständige Historie, Kosten und Dokumente einsehen.',
-        },
-        {
-          title: 'Konfigurierbare Freigaben',
-          description:
-            'Pflicht-Prüfpunkte festlegen, damit Compliance-Schritte an jedem Standort gleich ablaufen.',
-        },
-        {
-          title: 'Exportierbare Auditberichte',
-          description:
-            'Detaillierte Protokolle für jeden Zeitraum oder Anlagentyp mit wenigen Klicks erzeugen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Jeden Tag prüfbereit',
-        description:
-          'Fleet stellt Ihre Nachweise zusammen, während gearbeitet wird, sodass die Prüfungswoche ruhig und gut vorbereitet verläuft.',
-        points: [
-          'Zertifikate und Compliance-Formulare an jedem Datensatz',
-          'Prüfergebnisse mit Anlagen und Standorten verknüpft',
-          'Lückenlose digitale Dokumentation für Objektübergaben',
-        ],
-      },
-      {
-        title: 'Klare Kontrolle über Zuständigkeiten',
-        description:
-          'Rollenbasierte Zugriffe schützen kritische Felder und geben Aufsichtsteams volle Transparenz.',
-        points: [
-          'Bearbeitungsrechte für autorisierte Personen',
-          'Leserechte für Leitung und Prüfer',
-          'Änderungsprotokolle mit Notizen und Versionshistorie',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Audit-Tracking in der Praxis',
-      description:
-        'Von einem Standort bis zu hundert: Fleet zeigt, dass Ihr Team die richtige Arbeit beständig leistet.',
-      items: [
-        'Nachweisen, dass Routineprüfungen an allen Standorten pünktlich erfolgt sind',
-        'Behörden die Wartungshistorie des Brandschutzes zeigen',
-        'Sehen, wer eine teure Reparatur freigegeben hat',
-        'Eine digitale Dokumentation bei Objektübergaben bereitstellen',
-        'Protokolle für die jährliche Compliance-Prüfung exportieren',
-      ],
     },
   },
 }
@@ -3244,4 +3139,224 @@ export const documentPage: ProductPageContent = {
       },
     ],
   },
+}
+
+export const auditPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Audit-Tracking & Inspektionen',
+    title: 'Konform bleiben. Verantwortung zeigen.',
+    description:
+      'Fleet dokumentiert, was wann von wem erledigt wurde, und führt Ihre Inspektionen digital durch, damit jeder Standort für jedes interne oder externe Audit bereit ist.',
+    primaryAction: {
+      label: 'Demo buchen',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Plattform entdecken',
+      href: '/platform',
+    },
+    highlights: [
+      'Protokolle mit Zeitstempel',
+      'Digitale Inspektionen',
+      'Exportierbare Auditberichte',
+    ],
+    visual: {
+      kind: 'log',
+      title: 'Prüfpfad · Tower B',
+      entries: [
+        {
+          when: '09:42',
+          who: 'Marco L.',
+          what: 'hat die Brandschutztürprüfung WO-2291 mit 6 Fotos abgeschlossen',
+        },
+        {
+          when: '09:15',
+          who: 'Aisha K.',
+          what: 'hat eine Kältemaschinenreparatur über 6.800 $ freigegeben',
+        },
+        {
+          when: '08:58',
+          who: 'Fleet',
+          what: 'hat den Statuswechsel von Aufzug L2 auf Wartung fällig erfasst',
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'Protokolle mit Zeitstempel',
+      description:
+        'Jede Aktion wird automatisch erfasst, von der Auftragserstellung bis zum Abschluss und den Kommentaren der Techniker.',
+    },
+    {
+      title: 'Klare Verantwortlichkeit',
+      description:
+        'Sehen Sie, wer was getan hat, nach Person oder Rolle, vom Techniker, der einen Auftrag abschließt, bis zur Kostenfreigabe.',
+    },
+    {
+      title: 'Exportierbare Prüfberichte',
+      description:
+        'Erstellen Sie detaillierte Protokolle für jeden Zeitraum, Standort oder Anlagentyp mit wenigen Klicks.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Prüfungen',
+      title: 'Digitale Prüfungen an jedem Standort',
+      description:
+        'Führen Sie Prüfchecklisten auf jedem Smartphone oder Tablet durch, mit Fotos, Messwerten und Unterschriften direkt vor Ort.',
+      points: [
+        'Checklisten für Brandschutz, Aufzüge, Klima und mehr',
+        'Fotos, Messwerte und Unterschriften bei jeder Prüfung',
+        'Ergebnisse mit Anlagen und Standorten verknüpft',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Prüfungen diese Woche · Northgate Mall',
+        items: [
+          {
+            title: 'Prüfung Brandschutztüren',
+            location: 'Ebene 2 · 14 Türen',
+            status: 'Abgeschlossen',
+            tone: 'done',
+          },
+          {
+            title: 'Test Notbeleuchtung',
+            location: 'Alle Etagen',
+            status: 'Heute fällig',
+            tone: 'due',
+          },
+          {
+            title: 'Monatsprüfung Aufzug L2',
+            location: 'Kernaufzüge',
+            status: 'Geplant',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Historie',
+      title: 'Vollständige Historie für jeden Auftrag und jede Anlage',
+      description:
+        'Öffnen Sie jede Anlage oder jeden Auftrag und sehen Sie Aktivitäten, Kosten, Dokumente und jede Änderung, mit Notizen und Versionshistorie.',
+      points: [
+        'Statuswechsel und Updates automatisch erfasst',
+        'Kosten und Dokumente in einer Zeitleiste',
+        'Änderungsnotizen mit Versionshistorie',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Anlagenhistorie',
+        name: 'Feuerlöschpumpe FP-01',
+        location: 'Tower B · Pumpenraum',
+        status: 'Geprüft',
+        facts: [
+          {
+            label: 'Letzte Prüfung',
+            value: '03. Okt.',
+          },
+          {
+            label: 'Erfasste Prüfungen',
+            value: '48',
+          },
+          {
+            label: 'Zertifikat',
+            value: 'Gültig bis Juni 2027',
+          },
+          {
+            label: 'Änderungen dieses Jahr',
+            value: '12',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Freigaben',
+      title: 'Freigaben, die überall gleich ablaufen',
+      description:
+        'Legen Sie mit dem Workflow Builder verpflichtende Freigabepunkte und Routing-Regeln fest, damit Compliance-Schritte an jedem Standort einheitlich laufen.',
+      points: [
+        'Pflicht-Freigaben für kostenintensive Arbeiten',
+        'Routing-Regeln nach Standort, Kosten oder Anlagentyp',
+        'Jede Freigabe mit Name und Zeit erfasst',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Freigabepunkt',
+        steps: [
+          {
+            kind: 'Auslöser',
+            text: 'Reparaturangebot über 5.000 $',
+          },
+          {
+            kind: 'Freigabe',
+            text: 'Regionalleitung zeichnet ab',
+          },
+          {
+            kind: 'Protokoll',
+            text: 'Freigabe im Prüfpfad erfasst',
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Prüfbereitschaft',
+    title: 'Bereit für jedes Audit, jederzeit',
+    description:
+      'Fleet stellt Ihre Nachweise zusammen, während die Arbeit läuft, damit jede Prüfung mit vollständigen, geordneten Belegen beginnt.',
+    points: [
+      'Zertifikate und Compliance-Formulare an jedem Eintrag',
+      'Bearbeitungsrechte nur für berechtigte Personen',
+      'Lesezugriff für Leitung und Prüfer',
+      'Lückenlose digitale Dokumentation für Objektübergaben',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'Auditpaket · Tower B · 2026',
+      items: [
+        {
+          title: 'Brandschutzprüfungen.pdf',
+          location: '52 Einträge',
+          status: 'Vollständig',
+          tone: 'done',
+        },
+        {
+          title: 'Aufzugszertifikate.pdf',
+          location: '4 Aufzüge',
+          status: 'Gültig',
+          tone: 'done',
+        },
+        {
+          title: 'Freigabeprotokoll.csv',
+          location: '31 Freigaben',
+          status: 'Exportiert',
+          tone: 'info',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Audit-Antworten auf Anfrage mit RunnerAI',
+      description:
+        'Fragen Sie, welche Prüfungen fällig sind oder wer eine Reparatur freigegeben hat, und RunnerAI antwortet in Sekunden aus Ihren Live-Daten.',
+      action: {
+        label: 'RunnerAI kennenlernen',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'workflow',
+      title: 'Compliance in jeden Workflow einbauen',
+      description:
+        'Gestalten Sie Freigabeschritte, Checklisten und Abnahmen mit dem Workflow Builder, und jeder Schritt wird automatisch protokolliert.',
+      action: {
+        label: 'Workflow Builder entdecken',
+        href: '/platform/workflow-builder',
+      },
+    },
+  ],
 }

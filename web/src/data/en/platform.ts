@@ -1,6 +1,6 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
-import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, PlatformPageId } from '@/platform'
 
 export type PlatformItem = {
   title: string
@@ -11,16 +11,6 @@ export type PlatformEntry = {
   label: string
   summary: string
   meta: { title: string; description: string }
-}
-
-export type PlatformPageContent = PlatformEntry & {
-  eyebrow: string
-  title: string
-  description: string
-  highlights: string[]
-  features: { title: string; description: string; items: PlatformItem[] }
-  details: (PlatformItem & { points: string[] })[]
-  useCases: { title: string; description: string; items: string[] }
 }
 
 export type OverviewVisual =
@@ -98,7 +88,12 @@ export type AnalyticsPageContent = {
     points: string[]
     visual: OverviewVisual
   }
-  extras: { icon: 'ai' | 'plug'; title: string; description: string; action: NavLink }[]
+  extras: {
+    icon: 'ai' | 'plug' | 'workflow'
+    title: string
+    description: string
+    action: NavLink
+  }[]
 }
 
 export type ProductIcon =
@@ -153,19 +148,6 @@ export const menu = {
   },
 }
 
-export const pageActions = {
-  primary: { label: 'Book a demo', href: '/contact' },
-  secondary: { label: 'Explore the platform', href: '/platform' },
-} satisfies Record<string, NavLink>
-
-export const sectionLabels = {
-  features: 'Key capabilities',
-  useCases: 'Use cases',
-  related: 'Explore more',
-  relatedTitle: 'More from the Fleet Platform',
-  learnMore: 'Learn more',
-}
-
 export const cta = {
   title: 'See Fleet in Action',
   description:
@@ -174,19 +156,7 @@ export const cta = {
   secondaryAction: { label: 'Talk to our team', href: '/contact' },
 }
 
-export const pages: {
-  overview: PlatformEntry
-  webAndMobile: PlatformEntry
-  integrations: PlatformEntry
-  runnerAi: PlatformEntry
-  fleetMail: PlatformEntry
-  workflowBuilder: PlatformEntry
-  preventiveMaintenance: PlatformEntry
-  reactiveMaintenance: PlatformEntry
-  analyticsReporting: PlatformEntry
-  assetManagement: PlatformEntry
-  documentManagement: PlatformEntry
-} & Record<TemplatePageId, PlatformPageContent> = {
+export const pages: Record<PlatformPageId, PlatformEntry> = {
   overview: {
     label: 'Overview',
     summary: 'One platform for maintenance, assets and operations across every site.',
@@ -293,79 +263,6 @@ export const pages: {
       title: 'Audit Tracking & Inspections | Fleet',
       description:
         'Keep detailed, time-stamped logs of every action and run digital inspections so every site is ready for health and safety reviews and compliance audits.',
-    },
-    eyebrow: 'Audit Tracking & Inspections',
-    title: 'Stay Compliant. Stay Accountable.',
-    description:
-      'Fleet records what happened, when and by whom, and runs your inspections digitally, so every site is ready for any internal or external audit.',
-    highlights: ['Time-stamped logs', 'Digital inspections', 'Exportable audit reports'],
-    features: {
-      title: 'Key Features of Audit Tracking',
-      description:
-        'Audit readiness built into your daily operations, running quietly in the background.',
-      items: [
-        {
-          title: 'Time-stamped activity logs',
-          description:
-            'Every action is recorded automatically, from job creation to completion and comments.',
-        },
-        {
-          title: 'User accountability',
-          description:
-            'Track actions by user or role, from a technician closing a job to a manager approving a cost.',
-        },
-        {
-          title: 'Digital inspections',
-          description: 'Run inspection checklists on mobile with photos, readings and signatures.',
-        },
-        {
-          title: 'Job and asset-level logs',
-          description: 'Drill into any asset or job to see its full history, costs and documents.',
-        },
-        {
-          title: 'Configurable approvals',
-          description:
-            'Set mandatory checkpoints so compliance steps run the same way at every location.',
-        },
-        {
-          title: 'Exportable audit reports',
-          description: 'Generate detailed logs for any time frame or asset type in a few clicks.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Audit-Ready Every Day',
-        description:
-          'Fleet compiles your records as work happens, so inspection week is calm and well prepared.',
-        points: [
-          'Certificates and compliance forms stored with each record',
-          'Inspection results linked to assets and locations',
-          'Complete digital paper trail for property handovers',
-        ],
-      },
-      {
-        title: 'Clear Control Over Who Does What',
-        description:
-          'Role-based access keeps critical fields protected while giving oversight teams full visibility.',
-        points: [
-          'Edit rights limited to authorized personnel',
-          'View access for leadership and auditors',
-          'Change logs with notes and version history',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Audit Tracking in Practice',
-      description:
-        'From one site to a hundred, Fleet helps you show your team does the right work, consistently.',
-      items: [
-        'Prove routine inspections were completed on time across all sites',
-        'Show fire safety maintenance history to regulators',
-        'See who approved a high-cost repair job',
-        'Provide a digital paper trail during property handovers',
-        'Export logs for annual compliance reviews',
-      ],
     },
   },
 }
@@ -3300,4 +3197,219 @@ export const documentPage: ProductPageContent = {
       },
     ],
   },
+}
+
+export const auditPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Audit Tracking & Inspections',
+    title: 'Stay Compliant. Stay Accountable.',
+    description:
+      'Fleet records what happened, when and by whom, and runs your inspections digitally, so every site is ready for any internal or external audit.',
+    primaryAction: {
+      label: 'Book a demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explore the platform',
+      href: '/platform',
+    },
+    highlights: ['Time-stamped logs', 'Digital inspections', 'Exportable audit reports'],
+    visual: {
+      kind: 'log',
+      title: 'Audit trail · Tower B',
+      entries: [
+        {
+          when: '09:42',
+          who: 'Marco L.',
+          what: 'closed fire door inspection WO-2291 with 6 photos',
+        },
+        {
+          when: '09:15',
+          who: 'Aisha K.',
+          what: 'approved a $6,800 chiller repair',
+        },
+        {
+          when: '08:58',
+          who: 'Fleet',
+          what: 'recorded Lift L2 status change to Service due',
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'Time-stamped activity logs',
+      description:
+        'Every action is recorded automatically, from work order creation to completion and technician comments.',
+    },
+    {
+      title: 'User accountability',
+      description:
+        'See who did what by user or role, from a technician closing a job to a manager approving a cost.',
+    },
+    {
+      title: 'Exportable audit reports',
+      description: 'Generate detailed logs for any time frame, site or asset type in a few clicks.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Inspections',
+      title: 'Digital Inspections on Every Site',
+      description:
+        'Run inspection checklists on any phone or tablet, with photos, readings and signatures captured on the spot.',
+      points: [
+        'Checklists for fire safety, lifts, HVAC and more',
+        'Photos, readings and signatures on every inspection',
+        'Results linked to assets and locations',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Inspections this week · Northgate Mall',
+        items: [
+          {
+            title: 'Fire door inspection',
+            location: 'Level 2 · 14 doors',
+            status: 'Completed',
+            tone: 'done',
+          },
+          {
+            title: 'Emergency lighting test',
+            location: 'All floors',
+            status: 'Due today',
+            tone: 'due',
+          },
+          {
+            title: 'Lift L2 monthly check',
+            location: 'Core lifts',
+            status: 'Scheduled',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'History',
+      title: 'Full History for Every Job and Asset',
+      description:
+        'Drill into any asset or job to see its activity, costs, documents and every change, with notes and version history.',
+      points: [
+        'Status changes and updates captured automatically',
+        'Costs and documents in one timeline',
+        'Change notes with version history',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Asset history',
+        name: 'Fire pump FP-01',
+        location: 'Tower B · Pump room',
+        status: 'Inspected',
+        facts: [
+          {
+            label: 'Last inspection',
+            value: '03 Oct',
+          },
+          {
+            label: 'Inspections logged',
+            value: '48',
+          },
+          {
+            label: 'Certificate',
+            value: 'Valid to Jun 2027',
+          },
+          {
+            label: 'Changes this year',
+            value: '12',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Approvals',
+      title: 'Approvals That Run the Same Way Everywhere',
+      description:
+        'Set mandatory approval checkpoints and routing rules with the Workflow Builder, so compliance steps run consistently at every location.',
+      points: [
+        'Mandatory checkpoints for high-cost work',
+        'Routing rules by site, cost or asset type',
+        'Every approval recorded with name and time',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Approval checkpoint',
+        steps: [
+          {
+            kind: 'Trigger',
+            text: 'Repair quote above $5,000',
+          },
+          {
+            kind: 'Approve',
+            text: 'Regional manager signs off',
+          },
+          {
+            kind: 'Log',
+            text: 'Approval added to the audit trail',
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Audit readiness',
+    title: 'Ready for Any Audit, Any Time',
+    description:
+      'Fleet compiles your records as work happens, so every review starts with complete, organized evidence.',
+    points: [
+      'Certificates and compliance forms stored with each record',
+      'Edit rights limited to authorized personnel',
+      'View access for leadership and auditors',
+      'A complete digital paper trail for property handovers',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'Audit pack · Tower B · 2026',
+      items: [
+        {
+          title: 'Fire safety inspections.pdf',
+          location: '52 records',
+          status: 'Complete',
+          tone: 'done',
+        },
+        {
+          title: 'Lift certificates.pdf',
+          location: '4 lifts',
+          status: 'Valid',
+          tone: 'done',
+        },
+        {
+          title: 'Approval log.csv',
+          location: '31 approvals',
+          status: 'Exported',
+          tone: 'info',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Audit Answers on Request with RunnerAI',
+      description:
+        'Ask which inspections are due or who approved a repair, and RunnerAI answers from your live records in seconds.',
+      action: {
+        label: 'Meet RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'workflow',
+      title: 'Build Compliance into Every Workflow',
+      description:
+        'Design approval steps, checklists and sign-offs with the Workflow Builder, and every step is logged automatically.',
+      action: {
+        label: 'Explore the Workflow Builder',
+        href: '/platform/workflow-builder',
+      },
+    },
+  ],
 }

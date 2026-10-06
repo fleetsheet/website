@@ -11,20 +11,32 @@ import { getLocale } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import ChartColumn from '@lucide/astro/icons/chart-column'
 import Check from '@lucide/astro/icons/check'
+import ClipboardCheck from '@lucide/astro/icons/clipboard-check'
+import FileClock from '@lucide/astro/icons/file-clock'
 import FileText from '@lucide/astro/icons/file-text'
 import Gauge from '@lucide/astro/icons/gauge'
 import LayoutDashboard from '@lucide/astro/icons/layout-dashboard'
 import Plug from '@lucide/astro/icons/plug'
 import Quote from '@lucide/astro/icons/quote'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
 import Sparkles from '@lucide/astro/icons/sparkles'
+import UserCheck from '@lucide/astro/icons/user-check'
+import Workflow from '@lucide/astro/icons/workflow'
 import FeatureRows from './FeatureRows.astro'
 import OverviewVisual from './OverviewVisual.astro'
 
-const { analyticsPage, webMobile, cta } = getContent(getLocale(Astro.url)).platform
-const { hero, columns, rows, reports, extras } = analyticsPage
+type Props = {
+  page: 'analytics' | 'audit'
+}
+
+const { page } = Astro.props
+const { analyticsPage, auditPage, webMobile, cta } = getContent(getLocale(Astro.url)).platform
+const { hero, columns, rows, reports, extras } = page === 'analytics' ? analyticsPage : auditPage
 const { stories } = webMobile
-const columnIcons = [Gauge, LayoutDashboard, FileText]
-const extraIcons = { ai: Sparkles, plug: Plug }
+const HeroIcon = page === 'analytics' ? ChartColumn : ShieldCheck
+const columnIcons =
+  page === 'analytics' ? [Gauge, LayoutDashboard, FileText] : [FileClock, UserCheck, ClipboardCheck]
+const extraIcons = { ai: Sparkles, plug: Plug, workflow: Workflow }
 ---
 
 <section class="bg-columbia-blue/40 border-border border-b">
@@ -32,7 +44,7 @@ const extraIcons = { ai: Sparkles, plug: Plug }
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
         <IconChip size="sm">
-          <ChartColumn />
+          <HeroIcon />
         </IconChip>
         {hero.eyebrow}
       </p>

@@ -8,12 +8,11 @@ import type {
   OverviewModule,
   OverviewVisual,
   PlatformEntry,
-  PlatformPageContent,
   PreventiveIcon,
   ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
-import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
+import type { PlatformDetailId, PlatformGroup, PlatformPageId } from '@/platform'
 
 export const menu = {
   label: 'Plataforma',
@@ -28,19 +27,6 @@ export const menu = {
   },
 }
 
-export const pageActions = {
-  primary: { label: 'Reservar una demo', href: '/contact' },
-  secondary: { label: 'Explorar la plataforma', href: '/platform' },
-} satisfies Record<string, NavLink>
-
-export const sectionLabels = {
-  features: 'Funciones principales',
-  useCases: 'Casos de uso',
-  related: 'Descubra más',
-  relatedTitle: 'Más de la plataforma Fleet',
-  learnMore: 'Más información',
-}
-
 export const cta = {
   title: 'Vea Fleet en acción',
   description:
@@ -49,19 +35,7 @@ export const cta = {
   secondaryAction: { label: 'Hablar con nuestro equipo', href: '/contact' },
 }
 
-export const pages: {
-  overview: PlatformEntry
-  webAndMobile: PlatformEntry
-  integrations: PlatformEntry
-  runnerAi: PlatformEntry
-  fleetMail: PlatformEntry
-  workflowBuilder: PlatformEntry
-  preventiveMaintenance: PlatformEntry
-  reactiveMaintenance: PlatformEntry
-  analyticsReporting: PlatformEntry
-  assetManagement: PlatformEntry
-  documentManagement: PlatformEntry
-} & Record<TemplatePageId, PlatformPageContent> = {
+export const pages: Record<PlatformPageId, PlatformEntry> = {
   overview: {
     label: 'Visión general',
     summary: 'Una plataforma para mantenimiento, activos y operaciones en cada sede.',
@@ -169,84 +143,6 @@ export const pages: {
       title: 'Auditorías e inspecciones | Fleet',
       description:
         'Mantenga registros detallados con fecha y hora de cada acción y realice inspecciones digitales para que cada sede esté lista para revisiones de seguridad y auditorías de cumplimiento.',
-    },
-    eyebrow: 'Auditorías e inspecciones',
-    title: 'Cumplimiento y responsabilidad, siempre',
-    description:
-      'Fleet registra qué se hizo, cuándo y quién lo hizo, y digitaliza sus inspecciones, para que cada sede esté lista para cualquier auditoría interna o externa.',
-    highlights: [
-      'Registros con fecha y hora',
-      'Inspecciones digitales',
-      'Informes de auditoría exportables',
-    ],
-    features: {
-      title: 'Funciones clave de auditoría',
-      description: 'La preparación para auditorías integrada en el día a día, en segundo plano.',
-      items: [
-        {
-          title: 'Registros de actividad con fecha y hora',
-          description:
-            'Cada acción se registra automáticamente, desde la creación del trabajo hasta su cierre y los comentarios.',
-        },
-        {
-          title: 'Responsabilidad de cada usuario',
-          description:
-            'Siga las acciones por usuario o rol, desde el cierre de un técnico hasta la aprobación de un coste.',
-        },
-        {
-          title: 'Inspecciones digitales',
-          description: 'Realice listas de inspección en el móvil con fotos, lecturas y firmas.',
-        },
-        {
-          title: 'Registros por trabajo y activo',
-          description:
-            'Consulte el historial completo, los costes y los documentos de cualquier activo o trabajo.',
-        },
-        {
-          title: 'Aprobaciones configurables',
-          description:
-            'Defina puntos de control obligatorios para que el cumplimiento se aplique igual en cada sede.',
-        },
-        {
-          title: 'Informes de auditoría exportables',
-          description:
-            'Genere registros detallados de cualquier periodo o tipo de activo en pocos clics.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Listo para auditoría cada día',
-        description:
-          'Fleet reúne sus registros a medida que se trabaja, para afrontar la semana de inspección con tranquilidad.',
-        points: [
-          'Certificados y formularios de cumplimiento en cada registro',
-          'Resultados de inspección vinculados a activos y ubicaciones',
-          'Rastro documental digital completo para traspasos de propiedades',
-        ],
-      },
-      {
-        title: 'Control claro de quién hace qué',
-        description:
-          'El acceso por roles protege los campos críticos y da plena visibilidad a los equipos de supervisión.',
-        points: [
-          'Permisos de edición para el personal autorizado',
-          'Acceso de lectura para la dirección y los auditores',
-          'Registros de cambios con notas e historial de versiones',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Auditorías en la práctica',
-      description:
-        'De una sede a cien, Fleet demuestra que su equipo hace el trabajo correcto de forma constante.',
-      items: [
-        'Demostrar que las inspecciones rutinarias se hicieron a tiempo en todas las sedes',
-        'Mostrar a los reguladores el historial de mantenimiento contra incendios',
-        'Ver quién aprobó una reparación de alto coste',
-        'Aportar un rastro documental digital en el traspaso de una propiedad',
-        'Exportar registros para la revisión anual de cumplimiento',
-      ],
     },
   },
 }
@@ -3232,4 +3128,224 @@ export const documentPage: ProductPageContent = {
       },
     ],
   },
+}
+
+export const auditPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Auditorías e inspecciones',
+    title: 'Cumplimiento y responsabilidad, siempre',
+    description:
+      'Fleet registra qué se hizo, cuándo y quién lo hizo, y digitaliza sus inspecciones, para que cada sede esté lista para cualquier auditoría interna o externa.',
+    primaryAction: {
+      label: 'Reservar una demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorar la plataforma',
+      href: '/platform',
+    },
+    highlights: [
+      'Registros con fecha y hora',
+      'Inspecciones digitales',
+      'Informes de auditoría exportables',
+    ],
+    visual: {
+      kind: 'log',
+      title: 'Registro de auditoría · Tower B',
+      entries: [
+        {
+          when: '09:42',
+          who: 'Marco L.',
+          what: 'cerró la inspección de puertas cortafuego WO-2291 con 6 fotos',
+        },
+        {
+          when: '09:15',
+          who: 'Aisha K.',
+          what: 'aprobó una reparación de enfriadora de 6.800 $',
+        },
+        {
+          when: '08:58',
+          who: 'Fleet',
+          what: 'registró el cambio del ascensor L2 a Servicio pendiente',
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'Registros con fecha y hora',
+      description:
+        'Cada acción se registra automáticamente, desde la creación de la orden hasta su cierre y los comentarios de los técnicos.',
+    },
+    {
+      title: 'Responsabilidad clara',
+      description:
+        'Vea quién hizo qué por usuario o rol, desde un técnico que cierra un trabajo hasta un responsable que aprueba un coste.',
+    },
+    {
+      title: 'Informes de auditoría exportables',
+      description:
+        'Genere registros detallados de cualquier periodo, sede o tipo de activo en pocos clics.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Inspecciones',
+      title: 'Inspecciones digitales en cada sede',
+      description:
+        'Realice listas de inspección en cualquier móvil o tableta, con fotos, lecturas y firmas recogidas en el momento.',
+      points: [
+        'Listas para protección contra incendios, ascensores, climatización y más',
+        'Fotos, lecturas y firmas en cada inspección',
+        'Resultados vinculados a activos y ubicaciones',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Inspecciones de la semana · Northgate Mall',
+        items: [
+          {
+            title: 'Inspección de puertas cortafuego',
+            location: 'Planta 2 · 14 puertas',
+            status: 'Completada',
+            tone: 'done',
+          },
+          {
+            title: 'Prueba de iluminación de emergencia',
+            location: 'Todas las plantas',
+            status: 'Para hoy',
+            tone: 'due',
+          },
+          {
+            title: 'Revisión mensual ascensor L2',
+            location: 'Ascensores centrales',
+            status: 'Programada',
+            tone: 'info',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Historial',
+      title: 'Historial completo de cada trabajo y activo',
+      description:
+        'Abra cualquier activo o trabajo para ver su actividad, costes, documentos y cada cambio, con notas e historial de versiones.',
+      points: [
+        'Cambios de estado y actualizaciones registrados automáticamente',
+        'Costes y documentos en una sola cronología',
+        'Notas de cambio con historial de versiones',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Historial del activo',
+        name: 'Bomba contra incendios FP-01',
+        location: 'Tower B · Sala de bombas',
+        status: 'Inspeccionada',
+        facts: [
+          {
+            label: 'Última inspección',
+            value: '03 oct',
+          },
+          {
+            label: 'Inspecciones registradas',
+            value: '48',
+          },
+          {
+            label: 'Certificado',
+            value: 'Válido hasta jun 2027',
+          },
+          {
+            label: 'Cambios este año',
+            value: '12',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Aprobaciones',
+      title: 'Aprobaciones iguales en todas las sedes',
+      description:
+        'Defina puntos de aprobación obligatorios y reglas de enrutamiento con el Workflow Builder, para que los pasos de cumplimiento se apliquen igual en cada sede.',
+      points: [
+        'Aprobaciones obligatorias para trabajos de alto coste',
+        'Reglas de enrutamiento por sede, coste o tipo de activo',
+        'Cada aprobación registrada con nombre y hora',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Punto de aprobación',
+        steps: [
+          {
+            kind: 'Disparador',
+            text: 'Presupuesto de reparación superior a 5.000 $',
+          },
+          {
+            kind: 'Aprobar',
+            text: 'El responsable regional da el visto bueno',
+          },
+          {
+            kind: 'Registro',
+            text: 'Aprobación añadida al registro de auditoría',
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Preparación para auditorías',
+    title: 'Listo para cualquier auditoría, en cualquier momento',
+    description:
+      'Fleet reúne sus registros a medida que avanza el trabajo, para que cada revisión empiece con pruebas completas y ordenadas.',
+    points: [
+      'Certificados y formularios de cumplimiento en cada registro',
+      'Permisos de edición solo para personal autorizado',
+      'Acceso de lectura para dirección y auditores',
+      'Un rastro documental completo para traspasos de inmuebles',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'Paquete de auditoría · Tower B · 2026',
+      items: [
+        {
+          title: 'Inspecciones contra incendios.pdf',
+          location: '52 registros',
+          status: 'Completo',
+          tone: 'done',
+        },
+        {
+          title: 'Certificados de ascensores.pdf',
+          location: '4 ascensores',
+          status: 'Válidos',
+          tone: 'done',
+        },
+        {
+          title: 'Registro de aprobaciones.csv',
+          location: '31 aprobaciones',
+          status: 'Exportado',
+          tone: 'info',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Respuestas de auditoría al instante con RunnerAI',
+      description:
+        'Pregunte qué inspecciones están pendientes o quién aprobó una reparación, y RunnerAI responde en segundos con sus datos en vivo.',
+      action: {
+        label: 'Conocer RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'workflow',
+      title: 'Cumplimiento integrado en cada flujo',
+      description:
+        'Diseñe pasos de aprobación, listas de control y firmas con el Workflow Builder, y cada paso queda registrado automáticamente.',
+      action: {
+        label: 'Explorar el Workflow Builder',
+        href: '/platform/workflow-builder',
+      },
+    },
+  ],
 }
