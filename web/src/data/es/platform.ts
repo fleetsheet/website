@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  PreventiveIcon,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -52,6 +53,7 @@ export const pages: {
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
+  preventiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -114,86 +116,6 @@ export const pages: {
       title: 'Mantenimiento preventivo y predictivo | Fleet',
       description:
         'Programe el mantenimiento preventivo de cada activo y use predicciones basadas en reglas para actuar antes de una avería, en todas las sedes de su cartera.',
-    },
-    eyebrow: 'Mantenimiento preventivo y predictivo',
-    title: 'Siempre un paso por delante de cada avería',
-    description:
-      'Planifique el mantenimiento recurrente de cada activo y detecte riesgos a tiempo con predicciones basadas en reglas, para que los equipos funcionen y los inquilinos estén satisfechos.',
-    highlights: [
-      'Planes recurrentes',
-      'Predicciones basadas en reglas',
-      'Hasta un 40 % menos de correctivo',
-    ],
-    features: {
-      title: 'Planifique el mantenimiento con confianza',
-      description:
-        'Sus planes de mantenimiento se convierten en programaciones automáticas y los datos en vivo indican dónde actuar después.',
-      items: [
-        {
-          title: 'Planes preventivos recurrentes',
-          description:
-            'Programe tareas preventivas de climatización, fontanería, iluminación, ascensores e incendios por tiempo o por uso.',
-        },
-        {
-          title: 'Creación automática de trabajos',
-          description:
-            'Fleet genera las órdenes preventivas a partir del plan de cada activo y las asigna al equipo adecuado.',
-        },
-        {
-          title: 'Alertas predictivas',
-          description:
-            'Las lecturas por encima de lo habitual generan una alerta trazable con el siguiente paso recomendado.',
-        },
-        {
-          title: 'Plantillas según estándares del sector',
-          description:
-            'Empiece con listas de comprobación de buenas prácticas para cada tipo de activo y adáptelas a sus sedes.',
-        },
-        {
-          title: 'Planificación de cargas',
-          description:
-            'Reparta el trabajo entre técnicos y proveedores y vea de un vistazo lo que viene.',
-        },
-        {
-          title: 'Calendario de cumplimiento',
-          description:
-            'Siga inspecciones reglamentarias y certificados con recordatorios antes de cada vencimiento.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'De la programación al trabajo validado',
-        description:
-          'Cada tarea preventiva incluye su lista de comprobación, el historial del activo y los documentos, para que los técnicos lleguen preparados.',
-        points: [
-          'Listas de comprobación y procedimientos en cada tarea',
-          'Pruebas fotográficas y lecturas registradas al cerrar',
-          'Escalado automático de tareas vencidas',
-        ],
-      },
-      {
-        title: 'Predicciones que puede rastrear',
-        description:
-          'El aprendizaje automático basado en reglas de Fleet explica cada recomendación, para que los equipos actúen con seguridad.',
-        points: [
-          'Riesgo de los equipos evaluado con datos en vivo e históricos',
-          'Cada alerta vinculada a la regla que la generó',
-          'Un clic de la predicción a la orden de trabajo',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Mantenimiento preventivo en la práctica',
-      description:
-        'Cómo los equipos inmobiliarios mantienen sus sistemas críticos en perfecto estado.',
-      items: [
-        'Cambio trimestral de filtros de climatización en cada edificio',
-        'Certificación anual de ascensores con aviso 30 días antes',
-        'Pruebas mensuales de iluminación de emergencia registradas con fotos',
-        'Vibración de una enfriadora vigilada con alertas predictivas',
-        'Revisiones de puertas cortafuegos programadas por planta y escalera',
-      ],
     },
   },
   reactiveMaintenance: {
@@ -2006,5 +1928,336 @@ export const workflowBuilderPage = {
         description: 'Los flujos estructurados generan datos más limpios e informes más útiles.',
       },
     ],
+  },
+}
+
+export const preventivePage = {
+  hero: {
+    eyebrow: 'Mantenimiento preventivo y predictivo',
+    title: 'Siempre un paso por delante de cada avería',
+    description:
+      'Planifique el mantenimiento recurrente de cada activo, actúe con predicciones basadas en reglas y mantenga los equipos en marcha en cada sede, con hasta un 40 % menos de trabajo correctivo.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    secondaryAction: { label: 'Explorar la plataforma', href: '/platform' },
+    highlights: [
+      'Planes recurrentes',
+      'Predicciones basadas en reglas',
+      'Calendario de cumplimiento',
+    ],
+    prediction: {
+      title: 'Predicción de Fleet',
+      asset: 'AHU-07 · Tower B, P14',
+      risk: 'Riesgo alto',
+      message:
+        'Vibración por encima de lo normal durante 9 días. Programe mantenimiento en 7 días.',
+      action: 'Crear orden de trabajo',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Cada activo tiene su propio ritmo',
+      description:
+        'Climatización, ascensores, fontanería, iluminación e incendios siguen sus propios planes, listas y fechas de cumplimiento en cada sede.',
+      points: ['Planes recurrentes', 'Inspecciones reglamentarias', 'Varias sedes'],
+    },
+    answer: {
+      title: 'Fleet mantiene cada plan al día',
+      description:
+        'Fleet convierte los planes de mantenimiento en programaciones automáticas y usa datos en vivo para mostrar dónde actuar después.',
+    },
+  },
+  capabilities: {
+    title: 'La forma inteligente de gestionar su mantenimiento preventivo',
+    description:
+      'De las programaciones recurrentes a las predicciones trazables, todo su programa en una sola plataforma.',
+    tabs: [
+      {
+        icon: 'schedules',
+        label: 'Programación',
+        title: 'Planes preventivos recurrentes',
+        description:
+          'Programe tareas preventivas de climatización, fontanería, iluminación, ascensores e incendios por tiempo o por uso.',
+        points: [
+          'Programación por tiempo y por uso',
+          'Listas de buenas prácticas por tipo de activo',
+          'Carga repartida entre técnicos y proveedores',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Trabajos planificados · Esta semana',
+          items: [
+            {
+              title: 'Cambio de filtros de climatización',
+              location: 'Tower B · AHU-07',
+              status: 'Vence en 4 h',
+              tone: 'due',
+            },
+            {
+              title: 'Certificación anual de ascensores',
+              location: 'Ascensores L1–L3',
+              status: 'Programado',
+              tone: 'info',
+            },
+            {
+              title: 'Prueba de iluminación de emergencia',
+              location: 'Northgate Mall',
+              status: 'Completado',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Órdenes de trabajo',
+        title: 'Trabajos creados automáticamente',
+        description:
+          'Fleet genera las órdenes preventivas a partir del plan de cada activo y las asigna al equipo adecuado, con listas adjuntas.',
+        points: [
+          'Órdenes generadas desde cada plan de mantenimiento',
+          'Asignadas a equipos internos o proveedores',
+          'Pruebas fotográficas y lecturas al cerrar',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Automatización preventiva',
+          steps: [
+            { kind: 'Plan', text: 'Enfriadora CH-02 · servicio trimestral' },
+            { kind: 'Luego', text: 'Crear la orden 14 días antes' },
+            { kind: 'Luego', text: 'Asignar al proveedor de climatización + adjuntar lista' },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Predicciones',
+        title: 'Alertas predictivas trazables',
+        description:
+          'El aprendizaje automático basado en reglas evalúa el riesgo con datos en vivo e históricos, y cada alerta remite a su regla.',
+        points: [
+          'Riesgo evaluado con datos en vivo e históricos',
+          'Cada alerta vinculada a la regla que la generó',
+          'Un clic de la predicción a la orden de trabajo',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Alertas de riesgo',
+          items: [
+            {
+              title: 'Vibración de AHU-07 en aumento',
+              location: 'Tower B · Planta 14',
+              status: 'Riesgo alto',
+              tone: 'overdue',
+            },
+            {
+              title: 'Desviación de presión en bomba P-03',
+              location: 'Harbour Point',
+              status: 'Riesgo medio',
+              tone: 'due',
+            },
+            {
+              title: 'Enfriadora CH-02 de nuevo en rango',
+              location: 'Harbour Point',
+              status: 'Resuelto',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'compliance',
+        label: 'Cumplimiento',
+        title: 'Un calendario de cumplimiento para cada sede',
+        description:
+          'Siga inspecciones reglamentarias y certificados con recordatorios antes de cada vencimiento, y guarde la evidencia en cada registro.',
+        points: [
+          'Recordatorios antes de cada inspección y certificado',
+          'Certificados guardados con cada activo',
+          'Historial listo para auditoría en cada sede',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Próximo cumplimiento',
+          items: [
+            {
+              title: 'Certificado contra incendios',
+              location: 'Tower B · Vence 30 oct.',
+              status: 'En 24 d',
+              tone: 'due',
+            },
+            {
+              title: 'Informe de inspección de ascensores',
+              location: 'Ascensores · Vence 12 nov.',
+              status: 'Programado',
+              tone: 'info',
+            },
+            {
+              title: 'Evaluación de riesgo de legionela',
+              location: 'Bayview Residences',
+              status: 'Al día',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: PreventiveIcon; label: string })[],
+  },
+  rows: [
+    {
+      tag: 'IA basada en reglas',
+      title: 'Predicciones que evitan paradas',
+      description:
+        'Fleet sigue la evolución de los equipos y detecta señales tempranas, para que su equipo actúe antes de que afecte a los inquilinos.',
+      points: [
+        'Las lecturas por encima de lo normal generan una alerta',
+        'Siguiente paso recomendado en cada alerta',
+        'Planes sugeridos para equipos nuevos con RunnerAI',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Actividad predictiva',
+        entries: [
+          {
+            when: '09:42',
+            who: 'Fleet',
+            what: 'detectó vibración de AHU-07 por encima de lo normal durante 9 días',
+          },
+          { when: '09:44', who: 'Aisha K.', what: 'creó una orden de trabajo desde la alerta' },
+          {
+            when: '08:58',
+            who: 'RunnerAI',
+            what: 'sugirió un plan preventivo para 6 enfriadoras nuevas',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Planificación',
+      title: 'La prevención compensa',
+      description:
+        'Pase del trabajo correctivo al mantenimiento planificado y vea la diferencia en disponibilidad, costes y confort.',
+      points: [
+        'Trabajo preventivo y correctivo seguidos en paralelo',
+        'Gasto planificado según el ciclo de vida',
+        'Incidencias recurrentes convertidas en tareas preventivas',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Proporción de mantenimiento planificado',
+        stats: [
+          { label: 'Trabajo planificado', value: '78 %' },
+          { label: 'Trabajo correctivo', value: '22 %' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 84 },
+          { label: 'Tower B', value: 80 },
+          { label: 'Northgate', value: 76 },
+          { label: 'Bayview', value: 72 },
+          { label: 'Westport', value: 68 },
+        ],
+      },
+    },
+    {
+      tag: 'Equipos y proveedores',
+      title: 'Coordinación fluida con equipos y proveedores',
+      description:
+        'Envíe cada trabajo preventivo a técnicos internos o proveedores contratados y siga el avance en tiempo real.',
+      points: [
+        'Trabajos asignados por sede, especialidad y contrato',
+        'Los proveedores entran con un enlace sencillo',
+        'Pruebas fotográficas y lecturas en cada cierre',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Preventivo del mes por responsable',
+        items: [
+          {
+            title: 'Equipo interno de climatización',
+            location: '24 trabajos · 3 sedes',
+            status: '92 % hecho',
+            tone: 'done',
+          },
+          {
+            title: 'Proveedor de ascensores',
+            location: '9 trabajos · 5 sedes',
+            status: 'En plazo',
+            tone: 'info',
+          },
+          {
+            title: 'Proveedor contra incendios',
+            location: '12 trabajos · 4 sedes',
+            status: '2 vencen hoy',
+            tone: 'due',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  steps: {
+    eyebrow: 'Cómo funciona',
+    title: 'Del plan a la evidencia',
+    items: [
+      {
+        title: 'Planificar',
+        description:
+          'Cargue sus activos y planes de mantenimiento, o empiece con plantillas de buenas prácticas.',
+      },
+      {
+        title: 'Programar',
+        description: 'Fleet crea y asigna las órdenes automáticamente antes de cada vencimiento.',
+      },
+      {
+        title: 'Completar',
+        description: 'Los técnicos siguen las listas y registran fotos y lecturas in situ.',
+      },
+      {
+        title: 'Predecir',
+        description:
+          'Los datos en vivo e históricos muestran el riesgo a tiempo y los planes mejoran continuamente.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Empiece ahora',
+    title: 'Planifique bien su mantenimiento preventivo',
+    description:
+      'Nuestro equipo carga con usted los activos y planes de mantenimiento durante la implantación, para que las programaciones funcionen desde la primera semana.',
+    action: { label: 'Reservar una demo', href: '/contact' },
+  },
+  trust: {
+    title: 'Un mantenimiento preventivo en el que puede confiar',
+    description:
+      'Fleet está creado para equipos inmobiliarios que gestionan activos complejos en varias propiedades.',
+    items: [
+      {
+        title: 'Creado para el sector inmobiliario',
+        description: 'Reglas y planes por propiedad, región o cartera.',
+      },
+      {
+        title: 'Móvil sobre el terreno',
+        description:
+          'Los técnicos completan listas en cualquier teléfono o tableta, iOS y Android.',
+      },
+      {
+        title: 'Registros listos para auditoría',
+        description: 'Cada inspección y servicio queda con fecha, hora y responsable.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet ha reducido nuestro mantenimiento correctivo casi un 40 %. Por fin tenemos a los técnicos, los registros de activos y los trabajos en un solo lugar.',
+    author: 'Responsable de operaciones',
+    company: 'Desarrollo de uso mixto',
+  },
+  industries: {
+    title: 'Mantenimiento preventivo para cada tipo de propiedad',
+    description:
+      'De centros comerciales a centros logísticos, Fleet se adapta a sus activos y a su mercado.',
+  },
+  integrate: {
+    title: 'Creado para integrarse',
+    description:
+      'Conecte su sistema de gestión del edificio para que alarmas y lecturas alimenten sus planes preventivos, junto a más de 20 integraciones.',
+    action: { label: 'Ver todas las integraciones', href: '/platform/integrations' },
   },
 }

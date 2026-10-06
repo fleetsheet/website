@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  PreventiveIcon,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -52,6 +53,7 @@ export const pages: {
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
+  preventiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
@@ -116,86 +118,6 @@ export const pages: {
       title: 'Maintenance préventive et prédictive | Fleet',
       description:
         'Planifiez la maintenance préventive de chaque équipement et utilisez des prédictions fondées sur des règles pour agir avant la panne, sur tous les sites de votre portefeuille.',
-    },
-    eyebrow: 'Maintenance préventive et prédictive',
-    title: 'Toujours une longueur d’avance sur les pannes',
-    description:
-      'Planifiez la maintenance récurrente de chaque équipement et repérez les risques tôt grâce à des prédictions fondées sur des règles, pour des installations fiables et des occupants satisfaits.',
-    highlights: [
-      'Plans récurrents',
-      'Prédictions fondées sur des règles',
-      'Jusqu’à 40 % de correctif en moins',
-    ],
-    features: {
-      title: 'Planifiez la maintenance en toute confiance',
-      description:
-        'Vos plans de maintenance deviennent des échéances automatiques, et les données en direct indiquent où agir ensuite.',
-      items: [
-        {
-          title: 'Plans de maintenance récurrents',
-          description:
-            'Planifiez les tâches préventives de CVC, plomberie, éclairage, ascenseurs et sécurité incendie par date ou par usage.',
-        },
-        {
-          title: 'Création automatique des interventions',
-          description:
-            'Fleet génère les bons de travail préventifs à partir du plan de chaque équipement et les affecte à la bonne équipe.',
-        },
-        {
-          title: 'Alertes prédictives',
-          description:
-            'Une mesure au-dessus de la normale déclenche une alerte traçable avec l’action recommandée.',
-        },
-        {
-          title: 'Modèles conformes aux standards',
-          description:
-            'Démarrez avec des check-lists éprouvées pour chaque type d’équipement et adaptez-les à vos sites.',
-        },
-        {
-          title: 'Planification de la charge',
-          description:
-            'Répartissez les interventions entre techniciens et prestataires et visualisez le travail à venir.',
-        },
-        {
-          title: 'Calendrier de conformité',
-          description:
-            'Suivez contrôles réglementaires et certificats avec des rappels avant chaque échéance.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Du planning à l’intervention validée',
-        description:
-          'Chaque tâche préventive contient sa check-list, l’historique de l’équipement et les documents utiles : les techniciens arrivent préparés.',
-        points: [
-          'Check-lists et modes opératoires rattachés à chaque tâche',
-          'Preuves photo et relevés saisis à la clôture',
-          'Escalade automatique des tâches en retard',
-        ],
-      },
-      {
-        title: 'Des prédictions traçables',
-        description:
-          'L’apprentissage automatique fondé sur des règles de Fleet explique chaque recommandation, pour des décisions en confiance.',
-        points: [
-          'Risque des équipements évalué à partir des données en direct et historiques',
-          'Chaque alerte liée à la règle qui l’a déclenchée',
-          'Un clic pour passer de la prédiction au bon de travail',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'La maintenance préventive en pratique',
-      description:
-        'Comment les équipes immobilières maintiennent leurs installations critiques en parfait état.',
-      items: [
-        'Changement trimestriel des filtres CVC dans chaque bâtiment',
-        'Contrôle annuel des ascenseurs avec rappel 30 jours avant',
-        'Tests mensuels de l’éclairage de secours documentés avec photos',
-        'Vibrations d’un groupe froid suivies par des alertes prédictives',
-        'Contrôles des portes coupe-feu planifiés par étage et par escalier',
-      ],
     },
   },
   reactiveMaintenance: {
@@ -2016,5 +1938,338 @@ export const workflowBuilderPage = {
           'Des workflows structurés produisent des données plus fiables et des rapports plus utiles.',
       },
     ],
+  },
+}
+
+export const preventivePage = {
+  hero: {
+    eyebrow: 'Maintenance préventive et prédictive',
+    title: 'Toujours une longueur d’avance sur les pannes',
+    description:
+      'Planifiez la maintenance récurrente de chaque équipement, agissez sur des prédictions fondées sur des règles et gardez vos installations en service sur chaque site, avec jusqu’à 40 % de correctif en moins.',
+    primaryAction: { label: 'Réserver une démo', href: '/contact' },
+    secondaryAction: { label: 'Explorer la plateforme', href: '/platform' },
+    highlights: [
+      'Plans récurrents',
+      'Prédictions fondées sur des règles',
+      'Calendrier de conformité',
+    ],
+    prediction: {
+      title: 'Prédiction Fleet',
+      asset: 'AHU-07 · Tower B, N14',
+      risk: 'Risque élevé',
+      message:
+        'Vibrations au-dessus de la normale depuis 9 jours. Planifier une intervention sous 7 jours.',
+      action: 'Créer une intervention',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Chaque équipement a son propre rythme',
+      description:
+        'CVC, ascenseurs, plomberie, éclairage et sécurité incendie suivent chacun leurs plannings, check-lists et échéances réglementaires sur chaque site.',
+      points: ['Plans récurrents', 'Contrôles réglementaires', 'Plusieurs sites'],
+    },
+    answer: {
+      title: 'Fleet tient chaque plan à jour',
+      description:
+        'Fleet transforme vos plans de maintenance en plannings automatiques et s’appuie sur les données en direct pour indiquer où agir ensuite.',
+    },
+  },
+  capabilities: {
+    title: 'La façon intelligente de piloter votre maintenance préventive',
+    description:
+      'Des plannings récurrents aux prédictions traçables, tout votre programme sur une seule plateforme.',
+    tabs: [
+      {
+        icon: 'schedules',
+        label: 'Plannings',
+        title: 'Plans de maintenance récurrents',
+        description:
+          'Planifiez les tâches préventives de CVC, plomberie, éclairage, ascenseurs et sécurité incendie par date ou par usage.',
+        points: [
+          'Plannings par date ou par usage',
+          'Check-lists éprouvées pour chaque type d’équipement',
+          'Charge répartie entre techniciens et prestataires',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Interventions planifiées · Cette semaine',
+          items: [
+            {
+              title: 'Remplacement filtres CVC',
+              location: 'Tower B · AHU-07',
+              status: 'Dans 4 h',
+              tone: 'due',
+            },
+            {
+              title: 'Contrôle annuel ascenseurs',
+              location: 'Ascenseurs L1–L3',
+              status: 'Planifié',
+              tone: 'info',
+            },
+            {
+              title: 'Test éclairage de secours',
+              location: 'Northgate Mall',
+              status: 'Terminé',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Interventions',
+        title: 'Interventions créées automatiquement',
+        description:
+          'Fleet génère les bons de travail préventifs à partir du plan de chaque équipement et les affecte à la bonne équipe, check-lists incluses.',
+        points: [
+          'Bons de travail générés depuis chaque plan',
+          'Affectés aux équipes internes ou aux prestataires',
+          'Preuves photo et relevés saisis à la clôture',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Automatisation préventive',
+          steps: [
+            { kind: 'Plan', text: 'Groupe froid CH-02 · entretien trimestriel' },
+            { kind: 'Puis', text: 'Créer l’intervention 14 jours avant' },
+            { kind: 'Puis', text: 'Affecter au prestataire CVC + joindre la check-list' },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Prédictions',
+        title: 'Des alertes prédictives traçables',
+        description:
+          'L’apprentissage automatique fondé sur des règles évalue le risque à partir des données en direct et historiques, et chaque alerte renvoie à sa règle.',
+        points: [
+          'Risque évalué à partir des données en direct et historiques',
+          'Chaque alerte liée à la règle qui l’a déclenchée',
+          'Un clic de la prédiction à l’intervention',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Alertes de risque',
+          items: [
+            {
+              title: 'Vibrations AHU-07 en hausse',
+              location: 'Tower B · Niveau 14',
+              status: 'Risque élevé',
+              tone: 'overdue',
+            },
+            {
+              title: 'Dérive de pression pompe P-03',
+              location: 'Harbour Point',
+              status: 'Risque moyen',
+              tone: 'due',
+            },
+            {
+              title: 'Groupe froid CH-02 revenu à la normale',
+              location: 'Harbour Point',
+              status: 'Résolu',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'compliance',
+        label: 'Conformité',
+        title: 'Un calendrier de conformité pour chaque site',
+        description:
+          'Suivez contrôles réglementaires et certificats avec des rappels avant chaque échéance, et conservez les preuves sur chaque dossier.',
+        points: [
+          'Rappels avant chaque contrôle et certificat',
+          'Certificats rattachés à chaque équipement',
+          'Historique prêt pour l’audit sur chaque site',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Conformité à venir',
+          items: [
+            {
+              title: 'Certificat sécurité incendie',
+              location: 'Tower B · Échéance 30 oct.',
+              status: 'Dans 24 j',
+              tone: 'due',
+            },
+            {
+              title: 'Rapport d’inspection ascenseurs',
+              location: 'Ascenseurs · Échéance 12 nov.',
+              status: 'Planifié',
+              tone: 'info',
+            },
+            {
+              title: 'Évaluation du risque légionelle',
+              location: 'Bayview Residences',
+              status: 'À jour',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: PreventiveIcon; label: string })[],
+  },
+  rows: [
+    {
+      tag: 'IA fondée sur des règles',
+      title: 'Des prédictions qui préviennent les arrêts',
+      description:
+        'Fleet suit l’évolution des équipements et repère les signaux précoces, pour que votre équipe agisse avant que les occupants ne soient concernés.',
+      points: [
+        'Une mesure au-dessus de la normale déclenche une alerte',
+        'Action recommandée avec chaque alerte',
+        'Plans suggérés pour les nouveaux équipements avec RunnerAI',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Activité prédictive',
+        entries: [
+          {
+            when: '09:42',
+            who: 'Fleet',
+            what: 'signale des vibrations AHU-07 au-dessus de la normale depuis 9 jours',
+          },
+          { when: '09:44', who: 'Aisha K.', what: 'a créé une intervention depuis l’alerte' },
+          {
+            when: '08:58',
+            who: 'RunnerAI',
+            what: 'a suggéré un plan préventif pour 6 nouveaux groupes froids',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Planification',
+      title: 'La prévention porte ses fruits',
+      description:
+        'Faites passer le travail du correctif au préventif et mesurez la différence en disponibilité, en coûts et en confort.',
+      points: [
+        'Préventif et correctif suivis côte à côte',
+        'Dépenses planifiées selon le cycle de vie',
+        'Incidents récurrents transformés en tâches préventives',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Part de maintenance planifiée',
+        stats: [
+          { label: 'Travail planifié', value: '78 %' },
+          { label: 'Travail correctif', value: '22 %' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 84 },
+          { label: 'Tower B', value: 80 },
+          { label: 'Northgate', value: 76 },
+          { label: 'Bayview', value: 72 },
+          { label: 'Westport', value: 68 },
+        ],
+      },
+    },
+    {
+      tag: 'Équipes et prestataires',
+      title: 'Une coordination fluide avec équipes et prestataires',
+      description:
+        'Confiez chaque intervention préventive aux techniciens internes ou aux prestataires sous contrat, et suivez l’avancement en temps réel.',
+      points: [
+        'Interventions réparties par site, métier et contrat',
+        'Prestataires connectés via un simple lien',
+        'Preuves photo et relevés à chaque clôture',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Préventif du mois par intervenant',
+        items: [
+          {
+            title: 'Équipe CVC interne',
+            location: '24 interventions · 3 sites',
+            status: '92 % terminé',
+            tone: 'done',
+          },
+          {
+            title: 'Prestataire ascenseurs',
+            location: '9 interventions · 5 sites',
+            status: 'Dans les temps',
+            tone: 'info',
+          },
+          {
+            title: 'Prestataire sécurité incendie',
+            location: '12 interventions · 4 sites',
+            status: '2 aujourd’hui',
+            tone: 'due',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  steps: {
+    eyebrow: 'Fonctionnement',
+    title: 'Du plan à la preuve',
+    items: [
+      {
+        title: 'Planifier',
+        description:
+          'Chargez vos équipements et plans de maintenance, ou partez de modèles éprouvés.',
+      },
+      {
+        title: 'Programmer',
+        description:
+          'Fleet crée et affecte les interventions automatiquement avant chaque échéance.',
+      },
+      {
+        title: 'Réaliser',
+        description:
+          'Les techniciens suivent les check-lists et saisissent photos et relevés sur site.',
+      },
+      {
+        title: 'Prédire',
+        description:
+          'Les données en direct et historiques révèlent les risques tôt, et les plans s’améliorent sans cesse.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Commencer',
+    title: 'Planifiez la maintenance préventive, en toute sérénité',
+    description:
+      'Notre équipe charge avec vous équipements et plans de maintenance pendant le déploiement, pour que les plannings tournent dès la première semaine.',
+    action: { label: 'Réserver une démo', href: '/contact' },
+  },
+  trust: {
+    title: 'Une maintenance préventive sur laquelle compter',
+    description:
+      'Fleet est conçu pour les équipes immobilières qui gèrent des équipements complexes sur plusieurs sites.',
+    items: [
+      {
+        title: 'Conçu pour l’immobilier',
+        description: 'Règles et plans définis par site, région ou portefeuille.',
+      },
+      {
+        title: 'Mobile sur le terrain',
+        description:
+          'Les techniciens complètent les check-lists sur téléphone ou tablette, iOS et Android.',
+      },
+      {
+        title: 'Dossiers prêts pour l’audit',
+        description: 'Chaque contrôle et entretien est horodaté et attribué.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet a réduit notre maintenance corrective de près de 40 %. Nos techniciens, nos registres d’équipements et nos interventions sont enfin réunis au même endroit.',
+    author: 'Responsable exploitation',
+    company: 'Projet à usage mixte',
+  },
+  industries: {
+    title: 'La maintenance préventive pour chaque type d’actif',
+    description:
+      'Des centres commerciaux aux plateformes logistiques, Fleet s’adapte à vos équipements et à votre marché.',
+  },
+  integrate: {
+    title: 'Conçu pour s’intégrer',
+    description:
+      'Connectez votre GTB pour que alarmes et mesures alimentent vos plans préventifs, avec plus de 20 autres intégrations.',
+    action: { label: 'Voir toutes les intégrations', href: '/platform/integrations' },
   },
 }

@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  PreventiveIcon,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -51,6 +52,7 @@ export const pages: {
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
+  preventiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -113,68 +115,6 @@ export const pages: {
       title: '预防性与预测性维护 | Fleet',
       description:
         '为每项资产安排预防性维护，并借助基于规则的预测在故障发生前采取行动，覆盖资产组合中的每个站点。',
-    },
-    eyebrow: '预防性与预测性维护',
-    title: '始终领先于每一次故障',
-    description:
-      '为每项资产规划周期性维护，借助基于规则的预测及早发现风险，让设备稳定运行、租户安心满意。',
-    highlights: ['周期性计划', '基于规则的预测', '被动维修减少多达 40%'],
-    features: {
-      title: '从容规划维护',
-      description: '将维护计划变为自动排程，让实时数据告诉您下一步该在哪里行动。',
-      items: [
-        {
-          title: '周期性维护计划',
-          description: '按时间或使用量为暖通、给排水、照明、电梯和消防安排预防性任务。',
-        },
-        {
-          title: '自动生成工单',
-          description: 'Fleet 根据每项资产的计划生成维护工单，并分派给合适的团队。',
-        },
-        {
-          title: '预测性预警',
-          description: '读数高于基线时触发可追溯的预警，并给出建议的下一步。',
-        },
-        {
-          title: '行业标准模板',
-          description: '从各类资产的最佳实践检查清单起步，并按站点调整。',
-        },
-        {
-          title: '工作量规划',
-          description: '在技术人员和供应商之间平衡排程，一眼看清后续工作。',
-        },
-        {
-          title: '合规日历',
-          description: '追踪法定检查和证书，在每个到期日前提醒。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '从排程到验收完成',
-        description: '每项预防性任务都附带检查清单、资产历史和相关文档，技术人员到场即准备就绪。',
-        points: ['每项任务附带检查清单和作业规程', '完成时记录照片凭证和读数', '逾期任务自动升级'],
-      },
-      {
-        title: '可追溯的预测',
-        description: 'Fleet 基于规则的机器学习会解释每条建议，让团队放心行动。',
-        points: [
-          '基于实时与历史数据评估设备风险',
-          '每条预警都关联触发它的规则',
-          '一键从预测生成工单',
-        ],
-      },
-    ],
-    useCases: {
-      title: '预防性维护实践',
-      description: '房地产团队如何让关键系统保持最佳状态。',
-      items: [
-        '每栋楼按季度更换空调滤网',
-        '电梯年检，提前 30 天提醒',
-        '每月应急照明测试并拍照记录',
-        '通过预测性预警监测冷水机组振动',
-        '按楼层和楼梯间安排防火门检查',
-      ],
     },
   },
   reactiveMaintenance: {
@@ -1603,5 +1543,270 @@ export const workflowBuilderPage = {
         description: '结构化的工作流带来更干净的数据和更有价值的报表。',
       },
     ],
+  },
+}
+
+export const preventivePage = {
+  hero: {
+    eyebrow: '预防性与预测性维护',
+    title: '始终领先于每一次故障',
+    description:
+      '为每项资产规划周期性维护，依据基于规则的预测及早行动，让每个站点的设备持续运行，被动维修减少多达 40%。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    secondaryAction: { label: '探索平台', href: '/platform' },
+    highlights: ['周期性计划', '基于规则的预测', '合规日历'],
+    prediction: {
+      title: 'Fleet 预测',
+      asset: 'AHU-07 · Tower B, 14 层',
+      risk: '高风险',
+      message: '振动已连续 9 天高于基线。请在 7 天内安排维护。',
+      action: '创建工单',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: '每项资产都有自己的节奏',
+      description: '暖通、电梯、给排水、照明和消防在每个站点都有各自的计划、检查清单和合规日期。',
+      points: ['周期性计划', '法定检查', '多个站点'],
+    },
+    answer: {
+      title: 'Fleet 让每个计划按时推进',
+      description: 'Fleet 将维护计划变为自动排程，并借助实时数据告诉您下一步该在哪里行动。',
+    },
+  },
+  capabilities: {
+    title: '更智能地运行预防性维护计划',
+    description: '从周期性排程到可追溯的预测，整个计划尽在一个平台。',
+    tabs: [
+      {
+        icon: 'schedules',
+        label: '排程',
+        title: '周期性维护计划',
+        description: '按时间或使用量为暖通、给排水、照明、电梯和消防安排预防性任务。',
+        points: [
+          '按时间和按使用量排程',
+          '各类资产的最佳实践检查清单',
+          '在技术人员和供应商之间均衡工作量',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: '计划工单 · 本周',
+          items: [
+            {
+              title: '更换空调滤网',
+              location: 'Tower B · AHU-07',
+              status: '4 小时后到期',
+              tone: 'due',
+            },
+            { title: '电梯年检', location: '电梯 L1–L3', status: '已排期', tone: 'info' },
+            { title: '应急照明测试', location: 'Northgate Mall', status: '已完成', tone: 'done' },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: '工单',
+        title: '自动生成工单',
+        description: 'Fleet 根据每项资产的计划生成预防性工单，并附上检查清单分派给合适的团队。',
+        points: ['依据每个维护计划生成工单', '分派给内部团队或供应商', '完成时记录照片凭证和读数'],
+        visual: {
+          kind: 'steps',
+          title: '预防性维护自动化',
+          steps: [
+            { kind: '计划', text: '冷水机组 CH-02 · 季度保养' },
+            { kind: '然后', text: '提前 14 天创建工单' },
+            { kind: '然后', text: '分派给暖通供应商并附检查清单' },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: '预测',
+        title: '可追溯的预测预警',
+        description:
+          '基于规则的机器学习结合实时与历史数据评估设备风险，每条预警都关联其背后的规则。',
+        points: [
+          '基于实时与历史数据评估设备风险',
+          '每条预警都关联触发它的规则',
+          '一键从预测生成工单',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: '风险预警',
+          items: [
+            {
+              title: 'AHU-07 振动上升',
+              location: 'Tower B · 14 层',
+              status: '高风险',
+              tone: 'overdue',
+            },
+            {
+              title: '水泵 P-03 压力偏移',
+              location: 'Harbour Point',
+              status: '中风险',
+              tone: 'due',
+            },
+            {
+              title: '冷水机组 CH-02 恢复正常',
+              location: 'Harbour Point',
+              status: '已解决',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'compliance',
+        label: '合规',
+        title: '每个站点的合规日历',
+        description: '追踪法定检查和证书，在每个到期日前提醒，并把凭证保存在每条记录上。',
+        points: [
+          '每次检查和证书到期前提醒',
+          '证书与每项资产一起保存',
+          '每个站点随时备审的历史记录',
+        ],
+        visual: {
+          kind: 'files',
+          title: '即将到期的合规事项',
+          items: [
+            {
+              title: '消防安全证书',
+              location: 'Tower B · 10 月 30 日到期',
+              status: '24 天后',
+              tone: 'due',
+            },
+            {
+              title: '电梯检查报告',
+              location: '电梯 · 11 月 12 日到期',
+              status: '已排期',
+              tone: 'info',
+            },
+            {
+              title: '军团菌风险评估',
+              location: 'Bayview Residences',
+              status: '最新',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: PreventiveIcon; label: string })[],
+  },
+  rows: [
+    {
+      tag: '基于规则的 AI',
+      title: '防止停机的预测',
+      description: 'Fleet 持续关注设备趋势并识别早期预警信号，让团队在影响租户之前采取行动。',
+      points: [
+        '读数高于基线时触发预警',
+        '每条预警都附建议的下一步',
+        '借助 RunnerAI 为新设备推荐计划',
+      ],
+      visual: {
+        kind: 'log',
+        title: '预测动态',
+        entries: [
+          { when: '09:42', who: 'Fleet', what: '发现 AHU-07 振动连续 9 天高于基线' },
+          { when: '09:44', who: 'Aisha K.', what: '根据预警创建了工单' },
+          { when: '08:58', who: 'RunnerAI', what: '为 6 台新冷水机组推荐了预防性维护计划' },
+        ],
+      },
+    },
+    {
+      tag: '规划',
+      title: '预防带来回报',
+      description: '把工作从被动维修转向计划性维护，在可用性、成本和舒适度上看到差别。',
+      points: [
+        '并列追踪预防性与被动维修',
+        '按资产生命周期规划维护支出',
+        '把重复问题转为预防性任务',
+      ],
+      visual: {
+        kind: 'chart',
+        title: '计划性维护占比',
+        stats: [
+          { label: '计划性工作', value: '78%' },
+          { label: '被动维修', value: '22%' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 84 },
+          { label: 'Tower B', value: 80 },
+          { label: 'Northgate', value: 76 },
+          { label: 'Bayview', value: 72 },
+          { label: 'Westport', value: 68 },
+        ],
+      },
+    },
+    {
+      tag: '团队与供应商',
+      title: '与团队和供应商无缝协作',
+      description: '将每项预防性工单派给内部技术人员或签约供应商，并实时跟进进度。',
+      points: [
+        '按站点、工种和合同分派预防性工单',
+        '供应商通过简单链接加入',
+        '每次完工都有照片凭证和读数',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: '本月预防性维护 · 按负责人',
+        items: [
+          {
+            title: '内部暖通团队',
+            location: '24 张工单 · 3 个站点',
+            status: '已完成 92%',
+            tone: 'done',
+          },
+          { title: '电梯供应商', location: '9 张工单 · 5 个站点', status: '正常', tone: 'info' },
+          {
+            title: '消防供应商',
+            location: '12 张工单 · 4 个站点',
+            status: '今天到期 2 张',
+            tone: 'due',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  steps: {
+    eyebrow: '工作原理',
+    title: '从计划到凭证',
+    items: [
+      { title: '计划', description: '导入资产和维护计划，或从最佳实践模板起步。' },
+      { title: '排程', description: 'Fleet 在每个到期日前自动创建并分派工单。' },
+      { title: '完成', description: '技术人员按检查清单作业，并在现场记录照片和读数。' },
+      { title: '预测', description: '实时与历史数据及早揭示风险，让计划持续优化。' },
+    ],
+  },
+  banner: {
+    eyebrow: '开始使用',
+    title: '扎实规划预防性维护',
+    description: '我们的团队会在上线期间与您一起导入资产和维护计划，让排程从第一周起就开始运行。',
+    action: { label: '预约演示', href: '/contact' },
+  },
+  trust: {
+    title: '值得信赖的预防性维护',
+    description: 'Fleet 专为跨多个物业管理复杂资产的房地产团队打造。',
+    items: [
+      { title: '为房地产打造', description: '按物业、区域或资产组合设定规则和计划。' },
+      {
+        title: '现场移动办公',
+        description: '技术人员可在任意手机或平板上完成检查清单，支持 iOS 和 Android。',
+      },
+      { title: '随时备审的记录', description: '每次检查和保养都带有时间戳并记录负责人。' },
+    ],
+  },
+  quote: {
+    text: 'Fleet 让我们的被动维修工作量减少了近 40%。技术人员、资产记录和工单终于集中在了一处。',
+    author: '物业运营负责人',
+    company: '综合体项目',
+  },
+  industries: {
+    title: '适用于各类物业的预防性维护',
+    description: '从购物中心到物流枢纽，Fleet 适配您的资产和市场。',
+  },
+  integrate: {
+    title: '为集成而生',
+    description: '连接楼宇管理系统，让告警和读数融入预防性计划，并可搭配另外 20 多项集成。',
+    action: { label: '查看全部集成', href: '/platform/integrations' },
   },
 }
