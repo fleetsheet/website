@@ -10,6 +10,7 @@ import type {
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
+  ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -58,6 +59,8 @@ export const pages: {
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
   analyticsReporting: PlatformEntry
+  assetManagement: PlatformEntry
+  documentManagement: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -148,86 +151,6 @@ export const pages: {
       description:
         'Erstellen Sie ein digitales Live-Verzeichnis aller Anlagen Ihrer Objekte, mit Wartungshistorie, Kosten, Garantien und Dokumenten an einem Ort.',
     },
-    eyebrow: 'Anlagenmanagement',
-    title: 'Volle Transparenz über jede Anlage',
-    description:
-      'Von Klimaanlagen in Dutzenden Gebäuden bis zu Pumpen, Aufzügen und Beleuchtung: Fleet bietet Ihnen ein Live-Verzeichnis jeder Anlage, überall abrufbar.',
-    highlights: [
-      'Digitale Anlagenprofile',
-      'Vollständige Reparaturhistorie',
-      'Garantie-Erinnerungen',
-    ],
-    features: {
-      title: 'Kernfunktionen des Fleet-Anlagenmanagements',
-      description:
-        'Ihre Anlagendaten werden zum Motor für Effizienz, Budgetierung und vorausschauende Planung.',
-      items: [
-        {
-          title: 'Digitale Anlagenprofile',
-          description:
-            'Hersteller, Modell, Seriennummer, Standort, Kaufdatum und Garantiedaten erfassen.',
-        },
-        {
-          title: 'Dateien und Dokumentation',
-          description:
-            'Handbücher, Fotos, Prüfberichte und Zertifikate mit jeder Anlage verknüpfen.',
-        },
-        {
-          title: 'Reparaturhistorie und Kosten',
-          description:
-            'Sehen, was wie oft und zu welchen Kosten erledigt wurde, für jede Anlage im Portfolio.',
-        },
-        {
-          title: 'Standorte und Zonen',
-          description:
-            'Anlagen nach Gebäude, Etage, Raum oder Zone ordnen, ideal für mehrere Standorte.',
-        },
-        {
-          title: 'Verknüpfte Aufträge und Wartungspläne',
-          description:
-            'Jede Anlage mit ihrem Wartungsplan verbinden und Wartungsaufträge automatisch erzeugen.',
-        },
-        {
-          title: 'Lebenszyklus und Ausfallzeiten',
-          description:
-            'Leistungsschwache Technik erkennen, Ersatz prognostizieren und Investitionen planen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Ihre Anlagen überall im Zugriff',
-        description:
-          'Techniker rufen Anlagendaten vor Ort auf, erfassen Prüfungen in Echtzeit und fügen Fotos und Notizen per Smartphone hinzu.',
-        points: [
-          'Jede Anlage per Suche oder Scan öffnen',
-          'Prüfergebnisse direkt vor Ort erfasst',
-          'Historie sofort für das ganze Team aktualisiert',
-        ],
-      },
-      {
-        title: 'Bessere Daten für bessere Instandhaltung',
-        description:
-          'Genaue, gut strukturierte Anlagendaten verlängern die Lebensdauer von Technik und sorgen für sichere Budgets.',
-        points: [
-          'Erinnerungen vor Ablauf von Garantien und Verträgen',
-          'Leistungsberichte für die Jahresbudgetierung',
-          'Ersatzprognosen auf Basis realer Nutzung',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Anlagenmanagement in der Praxis',
-      description:
-        'Von Immobilienportfolios bis zu Hotelketten nutzen Teams Fleet, um ihre kritischste Infrastruktur zu verstehen.',
-      items: [
-        'Klimaanlagendaten mehrerer Bürogebäude zentral bündeln',
-        'Bestimmte Anlagen für regelmäßige Prüfungen an Techniker vor Ort vergeben',
-        'Aufzugswartung mit Fotoprotokollen und Zertifikaten nachverfolgen',
-        'Leistungsberichte für die Jahresbudgetierung exportieren',
-        'Rechtzeitig vor Ablauf von Garantien oder Verträgen informiert werden',
-      ],
-    },
   },
   documentManagement: {
     label: 'Dokumentenmanagement',
@@ -236,80 +159,6 @@ export const pages: {
       title: 'Dokumentenmanagement | Fleet',
       description:
         'Speichern, ordnen und finden Sie Handbücher, Garantien, Genehmigungen und Prüfberichte an einem Ort, verknüpft mit den zugehörigen Anlagen, Aufträgen und Standorten.',
-    },
-    eyebrow: 'Dokumentenmanagement',
-    title: 'Alle Instandhaltungsdateien an einem zentralen Ort',
-    description:
-      'Garantien, Dienstleisterverträge, Compliance-Checklisten und Arbeitsanweisungen liegen an einem Ort, verknüpft mit der Arbeit, die sie unterstützen, und sofort griffbereit.',
-    highlights: ['Versionierung', 'Mit Anlagen und Aufträgen verknüpft', 'Prüfbereite Exporte'],
-    features: {
-      title: 'Kernfunktionen des Fleet-Dokumentenmanagements',
-      description: 'Alle relevanten Unterlagen direkt dort, wo sie gebraucht werden.',
-      items: [
-        {
-          title: 'Versionierung und Prüfpfad',
-          description:
-            'Sehen, wer was wann hochgeladen hat, mit vollständiger Änderungshistorie und einfacher Wiederherstellung.',
-        },
-        {
-          title: 'Dateien überall anhängen',
-          description:
-            'Dokumente mit Anlagen, Aufträgen, Standorten, Dienstleistern oder Personen verknüpfen.',
-        },
-        {
-          title: 'Schlagworte und Kategorien',
-          description:
-            'Dateien nach Typ, Standort, Abteilung oder Anlagenklasse kennzeichnen und schnell finden.',
-        },
-        {
-          title: 'Rollenbasierte Berechtigungen',
-          description:
-            'Festlegen, wer Dokumente sehen, hochladen oder bearbeiten darf, und sensible Dateien schützen.',
-        },
-        {
-          title: 'Dokumente im Arbeitsauftrag',
-          description:
-            'Techniker öffnen Arbeitsanweisungen, Installationsanleitungen und frühere Berichte direkt im Auftrag.',
-        },
-        {
-          title: 'Exportieren und teilen',
-          description:
-            'Dokumentenpakete für Audits, Dienstleisterwechsel oder interne Prüfungen herunterladen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Eingebettet in Ihre Instandhaltung',
-        description:
-          'Jede Datei ist über die globale Suche auffindbar und mit Ihren Dashboards und Berichten verknüpft.',
-        points: [
-          'Globale Suche über alle Standorte',
-          'Dokumente mit Anlagen, Aufträgen und Dienstleistern verknüpft',
-          'Speicher direkt in Fleet integriert',
-        ],
-      },
-      {
-        title: 'Jederzeit bereit für die Prüfung',
-        description:
-          'Zertifikate, Genehmigungen und Berichte bleiben aktuell, mit Erinnerungen vor jedem Ablaufdatum.',
-        points: [
-          'Ablaufverfolgung für Genehmigungen und Verträge',
-          'Protokolle mit Zeitstempel für die Compliance',
-          'Schneller Zugriff in Notfällen und bei Audits',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Dokumentenmanagement in der Praxis',
-      description: 'Für Teams, die mehrere Standorte, Anlagentypen und Dienstleister betreuen.',
-      items: [
-        'Arbeitsanweisungen zur Aufzugswartung für Techniker vor Ort hochladen',
-        'Brandschutzzertifikate mit Compliance-Workflows verknüpfen',
-        'Dienstleisterverträge speichern und Laufzeiten verfolgen',
-        'Budgetfreigaben für volle Nachvollziehbarkeit an Aufträge anhängen',
-        'Digitale Handbücher für Klima, Sanitär und Beleuchtung pflegen',
-      ],
     },
   },
   auditTracking: {
@@ -2553,4 +2402,846 @@ export const analyticsPage: AnalyticsPageContent = {
       },
     },
   ],
+}
+
+export const assetPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Anlagenmanagement',
+    title: 'Volle Transparenz über jede Anlage',
+    description:
+      'Von Klimaanlagen in Dutzenden Gebäuden bis zu Pumpen, Aufzügen und Beleuchtung: Fleet bietet Ihnen ein Live-Verzeichnis jeder Anlage, überall abrufbar.',
+    primaryAction: {
+      label: 'Demo buchen',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Plattform entdecken',
+      href: '/platform',
+    },
+    highlights: [
+      'Digitale Anlagenprofile',
+      'Vollständige Reparaturhistorie',
+      'Garantie-Erinnerungen',
+    ],
+    visual: {
+      kind: 'asset',
+      title: 'Anlagenprofil',
+      name: 'Kältemaschine CH-02',
+      location: 'Harbour Point · Technikraum B2',
+      status: 'In Betrieb',
+      facts: [
+        {
+          label: 'Letzte Wartung',
+          value: '12. Sep.',
+        },
+        {
+          label: 'Garantie',
+          value: 'März 2028',
+        },
+        {
+          label: 'Kosten lfd. Jahr',
+          value: '4.210 $',
+        },
+        {
+          label: 'Offene Aufträge',
+          value: '1',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Anlagen an jedem Standort',
+      description:
+        'Klimaanlagen, Aufzüge, Pumpen und Beleuchtung in Dutzenden Gebäuden, jeweils mit eigenen Handbüchern, Garantien und Wartungshistorie.',
+      points: ['Viele Standorte', 'Viele Anlagentypen', 'Viele Unterlagen'],
+    },
+    answer: {
+      title: 'Ein Live-Verzeichnis für alles',
+      description:
+        'Fleet erstellt ein digitales Live-Verzeichnis Ihrer physischen Anlagen, überall abrufbar, damit jede Entscheidung mit vollständigem Kontext beginnt.',
+    },
+  },
+  capabilities: {
+    title: 'Anlagenmanagement für Ihr gesamtes Portfolio',
+    description:
+      'Von einer einzelnen Kältemaschine bis zu Tausenden Anlagen an allen Standorten, alles in einem vernetzten Verzeichnis.',
+    tabs: [
+      {
+        icon: 'register',
+        label: 'Anlagenverzeichnis',
+        title: 'Ein Profil für jede Anlage',
+        description:
+          'Erfassen Sie Hersteller, Modell, Seriennummer, Standort, Kaufdatum und Garantiedaten für jede Anlage.',
+        points: [
+          'Digitale Profile für jede Anlage',
+          'Nach Gebäude, Etage, Raum oder Zone geordnet',
+          'Suche über Ihr gesamtes Portfolio',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Anlagenverzeichnis · Harbour Point',
+          items: [
+            {
+              title: 'Kältemaschine CH-02',
+              location: 'Technikraum B2 · Klima',
+              status: 'In Betrieb',
+              tone: 'done',
+            },
+            {
+              title: 'Aufzug L2',
+              location: 'Kernaufzüge · Fördertechnik',
+              status: 'Wartung fällig',
+              tone: 'due',
+            },
+            {
+              title: 'Druckerhöhungspumpe P-03',
+              location: 'Untergeschoss · Sanitär',
+              status: 'In Betrieb',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Arbeitsaufträge',
+        title: 'Verbunden mit Aufträgen und Wartungsplänen',
+        description:
+          'Verknüpfen Sie jede Anlage mit ihrem Wartungsplan und ihrer Historie, und erzeugen Sie Wartungsaufträge automatisch.',
+        points: [
+          'Wartungspläne an jeder Anlage',
+          'Wartungsaufträge automatisch erstellt',
+          'Jede Reparatur in der Anlagenhistorie',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Anlagenautomatisierung',
+          steps: [
+            {
+              kind: 'Anlage',
+              text: 'Kältemaschine CH-02 · Quartalsplan',
+            },
+            {
+              kind: 'Dann',
+              text: 'Wartungsauftrag erstellen',
+            },
+            {
+              kind: 'Dann',
+              text: 'Wartung in der Historie erfassen',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'lifecycle',
+        label: 'Lebenszyklus',
+        title: 'Einblick in Lebenszyklus und Ausfallzeiten',
+        description:
+          'Erkennen Sie leistungsschwache Geräte, planen Sie Ersatz vorausschauend und steuern Sie Investitionen mit aktuellen Nutzungsdaten.',
+        points: [
+          'Ausfallzeiten je Anlage',
+          'Reparaturkosten über die gesamte Lebensdauer',
+          'Ersatzprognosen auf Basis realer Nutzung',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Ausfallstunden nach Anlagentyp · Q3',
+          stats: [
+            {
+              label: 'Ausfallzeit gesamt',
+              value: '112 h',
+            },
+            {
+              label: 'Gefährdete Anlagen',
+              value: '6',
+            },
+          ],
+          bars: [
+            {
+              label: 'Klima',
+              value: 46,
+            },
+            {
+              label: 'Aufzüge',
+              value: 28,
+            },
+            {
+              label: 'Pumpen',
+              value: 19,
+            },
+            {
+              label: 'Licht',
+              value: 12,
+            },
+            {
+              label: 'Türen',
+              value: 7,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'mobile',
+        label: 'Vor Ort',
+        title: 'Anlagendaten direkt im Einsatz',
+        description:
+          'Techniker öffnen Anlagendetails vor Ort, erfassen Prüfungen in Echtzeit und fügen Fotos und Notizen per Smartphone hinzu.',
+        points: [
+          'Jede Anlage per Suche oder Scan öffnen',
+          'Prüfungen mit Fotos und Messwerten',
+          'Historie sofort für das ganze Team aktuell',
+        ],
+        visual: {
+          kind: 'asset',
+          title: 'Gescannte Anlage',
+          name: 'Aufzug L2',
+          location: 'Northgate Mall · Kernaufzüge',
+          status: 'Wartung fällig',
+          facts: [
+            {
+              label: 'Letzte Prüfung',
+              value: '02. Aug.',
+            },
+            {
+              label: 'Zertifikat',
+              value: 'Gültig bis Jan. 2027',
+            },
+            {
+              label: 'Handbuch',
+              value: 'Aufzug L2 Handbuch.pdf',
+            },
+            {
+              label: 'Offene Aufträge',
+              value: '2',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Dokumentation',
+      title: 'Jedes Handbuch genau dort, wo Sie es brauchen',
+      description:
+        'Verknüpfen Sie Handbücher, Fotos, Prüfberichte und Zertifikate mit jeder Anlage, für schnellen Zugriff vor Ort.',
+      points: [
+        'Dateien an jedem Anlagenprofil',
+        'Zertifikate und Garantien gemeinsam abgelegt',
+        'Auf jedem Smartphone oder Tablet verfügbar',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'Kältemaschine CH-02 · Dokumente',
+        items: [
+          {
+            title: 'CH-02 Betriebshandbuch.pdf',
+            location: 'Handbuch',
+            status: 'Verknüpft',
+            tone: 'info',
+          },
+          {
+            title: 'Garantiezertifikat.pdf',
+            location: 'Gültig bis März 2028',
+            status: 'Aktiv',
+            tone: 'done',
+          },
+          {
+            title: 'Wartungsbericht Q3.pdf',
+            location: 'Hochgeladen 12. Sep.',
+            status: 'Geprüft',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'RunnerAI',
+      title: 'Anlagenmanagement mit KI automatisieren',
+      description:
+        'RunnerAI schlägt Wartungspläne für neue Geräte vor und erstellt Anlagen-Dashboards aus einer Anfrage in Alltagssprache.',
+      points: [
+        'Vorgeschlagene Wartungspläne für neue Anlagen',
+        'Dashboards zu Anlagen am Lebensende',
+        'Antworten zu jeder Anlage in Sekunden',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'RunnerAI-Aktivität',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'hat einen Wartungsplan für 6 neue Kältemaschinen vorgeschlagen',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'hat 4 Anlagen am Lebensende aufgelistet',
+          },
+          {
+            when: '08:58',
+            who: 'Aisha K.',
+            what: 'hat den Kältemaschinenplan freigegeben',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Garantien und Verträge',
+      title: 'Garantien und Verträge im Griff',
+      description:
+        'Fleet verfolgt Garantie- und Vertragsdaten jeder Anlage und informiert Ihr Team rechtzeitig vor dem Ablauf.',
+      points: [
+        'Hinweise vor Ablauf von Garantien und Verträgen',
+        'Garantiestatus in jedem Auftrag sichtbar',
+        'Vertragsdetails mit jedem Dienstleister verknüpft',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Anstehende Abläufe',
+        items: [
+          {
+            title: 'Wartungsvertrag Aufzug L2',
+            location: 'Northgate Mall',
+            status: 'In 30 Tagen',
+            tone: 'due',
+          },
+          {
+            title: 'Garantie Kältemaschine CH-04',
+            location: 'Tower B',
+            status: 'In 60 Tagen',
+            tone: 'info',
+          },
+          {
+            title: 'Garantie Pumpe P-03',
+            location: 'Harbour Point',
+            status: 'Verlängert',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'So funktioniert es',
+    title: 'Vom Verzeichnis bis zum Ersatz',
+    items: [
+      {
+        title: 'Erfassen',
+        description:
+          'Importieren Sie Anlagenlisten oder legen Sie Profile mit allen nötigen Details an.',
+      },
+      {
+        title: 'Warten',
+        description:
+          'Verknüpfen Sie jede Anlage mit Plänen und Aufträgen, damit die Wartung planmäßig läuft.',
+      },
+      {
+        title: 'Verfolgen',
+        description:
+          'Reparaturen, Kosten, Dokumente und Ausfallzeiten ergeben automatisch eine vollständige Historie.',
+      },
+      {
+        title: 'Planen',
+        description:
+          'Lebenszyklusdaten zeigen, wann Reparatur, Ersatz oder Investition sinnvoll ist.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Jetzt starten',
+    title: 'Alle Anlagen an einem Ort',
+    description:
+      'Unser Onboarding-Team importiert mit Ihnen Anlagenlisten und Wartungspläne, damit Ihr Verzeichnis in der ersten Woche bereitsteht.',
+    action: {
+      label: 'Demo buchen',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Warum Fleet für das Anlagenmanagement',
+    description:
+      'Fleet ist für Immobilien- und Facility-Teams gemacht, ob Sie Aufzüge, Heizkessel, Beleuchtung oder Sanitäranlagen betreuen.',
+    items: [
+      {
+        title: 'Für Immobilien gemacht',
+        description:
+          'Anlagen so geordnet, wie Ihr Portfolio arbeitet: nach Objekt, Gebäude und Zone.',
+      },
+      {
+        title: 'Mobil im Einsatz',
+        description:
+          'Anlagendaten, Historie und Dokumente auf jedem Smartphone oder Tablet, iOS und Android.',
+      },
+      {
+        title: 'Mit jedem Modul verbunden',
+        description: 'Anlagen verknüpfen Aufträge, Dokumente, Workflows und Berichte.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet hat unsere reaktive Instandhaltung um fast 40 % reduziert. Endlich haben wir Techniker, Anlagenprotokolle und Auftragsdaten an einem Ort.',
+    author: 'Leitung Objektbetrieb',
+    company: 'Gemischt genutztes Quartier',
+  },
+  industries: {
+    title: 'Jede Branche hat Anlagen',
+    description:
+      'Vom Einkaufszentrum bis zum Logistikzentrum passt sich Fleet an die Anlagen in Ihrem Portfolio an.',
+  },
+  integrate: {
+    title: 'Für Integration gemacht',
+    description:
+      'Binden Sie Gebäudeleittechnik, ERP- und Finanzsysteme an, damit Anlagendaten dorthin fließen, wo Sie sie brauchen, über mehr als 20 Integrationen.',
+    action: {
+      label: 'Alle Integrationen ansehen',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Häufig gestellte Fragen',
+    items: [
+      {
+        question: 'Was ist Anlagenmanagement in Fleet?',
+        answer:
+          'Ein digitales Live-Verzeichnis aller Anlagen in Ihren Objekten, mit Wartungshistorie, Kosten, Garantien und Dokumenten an einem Ort, verbunden mit Arbeitsaufträgen und Wartungsplänen.',
+      },
+      {
+        question: 'Welche Informationen kann ich je Anlage speichern?',
+        answer:
+          'Hersteller, Modell, Seriennummer, Standort, Kaufdatum und Garantiedaten, dazu Handbücher, Fotos, Prüfberichte, Zertifikate und die vollständige Reparaturhistorie.',
+      },
+      {
+        question: 'Sehen Techniker die Anlagendaten vor Ort?',
+        answer:
+          'Ja. Techniker öffnen jede Anlage auf Smartphone oder Tablet, sehen Handbücher, Historie und offene Aufträge und erfassen Prüfungen mit Fotos und Messwerten.',
+      },
+      {
+        question: 'Wie hilft Fleet bei der Ersatzplanung?',
+        answer:
+          'Fleet erfasst Reparaturkosten, Ausfallzeiten und Nutzung jeder Anlage. So erkennen Sie leistungsschwache Geräte, planen Ersatz und steuern Investitionen.',
+      },
+      {
+        question: 'Erinnert Fleet mich vor dem Ablauf von Garantien?',
+        answer:
+          'Ja. Fleet verfolgt Garantie- und Vertragsdaten und informiert Ihr Team rechtzeitig vor dem Ablauf.',
+      },
+    ],
+  },
+}
+
+export const documentPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Dokumentenmanagement',
+    title: 'Alle Instandhaltungs\u00addateien an einem zentralen Ort',
+    description:
+      'Garantien, Dienstleisterverträge, Compliance-Checklisten und Arbeitsanweisungen liegen an einem Ort, verknüpft mit der Arbeit, die sie unterstützen, und sofort griffbereit.',
+    primaryAction: {
+      label: 'Demo buchen',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Plattform entdecken',
+      href: '/platform',
+    },
+    highlights: ['Versionierung', 'Mit Anlagen und Aufträgen verknüpft', 'Prüfbereite Exporte'],
+    visual: {
+      kind: 'files',
+      title: 'Dokumente · Tower B',
+      items: [
+        {
+          title: 'Brandschutzzertifikat.pdf',
+          location: 'Genehmigung · Tower B',
+          status: 'Läuft ab in 30 T.',
+          tone: 'due',
+        },
+        {
+          title: 'CH-02 Betriebshandbuch.pdf',
+          location: 'Handbuch · Kältemaschine CH-02',
+          status: 'Verknüpft',
+          tone: 'info',
+        },
+        {
+          title: 'Aufzugsprüfung Q3.pdf',
+          location: 'Bericht · Kernaufzüge',
+          status: 'Geprüft',
+          tone: 'done',
+        },
+        {
+          title: 'Wartungsvertrag Klima.pdf',
+          location: 'Vertrag · CoolAir',
+          status: 'Aktiv',
+          tone: 'done',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Jeder Auftrag braucht die richtige Datei',
+      description:
+        'Sicherheitszertifikate, Prüfberichte, Handbücher und Rechnungen belegen Compliance und Kontinuität, und Teams brauchen sie direkt am Einsatzort.',
+      points: ['Zertifikate', 'Handbücher', 'Verträge'],
+    },
+    answer: {
+      title: 'Jede Datei nur einen Klick entfernt',
+      description:
+        'Fleet hält Ihre Dokumentation geordnet, verknüpft mit der Arbeit, die sie unterstützt, und überall abrufbar.',
+    },
+  },
+  capabilities: {
+    title: 'Dokumente im gesamten Portfolio verwalten',
+    description:
+      'Speichern, ordnen und finden Sie jede Datei an einem Ort, direkt in der Plattform, die Ihr Team bereits nutzt.',
+    tabs: [
+      {
+        icon: 'storage',
+        label: 'Ablage',
+        title: 'Dateien überall anhängen',
+        description:
+          'Laden Sie Dokumente direkt zu Anlagen, Aufträgen, Standorten, Dienstleistern oder Nutzern hoch und behalten Sie alles im Kontext.',
+        points: [
+          'Dateien mit Anlagen, Aufträgen und Standorten verknüpft',
+          'Getaggt nach Typ, Standort, Abteilung oder Anlagenklasse',
+          'Speicher direkt in Fleet',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Kältemaschine CH-02 · Dateien',
+          items: [
+            {
+              title: 'Betriebshandbuch.pdf',
+              location: 'Handbuch',
+              status: 'Verknüpft',
+              tone: 'info',
+            },
+            {
+              title: 'Garantiezertifikat.pdf',
+              location: 'Garantie',
+              status: 'Aktiv',
+              tone: 'done',
+            },
+            {
+              title: 'Wartungsbericht Q3.pdf',
+              location: 'Bericht',
+              status: 'Geprüft',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'versions',
+        label: 'Versionen',
+        title: 'Versionierung und Prüfpfad',
+        description:
+          'Verfolgen Sie Änderungen mit vollständiger Bearbeitungshistorie. Sehen Sie, wer was wann hochgeladen hat, und stellen Sie frühere Stände bei Bedarf wieder her.',
+        points: [
+          'Vollständige Historie für jede Datei',
+          'Frühere Versionen mit einem Klick wiederhergestellt',
+          'Jeder Upload mit Zeitstempel und Person',
+        ],
+        visual: {
+          kind: 'log',
+          title: 'Versionen · Brandschutzplan',
+          entries: [
+            {
+              when: '09:42',
+              who: 'Marco L.',
+              what: 'hat Version 4 mit neuen Fluchtwegen hochgeladen',
+            },
+            {
+              when: 'Mo.',
+              who: 'Aisha K.',
+              what: 'hat Version 3 freigegeben',
+            },
+            {
+              when: '12. Sep.',
+              who: 'Fleet',
+              what: 'hat Version 2 archiviert',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'permissions',
+        label: 'Zugriff',
+        title: 'Rollenbasierte Berechtigungen',
+        description:
+          'Legen Sie fest, wer Dokumente ansehen, hochladen oder bearbeiten darf, damit vertrauliche Informationen bei berechtigten Personen bleiben.',
+        points: [
+          'Lese-, Upload- und Bearbeitungsrechte je Rolle',
+          'Dienstleister sehen nur ihre eigenen Aufträge',
+          'Vertrauliche Dateien sicher geschützt',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Zugriff · Dienstleisterverträge',
+          items: [
+            {
+              title: 'Finanzteam',
+              location: 'Ansehen und bearbeiten',
+              status: 'Bearbeiten',
+              tone: 'info',
+            },
+            {
+              title: 'Objektleitung',
+              location: 'Ansehen',
+              status: 'Lesen',
+              tone: 'done',
+            },
+            {
+              title: 'Dienstleister',
+              location: 'Nur eigene Verträge',
+              status: 'Begrenzt',
+              tone: 'due',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'search',
+        label: 'Suche',
+        title: 'Jede Datei in Sekunden finden',
+        description:
+          'Jede Datei ist über die globale Suche auffindbar und mit Ihren Dashboards und Berichten verknüpft.',
+        points: [
+          'Globale Suche über alle Standorte',
+          'Filter nach Typ, Standort und Anlage',
+          'Treffer mit Aufträgen und Anlagen verknüpft',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Suche: „Aufzugszertifikat“',
+          items: [
+            {
+              title: 'Aufzugszertifikat 2026.pdf',
+              location: 'Northgate Mall · Kernaufzüge',
+              status: 'Gültig',
+              tone: 'done',
+            },
+            {
+              title: 'Aufzugszertifikat 2026.pdf',
+              location: 'Tower B · Aufzug L2',
+              status: 'Läuft ab in 45 T.',
+              tone: 'due',
+            },
+            {
+              title: 'Aufzugsprüfung Q2.pdf',
+              location: 'Harbour Point',
+              status: 'Archiviert',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Im Einsatz',
+      title: 'Arbeitsanweisungen in jedem Auftrag',
+      description:
+        'Techniker öffnen Arbeitsanweisungen, Installationsanleitungen und frühere Berichte direkt im Auftrag, genau dort, wo die Arbeit stattfindet.',
+      points: [
+        'Dokumente mit jedem Auftrag verknüpft',
+        'Auf jedem Smartphone oder Tablet verfügbar',
+        'Budgetfreigaben für volle Nachvollziehbarkeit angehängt',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'WO-2304 · Angehängte Dokumente',
+        items: [
+          {
+            title: 'Arbeitsanweisung Filterwechsel.pdf',
+            location: 'Verfahren',
+            status: 'Pflicht',
+            tone: 'info',
+          },
+          {
+            title: 'AHU-07 Handbuch.pdf',
+            location: 'Handbuch',
+            status: 'Verknüpft',
+            tone: 'info',
+          },
+          {
+            title: 'Budgetfreigabe.pdf',
+            location: 'Von Finanzen freigegeben',
+            status: 'Freigegeben',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Compliance',
+      title: 'Jederzeit bereit für die Prüfung',
+      description:
+        'Zertifikate, Genehmigungen und Berichte bleiben aktuell, mit Erinnerungen vor jedem Ablauf.',
+      points: [
+        'Ablaufverfolgung für Genehmigungen und Verträge',
+        'Protokolle mit Zeitstempel für die Compliance',
+        'Schneller Zugriff bei Notfällen oder Audits',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Läuft bald ab',
+        items: [
+          {
+            title: 'Brandschutzzertifikat',
+            location: 'Tower B',
+            status: 'In 30 Tagen',
+            tone: 'due',
+          },
+          {
+            title: 'Aufzugsgenehmigung',
+            location: 'Northgate Mall',
+            status: 'In 45 Tagen',
+            tone: 'due',
+          },
+          {
+            title: 'Dienstleistervertrag · CoolAir',
+            location: 'Alle Standorte',
+            status: 'Verlängert',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Teilen',
+      title: 'Pakete für Audits und Übergaben',
+      description:
+        'Laden Sie Dokumentpakete für Audits, Übergaben an Dienstleister oder interne Prüfungen mit wenigen Klicks herunter.',
+      points: [
+        'Pakete nach Standort, Anlage oder Zeitraum',
+        'Sicher mit Prüfern und Dienstleistern geteilt',
+        'Vollständige Unterlagen für Objektübergaben',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Auditpaket',
+        steps: [
+          {
+            kind: 'Auswählen',
+            text: 'Tower B · Brandschutz · 2026',
+          },
+          {
+            kind: 'Bündeln',
+            text: '14 Zertifikate und Berichte',
+          },
+          {
+            kind: 'Teilen',
+            text: 'Sicherer Link an den Prüfer',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'So funktioniert es',
+    title: 'Vom Upload bis zum Audit',
+    items: [
+      {
+        title: 'Hochladen',
+        description:
+          'Fügen Sie Dateien vom Desktop oder Smartphone hinzu oder übernehmen Sie Ihr Archiv mit unserem Team.',
+      },
+      {
+        title: 'Verknüpfen',
+        description:
+          'Hängen Sie jede Datei an ihre Anlage, ihren Auftrag, Standort oder Dienstleister.',
+      },
+      {
+        title: 'Nutzen',
+        description:
+          'Techniker und Verantwortliche öffnen das richtige Dokument direkt am Einsatzort.',
+      },
+      {
+        title: 'Teilen',
+        description: 'Exportieren Sie Pakete für Audits, Übergaben und Prüfungen.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Jetzt starten',
+    title: 'Alle Dateien an einem Ort',
+    description:
+      'Unser Onboarding-Team überträgt mit Ihnen Handbücher, Zertifikate und Verträge in Fleet und verknüpft sie in der ersten Woche mit Ihren Anlagen.',
+    action: {
+      label: 'Demo buchen',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Warum Fleet für das Dokumenten\u00admanagement',
+    description:
+      'Das Dokumentenmanagement arbeitet in jedem Fleet-Modul, gemacht für Teams mit vielen Standorten, Anlagentypen und Dienstleistern.',
+    items: [
+      {
+        title: 'In jedes Modul integriert',
+        description: 'Dateien verknüpft mit Anlagen, Aufträgen, Workflows und Berichten.',
+      },
+      {
+        title: 'Sicher konzipiert',
+        description:
+          'Rollenbasierte Berechtigungen, verschlüsselte Speicherung und vollständige Prüfpfade.',
+      },
+      {
+        title: 'Schnell gefunden',
+        description: 'Globale Suche und smarte Tags über alle Standorte.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Andere Plattformen waren zu komplex oder zu allgemein. Fleet bot uns eine maßgeschneiderte Lösung mit schnellerem Support.',
+    author: 'Leitung Instandhaltung',
+    company: 'Logistikzentrum',
+  },
+  industries: {
+    title: 'Jede Branche arbeitet mit Dokumenten',
+    description:
+      'Vom Hotel bis zum Logistikzentrum hält Fleet die Unterlagen jedes Objekts geordnet und prüfbereit.',
+  },
+  integrate: {
+    title: 'Für Integration gemacht',
+    description:
+      'Binden Sie Finanzsysteme, Dienstleisterportale und Fleet Mail an, damit Dokumente dort ankommen, wo sie hingehören, über mehr als 20 Integrationen.',
+    action: {
+      label: 'Alle Integrationen ansehen',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Häufig gestellte Fragen',
+    items: [
+      {
+        question: 'Welche Dokumente kann ich in Fleet speichern?',
+        answer:
+          'Handbücher, Garantien, Genehmigungen, Prüfberichte, Zertifikate, Dienstleisterverträge, Arbeitsanweisungen, Rechnungen und Fotos, jeweils verknüpft mit den passenden Anlagen, Aufträgen und Standorten.',
+      },
+      {
+        question: 'Können Techniker Dokumente vor Ort öffnen?',
+        answer:
+          'Ja. Techniker öffnen Arbeitsanweisungen, Handbücher und frühere Berichte direkt im Auftrag auf jedem Smartphone oder Tablet.',
+      },
+      {
+        question: 'Wie funktioniert die Versionierung?',
+        answer:
+          'Fleet speichert für jede Datei eine vollständige Bearbeitungshistorie, zeigt, wer was wann hochgeladen hat, und stellt frühere Versionen wieder her.',
+      },
+      {
+        question: 'Wer sieht vertrauliche Dokumente?',
+        answer:
+          'Das entscheiden Sie. Rollenbasierte Berechtigungen steuern, wer Dokumente ansehen, hochladen oder bearbeiten darf, und Dienstleister sehen nur ihre eigenen Dateien.',
+      },
+      {
+        question: 'Erinnert Fleet mich vor dem Ablauf von Zertifikaten?',
+        answer:
+          'Ja. Fleet verfolgt Ablaufdaten von Genehmigungen, Zertifikaten und Verträgen und erinnert Ihr Team rechtzeitig.',
+      },
+    ],
+  },
 }

@@ -10,6 +10,7 @@ import type {
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
+  ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -57,6 +58,8 @@ export const pages: {
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
   analyticsReporting: PlatformEntry
+  assetManagement: PlatformEntry
+  documentManagement: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -147,64 +150,6 @@ export const pages: {
       description:
         '为所有物业中的每项资产建立实时数字台账，将维护历史、成本、保修和文档集中在一处。',
     },
-    eyebrow: '资产管理',
-    title: '全面掌握您管理的每一项资产',
-    description:
-      '从数十栋楼的空调系统到水泵、电梯和照明，Fleet 为您提供每项资产的实时台账，随时随地可查。',
-    highlights: ['数字化资产档案', '完整维修历史', '保修到期提醒'],
-    features: {
-      title: 'Fleet 资产管理的核心功能',
-      description: '让资产数据成为提升效率、编制预算和主动规划的引擎。',
-      items: [
-        {
-          title: '数字化资产档案',
-          description: '记录品牌、型号、序列号、位置、购买日期和保修信息。',
-        },
-        {
-          title: '文件与文档',
-          description: '为每项资产关联手册、照片、检查报告和证书。',
-        },
-        {
-          title: '维修历史与成本',
-          description: '查看资产组合中每项资产做过什么、频率如何、花费多少。',
-        },
-        {
-          title: '位置与区域',
-          description: '按楼宇、楼层、房间或区域组织资产，适合多站点运营。',
-        },
-        {
-          title: '关联工单与预防性维护',
-          description: '将每项资产与维护计划关联，自动生成预防性工单。',
-        },
-        {
-          title: '生命周期与停机洞察',
-          description: '发现表现不佳的设备，预测更换需求并规划资本支出。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '随时随地访问资产',
-        description: '技术人员在现场调出资产信息，实时记录检查，并用手机添加照片和备注。',
-        points: ['搜索或扫码打开任意资产', '现场记录检查结果', '历史记录即时同步给整个团队'],
-      },
-      {
-        title: '更好的数据，带来更好的维护',
-        description: '准确、条理清晰的资产信息能延长设备寿命，让预算更有把握。',
-        points: ['保修和合同到期前提醒', '用于年度预算的资产绩效报告', '基于实际使用的更换预测'],
-      },
-    ],
-    useCases: {
-      title: '资产管理实践',
-      description: '从房地产资产组合到连锁酒店，团队借助 Fleet 深入了解关键基础设施。',
-      items: [
-        '集中管理多栋商业楼宇的空调资产数据',
-        '将特定资产分配给现场技术人员定期检查',
-        '用照片记录和证书追踪电梯维护历史',
-        '导出资产绩效报告用于年度预算',
-        '保修或合同临近到期时收到提醒',
-      ],
-    },
   },
   documentManagement: {
     label: '文档管理',
@@ -213,63 +158,6 @@ export const pages: {
       title: '文档管理 | Fleet',
       description:
         '在一处存储、整理和检索手册、保修、许可证和检查报告，并关联到对应的资产、工单和站点。',
-    },
-    eyebrow: '文档管理',
-    title: '将维护文件集中到一个智能中心',
-    description: '保修、供应商合同、合规清单和作业规程集中在一处，与相关工作关联，需要时随手可得。',
-    highlights: ['版本控制', '关联资产与工单', '可直接用于审计的导出'],
-    features: {
-      title: 'Fleet 文档管理的核心功能',
-      description: '所有相关文档，在需要的地方触手可及。',
-      items: [
-        {
-          title: '版本控制与审计记录',
-          description: '查看谁在何时上传了什么，完整修改历史，轻松回滚。',
-        },
-        {
-          title: '随处附加文件',
-          description: '将文档关联到资产、工单、位置、供应商或用户。',
-        },
-        {
-          title: '标签与分类',
-          description: '按类型、站点、部门或资产类别标记文件，快速查找。',
-        },
-        {
-          title: '基于角色的权限',
-          description: '控制谁可以查看、上传或编辑每份文档，保护敏感文件。',
-        },
-        {
-          title: '工单内查看文档',
-          description: '技术人员可直接在工单中打开作业规程、安装指南和过往报告。',
-        },
-        {
-          title: '导出与共享',
-          description: '下载文档包，用于审计、供应商交接或内部审查。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '融入您的维护生态',
-        description: '每个文件都可通过全局搜索找到，并与看板和报表相关联。',
-        points: ['跨所有站点的全局搜索', '文档关联资产、工单和供应商', '存储内置于 Fleet'],
-      },
-      {
-        title: '随时准备好接受检查',
-        description: '证书、许可证和报告始终保持最新，到期前自动提醒。',
-        points: ['追踪许可证和合同到期', '带时间戳的合规日志', '紧急情况或审计时快速调取'],
-      },
-    ],
-    useCases: {
-      title: '文档管理实践',
-      description: '为管理多个站点、多类资产和承包商的忙碌团队打造。',
-      items: [
-        '上传电梯维护规程，供技术人员现场查阅',
-        '将消防检查证书关联到合规工作流',
-        '存储供应商合同并追踪到期日',
-        '将预算审批附到工单上，实现完整追溯',
-        '维护空调、给排水和照明系统的数字手册',
-      ],
     },
   },
   auditTracking: {
@@ -2078,4 +1966,750 @@ export const analyticsPage: AnalyticsPageContent = {
       },
     },
   ],
+}
+
+export const assetPage: ProductPageContent = {
+  hero: {
+    eyebrow: '资产管理',
+    title: '全面掌握您管理的每一项资产',
+    description:
+      '从数十栋楼的空调系统到水泵、电梯和照明，Fleet 为您提供每项资产的实时台账，随时随地可查。',
+    primaryAction: {
+      label: '预约演示',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: '探索平台',
+      href: '/platform',
+    },
+    highlights: ['数字化资产档案', '完整维修历史', '保修到期提醒'],
+    visual: {
+      kind: 'asset',
+      title: '资产档案',
+      name: '冷水机组 CH-02',
+      location: 'Harbour Point · B2 机房',
+      status: '运行中',
+      facts: [
+        {
+          label: '上次保养',
+          value: '9月12日',
+        },
+        {
+          label: '保修',
+          value: '2028年3月',
+        },
+        {
+          label: '本年成本',
+          value: '$4,210',
+        },
+        {
+          label: '未完成工单',
+          value: '1',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: '资产遍布每个项目',
+      description: '数十栋楼里的空调、电梯、水泵和照明，各有各的手册、保修和维修历史。',
+      points: ['多个项目', '多种资产类型', '大量记录'],
+    },
+    answer: {
+      title: '一份实时台账管理全部资产',
+      description: 'Fleet 为您的实体资产建立实时数字台账，随时随地可查，让每个决策都有完整依据。',
+    },
+  },
+  capabilities: {
+    title: '在整个资产组合中规模化管理资产',
+    description: '从一台冷水机组到所有项目的数千项资产，都在一份互联的台账中。',
+    tabs: [
+      {
+        icon: 'register',
+        label: '资产台账',
+        title: '每项资产都有档案',
+        description: '记录每项资产的品牌、型号、序列号、位置、购置日期和保修信息。',
+        points: ['每项资产都有数字档案', '按楼栋、楼层、房间或区域组织', '在整个资产组合中搜索'],
+        visual: {
+          kind: 'jobs',
+          title: '资产台账 · Harbour Point',
+          items: [
+            {
+              title: '冷水机组 CH-02',
+              location: 'B2 机房 · 暖通',
+              status: '运行中',
+              tone: 'done',
+            },
+            {
+              title: '电梯 L2',
+              location: '核心筒电梯 · 垂直交通',
+              status: '待保养',
+              tone: 'due',
+            },
+            {
+              title: '增压泵 P-03',
+              location: '地下室 · 给排水',
+              status: '运行中',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: '工单',
+        title: '与工单和预防性维护相连',
+        description: '将每项资产与其维护计划和服务历史关联，并自动生成预防性维护工单。',
+        points: ['每项资产附带维护计划', '自动创建预防性工单', '每次维修都计入资产历史'],
+        visual: {
+          kind: 'steps',
+          title: '资产自动化',
+          steps: [
+            {
+              kind: '资产',
+              text: '冷水机组 CH-02 · 季度计划',
+            },
+            {
+              kind: '然后',
+              text: '创建预防性维护工单',
+            },
+            {
+              kind: '然后',
+              text: '将保养记入资产历史',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'lifecycle',
+        label: '生命周期',
+        title: '生命周期与停机洞察',
+        description: '借助实时使用数据，识别表现欠佳的设备，预测更换时间并规划资本支出。',
+        points: ['按资产跟踪停机时间', '全生命周期维修成本', '基于实际使用的更换预测'],
+        visual: {
+          kind: 'chart',
+          title: '各类资产停机小时 · 第三季度',
+          stats: [
+            {
+              label: '总停机',
+              value: '112 小时',
+            },
+            {
+              label: '风险资产',
+              value: '6',
+            },
+          ],
+          bars: [
+            {
+              label: '暖通',
+              value: 46,
+            },
+            {
+              label: '电梯',
+              value: 28,
+            },
+            {
+              label: '水泵',
+              value: 19,
+            },
+            {
+              label: '照明',
+              value: 12,
+            },
+            {
+              label: '门禁',
+              value: 7,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'mobile',
+        label: '现场',
+        title: '现场随时查看资产详情',
+        description: '技术人员在现场打开资产详情，实时记录巡检，并用手机添加照片和备注。',
+        points: ['搜索或扫码打开任意资产', '巡检附带照片和读数', '历史即时同步给整个团队'],
+        visual: {
+          kind: 'asset',
+          title: '已扫码资产',
+          name: '电梯 L2',
+          location: 'Northgate Mall · 核心筒电梯',
+          status: '待保养',
+          facts: [
+            {
+              label: '上次巡检',
+              value: '8月2日',
+            },
+            {
+              label: '证书',
+              value: '有效至 2027年1月',
+            },
+            {
+              label: '手册',
+              value: '电梯 L2 手册.pdf',
+            },
+            {
+              label: '未完成工单',
+              value: '2',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: '文档',
+      title: '手册随时随地可查',
+      description: '将手册、照片、巡检报告和证书关联到每项资产，现场快速查阅。',
+      points: ['文件附在每个资产档案上', '证书与保修集中存放', '手机或平板随时可用'],
+      visual: {
+        kind: 'files',
+        title: '冷水机组 CH-02 · 文档',
+        items: [
+          {
+            title: 'CH-02 运维手册.pdf',
+            location: '手册',
+            status: '已关联',
+            tone: 'info',
+          },
+          {
+            title: '保修证书.pdf',
+            location: '有效至 2028年3月',
+            status: '有效',
+            tone: 'done',
+          },
+          {
+            title: '第三季度保养报告.pdf',
+            location: '9月12日上传',
+            status: '已核验',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'RunnerAI',
+      title: '用 AI 自动化资产管理',
+      description: 'RunnerAI 为新设备建议维护计划，并根据一句日常语言的请求生成资产看板。',
+      points: ['为新资产建议预防性计划', '临近寿命终点的资产看板', '几秒内回答任何资产问题'],
+      visual: {
+        kind: 'log',
+        title: 'RunnerAI 动态',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: '为 6 台新冷水机组建议了预防性计划',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: '列出了 4 项临近寿命终点的资产',
+          },
+          {
+            when: '08:58',
+            who: 'Aisha K.',
+            what: '批准了建议的冷水机组计划',
+          },
+        ],
+      },
+    },
+    {
+      tag: '保修与合同',
+      title: '保修与合同尽在掌握',
+      description: 'Fleet 跟踪每项资产的保修和合同日期，并在到期前提醒您的团队。',
+      points: ['保修和合同到期前提醒', '每张工单显示保修状态', '合同详情关联到每个供应商'],
+      visual: {
+        kind: 'jobs',
+        title: '即将到期',
+        items: [
+          {
+            title: '电梯 L2 维保合同',
+            location: 'Northgate Mall',
+            status: '30 天后',
+            tone: 'due',
+          },
+          {
+            title: '冷水机组 CH-04 保修',
+            location: 'Tower B',
+            status: '60 天后',
+            tone: 'info',
+          },
+          {
+            title: '增压泵 P-03 保修',
+            location: 'Harbour Point',
+            status: '已续期',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: '工作原理',
+    title: '从建档到更换',
+    items: [
+      {
+        title: '建档',
+        description: '导入资产清单，或创建包含所需信息的资产档案。',
+      },
+      {
+        title: '维护',
+        description: '将每项资产与计划和工单关联，让保养按时进行。',
+      },
+      {
+        title: '跟踪',
+        description: '维修、成本、文档和停机自动形成完整历史。',
+      },
+      {
+        title: '规划',
+        description: '生命周期洞察告诉您何时维修、更换或投资。',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: '开始使用',
+    title: '将所有资产集中到一处',
+    description: '我们的上线团队会与您一起导入资产清单和维护计划，让台账在第一周就准备就绪。',
+    action: {
+      label: '预约演示',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: '为什么选择 Fleet 管理资产',
+    description: 'Fleet 专为不动产和设施管理团队打造，无论您管理电梯、锅炉、照明还是给排水。',
+    items: [
+      {
+        title: '为不动产打造',
+        description: '按照您的组合方式组织资产：按物业、楼栋和区域。',
+      },
+      {
+        title: '现场移动可用',
+        description: '资产详情、历史和文档在任何手机或平板上可用，支持 iOS 和 Android。',
+      },
+      {
+        title: '连接每个模块',
+        description: '资产与工单、文档、工作流和报表相互关联。',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet 让我们的被动维修工作量减少了近 40%。技术人员、资产记录和工单终于集中在了一处。',
+    author: '物业运营负责人',
+    company: '综合体项目',
+  },
+  industries: {
+    title: '每个行业都有资产',
+    description: '从购物中心到物流枢纽，Fleet 适配您组合中的各类资产。',
+  },
+  integrate: {
+    title: '为集成而生',
+    description: '通过 20 多项集成连接楼宇管理系统、ERP 和财务工具，让资产数据流向需要的地方。',
+    action: {
+      label: '查看全部集成',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: '常见问题',
+    items: [
+      {
+        question: 'Fleet 中的资产管理是什么？',
+        answer:
+          '一份覆盖您所有物业资产的实时数字台账，集中保存维护历史、成本、保修和文档，并与工单和预防性计划相连。',
+      },
+      {
+        question: '每项资产可以保存哪些信息？',
+        answer:
+          '品牌、型号、序列号、位置、购置日期和保修信息，以及手册、照片、巡检报告、证书和完整的维修历史。',
+      },
+      {
+        question: '技术人员能在现场查看资产详情吗？',
+        answer:
+          '可以。技术人员用手机或平板打开任意资产，查看手册、历史和未完成工单，并记录附带照片和读数的巡检。',
+      },
+      {
+        question: 'Fleet 如何帮助规划更换？',
+        answer:
+          'Fleet 跟踪每项资产的维修成本、停机和使用情况，帮助您识别表现欠佳的设备、预测更换并规划资本支出。',
+      },
+      {
+        question: 'Fleet 会在保修到期前提醒我吗？',
+        answer: '会。Fleet 跟踪保修和合同日期，并在到期前提醒您的团队。',
+      },
+    ],
+  },
+}
+
+export const documentPage: ProductPageContent = {
+  hero: {
+    eyebrow: '文档管理',
+    title: '将维护文件集中到一个智能中心',
+    description: '保修、供应商合同、合规清单和作业规程集中在一处，与相关工作关联，需要时随手可得。',
+    primaryAction: {
+      label: '预约演示',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: '探索平台',
+      href: '/platform',
+    },
+    highlights: ['版本控制', '关联资产与工单', '可直接用于审计的导出'],
+    visual: {
+      kind: 'files',
+      title: '文档 · Tower B',
+      items: [
+        {
+          title: '消防安全证书.pdf',
+          location: '许可 · Tower B',
+          status: '30 天后到期',
+          tone: 'due',
+        },
+        {
+          title: 'CH-02 运维手册.pdf',
+          location: '手册 · 冷水机组 CH-02',
+          status: '已关联',
+          tone: 'info',
+        },
+        {
+          title: '第三季度电梯检验.pdf',
+          location: '报告 · 核心筒电梯',
+          status: '已核验',
+          tone: 'done',
+        },
+        {
+          title: '暖通维保合同.pdf',
+          location: '合同 · CoolAir',
+          status: '有效',
+          tone: 'done',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: '每项工作都需要正确的文件',
+      description:
+        '安全证书、检验报告、手册和发票是合规与连续运营的凭证，团队需要在作业现场随时取用。',
+      points: ['证书', '手册', '合同'],
+    },
+    answer: {
+      title: '每份文件一键可得',
+      description: 'Fleet 让文档井然有序，与相关工作关联，随时随地可查。',
+    },
+  },
+  capabilities: {
+    title: '管理整个资产组合的文档',
+    description: '在一个地方存储、整理和查找每份文件，内置于团队已在使用的平台。',
+    tabs: [
+      {
+        icon: 'storage',
+        label: '存储',
+        title: '文件随处附加',
+        description: '将文档直接上传到资产、工单、位置、供应商或用户，一切都在上下文中。',
+        points: [
+          '文件关联资产、工单和位置',
+          '按类型、项目、部门或资产类别打标签',
+          '存储内置于 Fleet',
+        ],
+        visual: {
+          kind: 'files',
+          title: '冷水机组 CH-02 · 文件',
+          items: [
+            {
+              title: '运维手册.pdf',
+              location: '手册',
+              status: '已关联',
+              tone: 'info',
+            },
+            {
+              title: '保修证书.pdf',
+              location: '保修',
+              status: '有效',
+              tone: 'done',
+            },
+            {
+              title: '第三季度保养报告.pdf',
+              location: '报告',
+              status: '已核验',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'versions',
+        label: '版本',
+        title: '版本控制与审计追踪',
+        description: '通过完整编辑历史跟踪文件变化。查看谁在何时上传了什么，需要时可回退到旧版本。',
+        points: ['每份文件的完整编辑历史', '一键恢复旧版本', '每次上传都有时间戳和署名'],
+        visual: {
+          kind: 'log',
+          title: '版本历史 · 消防安全方案',
+          entries: [
+            {
+              when: '09:42',
+              who: 'Marco L.',
+              what: '上传了更新疏散出口的第 4 版',
+            },
+            {
+              when: '周一',
+              who: 'Aisha K.',
+              what: '批准了第 3 版',
+            },
+            {
+              when: '9月12日',
+              who: 'Fleet',
+              what: '归档了第 2 版',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'permissions',
+        label: '权限',
+        title: '基于角色的权限',
+        description: '决定谁可以查看、上传或编辑文档，让敏感信息只对授权人员可见。',
+        points: ['按角色设置查看、上传和编辑权限', '供应商只能访问自己的工单', '敏感文件安全保护'],
+        visual: {
+          kind: 'jobs',
+          title: '权限 · 供应商合同',
+          items: [
+            {
+              title: '财务团队',
+              location: '可查看和编辑',
+              status: '编辑',
+              tone: 'info',
+            },
+            {
+              title: '项目经理',
+              location: '可查看',
+              status: '查看',
+              tone: 'done',
+            },
+            {
+              title: '供应商',
+              location: '仅限自己的合同',
+              status: '受限',
+              tone: 'due',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'search',
+        label: '搜索',
+        title: '几秒找到任何文件',
+        description: '每份文件都能通过全局搜索找到，并与您的看板和报表关联。',
+        points: ['覆盖所有项目的全局搜索', '按类型、项目和资产筛选', '结果关联对应工单和资产'],
+        visual: {
+          kind: 'files',
+          title: '搜索："电梯证书"',
+          items: [
+            {
+              title: '电梯证书 2026.pdf',
+              location: 'Northgate Mall · 核心筒电梯',
+              status: '有效',
+              tone: 'done',
+            },
+            {
+              title: '电梯证书 2026.pdf',
+              location: 'Tower B · 电梯 L2',
+              status: '45 天后到期',
+              tone: 'due',
+            },
+            {
+              title: '第二季度电梯检验.pdf',
+              location: 'Harbour Point',
+              status: '已归档',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: '现场作业',
+      title: '每张工单内置作业规程',
+      description: '技术人员直接在工单中打开作业规程、安装指南和历史报告，就在工作发生的地方。',
+      points: ['文档关联到每张工单', '手机或平板随时可用', '附带预算审批，全程可追溯'],
+      visual: {
+        kind: 'files',
+        title: 'WO-2304 · 附件',
+        items: [
+          {
+            title: '暖通滤网更换规程.pdf',
+            location: '规程',
+            status: '必需',
+            tone: 'info',
+          },
+          {
+            title: 'AHU-07 手册.pdf',
+            location: '手册',
+            status: '已关联',
+            tone: 'info',
+          },
+          {
+            title: '预算审批.pdf',
+            location: '财务已批准',
+            status: '已批准',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: '合规',
+      title: '随时准备接受检查',
+      description: '证书、许可和报告始终保持最新，到期前自动提醒。',
+      points: ['跟踪许可和合同到期', '带时间戳的合规记录', '应急或审计时快速调取'],
+      visual: {
+        kind: 'jobs',
+        title: '即将到期',
+        items: [
+          {
+            title: '消防安全证书',
+            location: 'Tower B',
+            status: '30 天后',
+            tone: 'due',
+          },
+          {
+            title: '电梯许可',
+            location: 'Northgate Mall',
+            status: '45 天后',
+            tone: 'due',
+          },
+          {
+            title: '供应商合同 · CoolAir',
+            location: '所有项目',
+            status: '已续期',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: '共享',
+      title: '审计与交接文档包',
+      description: '只需几次点击，即可下载用于审计、供应商交接或内部审查的文档包。',
+      points: ['按项目、资产或时间段打包', '安全分享给审计方和供应商', '物业交接的完整记录'],
+      visual: {
+        kind: 'steps',
+        title: '审计文档包',
+        steps: [
+          {
+            kind: '选择',
+            text: 'Tower B · 消防安全 · 2026',
+          },
+          {
+            kind: '打包',
+            text: '14 份证书和报告',
+          },
+          {
+            kind: '分享',
+            text: '安全链接已发送给审计方',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: '工作原理',
+    title: '从上传到审计',
+    items: [
+      {
+        title: '上传',
+        description: '从电脑或手机添加文件，或由我们的团队协助迁移现有档案。',
+      },
+      {
+        title: '关联',
+        description: '将每份文件附加到对应的资产、工单、位置或供应商。',
+      },
+      {
+        title: '使用',
+        description: '技术人员和管理者在作业现场打开正确的文档。',
+      },
+      {
+        title: '分享',
+        description: '导出用于审计、交接和审查的文档包。',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: '开始使用',
+    title: '将所有文件集中到一处',
+    description:
+      '我们的上线团队会与您一起把手册、证书和合同迁入 Fleet，并在第一周内关联到您的资产。',
+    action: {
+      label: '预约演示',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: '为什么选择 Fleet 管理文档',
+    description:
+      '文档管理贯穿 Fleet 的每个模块，专为管理多个项目、多种资产和众多供应商的团队打造。',
+    items: [
+      {
+        title: '内置于每个模块',
+        description: '文件与资产、工单、工作流和报表关联。',
+      },
+      {
+        title: '安全设计',
+        description: '基于角色的权限、加密存储和完整审计追踪。',
+      },
+      {
+        title: '快速查找',
+        description: '覆盖所有项目的全局搜索和智能标签。',
+      },
+    ],
+  },
+  quote: {
+    text: '其他平台要么太复杂，要么太通用。Fleet 为我们提供了量身打造的方案，支持响应也更快。',
+    author: '维护总监',
+    company: '物流枢纽',
+  },
+  industries: {
+    title: '每个行业都离不开文档',
+    description: '从酒店到物流枢纽，Fleet 让每处物业的文件井然有序、随时可供审计。',
+  },
+  integrate: {
+    title: '为集成而生',
+    description: '通过 20 多项集成连接财务工具、供应商门户和 Fleet Mail，让文档自动归位。',
+    action: {
+      label: '查看全部集成',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: '常见问题',
+    items: [
+      {
+        question: 'Fleet 可以存储哪些文档？',
+        answer:
+          '手册、保修、许可、检验报告、证书、供应商合同、作业规程、发票和照片，并关联到所属的资产、工单和位置。',
+      },
+      {
+        question: '技术人员能在现场打开文档吗？',
+        answer: '可以。技术人员在任何手机或平板上，直接从工单打开作业规程、手册和历史报告。',
+      },
+      {
+        question: '版本控制如何运作？',
+        answer: 'Fleet 为每份文件保留完整编辑历史，显示谁在何时上传了什么，并可恢复旧版本。',
+      },
+      {
+        question: '谁能查看敏感文档？',
+        answer:
+          '由您决定。基于角色的权限控制谁可以查看、上传或编辑每份文档，供应商只能看到自己的文件。',
+      },
+      {
+        question: 'Fleet 会在证书到期前提醒我吗？',
+        answer: '会。Fleet 跟踪许可、证书和合同的到期日期，并提前提醒您的团队。',
+      },
+    ],
+  },
 }

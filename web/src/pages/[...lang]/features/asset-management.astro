@@ -1,0 +1,15 @@
+---
+import ProductPage from '@/components/platform/ProductPage.astro'
+import { getContent } from '@/data'
+import { getLocale, localeStaticPaths } from '@/i18n'
+import Layout from '@/layout/Layout.astro'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+
+const { meta } = getContent(getLocale(Astro.url)).platform.pages.assetManagement
+---
+
+<Layout meta={meta}>
+  <ProductPage page="asset" />
+</Layout>

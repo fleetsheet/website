@@ -101,6 +101,45 @@ export type AnalyticsPageContent = {
   extras: { icon: 'ai' | 'plug'; title: string; description: string; action: NavLink }[]
 }
 
+export type ProductIcon =
+  | 'register'
+  | 'workOrders'
+  | 'lifecycle'
+  | 'mobile'
+  | 'storage'
+  | 'versions'
+  | 'permissions'
+  | 'search'
+
+export type ProductPageContent = {
+  hero: {
+    eyebrow: string
+    title: string
+    description: string
+    primaryAction: NavLink
+    secondaryAction: NavLink
+    highlights: string[]
+    visual: OverviewVisual
+  }
+  challenge: {
+    pressure: { title: string; description: string; points: string[] }
+    answer: { title: string; description: string }
+  }
+  capabilities: {
+    title: string
+    description: string
+    tabs: (Omit<OverviewModule, 'id' | 'tag'> & { icon: ProductIcon; label: string })[]
+  }
+  rows: Omit<OverviewModule, 'id'>[]
+  steps: { eyebrow: string; title: string; items: PlatformItem[] }
+  banner: { eyebrow: string; title: string; description: string; action: NavLink }
+  trust: { title: string; description: string; items: PlatformItem[] }
+  quote: { text: string; author: string; company: string }
+  industries: { title: string; description: string }
+  integrate: { title: string; description: string; action: NavLink }
+  faq: { title: string; items: { question: string; answer: string }[] }
+}
+
 export const menu = {
   label: 'Platform',
   groups: {
@@ -145,6 +184,8 @@ export const pages: {
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
   analyticsReporting: PlatformEntry
+  assetManagement: PlatformEntry
+  documentManagement: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -235,81 +276,6 @@ export const pages: {
       description:
         'Create a live digital register of every asset across your properties, with maintenance history, costs, warranties and documents in one place.',
     },
-    eyebrow: 'Asset Management',
-    title: 'Total Visibility Over Every Asset You Manage',
-    description:
-      'From HVAC systems across dozens of buildings to pumps, lifts and lighting, Fleet gives you one live register of every asset you own, accessible from anywhere.',
-    highlights: ['Digital asset profiles', 'Full repair history', 'Warranty alerts'],
-    features: {
-      title: 'Key Features of Fleet Asset Management',
-      description:
-        'Your asset data becomes an engine for efficiency, budgeting and proactive planning.',
-      items: [
-        {
-          title: 'Digital asset profiles',
-          description:
-            'Capture make, model, serial number, location, purchase date and warranty details.',
-        },
-        {
-          title: 'Files and documentation',
-          description: 'Link manuals, photos, inspection reports and certificates to each asset.',
-        },
-        {
-          title: 'Repair history and costs',
-          description:
-            'See what has been done, how often and at what cost, for every asset in your portfolio.',
-        },
-        {
-          title: 'Location and zone mapping',
-          description:
-            'Organize assets by building, floor, room or zone for multi-site operations.',
-        },
-        {
-          title: 'Connected work orders and PPM',
-          description:
-            'Link each asset to its maintenance schedule and generate PPM jobs automatically.',
-        },
-        {
-          title: 'Lifecycle and downtime insight',
-          description:
-            'Spot underperforming equipment, forecast replacements and plan capital spend.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Access Your Assets from Anywhere',
-        description:
-          'Technicians pull up asset details on site, log inspections in real time and attach photos and notes from their phones.',
-        points: [
-          'Search or scan to open any asset',
-          'Inspection results recorded on the spot',
-          'History updated for the whole team instantly',
-        ],
-      },
-      {
-        title: 'Smarter Maintenance Starts with Better Data',
-        description:
-          'Accurate, well-organized asset information helps you extend equipment life and budget with confidence.',
-        points: [
-          'Warranty and contract expiry alerts',
-          'Asset performance reports for annual budgeting',
-          'Replacement forecasts based on real usage',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Asset Management in Practice',
-      description:
-        'From property portfolios to hospitality chains, teams use Fleet to understand their most critical infrastructure.',
-      items: [
-        'Centralize HVAC asset data across multiple commercial buildings',
-        'Assign specific assets to site technicians for regular checks',
-        'Track lift maintenance history with photo logs and certificates',
-        'Export asset performance reports for annual budgeting',
-        'Get alerted when warranty or contract dates approach',
-      ],
-    },
   },
   documentManagement: {
     label: 'Document Management',
@@ -318,79 +284,6 @@ export const pages: {
       title: 'Document Management | Fleet',
       description:
         'Store, organize and retrieve manuals, warranties, permits and inspection reports in one place, linked to the assets, jobs and locations they belong to.',
-    },
-    eyebrow: 'Document Management',
-    title: 'Centralize Your Maintenance Files in One Smart Hub',
-    description:
-      'Warranties, vendor agreements, compliance checklists and SOPs live in one place, linked to the work they support and ready the moment you need them.',
-    highlights: ['Version control', 'Linked to assets and jobs', 'Audit-ready exports'],
-    features: {
-      title: 'Key Features of Fleet Document Management',
-      description: 'All relevant documentation, available right at the point of use.',
-      items: [
-        {
-          title: 'Version control and audit trail',
-          description:
-            'See who uploaded what and when, with a full edit history and easy rollback.',
-        },
-        {
-          title: 'Attach files anywhere',
-          description:
-            'Link documents to assets, jobs, locations, vendors or users to keep them in context.',
-        },
-        {
-          title: 'Tagging and categories',
-          description: 'Label files by type, site, department or asset class for fast retrieval.',
-        },
-        {
-          title: 'Role-based permissions',
-          description:
-            'Control who can view, upload or edit each document to keep sensitive files secure.',
-        },
-        {
-          title: 'Documents inside work orders',
-          description:
-            'Technicians open SOPs, installation guides and past reports from the job itself.',
-        },
-        {
-          title: 'Export and share',
-          description:
-            'Download document packages for audits, vendor handovers or internal reviews.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Built into Your Maintenance Ecosystem',
-        description:
-          'Every file is discoverable through global search and linked to your dashboards and reports.',
-        points: [
-          'Global search across every site',
-          'Documents linked to assets, jobs and vendors',
-          'All storage built into Fleet',
-        ],
-      },
-      {
-        title: 'Always Ready for Inspection',
-        description:
-          'Certificates, permits and reports stay current, with reminders before anything expires.',
-        points: [
-          'Expiry tracking for permits and contracts',
-          'Timestamped logs for compliance',
-          'Fast retrieval during emergencies or audits',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Document Management in Practice',
-      description: 'Built for busy teams managing multiple sites, asset types and contractors.',
-      items: [
-        'Upload lift maintenance SOPs for technicians to use on site',
-        'Link fire inspection certificates to compliance workflows',
-        'Store vendor contracts and track expiry dates',
-        'Attach budget approvals to work orders for full traceability',
-        'Maintain digital manuals for HVAC, plumbing and lighting systems',
-      ],
     },
   },
   auditTracking: {
@@ -2576,4 +2469,835 @@ export const analyticsPage: AnalyticsPageContent = {
       },
     },
   ],
+}
+
+export const assetPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Asset Management',
+    title: 'Total Visibility Over Every Asset You Manage',
+    description:
+      'From HVAC systems across dozens of buildings to pumps, lifts and lighting, Fleet gives you one live register of every asset you own, accessible from anywhere.',
+    primaryAction: {
+      label: 'Book a demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explore the platform',
+      href: '/platform',
+    },
+    highlights: ['Digital asset profiles', 'Full repair history', 'Warranty alerts'],
+    visual: {
+      kind: 'asset',
+      title: 'Asset profile',
+      name: 'Chiller CH-02',
+      location: 'Harbour Point · Plant room B2',
+      status: 'Operational',
+      facts: [
+        {
+          label: 'Last service',
+          value: '12 Sep',
+        },
+        {
+          label: 'Warranty',
+          value: 'Mar 2028',
+        },
+        {
+          label: 'Cost YTD',
+          value: '$4,210',
+        },
+        {
+          label: 'Open jobs',
+          value: '1',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Assets Spread Across Every Site',
+      description:
+        'HVAC units, lifts, pumps and lighting across dozens of buildings, each with its own manuals, warranties and service history.',
+      points: ['Many sites', 'Many asset types', 'Many records'],
+    },
+    answer: {
+      title: 'One Live Register for Everything',
+      description:
+        'Fleet creates a live digital register of your physical assets, accessible from anywhere, so every decision starts with complete context.',
+    },
+  },
+  capabilities: {
+    title: 'Scale Asset Management Across Your Portfolio',
+    description:
+      'From a single chiller to thousands of assets across every site, all in one connected register.',
+    tabs: [
+      {
+        icon: 'register',
+        label: 'Asset register',
+        title: 'Every Asset, Profiled',
+        description:
+          'Capture make, model, serial number, location, purchase date and warranty details for every asset.',
+        points: [
+          'Digital profiles for every asset',
+          'Organized by building, floor, room or zone',
+          'Search across your whole portfolio',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Asset register · Harbour Point',
+          items: [
+            {
+              title: 'Chiller CH-02',
+              location: 'Plant room B2 · HVAC',
+              status: 'Operational',
+              tone: 'done',
+            },
+            {
+              title: 'Lift L2',
+              location: 'Core lifts · Vertical transport',
+              status: 'Service due',
+              tone: 'due',
+            },
+            {
+              title: 'Booster pump P-03',
+              location: 'Basement · Plumbing',
+              status: 'Operational',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Work orders',
+        title: 'Connected to Work Orders and PPM',
+        description:
+          'Link each asset to its maintenance schedule and service history, and generate PPM jobs automatically.',
+        points: [
+          'Maintenance plans attached to each asset',
+          'PPM jobs created automatically',
+          'Every repair added to the asset history',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Asset automation',
+          steps: [
+            {
+              kind: 'Asset',
+              text: 'Chiller CH-02 · quarterly plan',
+            },
+            {
+              kind: 'Then',
+              text: 'Create PPM work order',
+            },
+            {
+              kind: 'Then',
+              text: 'Log service to asset history',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'lifecycle',
+        label: 'Lifecycle',
+        title: 'Lifecycle and Downtime Insight',
+        description:
+          'Spot underperforming equipment, forecast replacements and plan capital spend with live usage insights.',
+        points: [
+          'Downtime tracked per asset',
+          'Repair costs over the asset’s life',
+          'Replacement forecasts based on real usage',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Downtime hours by asset type · Q3',
+          stats: [
+            {
+              label: 'Total downtime',
+              value: '112h',
+            },
+            {
+              label: 'Assets at risk',
+              value: '6',
+            },
+          ],
+          bars: [
+            {
+              label: 'HVAC',
+              value: 46,
+            },
+            {
+              label: 'Lifts',
+              value: 28,
+            },
+            {
+              label: 'Pumps',
+              value: 19,
+            },
+            {
+              label: 'Lighting',
+              value: 12,
+            },
+            {
+              label: 'Doors',
+              value: 7,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'mobile',
+        label: 'On site',
+        title: 'Asset Details in the Field',
+        description:
+          'Technicians open asset details on site, log inspections in real time and attach photos and notes from their phones.',
+        points: [
+          'Search or scan to open any asset',
+          'Inspections recorded with photos and readings',
+          'History updated for the whole team instantly',
+        ],
+        visual: {
+          kind: 'asset',
+          title: 'Scanned asset',
+          name: 'Lift L2',
+          location: 'Northgate Mall · Core lifts',
+          status: 'Service due',
+          facts: [
+            {
+              label: 'Last inspection',
+              value: '02 Aug',
+            },
+            {
+              label: 'Certificate',
+              value: 'Valid to Jan 2027',
+            },
+            {
+              label: 'Manual',
+              value: 'Lift L2 manual.pdf',
+            },
+            {
+              label: 'Open jobs',
+              value: '2',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Documentation',
+      title: 'Every Manual Where You Need It',
+      description:
+        'Link manuals, photos, inspection reports and certificates to each asset for fast, on-site reference.',
+      points: [
+        'Files attached to every asset profile',
+        'Certificates and warranties stored together',
+        'Available on any phone or tablet',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'Chiller CH-02 · Documents',
+        items: [
+          {
+            title: 'CH-02 O&M manual.pdf',
+            location: 'Manual',
+            status: 'Linked',
+            tone: 'info',
+          },
+          {
+            title: 'Warranty certificate.pdf',
+            location: 'Valid to Mar 2028',
+            status: 'Active',
+            tone: 'done',
+          },
+          {
+            title: 'Q3 service report.pdf',
+            location: 'Uploaded 12 Sep',
+            status: 'Verified',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'RunnerAI',
+      title: 'Automate Asset Management with AI',
+      description:
+        'RunnerAI suggests maintenance plans for new equipment and builds asset dashboards from a plain-language request.',
+      points: [
+        'Suggested PPM plans for new assets',
+        'Dashboards of assets nearing end of life',
+        'Answers about any asset in seconds',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'RunnerAI activity',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'suggested a PPM plan for 6 new chillers',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'listed 4 assets nearing end of life',
+          },
+          {
+            when: '08:58',
+            who: 'Aisha K.',
+            what: 'approved the suggested chiller plan',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Warranties and contracts',
+      title: 'Warranties and Contracts Under Control',
+      description:
+        'Fleet tracks warranty and contract dates for every asset and alerts your team before anything expires.',
+      points: [
+        'Alerts before warranties and contracts expire',
+        'Warranty status visible on every job',
+        'Contract details linked to each vendor',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Upcoming expiries',
+        items: [
+          {
+            title: 'Lift L2 maintenance contract',
+            location: 'Northgate Mall',
+            status: 'In 30 days',
+            tone: 'due',
+          },
+          {
+            title: 'Chiller CH-04 warranty',
+            location: 'Tower B',
+            status: 'In 60 days',
+            tone: 'info',
+          },
+          {
+            title: 'Booster pump P-03 warranty',
+            location: 'Harbour Point',
+            status: 'Renewed',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'How it works',
+    title: 'From Register to Replacement',
+    items: [
+      {
+        title: 'Register',
+        description: 'Import your asset lists or create profiles with every detail you need.',
+      },
+      {
+        title: 'Maintain',
+        description: 'Link each asset to its plans and work orders, so service runs on schedule.',
+      },
+      {
+        title: 'Track',
+        description: 'Repairs, costs, documents and downtime build a full history automatically.',
+      },
+      {
+        title: 'Plan',
+        description: 'Lifecycle insights show when to repair, replace or invest.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Get started',
+    title: 'Bring Every Asset into One Place',
+    description:
+      'Our onboarding team helps you import asset lists and maintenance plans, so your register is ready in your first week.',
+    action: {
+      label: 'Book a demo',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Why Fleet for Asset Management',
+    description:
+      'Fleet is purpose-built for real estate and facility teams, whether you manage lifts, boilers, lighting or plumbing.',
+    items: [
+      {
+        title: 'Built for real estate',
+        description:
+          'Assets organized the way your portfolio works, by property, building and zone.',
+      },
+      {
+        title: 'Mobile for the field',
+        description:
+          'Asset details, history and documents on any phone or tablet, iOS and Android.',
+      },
+      {
+        title: 'Connected to every module',
+        description: 'Assets link to work orders, documents, workflows and reports.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet has cut our reactive maintenance load by nearly 40%. We’ve finally got our technicians, asset logs, and job records in one place.',
+    author: 'Property Ops Lead',
+    company: 'Mixed-Use Development',
+  },
+  industries: {
+    title: 'Every Industry Has Assets',
+    description:
+      'From shopping malls to logistics hubs, Fleet adapts to the assets in your portfolio.',
+  },
+  integrate: {
+    title: 'Built to Integrate',
+    description:
+      'Connect building management systems, ERPs and finance tools so asset data flows where you need it, through 20+ integrations.',
+    action: {
+      label: 'See all integrations',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Frequently Asked Questions',
+    items: [
+      {
+        question: 'What is asset management in Fleet?',
+        answer:
+          'A live digital register of every asset across your properties, with maintenance history, costs, warranties and documents in one place, connected to work orders and preventive plans.',
+      },
+      {
+        question: 'What information can I store for each asset?',
+        answer:
+          'Make, model, serial number, location, purchase date and warranty details, plus manuals, photos, inspection reports, certificates and the full repair history.',
+      },
+      {
+        question: 'Can technicians see asset details on site?',
+        answer:
+          'Yes. Technicians open any asset from their phone or tablet to see its manuals, history and open work orders, and record inspections with photos and readings.',
+      },
+      {
+        question: 'How does Fleet help plan replacements?',
+        answer:
+          'Fleet tracks repair costs, downtime and usage for every asset, so you can spot underperforming equipment, forecast replacements and plan capital spend.',
+      },
+      {
+        question: 'Can Fleet alert me before warranties expire?',
+        answer:
+          'Yes. Fleet tracks warranty and contract dates and alerts your team before they expire.',
+      },
+    ],
+  },
+}
+
+export const documentPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Document Management',
+    title: 'Centralize Your Maintenance Files in One Smart Hub',
+    description:
+      'Warranties, vendor agreements, compliance checklists and SOPs live in one place, linked to the work they support and ready the moment you need them.',
+    primaryAction: {
+      label: 'Book a demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explore the platform',
+      href: '/platform',
+    },
+    highlights: ['Version control', 'Linked to assets and jobs', 'Audit-ready exports'],
+    visual: {
+      kind: 'files',
+      title: 'Documents · Tower B',
+      items: [
+        {
+          title: 'Fire safety certificate.pdf',
+          location: 'Permit · Tower B',
+          status: 'Expires in 30d',
+          tone: 'due',
+        },
+        {
+          title: 'CH-02 O&M manual.pdf',
+          location: 'Manual · Chiller CH-02',
+          status: 'Linked',
+          tone: 'info',
+        },
+        {
+          title: 'Q3 lift inspection.pdf',
+          location: 'Report · Core lifts',
+          status: 'Verified',
+          tone: 'done',
+        },
+        {
+          title: 'HVAC service contract.pdf',
+          location: 'Contract · CoolAir vendor',
+          status: 'Active',
+          tone: 'done',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Every Job Depends on the Right File',
+      description:
+        'Safety certificates, inspection reports, manuals and invoices are proof of compliance and continuity, and teams need them at the point of use.',
+      points: ['Certificates', 'Manuals', 'Contracts'],
+    },
+    answer: {
+      title: 'Every File, One Click Away',
+      description:
+        'Fleet keeps documentation organized, linked to the work it supports and accessible from anywhere.',
+    },
+  },
+  capabilities: {
+    title: 'Manage Documents Across Your Portfolio',
+    description:
+      'Store, organize and retrieve every file in one place, built into the platform your team already uses.',
+    tabs: [
+      {
+        icon: 'storage',
+        label: 'Storage',
+        title: 'Attach Files Anywhere',
+        description:
+          'Upload documents directly to assets, jobs, locations, vendors or users, and keep everything in context.',
+        points: [
+          'Files linked to assets, jobs and locations',
+          'Tagged by type, site, department or asset class',
+          'Storage built into Fleet',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Chiller CH-02 · Files',
+          items: [
+            {
+              title: 'O&M manual.pdf',
+              location: 'Manual',
+              status: 'Linked',
+              tone: 'info',
+            },
+            {
+              title: 'Warranty certificate.pdf',
+              location: 'Warranty',
+              status: 'Active',
+              tone: 'done',
+            },
+            {
+              title: 'Service report Q3.pdf',
+              location: 'Report',
+              status: 'Verified',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'versions',
+        label: 'Versions',
+        title: 'Version Control and Audit Trail',
+        description:
+          'Track file changes over time with a full edit history. See who uploaded what and when, and roll back when needed.',
+        points: [
+          'Full edit history for every file',
+          'Previous versions restored in a click',
+          'Every upload time-stamped and attributed',
+        ],
+        visual: {
+          kind: 'log',
+          title: 'Version history · Fire safety plan',
+          entries: [
+            {
+              when: '09:42',
+              who: 'Marco L.',
+              what: 'uploaded version 4 with updated exits',
+            },
+            {
+              when: 'Mon',
+              who: 'Aisha K.',
+              what: 'approved version 3',
+            },
+            {
+              when: 'Sep 12',
+              who: 'Fleet',
+              what: 'archived version 2',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'permissions',
+        label: 'Access',
+        title: 'Role-Based Permissions',
+        description:
+          'Control who can view, upload or edit documentation, so sensitive information stays with authorized users.',
+        points: [
+          'View, upload and edit rights by role',
+          'Vendor access limited to their own jobs',
+          'Sensitive files kept secure',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Access · Vendor contracts',
+          items: [
+            {
+              title: 'Finance team',
+              location: 'Can view and edit',
+              status: 'Edit',
+              tone: 'info',
+            },
+            {
+              title: 'Site managers',
+              location: 'Can view',
+              status: 'View',
+              tone: 'done',
+            },
+            {
+              title: 'Vendors',
+              location: 'Their own contracts only',
+              status: 'Limited',
+              tone: 'due',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'search',
+        label: 'Search',
+        title: 'Find Any File in Seconds',
+        description:
+          'Every file is discoverable through global search and linked to your dashboards and reports.',
+        points: [
+          'Global search across every site',
+          'Filters by type, site and asset',
+          'Results linked to their jobs and assets',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Search: "lift certificate"',
+          items: [
+            {
+              title: 'Lift certificate 2026.pdf',
+              location: 'Northgate Mall · Core lifts',
+              status: 'Valid',
+              tone: 'done',
+            },
+            {
+              title: 'Lift certificate 2026.pdf',
+              location: 'Tower B · Lift L2',
+              status: 'Expires in 45d',
+              tone: 'due',
+            },
+            {
+              title: 'Lift inspection Q2.pdf',
+              location: 'Harbour Point',
+              status: 'Archived',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'In the field',
+      title: 'SOPs Inside Every Work Order',
+      description:
+        'Technicians open SOPs, installation guides and past reports directly from the job, right where the work happens.',
+      points: [
+        'Documents linked to every work order',
+        'Available on any phone or tablet',
+        'Budget approvals attached for full traceability',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'WO-2304 · Attached documents',
+        items: [
+          {
+            title: 'HVAC filter replacement SOP.pdf',
+            location: 'Procedure',
+            status: 'Required',
+            tone: 'info',
+          },
+          {
+            title: 'AHU-07 manual.pdf',
+            location: 'Manual',
+            status: 'Linked',
+            tone: 'info',
+          },
+          {
+            title: 'Budget approval.pdf',
+            location: 'Approved by finance',
+            status: 'Approved',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Compliance',
+      title: 'Always Ready for Inspection',
+      description:
+        'Certificates, permits and reports stay current, with reminders before anything expires.',
+      points: [
+        'Expiry tracking for permits and contracts',
+        'Timestamped logs for compliance',
+        'Fast retrieval during emergencies or audits',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Expiring soon',
+        items: [
+          {
+            title: 'Fire safety certificate',
+            location: 'Tower B',
+            status: 'In 30 days',
+            tone: 'due',
+          },
+          {
+            title: 'Elevator permit',
+            location: 'Northgate Mall',
+            status: 'In 45 days',
+            tone: 'due',
+          },
+          {
+            title: 'Vendor contract · CoolAir',
+            location: 'All sites',
+            status: 'Renewed',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Sharing',
+      title: 'Packages for Audits and Handovers',
+      description:
+        'Download document packages for audits, vendor handovers or internal reviews in a few clicks.',
+      points: [
+        'Packages built by site, asset or date range',
+        'Shared securely with auditors and vendors',
+        'A complete record for property handovers',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Audit package',
+        steps: [
+          {
+            kind: 'Select',
+            text: 'Tower B · fire safety · 2026',
+          },
+          {
+            kind: 'Package',
+            text: '14 certificates and reports',
+          },
+          {
+            kind: 'Share',
+            text: 'Secure link sent to auditor',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'How it works',
+    title: 'From Upload to Audit',
+    items: [
+      {
+        title: 'Upload',
+        description:
+          'Add files from desktop or phone, or move your existing archive with our team.',
+      },
+      {
+        title: 'Link',
+        description: 'Attach each file to its asset, job, location or vendor.',
+      },
+      {
+        title: 'Use',
+        description: 'Technicians and managers open the right document at the point of work.',
+      },
+      {
+        title: 'Share',
+        description: 'Export packages for audits, handovers and reviews.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Get started',
+    title: 'Bring Every File into One Place',
+    description:
+      'Our onboarding team helps you move manuals, certificates and contracts into Fleet and link them to your assets in your first week.',
+    action: {
+      label: 'Book a demo',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Why Fleet for Document Management',
+    description:
+      'Document management works across every Fleet module, built for busy teams managing multiple sites, asset types and contractors.',
+    items: [
+      {
+        title: 'Built into every module',
+        description: 'Files linked to assets, jobs, workflows and reports.',
+      },
+      {
+        title: 'Secure by design',
+        description: 'Role-based permissions, encrypted storage and full audit trails.',
+      },
+      {
+        title: 'Fast to find',
+        description: 'Global search and smart tags across every site.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Other platforms felt too complex or generic. Fleet gave us a purpose-built solution with faster support.',
+    author: 'Director of Maintenance',
+    company: 'Logistics Hub',
+  },
+  industries: {
+    title: 'Every Industry Runs on Documents',
+    description:
+      'From hotels to logistics hubs, Fleet keeps every property’s paperwork organized and audit-ready.',
+  },
+  integrate: {
+    title: 'Built to Integrate',
+    description:
+      'Connect finance tools, vendor portals and Fleet Mail so documents arrive where they belong, through 20+ integrations.',
+    action: {
+      label: 'See all integrations',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Frequently Asked Questions',
+    items: [
+      {
+        question: 'What kinds of documents can I store in Fleet?',
+        answer:
+          'Manuals, warranties, permits, inspection reports, certificates, vendor contracts, SOPs, invoices and photos, all linked to the assets, jobs and locations they belong to.',
+      },
+      {
+        question: 'Can technicians open documents on site?',
+        answer:
+          'Yes. Technicians open SOPs, manuals and past reports directly from the work order on any phone or tablet.',
+      },
+      {
+        question: 'How does version control work?',
+        answer:
+          'Fleet keeps a full edit history for every file, showing who uploaded what and when, and lets you restore earlier versions.',
+      },
+      {
+        question: 'Who can see sensitive documents?',
+        answer:
+          'You decide. Role-based permissions control who can view, upload or edit each document, and vendors see only their own files.',
+      },
+      {
+        question: 'Can Fleet remind me before certificates expire?',
+        answer:
+          'Yes. Fleet tracks expiry dates for permits, certificates and contracts and reminds your team in advance.',
+      },
+    ],
+  },
 }
