@@ -1,6 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type {
+  AnalyticsPageContent,
   IntegrationCategory,
   IntegrationIcon,
   IntegrationItem,
@@ -56,6 +57,7 @@ export const pages: {
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
+  analyticsReporting: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -136,81 +138,6 @@ export const pages: {
       title: 'Analysen und Berichte | Fleet',
       description:
         'Treffen Sie datenbasierte Entscheidungen mit Live-Dashboards, eigenen KPIs und exportierbaren Berichten zu Auftragsvolumen, Reaktionszeiten, Compliance und Kosten.',
-    },
-    eyebrow: 'Analysen und Berichte',
-    title: 'Fundierte Entscheidungen im Betrieb',
-    description:
-      'Fleet macht aus der täglichen Instandhaltung umsetzbare Erkenntnisse, mit Live-Dashboards und exportierbaren Berichten für jedes Team, jeden Standort und jede Anlage.',
-    highlights: ['Live-Dashboards', 'Eigene KPIs', 'Export mit einem Klick'],
-    features: {
-      title: 'Erkenntnisse auf jeder Ebene',
-      description:
-        'Von der einzelnen Anlage bis zum gesamten Portfolio sehen, was passiert und worauf es als Nächstes ankommt.',
-      items: [
-        {
-          title: 'Live-Kennzahlen',
-          description:
-            'Auftragsvolumen, Reaktionszeiten, Compliance und Kosten verfolgen, während sie sich ändern.',
-        },
-        {
-          title: 'Eigene Dashboards',
-          description:
-            'Ansichten für jede Abteilung und Rolle bauen, vom Techniker bis zur Geschäftsleitung.',
-        },
-        {
-          title: 'Drill-down-Analysen',
-          description:
-            'Leistung nach Gebäude, Anlage, Dienstleister oder Team mit wenigen Klicks untersuchen.',
-        },
-        {
-          title: 'Budgetverfolgung',
-          description:
-            'Ausgaben nach Kostenstelle sehen und mit dem Budget aller Standorte vergleichen.',
-        },
-        {
-          title: 'Exportierbare Berichte',
-          description:
-            'Berichte für Audits, Gremien oder Team-Besprechungen jederzeit exportieren.',
-        },
-        {
-          title: 'KI-generierte Dashboards',
-          description:
-            'RunnerAI eine Frage stellen und ein fertiges Dashboard aus Ihren Live-Daten erhalten.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Sehen, was die Leistung bestimmt',
-        description:
-          'Erkennen Sie, welche Gebäude wiederkehrende Störungen haben, welche Anlagen das meiste Budget binden und welche Teams ihre SLAs erfüllen.',
-        points: [
-          'Analyse wiederkehrender Störungen nach Standort und Anlage',
-          'SLA-Leistung nach Team und Dienstleister',
-          'Erkenntnisse zu Ausfällen und Lebenszyklus von Anlagen',
-        ],
-      },
-      {
-        title: 'Berichte, wann Sie sie brauchen',
-        description:
-          'Die richtigen Zahlen pünktlich und im passenden Format mit den richtigen Personen teilen.',
-        points: [
-          'Geplante Berichte per E-Mail',
-          'Exporte für Audits und Gremienunterlagen',
-          'Portfolioweite Zusammenfassungen für die Geschäftsleitung',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Berichte in der Praxis',
-      description: 'Fragen, die Immobilienteams jede Woche mit Fleet beantworten.',
-      items: [
-        'Welche Standorte im letzten Quartal die meisten Klimaausfälle hatten',
-        'Wie sich die Reaktionszeiten der Dienstleister zwischen Regionen unterscheiden',
-        'Wo die Instandhaltungskosten in diesem Jahr über dem Budget liegen',
-        'Welche Anlagen für die Ersatzplanung anstehen',
-        'Wie sich die SLA-Erfüllung seit der Einführung verbessert hat',
-      ],
     },
   },
   assetManagement: {
@@ -2384,4 +2311,246 @@ export const reactivePage = {
       ],
     } satisfies OverviewVisual,
   },
+}
+
+export const analyticsPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Analysen und Berichte',
+    title: 'Fundierte Entscheidungen im Betrieb',
+    description:
+      'Fleet macht aus der täglichen Instandhaltung umsetzbare Erkenntnisse, mit Live-Dashboards und exportierbaren Berichten für jedes Team, jeden Standort und jede Anlage.',
+    primaryAction: {
+      label: 'Demo buchen',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Plattform entdecken',
+      href: '/platform',
+    },
+    highlights: ['Live-Dashboards', 'Eigene KPIs', 'Export mit einem Klick'],
+    visual: {
+      kind: 'chart',
+      title: 'Instandhaltungskosten vs. Budget · lfd. Jahr',
+      stats: [
+        {
+          label: 'Kosten lfd. Jahr',
+          value: '184k $',
+        },
+        {
+          label: 'Budget genutzt',
+          value: '71 %',
+        },
+      ],
+      bars: [
+        {
+          label: 'Harbour Point',
+          value: 82,
+        },
+        {
+          label: 'Tower B',
+          value: 64,
+        },
+        {
+          label: 'Northgate',
+          value: 48,
+        },
+        {
+          label: 'Bayview',
+          value: 36,
+        },
+        {
+          label: 'Westport',
+          value: 22,
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'KPIs in Echtzeit',
+      description:
+        'Auftragsvolumen, Reaktionszeiten, Compliance und Kosten an jedem Standort verfolgen, während sie sich ändern.',
+    },
+    {
+      title: 'Eigene Dashboards',
+      description:
+        'Ansichten für jede Abteilung und Rolle bauen, vom Techniker bis zur Geschäftsleitung.',
+    },
+    {
+      title: 'Detaillierte Berichte',
+      description:
+        'Leistung nach Gebäude, Anlage, Dienstleister oder Team untersuchen und Berichte mit wenigen Klicks exportieren.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Ausgaben',
+      title: 'Instandhaltungskosten im Budget halten',
+      description:
+        'Sehen Sie Ausgaben je Kostenstelle in Echtzeit und vergleichen Sie sie mit dem Budget jedes Standorts, damit Sie handeln, bevor Kosten abweichen.',
+      points: [
+        'Kosten nach Gebäude, Anlage und Dienstleister',
+        'Budgetvergleiche für jeden Standort',
+        'Kosten über Grenzwerten zur Freigabe',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Budget je Kostenstelle',
+        items: [
+          {
+            title: 'Klimawartung',
+            location: '62k $ von 80k $',
+            status: '78 % genutzt',
+            tone: 'info',
+          },
+          {
+            title: 'Aufzüge und Fahrtreppen',
+            location: '31k $ von 35k $',
+            status: '89 % genutzt',
+            tone: 'due',
+          },
+          {
+            title: 'Brandschutz',
+            location: '18k $ von 30k $',
+            status: '60 % genutzt',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Kostenanalyse',
+      title: 'Umfassende Kostenanalyse',
+      description:
+        'Verstehen Sie, wohin jeder Euro fließt, von der einzelnen Anlage bis zum ganzen Portfolio.',
+      points: [
+        'Reparaturhistorie und Kosten jeder Anlage',
+        'Dienstleisterkosten im Regionenvergleich',
+        'Anlagen mit dem höchsten Budgetbedarf hervorgehoben',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Größte Kostentreiber · Q3',
+        items: [
+          {
+            title: 'Kältemaschine CH-02',
+            location: 'Harbour Point · 9 Aufträge',
+            status: '12.400 $',
+            tone: 'neutral',
+          },
+          {
+            title: 'Aufzugsgruppe L1–L3',
+            location: 'Northgate Mall · 6 Aufträge',
+            status: '8.900 $',
+            tone: 'neutral',
+          },
+          {
+            title: 'Ladetore',
+            location: 'Westport DC · 4 Aufträge',
+            status: '5.200 $',
+            tone: 'neutral',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Prognosen',
+      title: 'Mit Daten vorausplanen',
+      description:
+        'Erkenntnisse zu Lebenszyklus und Ausfällen helfen, Ersatz zu prognostizieren und Investitionen sicher zu planen.',
+      points: [
+        'Ersatzprognosen auf Basis realer Nutzung',
+        'Erkenntnisse zu Ausfällen und Lebenszyklus',
+        'Vorbeugende und reaktive Trends im Zeitverlauf',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Prognose Ersatzinvestitionen',
+        stats: [
+          {
+            label: 'Nächste 12 Monate',
+            value: '96k $',
+          },
+          {
+            label: 'Fällige Anlagen',
+            value: '14',
+          },
+        ],
+        bars: [
+          {
+            label: '2027',
+            value: 40,
+          },
+          {
+            label: '2028',
+            value: 64,
+          },
+          {
+            label: '2029',
+            value: 52,
+          },
+          {
+            label: '2030',
+            value: 78,
+          },
+          {
+            label: '2031',
+            value: 58,
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Berichte',
+    title: 'Ihr Betrieb. Ihre Berichte.',
+    description:
+      'Die richtigen Zahlen pünktlich und im passenden Format mit den richtigen Personen teilen.',
+    points: [
+      'Geplante Berichte per E-Mail',
+      'Exporte für Audits und Gremienunterlagen',
+      'Portfolioweite Zusammenfassungen',
+      'Berichte für jede Abteilung und Rolle',
+    ],
+    visual: {
+      kind: 'steps',
+      title: 'Geplanter Bericht',
+      steps: [
+        {
+          kind: 'Daten',
+          text: 'Aufträge, SLAs und Kosten',
+        },
+        {
+          kind: 'Filter',
+          text: 'Region VAE · letzte 30 Tage',
+        },
+        {
+          kind: 'Senden',
+          text: 'Jeden Montag an Regionalleitungen',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Dashboards auf Anfrage mit RunnerAI',
+      description:
+        'Stellen Sie eine Frage in einfacher Sprache, und RunnerAI baut das Dashboard in Sekunden aus Ihren Live-Daten.',
+      action: {
+        label: 'RunnerAI kennenlernen',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'plug',
+      title: 'Ihre Daten mit Ihren Tools verbinden',
+      description:
+        'Teilen Sie Fleet-Daten über mehr als 20 Integrationen und eine offene REST-API mit Finanz- und Business-Tools.',
+      action: {
+        label: 'Alle Integrationen ansehen',
+        href: '/platform/integrations',
+      },
+    },
+  ],
 }

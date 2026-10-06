@@ -1,6 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type {
+  AnalyticsPageContent,
   IntegrationCategory,
   IntegrationIcon,
   IntegrationItem,
@@ -56,6 +57,7 @@ export const pages: {
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
+  analyticsReporting: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
@@ -138,82 +140,6 @@ export const pages: {
       title: 'Analyses et reporting | Fleet',
       description:
         'Décidez sur la base des données avec des tableaux de bord en direct, des KPI sur mesure et des rapports exportables sur interventions, délais, conformité et coûts.',
-    },
-    eyebrow: 'Analyses et reporting',
-    title: 'Des décisions opérationnelles plus éclairées',
-    description:
-      'Fleet transforme la maintenance quotidienne en informations exploitables, avec des tableaux de bord en direct et des rapports exportables pour chaque équipe, site et équipement.',
-    highlights: ['Tableaux de bord en direct', 'KPI sur mesure', 'Export en un clic'],
-    features: {
-      title: 'Des analyses à chaque niveau',
-      description:
-        'D’un équipement au portefeuille entier, voyez ce qui se passe et où concentrer vos efforts.',
-      items: [
-        {
-          title: 'Indicateurs en direct',
-          description:
-            'Suivez volume d’interventions, délais de réponse, conformité et coûts au fil de l’eau.',
-        },
-        {
-          title: 'Tableaux de bord sur mesure',
-          description:
-            'Créez des vues pour chaque service et chaque rôle, du technicien à la direction.',
-        },
-        {
-          title: 'Analyse détaillée',
-          description:
-            'Explorez la performance par bâtiment, équipement, prestataire ou équipe en quelques clics.',
-        },
-        {
-          title: 'Suivi budgétaire',
-          description:
-            'Visualisez les dépenses par centre de coûts et comparez-les au budget de chaque site.',
-        },
-        {
-          title: 'Rapports exportables',
-          description:
-            'Exportez des rapports pour les audits, les comités ou les points d’équipe à tout moment.',
-        },
-        {
-          title: 'Tableaux de bord générés par IA',
-          description:
-            'Posez une question à RunnerAI et obtenez un tableau de bord prêt à l’emploi à partir de vos données.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Comprenez ce qui fait la performance',
-        description:
-          'Identifiez les bâtiments aux incidents récurrents, les équipements les plus coûteux et les équipes qui tiennent leurs SLA.',
-        points: [
-          'Analyse des incidents récurrents par site et équipement',
-          'Performance SLA par équipe et prestataire',
-          'Analyse des arrêts et du cycle de vie des équipements',
-        ],
-      },
-      {
-        title: 'Des rapports prêts quand vous l’êtes',
-        description:
-          'Partagez les bons chiffres avec les bonnes personnes, à temps et au format adapté.',
-        points: [
-          'Rapports programmés envoyés par e-mail',
-          'Exports pour les audits et les dossiers de comité',
-          'Synthèses du portefeuille pour la direction',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Le reporting en pratique',
-      description:
-        'Les questions auxquelles les équipes immobilières répondent chaque semaine avec Fleet.',
-      items: [
-        'Quels sites ont connu le plus d’arrêts CVC au dernier trimestre',
-        'Comment les délais des prestataires se comparent d’une région à l’autre',
-        'Où les dépenses de maintenance dépassent le budget cette année',
-        'Quels équipements entrent dans le plan de renouvellement',
-        'Comment le respect des SLA a progressé depuis le déploiement',
-      ],
     },
   },
   assetManagement: {
@@ -2392,4 +2318,244 @@ export const reactivePage = {
       ],
     } satisfies OverviewVisual,
   },
+}
+
+export const analyticsPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Analyses et reporting',
+    title: 'Des décisions opérationnelles plus éclairées',
+    description:
+      'Fleet transforme la maintenance quotidienne en informations exploitables, avec des tableaux de bord en direct et des rapports exportables pour chaque équipe, site et équipement.',
+    primaryAction: {
+      label: 'Réserver une démo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorer la plateforme',
+      href: '/platform',
+    },
+    highlights: ['Tableaux de bord en direct', 'KPI sur mesure', 'Export en un clic'],
+    visual: {
+      kind: 'chart',
+      title: 'Dépenses de maintenance vs budget · année',
+      stats: [
+        {
+          label: 'Dépenses année',
+          value: '184 k$',
+        },
+        {
+          label: 'Budget utilisé',
+          value: '71 %',
+        },
+      ],
+      bars: [
+        {
+          label: 'Harbour Point',
+          value: 82,
+        },
+        {
+          label: 'Tower B',
+          value: 64,
+        },
+        {
+          label: 'Northgate',
+          value: 48,
+        },
+        {
+          label: 'Bayview',
+          value: 36,
+        },
+        {
+          label: 'Westport',
+          value: 22,
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'KPI en temps réel',
+      description:
+        'Suivez volume d’interventions, délais, conformité et coûts au fil de l’eau, sur chaque site.',
+    },
+    {
+      title: 'Tableaux de bord sur mesure',
+      description:
+        'Créez des vues pour chaque service et chaque rôle, du technicien à la direction.',
+    },
+    {
+      title: 'Rapports détaillés',
+      description:
+        'Analysez la performance par bâtiment, équipement, prestataire ou équipe et exportez vos rapports en quelques clics.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Dépenses',
+      title: 'Tenez votre budget de maintenance',
+      description:
+        'Suivez les dépenses par centre de coûts en temps réel et comparez-les au budget de chaque site, pour agir avant tout dérapage.',
+      points: [
+        'Dépenses suivies par bâtiment, équipement et prestataire',
+        'Comparaisons budgétaires pour chaque site',
+        'Coûts au-delà des seuils envoyés pour validation',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Budget par centre de coûts',
+        items: [
+          {
+            title: 'Maintenance CVC',
+            location: '62 k$ sur 80 k$',
+            status: '78 % utilisé',
+            tone: 'info',
+          },
+          {
+            title: 'Ascenseurs et escaliers mécaniques',
+            location: '31 k$ sur 35 k$',
+            status: '89 % utilisé',
+            tone: 'due',
+          },
+          {
+            title: 'Sécurité incendie',
+            location: '18 k$ sur 30 k$',
+            status: '60 % utilisé',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Analyse des coûts',
+      title: 'Une analyse des coûts complète',
+      description: 'Comprenez où va chaque euro, d’un équipement au portefeuille entier.',
+      points: [
+        'Historique et coûts des réparations par équipement',
+        'Coûts prestataires comparés entre régions',
+        'Équipements les plus coûteux mis en évidence',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Principaux postes de coût · T3',
+        items: [
+          {
+            title: 'Groupe froid CH-02',
+            location: 'Harbour Point · 9 interventions',
+            status: '12 400 $',
+            tone: 'neutral',
+          },
+          {
+            title: 'Batterie d’ascenseurs L1–L3',
+            location: 'Northgate Mall · 6 interventions',
+            status: '8 900 $',
+            tone: 'neutral',
+          },
+          {
+            title: 'Portes de quai',
+            location: 'Westport DC · 4 interventions',
+            status: '5 200 $',
+            tone: 'neutral',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Prévisions',
+      title: 'Anticipez grâce aux données',
+      description:
+        'Les analyses de cycle de vie et d’arrêts aident à prévoir les remplacements et à planifier les investissements en confiance.',
+      points: [
+        'Prévisions de remplacement fondées sur l’usage réel',
+        'Analyses des arrêts et du cycle de vie',
+        'Tendances préventif et correctif dans le temps',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Prévision des remplacements',
+        stats: [
+          {
+            label: '12 prochains mois',
+            value: '96 k$',
+          },
+          {
+            label: 'Équipements concernés',
+            value: '14',
+          },
+        ],
+        bars: [
+          {
+            label: '2027',
+            value: 40,
+          },
+          {
+            label: '2028',
+            value: 64,
+          },
+          {
+            label: '2029',
+            value: 52,
+          },
+          {
+            label: '2030',
+            value: 78,
+          },
+          {
+            label: '2031',
+            value: 58,
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Reporting',
+    title: 'Votre exploitation. Vos rapports.',
+    description: 'Partagez les bons chiffres avec les bonnes personnes, à temps et au bon format.',
+    points: [
+      'Rapports programmés envoyés par e-mail',
+      'Exports pour les audits et les comités',
+      'Synthèses à l’échelle du portefeuille',
+      'Rapports pour chaque service et chaque rôle',
+    ],
+    visual: {
+      kind: 'steps',
+      title: 'Rapport programmé',
+      steps: [
+        {
+          kind: 'Données',
+          text: 'Interventions, SLA et coûts',
+        },
+        {
+          kind: 'Filtre',
+          text: 'Région EAU · 30 derniers jours',
+        },
+        {
+          kind: 'Envoi',
+          text: 'Chaque lundi aux responsables régionaux',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Des tableaux de bord à la demande avec RunnerAI',
+      description:
+        'Posez une question en langage naturel et RunnerAI construit le tableau de bord en quelques secondes à partir de vos données.',
+      action: {
+        label: 'Découvrir RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'plug',
+      title: 'Connectez vos données à vos outils',
+      description:
+        'Partagez les données Fleet avec vos outils financiers et métiers grâce à plus de 20 intégrations et une API REST ouverte.',
+      action: {
+        label: 'Voir toutes les intégrations',
+        href: '/platform/integrations',
+      },
+    },
+  ],
 }
