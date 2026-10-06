@@ -203,8 +203,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'teamPresentation',
-      alt: 'Betriebsteam bespricht Pläne im Besprechungsraum',
+      id: 'techniciansPanel',
+      alt: 'Zwei Techniker prüfen eine Anlagensteuerung',
     },
   },
 }
@@ -822,8 +822,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Managerin telefoniert und prüft Unterlagen',
+          id: 'engineersRooftop',
+          alt: 'Zwei Ingenieure prüfen ein Tablet auf dem Dach',
         },
       },
       {
@@ -853,8 +853,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'operationsDesk',
-          alt: 'Mitarbeiterin im Betrieb an ihrem Schreibtisch',
+          id: 'warehouseAnalytics',
+          alt: 'Teamleiter prüft Kennzahlen am Bildschirm',
         },
       },
     ],
@@ -903,8 +903,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Erstellen, zuweisen, verfolgen und schließen Sie jeden Arbeitsauftrag an allen Standorten, mit Live-Updates aus dem Einsatz und voller Transparenz für Verantwortliche.',
       highlights: ['Mobile Updates', 'SLA-Tracking', 'Fotonachweis'],
       photo: {
-        id: 'operationsDesk',
-        alt: 'Disponentin verwaltet Arbeitsaufträge am Schreibtisch',
+        id: 'plumberRepair',
+        alt: 'Installateur repariert eine Küchenspüle',
       },
       visual: {
         kind: 'jobs',
@@ -1157,8 +1157,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Managerin telefoniert und prüft Unterlagen',
+          id: 'acFilterService',
+          alt: 'Techniker wechselt einen Klimafilter',
         },
       },
       {
@@ -1900,8 +1900,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       author: 'Leitung Objektbetrieb',
       company: 'Gemischt genutztes Quartier',
       photo: {
-        id: 'managerOnCall',
-        alt: 'Managerin telefoniert und prüft Unterlagen',
+        id: 'technicianDrill',
+        alt: 'Techniker montiert eine Halterung mit dem Akkuschrauber',
       },
     },
     faq: [

@@ -202,8 +202,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'teamPresentation',
-      alt: 'Equipo de operaciones revisando planes en una sala de reuniones',
+      id: 'techniciansPanel',
+      alt: 'Dos técnicos revisando un panel de equipos',
     },
   },
 }
@@ -825,8 +825,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Responsable hablando por teléfono mientras revisa documentos',
+          id: 'engineersRooftop',
+          alt: 'Dos ingenieros revisando una tableta en la cubierta',
         },
       },
       {
@@ -856,8 +856,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'operationsDesk',
-          alt: 'Analista de operaciones trabajando en su escritorio',
+          id: 'warehouseAnalytics',
+          alt: 'Supervisor revisando gráficos de rendimiento en pantalla',
         },
       },
     ],
@@ -906,8 +906,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Cree, asigne, siga y cierre cada orden de trabajo en todas sus sedes, con actualizaciones en vivo desde el terreno y total visibilidad para los responsables.',
       highlights: ['Actualizaciones móviles', 'Seguimiento de SLA', 'Fotos de evidencia'],
       photo: {
-        id: 'operationsDesk',
-        alt: 'Coordinadora gestionando órdenes de trabajo en su escritorio',
+        id: 'plumberRepair',
+        alt: 'Fontanero reparando el fregadero de una cocina',
       },
       visual: {
         kind: 'jobs',
@@ -1159,8 +1159,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Responsable hablando por teléfono mientras revisa documentos',
+          id: 'acFilterService',
+          alt: 'Técnico cambiando un filtro de aire acondicionado',
         },
       },
       {
@@ -1901,8 +1901,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       author: 'Responsable de operaciones',
       company: 'Desarrollo de uso mixto',
       photo: {
-        id: 'managerOnCall',
-        alt: 'Responsable hablando por teléfono mientras revisa documentos',
+        id: 'technicianDrill',
+        alt: 'Técnico instalando un soporte con un taladro',
       },
     },
     faq: [

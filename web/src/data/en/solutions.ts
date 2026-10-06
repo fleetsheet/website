@@ -266,8 +266,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'teamPresentation',
-      alt: 'Operations team reviewing plans in a meeting room',
+      id: 'techniciansPanel',
+      alt: 'Two technicians checking an equipment panel',
     },
   },
 }
@@ -885,8 +885,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Manager taking a call while reviewing documents',
+          id: 'engineersRooftop',
+          alt: 'Two engineers reviewing a tablet on a rooftop',
         },
       },
       {
@@ -916,8 +916,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'operationsDesk',
-          alt: 'Operations analyst working at her desk',
+          id: 'warehouseAnalytics',
+          alt: 'Supervisor reviewing performance charts on a monitor',
         },
       },
     ],
@@ -966,8 +966,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Create, assign, track and close every work order across your sites, with live updates from the field and full visibility for managers.',
       highlights: ['Mobile updates', 'SLA tracking', 'Photo proof'],
       photo: {
-        id: 'operationsDesk',
-        alt: 'Operations coordinator managing work orders at her desk',
+        id: 'plumberRepair',
+        alt: 'Plumber repairing a kitchen sink',
       },
       visual: {
         kind: 'jobs',
@@ -1218,8 +1218,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Manager taking a call while reviewing documents',
+          id: 'acFilterService',
+          alt: 'Technician replacing an air conditioning filter',
         },
       },
       {
@@ -1955,8 +1955,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       author: 'Property Ops Lead',
       company: 'Mixed-Use Development',
       photo: {
-        id: 'managerOnCall',
-        alt: 'Manager taking a call while reviewing documents',
+        id: 'technicianDrill',
+        alt: 'Technician installing a fixture with a drill',
       },
     },
     faq: [

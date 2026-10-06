@@ -204,8 +204,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'teamPresentation',
-      alt: 'Équipe d’exploitation en réunion de planification',
+      id: 'techniciansPanel',
+      alt: 'Deux techniciens contrôlant un tableau d’équipement',
     },
   },
 }
@@ -826,8 +826,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Responsable au téléphone en consultant des documents',
+          id: 'engineersRooftop',
+          alt: 'Deux ingénieurs consultent une tablette en toiture',
         },
       },
       {
@@ -857,8 +857,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'operationsDesk',
-          alt: 'Collaboratrice des opérations à son bureau',
+          id: 'warehouseAnalytics',
+          alt: 'Superviseur analysant des indicateurs à l’écran',
         },
       },
     ],
@@ -907,8 +907,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Créez, assignez, suivez et clôturez chaque intervention sur tous vos sites, avec des mises à jour en direct du terrain et une visibilité complète pour les responsables.',
       highlights: ['Mises à jour mobiles', 'Suivi des SLA', 'Preuves photo'],
       photo: {
-        id: 'operationsDesk',
-        alt: 'Coordinatrice gérant les interventions à son bureau',
+        id: 'plumberRepair',
+        alt: 'Plombier réparant un évier de cuisine',
       },
       visual: {
         kind: 'jobs',
@@ -1161,8 +1161,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'Responsable au téléphone en consultant des documents',
+          id: 'acFilterService',
+          alt: 'Technicien remplaçant un filtre de climatisation',
         },
       },
       {
@@ -1904,8 +1904,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       author: 'Responsable exploitation',
       company: 'Projet à usage mixte',
       photo: {
-        id: 'managerOnCall',
-        alt: 'Responsable au téléphone en consultant des documents',
+        id: 'technicianDrill',
+        alt: 'Technicien fixant un équipement à la perceuse',
       },
     },
     faq: [

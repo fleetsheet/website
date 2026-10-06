@@ -14,14 +14,20 @@ type Props = {
 const { photo, visual, cardSide = 'end', loading = 'lazy' } = Astro.props
 ---
 
-<div class="relative sm:pb-12">
-  <div class="bg-columbia-blue aspect-[4/3] overflow-hidden rounded-2xl">
-    <Photo photo={photo} loading={loading} sizes="(min-width: 1024px) 560px, 100vw" />
+<!-- The product card leads; the photo sits behind it as context. -->
+<div class="relative sm:py-6">
+  <div
+    class:list={[
+      'bg-columbia-blue relative aspect-[4/3] w-[80%] overflow-hidden rounded-2xl sm:aspect-[4/5] sm:w-[50%]',
+      cardSide === 'start' && 'ms-auto',
+    ]}
+  >
+    <Photo photo={photo} loading={loading} sizes="(min-width: 1024px) 340px, 80vw" />
   </div>
   <div
     class:list={[
-      'relative -mt-16 w-[min(90%,360px)] sm:absolute sm:bottom-0 sm:mt-0',
-      cardSide === 'end' ? 'ms-auto me-3 sm:-end-4 sm:me-0' : 'ms-3 sm:-start-4 sm:ms-0',
+      'relative z-10 -mt-24 w-[92%] sm:absolute sm:top-1/2 sm:mt-0 sm:w-[62%] sm:-translate-y-1/2',
+      cardSide === 'end' ? 'ms-auto sm:end-0' : 'sm:start-0',
     ]}
   >
     <OverviewVisual visual={visual} />

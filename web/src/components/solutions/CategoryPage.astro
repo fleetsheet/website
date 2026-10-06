@@ -172,7 +172,7 @@ const whyIcons = [SlidersHorizontal, Sparkles, Users]
           <span class="text-columbia-blue">{quote.company}</span>
         </figcaption>
       </div>
-      <div class="min-h-64">
+      <div class="relative min-h-64">
         <Photo photo={quote.photo} sizes="(min-width: 1024px) 40vw, 100vw" />
       </div>
     </figure>
@@ -184,7 +184,7 @@ const whyIcons = [SlidersHorizontal, Sparkles, Users]
   <ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
     {industries.items.map((item) => (
       <li class="bg-surface border-border flex flex-col overflow-hidden rounded-xl border shadow-xs">
-        <div class="bg-columbia-blue aspect-[4/3]">
+        <div class="bg-columbia-blue relative aspect-[4/3] overflow-hidden">
           <Photo photo={item.photo} sizes="(min-width: 1024px) 200px, 50vw" />
         </div>
         <span class="font-display hyphenate p-4 text-[15px] leading-snug font-semibold">
@@ -211,7 +211,7 @@ const whyIcons = [SlidersHorizontal, Sparkles, Users]
 <section>
   <Container width="wide" class="py-24">
     <div class="bg-rich-blue grid grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-2">
-      <div class="min-h-72">
+      <div class="relative min-h-72">
         <Photo photo={cta.photo} sizes="(min-width: 1024px) 50vw, 100vw" />
       </div>
       <div class="flex flex-col items-start justify-center gap-5 p-[clamp(32px,5vw,64px)]">

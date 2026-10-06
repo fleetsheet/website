@@ -194,8 +194,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'teamPresentation',
-      alt: '运营团队在会议室讨论计划',
+      id: 'techniciansPanel',
+      alt: '两位技术人员检查设备面板',
     },
   },
 }
@@ -749,8 +749,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: '经理一边通话一边查看文件',
+          id: 'engineersRooftop',
+          alt: '两位工程师在屋顶查看平板',
         },
       },
       {
@@ -776,8 +776,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'operationsDesk',
-          alt: '运营专员在办公桌前工作',
+          id: 'warehouseAnalytics',
+          alt: '主管在屏幕上查看绩效图表',
         },
       },
     ],
@@ -822,8 +822,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description: '在所有项目中创建、分派、跟踪并关闭每张工单，现场实时更新，管理者全程可见。',
       highlights: ['移动端更新', 'SLA 跟踪', '照片凭证'],
       photo: {
-        id: 'operationsDesk',
-        alt: '调度员在办公桌前管理工单',
+        id: 'plumberRepair',
+        alt: '水管工在维修厨房水槽',
       },
       visual: {
         kind: 'jobs',
@@ -1047,8 +1047,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: '经理一边通话一边查看文件',
+          id: 'acFilterService',
+          alt: '技术人员更换空调滤网',
         },
       },
       {
@@ -1706,8 +1706,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       author: '物业运营负责人',
       company: '综合体项目',
       photo: {
-        id: 'managerOnCall',
-        alt: '经理一边通话一边查看文件',
+        id: 'technicianDrill',
+        alt: '技术人员用电钻安装部件',
       },
     },
     faq: [

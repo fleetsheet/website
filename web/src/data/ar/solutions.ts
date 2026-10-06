@@ -200,8 +200,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'teamPresentation',
-      alt: 'فريق العمليات يراجع الخطط في قاعة اجتماعات',
+      id: 'techniciansPanel',
+      alt: 'فنيان يفحصان لوحة معدات',
     },
   },
 }
@@ -800,8 +800,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'مديرة تجري مكالمة وتراجع مستندات',
+          id: 'engineersRooftop',
+          alt: 'مهندسان يراجعان جهازًا لوحيًا على السطح',
         },
       },
       {
@@ -827,8 +827,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'operationsDesk',
-          alt: 'موظفة عمليات على مكتبها',
+          id: 'warehouseAnalytics',
+          alt: 'مشرف يراجع مخططات الأداء على الشاشة',
         },
       },
     ],
@@ -877,8 +877,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'أنشئ كل أمر عمل وأسنده وتابعه وأغلقه في كل مواقعك، مع تحديثات مباشرة من الميدان ورؤية كاملة للمديرين.',
       highlights: ['تحديثات من الهاتف', 'تتبع اتفاقيات الخدمة', 'إثبات بالصور'],
       photo: {
-        id: 'operationsDesk',
-        alt: 'منسقة تدير أوامر العمل على مكتبها',
+        id: 'plumberRepair',
+        alt: 'سبّاك يصلح حوض مطبخ',
       },
       visual: {
         kind: 'jobs',
@@ -1123,8 +1123,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
           ],
         },
         photo: {
-          id: 'managerOnCall',
-          alt: 'مديرة تجري مكالمة وتراجع مستندات',
+          id: 'acFilterService',
+          alt: 'فني يستبدل مرشح مكيف الهواء',
         },
       },
       {
@@ -1839,8 +1839,8 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       author: 'مسؤول عمليات العقارات',
       company: 'مشروع متعدد الاستخدامات',
       photo: {
-        id: 'managerOnCall',
-        alt: 'مديرة تجري مكالمة وتراجع مستندات',
+        id: 'technicianDrill',
+        alt: 'فني يركّب قطعة باستخدام مثقاب',
       },
     },
     faq: [
