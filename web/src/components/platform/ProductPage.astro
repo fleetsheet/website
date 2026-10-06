@@ -1,0 +1,190 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import type { ProductIcon } from '@/data/en/platform'
+import { getLocale } from '@/i18n'
+import Activity from '@lucide/astro/icons/activity'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Boxes from '@lucide/astro/icons/boxes'
+import Building from '@lucide/astro/icons/building'
+import Check from '@lucide/astro/icons/check'
+import ChevronDown from '@lucide/astro/icons/chevron-down'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import FileClock from '@lucide/astro/icons/file-clock'
+import FolderOpen from '@lucide/astro/icons/folder-open'
+import LockKeyhole from '@lucide/astro/icons/lock-keyhole'
+import Quote from '@lucide/astro/icons/quote'
+import Search from '@lucide/astro/icons/search'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
+import Smartphone from '@lucide/astro/icons/smartphone'
+import CapabilityTabs from './CapabilityTabs.astro'
+import ChallengeCards from './ChallengeCards.astro'
+import FeatureBanner from './FeatureBanner.astro'
+import FeatureRows from './FeatureRows.astro'
+import IndustriesIntegrate from './IndustriesIntegrate.astro'
+import OverviewVisual from './OverviewVisual.astro'
+import StepsBand from './StepsBand.astro'
+
+type Props = {
+  page: 'asset' | 'document'
+}
+
+const { page } = Astro.props
+const { assetPage, documentPage, cta } = getContent(getLocale(Astro.url)).platform
+const content = page === 'asset' ? assetPage : documentPage
+const {
+  hero,
+  challenge,
+  capabilities,
+  rows,
+  steps,
+  banner,
+  trust,
+  quote,
+  industries,
+  integrate,
+  faq,
+} = content
+const tabIcons = {
+  register: Boxes,
+  workOrders: ClipboardList,
+  lifecycle: Activity,
+  mobile: Smartphone,
+  storage: FolderOpen,
+  versions: FileClock,
+  permissions: LockKeyhole,
+  search: Search,
+} satisfies Record<ProductIcon, unknown>
+const HeroIcon = page === 'asset' ? Boxes : FolderOpen
+const trustIcons =
+  page === 'asset' ? [Building, Smartphone, ClipboardList] : [FolderOpen, ShieldCheck, Search]
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-azul-blue flex items-center gap-2.5">
+        <IconChip size="sm">
+          <HeroIcon />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate">{hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={hero.primaryAction.href}>
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="secondary">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+      <ul class="text-azul-blue flex flex-wrap gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div aria-hidden="true">
+      <OverviewVisual visual={hero.visual} />
+    </div>
+  </Container>
+</section>
+
+<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
+
+<CapabilityTabs
+  idPrefix={page}
+  title={capabilities.title}
+  description={capabilities.description}
+  tabs={capabilities.tabs}
+  icons={capabilities.tabs.map((tab) => tabIcons[tab.icon])}
+/>
+
+<FeatureRows rows={rows} />
+
+<StepsBand eyebrow={steps.eyebrow} title={steps.title} items={steps.items} />
+
+<div class="pt-24">
+  <FeatureBanner
+    eyebrow={banner.eyebrow}
+    title={banner.title}
+    description={banner.description}
+    action={banner.action}
+  >
+    <HeroIcon class="text-sky-blue size-16" />
+  </FeatureBanner>
+</div>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-12">
+  <SectionHeader title={trust.title} description={trust.description} />
+  <ul class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    {trust.items.map((item, index) => {
+      const Icon = trustIcons[index % trustIcons.length]
+      return (
+        <li class="flex flex-col gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h3 class="text-lg font-semibold">{item.title}</h3>
+          <p class="text-azul-blue text-[15px] leading-[1.55]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<section>
+  <Container width="wide" class="pt-24">
+    <figure class="bg-azul-blue text-alice-blue flex flex-col gap-6 rounded-2xl p-[clamp(32px,5vw,64px)]">
+      <Quote class="text-sky-blue size-10 rtl:-scale-x-100" aria-hidden="true" />
+      <blockquote class="font-display text-display-md max-w-[900px] text-white">
+        {quote.text}
+      </blockquote>
+      <figcaption class="text-sm">
+        <span class="block font-semibold text-white">{quote.author}</span>
+        <span class="text-columbia-blue">{quote.company}</span>
+      </figcaption>
+    </figure>
+  </Container>
+</section>
+
+<IndustriesIntegrate industries={industries} integrate={integrate} />
+
+<section>
+  <Container class="grid grid-cols-1 gap-10 pt-24 lg:grid-cols-[1fr_2fr]">
+    <h2 class="text-display-md">{faq.title}</h2>
+    <ul class="flex flex-col gap-3">
+      {faq.items.map((item) => (
+        <li>
+          <details class="group border-border bg-surface rounded-xl border shadow-xs">
+            <summary class="text-rich-blue flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+              <span>{item.question}</span>
+              <ChevronDown
+                aria-hidden="true"
+                class="text-azul-blue size-5 shrink-0 transition-transform group-open:rotate-180"
+              />
+            </summary>
+            <p class="text-azul-blue px-6 pb-6 leading-relaxed">{item.answer}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>

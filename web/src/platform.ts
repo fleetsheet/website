@@ -36,6 +36,8 @@ export type TemplatePageId = Exclude<
   | 'preventiveMaintenance'
   | 'reactiveMaintenance'
   | 'analyticsReporting'
+  | 'assetManagement'
+  | 'documentManagement'
 >
 
 export const templatePages = detailPages.filter(
@@ -47,5 +49,7 @@ export const templatePages = detailPages.filter(
     entry.id !== 'workflowBuilder' &&
     entry.id !== 'preventiveMaintenance' &&
     entry.id !== 'reactiveMaintenance' &&
-    entry.id !== 'analyticsReporting',
+    entry.id !== 'analyticsReporting' &&
+    entry.id !== 'assetManagement' &&
+    entry.id !== 'documentManagement',
 )

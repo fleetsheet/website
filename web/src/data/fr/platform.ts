@@ -10,6 +10,7 @@ import type {
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
+  ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -58,6 +59,8 @@ export const pages: {
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
   analyticsReporting: PlatformEntry
+  assetManagement: PlatformEntry
+  documentManagement: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
@@ -150,82 +153,6 @@ export const pages: {
       description:
         'Créez un registre numérique en direct de tous les équipements de vos sites, avec historique de maintenance, coûts, garanties et documents au même endroit.',
     },
-    eyebrow: 'Gestion des équipements',
-    title: 'Une visibilité totale sur chaque équipement',
-    description:
-      'Des installations CVC de dizaines de bâtiments aux pompes, ascenseurs et éclairages, Fleet vous offre un registre en direct de chaque équipement, accessible partout.',
-    highlights: ['Fiches équipement numériques', 'Historique complet', 'Alertes de garantie'],
-    features: {
-      title: 'Les fonctionnalités clés de la gestion des équipements',
-      description:
-        'Vos données d’équipements deviennent un moteur d’efficacité, de budgétisation et de planification.',
-      items: [
-        {
-          title: 'Fiches équipement numériques',
-          description:
-            'Enregistrez marque, modèle, numéro de série, emplacement, date d’achat et garantie.',
-        },
-        {
-          title: 'Fichiers et documentation',
-          description:
-            'Associez notices, photos, rapports d’inspection et certificats à chaque équipement.',
-        },
-        {
-          title: 'Historique et coûts des réparations',
-          description:
-            'Voyez ce qui a été fait, à quelle fréquence et à quel coût, pour chaque équipement du portefeuille.',
-        },
-        {
-          title: 'Sites et zones',
-          description:
-            'Organisez les équipements par bâtiment, étage, pièce ou zone, idéal en multisite.',
-        },
-        {
-          title: 'Interventions et plans préventifs liés',
-          description:
-            'Reliez chaque équipement à son plan de maintenance et générez automatiquement les interventions préventives.',
-        },
-        {
-          title: 'Cycle de vie et arrêts',
-          description:
-            'Repérez les équipements peu performants, anticipez les remplacements et planifiez les investissements.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Vos équipements accessibles partout',
-        description:
-          'Les techniciens consultent les fiches sur site, saisissent les inspections en temps réel et ajoutent photos et notes depuis leur téléphone.',
-        points: [
-          'Recherche ou scan pour ouvrir n’importe quel équipement',
-          'Résultats d’inspection saisis sur place',
-          'Historique mis à jour instantanément pour toute l’équipe',
-        ],
-      },
-      {
-        title: 'De meilleures données pour une meilleure maintenance',
-        description:
-          'Des informations précises et bien organisées prolongent la durée de vie des équipements et sécurisent vos budgets.',
-        points: [
-          'Alertes avant l’expiration des garanties et contrats',
-          'Rapports de performance pour le budget annuel',
-          'Prévisions de remplacement fondées sur l’usage réel',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'La gestion des équipements en pratique',
-      description:
-        'Des portefeuilles immobiliers aux chaînes hôtelières, les équipes s’appuient sur Fleet pour maîtriser leurs infrastructures critiques.',
-      items: [
-        'Centraliser les données CVC de plusieurs immeubles de bureaux',
-        'Confier des équipements précis aux techniciens du site pour des contrôles réguliers',
-        'Suivre l’historique de maintenance des ascenseurs avec photos et certificats',
-        'Exporter des rapports de performance pour le budget annuel',
-        'Être alerté à l’approche des échéances de garantie ou de contrat',
-      ],
-    },
   },
   documentManagement: {
     label: 'Gestion documentaire',
@@ -234,85 +161,6 @@ export const pages: {
       title: 'Gestion documentaire | Fleet',
       description:
         'Stockez, organisez et retrouvez notices, garanties, permis et rapports d’inspection au même endroit, liés aux équipements, interventions et sites concernés.',
-    },
-    eyebrow: 'Gestion documentaire',
-    title: 'Tous vos documents de maintenance dans un espace central',
-    description:
-      'Garanties, contrats prestataires, check-lists de conformité et modes opératoires réunis au même endroit, liés au travail qu’ils accompagnent et disponibles à tout moment.',
-    highlights: [
-      'Gestion des versions',
-      'Liés aux équipements et interventions',
-      'Exports prêts pour l’audit',
-    ],
-    features: {
-      title: 'Les fonctionnalités clés de la gestion documentaire',
-      description: 'Toute la documentation utile, disponible là où elle sert.',
-      items: [
-        {
-          title: 'Versions et piste d’audit',
-          description:
-            'Voyez qui a déposé quoi et quand, avec un historique complet et une restauration simple.',
-        },
-        {
-          title: 'Fichiers joints partout',
-          description:
-            'Associez des documents aux équipements, interventions, sites, prestataires ou utilisateurs.',
-        },
-        {
-          title: 'Étiquettes et catégories',
-          description:
-            'Classez les fichiers par type, site, service ou famille d’équipement pour les retrouver vite.',
-        },
-        {
-          title: 'Droits par rôle',
-          description:
-            'Définissez qui peut consulter, déposer ou modifier chaque document et protégez les fichiers sensibles.',
-        },
-        {
-          title: 'Documents dans les interventions',
-          description:
-            'Les techniciens ouvrent modes opératoires, guides d’installation et rapports précédents depuis l’intervention.',
-        },
-        {
-          title: 'Export et partage',
-          description:
-            'Téléchargez des dossiers documentaires pour les audits, les passations ou les revues internes.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Intégré à votre écosystème de maintenance',
-        description:
-          'Chaque fichier se retrouve via la recherche globale et reste lié à vos tableaux de bord et rapports.',
-        points: [
-          'Recherche globale sur tous les sites',
-          'Documents liés aux équipements, interventions et prestataires',
-          'Stockage intégré à Fleet',
-        ],
-      },
-      {
-        title: 'Toujours prêt pour l’inspection',
-        description:
-          'Certificats, permis et rapports restent à jour, avec des rappels avant chaque expiration.',
-        points: [
-          'Suivi des échéances des permis et contrats',
-          'Journaux horodatés pour la conformité',
-          'Accès rapide en cas d’urgence ou d’audit',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'La gestion documentaire en pratique',
-      description:
-        'Pensée pour les équipes qui gèrent plusieurs sites, types d’équipements et prestataires.',
-      items: [
-        'Déposer les modes opératoires ascenseurs pour les techniciens sur site',
-        'Relier les certificats incendie aux workflows de conformité',
-        'Stocker les contrats prestataires et suivre leurs échéances',
-        'Joindre les validations budgétaires aux interventions pour une traçabilité complète',
-        'Tenir à jour les notices numériques CVC, plomberie et éclairage',
-      ],
     },
   },
   auditTracking: {
@@ -2558,4 +2406,844 @@ export const analyticsPage: AnalyticsPageContent = {
       },
     },
   ],
+}
+
+export const assetPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Gestion des équipements',
+    title: 'Une visibilité totale sur chaque équipement',
+    description:
+      'Des installations CVC de dizaines de bâtiments aux pompes, ascenseurs et éclairages, Fleet vous offre un registre en direct de chaque équipement, accessible partout.',
+    primaryAction: {
+      label: 'Réserver une démo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorer la plateforme',
+      href: '/platform',
+    },
+    highlights: ['Fiches équipement numériques', 'Historique complet', 'Alertes de garantie'],
+    visual: {
+      kind: 'asset',
+      title: 'Fiche équipement',
+      name: 'Groupe froid CH-02',
+      location: 'Harbour Point · Local technique B2',
+      status: 'En service',
+      facts: [
+        {
+          label: 'Dernier entretien',
+          value: '12 sept.',
+        },
+        {
+          label: 'Garantie',
+          value: 'Mars 2028',
+        },
+        {
+          label: 'Coût depuis janv.',
+          value: '4 210 $',
+        },
+        {
+          label: 'Interventions ouvertes',
+          value: '1',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Des équipements sur chaque site',
+      description:
+        'CVC, ascenseurs, pompes et éclairage répartis sur des dizaines de bâtiments, chacun avec ses manuels, ses garanties et son historique.',
+      points: ['Nombreux sites', 'Nombreux types d’équipements', 'Nombreux documents'],
+    },
+    answer: {
+      title: 'Un registre en direct pour tout',
+      description:
+        'Fleet crée un registre numérique en direct de vos équipements, accessible partout, pour que chaque décision s’appuie sur un contexte complet.',
+    },
+  },
+  capabilities: {
+    title: 'Gérez les équipements de tout votre patrimoine',
+    description:
+      'D’un seul groupe froid à des milliers d’équipements sur tous vos sites, réunis dans un registre connecté.',
+    tabs: [
+      {
+        icon: 'register',
+        label: 'Registre',
+        title: 'Une fiche pour chaque équipement',
+        description:
+          'Renseignez marque, modèle, numéro de série, emplacement, date d’achat et garantie pour chaque équipement.',
+        points: [
+          'Fiches numériques pour chaque équipement',
+          'Classées par bâtiment, étage, local ou zone',
+          'Recherche sur tout votre patrimoine',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Registre · Harbour Point',
+          items: [
+            {
+              title: 'Groupe froid CH-02',
+              location: 'Local B2 · CVC',
+              status: 'En service',
+              tone: 'done',
+            },
+            {
+              title: 'Ascenseur L2',
+              location: 'Ascenseurs centraux',
+              status: 'Entretien à prévoir',
+              tone: 'due',
+            },
+            {
+              title: 'Surpresseur P-03',
+              location: 'Sous-sol · Plomberie',
+              status: 'En service',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Interventions',
+        title: 'Relié aux interventions et à la maintenance préventive',
+        description:
+          'Associez chaque équipement à son plan de maintenance et à son historique, et générez les interventions préventives automatiquement.',
+        points: [
+          'Plans de maintenance rattachés à chaque équipement',
+          'Interventions préventives créées automatiquement',
+          'Chaque réparation ajoutée à l’historique',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Automatisation équipement',
+          steps: [
+            {
+              kind: 'Équipement',
+              text: 'Groupe froid CH-02 · plan trimestriel',
+            },
+            {
+              kind: 'Puis',
+              text: 'Créer l’intervention préventive',
+            },
+            {
+              kind: 'Puis',
+              text: 'Consigner l’entretien dans l’historique',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'lifecycle',
+        label: 'Cycle de vie',
+        title: 'Cycle de vie et temps d’arrêt',
+        description:
+          'Repérez les équipements peu performants, anticipez les remplacements et planifiez vos investissements grâce aux données d’usage en direct.',
+        points: [
+          'Temps d’arrêt suivis par équipement',
+          'Coûts de réparation sur toute la durée de vie',
+          'Prévisions de remplacement fondées sur l’usage réel',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Heures d’arrêt par type · T3',
+          stats: [
+            {
+              label: 'Arrêt total',
+              value: '112 h',
+            },
+            {
+              label: 'Équipements à risque',
+              value: '6',
+            },
+          ],
+          bars: [
+            {
+              label: 'CVC',
+              value: 46,
+            },
+            {
+              label: 'Ascenseurs',
+              value: 28,
+            },
+            {
+              label: 'Pompes',
+              value: 19,
+            },
+            {
+              label: 'Éclairage',
+              value: 12,
+            },
+            {
+              label: 'Portes',
+              value: 7,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'mobile',
+        label: 'Sur site',
+        title: 'Les données équipement sur le terrain',
+        description:
+          'Les techniciens ouvrent la fiche sur site, consignent les inspections en temps réel et ajoutent photos et notes depuis leur téléphone.',
+        points: [
+          'Recherche ou scan pour ouvrir un équipement',
+          'Inspections avec photos et relevés',
+          'Historique mis à jour pour toute l’équipe',
+        ],
+        visual: {
+          kind: 'asset',
+          title: 'Équipement scanné',
+          name: 'Ascenseur L2',
+          location: 'Northgate Mall · Ascenseurs centraux',
+          status: 'Entretien à prévoir',
+          facts: [
+            {
+              label: 'Dernière inspection',
+              value: '2 août',
+            },
+            {
+              label: 'Certificat',
+              value: 'Valide jusqu’en janv. 2027',
+            },
+            {
+              label: 'Manuel',
+              value: 'Manuel ascenseur L2.pdf',
+            },
+            {
+              label: 'Interventions ouvertes',
+              value: '2',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Documentation',
+      title: 'Chaque manuel là où vous en avez besoin',
+      description:
+        'Associez manuels, photos, rapports d’inspection et certificats à chaque équipement pour une consultation rapide sur site.',
+      points: [
+        'Fichiers rattachés à chaque fiche',
+        'Certificats et garanties réunis',
+        'Disponibles sur téléphone ou tablette',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'Groupe froid CH-02 · Documents',
+        items: [
+          {
+            title: 'Manuel d’exploitation CH-02.pdf',
+            location: 'Manuel',
+            status: 'Lié',
+            tone: 'info',
+          },
+          {
+            title: 'Certificat de garantie.pdf',
+            location: 'Valide jusqu’en mars 2028',
+            status: 'Actif',
+            tone: 'done',
+          },
+          {
+            title: 'Rapport d’entretien T3.pdf',
+            location: 'Ajouté le 12 sept.',
+            status: 'Vérifié',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'RunnerAI',
+      title: 'Automatisez la gestion des équipements avec l’IA',
+      description:
+        'RunnerAI propose des plans de maintenance pour les nouveaux équipements et crée des tableaux de bord à partir d’une simple demande.',
+      points: [
+        'Plans préventifs suggérés pour les nouveaux équipements',
+        'Tableaux de bord des équipements en fin de vie',
+        'Réponses sur tout équipement en quelques secondes',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Activité RunnerAI',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'a proposé un plan préventif pour 6 nouveaux groupes froids',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'a listé 4 équipements en fin de vie',
+          },
+          {
+            when: '08:58',
+            who: 'Aisha K.',
+            what: 'a validé le plan proposé',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Garanties et contrats',
+      title: 'Garanties et contrats maîtrisés',
+      description:
+        'Fleet suit les dates de garantie et de contrat de chaque équipement et prévient votre équipe avant chaque échéance.',
+      points: [
+        'Alertes avant l’échéance des garanties et contrats',
+        'Statut de garantie visible sur chaque intervention',
+        'Détails des contrats liés à chaque prestataire',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Échéances à venir',
+        items: [
+          {
+            title: 'Contrat de maintenance ascenseur L2',
+            location: 'Northgate Mall',
+            status: 'Dans 30 jours',
+            tone: 'due',
+          },
+          {
+            title: 'Garantie groupe froid CH-04',
+            location: 'Tower B',
+            status: 'Dans 60 jours',
+            tone: 'info',
+          },
+          {
+            title: 'Garantie surpresseur P-03',
+            location: 'Harbour Point',
+            status: 'Renouvelée',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'Fonctionnement',
+    title: 'Du registre au remplacement',
+    items: [
+      {
+        title: 'Recenser',
+        description:
+          'Importez vos listes d’équipements ou créez des fiches avec tous les détails utiles.',
+      },
+      {
+        title: 'Entretenir',
+        description:
+          'Reliez chaque équipement à ses plans et interventions pour un entretien dans les temps.',
+      },
+      {
+        title: 'Suivre',
+        description:
+          'Réparations, coûts, documents et arrêts forment automatiquement un historique complet.',
+      },
+      {
+        title: 'Planifier',
+        description: 'Les données de cycle de vie indiquent quand réparer, remplacer ou investir.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Commencer',
+    title: 'Réunissez tous vos équipements',
+    description:
+      'Notre équipe d’intégration importe avec vous listes d’équipements et plans de maintenance, pour un registre prêt dès la première semaine.',
+    action: {
+      label: 'Réserver une démo',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Pourquoi Fleet pour la gestion des équipements',
+    description:
+      'Fleet est conçu pour les équipes immobilières et de facility management, qu’il s’agisse d’ascenseurs, de chaudières, d’éclairage ou de plomberie.',
+    items: [
+      {
+        title: 'Conçu pour l’immobilier',
+        description:
+          'Des équipements organisés comme votre patrimoine : par actif, bâtiment et zone.',
+      },
+      {
+        title: 'Mobile sur le terrain',
+        description: 'Fiches, historique et documents sur téléphone ou tablette, iOS et Android.',
+      },
+      {
+        title: 'Relié à chaque module',
+        description:
+          'Les équipements sont liés aux interventions, documents, workflows et rapports.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet a réduit notre maintenance corrective de près de 40 %. Nos techniciens, nos registres d’équipements et nos interventions sont enfin réunis au même endroit.',
+    author: 'Responsable exploitation',
+    company: 'Projet à usage mixte',
+  },
+  industries: {
+    title: 'Chaque secteur a ses équipements',
+    description:
+      'Des centres commerciaux aux plateformes logistiques, Fleet s’adapte aux équipements de votre patrimoine.',
+  },
+  integrate: {
+    title: 'Conçu pour s’intégrer',
+    description:
+      'Connectez GTB, ERP et outils financiers pour que les données équipement circulent là où vous en avez besoin, grâce à plus de 20 intégrations.',
+    action: {
+      label: 'Voir toutes les intégrations',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Questions fréquentes',
+    items: [
+      {
+        question: 'Qu’est-ce que la gestion des équipements dans Fleet ?',
+        answer:
+          'Un registre numérique en direct de tous les équipements de vos sites, avec historique, coûts, garanties et documents au même endroit, relié aux interventions et aux plans préventifs.',
+      },
+      {
+        question: 'Quelles informations puis-je enregistrer pour chaque équipement ?',
+        answer:
+          'Marque, modèle, numéro de série, emplacement, date d’achat et garantie, ainsi que manuels, photos, rapports d’inspection, certificats et l’historique complet des réparations.',
+      },
+      {
+        question: 'Les techniciens voient-ils les fiches sur site ?',
+        answer:
+          'Oui. Les techniciens ouvrent n’importe quel équipement sur téléphone ou tablette pour consulter manuels, historique et interventions ouvertes, et consignent leurs inspections avec photos et relevés.',
+      },
+      {
+        question: 'Comment Fleet aide-t-il à planifier les remplacements ?',
+        answer:
+          'Fleet suit coûts de réparation, temps d’arrêt et usage de chaque équipement pour repérer les appareils peu performants, anticiper les remplacements et planifier les investissements.',
+      },
+      {
+        question: 'Fleet me prévient-il avant l’expiration des garanties ?',
+        answer:
+          'Oui. Fleet suit les dates de garantie et de contrat et prévient votre équipe avant chaque échéance.',
+      },
+    ],
+  },
+}
+
+export const documentPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Gestion documentaire',
+    title: 'Tous vos documents de maintenance dans un espace central',
+    description:
+      'Garanties, contrats prestataires, check-lists de conformité et modes opératoires réunis au même endroit, liés au travail qu’ils accompagnent et disponibles à tout moment.',
+    primaryAction: {
+      label: 'Réserver une démo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorer la plateforme',
+      href: '/platform',
+    },
+    highlights: [
+      'Gestion des versions',
+      'Liés aux équipements et interventions',
+      'Exports prêts pour l’audit',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'Documents · Tower B',
+      items: [
+        {
+          title: 'Certificat sécurité incendie.pdf',
+          location: 'Autorisation · Tower B',
+          status: 'Expire dans 30 j',
+          tone: 'due',
+        },
+        {
+          title: 'Manuel d’exploitation CH-02.pdf',
+          location: 'Manuel · Groupe froid CH-02',
+          status: 'Lié',
+          tone: 'info',
+        },
+        {
+          title: 'Inspection ascenseurs T3.pdf',
+          location: 'Rapport · Ascenseurs',
+          status: 'Vérifié',
+          tone: 'done',
+        },
+        {
+          title: 'Contrat entretien CVC.pdf',
+          location: 'Contrat · CoolAir',
+          status: 'Actif',
+          tone: 'done',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Chaque intervention dépend du bon document',
+      description:
+        'Certificats de sécurité, rapports d’inspection, manuels et factures prouvent la conformité et assurent la continuité, et les équipes en ont besoin sur le lieu d’intervention.',
+      points: ['Certificats', 'Manuels', 'Contrats'],
+    },
+    answer: {
+      title: 'Chaque fichier à portée de clic',
+      description:
+        'Fleet garde votre documentation organisée, liée au travail qu’elle accompagne et accessible partout.',
+    },
+  },
+  capabilities: {
+    title: 'Gérez les documents de tout votre patrimoine',
+    description:
+      'Stockez, organisez et retrouvez chaque fichier au même endroit, au cœur de la plateforme que votre équipe utilise déjà.',
+    tabs: [
+      {
+        icon: 'storage',
+        label: 'Stockage',
+        title: 'Des fichiers rattachés partout',
+        description:
+          'Ajoutez des documents directement aux équipements, interventions, sites, prestataires ou utilisateurs, et gardez tout dans son contexte.',
+        points: [
+          'Fichiers liés aux équipements, interventions et sites',
+          'Classés par type, site, service ou famille d’équipement',
+          'Stockage intégré à Fleet',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Groupe froid CH-02 · Fichiers',
+          items: [
+            {
+              title: 'Manuel d’exploitation.pdf',
+              location: 'Manuel',
+              status: 'Lié',
+              tone: 'info',
+            },
+            {
+              title: 'Certificat de garantie.pdf',
+              location: 'Garantie',
+              status: 'Actif',
+              tone: 'done',
+            },
+            {
+              title: 'Rapport d’entretien T3.pdf',
+              location: 'Rapport',
+              status: 'Vérifié',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'versions',
+        label: 'Versions',
+        title: 'Gestion des versions et traçabilité',
+        description:
+          'Suivez l’évolution des fichiers avec un historique complet. Voyez qui a ajouté quoi et quand, et revenez à une version antérieure si besoin.',
+        points: [
+          'Historique complet pour chaque fichier',
+          'Versions antérieures restaurées en un clic',
+          'Chaque ajout horodaté et attribué',
+        ],
+        visual: {
+          kind: 'log',
+          title: 'Versions · Plan de sécurité incendie',
+          entries: [
+            {
+              when: '09:42',
+              who: 'Marco L.',
+              what: 'a ajouté la version 4 avec les issues mises à jour',
+            },
+            {
+              when: 'Lun.',
+              who: 'Aisha K.',
+              what: 'a validé la version 3',
+            },
+            {
+              when: '12 sept.',
+              who: 'Fleet',
+              what: 'a archivé la version 2',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'permissions',
+        label: 'Accès',
+        title: 'Droits d’accès par rôle',
+        description:
+          'Définissez qui peut consulter, ajouter ou modifier les documents, afin que les informations sensibles restent réservées aux personnes autorisées.',
+        points: [
+          'Droits de lecture, d’ajout et de modification par rôle',
+          'Accès des prestataires limité à leurs interventions',
+          'Fichiers sensibles protégés',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Accès · Contrats prestataires',
+          items: [
+            {
+              title: 'Équipe finance',
+              location: 'Lecture et modification',
+              status: 'Modifier',
+              tone: 'info',
+            },
+            {
+              title: 'Responsables de site',
+              location: 'Lecture',
+              status: 'Lecture',
+              tone: 'done',
+            },
+            {
+              title: 'Prestataires',
+              location: 'Leurs contrats uniquement',
+              status: 'Limité',
+              tone: 'due',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'search',
+        label: 'Recherche',
+        title: 'Retrouvez un fichier en quelques secondes',
+        description:
+          'Chaque fichier est accessible par la recherche globale et relié à vos tableaux de bord et rapports.',
+        points: [
+          'Recherche globale sur tous les sites',
+          'Filtres par type, site et équipement',
+          'Résultats liés aux interventions et équipements',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Recherche : « certificat ascenseur »',
+          items: [
+            {
+              title: 'Certificat ascenseur 2026.pdf',
+              location: 'Northgate Mall · Ascenseurs',
+              status: 'Valide',
+              tone: 'done',
+            },
+            {
+              title: 'Certificat ascenseur 2026.pdf',
+              location: 'Tower B · Ascenseur L2',
+              status: 'Expire dans 45 j',
+              tone: 'due',
+            },
+            {
+              title: 'Inspection ascenseur T2.pdf',
+              location: 'Harbour Point',
+              status: 'Archivé',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Sur le terrain',
+      title: 'Les modes opératoires dans chaque intervention',
+      description:
+        'Les techniciens ouvrent modes opératoires, guides d’installation et rapports précédents directement depuis l’intervention, là où le travail se fait.',
+      points: [
+        'Documents liés à chaque intervention',
+        'Disponibles sur téléphone ou tablette',
+        'Validations budgétaires jointes pour une traçabilité complète',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'WO-2304 · Documents joints',
+        items: [
+          {
+            title: 'Mode opératoire filtres CVC.pdf',
+            location: 'Procédure',
+            status: 'Obligatoire',
+            tone: 'info',
+          },
+          {
+            title: 'Manuel AHU-07.pdf',
+            location: 'Manuel',
+            status: 'Lié',
+            tone: 'info',
+          },
+          {
+            title: 'Validation budgétaire.pdf',
+            location: 'Validé par la finance',
+            status: 'Validé',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Conformité',
+      title: 'Toujours prêt pour l’inspection',
+      description:
+        'Certificats, autorisations et rapports restent à jour, avec des rappels avant chaque échéance.',
+      points: [
+        'Suivi des échéances d’autorisations et de contrats',
+        'Journaux horodatés pour la conformité',
+        'Accès rapide en cas d’urgence ou d’audit',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Échéances proches',
+        items: [
+          {
+            title: 'Certificat sécurité incendie',
+            location: 'Tower B',
+            status: 'Dans 30 jours',
+            tone: 'due',
+          },
+          {
+            title: 'Autorisation ascenseur',
+            location: 'Northgate Mall',
+            status: 'Dans 45 jours',
+            tone: 'due',
+          },
+          {
+            title: 'Contrat prestataire · CoolAir',
+            location: 'Tous les sites',
+            status: 'Renouvelé',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Partage',
+      title: 'Des dossiers pour les audits et les transferts',
+      description:
+        'Téléchargez des dossiers documentaires pour les audits, les passations avec les prestataires ou les revues internes en quelques clics.',
+      points: [
+        'Dossiers par site, équipement ou période',
+        'Partage sécurisé avec auditeurs et prestataires',
+        'Un dossier complet pour les transferts d’actifs',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Dossier d’audit',
+        steps: [
+          {
+            kind: 'Choisir',
+            text: 'Tower B · sécurité incendie · 2026',
+          },
+          {
+            kind: 'Assembler',
+            text: '14 certificats et rapports',
+          },
+          {
+            kind: 'Partager',
+            text: 'Lien sécurisé envoyé à l’auditeur',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'Fonctionnement',
+    title: 'De l’ajout à l’audit',
+    items: [
+      {
+        title: 'Ajouter',
+        description:
+          'Importez des fichiers depuis un ordinateur ou un téléphone, ou transférez vos archives avec notre équipe.',
+      },
+      {
+        title: 'Relier',
+        description:
+          'Rattachez chaque fichier à son équipement, intervention, site ou prestataire.',
+      },
+      {
+        title: 'Utiliser',
+        description:
+          'Techniciens et responsables ouvrent le bon document au moment de l’intervention.',
+      },
+      {
+        title: 'Partager',
+        description: 'Exportez des dossiers pour les audits, les transferts et les revues.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Commencer',
+    title: 'Réunissez tous vos fichiers',
+    description:
+      'Notre équipe d’intégration transfère avec vous manuels, certificats et contrats dans Fleet et les relie à vos équipements dès la première semaine.',
+    action: {
+      label: 'Réserver une démo',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Pourquoi Fleet pour la gestion documentaire',
+    description:
+      'La gestion documentaire fonctionne dans chaque module de Fleet, conçue pour les équipes qui gèrent de nombreux sites, équipements et prestataires.',
+    items: [
+      {
+        title: 'Intégrée à chaque module',
+        description: 'Fichiers liés aux équipements, interventions, workflows et rapports.',
+      },
+      {
+        title: 'Sécurisée par conception',
+        description: 'Droits par rôle, stockage chiffré et traçabilité complète.',
+      },
+      {
+        title: 'Rapide à retrouver',
+        description: 'Recherche globale et étiquettes intelligentes sur tous les sites.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Les autres plateformes étaient trop complexes ou trop génériques. Fleet nous a apporté une solution sur mesure avec un support plus réactif.',
+    author: 'Directeur de la maintenance',
+    company: 'Plateforme logistique',
+  },
+  industries: {
+    title: 'Chaque secteur s’appuie sur ses documents',
+    description:
+      'Des hôtels aux plateformes logistiques, Fleet garde les documents de chaque site organisés et prêts pour l’audit.',
+  },
+  integrate: {
+    title: 'Conçu pour s’intégrer',
+    description:
+      'Connectez outils financiers, portails prestataires et Fleet Mail pour que les documents arrivent au bon endroit, grâce à plus de 20 intégrations.',
+    action: {
+      label: 'Voir toutes les intégrations',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Questions fréquentes',
+    items: [
+      {
+        question: 'Quels documents puis-je stocker dans Fleet ?',
+        answer:
+          'Manuels, garanties, autorisations, rapports d’inspection, certificats, contrats prestataires, modes opératoires, factures et photos, chacun lié aux équipements, interventions et sites concernés.',
+      },
+      {
+        question: 'Les techniciens peuvent-ils ouvrir les documents sur site ?',
+        answer:
+          'Oui. Les techniciens ouvrent modes opératoires, manuels et rapports précédents directement depuis l’intervention, sur téléphone ou tablette.',
+      },
+      {
+        question: 'Comment fonctionne la gestion des versions ?',
+        answer:
+          'Fleet conserve un historique complet de chaque fichier, indique qui a ajouté quoi et quand, et permet de restaurer les versions antérieures.',
+      },
+      {
+        question: 'Qui peut voir les documents sensibles ?',
+        answer:
+          'C’est vous qui décidez. Les droits par rôle définissent qui peut consulter, ajouter ou modifier chaque document, et les prestataires voient uniquement leurs propres fichiers.',
+      },
+      {
+        question: 'Fleet me rappelle-t-il l’expiration des certificats ?',
+        answer:
+          'Oui. Fleet suit les dates d’expiration des autorisations, certificats et contrats et prévient votre équipe à l’avance.',
+      },
+    ],
+  },
 }

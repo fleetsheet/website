@@ -10,6 +10,7 @@ import type {
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
+  ProductPageContent,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -58,6 +59,8 @@ export const pages: {
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
   analyticsReporting: PlatformEntry
+  assetManagement: PlatformEntry
+  documentManagement: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -148,86 +151,6 @@ export const pages: {
       description:
         'Cree un registro digital en vivo de cada activo de sus propiedades, con historial de mantenimiento, costes, garantías y documentos en un solo lugar.',
     },
-    eyebrow: 'Gestión de activos',
-    title: 'Visibilidad total de cada activo que gestiona',
-    description:
-      'Desde la climatización de decenas de edificios hasta bombas, ascensores e iluminación, Fleet le ofrece un registro en vivo de cada activo, accesible desde cualquier lugar.',
-    highlights: [
-      'Fichas digitales de activos',
-      'Historial completo de reparaciones',
-      'Avisos de garantía',
-    ],
-    features: {
-      title: 'Funciones clave de la gestión de activos de Fleet',
-      description:
-        'Sus datos de activos se convierten en un motor de eficiencia, presupuestación y planificación proactiva.',
-      items: [
-        {
-          title: 'Fichas digitales de activos',
-          description:
-            'Registre marca, modelo, número de serie, ubicación, fecha de compra y garantía.',
-        },
-        {
-          title: 'Archivos y documentación',
-          description:
-            'Vincule manuales, fotos, informes de inspección y certificados a cada activo.',
-        },
-        {
-          title: 'Historial y costes de reparación',
-          description:
-            'Vea qué se ha hecho, con qué frecuencia y a qué coste, para cada activo de su cartera.',
-        },
-        {
-          title: 'Ubicaciones y zonas',
-          description:
-            'Organice los activos por edificio, planta, sala o zona, ideal para operaciones multisede.',
-        },
-        {
-          title: 'Trabajos y preventivos vinculados',
-          description:
-            'Vincule cada activo a su plan de mantenimiento y genere trabajos preventivos automáticamente.',
-        },
-        {
-          title: 'Ciclo de vida y paradas',
-          description:
-            'Detecte equipos de bajo rendimiento, prevea sustituciones y planifique inversiones.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Sus activos, accesibles desde cualquier lugar',
-        description:
-          'Los técnicos consultan los datos del activo in situ, registran inspecciones en tiempo real y añaden fotos y notas desde el teléfono.',
-        points: [
-          'Busque o escanee para abrir cualquier activo',
-          'Resultados de inspección registrados en el momento',
-          'Historial actualizado al instante para todo el equipo',
-        ],
-      },
-      {
-        title: 'Mejores datos para un mejor mantenimiento',
-        description:
-          'Una información de activos precisa y ordenada prolonga la vida de los equipos y da seguridad al presupuesto.',
-        points: [
-          'Avisos antes del vencimiento de garantías y contratos',
-          'Informes de rendimiento para el presupuesto anual',
-          'Previsiones de sustitución basadas en el uso real',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Gestión de activos en la práctica',
-      description:
-        'De carteras inmobiliarias a cadenas hoteleras, los equipos usan Fleet para conocer a fondo su infraestructura crítica.',
-      items: [
-        'Centralizar los datos de climatización de varios edificios de oficinas',
-        'Asignar activos concretos a técnicos de la sede para revisiones periódicas',
-        'Seguir el historial de mantenimiento de ascensores con fotos y certificados',
-        'Exportar informes de rendimiento para el presupuesto anual',
-        'Recibir avisos cuando se acercan vencimientos de garantías o contratos',
-      ],
-    },
   },
   documentManagement: {
     label: 'Gestión documental',
@@ -236,85 +159,6 @@ export const pages: {
       title: 'Gestión documental | Fleet',
       description:
         'Guarde, organice y encuentre manuales, garantías, permisos e informes de inspección en un solo lugar, vinculados a los activos, trabajos y sedes a los que pertenecen.',
-    },
-    eyebrow: 'Gestión documental',
-    title: 'Todos sus archivos de mantenimiento en un centro inteligente',
-    description:
-      'Garantías, contratos con proveedores, listas de cumplimiento y procedimientos reunidos en un solo lugar, vinculados al trabajo que respaldan y disponibles en el momento.',
-    highlights: [
-      'Control de versiones',
-      'Vinculados a activos y trabajos',
-      'Exportaciones listas para auditoría',
-    ],
-    features: {
-      title: 'Funciones clave de la gestión documental de Fleet',
-      description: 'Toda la documentación relevante, disponible justo donde se necesita.',
-      items: [
-        {
-          title: 'Versiones y registro de auditoría',
-          description:
-            'Vea quién subió qué y cuándo, con historial completo de cambios y restauración sencilla.',
-        },
-        {
-          title: 'Adjuntos en cualquier lugar',
-          description:
-            'Vincule documentos a activos, trabajos, ubicaciones, proveedores o usuarios.',
-        },
-        {
-          title: 'Etiquetas y categorías',
-          description:
-            'Clasifique archivos por tipo, sede, departamento o clase de activo para encontrarlos rápido.',
-        },
-        {
-          title: 'Permisos por rol',
-          description:
-            'Decida quién puede ver, subir o editar cada documento y proteja los archivos sensibles.',
-        },
-        {
-          title: 'Documentos dentro de los trabajos',
-          description:
-            'Los técnicos abren procedimientos, guías de instalación e informes anteriores desde el propio trabajo.',
-        },
-        {
-          title: 'Exportar y compartir',
-          description:
-            'Descargue paquetes de documentos para auditorías, traspasos a proveedores o revisiones internas.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Integrada en su ecosistema de mantenimiento',
-        description:
-          'Cada archivo se encuentra con la búsqueda global y está vinculado a sus paneles e informes.',
-        points: [
-          'Búsqueda global en todas las sedes',
-          'Documentos vinculados a activos, trabajos y proveedores',
-          'Almacenamiento integrado en Fleet',
-        ],
-      },
-      {
-        title: 'Siempre listo para la inspección',
-        description:
-          'Certificados, permisos e informes se mantienen al día, con recordatorios antes de cada vencimiento.',
-        points: [
-          'Seguimiento de vencimientos de permisos y contratos',
-          'Registros con fecha y hora para el cumplimiento',
-          'Acceso rápido en emergencias o auditorías',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Gestión documental en la práctica',
-      description:
-        'Pensada para equipos que gestionan varias sedes, tipos de activos y contratistas.',
-      items: [
-        'Subir procedimientos de mantenimiento de ascensores para los técnicos in situ',
-        'Vincular certificados de inspección de incendios a flujos de cumplimiento',
-        'Guardar contratos de proveedores y seguir sus vencimientos',
-        'Adjuntar aprobaciones presupuestarias a los trabajos para una trazabilidad completa',
-        'Mantener manuales digitales de climatización, fontanería e iluminación',
-      ],
     },
   },
   auditTracking: {
@@ -2548,4 +2392,844 @@ export const analyticsPage: AnalyticsPageContent = {
       },
     },
   ],
+}
+
+export const assetPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Gestión de activos',
+    title: 'Visibilidad total de cada activo que gestiona',
+    description:
+      'Desde la climatización de decenas de edificios hasta bombas, ascensores e iluminación, Fleet le ofrece un registro en vivo de cada activo, accesible desde cualquier lugar.',
+    primaryAction: {
+      label: 'Reservar una demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorar la plataforma',
+      href: '/platform',
+    },
+    highlights: [
+      'Fichas digitales de activos',
+      'Historial completo de reparaciones',
+      'Avisos de garantía',
+    ],
+    visual: {
+      kind: 'asset',
+      title: 'Ficha del activo',
+      name: 'Enfriadora CH-02',
+      location: 'Harbour Point · Sala técnica B2',
+      status: 'Operativo',
+      facts: [
+        {
+          label: 'Último servicio',
+          value: '12 sep',
+        },
+        {
+          label: 'Garantía',
+          value: 'Mar 2028',
+        },
+        {
+          label: 'Coste del año',
+          value: '4.210 $',
+        },
+        {
+          label: 'Trabajos abiertos',
+          value: '1',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Activos repartidos en cada sede',
+      description:
+        'Climatización, ascensores, bombas e iluminación en decenas de edificios, cada uno con sus manuales, garantías e historial de servicio.',
+      points: ['Muchas sedes', 'Muchos tipos de activos', 'Muchos registros'],
+    },
+    answer: {
+      title: 'Un registro en vivo para todo',
+      description:
+        'Fleet crea un registro digital en vivo de sus activos físicos, accesible desde cualquier lugar, para que cada decisión parta de un contexto completo.',
+    },
+  },
+  capabilities: {
+    title: 'Gestión de activos a escala de toda su cartera',
+    description:
+      'Desde una sola enfriadora hasta miles de activos en todas sus sedes, en un registro conectado.',
+    tabs: [
+      {
+        icon: 'register',
+        label: 'Registro',
+        title: 'Una ficha para cada activo',
+        description:
+          'Registre marca, modelo, número de serie, ubicación, fecha de compra y garantía de cada activo.',
+        points: [
+          'Fichas digitales para cada activo',
+          'Organizados por edificio, planta, sala o zona',
+          'Búsqueda en toda su cartera',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Registro de activos · Harbour Point',
+          items: [
+            {
+              title: 'Enfriadora CH-02',
+              location: 'Sala B2 · Climatización',
+              status: 'Operativo',
+              tone: 'done',
+            },
+            {
+              title: 'Ascensor L2',
+              location: 'Ascensores centrales',
+              status: 'Servicio pendiente',
+              tone: 'due',
+            },
+            {
+              title: 'Bomba de presión P-03',
+              location: 'Sótano · Fontanería',
+              status: 'Operativo',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Órdenes de trabajo',
+        title: 'Conectado a órdenes y mantenimiento preventivo',
+        description:
+          'Vincule cada activo a su plan de mantenimiento y su historial, y genere trabajos preventivos automáticamente.',
+        points: [
+          'Planes de mantenimiento en cada activo',
+          'Trabajos preventivos creados automáticamente',
+          'Cada reparación añadida al historial',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Automatización del activo',
+          steps: [
+            {
+              kind: 'Activo',
+              text: 'Enfriadora CH-02 · plan trimestral',
+            },
+            {
+              kind: 'Luego',
+              text: 'Crear orden preventiva',
+            },
+            {
+              kind: 'Luego',
+              text: 'Registrar el servicio en el historial',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'lifecycle',
+        label: 'Ciclo de vida',
+        title: 'Ciclo de vida y tiempos de parada',
+        description:
+          'Detecte equipos de bajo rendimiento, anticipe sustituciones y planifique inversiones con datos de uso en vivo.',
+        points: [
+          'Paradas registradas por activo',
+          'Costes de reparación a lo largo de su vida útil',
+          'Previsiones de sustitución basadas en el uso real',
+        ],
+        visual: {
+          kind: 'chart',
+          title: 'Horas de parada por tipo · T3',
+          stats: [
+            {
+              label: 'Parada total',
+              value: '112 h',
+            },
+            {
+              label: 'Activos en riesgo',
+              value: '6',
+            },
+          ],
+          bars: [
+            {
+              label: 'Clima',
+              value: 46,
+            },
+            {
+              label: 'Ascensores',
+              value: 28,
+            },
+            {
+              label: 'Bombas',
+              value: 19,
+            },
+            {
+              label: 'Luz',
+              value: 12,
+            },
+            {
+              label: 'Puertas',
+              value: 7,
+            },
+          ],
+        },
+      },
+      {
+        icon: 'mobile',
+        label: 'En sitio',
+        title: 'Datos del activo sobre el terreno',
+        description:
+          'Los técnicos abren la ficha in situ, registran inspecciones en tiempo real y añaden fotos y notas desde el móvil.',
+        points: [
+          'Buscar o escanear para abrir cualquier activo',
+          'Inspecciones con fotos y lecturas',
+          'Historial actualizado al instante para todo el equipo',
+        ],
+        visual: {
+          kind: 'asset',
+          title: 'Activo escaneado',
+          name: 'Ascensor L2',
+          location: 'Northgate Mall · Ascensores centrales',
+          status: 'Servicio pendiente',
+          facts: [
+            {
+              label: 'Última inspección',
+              value: '02 ago',
+            },
+            {
+              label: 'Certificado',
+              value: 'Válido hasta ene 2027',
+            },
+            {
+              label: 'Manual',
+              value: 'Manual ascensor L2.pdf',
+            },
+            {
+              label: 'Trabajos abiertos',
+              value: '2',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Documentación',
+      title: 'Cada manual donde lo necesita',
+      description:
+        'Vincule manuales, fotos, informes de inspección y certificados a cada activo para consultarlos rápido in situ.',
+      points: [
+        'Archivos adjuntos a cada ficha',
+        'Certificados y garantías juntos',
+        'Disponibles en cualquier móvil o tableta',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'Enfriadora CH-02 · Documentos',
+        items: [
+          {
+            title: 'Manual de operación CH-02.pdf',
+            location: 'Manual',
+            status: 'Vinculado',
+            tone: 'info',
+          },
+          {
+            title: 'Certificado de garantía.pdf',
+            location: 'Válido hasta mar 2028',
+            status: 'Activo',
+            tone: 'done',
+          },
+          {
+            title: 'Informe de servicio T3.pdf',
+            location: 'Subido el 12 sep',
+            status: 'Verificado',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'RunnerAI',
+      title: 'Automatice la gestión de activos con IA',
+      description:
+        'RunnerAI sugiere planes de mantenimiento para equipos nuevos y crea paneles de activos a partir de una petición en lenguaje natural.',
+      points: [
+        'Planes preventivos sugeridos para activos nuevos',
+        'Paneles de activos al final de su vida útil',
+        'Respuestas sobre cualquier activo en segundos',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Actividad de RunnerAI',
+        entries: [
+          {
+            when: '09:42',
+            who: 'RunnerAI',
+            what: 'sugirió un plan preventivo para 6 enfriadoras nuevas',
+          },
+          {
+            when: '09:15',
+            who: 'RunnerAI',
+            what: 'listó 4 activos al final de su vida útil',
+          },
+          {
+            when: '08:58',
+            who: 'Aisha K.',
+            what: 'aprobó el plan sugerido',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Garantías y contratos',
+      title: 'Garantías y contratos bajo control',
+      description:
+        'Fleet sigue las fechas de garantía y contrato de cada activo y avisa a su equipo antes de cada vencimiento.',
+      points: [
+        'Avisos antes del vencimiento de garantías y contratos',
+        'Estado de garantía visible en cada trabajo',
+        'Detalles del contrato vinculados a cada proveedor',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Próximos vencimientos',
+        items: [
+          {
+            title: 'Contrato de mantenimiento ascensor L2',
+            location: 'Northgate Mall',
+            status: 'En 30 días',
+            tone: 'due',
+          },
+          {
+            title: 'Garantía enfriadora CH-04',
+            location: 'Tower B',
+            status: 'En 60 días',
+            tone: 'info',
+          },
+          {
+            title: 'Garantía bomba P-03',
+            location: 'Harbour Point',
+            status: 'Renovada',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'Cómo funciona',
+    title: 'Del registro a la sustitución',
+    items: [
+      {
+        title: 'Registrar',
+        description:
+          'Importe sus listas de activos o cree fichas con todos los detalles necesarios.',
+      },
+      {
+        title: 'Mantener',
+        description:
+          'Vincule cada activo a sus planes y órdenes para que el servicio llegue a tiempo.',
+      },
+      {
+        title: 'Seguir',
+        description:
+          'Reparaciones, costes, documentos y paradas forman un historial completo automáticamente.',
+      },
+      {
+        title: 'Planificar',
+        description: 'Los datos del ciclo de vida muestran cuándo reparar, sustituir o invertir.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Empiece ahora',
+    title: 'Todos sus activos en un solo lugar',
+    description:
+      'Nuestro equipo de implantación importa con usted listas de activos y planes de mantenimiento, para tener el registro listo en la primera semana.',
+    action: {
+      label: 'Reservar una demo',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Por qué Fleet para la gestión de activos',
+    description:
+      'Fleet está creado para equipos inmobiliarios y de facility management, ya gestione ascensores, calderas, iluminación o fontanería.',
+    items: [
+      {
+        title: 'Creado para el sector inmobiliario',
+        description: 'Activos organizados como funciona su cartera: por inmueble, edificio y zona.',
+      },
+      {
+        title: 'Móvil sobre el terreno',
+        description: 'Fichas, historial y documentos en cualquier móvil o tableta, iOS y Android.',
+      },
+      {
+        title: 'Conectado a cada módulo',
+        description: 'Los activos se vinculan a órdenes, documentos, flujos e informes.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet ha reducido nuestro mantenimiento correctivo casi un 40 %. Por fin tenemos a los técnicos, los registros de activos y los trabajos en un solo lugar.',
+    author: 'Responsable de operaciones',
+    company: 'Desarrollo de uso mixto',
+  },
+  industries: {
+    title: 'Cada sector tiene sus activos',
+    description:
+      'De centros comerciales a centros logísticos, Fleet se adapta a los activos de su cartera.',
+  },
+  integrate: {
+    title: 'Creado para integrarse',
+    description:
+      'Conecte sistemas de gestión del edificio, ERP y herramientas financieras para que los datos de activos lleguen donde los necesita, con más de 20 integraciones.',
+    action: {
+      label: 'Ver todas las integraciones',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Preguntas frecuentes',
+    items: [
+      {
+        question: '¿Qué es la gestión de activos en Fleet?',
+        answer:
+          'Un registro digital en vivo de todos los activos de sus inmuebles, con historial de mantenimiento, costes, garantías y documentos en un solo lugar, conectado a órdenes de trabajo y planes preventivos.',
+      },
+      {
+        question: '¿Qué información puedo guardar de cada activo?',
+        answer:
+          'Marca, modelo, número de serie, ubicación, fecha de compra y garantía, además de manuales, fotos, informes de inspección, certificados y el historial completo de reparaciones.',
+      },
+      {
+        question: '¿Los técnicos ven los datos del activo in situ?',
+        answer:
+          'Sí. Los técnicos abren cualquier activo desde el móvil o la tableta para ver manuales, historial y órdenes abiertas, y registran inspecciones con fotos y lecturas.',
+      },
+      {
+        question: '¿Cómo ayuda Fleet a planificar sustituciones?',
+        answer:
+          'Fleet registra costes de reparación, paradas y uso de cada activo, para detectar equipos de bajo rendimiento, prever sustituciones y planificar inversiones.',
+      },
+      {
+        question: '¿Fleet me avisa antes de que venzan las garantías?',
+        answer:
+          'Sí. Fleet sigue las fechas de garantía y contrato y avisa a su equipo antes de cada vencimiento.',
+      },
+    ],
+  },
+}
+
+export const documentPage: ProductPageContent = {
+  hero: {
+    eyebrow: 'Gestión documental',
+    title: 'Todos sus archivos de mantenimiento en un centro inteligente',
+    description:
+      'Garantías, contratos con proveedores, listas de cumplimiento y procedimientos reunidos en un solo lugar, vinculados al trabajo que respaldan y disponibles en el momento.',
+    primaryAction: {
+      label: 'Reservar una demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorar la plataforma',
+      href: '/platform',
+    },
+    highlights: [
+      'Control de versiones',
+      'Vinculados a activos y trabajos',
+      'Exportaciones listas para auditoría',
+    ],
+    visual: {
+      kind: 'files',
+      title: 'Documentos · Tower B',
+      items: [
+        {
+          title: 'Certificado contra incendios.pdf',
+          location: 'Permiso · Tower B',
+          status: 'Vence en 30 d',
+          tone: 'due',
+        },
+        {
+          title: 'Manual de operación CH-02.pdf',
+          location: 'Manual · Enfriadora CH-02',
+          status: 'Vinculado',
+          tone: 'info',
+        },
+        {
+          title: 'Inspección ascensores T3.pdf',
+          location: 'Informe · Ascensores',
+          status: 'Verificado',
+          tone: 'done',
+        },
+        {
+          title: 'Contrato servicio clima.pdf',
+          location: 'Contrato · CoolAir',
+          status: 'Activo',
+          tone: 'done',
+        },
+      ],
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Cada trabajo depende del archivo correcto',
+      description:
+        'Certificados de seguridad, informes de inspección, manuales y facturas demuestran el cumplimiento y aseguran la continuidad, y los equipos los necesitan en el punto de trabajo.',
+      points: ['Certificados', 'Manuales', 'Contratos'],
+    },
+    answer: {
+      title: 'Cada archivo a un clic',
+      description:
+        'Fleet mantiene su documentación organizada, vinculada al trabajo que respalda y accesible desde cualquier lugar.',
+    },
+  },
+  capabilities: {
+    title: 'Gestione documentos en toda su cartera',
+    description:
+      'Guarde, organice y encuentre cada archivo en un solo lugar, dentro de la plataforma que su equipo ya utiliza.',
+    tabs: [
+      {
+        icon: 'storage',
+        label: 'Almacenamiento',
+        title: 'Adjunte archivos donde los necesite',
+        description:
+          'Suba documentos directamente a activos, trabajos, ubicaciones, proveedores o usuarios, y mantenga todo en contexto.',
+        points: [
+          'Archivos vinculados a activos, trabajos y ubicaciones',
+          'Etiquetados por tipo, sede, departamento o clase de activo',
+          'Almacenamiento integrado en Fleet',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Enfriadora CH-02 · Archivos',
+          items: [
+            {
+              title: 'Manual de operación.pdf',
+              location: 'Manual',
+              status: 'Vinculado',
+              tone: 'info',
+            },
+            {
+              title: 'Certificado de garantía.pdf',
+              location: 'Garantía',
+              status: 'Activo',
+              tone: 'done',
+            },
+            {
+              title: 'Informe de servicio T3.pdf',
+              location: 'Informe',
+              status: 'Verificado',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'versions',
+        label: 'Versiones',
+        title: 'Control de versiones y trazabilidad',
+        description:
+          'Siga los cambios de cada archivo con un historial completo. Vea quién subió qué y cuándo, y recupere versiones anteriores cuando lo necesite.',
+        points: [
+          'Historial completo de cada archivo',
+          'Versiones anteriores restauradas con un clic',
+          'Cada subida con fecha, hora y autor',
+        ],
+        visual: {
+          kind: 'log',
+          title: 'Versiones · Plan contra incendios',
+          entries: [
+            {
+              when: '09:42',
+              who: 'Marco L.',
+              what: 'subió la versión 4 con salidas actualizadas',
+            },
+            {
+              when: 'Lun',
+              who: 'Aisha K.',
+              what: 'aprobó la versión 3',
+            },
+            {
+              when: '12 sep',
+              who: 'Fleet',
+              what: 'archivó la versión 2',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'permissions',
+        label: 'Acceso',
+        title: 'Permisos por rol',
+        description:
+          'Decida quién puede ver, subir o editar la documentación, para que la información sensible quede en manos autorizadas.',
+        points: [
+          'Permisos de lectura, subida y edición por rol',
+          'Proveedores con acceso solo a sus trabajos',
+          'Archivos sensibles protegidos',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Acceso · Contratos de proveedores',
+          items: [
+            {
+              title: 'Equipo de finanzas',
+              location: 'Puede ver y editar',
+              status: 'Edición',
+              tone: 'info',
+            },
+            {
+              title: 'Responsables de sede',
+              location: 'Puede ver',
+              status: 'Lectura',
+              tone: 'done',
+            },
+            {
+              title: 'Proveedores',
+              location: 'Solo sus contratos',
+              status: 'Limitado',
+              tone: 'due',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'search',
+        label: 'Búsqueda',
+        title: 'Encuentre cualquier archivo en segundos',
+        description:
+          'Cada archivo se encuentra con la búsqueda global y está vinculado a sus paneles e informes.',
+        points: [
+          'Búsqueda global en todas las sedes',
+          'Filtros por tipo, sede y activo',
+          'Resultados vinculados a trabajos y activos',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Búsqueda: "certificado ascensor"',
+          items: [
+            {
+              title: 'Certificado ascensor 2026.pdf',
+              location: 'Northgate Mall · Ascensores',
+              status: 'Válido',
+              tone: 'done',
+            },
+            {
+              title: 'Certificado ascensor 2026.pdf',
+              location: 'Tower B · Ascensor L2',
+              status: 'Vence en 45 d',
+              tone: 'due',
+            },
+            {
+              title: 'Inspección ascensor T2.pdf',
+              location: 'Harbour Point',
+              status: 'Archivado',
+              tone: 'info',
+            },
+          ],
+        },
+      },
+    ],
+  },
+  rows: [
+    {
+      tag: 'Sobre el terreno',
+      title: 'Procedimientos dentro de cada orden',
+      description:
+        'Los técnicos abren procedimientos, guías de instalación e informes anteriores directamente desde el trabajo, justo donde se realiza.',
+      points: [
+        'Documentos vinculados a cada orden de trabajo',
+        'Disponibles en cualquier móvil o tableta',
+        'Aprobaciones de presupuesto adjuntas para una trazabilidad completa',
+      ],
+      visual: {
+        kind: 'files',
+        title: 'WO-2304 · Documentos adjuntos',
+        items: [
+          {
+            title: 'Procedimiento cambio de filtros.pdf',
+            location: 'Procedimiento',
+            status: 'Obligatorio',
+            tone: 'info',
+          },
+          {
+            title: 'Manual AHU-07.pdf',
+            location: 'Manual',
+            status: 'Vinculado',
+            tone: 'info',
+          },
+          {
+            title: 'Aprobación de presupuesto.pdf',
+            location: 'Aprobado por finanzas',
+            status: 'Aprobado',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Cumplimiento',
+      title: 'Siempre listo para la inspección',
+      description:
+        'Certificados, permisos e informes se mantienen al día, con recordatorios antes de cada vencimiento.',
+      points: [
+        'Seguimiento de vencimientos de permisos y contratos',
+        'Registros con fecha y hora para el cumplimiento',
+        'Acceso rápido en emergencias o auditorías',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Vencen pronto',
+        items: [
+          {
+            title: 'Certificado contra incendios',
+            location: 'Tower B',
+            status: 'En 30 días',
+            tone: 'due',
+          },
+          {
+            title: 'Permiso de ascensor',
+            location: 'Northgate Mall',
+            status: 'En 45 días',
+            tone: 'due',
+          },
+          {
+            title: 'Contrato de proveedor · CoolAir',
+            location: 'Todas las sedes',
+            status: 'Renovado',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Compartir',
+      title: 'Paquetes para auditorías y traspasos',
+      description:
+        'Descargue paquetes de documentos para auditorías, traspasos a proveedores o revisiones internas en pocos clics.',
+      points: [
+        'Paquetes por sede, activo o periodo',
+        'Compartidos de forma segura con auditores y proveedores',
+        'Un registro completo para traspasos de inmuebles',
+      ],
+      visual: {
+        kind: 'steps',
+        title: 'Paquete de auditoría',
+        steps: [
+          {
+            kind: 'Elegir',
+            text: 'Tower B · contra incendios · 2026',
+          },
+          {
+            kind: 'Agrupar',
+            text: '14 certificados e informes',
+          },
+          {
+            kind: 'Compartir',
+            text: 'Enlace seguro enviado al auditor',
+          },
+        ],
+      },
+    },
+  ],
+  steps: {
+    eyebrow: 'Cómo funciona',
+    title: 'De la subida a la auditoría',
+    items: [
+      {
+        title: 'Subir',
+        description:
+          'Añada archivos desde el ordenador o el móvil, o traslade su archivo actual con nuestro equipo.',
+      },
+      {
+        title: 'Vincular',
+        description: 'Adjunte cada archivo a su activo, trabajo, ubicación o proveedor.',
+      },
+      {
+        title: 'Usar',
+        description: 'Técnicos y responsables abren el documento correcto en el punto de trabajo.',
+      },
+      {
+        title: 'Compartir',
+        description: 'Exporte paquetes para auditorías, traspasos y revisiones.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Empiece ahora',
+    title: 'Todos sus archivos en un solo lugar',
+    description:
+      'Nuestro equipo de implantación traslada con usted manuales, certificados y contratos a Fleet y los vincula a sus activos en la primera semana.',
+    action: {
+      label: 'Reservar una demo',
+      href: '/contact',
+    },
+  },
+  trust: {
+    title: 'Por qué Fleet para la gestión documental',
+    description:
+      'La gestión documental funciona en cada módulo de Fleet, creada para equipos que gestionan muchas sedes, tipos de activos y proveedores.',
+    items: [
+      {
+        title: 'Integrada en cada módulo',
+        description: 'Archivos vinculados a activos, trabajos, flujos e informes.',
+      },
+      {
+        title: 'Segura por diseño',
+        description: 'Permisos por rol, almacenamiento cifrado y trazabilidad completa.',
+      },
+      {
+        title: 'Rápida de encontrar',
+        description: 'Búsqueda global y etiquetas inteligentes en todas las sedes.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Otras plataformas resultaban demasiado complejas o genéricas. Fleet nos dio una solución a medida con un soporte más rápido.',
+    author: 'Director de mantenimiento',
+    company: 'Centro logístico',
+  },
+  industries: {
+    title: 'Cada sector funciona con documentos',
+    description:
+      'De hoteles a centros logísticos, Fleet mantiene la documentación de cada inmueble organizada y lista para auditoría.',
+  },
+  integrate: {
+    title: 'Creado para integrarse',
+    description:
+      'Conecte herramientas financieras, portales de proveedores y Fleet Mail para que los documentos lleguen a su sitio, con más de 20 integraciones.',
+    action: {
+      label: 'Ver todas las integraciones',
+      href: '/platform/integrations',
+    },
+  },
+  faq: {
+    title: 'Preguntas frecuentes',
+    items: [
+      {
+        question: '¿Qué documentos puedo guardar en Fleet?',
+        answer:
+          'Manuales, garantías, permisos, informes de inspección, certificados, contratos de proveedores, procedimientos, facturas y fotos, vinculados a los activos, trabajos y ubicaciones a los que pertenecen.',
+      },
+      {
+        question: '¿Pueden los técnicos abrir documentos in situ?',
+        answer:
+          'Sí. Los técnicos abren procedimientos, manuales e informes anteriores directamente desde la orden de trabajo en cualquier móvil o tableta.',
+      },
+      {
+        question: '¿Cómo funciona el control de versiones?',
+        answer:
+          'Fleet guarda un historial completo de cada archivo, muestra quién subió qué y cuándo, y permite restaurar versiones anteriores.',
+      },
+      {
+        question: '¿Quién puede ver los documentos sensibles?',
+        answer:
+          'Usted decide. Los permisos por rol definen quién puede ver, subir o editar cada documento, y los proveedores solo ven sus propios archivos.',
+      },
+      {
+        question: '¿Fleet me recuerda cuándo vencen los certificados?',
+        answer:
+          'Sí. Fleet sigue las fechas de vencimiento de permisos, certificados y contratos y avisa a su equipo con antelación.',
+      },
+    ],
+  },
 }
