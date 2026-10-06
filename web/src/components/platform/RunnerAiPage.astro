@@ -1,6 +1,5 @@
 ---
 import Button from '@/components/ui/Button.astro'
-import CheckList from '@/components/ui/CheckList.astro'
 import Container from '@/components/ui/Container.astro'
 import CtaBanner from '@/components/ui/CtaBanner.astro'
 import IconChip from '@/components/ui/IconChip.astro'
@@ -21,11 +20,11 @@ import Server from '@lucide/astro/icons/server'
 import ShieldCheck from '@lucide/astro/icons/shield-check'
 import Sparkles from '@lucide/astro/icons/sparkles'
 import Workflow from '@lucide/astro/icons/workflow'
+import CapabilityTabs from './CapabilityTabs.astro'
 import ChallengeCards from './ChallengeCards.astro'
 import FeatureBanner from './FeatureBanner.astro'
 import FeatureRows from './FeatureRows.astro'
 import IndustriesIntegrate from './IndustriesIntegrate.astro'
-import OverviewVisual from './OverviewVisual.astro'
 import StepsBand from './StepsBand.astro'
 
 const { runnerAiPage, cta } = getContent(getLocale(Astro.url)).platform
@@ -114,49 +113,13 @@ const stepStyles = [
 
 <ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
 
-<PageSection tone="surface" containerClass="flex flex-col gap-10">
-  <SectionHeader title={capabilities.title} description={capabilities.description} />
-  <div
-    role="tablist"
-    aria-label={capabilities.title}
-    class="border-border grid grid-cols-2 gap-2 border-b pb-4 sm:grid-cols-4"
-    data-runner-tabs
-  >
-    {capabilities.tabs.map((tab, index) => {
-      const Icon = tabIcons[tab.icon]
-      return (
-        <button
-          type="button"
-          role="tab"
-          id={`runner-tab-${index}`}
-          aria-controls={`runner-panel-${index}`}
-          aria-selected={index === 0 ? 'true' : 'false'}
-          tabindex={index === 0 ? 0 : -1}
-          class="text-azul-blue hover:bg-page aria-selected:bg-rich-blue aria-selected:text-alice-blue flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-[15px] font-semibold transition-colors"
-        >
-          <Icon class="size-[18px]" aria-hidden="true" />
-          {tab.label}
-        </button>
-      )
-    })}
-  </div>
-  {capabilities.tabs.map((tab, index) => (
-    <div
-      role="tabpanel"
-      id={`runner-panel-${index}`}
-      aria-labelledby={`runner-tab-${index}`}
-      hidden={index !== 0}
-      class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16"
-    >
-      <div class="flex flex-col gap-5">
-        <h3 class="text-display-md">{tab.title}</h3>
-        <p class="text-azul-blue text-[17px] leading-[1.65]">{tab.description}</p>
-        <CheckList items={tab.points} class="gap-3" />
-      </div>
-      <OverviewVisual visual={tab.visual} />
-    </div>
-  ))}
-</PageSection>
+<CapabilityTabs
+  idPrefix="runner"
+  title={capabilities.title}
+  description={capabilities.description}
+  tabs={capabilities.tabs}
+  icons={capabilities.tabs.map((tab) => tabIcons[tab.icon])}
+/>
 
 <StepsBand eyebrow={steps.eyebrow} title={steps.title} items={steps.items} />
 
@@ -201,49 +164,3 @@ const stepStyles = [
   primaryAction={cta.primaryAction}
   secondaryAction={cta.secondaryAction}
 />
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const list = document.querySelector('[data-runner-tabs]')
-    if (!list) {
-      return
-    }
-    const tabs = [...list.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
-
-    const select = (next: HTMLButtonElement) => {
-      tabs.forEach((tab) => {
-        const selected = tab === next
-        tab.setAttribute('aria-selected', String(selected))
-        tab.tabIndex = selected ? 0 : -1
-        const panel = document.getElementById(tab.getAttribute('aria-controls') ?? '')
-        if (panel) {
-          panel.hidden = !selected
-        }
-      })
-    }
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => select(tab))
-      tab.addEventListener('keydown', (event) => {
-        const rtl = document.documentElement.dir === 'rtl'
-        const forward = rtl ? 'ArrowLeft' : 'ArrowRight'
-        const back = rtl ? 'ArrowRight' : 'ArrowLeft'
-        let target: HTMLButtonElement | undefined
-        if (event.key === forward) {
-          target = tabs[(index + 1) % tabs.length]
-        } else if (event.key === back) {
-          target = tabs[(index - 1 + tabs.length) % tabs.length]
-        } else if (event.key === 'Home') {
-          target = tabs[0]
-        } else if (event.key === 'End') {
-          target = tabs[tabs.length - 1]
-        }
-        if (target) {
-          event.preventDefault()
-          select(target)
-          target.focus()
-        }
-      })
-    })
-  })
-</script>

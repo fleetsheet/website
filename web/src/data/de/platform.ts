@@ -7,6 +7,7 @@ import type {
   OverviewModule,
   PlatformEntry,
   PlatformPageContent,
+  PreventiveIcon,
   RunnerAiIcon,
 } from '@/data/en/platform'
 import type { PlatformDetailId, PlatformGroup, TemplatePageId } from '@/platform'
@@ -52,6 +53,7 @@ export const pages: {
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
+  preventiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -114,85 +116,6 @@ export const pages: {
       title: 'Vorbeugende & vorausschauende Instandhaltung | Fleet',
       description:
         'Planen Sie vorbeugende Instandhaltung für jede Anlage und nutzen Sie regelbasierte Vorhersagen, um vor Ausfällen zu handeln, an jedem Standort Ihres Portfolios.',
-    },
-    eyebrow: 'Vorbeugende & vorausschauende Instandhaltung',
-    title: 'Jedem Ausfall einen Schritt voraus',
-    description:
-      'Planen Sie wiederkehrende Wartung für jede Anlage und erkennen Sie Risiken früh mit regelbasierten Vorhersagen, damit Technik läuft und Mieter zufrieden sind.',
-    highlights: [
-      'Wiederkehrende Pläne',
-      'Regelbasierte Vorhersagen',
-      'Bis zu 40 % weniger reaktive Arbeit',
-    ],
-    features: {
-      title: 'Instandhaltung mit Sicherheit planen',
-      description:
-        'Wartungspläne werden zu automatischen Terminen, und Live-Daten zeigen, wo Sie als Nächstes handeln sollten.',
-      items: [
-        {
-          title: 'Wiederkehrende Wartungspläne',
-          description:
-            'Vorbeugende Aufgaben für Klima, Sanitär, Beleuchtung, Aufzüge und Brandschutz nach Zeit oder Nutzung planen.',
-        },
-        {
-          title: 'Automatische Auftragserstellung',
-          description:
-            'Fleet erzeugt Wartungsaufträge aus dem Plan jeder Anlage und weist sie dem richtigen Team zu.',
-        },
-        {
-          title: 'Vorausschauende Warnungen',
-          description:
-            'Messwerte über dem Normalwert lösen eine nachvollziehbare Warnung mit empfohlenem nächsten Schritt aus.',
-        },
-        {
-          title: 'Vorlagen nach Branchenstandard',
-          description:
-            'Mit bewährten Checklisten für jeden Anlagentyp starten und an Ihre Standorte anpassen.',
-        },
-        {
-          title: 'Kapazitätsplanung',
-          description:
-            'Termine auf Techniker und Dienstleister verteilen und anstehende Arbeit auf einen Blick sehen.',
-        },
-        {
-          title: 'Compliance-Kalender',
-          description:
-            'Gesetzliche Prüfungen und Zertifikate mit Erinnerungen vor jedem Fälligkeitsdatum verfolgen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Vom Plan zum abgenommenen Auftrag',
-        description:
-          'Jede vorbeugende Aufgabe enthält Checkliste, Anlagenhistorie und Dokumente, damit Techniker gut vorbereitet ankommen.',
-        points: [
-          'Checklisten und Arbeitsanweisungen an jeder Aufgabe',
-          'Fotonachweise und Messwerte beim Abschluss erfasst',
-          'Überfällige Aufgaben automatisch eskaliert',
-        ],
-      },
-      {
-        title: 'Nachvollziehbare Vorhersagen',
-        description:
-          'Das regelbasierte maschinelle Lernen von Fleet erklärt jede Empfehlung, damit Teams sicher handeln.',
-        points: [
-          'Anlagenrisiko aus Live- und Verlaufsdaten bewertet',
-          'Jede Warnung mit der auslösenden Regel verknüpft',
-          'Mit einem Klick von der Vorhersage zum Arbeitsauftrag',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Vorbeugende Instandhaltung in der Praxis',
-      description: 'So halten Immobilienteams kritische Systeme in Bestform.',
-      items: [
-        'Quartalsweiser Filterwechsel der Klimaanlagen in jedem Gebäude',
-        'Jährliche Aufzugsprüfung mit Erinnerung 30 Tage vorher',
-        'Monatliche Tests der Notbeleuchtung mit Fotos dokumentiert',
-        'Vibration der Kältemaschine mit vorausschauenden Warnungen überwacht',
-        'Brandschutztür-Prüfungen nach Etage und Treppenhaus geplant',
-      ],
     },
   },
   reactiveMaintenance: {
@@ -2015,5 +1938,330 @@ export const workflowBuilderPage = {
           'Strukturierte Workflows liefern sauberere Daten und aussagekräftigere Berichte.',
       },
     ],
+  },
+}
+
+export const preventivePage = {
+  hero: {
+    eyebrow: 'Vorbeugende & vorausschauende Instandhaltung',
+    title: 'Jedem Ausfall einen Schritt voraus',
+    description:
+      'Planen Sie wiederkehrende Wartung für jede Anlage, handeln Sie auf Basis regelbasierter Vorhersagen und halten Sie die Technik an jedem Standort am Laufen, mit bis zu 40 % weniger reaktiver Arbeit.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    secondaryAction: { label: 'Plattform entdecken', href: '/platform' },
+    highlights: ['Wiederkehrende Pläne', 'Regelbasierte Vorhersagen', 'Compliance-Kalender'],
+    prediction: {
+      title: 'Fleet-Vorhersage',
+      asset: 'AHU-07 · Tower B, E14',
+      risk: 'Hohes Risiko',
+      message: 'Vibration seit 9 Tagen über dem Normalwert. Wartung innerhalb von 7 Tagen planen.',
+      action: 'Auftrag erstellen',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Jede Anlage hat ihren eigenen Rhythmus',
+      description:
+        'Klima, Aufzüge, Sanitär, Beleuchtung und Brandschutz folgen an jedem Standort eigenen Plänen, Checklisten und Prüfterminen.',
+      points: ['Wiederkehrende Pläne', 'Gesetzliche Prüfungen', 'Mehrere Standorte'],
+    },
+    answer: {
+      title: 'Fleet hält jeden Plan im Takt',
+      description:
+        'Fleet macht aus Wartungsplänen automatische Termine und zeigt mit Live-Daten, wo Sie als Nächstes handeln sollten.',
+    },
+  },
+  capabilities: {
+    title: 'So steuern Sie Ihre vorbeugende Instandhaltung intelligent',
+    description:
+      'Von wiederkehrenden Plänen bis zu nachvollziehbaren Vorhersagen: Ihr ganzes Programm auf einer Plattform.',
+    tabs: [
+      {
+        icon: 'schedules',
+        label: 'Pläne',
+        title: 'Wiederkehrende Wartungspläne',
+        description:
+          'Planen Sie vorbeugende Aufgaben für Klima, Sanitär, Beleuchtung, Aufzüge und Brandschutz nach Zeit oder Nutzung.',
+        points: [
+          'Zeit- und nutzungsbasierte Pläne',
+          'Bewährte Checklisten je Anlagentyp',
+          'Arbeit ausgewogen auf Techniker und Dienstleister verteilt',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Geplante Aufträge · Diese Woche',
+          items: [
+            {
+              title: 'Filterwechsel Klimaanlage',
+              location: 'Tower B · AHU-07',
+              status: 'Fällig in 4 Std.',
+              tone: 'due',
+            },
+            {
+              title: 'Jährliche Aufzugsprüfung',
+              location: 'Aufzüge L1–L3',
+              status: 'Geplant',
+              tone: 'info',
+            },
+            {
+              title: 'Test Notbeleuchtung',
+              location: 'Northgate Mall',
+              status: 'Erledigt',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Aufträge',
+        title: 'Aufträge automatisch erstellt',
+        description:
+          'Fleet erzeugt Wartungsaufträge aus dem Plan jeder Anlage und weist sie mit Checklisten dem richtigen Team zu.',
+        points: [
+          'Aufträge aus jedem Wartungsplan',
+          'Zuweisung an interne Teams oder Dienstleister',
+          'Fotonachweise und Messwerte beim Abschluss',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'Wartungsautomatisierung',
+          steps: [
+            { kind: 'Plan', text: 'Kältemaschine CH-02 · Quartalswartung' },
+            { kind: 'Dann', text: 'Auftrag 14 Tage vorher erstellen' },
+            { kind: 'Dann', text: 'Klimadienstleister zuweisen + Checkliste anhängen' },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Vorhersagen',
+        title: 'Nachvollziehbare Warnungen',
+        description:
+          'Regelbasiertes maschinelles Lernen bewertet Anlagenrisiken aus Live- und Verlaufsdaten, und jede Warnung verweist auf ihre Regel.',
+        points: [
+          'Anlagenrisiko aus Live- und Verlaufsdaten',
+          'Jede Warnung mit der auslösenden Regel verknüpft',
+          'Mit einem Klick von der Vorhersage zum Auftrag',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Risikowarnungen',
+          items: [
+            {
+              title: 'AHU-07 Vibration steigt',
+              location: 'Tower B · Ebene 14',
+              status: 'Hohes Risiko',
+              tone: 'overdue',
+            },
+            {
+              title: 'Pumpe P-03 Druckabweichung',
+              location: 'Harbour Point',
+              status: 'Mittleres Risiko',
+              tone: 'due',
+            },
+            {
+              title: 'Kältemaschine CH-02 wieder im Normbereich',
+              location: 'Harbour Point',
+              status: 'Behoben',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'compliance',
+        label: 'Compliance',
+        title: 'Ein Compliance-Kalender für jeden Standort',
+        description:
+          'Verfolgen Sie gesetzliche Prüfungen und Zertifikate mit Erinnerungen vor jeder Fälligkeit und speichern Sie die Nachweise am Datensatz.',
+        points: [
+          'Erinnerungen vor jeder Prüfung und jedem Zertifikat',
+          'Zertifikate an jeder Anlage gespeichert',
+          'Prüfbereite Historie für jeden Standort',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Anstehende Compliance',
+          items: [
+            {
+              title: 'Brandschutzzertifikat',
+              location: 'Tower B · Fällig 30. Okt.',
+              status: 'In 24 Tagen',
+              tone: 'due',
+            },
+            {
+              title: 'Aufzugsprüfbericht',
+              location: 'Aufzüge · Fällig 12. Nov.',
+              status: 'Geplant',
+              tone: 'info',
+            },
+            {
+              title: 'Legionellen-Gefährdungsbeurteilung',
+              location: 'Bayview Residences',
+              status: 'Aktuell',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: PreventiveIcon; label: string })[],
+  },
+  rows: [
+    {
+      tag: 'Regelbasierte KI',
+      title: 'Vorhersagen, die Ausfälle verhindern',
+      description:
+        'Fleet beobachtet Anlagentrends und erkennt frühe Warnsignale, damit Ihr Team handelt, bevor Mieter etwas merken.',
+      points: [
+        'Messwerte über dem Normalwert lösen eine Warnung aus',
+        'Empfohlener nächster Schritt bei jeder Warnung',
+        'Vorgeschlagene Pläne für neue Anlagen mit RunnerAI',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Vorhersage-Aktivität',
+        entries: [
+          {
+            when: '09:42',
+            who: 'Fleet',
+            what: 'meldet AHU-07-Vibration seit 9 Tagen über Normalwert',
+          },
+          { when: '09:44', who: 'Aisha K.', what: 'hat aus der Warnung einen Auftrag erstellt' },
+          {
+            when: '08:58',
+            who: 'RunnerAI',
+            what: 'hat einen Wartungsplan für 6 neue Kältemaschinen vorgeschlagen',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Planung',
+      title: 'Vorbeugen zahlt sich aus',
+      description:
+        'Verlagern Sie Arbeit von reaktiven Reparaturen zu geplanter Wartung und sehen Sie den Unterschied bei Verfügbarkeit, Kosten und Komfort.',
+      points: [
+        'Vorbeugende und reaktive Arbeit nebeneinander verfolgt',
+        'Instandhaltungskosten nach Lebenszyklus geplant',
+        'Wiederkehrende Störungen werden zu vorbeugenden Aufgaben',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Anteil geplanter Instandhaltung',
+        stats: [
+          { label: 'Geplante Arbeit', value: '78 %' },
+          { label: 'Reaktive Arbeit', value: '22 %' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 84 },
+          { label: 'Tower B', value: 80 },
+          { label: 'Northgate', value: 76 },
+          { label: 'Bayview', value: 72 },
+          { label: 'Westport', value: 68 },
+        ],
+      },
+    },
+    {
+      tag: 'Teams und Dienstleister',
+      title: 'Reibungslose Abstimmung mit Teams und Dienstleistern',
+      description:
+        'Leiten Sie jeden vorbeugenden Auftrag an interne Techniker oder Vertragsdienstleister und verfolgen Sie den Fortschritt in Echtzeit.',
+      points: [
+        'Wartungsaufträge nach Standort, Gewerk und Vertrag',
+        'Dienstleister steigen über einen einfachen Link ein',
+        'Fotonachweise und Messwerte bei jedem Abschluss',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Wartung dieses Monats nach Zuständigkeit',
+        items: [
+          {
+            title: 'Internes Klimateam',
+            location: '24 Aufträge · 3 Standorte',
+            status: '92 % erledigt',
+            tone: 'done',
+          },
+          {
+            title: 'Aufzugsdienstleister',
+            location: '9 Aufträge · 5 Standorte',
+            status: 'Im Plan',
+            tone: 'info',
+          },
+          {
+            title: 'Brandschutzdienstleister',
+            location: '12 Aufträge · 4 Standorte',
+            status: '2 heute fällig',
+            tone: 'due',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  steps: {
+    eyebrow: 'So funktioniert es',
+    title: 'Vom Plan zum Nachweis',
+    items: [
+      {
+        title: 'Planen',
+        description: 'Anlagen und Wartungspläne laden oder mit bewährten Vorlagen starten.',
+      },
+      {
+        title: 'Terminieren',
+        description: 'Fleet erstellt und vergibt Aufträge automatisch vor jeder Fälligkeit.',
+      },
+      {
+        title: 'Erledigen',
+        description: 'Techniker folgen Checklisten und erfassen Fotos und Messwerte vor Ort.',
+      },
+      {
+        title: 'Vorhersagen',
+        description:
+          'Live- und Verlaufsdaten zeigen Risiken früh, sodass Pläne immer besser werden.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Jetzt starten',
+    title: 'Vorbeugende Instandhaltung richtig planen',
+    description:
+      'Unser Team lädt beim Onboarding gemeinsam mit Ihnen Anlagen und Wartungspläne, damit Termine ab Ihrer ersten Woche laufen.',
+    action: { label: 'Demo buchen', href: '/contact' },
+  },
+  trust: {
+    title: 'Vorbeugende Instandhaltung, auf die Sie sich verlassen können',
+    description:
+      'Fleet ist für Immobilienteams entwickelt, die komplexe Anlagen über mehrere Objekte hinweg betreuen.',
+    items: [
+      {
+        title: 'Für Immobilien entwickelt',
+        description: 'Regeln und Pläne je Objekt, Region oder Portfolio.',
+      },
+      {
+        title: 'Mobil im Einsatz',
+        description:
+          'Techniker erledigen Checklisten auf jedem Smartphone oder Tablet, iOS und Android.',
+      },
+      {
+        title: 'Prüfbereite Nachweise',
+        description: 'Jede Prüfung und Wartung mit Zeitstempel und Verantwortlichem.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet hat unsere reaktive Instandhaltung um fast 40 % reduziert. Endlich haben wir Techniker, Anlagenprotokolle und Auftragsdaten an einem Ort.',
+    author: 'Leitung Objektbetrieb',
+    company: 'Gemischt genutztes Quartier',
+  },
+  industries: {
+    title: 'Vorbeugende Instandhaltung für jede Objektart',
+    description:
+      'Vom Einkaufszentrum bis zum Logistikzentrum passt sich Fleet Ihren Anlagen und Ihrem Markt an.',
+  },
+  integrate: {
+    title: 'Für Integration gemacht',
+    description:
+      'Binden Sie Gebäudeleittechnik an, damit Alarme und Messwerte in Ihre Wartungspläne einfließen, neben mehr als 20 weiteren Integrationen.',
+    action: { label: 'Alle Integrationen ansehen', href: '/platform/integrations' },
   },
 }

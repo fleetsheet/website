@@ -1,0 +1,162 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import MockPanel from '@/components/ui/MockPanel.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import type { PreventiveIcon } from '@/data/en/platform'
+import { getLocale } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Building from '@lucide/astro/icons/building'
+import CalendarClock from '@lucide/astro/icons/calendar-clock'
+import Check from '@lucide/astro/icons/check'
+import ClipboardCheck from '@lucide/astro/icons/clipboard-check'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import Gauge from '@lucide/astro/icons/gauge'
+import Quote from '@lucide/astro/icons/quote'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
+import Smartphone from '@lucide/astro/icons/smartphone'
+import CapabilityTabs from './CapabilityTabs.astro'
+import ChallengeCards from './ChallengeCards.astro'
+import FeatureBanner from './FeatureBanner.astro'
+import FeatureRows from './FeatureRows.astro'
+import IndustriesIntegrate from './IndustriesIntegrate.astro'
+import OverviewVisual from './OverviewVisual.astro'
+import StepsBand from './StepsBand.astro'
+
+const { preventivePage, cta } = getContent(getLocale(Astro.url)).platform
+const { hero, challenge, capabilities, rows, steps, banner, trust, quote, industries, integrate } =
+  preventivePage
+const tabIcons = {
+  schedules: CalendarClock,
+  workOrders: ClipboardList,
+  predictions: Gauge,
+  compliance: ShieldCheck,
+} satisfies Record<PreventiveIcon, unknown>
+const trustIcons = [Building, Smartphone, ClipboardCheck]
+const heroVisual = capabilities.tabs[0].visual
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-azul-blue flex items-center gap-2.5">
+        <IconChip size="sm">
+          <CalendarClock />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate">{hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={hero.primaryAction.href}>
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="secondary">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+      <ul class="text-azul-blue flex flex-wrap gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="relative pb-16 lg:pb-20" aria-hidden="true">
+      <OverviewVisual visual={heroVisual} />
+      <div class="absolute end-0 bottom-0 w-[min(100%,320px)] lg:-end-6">
+        <MockPanel elevation="float" class="text-rich-blue flex flex-col gap-3">
+          <div class="flex items-center gap-2.5">
+            <IconChip size="sm">
+              <Gauge />
+            </IconChip>
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-semibold">{hero.prediction.title}</p>
+              <p class="text-muted text-xs">{hero.prediction.asset}</p>
+            </div>
+            <Badge tone="overdue">{hero.prediction.risk}</Badge>
+          </div>
+          <p class="text-[13px] leading-[1.5]">{hero.prediction.message}</p>
+          <span class="bg-rich-blue text-alice-blue self-start rounded-md px-3 py-1.5 text-xs font-semibold">
+            {hero.prediction.action}
+          </span>
+        </MockPanel>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
+
+<CapabilityTabs
+  idPrefix="preventive"
+  title={capabilities.title}
+  description={capabilities.description}
+  tabs={capabilities.tabs}
+  icons={capabilities.tabs.map((tab) => tabIcons[tab.icon])}
+/>
+
+<FeatureRows rows={rows} />
+
+<StepsBand eyebrow={steps.eyebrow} title={steps.title} items={steps.items} />
+
+<div class="pt-24">
+  <FeatureBanner
+    eyebrow={banner.eyebrow}
+    title={banner.title}
+    description={banner.description}
+    action={banner.action}
+  >
+    <CalendarClock class="text-sky-blue size-16" />
+  </FeatureBanner>
+</div>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-12">
+  <SectionHeader title={trust.title} description={trust.description} />
+  <ul class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    {trust.items.map((item, index) => {
+      const Icon = trustIcons[index % trustIcons.length]
+      return (
+        <li class="flex flex-col gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h3 class="text-lg font-semibold">{item.title}</h3>
+          <p class="text-azul-blue text-[15px] leading-[1.55]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<section>
+  <Container width="wide" class="pt-24">
+    <figure class="bg-azul-blue text-alice-blue flex flex-col gap-6 rounded-2xl p-[clamp(32px,5vw,64px)]">
+      <Quote class="text-sky-blue size-10 rtl:-scale-x-100" aria-hidden="true" />
+      <blockquote class="font-display text-display-md max-w-[900px] text-white">
+        {quote.text}
+      </blockquote>
+      <figcaption class="text-sm">
+        <span class="block font-semibold text-white">{quote.author}</span>
+        <span class="text-columbia-blue">{quote.company}</span>
+      </figcaption>
+    </figure>
+  </Container>
+</section>
+
+<IndustriesIntegrate industries={industries} integrate={integrate} />
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>

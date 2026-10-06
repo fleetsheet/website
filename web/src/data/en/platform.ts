@@ -120,6 +120,7 @@ export const pages: {
   runnerAi: PlatformEntry
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
+  preventiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -182,81 +183,6 @@ export const pages: {
       title: 'Preventive & Predictive Maintenance | Fleet',
       description:
         'Schedule preventive maintenance for every asset and use rule-based predictions to act before equipment fails, across every site in your portfolio.',
-    },
-    eyebrow: 'Preventive & Predictive Maintenance',
-    title: 'Stay Ahead of Every Breakdown',
-    description:
-      'Plan recurring maintenance for every asset and use rule-based predictions to spot risk early, keeping equipment running and tenants comfortable.',
-    highlights: ['Recurring schedules', 'Rule-based predictions', 'Up to 40% less reactive work'],
-    features: {
-      title: 'Plan Maintenance with Confidence',
-      description:
-        'Turn maintenance plans into automatic schedules and let live data tell you where to act next.',
-      items: [
-        {
-          title: 'Recurring PPM schedules',
-          description:
-            'Schedule preventive tasks for HVAC, plumbing, lighting, lifts and fire safety by time or usage.',
-        },
-        {
-          title: 'Automatic job creation',
-          description:
-            'Fleet generates PPM work orders from each asset’s plan and assigns them to the right team.',
-        },
-        {
-          title: 'Predictive alerts',
-          description:
-            'Readings trending above baseline raise a traceable alert with a recommended next step.',
-        },
-        {
-          title: 'Industry-standard templates',
-          description:
-            'Start with best-practice checklists for each asset type and adapt them to your sites.',
-        },
-        {
-          title: 'Workload planning',
-          description:
-            'Balance schedules across technicians and vendors and see upcoming work at a glance.',
-        },
-        {
-          title: 'Compliance calendar',
-          description:
-            'Track statutory inspections and certificates with reminders before every due date.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'From Schedule to Signed-Off Job',
-        description:
-          'Each preventive task carries its checklist, asset history and documents, so technicians arrive prepared.',
-        points: [
-          'Checklists and SOPs attached to each task',
-          'Photo proof and readings captured on completion',
-          'Overdue tasks escalated automatically',
-        ],
-      },
-      {
-        title: 'Predictions You Can Trace',
-        description:
-          'Fleet’s rule-based machine learning explains every recommendation, so teams act with confidence.',
-        points: [
-          'Equipment risk scored from live and historical data',
-          'Each alert linked to the rule that triggered it',
-          'One click from prediction to work order',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Preventive Maintenance in Practice',
-      description: 'How property teams keep critical systems in peak condition.',
-      items: [
-        'Quarterly HVAC filter changes across every building',
-        'Annual lift certification with reminders 30 days ahead',
-        'Monthly emergency lighting tests logged with photos',
-        'Chiller vibration monitored with predictive alerts',
-        'Fire door inspections scheduled by floor and stairwell',
-      ],
     },
   },
   reactiveMaintenance: {
@@ -1348,6 +1274,8 @@ export const integrationsPage = {
   },
 }
 
+export type PreventiveIcon = 'schedules' | 'workOrders' | 'predictions' | 'compliance'
+
 export type RunnerAiIcon = 'data' | 'tasks' | 'workflows' | 'dashboards'
 
 export const runnerAiPage = {
@@ -2022,5 +1950,321 @@ export const workflowBuilderPage = {
         description: 'Structured workflows produce cleaner data and more actionable reports.',
       },
     ],
+  },
+}
+
+export const preventivePage = {
+  hero: {
+    eyebrow: 'Preventive & Predictive Maintenance',
+    title: 'Stay One Step Ahead of Every Breakdown',
+    description:
+      'Plan recurring maintenance for every asset, act on rule-based predictions and keep equipment running across every site, with up to 40% less reactive work.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    secondaryAction: { label: 'Explore the platform', href: '/platform' },
+    highlights: ['Recurring schedules', 'Rule-based predictions', 'Compliance calendar'],
+    prediction: {
+      title: 'Fleet prediction',
+      asset: 'AHU-07 · Tower B, L14',
+      risk: 'High risk',
+      message: 'Vibration trending above baseline for 9 days. Schedule maintenance within 7 days.',
+      action: 'Create work order',
+    },
+  },
+  challenge: {
+    pressure: {
+      title: 'Every Asset Has Its Own Rhythm',
+      description:
+        'HVAC, lifts, plumbing, lighting and fire safety each follow their own schedules, checklists and compliance dates across every site.',
+      points: ['Recurring schedules', 'Statutory inspections', 'Multiple sites'],
+    },
+    answer: {
+      title: 'Fleet Keeps Every Plan on Track',
+      description:
+        'Fleet turns maintenance plans into automatic schedules and uses live data to show where to act next.',
+    },
+  },
+  capabilities: {
+    title: 'The Smart Way to Run Your Preventive Maintenance Program',
+    description:
+      'From recurring schedules to traceable predictions, every part of your program in one platform.',
+    tabs: [
+      {
+        icon: 'schedules',
+        label: 'Schedules',
+        title: 'Recurring PPM Schedules',
+        description:
+          'Schedule preventive tasks for HVAC, plumbing, lighting, lifts and fire safety by time or by usage.',
+        points: [
+          'Time-based and usage-based schedules',
+          'Best-practice checklists for each asset type',
+          'Workload balanced across technicians and vendors',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Planned jobs · This week',
+          items: [
+            {
+              title: 'HVAC filter replacement',
+              location: 'Tower B · AHU-07',
+              status: 'Due in 4h',
+              tone: 'due',
+            },
+            {
+              title: 'Lift annual certification',
+              location: 'Core lifts L1–L3',
+              status: 'Scheduled',
+              tone: 'info',
+            },
+            {
+              title: 'Emergency lighting test',
+              location: 'Northgate Mall',
+              status: 'Completed',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'workOrders',
+        label: 'Work orders',
+        title: 'Jobs Created Automatically',
+        description:
+          'Fleet generates PPM work orders from each asset’s plan and assigns them to the right team, with checklists attached.',
+        points: [
+          'Work orders generated from every maintenance plan',
+          'Assigned to in-house teams or vendors',
+          'Photo proof and readings captured on completion',
+        ],
+        visual: {
+          kind: 'steps',
+          title: 'PPM automation',
+          steps: [
+            { kind: 'Plan', text: 'Chiller CH-02 · quarterly service' },
+            { kind: 'Then', text: 'Create work order 14 days ahead' },
+            { kind: 'Then', text: 'Assign to HVAC vendor + attach checklist' },
+          ],
+        },
+      },
+      {
+        icon: 'predictions',
+        label: 'Predictions',
+        title: 'Predictive Alerts You Can Trace',
+        description:
+          'Rule-based machine learning scores equipment risk from live and historical data, and every alert links to the rule behind it.',
+        points: [
+          'Equipment risk scored from live and historical data',
+          'Each alert linked to the rule that triggered it',
+          'One click from prediction to work order',
+        ],
+        visual: {
+          kind: 'jobs',
+          title: 'Risk alerts',
+          items: [
+            {
+              title: 'AHU-07 vibration trending up',
+              location: 'Tower B · Level 14',
+              status: 'High risk',
+              tone: 'overdue',
+            },
+            {
+              title: 'Pump P-03 pressure drift',
+              location: 'Harbour Point',
+              status: 'Medium risk',
+              tone: 'due',
+            },
+            {
+              title: 'Chiller CH-02 back within range',
+              location: 'Harbour Point',
+              status: 'Resolved',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+      {
+        icon: 'compliance',
+        label: 'Compliance',
+        title: 'A Compliance Calendar for Every Site',
+        description:
+          'Track statutory inspections and certificates with reminders before every due date, and keep the evidence on each record.',
+        points: [
+          'Reminders before every inspection and certificate date',
+          'Certificates stored with each asset',
+          'Audit-ready history for every site',
+        ],
+        visual: {
+          kind: 'files',
+          title: 'Upcoming compliance',
+          items: [
+            {
+              title: 'Fire safety certificate',
+              location: 'Tower B · Due 30 Oct',
+              status: 'Due in 24d',
+              tone: 'due',
+            },
+            {
+              title: 'Lift inspection report',
+              location: 'Core lifts · Due 12 Nov',
+              status: 'Scheduled',
+              tone: 'info',
+            },
+            {
+              title: 'Legionella risk assessment',
+              location: 'Bayview Residences',
+              status: 'Up to date',
+              tone: 'done',
+            },
+          ],
+        },
+      },
+    ] satisfies (Omit<OverviewModule, 'id' | 'tag'> & { icon: PreventiveIcon; label: string })[],
+  },
+  rows: [
+    {
+      tag: 'Rule-based AI',
+      title: 'Predictions That Prevent Downtime',
+      description:
+        'Fleet watches equipment trends and flags early warning signs, so your team acts before a fault reaches tenants.',
+      points: [
+        'Readings trending above baseline raise an alert',
+        'Recommended next step with every alert',
+        'Suggested plans for new equipment with RunnerAI',
+      ],
+      visual: {
+        kind: 'log',
+        title: 'Prediction activity',
+        entries: [
+          {
+            when: '09:42',
+            who: 'Fleet',
+            what: 'flagged AHU-07 vibration above baseline for 9 days',
+          },
+          { when: '09:44', who: 'Aisha K.', what: 'created a work order from the alert' },
+          { when: '08:58', who: 'RunnerAI', what: 'suggested a PPM plan for 6 new chillers' },
+        ],
+      },
+    },
+    {
+      tag: 'Planning',
+      title: 'Prevention Pays Off',
+      description:
+        'Shift work from reactive repairs to planned maintenance and see the difference in uptime, cost and tenant comfort.',
+      points: [
+        'Preventive and reactive work tracked side by side',
+        'Maintenance spend planned by asset lifecycle',
+        'Recurring issues turned into preventive tasks',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Planned share of maintenance',
+        stats: [
+          { label: 'Planned work', value: '78%' },
+          { label: 'Reactive work', value: '22%' },
+        ],
+        bars: [
+          { label: 'Harbour Point', value: 84 },
+          { label: 'Tower B', value: 80 },
+          { label: 'Northgate', value: 76 },
+          { label: 'Bayview', value: 72 },
+          { label: 'Westport', value: 68 },
+        ],
+      },
+    },
+    {
+      tag: 'Teams and vendors',
+      title: 'Seamless Coordination with Teams and Vendors',
+      description:
+        'Route each preventive job to in-house technicians or contracted vendors, and follow progress in real time.',
+      points: [
+        'PPM jobs routed by site, trade and contract',
+        'Vendors join through a simple link',
+        'Photo proof and readings on every completed job',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'This month’s PPM by assignee',
+        items: [
+          {
+            title: 'In-house HVAC team',
+            location: '24 jobs · 3 sites',
+            status: '92% done',
+            tone: 'done',
+          },
+          { title: 'Lift vendor', location: '9 jobs · 5 sites', status: 'On track', tone: 'info' },
+          {
+            title: 'Fire safety vendor',
+            location: '12 jobs · 4 sites',
+            status: '2 due today',
+            tone: 'due',
+          },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  steps: {
+    eyebrow: 'How it works',
+    title: 'From Plan to Proof',
+    items: [
+      {
+        title: 'Plan',
+        description:
+          'Load your assets and maintenance plans, or start from best-practice templates.',
+      },
+      {
+        title: 'Schedule',
+        description:
+          'Fleet creates and assigns work orders automatically, ahead of every due date.',
+      },
+      {
+        title: 'Complete',
+        description: 'Technicians follow checklists and capture photos and readings on site.',
+      },
+      {
+        title: 'Predict',
+        description: 'Live and historical data highlight risk early, so plans keep improving.',
+      },
+    ],
+  },
+  banner: {
+    eyebrow: 'Get started',
+    title: 'Plan Preventive Maintenance, Properly',
+    description:
+      'Our team helps you load your assets and maintenance plans during onboarding, so schedules run from your first week.',
+    action: { label: 'Book a demo', href: '/contact' },
+  },
+  trust: {
+    title: 'Preventive Maintenance You Can Rely On',
+    description:
+      'Fleet is purpose-built for real estate teams managing complex assets across multiple properties.',
+    items: [
+      {
+        title: 'Built for real estate',
+        description: 'Rules and plans set by property, region or portfolio.',
+      },
+      {
+        title: 'Mobile for the field',
+        description: 'Technicians complete checklists on any phone or tablet, iOS and Android.',
+      },
+      {
+        title: 'Audit-ready records',
+        description: 'Every inspection and service is time-stamped and attributed.',
+      },
+    ],
+  },
+  quote: {
+    text: 'Fleet has cut our reactive maintenance load by nearly 40%. We’ve finally got our technicians, asset logs, and job records in one place.',
+    author: 'Property Ops Lead',
+    company: 'Mixed-Use Development',
+  },
+  industries: {
+    title: 'Preventive Maintenance for Every Property Type',
+    description:
+      'From shopping malls to logistics hubs, Fleet adapts to your assets and your market.',
+  },
+  integrate: {
+    title: 'Built to Integrate',
+    description:
+      'Connect building management systems so alarms and readings feed your preventive plans, alongside 20+ other integrations.',
+    action: { label: 'See all integrations', href: '/platform/integrations' },
   },
 }
