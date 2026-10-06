@@ -121,6 +121,7 @@ export const pages: {
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
+  reactiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -192,79 +193,6 @@ export const pages: {
       title: 'Reactive Maintenance | Fleet',
       description:
         'Track ad-hoc repairs from request to resolution with mobile updates, smart routing and live SLA tracking across every property.',
-    },
-    eyebrow: 'Reactive Maintenance',
-    title: 'Resolve Every Repair, Fast',
-    description:
-      'Capture unplanned issues the moment they happen, send them to the right team and track every repair to completion against your SLAs.',
-    highlights: ['Live SLA tracking', 'Photo-based requests', 'Smart routing'],
-    features: {
-      title: 'From Request to Resolution',
-      description: 'A clear path for every repair, with the right people informed at each step.',
-      items: [
-        {
-          title: 'Quick request capture',
-          description:
-            'Staff and tenants log issues with photos, location and priority from any device.',
-        },
-        {
-          title: 'Smart assignment',
-          description: 'Route jobs to in-house teams or vendors based on site, trade and urgency.',
-        },
-        {
-          title: 'SLA tracking',
-          description:
-            'Response and resolution times are measured live, with alerts before a deadline passes.',
-        },
-        {
-          title: 'Real-time updates',
-          description:
-            'Technicians update status, add notes and upload proof straight from the field.',
-        },
-        {
-          title: 'Cost approvals',
-          description:
-            'Quotes and costs above set thresholds go to the right approver automatically.',
-        },
-        {
-          title: 'Central job dashboard',
-          description:
-            'Monitor open, overdue and completed jobs across every property in one view.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Every Issue, Captured in Context',
-        description:
-          'Each repair is linked to its asset, location and history, so technicians understand the problem before they arrive.',
-        points: [
-          'Asset history and manuals on every job',
-          'Photo and video evidence from the requester',
-          'Related jobs grouped automatically',
-        ],
-      },
-      {
-        title: 'Learn from Every Repair',
-        description:
-          'Reactive data shows where issues recur, helping you shift more work into preventive plans.',
-        points: [
-          'Recurring issues highlighted by building and asset',
-          'Repair costs tracked by site, trade and vendor',
-          'Insights that shape your preventive schedule',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Reactive Maintenance in Practice',
-      description: 'Everyday repairs handled with speed and full visibility.',
-      items: [
-        'A water leak in Unit 3B logged with photos and fixed the same day',
-        'A loading bay door repair routed to the contracted vendor',
-        'A chiller alarm escalated to the on-call engineer',
-        'A high-cost repair sent to finance for approval',
-        'SLA performance reviewed by building each month',
-      ],
     },
   },
   analyticsReporting: {
@@ -2266,5 +2194,193 @@ export const preventivePage = {
     description:
       'Connect building management systems so alarms and readings feed your preventive plans, alongside 20+ other integrations.',
     action: { label: 'See all integrations', href: '/platform/integrations' },
+  },
+}
+
+export const reactivePage = {
+  hero: {
+    eyebrow: 'Reactive Maintenance',
+    title: 'Resolve Every Repair, Fast',
+    description:
+      'Capture unplanned issues the moment they happen, send them to the right team and track every repair to completion against your SLAs.',
+    primaryAction: { label: 'Book a demo', href: '/contact' },
+    secondaryAction: { label: 'Explore the platform', href: '/platform' },
+    highlights: ['Live SLA tracking', 'Photo-based requests', 'Smart routing'],
+    visual: {
+      kind: 'jobs',
+      title: 'Work orders · Today',
+      items: [
+        {
+          title: 'Water leak, Unit 3B',
+          location: 'Bayview Residences · Photo attached',
+          status: 'Overdue by 2h',
+          tone: 'overdue',
+        },
+        {
+          title: 'Loading bay door repair',
+          location: 'Westport DC · Contracted vendor',
+          status: 'Assigned',
+          tone: 'info',
+        },
+        {
+          title: 'Chiller alarm',
+          location: 'Harbour Point · On-call engineer',
+          status: 'In progress',
+          tone: 'due',
+        },
+        {
+          title: 'Lighting fault, Level 2',
+          location: 'Northgate Mall',
+          status: 'Completed',
+          tone: 'done',
+        },
+      ],
+    } satisfies OverviewVisual,
+  },
+  columns: [
+    {
+      title: 'Clear status for every job',
+      description:
+        'See every request from first report to sign-off, with live status, SLA timers and photo proof in one place.',
+    },
+    {
+      title: 'Updates for everyone involved',
+      description:
+        'Tenants, technicians, vendors and managers receive the right update at the right moment, by app or email.',
+    },
+    {
+      title: 'Records in the cloud',
+      description:
+        'Every job, photo and approval is stored securely and available from any device, wherever your team works.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Work order management',
+      title: 'End-to-End Reactive Maintenance',
+      description:
+        'From the first report to the final sign-off, every repair follows a clear path with the right people informed at each step.',
+      points: [
+        'Requests routed to in-house teams or vendors by site, trade and urgency',
+        'Costs above set thresholds sent to the right approver automatically',
+        'Open, overdue and completed jobs visible across every property',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Job dashboard · All sites',
+        items: [
+          { title: '42 open jobs', location: 'Across 14 sites', status: 'Live', tone: 'info' },
+          {
+            title: '3 jobs near SLA deadline',
+            location: 'Alerts sent to supervisors',
+            status: 'Due soon',
+            tone: 'due',
+          },
+          {
+            title: 'Repair quote above $3,000',
+            location: 'Sent to finance for approval',
+            status: 'Approval',
+            tone: 'due',
+          },
+          {
+            title: '118 jobs closed this week',
+            location: 'Photo proof on every job',
+            status: 'Done',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Communication',
+      title: 'Straight to the Point',
+      description:
+        'Requests arrive with photos, location and asset details, so technicians understand the problem before they arrive.',
+      points: [
+        'Photo and video evidence from the requester',
+        'Asset history and manuals on every job',
+        'Replies and updates kept on the job history',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2291 · Water leak',
+        request: {
+          title: 'Water leak, Unit 3B',
+          location: 'Bayview Residences · Riser valve V-12',
+          status: 'Assigned',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Tenant',
+            text: 'Water is coming through the bathroom ceiling. Photo attached.',
+            time: '08:12',
+            own: false,
+          },
+          {
+            from: 'Marco L.',
+            text: 'On my way. Valve V-12 was serviced in June, checking it first.',
+            time: '08:20',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Seal replaced and leak fixed. Photos added to the job.',
+            time: '11:05',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Location',
+      title: 'Every Job, Pinned to Its Place',
+      description:
+        'Each repair is linked to its building, floor, room and asset, so the right person goes straight to the right spot.',
+      points: [
+        'Jobs organized by building, floor, room or zone',
+        'Related jobs at the same location grouped automatically',
+        'Recurring issues highlighted by building and asset',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Job location',
+        name: 'Riser valve V-12',
+        location: 'Bayview Residences · Level 3 · Unit 3B',
+        status: 'In repair',
+        facts: [
+          { label: 'Building', value: 'Bayview Residences' },
+          { label: 'Floor', value: 'Level 3' },
+          { label: 'Last service', value: '14 Jun' },
+          { label: 'Jobs this year', value: '2' },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  happy: {
+    eyebrow: 'Service quality',
+    title: 'Everything Working, Everyone Happy',
+    description:
+      'Fast, well-documented repairs keep tenants comfortable and teams accountable. Live SLA tracking shows where service is strong and where to step in.',
+    points: [
+      'Response and resolution times measured live',
+      'Alerts before a deadline passes',
+      'SLA performance reviewed by building each month',
+    ],
+    visual: {
+      kind: 'chart',
+      title: 'SLA met by building · September',
+      stats: [
+        { label: 'SLA met', value: '96.4%' },
+        { label: 'Avg. response', value: '1.8h' },
+      ],
+      bars: [
+        { label: 'Harbour Point', value: 98 },
+        { label: 'Tower B', value: 97 },
+        { label: 'Northgate', value: 96 },
+        { label: 'Bayview', value: 95 },
+        { label: 'Westport', value: 93 },
+      ],
+    } satisfies OverviewVisual,
   },
 }

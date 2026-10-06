@@ -1,0 +1,121 @@
+---
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Check from '@lucide/astro/icons/check'
+import CircleCheck from '@lucide/astro/icons/circle-check'
+import Cloud from '@lucide/astro/icons/cloud'
+import MessageSquare from '@lucide/astro/icons/message-square'
+import Quote from '@lucide/astro/icons/quote'
+import Wrench from '@lucide/astro/icons/wrench'
+import FeatureRows from './FeatureRows.astro'
+import OverviewVisual from './OverviewVisual.astro'
+
+const { reactivePage, webMobile, cta } = getContent(getLocale(Astro.url)).platform
+const { hero, columns, rows, happy } = reactivePage
+const { stories } = webMobile
+const columnIcons = [CircleCheck, MessageSquare, Cloud]
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.1fr] lg:py-24">
+    <div class="order-2 lg:order-1">
+      <OverviewVisual visual={hero.visual} />
+    </div>
+    <div class="order-1 flex flex-col items-start gap-6 lg:order-2">
+      <p class="eyebrow text-azul-blue flex items-center gap-2.5">
+        <IconChip size="sm">
+          <Wrench />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate">{hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={hero.primaryAction.href}>
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="secondary">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+      <ul class="text-azul-blue flex flex-wrap gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Container>
+</section>
+
+<PageSection containerClass="flex flex-col">
+  <ul class="grid grid-cols-1 gap-10 md:grid-cols-3">
+    {columns.map((item, index) => {
+      const Icon = columnIcons[index % columnIcons.length]
+      return (
+        <li class="flex flex-col gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h2 class="text-xl font-semibold">{item.title}</h2>
+          <p class="text-azul-blue text-[15px] leading-[1.6]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<div class="bg-surface border-border border-y">
+  <FeatureRows rows={rows} />
+</div>
+
+<section>
+  <Container width="wide" class="py-24">
+    <div class="bg-azul-blue text-alice-blue grid grid-cols-1 items-center gap-10 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-2 lg:gap-16">
+      <div class="flex flex-col items-start gap-6">
+        <SectionHeader
+          eyebrow={happy.eyebrow}
+          title={happy.title}
+          description={happy.description}
+          tone="dark"
+        />
+        <CheckList items={happy.points} class="gap-3" />
+      </div>
+      <OverviewVisual visual={happy.visual} />
+    </div>
+  </Container>
+</section>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-12">
+  <SectionHeader eyebrow={stories.eyebrow} title={stories.title} />
+  <ul class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {stories.items.map((story) => (
+      <li class="bg-page border-border flex flex-col gap-6 rounded-xl border p-8">
+        <Quote class="text-celestial-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
+        <blockquote class="font-display text-xl leading-snug font-medium">{story.quote}</blockquote>
+        <p class="mt-auto text-sm">
+          <span class="block font-semibold">{story.author}</span>
+          <span class="text-azul-blue">{story.company}</span>
+        </p>
+      </li>
+    ))}
+  </ul>
+</PageSection>
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>
