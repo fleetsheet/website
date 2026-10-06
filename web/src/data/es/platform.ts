@@ -5,6 +5,7 @@ import type {
   IntegrationIcon,
   IntegrationItem,
   OverviewModule,
+  OverviewVisual,
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
@@ -54,6 +55,7 @@ export const pages: {
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
+  reactiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -125,81 +127,6 @@ export const pages: {
       title: 'Mantenimiento correctivo | Fleet',
       description:
         'Siga las reparaciones imprevistas desde la solicitud hasta la resolución con actualizaciones móviles, asignación inteligente y seguimiento del SLA en tiempo real en cada propiedad.',
-    },
-    eyebrow: 'Mantenimiento correctivo',
-    title: 'Cada reparación, resuelta con rapidez',
-    description:
-      'Registre las incidencias en cuanto ocurren, envíelas al equipo adecuado y siga cada reparación hasta su cierre según sus SLA.',
-    highlights: ['Seguimiento del SLA en vivo', 'Solicitudes con fotos', 'Asignación inteligente'],
-    features: {
-      title: 'De la solicitud a la solución',
-      description:
-        'Un camino claro para cada reparación, con las personas adecuadas informadas en cada paso.',
-      items: [
-        {
-          title: 'Registro rápido',
-          description:
-            'Personal e inquilinos comunican incidencias con fotos, ubicación y prioridad desde cualquier dispositivo.',
-        },
-        {
-          title: 'Asignación inteligente',
-          description:
-            'Envíe trabajos a equipos internos o proveedores según sede, especialidad y urgencia.',
-        },
-        {
-          title: 'Seguimiento del SLA',
-          description:
-            'Los tiempos de respuesta y resolución se miden en vivo, con avisos antes de que venza un plazo.',
-        },
-        {
-          title: 'Actualizaciones en tiempo real',
-          description:
-            'Los técnicos actualizan el estado, añaden notas y suben pruebas desde el terreno.',
-        },
-        {
-          title: 'Aprobación de costes',
-          description:
-            'Los presupuestos y costes que superan los umbrales llegan automáticamente a quien debe aprobarlos.',
-        },
-        {
-          title: 'Panel central de trabajos',
-          description:
-            'Siga los trabajos abiertos, vencidos y completados de todas las propiedades en una sola vista.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Cada incidencia, registrada en contexto',
-        description:
-          'Cada reparación está vinculada a su activo, ubicación e historial, para que los técnicos entiendan el problema antes de llegar.',
-        points: [
-          'Historial y manuales del activo en cada trabajo',
-          'Fotos y vídeos aportados por el solicitante',
-          'Trabajos relacionados agrupados automáticamente',
-        ],
-      },
-      {
-        title: 'Aprenda de cada reparación',
-        description:
-          'Los datos del correctivo muestran dónde se repiten las incidencias y ayudan a llevar más trabajo a los planes preventivos.',
-        points: [
-          'Incidencias recurrentes destacadas por edificio y activo',
-          'Costes de reparación por sede, especialidad y proveedor',
-          'Conclusiones que dan forma a su plan preventivo',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Mantenimiento correctivo en la práctica',
-      description: 'Reparaciones del día a día resueltas con rapidez y total visibilidad.',
-      items: [
-        'Una fuga en la vivienda 3B registrada con fotos y reparada el mismo día',
-        'La reparación de una puerta de muelle enviada al proveedor contratado',
-        'Una alarma de enfriadora escalada al técnico de guardia',
-        'Una reparación costosa enviada a finanzas para su aprobación',
-        'El rendimiento del SLA revisado cada mes por edificio',
-      ],
     },
   },
   analyticsReporting: {
@@ -2259,5 +2186,198 @@ export const preventivePage = {
     description:
       'Conecte su sistema de gestión del edificio para que alarmas y lecturas alimenten sus planes preventivos, junto a más de 20 integraciones.',
     action: { label: 'Ver todas las integraciones', href: '/platform/integrations' },
+  },
+}
+
+export const reactivePage = {
+  hero: {
+    eyebrow: 'Mantenimiento correctivo',
+    title: 'Cada reparación, resuelta con rapidez',
+    description:
+      'Registre las incidencias en cuanto ocurren, envíelas al equipo adecuado y siga cada reparación hasta su cierre según sus SLA.',
+    primaryAction: { label: 'Reservar una demo', href: '/contact' },
+    secondaryAction: { label: 'Explorar la plataforma', href: '/platform' },
+    highlights: ['Seguimiento del SLA en vivo', 'Solicitudes con fotos', 'Asignación inteligente'],
+    visual: {
+      kind: 'jobs',
+      title: 'Órdenes de trabajo · Hoy',
+      items: [
+        {
+          title: 'Fuga de agua, vivienda 3B',
+          location: 'Bayview Residences · Foto adjunta',
+          status: 'Vencida hace 2 h',
+          tone: 'overdue',
+        },
+        {
+          title: 'Reparación puerta de muelle',
+          location: 'Westport DC · Proveedor contratado',
+          status: 'Asignada',
+          tone: 'info',
+        },
+        {
+          title: 'Alarma de enfriadora',
+          location: 'Harbour Point · Técnico de guardia',
+          status: 'En curso',
+          tone: 'due',
+        },
+        {
+          title: 'Fallo de iluminación, planta 2',
+          location: 'Northgate Mall',
+          status: 'Completada',
+          tone: 'done',
+        },
+      ],
+    } satisfies OverviewVisual,
+  },
+  columns: [
+    {
+      title: 'Estado claro de cada trabajo',
+      description:
+        'Cada solicitud, del aviso al cierre, con estado en vivo, temporizadores de SLA y pruebas fotográficas en un solo lugar.',
+    },
+    {
+      title: 'Novedades para todos los implicados',
+      description:
+        'Inquilinos, técnicos, proveedores y responsables reciben la novedad adecuada en el momento justo, por app o correo.',
+    },
+    {
+      title: 'Registros en la nube',
+      description:
+        'Cada trabajo, foto y aprobación se guarda de forma segura y está disponible en cualquier dispositivo, desde cualquier lugar.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Gestión de órdenes de trabajo',
+      title: 'Mantenimiento correctivo de principio a fin',
+      description:
+        'Desde el primer aviso hasta el cierre, cada reparación sigue un camino claro, con las personas adecuadas informadas en cada paso.',
+      points: [
+        'Solicitudes a equipos internos o proveedores según sede, especialidad y urgencia',
+        'Costes por encima del umbral enviados automáticamente a quien debe aprobarlos',
+        'Trabajos abiertos, vencidos y completados visibles en todas las propiedades',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Panel de trabajos · Todas las sedes',
+        items: [
+          {
+            title: '42 trabajos abiertos',
+            location: 'En 14 sedes',
+            status: 'En vivo',
+            tone: 'info',
+          },
+          {
+            title: '3 trabajos cerca del plazo SLA',
+            location: 'Supervisores avisados',
+            status: 'Vence pronto',
+            tone: 'due',
+          },
+          {
+            title: 'Presupuesto de reparación de más de 3.000 $',
+            location: 'Enviado a finanzas para su aprobación',
+            status: 'Aprobación',
+            tone: 'due',
+          },
+          {
+            title: '118 trabajos cerrados esta semana',
+            location: 'Prueba fotográfica en cada uno',
+            status: 'Hecho',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Comunicación',
+      title: 'Directo al grano',
+      description:
+        'Las solicitudes llegan con fotos, ubicación y datos del activo, para que los técnicos entiendan el problema antes de llegar.',
+      points: [
+        'Fotos y vídeos aportados por el solicitante',
+        'Historial y manuales del activo en cada trabajo',
+        'Respuestas y novedades guardadas en el historial',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2291 · Fuga de agua',
+        request: {
+          title: 'Fuga de agua, vivienda 3B',
+          location: 'Bayview Residences · Válvula de montante V-12',
+          status: 'Asignada',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Inquilino',
+            text: 'Entra agua por el techo del baño. Adjunto foto.',
+            time: '08:12',
+            own: false,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Voy para allá. La válvula V-12 se revisó en junio, la compruebo primero.',
+            time: '08:20',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Junta sustituida y fuga reparada. Fotos añadidas al trabajo.',
+            time: '11:05',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Ubicación',
+      title: 'Cada trabajo, en su sitio',
+      description:
+        'Cada reparación está vinculada a su edificio, planta, sala y activo, para que la persona adecuada vaya directa al lugar correcto.',
+      points: [
+        'Trabajos organizados por edificio, planta, sala o zona',
+        'Trabajos en la misma ubicación agrupados automáticamente',
+        'Incidencias recurrentes destacadas por edificio y activo',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Ubicación del trabajo',
+        name: 'Válvula de montante V-12',
+        location: 'Bayview Residences · Planta 3 · Vivienda 3B',
+        status: 'En reparación',
+        facts: [
+          { label: 'Edificio', value: 'Bayview Residences' },
+          { label: 'Planta', value: 'Planta 3' },
+          { label: 'Último servicio', value: '14 jun.' },
+          { label: 'Trabajos este año', value: '2' },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  happy: {
+    eyebrow: 'Calidad del servicio',
+    title: 'Todo funciona y todos están satisfechos',
+    description:
+      'Las reparaciones rápidas y bien documentadas mantienen a los inquilinos satisfechos y a los equipos responsables. El seguimiento del SLA en vivo muestra dónde el servicio es sólido y dónde intervenir.',
+    points: [
+      'Tiempos de respuesta y resolución medidos en vivo',
+      'Avisos antes de que venza un plazo',
+      'Rendimiento del SLA revisado cada mes por edificio',
+    ],
+    visual: {
+      kind: 'chart',
+      title: 'SLA cumplido por edificio · Septiembre',
+      stats: [
+        { label: 'SLA cumplido', value: '96,4 %' },
+        { label: 'Respuesta media', value: '1,8 h' },
+      ],
+      bars: [
+        { label: 'Harbour Point', value: 98 },
+        { label: 'Tower B', value: 97 },
+        { label: 'Northgate', value: 96 },
+        { label: 'Bayview', value: 95 },
+        { label: 'Westport', value: 93 },
+      ],
+    } satisfies OverviewVisual,
   },
 }

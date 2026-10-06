@@ -5,6 +5,7 @@ import type {
   IntegrationIcon,
   IntegrationItem,
   OverviewModule,
+  OverviewVisual,
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
@@ -53,6 +54,7 @@ export const pages: {
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
+  reactiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -124,67 +126,6 @@ export const pages: {
       title: '被动维修 | Fleet',
       description:
         '借助移动端更新、智能分派和实时 SLA 追踪，从报修到解决全程跟进每个物业的临时维修。',
-    },
-    eyebrow: '被动维修',
-    title: '每一次维修，都快速解决',
-    description: '在问题发生的第一时间记录，交给合适的团队，并按 SLA 跟进每项维修直至完成。',
-    highlights: ['实时 SLA 追踪', '带照片报修', '智能分派'],
-    features: {
-      title: '从报修到解决',
-      description: '每项维修都有清晰路径，每一步都通知到相关人员。',
-      items: [
-        {
-          title: '快速报修',
-          description: '员工和租户可在任何设备上附照片、位置和优先级提交问题。',
-        },
-        {
-          title: '智能分派',
-          description: '根据站点、工种和紧急程度，将工单派给内部团队或供应商。',
-        },
-        {
-          title: 'SLA 追踪',
-          description: '实时衡量响应与解决时间，并在截止前发出提醒。',
-        },
-        {
-          title: '实时更新',
-          description: '技术人员在现场直接更新状态、添加备注并上传凭证。',
-        },
-        {
-          title: '费用审批',
-          description: '超过设定阈值的报价和费用会自动提交给相应审批人。',
-        },
-        {
-          title: '集中工单看板',
-          description: '在一个视图中掌握所有物业的未完成、逾期和已完成工单。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '每个问题都有完整上下文',
-        description: '每项维修都关联资产、位置和历史，技术人员到场前就能了解问题。',
-        points: ['每张工单附带资产历史和手册', '报修人提供的照片和视频', '相关工单自动归组'],
-      },
-      {
-        title: '从每次维修中学习',
-        description: '被动维修数据揭示问题反复出现的地方，帮助您把更多工作转为预防性计划。',
-        points: [
-          '按楼宇和资产突出显示重复问题',
-          '按站点、工种和供应商追踪维修成本',
-          '用洞察优化预防性计划',
-        ],
-      },
-    ],
-    useCases: {
-      title: '被动维修实践',
-      description: '日常维修处理迅速、全程透明。',
-      items: [
-        '3B 单元漏水附照片上报，当天修复',
-        '装卸口门维修派给签约供应商',
-        '冷水机组告警升级给值班工程师',
-        '高额维修提交财务审批',
-        '每月按楼宇复盘 SLA 表现',
-      ],
     },
   },
   analyticsReporting: {
@@ -1808,5 +1749,172 @@ export const preventivePage = {
     title: '为集成而生',
     description: '连接楼宇管理系统，让告警和读数融入预防性计划，并可搭配另外 20 多项集成。',
     action: { label: '查看全部集成', href: '/platform/integrations' },
+  },
+}
+
+export const reactivePage = {
+  hero: {
+    eyebrow: '被动维修',
+    title: '每一次维修，都快速解决',
+    description: '在问题发生的第一时间记录，交给合适的团队，并按 SLA 跟进每项维修直至完成。',
+    primaryAction: { label: '预约演示', href: '/contact' },
+    secondaryAction: { label: '探索平台', href: '/platform' },
+    highlights: ['实时 SLA 追踪', '带照片报修', '智能分派'],
+    visual: {
+      kind: 'jobs',
+      title: '工单 · 今天',
+      items: [
+        {
+          title: '3B 单元漏水',
+          location: 'Bayview Residences · 已附照片',
+          status: '逾期 2 小时',
+          tone: 'overdue',
+        },
+        {
+          title: '装卸口门维修',
+          location: 'Westport DC · 签约供应商',
+          status: '已分派',
+          tone: 'info',
+        },
+        {
+          title: '冷水机组告警',
+          location: 'Harbour Point · 值班工程师',
+          status: '处理中',
+          tone: 'due',
+        },
+        { title: '2 层照明故障', location: 'Northgate Mall', status: '已完成', tone: 'done' },
+      ],
+    } satisfies OverviewVisual,
+  },
+  columns: [
+    {
+      title: '每张工单状态清晰',
+      description: '从报修到验收，每个请求的实时状态、SLA 计时和照片凭证都集中在一处。',
+    },
+    {
+      title: '每位相关人员都能获知进展',
+      description: '租户、技术人员、供应商和管理者在恰当时机通过应用或邮件收到恰当的更新。',
+    },
+    {
+      title: '记录保存在云端',
+      description: '每张工单、每张照片和每项审批都安全存储，团队在任何地方、任何设备上都能查看。',
+    },
+  ],
+  rows: [
+    {
+      tag: '工单管理',
+      title: '端到端的被动维修',
+      description: '从首次报修到最终验收，每项维修都遵循清晰路径，每一步都通知到相关人员。',
+      points: [
+        '按站点、工种和紧急程度派给内部团队或供应商',
+        '超过阈值的费用自动提交给相应审批人',
+        '所有物业的未完成、逾期和已完成工单一目了然',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: '工单看板 · 所有站点',
+        items: [
+          { title: '42 张未完成工单', location: '分布于 14 个站点', status: '实时', tone: 'info' },
+          {
+            title: '3 张工单临近 SLA 期限',
+            location: '已提醒主管',
+            status: '即将到期',
+            tone: 'due',
+          },
+          {
+            title: '超过 3,000 美元的维修报价',
+            location: '已提交财务审批',
+            status: '审批中',
+            tone: 'due',
+          },
+          {
+            title: '本周关闭 118 张工单',
+            location: '每张工单都有照片凭证',
+            status: '已完成',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: '沟通',
+      title: '直奔重点',
+      description: '请求附带照片、位置和资产信息，技术人员到场前就能了解问题。',
+      points: [
+        '报修人提供的照片和视频',
+        '每张工单附带资产历史和手册',
+        '回复和更新保存在工单历史中',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2291 · 漏水',
+        request: {
+          title: '3B 单元漏水',
+          location: 'Bayview Residences · 立管阀门 V-12',
+          status: '已分派',
+          tone: 'info',
+        },
+        messages: [
+          { from: '租户', text: '浴室天花板在漏水，照片见附件。', time: '08:12', own: false },
+          {
+            from: 'Marco L.',
+            text: '马上到。V-12 阀门六月保养过，我先检查它。',
+            time: '08:20',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: '已更换密封件，漏水已修复，照片已添加到工单。',
+            time: '11:05',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: '位置',
+      title: '每张工单都定位到具体地点',
+      description: '每项维修都关联楼宇、楼层、房间和资产，让合适的人员直接前往正确位置。',
+      points: [
+        '按楼宇、楼层、房间或区域组织工单',
+        '同一位置的工单自动归组',
+        '按楼宇和资产突出显示重复问题',
+      ],
+      visual: {
+        kind: 'asset',
+        title: '工单位置',
+        name: '立管阀门 V-12',
+        location: 'Bayview Residences · 3 层 · 3B 单元',
+        status: '维修中',
+        facts: [
+          { label: '楼宇', value: 'Bayview Residences' },
+          { label: '楼层', value: '3 层' },
+          { label: '上次保养', value: '6 月 14 日' },
+          { label: '今年工单', value: '2' },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  happy: {
+    eyebrow: '服务质量',
+    title: '一切运转良好，人人满意',
+    description:
+      '快速且记录完整的维修让租户舒心、团队尽责。实时 SLA 追踪显示服务的强项以及需要介入的地方。',
+    points: ['实时衡量响应与解决时间', '截止前发出提醒', '每月按楼宇复盘 SLA 表现'],
+    visual: {
+      kind: 'chart',
+      title: '各楼宇 SLA 达成率 · 9 月',
+      stats: [
+        { label: 'SLA 达成', value: '96.4%' },
+        { label: '平均响应', value: '1.8 小时' },
+      ],
+      bars: [
+        { label: 'Harbour Point', value: 98 },
+        { label: 'Tower B', value: 97 },
+        { label: 'Northgate', value: 96 },
+        { label: 'Bayview', value: 95 },
+        { label: 'Westport', value: 93 },
+      ],
+    } satisfies OverviewVisual,
   },
 }

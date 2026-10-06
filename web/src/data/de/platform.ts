@@ -5,6 +5,7 @@ import type {
   IntegrationIcon,
   IntegrationItem,
   OverviewModule,
+  OverviewVisual,
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
@@ -54,6 +55,7 @@ export const pages: {
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
+  reactiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Überblick',
@@ -125,81 +127,6 @@ export const pages: {
       title: 'Reaktive Instandhaltung | Fleet',
       description:
         'Verfolgen Sie Ad-hoc-Reparaturen von der Meldung bis zur Erledigung mit mobilen Updates, intelligenter Zuweisung und SLA-Verfolgung in Echtzeit an jedem Objekt.',
-    },
-    eyebrow: 'Reaktive Instandhaltung',
-    title: 'Jede Reparatur schnell erledigt',
-    description:
-      'Erfassen Sie ungeplante Störungen sofort, leiten Sie sie an das richtige Team weiter und verfolgen Sie jede Reparatur bis zum Abschluss anhand Ihrer SLAs.',
-    highlights: ['SLA-Verfolgung in Echtzeit', 'Meldungen mit Fotos', 'Intelligente Zuweisung'],
-    features: {
-      title: 'Von der Meldung zur Lösung',
-      description:
-        'Ein klarer Weg für jede Reparatur, mit den richtigen Personen bei jedem Schritt informiert.',
-      items: [
-        {
-          title: 'Schnelle Erfassung',
-          description:
-            'Mitarbeitende und Mieter melden Störungen mit Fotos, Standort und Priorität von jedem Gerät.',
-        },
-        {
-          title: 'Intelligente Zuweisung',
-          description:
-            'Aufträge je nach Standort, Gewerk und Dringlichkeit an interne Teams oder Dienstleister leiten.',
-        },
-        {
-          title: 'SLA-Verfolgung',
-          description:
-            'Reaktions- und Lösungszeiten werden live gemessen, mit Warnungen vor Ablauf einer Frist.',
-        },
-        {
-          title: 'Updates in Echtzeit',
-          description:
-            'Techniker aktualisieren den Status, ergänzen Notizen und laden Nachweise direkt vor Ort hoch.',
-        },
-        {
-          title: 'Kostenfreigaben',
-          description:
-            'Angebote und Kosten über festgelegten Grenzen gehen automatisch an die richtige Freigabestelle.',
-        },
-        {
-          title: 'Zentrales Auftrags-Dashboard',
-          description:
-            'Offene, überfällige und erledigte Aufträge aller Objekte in einer Ansicht verfolgen.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Jede Störung im Kontext erfasst',
-        description:
-          'Jede Reparatur ist mit Anlage, Standort und Historie verknüpft, sodass Techniker das Problem schon vor der Ankunft verstehen.',
-        points: [
-          'Anlagenhistorie und Handbücher an jedem Auftrag',
-          'Foto- und Videonachweise der meldenden Person',
-          'Zusammenhängende Aufträge automatisch gruppiert',
-        ],
-      },
-      {
-        title: 'Aus jeder Reparatur lernen',
-        description:
-          'Reaktive Daten zeigen, wo Störungen wiederkehren, und helfen, mehr Arbeit in vorbeugende Pläne zu verlagern.',
-        points: [
-          'Wiederkehrende Störungen nach Gebäude und Anlage hervorgehoben',
-          'Reparaturkosten nach Standort, Gewerk und Dienstleister verfolgt',
-          'Erkenntnisse, die Ihren Wartungsplan prägen',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Reaktive Instandhaltung in der Praxis',
-      description: 'Alltägliche Reparaturen mit Tempo und voller Transparenz erledigt.',
-      items: [
-        'Ein Wasserschaden in Einheit 3B mit Fotos gemeldet und am selben Tag behoben',
-        'Die Reparatur eines Ladetors an den Vertragsdienstleister geleitet',
-        'Ein Alarm der Kältemaschine an den Bereitschaftstechniker eskaliert',
-        'Eine teure Reparatur zur Freigabe an die Finanzabteilung gesendet',
-        'Die SLA-Leistung monatlich pro Gebäude ausgewertet',
-      ],
     },
   },
   analyticsReporting: {
@@ -2263,5 +2190,198 @@ export const preventivePage = {
     description:
       'Binden Sie Gebäudeleittechnik an, damit Alarme und Messwerte in Ihre Wartungspläne einfließen, neben mehr als 20 weiteren Integrationen.',
     action: { label: 'Alle Integrationen ansehen', href: '/platform/integrations' },
+  },
+}
+
+export const reactivePage = {
+  hero: {
+    eyebrow: 'Reaktive Instandhaltung',
+    title: 'Jede Reparatur schnell erledigt',
+    description:
+      'Erfassen Sie ungeplante Störungen sofort, leiten Sie sie an das richtige Team weiter und verfolgen Sie jede Reparatur bis zum Abschluss anhand Ihrer SLAs.',
+    primaryAction: { label: 'Demo buchen', href: '/contact' },
+    secondaryAction: { label: 'Plattform entdecken', href: '/platform' },
+    highlights: ['SLA-Verfolgung in Echtzeit', 'Meldungen mit Fotos', 'Intelligente Zuweisung'],
+    visual: {
+      kind: 'jobs',
+      title: 'Arbeitsaufträge · Heute',
+      items: [
+        {
+          title: 'Wasserschaden, Einheit 3B',
+          location: 'Bayview Residences · Foto angehängt',
+          status: '2 Std. überfällig',
+          tone: 'overdue',
+        },
+        {
+          title: 'Reparatur Ladetor',
+          location: 'Westport DC · Vertragsdienstleister',
+          status: 'Zugewiesen',
+          tone: 'info',
+        },
+        {
+          title: 'Alarm Kältemaschine',
+          location: 'Harbour Point · Bereitschaftstechniker',
+          status: 'In Bearbeitung',
+          tone: 'due',
+        },
+        {
+          title: 'Lichtstörung, Ebene 2',
+          location: 'Northgate Mall',
+          status: 'Erledigt',
+          tone: 'done',
+        },
+      ],
+    } satisfies OverviewVisual,
+  },
+  columns: [
+    {
+      title: 'Klarer Status für jeden Auftrag',
+      description:
+        'Jede Anfrage von der Meldung bis zur Abnahme, mit Live-Status, SLA-Timern und Fotonachweis an einem Ort.',
+    },
+    {
+      title: 'Updates für alle Beteiligten',
+      description:
+        'Mieter, Techniker, Dienstleister und Manager erhalten im richtigen Moment das richtige Update, per App oder E-Mail.',
+    },
+    {
+      title: 'Daten in der Cloud',
+      description:
+        'Jeder Auftrag, jedes Foto und jede Freigabe sicher gespeichert und auf jedem Gerät verfügbar, wo immer Ihr Team arbeitet.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Auftragsmanagement',
+      title: 'Reaktive Instandhaltung von Anfang bis Ende',
+      description:
+        'Von der ersten Meldung bis zur Abnahme folgt jede Reparatur einem klaren Weg, mit den richtigen Personen bei jedem Schritt informiert.',
+      points: [
+        'Anfragen nach Standort, Gewerk und Dringlichkeit an interne Teams oder Dienstleister',
+        'Kosten über Grenzwerten automatisch an die richtige Freigabestelle',
+        'Offene, überfällige und erledigte Aufträge aller Objekte im Blick',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Auftrags-Dashboard · Alle Standorte',
+        items: [
+          {
+            title: '42 offene Aufträge',
+            location: 'An 14 Standorten',
+            status: 'Live',
+            tone: 'info',
+          },
+          {
+            title: '3 Aufträge kurz vor SLA-Frist',
+            location: 'Aufsicht benachrichtigt',
+            status: 'Bald fällig',
+            tone: 'due',
+          },
+          {
+            title: 'Reparaturangebot über 3.000 $',
+            location: 'Zur Freigabe an die Finanzabteilung',
+            status: 'Freigabe',
+            tone: 'due',
+          },
+          {
+            title: '118 Aufträge diese Woche erledigt',
+            location: 'Fotonachweis bei jedem Auftrag',
+            status: 'Erledigt',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Kommunikation',
+      title: 'Direkt auf den Punkt',
+      description:
+        'Anfragen kommen mit Fotos, Standort und Anlagendaten an, sodass Techniker das Problem schon vor der Ankunft verstehen.',
+      points: [
+        'Foto- und Videonachweise der meldenden Person',
+        'Anlagenhistorie und Handbücher an jedem Auftrag',
+        'Antworten und Updates in der Auftragshistorie',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2291 · Wasserschaden',
+        request: {
+          title: 'Wasserschaden, Einheit 3B',
+          location: 'Bayview Residences · Steigventil V-12',
+          status: 'Zugewiesen',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Mieter',
+            text: 'Wasser kommt durch die Badezimmerdecke. Foto anbei.',
+            time: '08:12',
+            own: false,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Bin unterwegs. Ventil V-12 wurde im Juni gewartet, ich prüfe es zuerst.',
+            time: '08:20',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Dichtung ersetzt, Leck behoben. Fotos am Auftrag.',
+            time: '11:05',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Standort',
+      title: 'Jeder Auftrag an seinem Ort',
+      description:
+        'Jede Reparatur ist mit Gebäude, Etage, Raum und Anlage verknüpft, damit die richtige Person direkt zur richtigen Stelle geht.',
+      points: [
+        'Aufträge nach Gebäude, Etage, Raum oder Zone',
+        'Aufträge am selben Ort automatisch gruppiert',
+        'Wiederkehrende Störungen nach Gebäude und Anlage hervorgehoben',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Auftragsort',
+        name: 'Steigventil V-12',
+        location: 'Bayview Residences · Ebene 3 · Einheit 3B',
+        status: 'In Reparatur',
+        facts: [
+          { label: 'Gebäude', value: 'Bayview Residences' },
+          { label: 'Etage', value: 'Ebene 3' },
+          { label: 'Letzte Wartung', value: '14. Juni' },
+          { label: 'Aufträge dieses Jahr', value: '2' },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  happy: {
+    eyebrow: 'Servicequalität',
+    title: 'Alles läuft, alle sind zufrieden',
+    description:
+      'Schnelle, gut dokumentierte Reparaturen sorgen für zufriedene Mieter und verantwortungsvolle Teams. Live-SLA-Verfolgung zeigt, wo der Service stark ist und wo Sie eingreifen sollten.',
+    points: [
+      'Reaktions- und Lösungszeiten live gemessen',
+      'Warnungen vor Ablauf einer Frist',
+      'SLA-Leistung monatlich je Gebäude ausgewertet',
+    ],
+    visual: {
+      kind: 'chart',
+      title: 'SLA erfüllt je Gebäude · September',
+      stats: [
+        { label: 'SLA erfüllt', value: '96,4 %' },
+        { label: 'Ø Reaktion', value: '1,8 Std.' },
+      ],
+      bars: [
+        { label: 'Harbour Point', value: 98 },
+        { label: 'Tower B', value: 97 },
+        { label: 'Northgate', value: 96 },
+        { label: 'Bayview', value: 95 },
+        { label: 'Westport', value: 93 },
+      ],
+    } satisfies OverviewVisual,
   },
 }

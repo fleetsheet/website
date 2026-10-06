@@ -5,6 +5,7 @@ import type {
   IntegrationIcon,
   IntegrationItem,
   OverviewModule,
+  OverviewVisual,
   PlatformEntry,
   PlatformPageContent,
   PreventiveIcon,
@@ -54,6 +55,7 @@ export const pages: {
   fleetMail: PlatformEntry
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
+  reactiveMaintenance: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Vue d’ensemble',
@@ -127,81 +129,6 @@ export const pages: {
       title: 'Maintenance corrective | Fleet',
       description:
         'Suivez les réparations imprévues de la demande à la résolution, avec mises à jour mobiles, routage intelligent et suivi des SLA en temps réel sur chaque site.',
-    },
-    eyebrow: 'Maintenance corrective',
-    title: 'Chaque réparation traitée rapidement',
-    description:
-      'Enregistrez les incidents dès qu’ils surviennent, confiez-les à la bonne équipe et suivez chaque réparation jusqu’à la clôture selon vos SLA.',
-    highlights: ['Suivi des SLA en direct', 'Demandes avec photos', 'Routage intelligent'],
-    features: {
-      title: 'De la demande à la résolution',
-      description:
-        'Un parcours clair pour chaque réparation, avec les bonnes personnes informées à chaque étape.',
-      items: [
-        {
-          title: 'Saisie rapide des demandes',
-          description:
-            'Équipes et locataires signalent un incident avec photos, emplacement et priorité depuis n’importe quel appareil.',
-        },
-        {
-          title: 'Affectation intelligente',
-          description:
-            'Confiez les interventions aux équipes internes ou aux prestataires selon le site, le corps de métier et l’urgence.',
-        },
-        {
-          title: 'Suivi des SLA',
-          description:
-            'Délais de réponse et de résolution mesurés en direct, avec alertes avant chaque échéance.',
-        },
-        {
-          title: 'Mises à jour en temps réel',
-          description:
-            'Les techniciens mettent à jour le statut, ajoutent des notes et des preuves depuis le terrain.',
-        },
-        {
-          title: 'Validation des coûts',
-          description:
-            'Devis et coûts au-delà des seuils définis partent automatiquement vers le bon valideur.',
-        },
-        {
-          title: 'Tableau de bord centralisé',
-          description:
-            'Suivez interventions ouvertes, en retard et terminées sur tous les sites dans une seule vue.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Chaque incident enregistré dans son contexte',
-        description:
-          'Chaque réparation est liée à son équipement, son site et son historique : les techniciens comprennent le problème avant d’arriver.',
-        points: [
-          'Historique et notices de l’équipement sur chaque intervention',
-          'Photos et vidéos transmises par le demandeur',
-          'Interventions liées regroupées automatiquement',
-        ],
-      },
-      {
-        title: 'Progresser à chaque réparation',
-        description:
-          'Les données correctives révèlent les incidents récurrents et aident à basculer davantage vers le préventif.',
-        points: [
-          'Incidents récurrents mis en évidence par bâtiment et équipement',
-          'Coûts de réparation suivis par site, corps de métier et prestataire',
-          'Des enseignements qui orientent votre plan préventif',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'La maintenance corrective en pratique',
-      description: 'Les réparations du quotidien, traitées vite et en toute transparence.',
-      items: [
-        'Une fuite au logement 3B signalée avec photos et réparée le jour même',
-        'La réparation d’une porte de quai confiée au prestataire sous contrat',
-        'Une alarme de groupe froid transmise à l’ingénieur d’astreinte',
-        'Une réparation coûteuse envoyée à la finance pour validation',
-        'La performance SLA analysée chaque mois par bâtiment',
-      ],
     },
   },
   analyticsReporting: {
@@ -2271,5 +2198,198 @@ export const preventivePage = {
     description:
       'Connectez votre GTB pour que alarmes et mesures alimentent vos plans préventifs, avec plus de 20 autres intégrations.',
     action: { label: 'Voir toutes les intégrations', href: '/platform/integrations' },
+  },
+}
+
+export const reactivePage = {
+  hero: {
+    eyebrow: 'Maintenance corrective',
+    title: 'Chaque réparation traitée rapidement',
+    description:
+      'Enregistrez les incidents dès qu’ils surviennent, confiez-les à la bonne équipe et suivez chaque réparation jusqu’à la clôture selon vos SLA.',
+    primaryAction: { label: 'Réserver une démo', href: '/contact' },
+    secondaryAction: { label: 'Explorer la plateforme', href: '/platform' },
+    highlights: ['Suivi des SLA en direct', 'Demandes avec photos', 'Routage intelligent'],
+    visual: {
+      kind: 'jobs',
+      title: 'Bons de travail · Aujourd’hui',
+      items: [
+        {
+          title: 'Fuite d’eau, logement 3B',
+          location: 'Bayview Residences · Photo jointe',
+          status: 'En retard de 2 h',
+          tone: 'overdue',
+        },
+        {
+          title: 'Réparation porte de quai',
+          location: 'Westport DC · Prestataire sous contrat',
+          status: 'Affecté',
+          tone: 'info',
+        },
+        {
+          title: 'Alarme groupe froid',
+          location: 'Harbour Point · Ingénieur d’astreinte',
+          status: 'En cours',
+          tone: 'due',
+        },
+        {
+          title: 'Panne d’éclairage, niveau 2',
+          location: 'Northgate Mall',
+          status: 'Terminé',
+          tone: 'done',
+        },
+      ],
+    } satisfies OverviewVisual,
+  },
+  columns: [
+    {
+      title: 'Un statut clair pour chaque intervention',
+      description:
+        'Chaque demande, du signalement à la validation, avec statut en direct, compteurs SLA et preuve photo au même endroit.',
+    },
+    {
+      title: 'Des nouvelles pour chaque intervenant',
+      description:
+        'Locataires, techniciens, prestataires et responsables reçoivent la bonne information au bon moment, par l’application ou par e-mail.',
+    },
+    {
+      title: 'Des données dans le cloud',
+      description:
+        'Chaque intervention, photo et validation est stockée en sécurité et accessible depuis n’importe quel appareil, partout.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Gestion des interventions',
+      title: 'La maintenance corrective de bout en bout',
+      description:
+        'Du premier signalement à la validation finale, chaque réparation suit un parcours clair, avec les bonnes personnes informées à chaque étape.',
+      points: [
+        'Demandes confiées aux équipes internes ou prestataires selon le site, le métier et l’urgence',
+        'Coûts au-delà des seuils envoyés automatiquement au bon valideur',
+        'Interventions ouvertes, en retard et terminées visibles sur tous les sites',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Tableau des interventions · Tous les sites',
+        items: [
+          {
+            title: '42 interventions ouvertes',
+            location: 'Sur 14 sites',
+            status: 'En direct',
+            tone: 'info',
+          },
+          {
+            title: '3 interventions proches du délai SLA',
+            location: 'Superviseurs alertés',
+            status: 'Bientôt',
+            tone: 'due',
+          },
+          {
+            title: 'Devis de réparation au-delà de 3 000 $',
+            location: 'Envoyé à la finance pour validation',
+            status: 'Validation',
+            tone: 'due',
+          },
+          {
+            title: '118 interventions clôturées cette semaine',
+            location: 'Preuve photo sur chacune',
+            status: 'Terminé',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Communication',
+      title: 'Droit au but',
+      description:
+        'Les demandes arrivent avec photos, emplacement et équipement, pour que les techniciens comprennent le problème avant d’arriver.',
+      points: [
+        'Photos et vidéos transmises par le demandeur',
+        'Historique et notices de l’équipement sur chaque intervention',
+        'Réponses et mises à jour conservées dans l’historique',
+      ],
+      visual: {
+        kind: 'chat',
+        title: 'WO-2291 · Fuite d’eau',
+        request: {
+          title: 'Fuite d’eau, logement 3B',
+          location: 'Bayview Residences · Vanne de colonne V-12',
+          status: 'Affecté',
+          tone: 'info',
+        },
+        messages: [
+          {
+            from: 'Locataire',
+            text: 'De l’eau coule du plafond de la salle de bain. Photo jointe.',
+            time: '08:12',
+            own: false,
+          },
+          {
+            from: 'Marco L.',
+            text: 'J’arrive. La vanne V-12 a été entretenue en juin, je commence par elle.',
+            time: '08:20',
+            own: true,
+          },
+          {
+            from: 'Marco L.',
+            text: 'Joint remplacé, fuite réparée. Photos ajoutées à l’intervention.',
+            time: '11:05',
+            own: true,
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Emplacement',
+      title: 'Chaque intervention à sa place',
+      description:
+        'Chaque réparation est liée à son bâtiment, étage, pièce et équipement, pour que la bonne personne aille directement au bon endroit.',
+      points: [
+        'Interventions organisées par bâtiment, étage, pièce ou zone',
+        'Interventions au même endroit regroupées automatiquement',
+        'Incidents récurrents mis en évidence par bâtiment et équipement',
+      ],
+      visual: {
+        kind: 'asset',
+        title: 'Emplacement de l’intervention',
+        name: 'Vanne de colonne V-12',
+        location: 'Bayview Residences · Niveau 3 · Logement 3B',
+        status: 'En réparation',
+        facts: [
+          { label: 'Bâtiment', value: 'Bayview Residences' },
+          { label: 'Étage', value: 'Niveau 3' },
+          { label: 'Dernier entretien', value: '14 juin' },
+          { label: 'Interventions cette année', value: '2' },
+        ],
+      },
+    },
+  ] satisfies Omit<OverviewModule, 'id'>[],
+  happy: {
+    eyebrow: 'Qualité de service',
+    title: 'Tout fonctionne, tout le monde est satisfait',
+    description:
+      'Des réparations rapides et bien documentées gardent les locataires satisfaits et les équipes responsables. Le suivi des SLA en direct montre où le service est solide et où intervenir.',
+    points: [
+      'Délais de réponse et de résolution mesurés en direct',
+      'Alertes avant chaque échéance',
+      'Performance SLA analysée chaque mois par bâtiment',
+    ],
+    visual: {
+      kind: 'chart',
+      title: 'SLA respectés par bâtiment · Septembre',
+      stats: [
+        { label: 'SLA respectés', value: '96,4 %' },
+        { label: 'Réponse moyenne', value: '1,8 h' },
+      ],
+      bars: [
+        { label: 'Harbour Point', value: 98 },
+        { label: 'Tower B', value: 97 },
+        { label: 'Northgate', value: 96 },
+        { label: 'Bayview', value: 95 },
+        { label: 'Westport', value: 93 },
+      ],
+    } satisfies OverviewVisual,
   },
 }
