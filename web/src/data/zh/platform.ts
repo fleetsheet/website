@@ -1,6 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type {
+  AnalyticsPageContent,
   IntegrationCategory,
   IntegrationIcon,
   IntegrationItem,
@@ -55,6 +56,7 @@ export const pages: {
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
+  analyticsReporting: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: '平台概览',
@@ -135,68 +137,6 @@ export const pages: {
       title: '分析与报表 | Fleet',
       description:
         '借助实时看板、自定义 KPI 以及工单量、响应时间、合规和成本的可导出报表，做出数据驱动的决策。',
-    },
-    eyebrow: '分析与报表',
-    title: '做出更明智的运营决策',
-    description:
-      'Fleet 将日常维护转化为可执行的洞察，为每个团队、站点和资产提供实时看板和可导出报表。',
-    highlights: ['实时看板', '自定义 KPI', '一键导出'],
-    features: {
-      title: '各个层级的洞察',
-      description: '从单项资产到整个资产组合，看清现状并明确下一步重点。',
-      items: [
-        {
-          title: '实时指标',
-          description: '随时追踪工单量、响应时间、合规情况和成本的变化。',
-        },
-        {
-          title: '自定义看板',
-          description: '为每个部门和角色搭建视图，从技术人员到管理层。',
-        },
-        {
-          title: '深入分析',
-          description: '几次点击即可按楼宇、资产、供应商或团队查看绩效。',
-        },
-        {
-          title: '预算追踪',
-          description: '按成本中心查看支出，并与各站点预算对比。',
-        },
-        {
-          title: '可导出报表',
-          description: '随时导出用于审计、董事会或团队例会的报表。',
-        },
-        {
-          title: 'AI 生成看板',
-          description: '向 RunnerAI 提问，即可基于实时数据获得现成看板。',
-        },
-      ],
-    },
-    details: [
-      {
-        title: '看清绩效驱动因素',
-        description: '直观了解哪些楼宇问题反复出现、哪些资产占用预算最多、哪些团队达成 SLA。',
-        points: [
-          '按站点和资产分析重复问题',
-          '按团队和供应商查看 SLA 表现',
-          '资产停机与生命周期洞察',
-        ],
-      },
-      {
-        title: '报表随时就绪',
-        description: '按时以合适的格式，将正确的数据分享给正确的人。',
-        points: ['通过邮件发送定期报表', '用于审计和董事会材料的导出', '资产组合整体管理摘要'],
-      },
-    ],
-    useCases: {
-      title: '报表实践',
-      description: '房地产团队每周用 Fleet 回答的问题。',
-      items: [
-        '上季度哪些站点的空调停机最多',
-        '各区域供应商响应时间如何对比',
-        '今年哪些维护支出超出预算',
-        '哪些资产需要纳入更换规划',
-        '上线以来 SLA 达成率提升了多少',
-      ],
     },
   },
   assetManagement: {
@@ -1917,4 +1857,225 @@ export const reactivePage = {
       ],
     } satisfies OverviewVisual,
   },
+}
+
+export const analyticsPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: '分析与报表',
+    title: '做出更明智的运营决策',
+    description:
+      'Fleet 将日常维护转化为可执行的洞察，为每个团队、站点和资产提供实时看板和可导出报表。',
+    primaryAction: {
+      label: '预约演示',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: '探索平台',
+      href: '/platform',
+    },
+    highlights: ['实时看板', '自定义 KPI', '一键导出'],
+    visual: {
+      kind: 'chart',
+      title: '维护支出与预算 · 年内',
+      stats: [
+        {
+          label: '年内支出',
+          value: '$184k',
+        },
+        {
+          label: '预算使用',
+          value: '71%',
+        },
+      ],
+      bars: [
+        {
+          label: 'Harbour Point',
+          value: 82,
+        },
+        {
+          label: 'Tower B',
+          value: 64,
+        },
+        {
+          label: 'Northgate',
+          value: 48,
+        },
+        {
+          label: 'Bayview',
+          value: 36,
+        },
+        {
+          label: 'Westport',
+          value: 22,
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: '实时 KPI',
+      description: '随时追踪每个站点的工单量、响应时间、合规和成本变化。',
+    },
+    {
+      title: '自定义看板',
+      description: '为每个部门和角色搭建视图，从技术人员到管理层。',
+    },
+    {
+      title: '深入报表',
+      description: '按楼宇、资产、供应商或团队分析绩效，几次点击即可导出报表。',
+    },
+  ],
+  rows: [
+    {
+      tag: '支出',
+      title: '让维护支出控制在预算内',
+      description: '实时查看各成本中心的支出并与各站点预算对比，在成本偏离之前采取行动。',
+      points: ['按楼宇、资产和供应商追踪支出', '各站点的预算对比', '超过阈值的费用提交审批'],
+      visual: {
+        kind: 'jobs',
+        title: '各成本中心预算',
+        items: [
+          {
+            title: '暖通维护',
+            location: '$62k / $80k',
+            status: '已用 78%',
+            tone: 'info',
+          },
+          {
+            title: '电梯与扶梯',
+            location: '$31k / $35k',
+            status: '已用 89%',
+            tone: 'due',
+          },
+          {
+            title: '消防安全',
+            location: '$18k / $30k',
+            status: '已用 60%',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: '成本分析',
+      title: '全方位成本分析',
+      description: '从单项资产到整个资产组合，清楚每一笔钱花在哪里。',
+      points: ['每项资产的维修历史与成本', '跨区域对比供应商成本', '突出显示占用预算最多的资产'],
+      visual: {
+        kind: 'jobs',
+        title: '主要成本来源 · 第三季度',
+        items: [
+          {
+            title: '冷水机组 CH-02',
+            location: 'Harbour Point · 9 张工单',
+            status: '$12,400',
+            tone: 'neutral',
+          },
+          {
+            title: '电梯组 L1–L3',
+            location: 'Northgate Mall · 6 张工单',
+            status: '$8,900',
+            tone: 'neutral',
+          },
+          {
+            title: '装卸口门',
+            location: 'Westport DC · 4 张工单',
+            status: '$5,200',
+            tone: 'neutral',
+          },
+        ],
+      },
+    },
+    {
+      tag: '预测',
+      title: '用数据提前规划',
+      description: '生命周期和停机洞察帮助您预测更换需求，从容规划资本支出。',
+      points: ['基于实际使用的更换预测', '资产停机与生命周期洞察', '预防性与被动维修的长期趋势'],
+      visual: {
+        kind: 'chart',
+        title: '更换支出预测',
+        stats: [
+          {
+            label: '未来 12 个月',
+            value: '$96k',
+          },
+          {
+            label: '待更换资产',
+            value: '14',
+          },
+        ],
+        bars: [
+          {
+            label: '2027',
+            value: 40,
+          },
+          {
+            label: '2028',
+            value: 64,
+          },
+          {
+            label: '2029',
+            value: 52,
+          },
+          {
+            label: '2030',
+            value: 78,
+          },
+          {
+            label: '2031',
+            value: 58,
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: '报表',
+    title: '您的运营，您的报表。',
+    description: '按时以合适的格式，将正确的数据分享给正确的人。',
+    points: [
+      '通过邮件发送定期报表',
+      '用于审计和董事会材料的导出',
+      '资产组合整体摘要',
+      '为每个部门和角色定制报表',
+    ],
+    visual: {
+      kind: 'steps',
+      title: '定期报表',
+      steps: [
+        {
+          kind: '数据',
+          text: '工单、SLA 和成本',
+        },
+        {
+          kind: '筛选',
+          text: '阿联酋区域 · 最近 30 天',
+        },
+        {
+          kind: '发送',
+          text: '每周一发送给区域经理',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: '借助 RunnerAI 按需生成看板',
+      description: '用自然语言提问，RunnerAI 几秒内即可基于实时数据生成看板。',
+      action: {
+        label: '了解 RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'plug',
+      title: '将数据连接到您使用的工具',
+      description: '通过 20 多项集成和开放的 REST API，与财务和业务工具共享 Fleet 数据。',
+      action: {
+        label: '查看全部集成',
+        href: '/platform/integrations',
+      },
+    },
+  ],
 }

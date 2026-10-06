@@ -79,6 +79,28 @@ export type IntegrationItem = {
   description: string
 }
 
+export type AnalyticsPageContent = {
+  hero: {
+    eyebrow: string
+    title: string
+    description: string
+    primaryAction: NavLink
+    secondaryAction: NavLink
+    highlights: string[]
+    visual: OverviewVisual
+  }
+  columns: PlatformItem[]
+  rows: Omit<OverviewModule, 'id'>[]
+  reports: {
+    eyebrow: string
+    title: string
+    description: string
+    points: string[]
+    visual: OverviewVisual
+  }
+  extras: { icon: 'ai' | 'plug'; title: string; description: string; action: NavLink }[]
+}
+
 export const menu = {
   label: 'Platform',
   groups: {
@@ -122,6 +144,7 @@ export const pages: {
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
+  analyticsReporting: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Overview',
@@ -202,78 +225,6 @@ export const pages: {
       title: 'Analytics and Reporting | Fleet',
       description:
         'Make data-driven decisions with live dashboards, custom KPIs and exportable reports on job volume, response times, compliance and costs.',
-    },
-    eyebrow: 'Analytics and Reporting',
-    title: 'Make Smarter Operational Decisions',
-    description:
-      'Fleet turns day-to-day maintenance into actionable insight, with live dashboards and exportable reports for every team, site and asset.',
-    highlights: ['Live dashboards', 'Custom KPIs', 'One-click exports'],
-    features: {
-      title: 'Insight at Every Level',
-      description:
-        'From a single asset to the whole portfolio, see what is happening and where to focus next.',
-      items: [
-        {
-          title: 'Live metrics',
-          description: 'Track job volume, response times, compliance and costs as they change.',
-        },
-        {
-          title: 'Custom dashboards',
-          description:
-            'Build views for each department and role, from technicians to the executive team.',
-        },
-        {
-          title: 'Drill-down analysis',
-          description: 'Explore performance by building, asset, vendor or team in a few clicks.',
-        },
-        {
-          title: 'Budget tracking',
-          description: 'See spend by cost center and compare it against budget across every site.',
-        },
-        {
-          title: 'Exportable reports',
-          description:
-            'Export reports for audits, board reviews or team check-ins whenever you need them.',
-        },
-        {
-          title: 'AI-generated dashboards',
-          description:
-            'Ask RunnerAI a question and get a ready-made dashboard from your live data.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'See What Drives Performance',
-        description:
-          'Visualize which buildings have recurring issues, which assets use the most budget and which teams meet their SLAs.',
-        points: [
-          'Recurring issue analysis by site and asset',
-          'SLA performance by team and vendor',
-          'Asset downtime and lifecycle insights',
-        ],
-      },
-      {
-        title: 'Reports Ready When You Are',
-        description:
-          'Share the right numbers with the right people, on schedule and in the format they need.',
-        points: [
-          'Scheduled reports delivered by email',
-          'Exports for audits and board packs',
-          'Portfolio-wide executive summaries',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Reporting in Practice',
-      description: 'Questions property teams answer with Fleet every week.',
-      items: [
-        'Which sites had the most HVAC downtime last quarter',
-        'How vendor response times compare across regions',
-        'Where maintenance spend is above budget this year',
-        'Which assets are due for replacement planning',
-        'How SLA compliance has improved since rollout',
-      ],
     },
   },
   assetManagement: {
@@ -2383,4 +2334,246 @@ export const reactivePage = {
       ],
     } satisfies OverviewVisual,
   },
+}
+
+export const analyticsPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Analytics and Reporting',
+    title: 'Make Smarter Operational Decisions',
+    description:
+      'Fleet turns day-to-day maintenance into actionable insight, with live dashboards and exportable reports for every team, site and asset.',
+    primaryAction: {
+      label: 'Book a demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explore the platform',
+      href: '/platform',
+    },
+    highlights: ['Live dashboards', 'Custom KPIs', 'One-click exports'],
+    visual: {
+      kind: 'chart',
+      title: 'Maintenance spend vs budget · YTD',
+      stats: [
+        {
+          label: 'Spend YTD',
+          value: '$184k',
+        },
+        {
+          label: 'Budget used',
+          value: '71%',
+        },
+      ],
+      bars: [
+        {
+          label: 'Harbour Point',
+          value: 82,
+        },
+        {
+          label: 'Tower B',
+          value: 64,
+        },
+        {
+          label: 'Northgate',
+          value: 48,
+        },
+        {
+          label: 'Bayview',
+          value: 36,
+        },
+        {
+          label: 'Westport',
+          value: 22,
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'Real-time KPIs',
+      description:
+        'Track job volume, response times, compliance and costs as they change, across every site.',
+    },
+    {
+      title: 'Custom dashboards',
+      description:
+        'Build views for each department and role, from technicians to the executive team.',
+    },
+    {
+      title: 'In-depth reporting',
+      description:
+        'Drill into performance by building, asset, vendor or team, and export reports in a few clicks.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Spending',
+      title: 'Keep Maintenance Spend on Budget',
+      description:
+        'See spend by cost center as it happens and compare it with the budget for every site, so you act before costs drift.',
+      points: [
+        'Spend tracked by building, asset and vendor',
+        'Budget comparisons for every site',
+        'Costs above set thresholds sent for approval',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Budget by cost center',
+        items: [
+          {
+            title: 'HVAC maintenance',
+            location: '$62k of $80k',
+            status: '78% used',
+            tone: 'info',
+          },
+          {
+            title: 'Lifts and escalators',
+            location: '$31k of $35k',
+            status: '89% used',
+            tone: 'due',
+          },
+          {
+            title: 'Fire safety',
+            location: '$18k of $30k',
+            status: '60% used',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Cost analysis',
+      title: 'Full-Scope Cost Analysis',
+      description:
+        'Understand where every dollar goes, from a single asset to the whole portfolio.',
+      points: [
+        'Repair history and costs for every asset',
+        'Vendor costs compared across regions',
+        'Assets using the most budget highlighted',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Top cost drivers · Q3',
+        items: [
+          {
+            title: 'Chiller CH-02',
+            location: 'Harbour Point · 9 jobs',
+            status: '$12,400',
+            tone: 'neutral',
+          },
+          {
+            title: 'Lift bank L1–L3',
+            location: 'Northgate Mall · 6 jobs',
+            status: '$8,900',
+            tone: 'neutral',
+          },
+          {
+            title: 'Loading bay doors',
+            location: 'Westport DC · 4 jobs',
+            status: '$5,200',
+            tone: 'neutral',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Forecasting',
+      title: 'Plan Ahead with Data',
+      description:
+        'Lifecycle and downtime insights help you forecast replacements and plan capital spend with confidence.',
+      points: [
+        'Replacement forecasts based on real usage',
+        'Asset downtime and lifecycle insights',
+        'Preventive and reactive trends over time',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Forecast replacement spend',
+        stats: [
+          {
+            label: 'Next 12 months',
+            value: '$96k',
+          },
+          {
+            label: 'Assets due',
+            value: '14',
+          },
+        ],
+        bars: [
+          {
+            label: '2027',
+            value: 40,
+          },
+          {
+            label: '2028',
+            value: 64,
+          },
+          {
+            label: '2029',
+            value: 52,
+          },
+          {
+            label: '2030',
+            value: 78,
+          },
+          {
+            label: '2031',
+            value: 58,
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Reporting',
+    title: 'Your Operation. Your Reports.',
+    description:
+      'Share the right numbers with the right people, on schedule and in the format they need.',
+    points: [
+      'Scheduled reports delivered by email',
+      'Exports for audits and board packs',
+      'Portfolio-wide executive summaries',
+      'Reports for every department and role',
+    ],
+    visual: {
+      kind: 'steps',
+      title: 'Scheduled report',
+      steps: [
+        {
+          kind: 'Data',
+          text: 'Work orders, SLAs and costs',
+        },
+        {
+          kind: 'Filter',
+          text: 'UAE region · last 30 days',
+        },
+        {
+          kind: 'Send',
+          text: 'Every Monday to regional managers',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Dashboards on Request with RunnerAI',
+      description:
+        'Ask a question in plain language and RunnerAI builds the dashboard from your live data in seconds.',
+      action: {
+        label: 'Meet RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'plug',
+      title: 'Connect Your Data to the Tools You Use',
+      description:
+        'Share Fleet data with finance and business tools through 20+ integrations and an open REST API.',
+      action: {
+        label: 'See all integrations',
+        href: '/platform/integrations',
+      },
+    },
+  ],
 }

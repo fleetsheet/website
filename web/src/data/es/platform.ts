@@ -1,6 +1,7 @@
 import type { NavLink } from '@/config'
 import type { StatusItem } from '@/data/en/home'
 import type {
+  AnalyticsPageContent,
   IntegrationCategory,
   IntegrationIcon,
   IntegrationItem,
@@ -56,6 +57,7 @@ export const pages: {
   workflowBuilder: PlatformEntry
   preventiveMaintenance: PlatformEntry
   reactiveMaintenance: PlatformEntry
+  analyticsReporting: PlatformEntry
 } & Record<TemplatePageId, PlatformPageContent> = {
   overview: {
     label: 'Visión general',
@@ -136,81 +138,6 @@ export const pages: {
       title: 'Análisis e informes | Fleet',
       description:
         'Tome decisiones basadas en datos con paneles en vivo, indicadores a medida e informes exportables sobre volumen de trabajos, tiempos de respuesta, cumplimiento y costes.',
-    },
-    eyebrow: 'Análisis e informes',
-    title: 'Decisiones operativas mejor fundamentadas',
-    description:
-      'Fleet convierte el mantenimiento diario en información útil, con paneles en vivo e informes exportables para cada equipo, sede y activo.',
-    highlights: ['Paneles en vivo', 'Indicadores a medida', 'Exportación con un clic'],
-    features: {
-      title: 'Información en cada nivel',
-      description:
-        'Desde un solo activo hasta toda la cartera, vea qué ocurre y dónde centrarse a continuación.',
-      items: [
-        {
-          title: 'Métricas en vivo',
-          description:
-            'Siga el volumen de trabajos, los tiempos de respuesta, el cumplimiento y los costes a medida que cambian.',
-        },
-        {
-          title: 'Paneles a medida',
-          description:
-            'Cree vistas para cada departamento y rol, desde los técnicos hasta la dirección.',
-        },
-        {
-          title: 'Análisis en detalle',
-          description:
-            'Explore el rendimiento por edificio, activo, proveedor o equipo en pocos clics.',
-        },
-        {
-          title: 'Seguimiento presupuestario',
-          description:
-            'Vea el gasto por centro de coste y compárelo con el presupuesto de cada sede.',
-        },
-        {
-          title: 'Informes exportables',
-          description:
-            'Exporte informes para auditorías, consejos o reuniones de equipo cuando lo necesite.',
-        },
-        {
-          title: 'Paneles generados por IA',
-          description:
-            'Haga una pregunta a RunnerAI y obtenga un panel listo a partir de sus datos en vivo.',
-        },
-      ],
-    },
-    details: [
-      {
-        title: 'Descubra qué impulsa el rendimiento',
-        description:
-          'Vea qué edificios tienen incidencias recurrentes, qué activos consumen más presupuesto y qué equipos cumplen sus SLA.',
-        points: [
-          'Análisis de incidencias recurrentes por sede y activo',
-          'Rendimiento del SLA por equipo y proveedor',
-          'Información sobre paradas y ciclo de vida de los activos',
-        ],
-      },
-      {
-        title: 'Informes listos cuando los necesite',
-        description:
-          'Comparta las cifras adecuadas con las personas adecuadas, a tiempo y en el formato que necesitan.',
-        points: [
-          'Informes programados enviados por correo',
-          'Exportaciones para auditorías y documentación del consejo',
-          'Resúmenes ejecutivos de toda la cartera',
-        ],
-      },
-    ],
-    useCases: {
-      title: 'Informes en la práctica',
-      description: 'Preguntas que los equipos inmobiliarios responden cada semana con Fleet.',
-      items: [
-        'Qué sedes tuvieron más paradas de climatización el último trimestre',
-        'Cómo se comparan los tiempos de respuesta de los proveedores entre regiones',
-        'Dónde supera el gasto de mantenimiento al presupuesto este año',
-        'Qué activos deben entrar en la planificación de sustitución',
-        'Cómo ha mejorado el cumplimiento del SLA desde la implantación',
-      ],
     },
   },
   assetManagement: {
@@ -2380,4 +2307,245 @@ export const reactivePage = {
       ],
     } satisfies OverviewVisual,
   },
+}
+
+export const analyticsPage: AnalyticsPageContent = {
+  hero: {
+    eyebrow: 'Análisis e informes',
+    title: 'Decisiones operativas mejor fundamentadas',
+    description:
+      'Fleet convierte el mantenimiento diario en información útil, con paneles en vivo e informes exportables para cada equipo, sede y activo.',
+    primaryAction: {
+      label: 'Reservar una demo',
+      href: '/contact',
+    },
+    secondaryAction: {
+      label: 'Explorar la plataforma',
+      href: '/platform',
+    },
+    highlights: ['Paneles en vivo', 'Indicadores a medida', 'Exportación con un clic'],
+    visual: {
+      kind: 'chart',
+      title: 'Gasto de mantenimiento vs presupuesto · año',
+      stats: [
+        {
+          label: 'Gasto anual',
+          value: '184k $',
+        },
+        {
+          label: 'Presupuesto usado',
+          value: '71 %',
+        },
+      ],
+      bars: [
+        {
+          label: 'Harbour Point',
+          value: 82,
+        },
+        {
+          label: 'Tower B',
+          value: 64,
+        },
+        {
+          label: 'Northgate',
+          value: 48,
+        },
+        {
+          label: 'Bayview',
+          value: 36,
+        },
+        {
+          label: 'Westport',
+          value: 22,
+        },
+      ],
+    },
+  },
+  columns: [
+    {
+      title: 'Indicadores en tiempo real',
+      description:
+        'Siga el volumen de trabajos, los tiempos de respuesta, el cumplimiento y los costes en cada sede a medida que cambian.',
+    },
+    {
+      title: 'Paneles a medida',
+      description:
+        'Cree vistas para cada departamento y rol, desde los técnicos hasta la dirección.',
+    },
+    {
+      title: 'Informes detallados',
+      description:
+        'Analice el rendimiento por edificio, activo, proveedor o equipo y exporte informes en pocos clics.',
+    },
+  ],
+  rows: [
+    {
+      tag: 'Gasto',
+      title: 'Mantenga el gasto de mantenimiento en presupuesto',
+      description:
+        'Vea el gasto por centro de coste al momento y compárelo con el presupuesto de cada sede, para actuar antes de que se desvíe.',
+      points: [
+        'Gasto por edificio, activo y proveedor',
+        'Comparativas presupuestarias por sede',
+        'Costes por encima del umbral enviados a aprobación',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Presupuesto por centro de coste',
+        items: [
+          {
+            title: 'Mantenimiento de climatización',
+            location: '62k $ de 80k $',
+            status: '78 % usado',
+            tone: 'info',
+          },
+          {
+            title: 'Ascensores y escaleras mecánicas',
+            location: '31k $ de 35k $',
+            status: '89 % usado',
+            tone: 'due',
+          },
+          {
+            title: 'Protección contra incendios',
+            location: '18k $ de 30k $',
+            status: '60 % usado',
+            tone: 'done',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Análisis de costes',
+      title: 'Análisis de costes completo',
+      description: 'Entienda adónde va cada euro, desde un solo activo hasta toda la cartera.',
+      points: [
+        'Historial y costes de reparación de cada activo',
+        'Costes de proveedores comparados entre regiones',
+        'Activos que más presupuesto consumen destacados',
+      ],
+      visual: {
+        kind: 'jobs',
+        title: 'Principales fuentes de coste · T3',
+        items: [
+          {
+            title: 'Enfriadora CH-02',
+            location: 'Harbour Point · 9 trabajos',
+            status: '12.400 $',
+            tone: 'neutral',
+          },
+          {
+            title: 'Batería de ascensores L1–L3',
+            location: 'Northgate Mall · 6 trabajos',
+            status: '8.900 $',
+            tone: 'neutral',
+          },
+          {
+            title: 'Puertas de muelle',
+            location: 'Westport DC · 4 trabajos',
+            status: '5.200 $',
+            tone: 'neutral',
+          },
+        ],
+      },
+    },
+    {
+      tag: 'Previsión',
+      title: 'Planifique con datos',
+      description:
+        'La información de ciclo de vida y paradas ayuda a prever sustituciones y planificar inversiones con confianza.',
+      points: [
+        'Previsiones de sustitución basadas en el uso real',
+        'Información de paradas y ciclo de vida',
+        'Tendencias de preventivo y correctivo en el tiempo',
+      ],
+      visual: {
+        kind: 'chart',
+        title: 'Previsión de inversión en sustituciones',
+        stats: [
+          {
+            label: 'Próximos 12 meses',
+            value: '96k $',
+          },
+          {
+            label: 'Activos previstos',
+            value: '14',
+          },
+        ],
+        bars: [
+          {
+            label: '2027',
+            value: 40,
+          },
+          {
+            label: '2028',
+            value: 64,
+          },
+          {
+            label: '2029',
+            value: 52,
+          },
+          {
+            label: '2030',
+            value: 78,
+          },
+          {
+            label: '2031',
+            value: 58,
+          },
+        ],
+      },
+    },
+  ],
+  reports: {
+    eyebrow: 'Informes',
+    title: 'Su operación. Sus informes.',
+    description:
+      'Comparta las cifras adecuadas con las personas adecuadas, a tiempo y en el formato que necesitan.',
+    points: [
+      'Informes programados enviados por correo',
+      'Exportaciones para auditorías y consejos',
+      'Resúmenes de toda la cartera',
+      'Informes para cada departamento y rol',
+    ],
+    visual: {
+      kind: 'steps',
+      title: 'Informe programado',
+      steps: [
+        {
+          kind: 'Datos',
+          text: 'Órdenes, SLA y costes',
+        },
+        {
+          kind: 'Filtro',
+          text: 'Región EAU · últimos 30 días',
+        },
+        {
+          kind: 'Enviar',
+          text: 'Cada lunes a los responsables regionales',
+        },
+      ],
+    },
+  },
+  extras: [
+    {
+      icon: 'ai',
+      title: 'Paneles a petición con RunnerAI',
+      description:
+        'Haga una pregunta en lenguaje natural y RunnerAI crea el panel con sus datos en vivo en segundos.',
+      action: {
+        label: 'Conocer RunnerAI',
+        href: '/platform/runner-ai',
+      },
+    },
+    {
+      icon: 'plug',
+      title: 'Conecte sus datos con sus herramientas',
+      description:
+        'Comparta los datos de Fleet con herramientas financieras y de negocio mediante más de 20 integraciones y una API REST abierta.',
+      action: {
+        label: 'Ver todas las integraciones',
+        href: '/platform/integrations',
+      },
+    },
+  ],
 }

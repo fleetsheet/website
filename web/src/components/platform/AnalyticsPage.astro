@@ -1,0 +1,143 @@
+---
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import PageSection from '@/components/ui/PageSection.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import ChartColumn from '@lucide/astro/icons/chart-column'
+import Check from '@lucide/astro/icons/check'
+import FileText from '@lucide/astro/icons/file-text'
+import Gauge from '@lucide/astro/icons/gauge'
+import LayoutDashboard from '@lucide/astro/icons/layout-dashboard'
+import Plug from '@lucide/astro/icons/plug'
+import Quote from '@lucide/astro/icons/quote'
+import Sparkles from '@lucide/astro/icons/sparkles'
+import FeatureRows from './FeatureRows.astro'
+import OverviewVisual from './OverviewVisual.astro'
+
+const { analyticsPage, webMobile, cta } = getContent(getLocale(Astro.url)).platform
+const { hero, columns, rows, reports, extras } = analyticsPage
+const { stories } = webMobile
+const columnIcons = [Gauge, LayoutDashboard, FileText]
+const extraIcons = { ai: Sparkles, plug: Plug }
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-azul-blue flex items-center gap-2.5">
+        <IconChip size="sm">
+          <ChartColumn />
+        </IconChip>
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-display-xl hyphenate">{hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={hero.primaryAction.href}>
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="secondary">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+      <ul class="text-azul-blue flex flex-wrap gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <OverviewVisual visual={hero.visual} />
+  </Container>
+</section>
+
+<PageSection containerClass="flex flex-col">
+  <ul class="grid grid-cols-1 gap-10 md:grid-cols-3">
+    {columns.map((item, index) => {
+      const Icon = columnIcons[index % columnIcons.length]
+      return (
+        <li class="flex flex-col gap-3">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h2 class="text-xl font-semibold">{item.title}</h2>
+          <p class="text-azul-blue text-[15px] leading-[1.6]">{item.description}</p>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<div class="bg-surface border-border border-y">
+  <FeatureRows rows={rows} />
+</div>
+
+<section>
+  <Container width="wide" class="pt-24">
+    <div class="bg-azul-blue text-alice-blue grid grid-cols-1 items-center gap-10 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-2 lg:gap-16">
+      <div class="flex flex-col items-start gap-6">
+        <SectionHeader
+          eyebrow={reports.eyebrow}
+          title={reports.title}
+          description={reports.description}
+          tone="dark"
+        />
+        <CheckList items={reports.points} class="gap-3" />
+      </div>
+      <OverviewVisual visual={reports.visual} />
+    </div>
+  </Container>
+</section>
+
+<PageSection containerClass="flex flex-col">
+  <ul class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {extras.map((item) => {
+      const Icon = extraIcons[item.icon]
+      return (
+        <li class="bg-surface border-border flex flex-col items-start gap-4 rounded-2xl border p-8 shadow-xs">
+          <IconChip size="lg">
+            <Icon />
+          </IconChip>
+          <h2 class="text-display-md">{item.title}</h2>
+          <p class="text-azul-blue text-[17px] leading-[1.65]">{item.description}</p>
+          <Button href={item.action.href} variant="secondary" class="mt-auto">
+            {item.action.label}
+            <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+          </Button>
+        </li>
+      )
+    })}
+  </ul>
+</PageSection>
+
+<PageSection tone="surface" containerClass="flex flex-col gap-12">
+  <SectionHeader eyebrow={stories.eyebrow} title={stories.title} />
+  <ul class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {stories.items.map((story) => (
+      <li class="bg-page border-border flex flex-col gap-6 rounded-xl border p-8">
+        <Quote class="text-celestial-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
+        <blockquote class="font-display text-xl leading-snug font-medium">{story.quote}</blockquote>
+        <p class="mt-auto text-sm">
+          <span class="block font-semibold">{story.author}</span>
+          <span class="text-azul-blue">{story.company}</span>
+        </p>
+      </li>
+    ))}
+  </ul>
+</PageSection>
+
+<CtaBanner
+  title={cta.title}
+  description={cta.description}
+  primaryAction={cta.primaryAction}
+  secondaryAction={cta.secondaryAction}
+/>
