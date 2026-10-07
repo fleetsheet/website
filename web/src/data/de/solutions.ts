@@ -355,8 +355,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'techniciansPanel',
-      alt: 'Zwei Techniker prüfen eine Anlagensteuerung',
+      id: 'cityTowers',
+      alt: 'Gläserne Bürohochhäuser vor blauem Himmel',
     },
   },
 }

@@ -419,8 +419,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'techniciansPanel',
-      alt: 'Two technicians checking an equipment panel',
+      id: 'cityTowers',
+      alt: 'Glass high-rise office towers against a blue sky',
     },
   },
 }

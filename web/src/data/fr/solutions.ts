@@ -356,8 +356,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'techniciansPanel',
-      alt: 'Deux techniciens contrôlant un tableau d’équipement',
+      id: 'cityTowers',
+      alt: 'Tours de bureaux vitrées sur fond de ciel bleu',
     },
   },
 }

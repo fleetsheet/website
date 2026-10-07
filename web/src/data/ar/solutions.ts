@@ -352,8 +352,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'techniciansPanel',
-      alt: 'فنيان يفحصان لوحة معدات',
+      id: 'cityTowers',
+      alt: 'أبراج مكاتب زجاجية شاهقة تحت سماء زرقاء',
     },
   },
 }

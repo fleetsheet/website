@@ -2,6 +2,7 @@ import acFilterService from '@/assets/photos/ac-filter-service.jpg'
 import apartmentBuilding from '@/assets/photos/apartment-building.jpg'
 import busyKitchen from '@/assets/photos/busy-kitchen.jpg'
 import chefManager from '@/assets/photos/chef-manager.jpg'
+import cityTowers from '@/assets/photos/city-towers.jpg'
 import cleanerCorridor from '@/assets/photos/cleaner-corridor.jpg'
 import colleaguesTablets from '@/assets/photos/colleagues-tablets.jpg'
 import dataCenter from '@/assets/photos/data-center.jpg'
@@ -39,6 +40,7 @@ export const photos = {
   apartmentBuilding,
   busyKitchen,
   chefManager,
+  cityTowers,
   cleanerCorridor,
   colleaguesTablets,
   dataCenter,

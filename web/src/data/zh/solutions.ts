@@ -343,8 +343,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'techniciansPanel',
-      alt: '两位技术人员检查设备面板',
+      id: 'cityTowers',
+      alt: '蓝天下的玻璃幕墙写字楼',
     },
   },
 }

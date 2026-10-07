@@ -354,8 +354,8 @@ export const shared: SolutionsShared = {
       href: '/platform',
     },
     photo: {
-      id: 'techniciansPanel',
-      alt: 'Dos técnicos revisando un panel de equipos',
+      id: 'cityTowers',
+      alt: 'Torres de oficinas de cristal bajo un cielo azul',
     },
   },
 }
