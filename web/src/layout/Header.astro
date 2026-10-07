@@ -11,6 +11,7 @@ import { platformGroups, platformPages, type PlatformPageId } from '@/platform'
 import { solutionGroups, solutionPages, type SolutionPageId } from '@/solutions'
 import ChevronDown from '@lucide/astro/icons/chevron-down'
 import Menu from '@lucide/astro/icons/menu'
+import MessageCircle from '@lucide/astro/icons/message-circle'
 import X from '@lucide/astro/icons/x'
 import LanguageSwitcher, { type Translation } from './LanguageSwitcher.astro'
 
@@ -18,8 +19,10 @@ type Props = {
   translations: Translation[]
 }
 
-type MenuEntry = { href: string; label: string; summary: string } & (
-  { kind: 'platform'; id: PlatformPageId } | { kind: 'solution'; id: SolutionPageId }
+type MenuEntry = { href: string; label: string; summary?: string } & (
+  | { kind: 'platform'; id: PlatformPageId }
+  | { kind: 'solution'; id: SolutionPageId }
+  | { kind: 'contact' }
 )
 
 const { translations } = Astro.props
@@ -35,6 +38,7 @@ const megaMenus = [
     promo: platform.menu.promo,
     groups: platformGroups.map((group) => ({
       id: group,
+      compact: false,
       title: platform.menu.groups[group],
       entries: platformPages
         .filter((entry) => entry.group === group)
@@ -52,15 +56,29 @@ const megaMenus = [
     promo: solutions.menu.promo,
     groups: solutionGroups.map((group) => ({
       id: group,
+      // Industries are many: list them compactly in two columns, closing with a contact link.
+      compact: group === 'industry',
       title: solutions.menu.groups[group],
-      entries: solutionPages
-        .filter((entry) => entry.group === group)
-        .map((entry): MenuEntry => ({
-          kind: 'solution',
-          id: entry.id,
-          href: entry.href,
-          ...solutions.pages[entry.id],
-        })),
+      entries: [
+        ...solutionPages
+          .filter((entry) => entry.group === group)
+          .map((entry): MenuEntry => ({
+            kind: 'solution',
+            id: entry.id,
+            href: entry.href,
+            label: solutions.pages[entry.id].label,
+            summary: group === 'industry' ? undefined : solutions.pages[entry.id].summary,
+          })),
+        ...(group === 'industry'
+          ? [
+              {
+                kind: 'contact',
+                href: '/contact',
+                label: solutions.menu.contact,
+              } satisfies MenuEntry,
+            ]
+          : []),
+      ],
     })),
   },
 ]
@@ -145,7 +163,11 @@ const megaMenus = [
       <Container
         class:list={[
           'grid gap-10 py-8',
-          megaMenu.groups.length > 1 ? 'lg:grid-cols-[1fr_1fr_280px]' : 'lg:grid-cols-[1fr_280px]',
+          megaMenu.groups.some((group) => group.compact)
+            ? 'lg:grid-cols-[1fr_1.35fr_240px]'
+            : megaMenu.groups.length > 1
+              ? 'lg:grid-cols-[1fr_1fr_280px]'
+              : 'lg:grid-cols-[1fr_280px]',
         ]}
       >
         {megaMenu.groups.map((group) => (
@@ -154,25 +176,40 @@ const megaMenus = [
             <ul
               class:list={[
                 'grid grid-cols-1 gap-1',
-                megaMenu.groups.length === 1 && 'lg:grid-cols-2',
+                (megaMenu.groups.length === 1 || group.compact) && 'lg:grid-cols-2',
               ]}
             >
               {group.entries.map((entry) => (
-                <li>
+                <li class:list={[entry.kind === 'contact' && 'lg:col-span-2']}>
                   <a
                     href={localize(entry.href)}
-                    class="hover:bg-page flex items-start gap-3 rounded-lg p-3 transition-colors"
+                    class:list={[
+                      'hover:bg-page flex gap-3 rounded-lg transition-colors',
+                      group.compact ? 'items-center px-3 py-2' : 'items-start p-3',
+                      entry.kind === 'contact' && 'bg-page mt-1',
+                    ]}
                   >
-                    <IconChip>
+                    <IconChip size={group.compact ? 'sm' : 'md'}>
                       {entry.kind === 'platform' ? (
                         <PlatformIcon id={entry.id} />
-                      ) : (
+                      ) : entry.kind === 'solution' ? (
                         <SolutionIcon id={entry.id} />
+                      ) : (
+                        <MessageCircle />
                       )}
                     </IconChip>
                     <span class="flex flex-col gap-0.5">
-                      <span class="text-rich-blue text-[15px] font-semibold">{entry.label}</span>
-                      <span class="text-azul-blue text-sm leading-snug">{entry.summary}</span>
+                      <span
+                        class:list={[
+                          'text-rich-blue font-semibold',
+                          group.compact ? 'text-sm' : 'text-[15px]',
+                        ]}
+                      >
+                        {entry.label}
+                      </span>
+                      {entry.summary && (
+                        <span class="text-azul-blue text-sm leading-snug">{entry.summary}</span>
+                      )}
                     </span>
                   </a>
                 </li>
@@ -219,8 +256,10 @@ const megaMenus = [
                               <IconChip size="sm">
                                 {entry.kind === 'platform' ? (
                                   <PlatformIcon id={entry.id} />
-                                ) : (
+                                ) : entry.kind === 'solution' ? (
                                   <SolutionIcon id={entry.id} />
+                                ) : (
+                                  <MessageCircle />
                                 )}
                               </IconChip>
                               {entry.label}
