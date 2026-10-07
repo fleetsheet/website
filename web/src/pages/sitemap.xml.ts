@@ -1,4 +1,5 @@
 import { locales, localizePath } from '@/i18n'
+import { resourcePages } from '@/resources'
 import { getAllPublishedInsights, getInsightPath } from '@/utils/insights'
 import type { APIRoute } from 'astro'
 import { WEBSITE_URL } from 'astro:env/client'
@@ -8,7 +9,9 @@ export const GET: APIRoute = async () => {
 
   const paths = [
     ...locales.flatMap((locale) =>
-      ['/', '/contact', '/faqs', '/insights'].map((path) => localizePath(path, locale)),
+      ['/', '/contact', '/faqs', ...resourcePages.map((entry) => entry.href)].map((path) =>
+        localizePath(path, locale),
+      ),
     ),
     ...insights.map(getInsightPath),
   ]

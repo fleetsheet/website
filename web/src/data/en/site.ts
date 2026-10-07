@@ -13,7 +13,6 @@ export const actions = {
 export const headerLinks: NavLink[] = [
   { label: 'AI agents', href: '/#ai' },
   { label: 'FAQs', href: '/faqs' },
-  { label: 'Insights', href: '/insights' },
 ]
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
@@ -30,7 +29,6 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: 'Company',
     links: [
-      { label: 'Insights', href: '/insights' },
       { label: 'FAQs', href: '/faqs' },
       { label: 'AI agents', href: '/#ai' },
       { label: 'Contact', href: '/contact' },

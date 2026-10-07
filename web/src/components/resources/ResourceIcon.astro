@@ -1,0 +1,24 @@
+---
+import type { ResourcePageId } from '@/resources'
+import BookOpen from '@lucide/astro/icons/book-open'
+import CodeXml from '@lucide/astro/icons/code-xml'
+import MessageSquareQuote from '@lucide/astro/icons/message-square-quote'
+import Rocket from '@lucide/astro/icons/rocket'
+
+type Props = {
+  id: ResourcePageId
+  class?: string
+}
+
+const icons = {
+  contentLibrary: BookOpen,
+  customerStories: MessageSquareQuote,
+  easyOnboard: Rocket,
+  developers: CodeXml,
+} satisfies Record<ResourcePageId, unknown>
+
+const { id, class: className } = Astro.props
+const Icon = icons[id]
+---
+
+<Icon class={className} aria-hidden="true" />

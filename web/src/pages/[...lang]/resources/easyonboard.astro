@@ -1,5 +1,5 @@
 ---
-import ContentLibrary from '@/components/resources/ContentLibrary.astro'
+import EasyOnboard from '@/components/resources/EasyOnboard.astro'
 import { getContent } from '@/data'
 import { getLocale, localeStaticPaths } from '@/i18n'
 import Layout from '@/layout/Layout.astro'
@@ -7,9 +7,9 @@ import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
 
-const { meta } = getContent(getLocale(Astro.url)).resources.pages.contentLibrary
+const { meta } = getContent(getLocale(Astro.url)).resources.pages.easyOnboard
 ---
 
 <Layout meta={meta}>
-  <ContentLibrary />
+  <EasyOnboard />
 </Layout>

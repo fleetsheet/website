@@ -32,7 +32,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { insight, translatedLocales } = Astro.props
 const locale = getInsightLocale(insight)
-const { insightsPage } = getContent(locale).insights
+const { contentLibrary } = getContent(locale).resources.pages
 const { Content } = await render(insight)
 const { title, description, publishedAt, updatedAt, author, category, image, imageAlt } =
   insight.data
@@ -59,7 +59,7 @@ const shareImageUrl = shareImage ? new URL(shareImage.src, websiteConfig.url).hr
     <article class="mx-auto max-w-3xl">
       <header class="flex flex-col gap-4">
         <a href={localizePath('/insights', locale)} class="eyebrow text-azul-blue">
-          {insightsPage.eyebrow}
+          {contentLibrary.label}
         </a>
         <h1 class="text-display-md">{title}</h1>
         <p class="text-muted text-sm">
