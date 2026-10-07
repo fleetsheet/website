@@ -1,0 +1,127 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import Photo from '@/components/ui/Photo.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Building from '@lucide/astro/icons/building'
+import Coins from '@lucide/astro/icons/coins'
+import Globe from '@lucide/astro/icons/globe'
+import Plug from '@lucide/astro/icons/plug'
+import Puzzle from '@lucide/astro/icons/puzzle'
+import Rocket from '@lucide/astro/icons/rocket'
+import Send from '@lucide/astro/icons/send'
+import Smartphone from '@lucide/astro/icons/smartphone'
+import Wrench from '@lucide/astro/icons/wrench'
+
+const locale = getLocale(Astro.url)
+const page = getContent(locale).about.partners
+const localize = (href: string) => localizePath(href, locale)
+const programIcons = [Send, Wrench, Puzzle]
+const whyIcons = [Building, Rocket, Coins, Plug, Globe, Smartphone]
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="flex flex-col gap-12 py-16 lg:py-24">
+    <div class="flex max-w-[680px] flex-col items-start gap-5">
+      <p class="eyebrow text-azul-blue">{page.hero.eyebrow}</p>
+      <h1 class="text-display-lg hyphenate">{page.hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{page.hero.description}</p>
+    </div>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-start">
+      {page.hero.photos.map((photo, index) => (
+        <div
+          class:list={[
+            'relative aspect-[4/3] overflow-hidden rounded-xl sm:aspect-[4/5]',
+            index === 1 && 'sm:mt-12',
+          ]}
+        >
+          <Photo
+            photo={photo}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            sizes="(min-width: 640px) 33vw, 100vw"
+          />
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<section>
+  <Container class="flex flex-col gap-10 py-16 lg:py-24">
+    <SectionHeader
+      eyebrow={page.programs.eyebrow}
+      title={page.programs.title}
+      description={page.programs.description}
+    />
+    <ul class="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      {page.programs.items.map((program, index) => {
+        const Icon = programIcons[index % programIcons.length]
+        return (
+          <li class="bg-surface border-border flex flex-col gap-4 rounded-xl border p-6 shadow-xs sm:p-7">
+            <IconChip>
+              <Icon />
+            </IconChip>
+            <h3 class="font-display text-rich-blue text-xl font-semibold">{program.title}</h3>
+            <p class="text-azul-blue text-sm leading-relaxed">{program.description}</p>
+            <CheckList items={program.points} class="text-sm" />
+            <Button href={program.action.href} class="mt-auto w-full justify-center">
+              {program.action.label}
+            </Button>
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<section class="bg-rich-blue text-white">
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <SectionHeader title={page.why.title} description={page.why.description} tone="dark" />
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {page.why.items.map((item, index) => {
+        const Icon = whyIcons[index % whyIcons.length]
+        return (
+          <li class="bg-azul-blue flex gap-4 rounded-xl p-6">
+            <IconChip tone="dark" class="shrink-0">
+              <Icon />
+            </IconChip>
+            <span class="flex flex-col gap-1">
+              <span class="font-display text-lg font-semibold">{item.title}</span>
+              <span class="text-columbia-blue text-sm leading-relaxed">{item.description}</span>
+            </span>
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<section>
+  <Container class="pt-16 lg:pt-24">
+    <div class="bg-columbia-blue/50 border-border flex flex-col items-start gap-4 rounded-2xl border p-8 sm:p-12">
+      <Badge tone="neutral">{page.referral.badge}</Badge>
+      <h2 class="text-display-md">{page.referral.title}</h2>
+      <p class="text-azul-blue max-w-[560px] text-lg leading-relaxed">
+        {page.referral.description}
+      </p>
+      <Button href={page.referral.action.href}>
+        {page.referral.action.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+    </div>
+  </Container>
+</section>
+
+<CtaBanner
+  title={page.cta.title}
+  description={page.cta.description}
+  primaryAction={{ ...page.cta.primaryAction, href: localize(page.cta.primaryAction.href) }}
+  secondaryAction={{ ...page.cta.secondaryAction, href: localize(page.cta.secondaryAction.href) }}
+/>

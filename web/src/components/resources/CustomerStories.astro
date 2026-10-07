@@ -1,4 +1,5 @@
 ---
+import ServeSection from '@/components/resources/ServeSection.astro'
 import Badge from '@/components/ui/Badge.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
@@ -12,16 +13,11 @@ import Building from '@lucide/astro/icons/building'
 import ChevronDown from '@lucide/astro/icons/chevron-down'
 import ChevronLeft from '@lucide/astro/icons/chevron-left'
 import ChevronRight from '@lucide/astro/icons/chevron-right'
-import GraduationCap from '@lucide/astro/icons/graduation-cap'
-import Landmark from '@lucide/astro/icons/landmark'
 import Quote from '@lucide/astro/icons/quote'
-import ShoppingBag from '@lucide/astro/icons/shopping-bag'
-import Truck from '@lucide/astro/icons/truck'
 
 const locale = getLocale(Astro.url)
 const { customerStories: page } = getContent(locale).resources
 const localize = (href: string) => localizePath(href, locale)
-const serveIcons = [Building, Truck, GraduationCap, ShoppingBag, Landmark]
 ---
 
 <section class="bg-rich-blue text-white">
@@ -171,37 +167,7 @@ const serveIcons = [Building, Truck, GraduationCap, ShoppingBag, Landmark]
   </Container>
 </section>
 
-<section class="bg-surface border-border border-y">
-  <Container class="flex flex-col gap-10 py-16 lg:py-20">
-    <div class="flex max-w-[720px] flex-col gap-4">
-      <h2 class="text-display-md hyphenate">{page.serve.title}</h2>
-      <p class="text-azul-blue text-[17px] leading-[1.65]">{page.serve.description}</p>
-    </div>
-    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-      {page.serve.items.map((item, index) => {
-        const Icon = serveIcons[index % serveIcons.length]
-        return (
-          <li>
-            <a
-              href={localize(item.href)}
-              class="group border-border hover:border-celestial-blue bg-page flex h-full flex-col gap-3 rounded-xl border p-5 transition-colors"
-            >
-              <IconChip>
-                <Icon />
-              </IconChip>
-              <span class="text-rich-blue font-semibold">{item.label}</span>
-              <span class="text-azul-blue text-sm">{item.detail}</span>
-              <ArrowRight
-                class="text-celestial-blue mt-auto size-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1"
-                aria-hidden="true"
-              />
-            </a>
-          </li>
-        )
-      })}
-    </ul>
-  </Container>
-</section>
+<ServeSection />
 
 <section>
   <Container class="pt-16 lg:pt-20">

@@ -1,4 +1,6 @@
 ---
+import { aboutGroups, aboutPages, type AboutPageId } from '@/about'
+import AboutIcon from '@/components/about/AboutIcon.astro'
 import PlatformIcon from '@/components/platform/PlatformIcon.astro'
 import ResourceIcon from '@/components/resources/ResourceIcon.astro'
 import SolutionIcon from '@/components/solutions/SolutionIcon.astro'
@@ -26,6 +28,7 @@ type MenuEntry = { href: string; label: string; summary?: string } & (
   | { kind: 'platform'; id: PlatformPageId }
   | { kind: 'solution'; id: SolutionPageId }
   | { kind: 'resource'; id: ResourcePageId }
+  | { kind: 'about'; id: AboutPageId }
   | { kind: 'contact' }
 )
 
@@ -33,7 +36,7 @@ const { translations } = Astro.props
 const locale = getLocale(Astro.url)
 const content = getContent(locale)
 const { headerLinks, actions, labels } = content.site
-const { platform, solutions, resources } = content
+const { platform, solutions, resources, about } = content
 const localize = (href: string) => localizePath(href, locale)
 const megaMenus = [
   {
@@ -103,9 +106,27 @@ const megaMenus = [
         })),
     })),
   },
+  {
+    id: 'about',
+    label: about.menu.label,
+    promo: about.menu.promo,
+    groups: aboutGroups.map((group) => ({
+      id: group,
+      compact: false,
+      title: about.menu.groups[group],
+      entries: aboutPages
+        .filter((entry) => entry.group === group)
+        .map((entry): MenuEntry => ({
+          kind: 'about',
+          id: entry.id,
+          href: entry.href,
+          ...about.pages[entry.id],
+        })),
+    })),
+  },
 ]
 type MegaMenu = (typeof megaMenus)[number]
-// Navigation order: the dropdowns (Platform, Solutions, Resources), then plain links.
+// Navigation order: the dropdowns (Platform, Solutions, Resources, About Fleet), then plain links.
 const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLink })[] = [
   ...megaMenus.map((menu) => ({ kind: 'mega' as const, menu })),
   ...headerLinks.map((link) => ({ kind: 'link' as const, link })),
@@ -113,13 +134,13 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
 ---
 
 <header id="site-header" class="bg-page border-border sticky top-0 z-40 border-b">
-  <Container class="flex items-center gap-8 py-3.5">
+  <Container class="flex items-center gap-6 py-3.5 xl:gap-8">
     <a href={localize('/')} aria-label={labels.home} class="rounded-md">
       <Logo />
     </a>
 
     <nav aria-label={labels.mainNav} class="hidden flex-1 lg:block">
-      <ul class="flex flex-wrap items-center gap-6 text-[15px] font-medium">
+      <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-[15px] font-medium whitespace-nowrap xl:gap-x-6">
         {navItems.map((item) =>
           item.kind === 'mega' ? (
             <li>
@@ -225,6 +246,8 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
                         <SolutionIcon id={entry.id} />
                       ) : entry.kind === 'resource' ? (
                         <ResourceIcon id={entry.id} />
+                      ) : entry.kind === 'about' ? (
+                        <AboutIcon id={entry.id} />
                       ) : (
                         <MessageCircle />
                       )}
@@ -292,6 +315,8 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
                                     <SolutionIcon id={entry.id} />
                                   ) : entry.kind === 'resource' ? (
                                     <ResourceIcon id={entry.id} />
+                                  ) : entry.kind === 'about' ? (
+                                    <AboutIcon id={entry.id} />
                                   ) : (
                                     <MessageCircle />
                                   )}

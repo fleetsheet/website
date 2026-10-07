@@ -10,7 +10,7 @@ export const actions = {
   bookDemo: { label: 'Solicitar demo', href: '/contact' },
 } satisfies Record<string, NavLink>
 
-export const headerLinks: NavLink[] = [{ label: 'Preguntas frecuentes', href: '/faqs' }]
+export const headerLinks: NavLink[] = [{ label: 'FAQ', href: '/faqs' }]
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
@@ -26,7 +26,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: 'Empresa',
     links: [
-      { label: 'Preguntas frecuentes', href: '/faqs' },
+      { label: 'FAQ', href: '/faqs' },
       { label: 'Agentes de IA', href: '/#ai' },
       { label: 'Contacto', href: '/contact' },
     ],
