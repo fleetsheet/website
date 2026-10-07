@@ -81,7 +81,7 @@ export const pages: Record<SolutionPageId, PlatformEntry> = {
     meta: {
       title: 'Software de facility management | Fleet',
       description:
-        'Gestione la operación de cada sede con Fleet: órdenes de trabajo, mantenimiento preventivo, activos, proveedores y cumplimiento en una plataforma.',
+        'Gestione los servicios de instalaciones y el mantenimiento de edificios de cada sede con Fleet: órdenes de trabajo, mantenimiento preventivo, activos, proveedores y cumplimiento en una plataforma.',
     },
   },
   retail: {
@@ -2421,7 +2421,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       eyebrow: 'Facility management',
       title: 'Software de facility management para cada sede',
       description:
-        'Fleet es su panel de control digital para la operación de edificios, del mantenimiento rutinario a las reparaciones imprevistas, para que cada edificio esté en plena forma.',
+        'Fleet es su panel de control digital para servicios de instalaciones y mantenimiento de edificios, del cuidado rutinario a las reparaciones imprevistas, para que cada edificio esté en plena forma.',
       highlights: ['Control centralizado', 'Órdenes automatizadas', 'Seguimiento de activos'],
       visual: {
         kind: 'jobs',
@@ -2731,7 +2731,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       {
         question: '¿Qué es un software de facility management?',
         answer:
-          'Reúne edificios, activos, mantenimiento, proveedores y registros de cumplimiento en un sistema, para planificar, gestionar e informar sobre cada sede.',
+          'Reúne edificios, activos, mantenimiento, proveedores y registros de cumplimiento en un sistema, para que los equipos de servicios de instalaciones y mantenimiento de edificios planifiquen, gestionen e informen sobre cada sede.',
       },
       {
         question: '¿Sirve Fleet para campus, oficinas y desarrollos de uso mixto?',

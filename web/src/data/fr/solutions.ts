@@ -82,7 +82,7 @@ export const pages: Record<SolutionPageId, PlatformEntry> = {
     meta: {
       title: 'Logiciel de facility management | Fleet',
       description:
-        'Pilotez l’exploitation de chaque site avec Fleet : interventions, maintenance préventive, équipements, prestataires et conformité dans une plateforme.',
+        'Pilotez les services aux bâtiments et la maintenance des bâtiments de chaque site avec Fleet : interventions, maintenance préventive, équipements, prestataires et conformité dans une plateforme.',
     },
   },
   retail: {
@@ -2421,7 +2421,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       eyebrow: 'Facility management',
       title: 'Logiciel de facility management pour chaque site',
       description:
-        'Fleet est votre tableau de bord numérique pour l’exploitation des bâtiments, de la maintenance courante aux dépannages, pour que chaque site reste en parfait état.',
+        'Fleet est votre tableau de bord numérique pour les services aux bâtiments et la maintenance des bâtiments, de l’entretien courant aux dépannages, pour que chaque site reste en parfait état.',
       highlights: ['Pilotage centralisé', 'Interventions automatisées', 'Suivi des équipements'],
       visual: {
         kind: 'jobs',
@@ -2727,7 +2727,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       {
         question: 'Qu’est-ce qu’un logiciel de facility management ?',
         answer:
-          'Il réunit bâtiments, équipements, maintenance, prestataires et preuves de conformité dans un système, pour planifier, piloter et suivre chaque site.',
+          'Il réunit bâtiments, équipements, maintenance, prestataires et preuves de conformité dans un système, pour que les équipes de services aux bâtiments et de maintenance planifient, pilotent et suivent chaque site.',
       },
       {
         question: 'Fleet convient-il aux campus, bureaux et projets mixtes ?',

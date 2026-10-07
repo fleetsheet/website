@@ -147,7 +147,7 @@ export const pages: Record<SolutionPageId, PlatformEntry> = {
     meta: {
       title: 'Facility Management Software | Fleet',
       description:
-        'Run facility operations across every site with Fleet: work orders, preventive maintenance, assets, vendors and compliance in one platform.',
+        'Run facilities services and building maintenance across every site with Fleet: work orders, preventive maintenance, assets, vendors and compliance in one platform.',
     },
   },
   retail: {
@@ -2467,7 +2467,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       eyebrow: 'Facility Management',
       title: 'Facility Management Software for Every Site',
       description:
-        'Fleet is your digital control panel for facility operations, from routine maintenance to unexpected repairs, so every building stays in peak condition.',
+        'Fleet is your digital control panel for Facilities Services & Building Maintenance, from routine upkeep to unexpected repairs, so every building stays in peak condition.',
       highlights: ['Centralized control', 'Work order automation', 'Asset tracking'],
       visual: {
         kind: 'jobs',
@@ -2777,7 +2777,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       {
         question: 'What is facility management software?',
         answer:
-          'Facility management software brings buildings, assets, maintenance, vendors and compliance records into one system, so teams can plan, run and report on every site.',
+          'Facility management software brings buildings, assets, maintenance, vendors and compliance records into one system, so facilities services and building maintenance teams can plan, run and report on every site.',
       },
       {
         question: 'Can Fleet manage school campuses, offices and mixed-use developments?',
