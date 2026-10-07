@@ -8,9 +8,11 @@ import FileText from '@lucide/astro/icons/file-text'
 
 type Props = {
   visual: OverviewVisual
+  /** `window` mimics an app window; `card` is a flat dashboard tile for grid layouts. */
+  variant?: 'window' | 'card'
 }
 
-const { visual } = Astro.props
+const { visual, variant = 'window' } = Astro.props
 
 const stepStyles = [
   'bg-columbia-blue text-azul-blue',
@@ -21,14 +23,22 @@ const maxBar = visual.kind === 'chart' ? Math.max(...visual.bars.map((bar) => ba
 ---
 
 <div aria-hidden="true">
-  <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
-    <div class="border-border flex items-center gap-2 border-b px-4 py-3">
-      <span class="bg-border size-2.5 rounded-full"></span>
-      <span class="bg-border size-2.5 rounded-full"></span>
-      <span class="bg-border size-2.5 rounded-full"></span>
-      <p class="font-display ms-2 text-sm font-semibold">{visual.title}</p>
-    </div>
-    <div class="p-4">
+  <MockPanel
+    elevation={variant === 'card' ? 'sm' : 'float'}
+    padding="none"
+    class:list={['text-rich-blue overflow-hidden', variant === 'card' && 'rounded-2xl!']}
+  >
+    {variant === 'card' ? (
+      <p class="font-display px-5 pt-5 text-base font-semibold">{visual.title}</p>
+    ) : (
+      <div class="border-border flex items-center gap-2 border-b px-4 py-3">
+        <span class="bg-border size-2.5 rounded-full" />
+        <span class="bg-border size-2.5 rounded-full" />
+        <span class="bg-border size-2.5 rounded-full" />
+        <p class="font-display ms-2 text-sm font-semibold">{visual.title}</p>
+      </div>
+    )}
+    <div class:list={[variant === 'card' ? 'p-5 pt-4' : 'p-4']}>
       {(visual.kind === 'jobs' || visual.kind === 'files') && (
         <ul class="flex flex-col gap-2">
           {visual.items.map((item) => (
@@ -69,14 +79,16 @@ const maxBar = visual.kind === 'chart' ? Math.max(...visual.bars.map((bar) => ba
       )}
       {visual.kind === 'chart' && (
         <div class="flex flex-col gap-4">
-          <dl class="grid grid-cols-2 gap-2">
-            {visual.stats.map((stat) => (
-              <div class="bg-page rounded-md p-3">
-                <dt class="text-muted text-xs">{stat.label}</dt>
-                <dd class="font-display mt-0.5 text-xl font-semibold">{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
+          {visual.stats.length > 0 && (
+            <dl class="grid grid-cols-2 gap-2">
+              {visual.stats.map((stat) => (
+                <div class="bg-page rounded-md p-3">
+                  <dt class="text-muted text-xs">{stat.label}</dt>
+                  <dd class="font-display mt-0.5 text-xl font-semibold">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
           <ul class="flex flex-col gap-2.5">
             {visual.bars.map((bar, index) => (
               <li class="grid grid-cols-[96px_1fr] items-center gap-3 text-xs">

@@ -1,0 +1,34 @@
+---
+import OverviewVisual from '@/components/platform/OverviewVisual.astro'
+import Photo from '@/components/ui/Photo.astro'
+import type { OverviewVisual as Visual } from '@/data/en/platform'
+import type { Photo as PhotoData } from '@/photos'
+
+type Props = {
+  photo: PhotoData
+  visual: Visual
+  cardSide?: 'start' | 'end'
+}
+
+const { photo, visual, cardSide = 'end' } = Astro.props
+---
+
+<!-- The product card leads; the photo sits behind it as context. -->
+<div class="relative sm:py-6">
+  <div
+    class:list={[
+      'bg-columbia-blue relative aspect-[4/3] w-[80%] overflow-hidden rounded-2xl sm:aspect-[4/5] sm:w-[50%]',
+      cardSide === 'start' && 'ms-auto',
+    ]}
+  >
+    <Photo photo={photo} sizes="(min-width: 1024px) 340px, 80vw" />
+  </div>
+  <div
+    class:list={[
+      'relative z-10 -mt-24 w-[92%] sm:absolute sm:top-1/2 sm:mt-0 sm:w-[62%] sm:-translate-y-1/2',
+      cardSide === 'end' ? 'ms-auto sm:end-0' : 'sm:start-0',
+    ]}
+  >
+    <OverviewVisual visual={visual} />
+  </div>
+</div>

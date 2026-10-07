@@ -13,7 +13,6 @@ import ArrowRight from '@lucide/astro/icons/arrow-right'
 import Boxes from '@lucide/astro/icons/boxes'
 import Building from '@lucide/astro/icons/building'
 import Check from '@lucide/astro/icons/check'
-import ChevronDown from '@lucide/astro/icons/chevron-down'
 import ClipboardList from '@lucide/astro/icons/clipboard-list'
 import FileClock from '@lucide/astro/icons/file-clock'
 import FolderOpen from '@lucide/astro/icons/folder-open'
@@ -24,6 +23,7 @@ import ShieldCheck from '@lucide/astro/icons/shield-check'
 import Smartphone from '@lucide/astro/icons/smartphone'
 import CapabilityTabs from './CapabilityTabs.astro'
 import ChallengeCards from './ChallengeCards.astro'
+import FaqSection from './FaqSection.astro'
 import FeatureBanner from './FeatureBanner.astro'
 import FeatureRows from './FeatureRows.astro'
 import IndustriesIntegrate from './IndustriesIntegrate.astro'
@@ -160,27 +160,7 @@ const trustIcons =
 
 <IndustriesIntegrate industries={industries} integrate={integrate} />
 
-<section>
-  <Container class="grid grid-cols-1 gap-10 pt-24 lg:grid-cols-[1fr_2fr]">
-    <h2 class="text-display-md">{faq.title}</h2>
-    <ul class="flex flex-col gap-3">
-      {faq.items.map((item) => (
-        <li>
-          <details class="group border-border bg-surface rounded-xl border shadow-xs">
-            <summary class="text-rich-blue flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-lg font-semibold [&::-webkit-details-marker]:hidden">
-              <span>{item.question}</span>
-              <ChevronDown
-                aria-hidden="true"
-                class="text-azul-blue size-5 shrink-0 transition-transform group-open:rotate-180"
-              />
-            </summary>
-            <p class="text-azul-blue px-6 pb-6 leading-relaxed">{item.answer}</p>
-          </details>
-        </li>
-      ))}
-    </ul>
-  </Container>
-</section>
+<FaqSection title={faq.title} items={faq.items} />
 
 <CtaBanner
   title={cta.title}

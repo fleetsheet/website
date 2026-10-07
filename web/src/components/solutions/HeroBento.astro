@@ -1,0 +1,70 @@
+---
+import IconChip from '@/components/ui/IconChip.astro'
+import OverviewVisual from '@/components/platform/OverviewVisual.astro'
+import type { OverviewVisual as Visual } from '@/data/en/platform'
+import type Workflow from '@lucide/astro/icons/workflow'
+
+type Props = {
+  main: Visual
+  chart?: Extract<Visual, { kind: 'chart' }>
+  flow?: Visual
+  features: { label: string; icon: typeof Workflow }[]
+}
+
+const { main, chart, flow, features } = Astro.props
+const [primaryStat, secondaryStat] = chart?.stats ?? []
+const [FirstIcon, SecondIcon] = features.map((feature) => feature.icon)
+---
+
+<!-- Dashboard-style bento grid: every tile has its own space, nothing overlaps. -->
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-[1.15fr_1fr]" aria-hidden="true">
+  <div class="flex flex-col gap-4">
+    <OverviewVisual visual={main} variant="card" />
+    <div class="hidden lg:block">{flow && <OverviewVisual visual={flow} variant="card" />}</div>
+  </div>
+  <div class="flex flex-col gap-4">
+    {primaryStat && secondaryStat && (
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-rich-blue text-alice-blue flex min-h-36 flex-col justify-between gap-4 rounded-2xl p-5">
+          {FirstIcon && (
+            <span class="bg-azul-blue text-sky-blue self-end rounded-lg p-2">
+              <FirstIcon class="size-5" />
+            </span>
+          )}
+          <div>
+            <p class="text-columbia-blue text-xs">{primaryStat.label}</p>
+            <p class="font-display mt-1 text-[1.75rem] leading-none font-semibold text-white">
+              {primaryStat.value}
+            </p>
+          </div>
+        </div>
+        <div class="bg-columbia-blue text-rich-blue flex min-h-36 flex-col justify-between gap-4 rounded-2xl p-5">
+          {SecondIcon && (
+            <span class="bg-surface text-azul-blue self-end rounded-lg p-2">
+              <SecondIcon class="size-5" />
+            </span>
+          )}
+          <div>
+            <p class="text-azul-blue text-xs">{secondaryStat.label}</p>
+            <p class="font-display mt-1 text-[1.75rem] leading-none font-semibold">
+              {secondaryStat.value}
+            </p>
+          </div>
+        </div>
+      </div>
+    )}
+    <div class="hidden flex-col gap-4 lg:flex">
+      {chart && <OverviewVisual visual={{ ...chart, stats: [] }} variant="card" />}
+      <ul class="bg-surface border-border grid grid-cols-2 gap-3 rounded-2xl border p-4 shadow-sm">
+        {features.map((feature) => (
+          <li class="text-rich-blue flex items-center gap-2.5 text-[13px] font-semibold">
+            <IconChip size="sm">
+              <feature.icon />
+            </IconChip>
+            <span class="min-w-0 leading-tight">{feature.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>

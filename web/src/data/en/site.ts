@@ -11,7 +11,6 @@ export const actions = {
 } satisfies Record<string, NavLink>
 
 export const headerLinks: NavLink[] = [
-  { label: 'Solutions', href: '/#solutions' },
   { label: 'AI agents', href: '/#ai' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Insights', href: '/insights' },
