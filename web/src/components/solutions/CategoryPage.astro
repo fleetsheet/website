@@ -2,7 +2,6 @@
 import CapabilityTabs from '@/components/platform/CapabilityTabs.astro'
 import ChallengeCards from '@/components/platform/ChallengeCards.astro'
 import FaqSection from '@/components/platform/FaqSection.astro'
-import OverviewVisual from '@/components/platform/OverviewVisual.astro'
 import Button from '@/components/ui/Button.astro'
 import CheckList from '@/components/ui/CheckList.astro'
 import Container from '@/components/ui/Container.astro'
@@ -35,6 +34,7 @@ import Smartphone from '@lucide/astro/icons/smartphone'
 import Sparkles from '@lucide/astro/icons/sparkles'
 import Users from '@lucide/astro/icons/users'
 import Wallet from '@lucide/astro/icons/wallet'
+import HeroStage from './HeroStage.astro'
 import PhotoWithCard from './PhotoWithCard.astro'
 import SolutionIcon from './SolutionIcon.astro'
 
@@ -63,10 +63,14 @@ const tabIcons = {
   approvals: BadgeCheck,
 } satisfies Record<CategoryIcon, unknown>
 const whyIcons = [SlidersHorizontal, Sparkles, Users]
+// Supporting hero cards come from the capability tabs: a chart behind, a workflow in front.
+const tabVisuals = capabilities.tabs.map((tab) => tab.visual)
+const heroBack = tabVisuals.find((visual) => visual.kind === 'chart')
+const heroFront = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
 ---
 
 <section class="bg-columbia-blue/40 border-border border-b">
-  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:py-24">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
         <IconChip size="sm">
@@ -74,7 +78,7 @@ const whyIcons = [SlidersHorizontal, Sparkles, Users]
         </IconChip>
         {hero.eyebrow}
       </p>
-      <h1 class="text-display-xl hyphenate">{hero.title}</h1>
+      <h1 class="text-display-lg hyphenate">{hero.title}</h1>
       <p class="text-lead text-azul-blue text-pretty">{hero.description}</p>
       <div class="flex flex-wrap gap-3">
         <Button href={actions.primary.href}>
@@ -94,7 +98,12 @@ const whyIcons = [SlidersHorizontal, Sparkles, Users]
         ))}
       </ul>
     </div>
-    <OverviewVisual visual={hero.visual} />
+    <HeroStage
+      main={hero.visual}
+      back={heroBack}
+      front={heroFront}
+      icons={capabilities.tabs.map((tab) => tabIcons[tab.icon])}
+    />
   </Container>
 </section>
 
