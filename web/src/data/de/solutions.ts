@@ -217,10 +217,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet bringt Gebäude, Anlagen, Menschen und Compliance-Nachweise in einer Cloud-Plattform zusammen, damit jeder Standort mit Live-Daten arbeitet.',
       highlights: ['Aufträge und Wartung', 'Anlagenhistorie', 'Prüfbereite Nachweise'],
-      photo: {
-        id: 'technicianPlantRoom',
-        alt: 'Techniker wartet Anlagen in einem Technikraum',
-      },
       visual: {
         kind: 'jobs',
         title: 'Arbeitsaufträge · Harbour Point',
@@ -560,10 +556,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet gibt Immobilienteams eine Live-Ansicht jedes Objekts, von Budgets und Dokumenten bis zu Instandhaltung, Dienstleistern und Compliance.',
       highlights: ['Portfolioansicht', 'Budgetkontrolle', 'Berichte für Gremien'],
-      photo: {
-        id: 'propertyManagerTablet',
-        alt: 'Property Managerin mit Tablet vor Bürotürmen',
-      },
       visual: {
         kind: 'asset',
         title: 'Objektprofil',
@@ -902,10 +894,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Erstellen, zuweisen, verfolgen und schließen Sie jeden Arbeitsauftrag an allen Standorten, mit Live-Updates aus dem Einsatz und voller Transparenz für Verantwortliche.',
       highlights: ['Mobile Updates', 'SLA-Tracking', 'Fotonachweis'],
-      photo: {
-        id: 'plumberRepair',
-        alt: 'Installateur repariert eine Küchenspüle',
-      },
       visual: {
         kind: 'jobs',
         title: 'Arbeitsaufträge · Heute',
@@ -1257,10 +1245,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Schicken Sie den richtigen Techniker mit den richtigen Informationen zum richtigen Standort und verfolgen Sie den Fortschritt live, vom ersten Besuch bis zum Abschluss.',
       highlights: ['Smarte Zuweisung', 'Mobile Checklisten', 'Live-Status'],
-      photo: {
-        id: 'engineersRooftop',
-        alt: 'Zwei Ingenieure prüfen ein Tablet auf dem Dach',
-      },
       visual: {
         kind: 'log',
         title: 'Außendienst · Heute',
@@ -1597,10 +1581,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Geben Sie Mietern und Bewohnern einen einfachen Weg für Anliegen, halten Sie sie bei jedem Schritt auf dem Laufenden und lösen Sie Anliegen schnell, in jedem Gebäude.',
       highlights: ['Einfache Meldungen', 'Klare Updates', 'Schnellere Lösung'],
-      photo: {
-        id: 'residentsNewHome',
-        alt: 'Bewohner blicken zu ihrem Wohngebäude hinauf',
-      },
       visual: {
         kind: 'jobs',
         title: 'Bewohneranliegen · Bayview',
@@ -1939,10 +1919,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Koordinieren Sie Dienstleister, Angebote, Verträge und Leistung in einer Plattform, mit jedem Auftrag, jeder Freigabe und jedem Dokument im Nachweis.',
       highlights: ['Dienstleisterbewertungen', 'Angebotsfreigaben', 'Vertragsverfolgung'],
-      photo: {
-        id: 'vendorHandshake',
-        alt: 'Facility Manager begrüßt einen Dienstleister per Handschlag',
-      },
       visual: {
         kind: 'jobs',
         title: 'Dienstleister · Dieser Monat',

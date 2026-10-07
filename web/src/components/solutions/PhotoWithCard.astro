@@ -8,10 +8,9 @@ type Props = {
   photo: PhotoData
   visual: Visual
   cardSide?: 'start' | 'end'
-  loading?: 'eager' | 'lazy'
 }
 
-const { photo, visual, cardSide = 'end', loading = 'lazy' } = Astro.props
+const { photo, visual, cardSide = 'end' } = Astro.props
 ---
 
 <!-- The product card leads; the photo sits behind it as context. -->
@@ -22,7 +21,7 @@ const { photo, visual, cardSide = 'end', loading = 'lazy' } = Astro.props
       cardSide === 'start' && 'ms-auto',
     ]}
   >
-    <Photo photo={photo} loading={loading} sizes="(min-width: 1024px) 340px, 80vw" />
+    <Photo photo={photo} sizes="(min-width: 1024px) 340px, 80vw" />
   </div>
   <div
     class:list={[

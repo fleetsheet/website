@@ -222,10 +222,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Historique des équipements',
         'Preuves prêtes pour l’audit',
       ],
-      photo: {
-        id: 'technicianPlantRoom',
-        alt: 'Technicien intervenant sur un équipement en local technique',
-      },
       visual: {
         kind: 'jobs',
         title: 'Interventions · Harbour Point',
@@ -564,10 +560,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet offre aux équipes immobilières une vue en direct de chaque actif, des budgets et documents à la maintenance, aux prestataires et à la conformité.',
       highlights: ['Vue patrimoine', 'Suivi budgétaire', 'Rapports pour les comités'],
-      photo: {
-        id: 'propertyManagerTablet',
-        alt: 'Property manager avec une tablette devant des tours de bureaux',
-      },
       visual: {
         kind: 'asset',
         title: 'Fiche actif',
@@ -906,10 +898,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Créez, assignez, suivez et clôturez chaque intervention sur tous vos sites, avec des mises à jour en direct du terrain et une visibilité complète pour les responsables.',
       highlights: ['Mises à jour mobiles', 'Suivi des SLA', 'Preuves photo'],
-      photo: {
-        id: 'plumberRepair',
-        alt: 'Plombier réparant un évier de cuisine',
-      },
       visual: {
         kind: 'jobs',
         title: 'Interventions · Aujourd’hui',
@@ -1261,10 +1249,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Envoyez le bon technicien sur le bon site avec les bonnes informations, et suivez l’avancement en direct de la première visite à la clôture.',
       highlights: ['Affectation intelligente', 'Check-lists mobiles', 'Statut en direct'],
-      photo: {
-        id: 'engineersRooftop',
-        alt: 'Deux ingénieurs consultent une tablette en toiture',
-      },
       visual: {
         kind: 'log',
         title: 'Activité terrain · Aujourd’hui',
@@ -1601,10 +1585,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Offrez aux locataires et résidents un moyen simple de faire une demande, informez-les à chaque étape et résolvez vite les problèmes dans chaque bâtiment.',
       highlights: ['Demandes simples', 'Suivi clair', 'Résolution rapide'],
-      photo: {
-        id: 'residentsNewHome',
-        alt: 'Résidents regardant leur immeuble',
-      },
       visual: {
         kind: 'jobs',
         title: 'Demandes des résidents · Bayview',
@@ -1943,10 +1923,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Coordonnez prestataires, devis, contrats et performance dans une plateforme, avec chaque intervention, validation et document tracés.',
       highlights: ['Évaluations prestataires', 'Validation des devis', 'Suivi des contrats'],
-      photo: {
-        id: 'vendorHandshake',
-        alt: 'Responsable technique serrant la main d’un prestataire',
-      },
       visual: {
         kind: 'jobs',
         title: 'Prestataires · Ce mois-ci',

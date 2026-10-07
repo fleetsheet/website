@@ -30,7 +30,6 @@ export type CategoryPageContent = {
     title: string
     description: string
     highlights: string[]
-    photo: Photo
     visual: OverviewVisual
   }
   challenge: {
@@ -280,10 +279,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet brings your buildings, assets, people and compliance records together in one cloud-based platform, so every site runs on live information.',
       highlights: ['Work orders and PPM', 'Asset history', 'Audit-ready records'],
-      photo: {
-        id: 'technicianPlantRoom',
-        alt: 'Technician servicing equipment in a plant room',
-      },
       visual: {
         kind: 'jobs',
         title: 'Work orders · Harbour Point',
@@ -623,10 +618,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet gives real estate teams one live view of every property, from budgets and documents to maintenance, vendors and compliance.',
       highlights: ['Portfolio view', 'Budget tracking', 'Board-ready reports'],
-      photo: {
-        id: 'propertyManagerTablet',
-        alt: 'Property manager with a tablet outside office towers',
-      },
       visual: {
         kind: 'asset',
         title: 'Property profile',
@@ -965,10 +956,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Create, assign, track and close every work order across your sites, with live updates from the field and full visibility for managers.',
       highlights: ['Mobile updates', 'SLA tracking', 'Photo proof'],
-      photo: {
-        id: 'plumberRepair',
-        alt: 'Plumber repairing a kitchen sink',
-      },
       visual: {
         kind: 'jobs',
         title: 'Work orders · Today',
@@ -1314,10 +1301,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Send the right technician to the right site with the right information, and follow progress live from first visit to job closure.',
       highlights: ['Smart assignment', 'Mobile checklists', 'Live job status'],
-      photo: {
-        id: 'engineersRooftop',
-        alt: 'Two engineers reviewing a tablet on a rooftop',
-      },
       visual: {
         kind: 'log',
         title: 'Field activity · Today',
@@ -1653,10 +1636,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Give tenants and residents a simple way to raise requests, keep them updated at every step and resolve issues fast across every building.',
       highlights: ['Easy requests', 'Clear updates', 'Faster resolution'],
-      photo: {
-        id: 'residentsNewHome',
-        alt: 'Residents looking up at their apartment building',
-      },
       visual: {
         kind: 'jobs',
         title: 'Resident requests · Bayview',
@@ -1994,10 +1973,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Coordinate contractors, quotes, contracts and performance in one platform, with every job, approval and document on record.',
       highlights: ['Vendor scorecards', 'Quote approvals', 'Contract tracking'],
-      photo: {
-        id: 'vendorHandshake',
-        alt: 'Facility manager shaking hands with a vendor partner',
-      },
       visual: {
         kind: 'jobs',
         title: 'Vendors · This month',

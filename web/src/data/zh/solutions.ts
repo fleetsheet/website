@@ -208,10 +208,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet 把楼宇、资产、人员和合规记录集中到一个云平台，让每个项目都基于实时信息运转。',
       highlights: ['工单与预防性维护', '资产历史', '可直接审计的记录'],
-      photo: {
-        id: 'technicianPlantRoom',
-        alt: '技术人员在机房维护设备',
-      },
       visual: {
         kind: 'jobs',
         title: '工单 · Harbour Point',
@@ -515,10 +511,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       title: '物业与不动产管理，一个平台全搞定',
       description: 'Fleet 为不动产团队提供每处物业的实时视图，从预算和文档到维护、供应商与合规。',
       highlights: ['资产组合视图', '预算跟踪', '董事会报表'],
-      photo: {
-        id: 'propertyManagerTablet',
-        alt: '物业经理手持平板站在办公楼前',
-      },
       visual: {
         kind: 'asset',
         title: '物业档案',
@@ -821,10 +813,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       title: '让每张工单持续推进的工单管理',
       description: '在所有项目中创建、分派、跟踪并关闭每张工单，现场实时更新，管理者全程可见。',
       highlights: ['移动端更新', 'SLA 跟踪', '照片凭证'],
-      photo: {
-        id: 'plumberRepair',
-        alt: '水管工在维修厨房水槽',
-      },
       visual: {
         kind: 'jobs',
         title: '工单 · 今日',
@@ -1139,10 +1127,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       title: '面向移动团队的现场服务优化',
       description: '把合适的技术人员和合适的信息送到合适的现场，从首次到场到工单关闭全程实时跟进。',
       highlights: ['智能分派', '移动检查清单', '实时状态'],
-      photo: {
-        id: 'engineersRooftop',
-        alt: '两位工程师在屋顶查看平板',
-      },
       visual: {
         kind: 'log',
         title: '现场动态 · 今日',
@@ -1441,10 +1425,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       title: '赢得信任的租户与住户管理',
       description: '为租户和住户提供简单的报修方式，在每一步同步进度，并在每栋楼快速解决问题。',
       highlights: ['报修简单', '进度清晰', '解决更快'],
-      photo: {
-        id: 'residentsNewHome',
-        alt: '住户抬头看着自己的公寓楼',
-      },
       visual: {
         kind: 'jobs',
         title: '住户报修 · Bayview',
@@ -1741,10 +1721,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         '在一个平台中协调承包商、报价、合同和绩效，每张工单、每次审批和每份文档都有记录。',
       highlights: ['供应商评分', '报价审批', '合同跟踪'],
-      photo: {
-        id: 'vendorHandshake',
-        alt: '设施经理与供应商合作伙伴握手',
-      },
       visual: {
         kind: 'jobs',
         title: '供应商 · 本月',

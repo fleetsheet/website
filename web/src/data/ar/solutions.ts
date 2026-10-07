@@ -214,10 +214,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'تجمع Fleet مبانيك وأصولك وفرقك وسجلات الامتثال في منصة سحابية واحدة، ليعمل كل موقع بمعلومات مباشرة.',
       highlights: ['أوامر العمل والصيانة الوقائية', 'سجل الأصول', 'سجلات جاهزة للتدقيق'],
-      photo: {
-        id: 'technicianPlantRoom',
-        alt: 'فني يصون معدات في غرفة المعدات',
-      },
       visual: {
         kind: 'jobs',
         title: 'أوامر العمل · Harbour Point',
@@ -546,10 +542,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'تمنح Fleet فرق العقارات عرضًا مباشرًا لكل عقار، من الميزانيات والمستندات إلى الصيانة والمورّدين والامتثال.',
       highlights: ['عرض المحفظة', 'تتبع الميزانية', 'تقارير لمجالس الإدارة'],
-      photo: {
-        id: 'propertyManagerTablet',
-        alt: 'مديرة عقارات تحمل جهازًا لوحيًا أمام أبراج مكتبية',
-      },
       visual: {
         kind: 'asset',
         title: 'ملف العقار',
@@ -876,10 +868,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'أنشئ كل أمر عمل وأسنده وتابعه وأغلقه في كل مواقعك، مع تحديثات مباشرة من الميدان ورؤية كاملة للمديرين.',
       highlights: ['تحديثات من الهاتف', 'تتبع اتفاقيات الخدمة', 'إثبات بالصور'],
-      photo: {
-        id: 'plumberRepair',
-        alt: 'سبّاك يصلح حوض مطبخ',
-      },
       visual: {
         kind: 'jobs',
         title: 'أوامر العمل · اليوم',
@@ -1219,10 +1207,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'أرسل الفني المناسب إلى الموقع المناسب بالمعلومات المناسبة، وتابع التقدم مباشرة من أول زيارة حتى إغلاق العمل.',
       highlights: ['إسناد ذكي', 'قوائم فحص على الهاتف', 'حالة مباشرة'],
-      photo: {
-        id: 'engineersRooftop',
-        alt: 'مهندسان يراجعان جهازًا لوحيًا على السطح',
-      },
       visual: {
         kind: 'log',
         title: 'النشاط الميداني · اليوم',
@@ -1546,10 +1530,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'امنح المستأجرين والسكان طريقة بسيطة لتقديم الطلبات، وأبقهم على اطلاع في كل خطوة، وحُلّ المشكلات بسرعة في كل مبنى.',
       highlights: ['طلبات سهلة', 'تحديثات واضحة', 'حل أسرع'],
-      photo: {
-        id: 'residentsNewHome',
-        alt: 'سكان ينظرون إلى مبناهم السكني',
-      },
       visual: {
         kind: 'jobs',
         title: 'طلبات السكان · Bayview',
@@ -1878,10 +1858,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'نسّق المقاولين والعروض والعقود والأداء في منصة واحدة، مع توثيق كل عمل وموافقة ومستند.',
       highlights: ['تقييم المورّدين', 'موافقة العروض', 'تتبع العقود'],
-      photo: {
-        id: 'vendorHandshake',
-        alt: 'مدير مرافق يصافح شريكًا من المورّدين',
-      },
       visual: {
         kind: 'jobs',
         title: 'المورّدون · هذا الشهر',

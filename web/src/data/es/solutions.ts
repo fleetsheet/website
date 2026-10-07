@@ -220,10 +220,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Historial de activos',
         'Registros listos para auditoría',
       ],
-      photo: {
-        id: 'technicianPlantRoom',
-        alt: 'Técnico revisando equipos en una sala técnica',
-      },
       visual: {
         kind: 'jobs',
         title: 'Órdenes de trabajo · Harbour Point',
@@ -563,10 +559,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Fleet ofrece a los equipos inmobiliarios una vista en vivo de cada propiedad, desde presupuestos y documentos hasta mantenimiento, proveedores y cumplimiento.',
       highlights: ['Vista de cartera', 'Control de presupuesto', 'Informes para comités'],
-      photo: {
-        id: 'propertyManagerTablet',
-        alt: 'Gestora de propiedades con una tableta frente a torres de oficinas',
-      },
       visual: {
         kind: 'asset',
         title: 'Ficha de la propiedad',
@@ -905,10 +897,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Cree, asigne, siga y cierre cada orden de trabajo en todas sus sedes, con actualizaciones en vivo desde el terreno y total visibilidad para los responsables.',
       highlights: ['Actualizaciones móviles', 'Seguimiento de SLA', 'Fotos de evidencia'],
-      photo: {
-        id: 'plumberRepair',
-        alt: 'Fontanero reparando el fregadero de una cocina',
-      },
       visual: {
         kind: 'jobs',
         title: 'Órdenes de trabajo · Hoy',
@@ -1259,10 +1247,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Envíe al técnico adecuado a la sede adecuada con la información adecuada, y siga el avance en vivo desde la primera visita hasta el cierre.',
       highlights: ['Asignación inteligente', 'Listas móviles', 'Estado en vivo'],
-      photo: {
-        id: 'engineersRooftop',
-        alt: 'Dos ingenieros revisando una tableta en la cubierta',
-      },
       visual: {
         kind: 'log',
         title: 'Actividad de campo · Hoy',
@@ -1598,10 +1582,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
       description:
         'Dé a inquilinos y residentes una forma sencilla de hacer solicitudes, infórmeles en cada paso y resuelva rápido en todos sus edificios.',
       highlights: ['Solicitudes sencillas', 'Avisos claros', 'Resolución más rápida'],
-      photo: {
-        id: 'residentsNewHome',
-        alt: 'Residentes mirando su edificio de viviendas',
-      },
       visual: {
         kind: 'jobs',
         title: 'Solicitudes de residentes · Bayview',
@@ -1944,10 +1924,6 @@ export const categories: Record<CategoryPageId, CategoryPageContent> = {
         'Aprobación de presupuestos',
         'Seguimiento de contratos',
       ],
-      photo: {
-        id: 'vendorHandshake',
-        alt: 'Responsable de instalaciones estrechando la mano de un proveedor',
-      },
       visual: {
         kind: 'jobs',
         title: 'Proveedores · Este mes',
