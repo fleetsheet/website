@@ -1,0 +1,36 @@
+---
+import Container from '@/components/ui/Container.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+import MapPin from '@lucide/astro/icons/map-pin'
+
+type Props = {
+  eyebrow: string
+  title: string
+  description: string
+}
+
+const { eyebrow, title, description } = Astro.props
+const { offices } = getContent(getLocale(Astro.url)).about
+---
+
+<section>
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <SectionHeader eyebrow={eyebrow} title={title} description={description} />
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {offices.map((office) => (
+        <li class="bg-surface border-border flex items-center gap-4 rounded-xl border p-6 shadow-xs">
+          <IconChip>
+            <MapPin />
+          </IconChip>
+          <span class="flex flex-col">
+            <span class="font-display text-rich-blue text-xl font-semibold">{office.city}</span>
+            <span class="text-azul-blue text-sm">{office.region}</span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

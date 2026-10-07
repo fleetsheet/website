@@ -1,0 +1,145 @@
+---
+import OfficeCards from '@/components/about/OfficeCards.astro'
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import Photo from '@/components/ui/Photo.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import Eye from '@lucide/astro/icons/eye'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
+import Users from '@lucide/astro/icons/users'
+import Zap from '@lucide/astro/icons/zap'
+
+const locale = getLocale(Astro.url)
+const page = getContent(locale).about.careers
+const localize = (href: string) => localizePath(href, locale)
+const valueIcons = [Eye, Zap, Users, ShieldCheck]
+---
+
+<section class="bg-columbia-blue/40 border-border overflow-hidden border-b">
+  <Container class="flex flex-col items-center gap-12 pt-16 pb-16 lg:pt-24 lg:pb-20">
+    <div class="flex max-w-[760px] flex-col items-center gap-5 text-center">
+      <p class="eyebrow text-azul-blue">{page.hero.eyebrow}</p>
+      <h1 class="text-display-lg hyphenate">{page.hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{page.hero.description}</p>
+      <Button href={page.hero.action.href} size="lg">
+        {page.hero.action.label}
+      </Button>
+    </div>
+    <div class="grid w-full grid-cols-2 items-center gap-4 lg:grid-cols-4">
+      {page.hero.photos.map((photo, index) => (
+        <div
+          class:list={[
+            'relative overflow-hidden rounded-xl',
+            index % 3 === 0 ? 'aspect-[4/3] lg:aspect-[4/5]' : 'aspect-[4/3] lg:aspect-[3/4]',
+          ]}
+        >
+          <Photo
+            photo={photo}
+            loading={index < 2 ? 'eager' : 'lazy'}
+            sizes="(min-width: 1024px) 25vw, 50vw"
+          />
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<section>
+  <Container class="py-16 lg:py-20">
+    <div class="bg-rich-blue grid grid-cols-1 items-center gap-10 rounded-2xl p-8 text-white sm:p-12 lg:grid-cols-[1fr_1.2fr]">
+      <div class="flex flex-col gap-3">
+        <h2 class="text-display-md text-white">{page.growth.title}</h2>
+        <p class="text-columbia-blue leading-relaxed">{page.growth.description}</p>
+      </div>
+      <dl class="grid grid-cols-2 gap-6 sm:grid-cols-4">
+        {page.growth.stats.map((stat) => (
+          <div class="flex flex-col gap-1">
+            <dt class="sr-only">{stat.label}</dt>
+            <dd class="font-display text-[2rem] leading-tight font-semibold text-white">
+              {stat.value}
+            </dd>
+            <dd class="text-columbia-blue text-sm">{stat.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Container>
+</section>
+
+<section>
+  <Container class="flex flex-col gap-10 pb-16 lg:pb-20">
+    <SectionHeader
+      eyebrow={page.culture.eyebrow}
+      title={page.culture.title}
+      description={page.culture.description}
+    />
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {page.culture.items.map((item, index) => {
+        const Icon = valueIcons[index % valueIcons.length]
+        return (
+          <li class="bg-surface border-border flex flex-col gap-3 rounded-xl border p-6 shadow-xs">
+            <IconChip>
+              <Icon />
+            </IconChip>
+            <span class="font-display text-rich-blue text-lg font-semibold">{item.title}</span>
+            <span class="text-azul-blue text-sm leading-relaxed">{item.description}</span>
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<section class="bg-surface border-border border-y">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-display-md hyphenate">{page.spotlight.title}</h2>
+      <p class="text-azul-blue text-[17px] leading-[1.65]">{page.spotlight.description}</p>
+      <CheckList items={page.spotlight.points} />
+    </div>
+    <div class="relative aspect-[4/3] overflow-hidden rounded-xl">
+      <Photo photo={page.spotlight.photo} sizes="(min-width: 1024px) 40vw, 100vw" />
+    </div>
+  </Container>
+</section>
+
+<OfficeCards
+  eyebrow={page.offices.eyebrow}
+  title={page.offices.title}
+  description={page.offices.description}
+/>
+
+<section id="join" class="bg-rich-blue scroll-mt-20 text-white">
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <SectionHeader eyebrow={page.join.eyebrow} title={page.join.title} tone="dark" />
+    <ol class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {page.join.steps.map((step, index) => (
+        <li class="bg-azul-blue flex flex-col gap-3 rounded-xl p-6">
+          <span class="bg-sun-orange text-rich-blue flex size-9 items-center justify-center rounded-full text-sm font-semibold">
+            {index + 1}
+          </span>
+          <span class="eyebrow text-sky-blue">
+            {page.join.label} {index + 1}
+          </span>
+          <span class="font-display text-lg font-semibold">{step.title}</span>
+          <span class="text-columbia-blue text-sm leading-relaxed">{step.description}</span>
+        </li>
+      ))}
+    </ol>
+  </Container>
+</section>
+
+<CtaBanner
+  title={page.invite.title}
+  description={page.invite.description}
+  primaryAction={{ ...page.invite.primaryAction, href: localize(page.invite.primaryAction.href) }}
+  secondaryAction={{
+    ...page.invite.secondaryAction,
+    href: localize(page.invite.secondaryAction.href),
+  }}
+/>

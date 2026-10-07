@@ -1,0 +1,22 @@
+---
+import type { AboutPageId } from '@/about'
+import Briefcase from '@lucide/astro/icons/briefcase'
+import Compass from '@lucide/astro/icons/compass'
+import Handshake from '@lucide/astro/icons/handshake'
+
+type Props = {
+  id: AboutPageId
+  class?: string
+}
+
+const icons = {
+  story: Compass,
+  careers: Briefcase,
+  partners: Handshake,
+} satisfies Record<AboutPageId, unknown>
+
+const { id, class: className } = Astro.props
+const Icon = icons[id]
+---
+
+<Icon class={className} aria-hidden="true" />

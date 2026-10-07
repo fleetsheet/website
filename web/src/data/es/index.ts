@@ -1,3 +1,4 @@
+export { about } from './about'
 export * as contact from './contact'
 export * as faq from './faq'
 export * as home from './home'

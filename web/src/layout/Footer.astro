@@ -1,4 +1,5 @@
 ---
+import { aboutPages } from '@/about'
 import NewsletterSignup from '@/components/newsletter/NewsletterSignup.astro'
 import Container from '@/components/ui/Container.astro'
 import Logo from '@/components/ui/Logo.astro'
@@ -8,9 +9,9 @@ import { getLocale, localizePath } from '@/i18n'
 import { resourcePages } from '@/resources'
 
 const locale = getLocale(Astro.url)
-const { site, resources } = getContent(locale)
+const { site, resources, about } = getContent(locale)
 const { tagline } = site
-// The Resources column mirrors the Resources menu.
+// The Resources and About Fleet columns mirror their menus.
 const footerColumns = [
   ...site.footerColumns,
   {
@@ -19,6 +20,10 @@ const footerColumns = [
       label: resources.pages[entry.id].label,
       href: entry.href,
     })),
+  },
+  {
+    title: about.menu.label,
+    links: aboutPages.map((entry) => ({ label: about.pages[entry.id].label, href: entry.href })),
   },
 ]
 const { name } = websiteConfig

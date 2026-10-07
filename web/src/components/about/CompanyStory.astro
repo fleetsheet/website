@@ -1,0 +1,131 @@
+---
+import OfficeCards from '@/components/about/OfficeCards.astro'
+import ServeSection from '@/components/resources/ServeSection.astro'
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import Photo from '@/components/ui/Photo.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Eye from '@lucide/astro/icons/eye'
+import ShieldCheck from '@lucide/astro/icons/shield-check'
+import Users from '@lucide/astro/icons/users'
+import Zap from '@lucide/astro/icons/zap'
+
+const locale = getLocale(Astro.url)
+const page = getContent(locale).about.story
+const localize = (href: string) => localizePath(href, locale)
+const valueIcons = [Eye, Zap, Users, ShieldCheck]
+const [mainPhoto, ...sidePhotos] = page.hero.photos
+---
+
+<section class="bg-rich-blue text-white">
+  <Container class="flex flex-col items-center gap-12 pt-16 pb-16 lg:pt-24 lg:pb-20">
+    <div class="flex max-w-[760px] flex-col items-center gap-5 text-center">
+      <p class="eyebrow text-sky-blue">{page.hero.eyebrow}</p>
+      <h1 class="text-display-xl text-white">{page.hero.title}</h1>
+      <p class="text-lead text-columbia-blue text-pretty">{page.hero.description}</p>
+    </div>
+    <div class="grid w-full grid-cols-2 gap-4 lg:grid-cols-[1.6fr_1fr] lg:grid-rows-2">
+      {mainPhoto && (
+        <div class="relative col-span-2 aspect-[16/9] overflow-hidden rounded-xl lg:col-span-1 lg:row-span-2 lg:aspect-auto">
+          <Photo photo={mainPhoto} loading="eager" sizes="(min-width: 1024px) 60vw, 100vw" />
+        </div>
+      )}
+      {sidePhotos.map((photo) => (
+        <div class="relative aspect-[4/3] overflow-hidden rounded-xl lg:aspect-[16/10]">
+          <Photo photo={photo} sizes="(min-width: 1024px) 35vw, 50vw" />
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<section>
+  <Container class="flex flex-col gap-12 py-16 lg:py-24">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <p class="eyebrow text-celestial-blue">{page.story.eyebrow}</p>
+      <h2 class="text-display-md hyphenate">{page.story.title}</h2>
+    </div>
+    <ol class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {page.story.chapters.map((chapter, index) => (
+        <li class="border-border relative flex flex-col gap-3 border-t-2 pt-6">
+          <span
+            class:list={[
+              'absolute -top-[7px] start-0 size-3 rounded-full',
+              index === page.story.chapters.length - 1 ? 'bg-sun-orange' : 'bg-celestial-blue',
+            ]}
+            aria-hidden="true"
+          ></span>
+          <span class="eyebrow text-celestial-blue">{chapter.label}</span>
+          <span class="font-display text-rich-blue text-xl leading-snug font-semibold">
+            {chapter.title}
+          </span>
+          <span class="text-azul-blue leading-relaxed">{chapter.description}</span>
+        </li>
+      ))}
+    </ol>
+  </Container>
+</section>
+
+<section class="bg-surface border-border border-y">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+    <div class="relative aspect-[4/3] overflow-hidden rounded-xl lg:aspect-[4/5]">
+      <Photo photo={page.mission.photo} sizes="(min-width: 1024px) 40vw, 100vw" />
+    </div>
+    <div class="flex flex-col gap-6">
+      <p class="eyebrow text-celestial-blue">{page.mission.eyebrow}</p>
+      <h2 class="text-display-md hyphenate">{page.mission.title}</h2>
+      <p class="text-lead text-azul-blue text-pretty">{page.mission.description}</p>
+      <h3 class="font-display text-rich-blue mt-2 text-lg font-semibold">
+        {page.mission.valuesTitle}
+      </h3>
+      <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {page.mission.values.map((value, index) => {
+          const Icon = valueIcons[index % valueIcons.length]
+          return (
+            <li class="bg-page border-border flex flex-col gap-2 rounded-xl border p-5">
+              <IconChip size="sm">
+                <Icon />
+              </IconChip>
+              <span class="text-rich-blue font-semibold">{value.title}</span>
+              <span class="text-azul-blue text-sm leading-relaxed">{value.description}</span>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  </Container>
+</section>
+
+<ServeSection />
+
+<OfficeCards
+  eyebrow={page.offices.eyebrow}
+  title={page.offices.title}
+  description={page.offices.description}
+/>
+
+<section>
+  <Container>
+    <div class="bg-supergraphic flex flex-col items-start gap-5 rounded-2xl p-8 sm:p-12 lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex max-w-[560px] flex-col gap-3">
+        <h2 class="text-display-md text-white">{page.careers.title}</h2>
+        <p class="text-columbia-blue text-lg leading-relaxed">{page.careers.description}</p>
+      </div>
+      <Button href={page.careers.action.href} variant="accent" size="lg">
+        {page.careers.action.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+    </div>
+  </Container>
+</section>
+
+<CtaBanner
+  title={page.cta.title}
+  description={page.cta.description}
+  primaryAction={{ ...page.cta.primaryAction, href: localize(page.cta.primaryAction.href) }}
+  secondaryAction={{ ...page.cta.secondaryAction, href: localize(page.cta.secondaryAction.href) }}
+/>
