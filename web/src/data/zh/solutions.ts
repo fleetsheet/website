@@ -78,7 +78,7 @@ export const pages: Record<SolutionPageId, PlatformEntry> = {
     meta: {
       title: '设施管理软件 | Fleet',
       description:
-        '用 Fleet 管理每个项目的设施运营：工单、预防性维护、资产、供应商与合规集中在一个平台。',
+        '用 Fleet 管理每个项目的设施服务与楼宇维护：工单、预防性维护、资产、供应商与合规集中在一个平台。',
     },
   },
   retail: {
@@ -2173,7 +2173,8 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
     hero: {
       eyebrow: '设施管理',
       title: '适用于每个项目的设施管理软件',
-      description: 'Fleet 是您设施运营的数字控制台，从日常维护到突发维修，让每栋建筑保持最佳状态。',
+      description:
+        'Fleet 是您设施服务与楼宇维护的数字控制台，从日常维护到突发维修，让每栋建筑保持最佳状态。',
       highlights: ['集中管控', '工单自动化', '资产跟踪'],
       visual: {
         kind: 'jobs',
@@ -2447,7 +2448,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       {
         question: '什么是设施管理软件？',
         answer:
-          '设施管理软件把建筑、资产、维护、供应商和合规记录整合到一个系统，帮助团队规划、运营并汇报每个项目。',
+          '设施管理软件把建筑、资产、维护、供应商和合规记录整合到一个系统，帮助设施服务与楼宇维护团队规划、运营并汇报每个项目。',
       },
       {
         question: 'Fleet 能管理学校校园、写字楼和综合体吗？',

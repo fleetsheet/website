@@ -81,7 +81,7 @@ export const pages: Record<SolutionPageId, PlatformEntry> = {
     meta: {
       title: 'Facility-Management-Software | Fleet',
       description:
-        'Steuern Sie den Gebäudebetrieb an jedem Standort mit Fleet: Arbeitsaufträge, vorbeugende Wartung, Anlagen, Dienstleister und Compliance in einer Plattform.',
+        'Steuern Sie Facility Services und Gebäudeinstandhaltung an jedem Standort mit Fleet: Arbeitsaufträge, vorbeugende Wartung, Anlagen, Dienstleister und Compliance in einer Plattform.',
     },
   },
   retail: {
@@ -2416,7 +2416,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       eyebrow: 'Facility Management',
       title: 'Facility-Management-Software für jeden Standort',
       description:
-        'Fleet ist Ihre digitale Zentrale für den Gebäudebetrieb, von Routinewartung bis zu ungeplanten Reparaturen, damit jedes Gebäude in Bestform bleibt.',
+        'Fleet ist Ihre digitale Zentrale für Facility Services & Gebäudeinstandhaltung, von Routinewartung bis zu ungeplanten Reparaturen, damit jedes Gebäude in Bestform bleibt.',
       highlights: ['Zentrale Steuerung', 'Automatisierte Aufträge', 'Anlagenverfolgung'],
       visual: {
         kind: 'jobs',
@@ -2726,7 +2726,7 @@ export const industries: Record<IndustryPageId, CategoryPageContent> = {
       {
         question: 'Was ist Facility-Management-Software?',
         answer:
-          'Facility-Management-Software bündelt Gebäude, Anlagen, Instandhaltung, Dienstleister und Compliance-Nachweise in einem System, damit Teams jeden Standort planen, steuern und auswerten können.',
+          'Facility-Management-Software bündelt Gebäude, Anlagen, Instandhaltung, Dienstleister und Compliance-Nachweise in einem System, damit Teams für Facility Services und Gebäudeinstandhaltung jeden Standort planen, steuern und auswerten können.',
       },
       {
         question: 'Eignet sich Fleet für Campus, Büros und gemischt genutzte Quartiere?',
