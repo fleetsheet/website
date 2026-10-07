@@ -1,0 +1,239 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import { getContent } from '@/data'
+import { getLocale, languages, localizePath } from '@/i18n'
+import { insightTopicBySlug, insightTopics } from '@/resources'
+import { formatDate } from '@/utils/formatDate'
+import {
+  getInsightLocale,
+  getInsightPath,
+  getInsightSlug,
+  getPublishedInsights,
+} from '@/utils/insights'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Search from '@lucide/astro/icons/search'
+import { Image } from 'astro:assets'
+
+const locale = getLocale(Astro.url)
+const { contentLibrary, pages } = getContent(locale).resources
+const insights = (await getPublishedInsights(locale)).map((insight) => {
+  const insightLocale = getInsightLocale(insight)
+  const isFallback = insightLocale !== locale
+  return {
+    insight,
+    href: getInsightPath(insight),
+    topic: insightTopicBySlug[getInsightSlug(insight)],
+    lang: isFallback ? languages[insightLocale].hreflang : undefined,
+    isFallback,
+  }
+})
+const [featured] = insights
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-azul-blue">{pages.contentLibrary.label}</p>
+      <h1 class="text-display-lg hyphenate">{contentLibrary.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{contentLibrary.description}</p>
+      <form role="search" class="flex w-full max-w-[460px] gap-2" data-library-search>
+        <label class="relative flex-1">
+          <span class="sr-only">{contentLibrary.search.label}</span>
+          <Search
+            class="text-muted pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2"
+            aria-hidden="true"
+          />
+          <input
+            type="search"
+            name="q"
+            placeholder={contentLibrary.search.placeholder}
+            class="border-border bg-surface text-rich-blue placeholder:text-muted focus:border-azul-blue h-11 w-full rounded-md border ps-9 pe-3 text-[15px] outline-none"
+            data-library-query
+          />
+        </label>
+        <button
+          type="submit"
+          class="bg-rich-blue hover:bg-azul-blue h-11 rounded-md px-5 text-[15px] font-semibold text-white transition-colors"
+        >
+          {contentLibrary.search.button}
+        </button>
+      </form>
+    </div>
+
+    {featured && (
+      <a
+        href={featured.href}
+        hreflang={featured.lang}
+        class="group bg-rich-blue grid overflow-hidden rounded-xl shadow-sm sm:grid-cols-2"
+      >
+        <div class="bg-columbia-blue relative aspect-[16/10] overflow-hidden sm:aspect-auto">
+          {featured.insight.data.image && (
+            <Image
+              src={featured.insight.data.image}
+              alt=""
+              widths={[480, 720]}
+              sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
+              loading="eager"
+              class="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          )}
+        </div>
+        <div class="flex flex-col items-start gap-3 p-6 sm:p-7">
+          <Badge>{contentLibrary.featured.badge}</Badge>
+          <h2
+            class="font-display text-xl leading-snug font-semibold text-white"
+            lang={featured.lang}
+          >
+            {featured.insight.data.title}
+          </h2>
+          <p class="text-columbia-blue line-clamp-3 text-sm leading-relaxed" lang={featured.lang}>
+            {featured.insight.data.description}
+          </p>
+          <span class="bg-sun-orange text-rich-blue mt-auto inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold">
+            {contentLibrary.featured.action}
+            <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+          </span>
+        </div>
+      </a>
+    )}
+  </Container>
+</section>
+
+<section>
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex flex-col gap-3">
+      <p class="text-muted text-sm font-medium" id="library-topics-label">
+        {contentLibrary.topics.label}
+      </p>
+      <div class="flex flex-wrap gap-2" role="group" aria-labelledby="library-topics-label">
+        {[
+          { id: 'all', label: contentLibrary.topics.all },
+          ...insightTopics.map((topic) => ({
+            id: topic,
+            label: contentLibrary.topics.items[topic],
+          })),
+        ].map((chip) => (
+          <button
+            type="button"
+            class="border-border bg-surface text-azul-blue hover:border-celestial-blue aria-pressed:bg-rich-blue aria-pressed:border-rich-blue rounded-md border px-3 py-1.5 text-sm font-medium transition-colors aria-pressed:text-white"
+            aria-pressed={chip.id === 'all' ? 'true' : 'false'}
+            data-library-topic={chip.id}
+          >
+            {chip.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" data-library-list>
+      {insights.map(({ insight, href, topic, lang, isFallback }) => (
+        <li
+          class="group bg-surface border-border hover:border-celestial-blue relative flex flex-col overflow-hidden rounded-xl border shadow-xs transition-colors"
+          data-topic={topic}
+          data-search={`${insight.data.title} ${insight.data.description}`.toLowerCase()}
+        >
+          <div class="bg-columbia-blue relative aspect-[16/9] overflow-hidden">
+            {insight.data.image && (
+              <Image
+                src={insight.data.image}
+                alt=""
+                widths={[400, 640]}
+                sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
+                class="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            )}
+            <Badge tone="neutral" class="absolute end-3 top-3">
+              {contentLibrary.card.type}
+            </Badge>
+          </div>
+          <div class="flex flex-1 flex-col items-start gap-3 p-5">
+            <p class="text-muted flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+              {topic && (
+                <span class="bg-page text-azul-blue rounded-md px-2 py-0.5 font-medium">
+                  {contentLibrary.topics.items[topic]}
+                </span>
+              )}
+              <time datetime={insight.data.publishedAt.toISOString()}>
+                {formatDate(insight.data.publishedAt, locale)}
+              </time>
+              {isFallback && <span>· {contentLibrary.card.englishOnly}</span>}
+            </p>
+            <h2 class="text-rich-blue text-lg leading-snug font-semibold" lang={lang}>
+              <a href={href} hreflang={lang} class="after:absolute after:inset-0">
+                {insight.data.title}
+              </a>
+            </h2>
+            <p class="text-azul-blue line-clamp-3 text-sm leading-relaxed" lang={lang}>
+              {insight.data.description}
+            </p>
+            <span class="text-rich-blue border-border mt-auto inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-semibold">
+              {contentLibrary.card.action}
+              <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="text-azul-blue hidden text-center" data-library-empty>
+      {contentLibrary.empty}
+    </p>
+  </Container>
+</section>
+
+<CtaBanner
+  title={contentLibrary.cta.title}
+  description={contentLibrary.cta.description}
+  primaryAction={{
+    ...contentLibrary.cta.primaryAction,
+    href: localizePath(contentLibrary.cta.primaryAction.href, locale),
+  }}
+  secondaryAction={{
+    ...contentLibrary.cta.secondaryAction,
+    href: localizePath(contentLibrary.cta.secondaryAction.href, locale),
+  }}
+/>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const list = document.querySelector<HTMLElement>('[data-library-list]')
+    if (!list) {
+      return
+    }
+    const form = document.querySelector<HTMLFormElement>('[data-library-search]')
+    const input = document.querySelector<HTMLInputElement>('[data-library-query]')
+    const empty = document.querySelector<HTMLElement>('[data-library-empty]')
+    const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-library-topic]')]
+    let topic = 'all'
+
+    const apply = () => {
+      const query = (input?.value ?? '').trim().toLowerCase()
+      let visible = 0
+      list.querySelectorAll<HTMLElement>('li').forEach((item) => {
+        const show =
+          (topic === 'all' || item.dataset.topic === topic) &&
+          (query === '' || (item.dataset.search ?? '').includes(query))
+        item.hidden = !show
+        if (show) {
+          visible += 1
+        }
+      })
+      empty?.classList.toggle('hidden', visible > 0)
+    }
+
+    chips.forEach((chip) =>
+      chip.addEventListener('click', () => {
+        topic = chip.dataset.libraryTopic ?? 'all'
+        chips.forEach((other) => other.setAttribute('aria-pressed', String(other === chip)))
+        apply()
+      }),
+    )
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault()
+      apply()
+      list.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+    input?.addEventListener('input', apply)
+  })
+</script>

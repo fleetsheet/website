@@ -5,9 +5,22 @@ import Logo from '@/components/ui/Logo.astro'
 import { websiteConfig } from '@/config'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
+import { resourcePages } from '@/resources'
 
 const locale = getLocale(Astro.url)
-const { footerColumns, tagline } = getContent(locale).site
+const { site, resources } = getContent(locale)
+const { tagline } = site
+// The Resources column mirrors the Resources menu.
+const footerColumns = [
+  ...site.footerColumns,
+  {
+    title: resources.menu.label,
+    links: resourcePages.map((entry) => ({
+      label: resources.pages[entry.id].label,
+      href: entry.href,
+    })),
+  },
+]
 const { name } = websiteConfig
 ---
 

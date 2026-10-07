@@ -1,0 +1,318 @@
+---
+import FaqSection from '@/components/platform/FaqSection.astro'
+import PlatformIcon from '@/components/platform/PlatformIcon.astro'
+import ResourceIcon from '@/components/resources/ResourceIcon.astro'
+import SolutionIcon from '@/components/solutions/SolutionIcon.astro'
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import FeatureCard from '@/components/ui/FeatureCard.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import { platformPages, type PlatformPageId } from '@/platform'
+import { resourcePages, type ResourcePageId } from '@/resources'
+import { solutionPages, type SolutionPageId } from '@/solutions'
+import Check from '@lucide/astro/icons/check'
+import CircleQuestionMark from '@lucide/astro/icons/circle-question-mark'
+import Globe from '@lucide/astro/icons/globe'
+import LifeBuoy from '@lucide/astro/icons/life-buoy'
+import MessagesSquare from '@lucide/astro/icons/messages-square'
+import Rocket from '@lucide/astro/icons/rocket'
+import Search from '@lucide/astro/icons/search'
+
+const locale = getLocale(Astro.url)
+const { resources, platform, solutions } = getContent(locale)
+const page = resources.easyOnboard
+const localize = (href: string) => localizePath(href, locale)
+
+type Guide =
+  | { kind: 'platform'; id: PlatformPageId }
+  | { kind: 'solution'; id: SolutionPageId }
+  | { kind: 'resource'; id: ResourcePageId }
+  | { kind: 'faq' }
+
+// Knowledge base topics link to the pages that explain each part of Fleet.
+const knowledgeGroups: { id: keyof typeof page.knowledge.groups; guides: Guide[] }[] = [
+  {
+    id: 'start',
+    guides: [
+      { kind: 'platform', id: 'overview' },
+      { kind: 'platform', id: 'webAndMobile' },
+      { kind: 'platform', id: 'workflowBuilder' },
+      { kind: 'faq' },
+    ],
+  },
+  {
+    id: 'maintenance',
+    guides: [
+      { kind: 'platform', id: 'preventiveMaintenance' },
+      { kind: 'platform', id: 'reactiveMaintenance' },
+      { kind: 'solution', id: 'workOrders' },
+      { kind: 'solution', id: 'fieldService' },
+    ],
+  },
+  {
+    id: 'assets',
+    guides: [
+      { kind: 'platform', id: 'assetManagement' },
+      { kind: 'platform', id: 'documentManagement' },
+      { kind: 'platform', id: 'auditTracking' },
+      { kind: 'platform', id: 'analyticsReporting' },
+    ],
+  },
+  {
+    id: 'automation',
+    guides: [
+      { kind: 'platform', id: 'runnerAi' },
+      { kind: 'platform', id: 'fleetMail' },
+      { kind: 'platform', id: 'integrations' },
+      { kind: 'resource', id: 'developers' },
+    ],
+  },
+]
+
+const guideLink = (guide: Guide) => {
+  switch (guide.kind) {
+    case 'platform':
+      return {
+        ...platform.pages[guide.id],
+        href: platformPages.find((entry) => entry.id === guide.id)?.href ?? '/platform',
+      }
+    case 'solution':
+      return {
+        ...solutions.pages[guide.id],
+        href: solutionPages.find((entry) => entry.id === guide.id)?.href ?? '/solutions',
+      }
+    case 'resource':
+      return {
+        ...resources.pages[guide.id],
+        href: resourcePages.find((entry) => entry.id === guide.id)?.href ?? '/',
+      }
+    case 'faq':
+      return { label: page.knowledge.faqs, summary: '', href: '/faqs' }
+  }
+}
+
+const supportIcons = [MessagesSquare, Globe, LifeBuoy]
+---
+
+<section class="bg-columbia-blue/40 border-border border-b">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-azul-blue flex items-center gap-2.5">
+        <IconChip size="sm">
+          <Rocket />
+        </IconChip>
+        {page.hero.eyebrow}
+      </p>
+      <h1 class="text-display-lg hyphenate">{page.hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{page.hero.description}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={page.hero.primaryAction.href}>{page.hero.primaryAction.label}</Button>
+        <Button href={page.hero.secondaryAction.href} variant="secondary">
+          {page.hero.secondaryAction.label}
+        </Button>
+      </div>
+      <CheckList items={page.hero.highlights} class="text-sm" />
+    </div>
+
+    <div class="bg-surface border-border rounded-xl border p-6 shadow-sm sm:p-7">
+      <p class="font-display text-rich-blue mb-5 text-lg font-semibold">{page.steps.title}</p>
+      <ol class="flex flex-col gap-3">
+        {page.steps.items.map((step, index) => (
+          <li
+            class:list={[
+              'flex items-center gap-3 rounded-lg border p-3',
+              index === 2 ? 'border-celestial-blue bg-columbia-blue/40' : 'border-border',
+            ]}
+          >
+            <span
+              class:list={[
+                'flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold',
+                index < 2
+                  ? 'bg-rich-blue text-white'
+                  : index === 2
+                    ? 'bg-celestial-blue text-white'
+                    : 'bg-page text-azul-blue',
+              ]}
+            >
+              {index < 2 ? <Check class="size-4" aria-hidden="true" /> : index + 1}
+            </span>
+            <span class="text-rich-blue min-w-0 text-[15px] font-semibold">{step.title}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </Container>
+</section>
+
+<section class="border-border border-b">
+  <Container>
+    <dl class="grid grid-cols-2 gap-6 py-10 lg:grid-cols-4">
+      {page.stats.map((stat) => (
+        <div class="flex flex-col gap-1">
+          <dt class="sr-only">{stat.label}</dt>
+          <dd class="font-display text-rich-blue text-[1.5rem] leading-tight font-semibold">
+            {stat.value}
+          </dd>
+          <dd class="text-azul-blue text-sm">{stat.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</section>
+
+<section>
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <SectionHeader title={page.steps.title} description={page.steps.description} />
+    <ol class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {page.steps.items.map((step, index) => (
+        <li class="bg-surface border-border flex flex-col gap-3 rounded-xl border p-5 shadow-xs">
+          <span class="eyebrow text-celestial-blue">
+            {page.steps.label} {index + 1}
+          </span>
+          <span class="font-display text-rich-blue text-[17px] leading-snug font-semibold">
+            {step.title}
+          </span>
+          <span class="text-azul-blue text-sm leading-relaxed">{step.description}</span>
+        </li>
+      ))}
+    </ol>
+  </Container>
+</section>
+
+<section id="knowledge-base" class="scroll-mt-20">
+  <Container class="pb-16 lg:pb-20">
+    <div class="bg-surface border-border flex flex-col gap-10 rounded-2xl border p-6 shadow-xs sm:p-10">
+      <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div class="flex flex-col gap-2">
+          <h2 class="text-display-md">{page.knowledge.title}</h2>
+          <p class="text-azul-blue">{page.knowledge.description}</p>
+        </div>
+        <label class="relative w-full md:max-w-[340px]">
+          <span class="sr-only">{page.knowledge.search.label}</span>
+          <Search
+            class="text-muted pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2"
+            aria-hidden="true"
+          />
+          <input
+            type="search"
+            placeholder={page.knowledge.search.placeholder}
+            class="border-border bg-page text-rich-blue placeholder:text-muted focus:border-azul-blue h-11 w-full rounded-md border ps-9 pe-3 text-[15px] outline-none"
+            data-knowledge-query
+          />
+        </label>
+      </div>
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2" data-knowledge-groups>
+        {knowledgeGroups.map((group) => (
+          <div class="flex flex-col gap-3" data-knowledge-group>
+            <h3 class="text-celestial-blue text-lg font-semibold">
+              {page.knowledge.groups[group.id]}
+            </h3>
+            <ul class="flex flex-col">
+              {group.guides.map((guide) => {
+                const link = guideLink(guide)
+                return (
+                  <li data-knowledge-item={`${link.label} ${link.summary}`.toLowerCase()}>
+                    <a
+                      href={localize(link.href)}
+                      class="hover:bg-page flex items-start gap-3 rounded-lg p-2.5 transition-colors"
+                    >
+                      <IconChip size="sm">
+                        {guide.kind === 'platform' ? (
+                          <PlatformIcon id={guide.id} />
+                        ) : guide.kind === 'solution' ? (
+                          <SolutionIcon id={guide.id} />
+                        ) : guide.kind === 'resource' ? (
+                          <ResourceIcon id={guide.id} />
+                        ) : (
+                          <CircleQuestionMark />
+                        )}
+                      </IconChip>
+                      <span class="flex min-w-0 flex-col gap-0.5">
+                        <span class="text-rich-blue text-[15px] font-semibold">{link.label}</span>
+                        {link.summary && (
+                          <span class="text-azul-blue text-sm leading-snug">{link.summary}</span>
+                        )}
+                      </span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="text-azul-blue hidden" data-knowledge-empty>
+        {page.knowledge.empty}
+      </p>
+    </div>
+  </Container>
+</section>
+
+<section class="bg-surface border-border border-y">
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <SectionHeader title={page.training.title} description={page.training.description} />
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {page.training.items.map((item) => (
+        <FeatureCard title={item.title} description={item.description} />
+      ))}
+    </div>
+  </Container>
+</section>
+
+<section class="bg-rich-blue text-white">
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <SectionHeader title={page.support.title} description={page.support.description} tone="dark" />
+    <ul class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {page.support.items.map((item, index) => {
+        const Icon = supportIcons[index % supportIcons.length]
+        return (
+          <li class="bg-azul-blue flex flex-col gap-3 rounded-xl p-6">
+            <IconChip tone="dark">
+              <Icon />
+            </IconChip>
+            <span class="font-display text-lg font-semibold">{item.title}</span>
+            <span class="text-columbia-blue text-sm leading-relaxed">{item.description}</span>
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<FaqSection title={page.faqTitle} items={page.faq} />
+
+<CtaBanner
+  title={page.cta.title}
+  description={page.cta.description}
+  primaryAction={{ ...page.cta.primaryAction, href: localize(page.cta.primaryAction.href) }}
+  secondaryAction={{ ...page.cta.secondaryAction, href: localize(page.cta.secondaryAction.href) }}
+/>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const input = document.querySelector<HTMLInputElement>('[data-knowledge-query]')
+    const empty = document.querySelector<HTMLElement>('[data-knowledge-empty]')
+    input?.addEventListener('input', () => {
+      const query = input.value.trim().toLowerCase()
+      let visible = 0
+      document.querySelectorAll<HTMLElement>('[data-knowledge-group]').forEach((group) => {
+        let groupVisible = 0
+        group.querySelectorAll<HTMLElement>('[data-knowledge-item]').forEach((item) => {
+          const show = query === '' || (item.dataset.knowledgeItem ?? '').includes(query)
+          item.hidden = !show
+          if (show) {
+            groupVisible += 1
+          }
+        })
+        group.hidden = groupVisible === 0
+        visible += groupVisible
+      })
+      empty?.classList.toggle('hidden', visible > 0)
+    })
+  })
+</script>

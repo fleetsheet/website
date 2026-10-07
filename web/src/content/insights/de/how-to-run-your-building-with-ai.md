@@ -3,8 +3,8 @@ title: 'Gebäude mit KI betreiben: vom Vorschlag zur Umsetzung'
 description: 'Agentische KI geht von Empfehlungen zum Handeln über. Erfahren Sie, warum Immobilienteams Fleet brauchen, um KI-Signale mit Arbeitsaufträgen, Anlagen, Workflows und Verantwortlichkeit zu verbinden.'
 publishedAt: 2026-09-24
 updatedAt: 2026-09-24
-image: ../images/how-to-run-your-building-with-ai/cover.jpg
-imageAlt: 'Gebäude mit KI betreiben: vom Vorschlag zur Umsetzung'
+image: ../images/how-to-run-your-building-with-ai/robotic-assembly-line.jpg
+imageAlt: 'Roboterarme an einer automatisierten Fertigungslinie'
 ---
 
 ![Abstrakter blauer und cyanfarbener digitaler Korridor aus beleuchteten Serverracks als Sinnbild für KI-Infrastruktur](../images/how-to-run-your-building-with-ai/banner-2.png)

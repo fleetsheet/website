@@ -1,0 +1,270 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import { storySectors } from '@/resources'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import Building from '@lucide/astro/icons/building'
+import ChevronDown from '@lucide/astro/icons/chevron-down'
+import ChevronLeft from '@lucide/astro/icons/chevron-left'
+import ChevronRight from '@lucide/astro/icons/chevron-right'
+import GraduationCap from '@lucide/astro/icons/graduation-cap'
+import Landmark from '@lucide/astro/icons/landmark'
+import Quote from '@lucide/astro/icons/quote'
+import ShoppingBag from '@lucide/astro/icons/shopping-bag'
+import Truck from '@lucide/astro/icons/truck'
+
+const locale = getLocale(Astro.url)
+const { customerStories: page } = getContent(locale).resources
+const localize = (href: string) => localizePath(href, locale)
+const serveIcons = [Building, Truck, GraduationCap, ShoppingBag, Landmark]
+---
+
+<section class="bg-rich-blue text-white">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-24">
+    <div class="flex flex-col items-start gap-6">
+      <p class="eyebrow text-sky-blue">{page.hero.eyebrow}</p>
+      <h1 class="text-display-lg hyphenate text-white">{page.hero.title}</h1>
+      <p class="text-lead text-columbia-blue text-pretty">{page.hero.description}</p>
+      <Button href={page.hero.action.href} variant="accent">
+        {page.hero.action.label}
+        <ChevronDown class="size-4" aria-hidden="true" />
+      </Button>
+    </div>
+
+    <div class="flex flex-col gap-4" data-spotlight>
+      <p class="eyebrow text-sky-blue">{page.spotlight.label}</p>
+      <div class="bg-azul-blue relative rounded-xl p-7 shadow-lg sm:p-9">
+        {page.stories.map((story, index) => (
+          <figure class="flex flex-col items-start gap-5" hidden={index > 0} data-spotlight-slide>
+            <Quote class="text-sky-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
+            <blockquote class="font-display text-xl leading-snug font-semibold text-pretty text-white sm:text-2xl">
+              “{story.quote}”
+            </blockquote>
+            <figcaption class="text-columbia-blue text-sm">
+              <span class="font-semibold text-white">{story.author}</span> · {story.organization}
+            </figcaption>
+            <a
+              href={`#story-${index + 1}`}
+              class="text-rich-blue hover:bg-columbia-blue inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold transition-colors"
+              data-story-link={index + 1}
+            >
+              {page.spotlight.action}
+              <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+            </a>
+          </figure>
+        ))}
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="bg-azul-blue h-1 flex-1 overflow-hidden rounded-full">
+          <div
+            class="bg-sky-blue h-full rounded-full transition-[width] duration-300"
+            style={`width: ${100 / page.stories.length}%`}
+            data-spotlight-progress
+          ></div>
+        </div>
+        <button
+          type="button"
+          class="hover:bg-azul-blue rounded-md border border-white/20 p-2 text-white transition-colors"
+          aria-label={page.spotlight.previous}
+          data-spotlight-step="-1"
+        >
+          <ChevronLeft class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          class="hover:bg-azul-blue rounded-md border border-white/20 p-2 text-white transition-colors"
+          aria-label={page.spotlight.next}
+          data-spotlight-step="1"
+        >
+          <ChevronRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<section class="border-border border-b">
+  <Container>
+    <dl class="grid grid-cols-2 gap-6 py-10 lg:grid-cols-4">
+      {page.results.map((result) => (
+        <div class="flex flex-col gap-1">
+          <dt class="sr-only">{result.label}</dt>
+          <dd class="font-display text-rich-blue text-[1.75rem] leading-tight font-semibold">
+            {result.value}
+          </dd>
+          <dd class="text-azul-blue text-sm">{result.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</section>
+
+<section id="stories" class="scroll-mt-20">
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex flex-col gap-3">
+      <p class="text-muted text-sm font-medium" id="story-sectors-label">
+        {page.filter.label}
+      </p>
+      <div class="flex flex-wrap gap-2" role="group" aria-labelledby="story-sectors-label">
+        {[
+          { id: 'all', label: page.filter.all },
+          ...storySectors.map((sector) => ({ id: sector, label: page.filter.sectors[sector] })),
+        ].map((chip) => (
+          <button
+            type="button"
+            class="border-border bg-surface text-azul-blue hover:border-celestial-blue aria-pressed:bg-rich-blue aria-pressed:border-rich-blue rounded-md border px-3 py-1.5 text-sm font-medium transition-colors aria-pressed:text-white"
+            aria-pressed={chip.id === 'all' ? 'true' : 'false'}
+            data-story-sector={chip.id}
+          >
+            {chip.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <ul class="grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3" data-story-list>
+      {page.stories.map((story, index) => (
+        <li
+          id={`story-${index + 1}`}
+          class="bg-surface border-border flex scroll-mt-24 flex-col gap-5 rounded-xl border p-6 shadow-xs"
+          data-sector={story.sector}
+        >
+          <div class="flex items-start justify-between gap-3">
+            <p class="font-display text-rich-blue flex items-center gap-2 font-semibold">
+              <IconChip size="sm">
+                <Building />
+              </IconChip>
+              {story.organization}
+            </p>
+            <Badge tone="neutral">{page.filter.sectors[story.sector]}</Badge>
+          </div>
+          <div class="border-border flex flex-col gap-1 border-b pb-5">
+            <p class="font-display text-azul-blue text-[2rem] leading-tight font-semibold">
+              {story.metric}
+            </p>
+            <p class="text-azul-blue text-sm font-medium">{story.metricLabel}</p>
+          </div>
+          <h2 class="text-rich-blue text-[17px] leading-snug font-semibold">{story.title}</h2>
+          <details class="group" data-story-details>
+            <summary class="text-celestial-blue hover:text-azul-blue inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+              {page.readStory}
+              <ArrowRight
+                class="size-4 transition-transform group-open:rotate-90 rtl:-scale-x-100 rtl:group-open:-rotate-90"
+                aria-hidden="true"
+              />
+            </summary>
+            <figure class="bg-page mt-4 flex flex-col gap-3 rounded-lg p-4">
+              <blockquote class="text-rich-blue leading-relaxed">“{story.quote}”</blockquote>
+              <figcaption class="text-muted text-sm">
+                {story.author} · {story.organization}
+              </figcaption>
+            </figure>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<section class="bg-surface border-border border-y">
+  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <h2 class="text-display-md hyphenate">{page.serve.title}</h2>
+      <p class="text-azul-blue text-[17px] leading-[1.65]">{page.serve.description}</p>
+    </div>
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {page.serve.items.map((item, index) => {
+        const Icon = serveIcons[index % serveIcons.length]
+        return (
+          <li>
+            <a
+              href={localize(item.href)}
+              class="group border-border hover:border-celestial-blue bg-page flex h-full flex-col gap-3 rounded-xl border p-5 transition-colors"
+            >
+              <IconChip>
+                <Icon />
+              </IconChip>
+              <span class="text-rich-blue font-semibold">{item.label}</span>
+              <span class="text-azul-blue text-sm">{item.detail}</span>
+              <ArrowRight
+                class="text-celestial-blue mt-auto size-4 transition-transform group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1"
+                aria-hidden="true"
+              />
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<section>
+  <Container class="pt-16 lg:pt-20">
+    <div class="bg-columbia-blue/50 border-border flex flex-col items-start justify-between gap-5 rounded-xl border p-8 sm:flex-row sm:items-center">
+      <div class="flex flex-col gap-2">
+        <h2 class="font-display text-rich-blue text-xl font-semibold">{page.share.title}</h2>
+        <p class="text-azul-blue">{page.share.description}</p>
+      </div>
+      <Button href={page.share.action.href} variant="secondary">
+        {page.share.action.label}
+      </Button>
+    </div>
+  </Container>
+</section>
+
+<CtaBanner
+  title={page.cta.title}
+  description={page.cta.description}
+  primaryAction={{ ...page.cta.primaryAction, href: localize(page.cta.primaryAction.href) }}
+  secondaryAction={{ ...page.cta.secondaryAction, href: localize(page.cta.secondaryAction.href) }}
+/>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const spotlight = document.querySelector<HTMLElement>('[data-spotlight]')
+    if (spotlight) {
+      const slides = [...spotlight.querySelectorAll<HTMLElement>('[data-spotlight-slide]')]
+      const progress = spotlight.querySelector<HTMLElement>('[data-spotlight-progress]')
+      let current = 0
+      spotlight.querySelectorAll<HTMLButtonElement>('[data-spotlight-step]').forEach((button) =>
+        button.addEventListener('click', () => {
+          const step = Number(button.dataset.spotlightStep)
+          current = (current + step + slides.length) % slides.length
+          slides.forEach((slide, index) => (slide.hidden = index !== current))
+          if (progress) {
+            progress.style.width = `${((current + 1) / slides.length) * 100}%`
+          }
+        }),
+      )
+    }
+
+    // "Read the story" in the spotlight opens the matching story card.
+    document.querySelectorAll<HTMLAnchorElement>('[data-story-link]').forEach((link) =>
+      link.addEventListener('click', () => {
+        const card = document.getElementById(`story-${link.dataset.storyLink}`)
+        card?.removeAttribute('hidden')
+        const details = card?.querySelector<HTMLDetailsElement>('[data-story-details]')
+        if (details) {
+          details.open = true
+        }
+      }),
+    )
+
+    const list = document.querySelector<HTMLElement>('[data-story-list]')
+    const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-story-sector]')]
+    chips.forEach((chip) =>
+      chip.addEventListener('click', () => {
+        const sector = chip.dataset.storySector ?? 'all'
+        chips.forEach((other) => other.setAttribute('aria-pressed', String(other === chip)))
+        list?.querySelectorAll<HTMLElement>('li').forEach((item) => {
+          item.hidden = sector !== 'all' && item.dataset.sector !== sector
+        })
+      }),
+    )
+  })
+</script>

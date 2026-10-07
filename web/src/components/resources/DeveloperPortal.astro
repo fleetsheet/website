@@ -1,0 +1,118 @@
+---
+import Button from '@/components/ui/Button.astro'
+import CheckList from '@/components/ui/CheckList.astro'
+import Container from '@/components/ui/Container.astro'
+import CtaBanner from '@/components/ui/CtaBanner.astro'
+import IconChip from '@/components/ui/IconChip.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { getContent } from '@/data'
+import { getLocale, localizePath } from '@/i18n'
+import ArrowRight from '@lucide/astro/icons/arrow-right'
+import BellRing from '@lucide/astro/icons/bell-ring'
+import Blocks from '@lucide/astro/icons/blocks'
+import Boxes from '@lucide/astro/icons/boxes'
+import Building from '@lucide/astro/icons/building'
+import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import CodeXml from '@lucide/astro/icons/code-xml'
+import Receipt from '@lucide/astro/icons/receipt'
+import Wrench from '@lucide/astro/icons/wrench'
+
+const locale = getLocale(Astro.url)
+const page = getContent(locale).resources.developers
+const localize = (href: string) => localizePath(href, locale)
+const cardIcons = [Wrench, Blocks, BellRing]
+const capabilityIcons = [ClipboardList, Boxes, Receipt, Building]
+---
+
+<section class="bg-rich-blue bg-supergraphic text-white">
+  <Container class="flex flex-col items-start gap-6 pt-16 pb-36 lg:pt-24 lg:pb-40">
+    <p class="eyebrow text-sky-blue flex items-center gap-2.5">
+      <IconChip size="sm" tone="dark">
+        <CodeXml />
+      </IconChip>
+      {page.hero.eyebrow}
+    </p>
+    <h1 class="text-display-lg hyphenate max-w-[760px] text-white">{page.hero.title}</h1>
+    <p class="text-lead text-columbia-blue max-w-[640px] text-pretty">{page.hero.description}</p>
+    <div class="flex flex-wrap gap-3">
+      <Button href={page.hero.primaryAction.href} variant="accent">
+        {page.hero.primaryAction.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+      <Button href={page.hero.secondaryAction.href} variant="inverse">
+        {page.hero.secondaryAction.label}
+      </Button>
+    </div>
+  </Container>
+</section>
+
+<section>
+  <Container class="-mt-24 lg:-mt-28">
+    <ul class="grid grid-cols-1 gap-5 md:grid-cols-3">
+      {page.cards.map((card, index) => {
+        const Icon = cardIcons[index % cardIcons.length]
+        return (
+          <li class="bg-surface border-border flex flex-col items-start gap-3 rounded-xl border p-6 shadow-md">
+            <IconChip>
+              <Icon />
+            </IconChip>
+            <h2 class="font-display text-rich-blue text-lg font-semibold">{card.title}</h2>
+            <p class="text-azul-blue text-sm leading-relaxed">{card.description}</p>
+            <a
+              href={localize(card.action.href)}
+              class="text-celestial-blue hover:text-azul-blue mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
+            >
+              {card.action.label}
+              <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<section>
+  <Container class="flex flex-col gap-10 py-16 lg:py-24">
+    <SectionHeader title={page.capabilities.title} description={page.capabilities.description} />
+    <ul class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {page.capabilities.items.map((item, index) => {
+        const Icon = capabilityIcons[index % capabilityIcons.length]
+        return (
+          <li class="bg-surface border-border flex flex-col gap-3 rounded-xl border p-6 shadow-xs">
+            <IconChip>
+              <Icon />
+            </IconChip>
+            <h3 class="font-display text-rich-blue text-lg font-semibold">{item.title}</h3>
+            <p class="text-azul-blue text-sm leading-relaxed">{item.description}</p>
+            <CheckList items={item.points} class="border-border mt-auto border-t pt-4 text-sm" />
+          </li>
+        )
+      })}
+    </ul>
+  </Container>
+</section>
+
+<section class="bg-surface border-border border-y">
+  <Container class="flex flex-col gap-8 py-14">
+    <h2 class="text-display-md">{page.platform.title}</h2>
+    <dl class="grid grid-cols-2 gap-6 lg:grid-cols-4">
+      {page.platform.items.map((item) => (
+        <div class="border-border flex flex-col gap-1 border-s-2 ps-4">
+          <dt class="sr-only">{item.label}</dt>
+          <dd class="font-display text-rich-blue text-[1.5rem] leading-tight font-semibold">
+            {item.value}
+          </dd>
+          <dd class="text-azul-blue text-sm">{item.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</section>
+
+<CtaBanner
+  title={page.cta.title}
+  description={page.cta.description}
+  primaryAction={{ ...page.cta.primaryAction, href: localize(page.cta.primaryAction.href) }}
+  secondaryAction={{ ...page.cta.secondaryAction, href: localize(page.cta.secondaryAction.href) }}
+/>
