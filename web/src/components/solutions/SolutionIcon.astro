@@ -2,10 +2,22 @@
 import type { SolutionPageId } from '@/solutions'
 import BriefcaseBusiness from '@lucide/astro/icons/briefcase-business'
 import Building from '@lucide/astro/icons/building'
+import Car from '@lucide/astro/icons/car'
 import ClipboardList from '@lucide/astro/icons/clipboard-list'
+import Dumbbell from '@lucide/astro/icons/dumbbell'
+import Factory from '@lucide/astro/icons/factory'
+import Fan from '@lucide/astro/icons/fan'
 import Handshake from '@lucide/astro/icons/handshake'
+import HardHat from '@lucide/astro/icons/hard-hat'
+import HeartPulse from '@lucide/astro/icons/heart-pulse'
+import Hotel from '@lucide/astro/icons/hotel'
+import Landmark from '@lucide/astro/icons/landmark'
 import Route from '@lucide/astro/icons/route'
+import Server from '@lucide/astro/icons/server'
+import ShoppingBag from '@lucide/astro/icons/shopping-bag'
+import Truck from '@lucide/astro/icons/truck'
 import Users from '@lucide/astro/icons/users'
+import Zap from '@lucide/astro/icons/zap'
 
 type Props = {
   id: SolutionPageId
@@ -19,6 +31,18 @@ const icons = {
   fieldService: Route,
   tenants: Users,
   vendors: Handshake,
+  facilityManagement: HardHat,
+  retail: ShoppingBag,
+  hospitality: Hotel,
+  healthcareEducation: HeartPulse,
+  logistics: Truck,
+  hvacLifts: Fan,
+  dataCenters: Server,
+  fitness: Dumbbell,
+  mep: Zap,
+  offices: Landmark,
+  industrial: Factory,
+  vehicles: Car,
 } satisfies Record<SolutionPageId, unknown>
 
 const { id, class: className } = Astro.props
