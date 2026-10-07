@@ -34,7 +34,7 @@ import Smartphone from '@lucide/astro/icons/smartphone'
 import Sparkles from '@lucide/astro/icons/sparkles'
 import Users from '@lucide/astro/icons/users'
 import Wallet from '@lucide/astro/icons/wallet'
-import HeroStage from './HeroStage.astro'
+import HeroBento from './HeroBento.astro'
 import PhotoWithCard from './PhotoWithCard.astro'
 import SolutionIcon from './SolutionIcon.astro'
 
@@ -63,10 +63,12 @@ const tabIcons = {
   approvals: BadgeCheck,
 } satisfies Record<CategoryIcon, unknown>
 const whyIcons = [SlidersHorizontal, Sparkles, Users]
-// Supporting hero cards come from the capability tabs: a chart behind, a workflow in front.
+// Supporting hero tiles come from the capability tabs: a chart for the stats and a workflow.
 const tabVisuals = capabilities.tabs.map((tab) => tab.visual)
-const heroBack = tabVisuals.find((visual) => visual.kind === 'chart')
-const heroFront = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
+const heroChart = tabVisuals.find(
+  (visual): visual is Extract<typeof visual, { kind: 'chart' }> => visual.kind === 'chart',
+)
+const heroFlow = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
 ---
 
 <section class="bg-columbia-blue/40 border-border border-b">
@@ -98,11 +100,11 @@ const heroFront = tabVisuals.find((visual) => visual.kind === 'steps' || visual.
         ))}
       </ul>
     </div>
-    <HeroStage
+    <HeroBento
       main={hero.visual}
-      back={heroBack}
-      front={heroFront}
-      icons={capabilities.tabs.map((tab) => tabIcons[tab.icon])}
+      chart={heroChart}
+      flow={heroFlow}
+      features={capabilities.tabs.map((tab) => ({ label: tab.label, icon: tabIcons[tab.icon] }))}
     />
   </Container>
 </section>
