@@ -3,8 +3,8 @@ title: 'Piloter votre bâtiment grâce à l’IA : de la suggestion à l’actio
 description: 'L’IA agentique passe de la recommandation à l’action. Découvrez pourquoi les équipes immobilières ont besoin de Fleet pour relier les signaux de l’IA aux bons de travail, aux actifs, aux processus et à la responsabilité de chacun.'
 publishedAt: 2026-09-24
 updatedAt: 2026-09-24
-image: ../images/how-to-run-your-building-with-ai/cover.jpg
-imageAlt: 'Piloter votre bâtiment grâce à l’IA : de la suggestion à l’action'
+image: ../images/how-to-run-your-building-with-ai/robotic-assembly-line.jpg
+imageAlt: 'Bras robotisés sur une ligne d’assemblage automatisée'
 ---
 
 ![Couloir numérique abstrait bleu et cyan bordé de baies de serveurs illuminées, représentant l’infrastructure de l’IA](../images/how-to-run-your-building-with-ai/banner-2.png)

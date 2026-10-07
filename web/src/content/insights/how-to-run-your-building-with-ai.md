@@ -3,8 +3,8 @@ title: 'How to Run Your Building on AI: Suggestion to Action'
 description: 'Agentic AI is moving from recommendations to action. Learn why real estate teams need Fleet to connect AI signals with work orders, assets, workflows, and accountability.'
 publishedAt: 2026-09-24
 updatedAt: 2026-09-24
-image: ./images/how-to-run-your-building-with-ai/cover.jpg
-imageAlt: 'How to Run Your Building on AI: Suggestion to Action'
+image: ./images/how-to-run-your-building-with-ai/robotic-assembly-line.jpg
+imageAlt: 'Robotic arms working along an automated assembly line'
 ---
 
 ![Abstract blue and cyan digital corridor of illuminated server racks, representing AI infrastructure](./images/how-to-run-your-building-with-ai/banner-2.png)

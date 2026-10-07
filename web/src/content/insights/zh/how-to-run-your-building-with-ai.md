@@ -3,8 +3,8 @@ title: '用 AI 运营您的楼宇：从建议到行动'
 description: '智能体 AI 正在从提供建议走向付诸行动。了解为什么房地产团队需要 Fleet，将 AI 信号与工单、资产、工作流和责任追溯连接起来。'
 publishedAt: 2026-09-24
 updatedAt: 2026-09-24
-image: ../images/how-to-run-your-building-with-ai/cover.jpg
-imageAlt: '用 AI 运营您的楼宇：从建议到行动'
+image: ../images/how-to-run-your-building-with-ai/robotic-assembly-line.jpg
+imageAlt: '自动化装配线上运转的机械臂'
 ---
 
 ![由发光服务器机架构成的蓝色与青色抽象数字走廊，象征 AI 基础设施](../images/how-to-run-your-building-with-ai/banner-2.png)

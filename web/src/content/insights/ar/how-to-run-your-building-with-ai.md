@@ -3,8 +3,8 @@ title: 'كيف تدير مبناك بالذكاء الاصطناعي: من ال�
 description: 'ينتقل الذكاء الاصطناعي الوكيل من تقديم التوصيات إلى التنفيذ الفعلي. تعرّف لماذا تحتاج فرق العقارات إلى Fleet لربط إشارات الذكاء الاصطناعي بأوامر العمل والأصول وسير العمل والمساءلة.'
 publishedAt: 2026-09-24
 updatedAt: 2026-09-24
-image: ../images/how-to-run-your-building-with-ai/cover.jpg
-imageAlt: 'كيف تدير مبناك بالذكاء الاصطناعي: من الاقتراح إلى التنفيذ'
+image: ../images/how-to-run-your-building-with-ai/robotic-assembly-line.jpg
+imageAlt: 'أذرع روبوتية تعمل على خط تجميع آلي'
 ---
 
 ![ممر رقمي تجريدي باللونين الأزرق والسماوي يضم خزائن خوادم مضيئة، يرمز إلى البنية التحتية للذكاء الاصطناعي](../images/how-to-run-your-building-with-ai/banner-2.png)

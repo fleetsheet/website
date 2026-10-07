@@ -3,8 +3,8 @@ title: 'Cómo gestionar su edificio con IA: de la sugerencia a la acción'
 description: 'La IA agéntica está pasando de las recomendaciones a la acción. Descubra por qué los equipos inmobiliarios necesitan Fleet para conectar las señales de la IA con órdenes de trabajo, activos, flujos de trabajo y responsabilidades.'
 publishedAt: 2026-09-24
 updatedAt: 2026-09-24
-image: ../images/how-to-run-your-building-with-ai/cover.jpg
-imageAlt: 'Cómo gestionar su edificio con IA: de la sugerencia a la acción'
+image: ../images/how-to-run-your-building-with-ai/robotic-assembly-line.jpg
+imageAlt: 'Brazos robóticos en una línea de montaje automatizada'
 ---
 
 ![Pasillo digital abstracto en azul y cian con racks de servidores iluminados, que representa la infraestructura de IA](../images/how-to-run-your-building-with-ai/banner-2.png)
