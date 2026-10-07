@@ -105,15 +105,10 @@ const megaMenus = [
   },
 ]
 type MegaMenu = (typeof megaMenus)[number]
-// Navigation order: dropdowns, then plain links, with Resources last (where Insights used to be).
+// Navigation order: the dropdowns (Platform, Solutions, Resources), then plain links.
 const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLink })[] = [
-  ...megaMenus
-    .filter((megaMenu) => megaMenu.id !== 'resources')
-    .map((menu) => ({ kind: 'mega' as const, menu })),
+  ...megaMenus.map((menu) => ({ kind: 'mega' as const, menu })),
   ...headerLinks.map((link) => ({ kind: 'link' as const, link })),
-  ...megaMenus
-    .filter((megaMenu) => megaMenu.id === 'resources')
-    .map((menu) => ({ kind: 'mega' as const, menu })),
 ]
 ---
 

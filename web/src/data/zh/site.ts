@@ -9,10 +9,7 @@ export const actions = {
   bookDemo: { label: '预约演示', href: '/contact' },
 } satisfies Record<string, NavLink>
 
-export const headerLinks: NavLink[] = [
-  { label: 'AI 智能体', href: '/#ai' },
-  { label: '常见问题', href: '/faqs' },
-]
+export const headerLinks: NavLink[] = [{ label: '常见问题', href: '/faqs' }]
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
