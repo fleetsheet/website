@@ -37,5 +37,6 @@ Open the dashboard, pick the form by its name in the table above, and look in it
 ## Things to know
 
 - The site already sends a hidden spam-trap field (`_honeypot`) with each form; leave it in place.
+- The contact form uses hCaptcha because the FormSpark form's spam protection is set to hCaptcha. The widget's public site key is `hcaptchaSiteKey` in `web/src/config.ts`; the secret key lives only in FormSpark. If someone changes FormSpark's spam protection to something else or to None, the site must change too, or every submission fails with "Rejected by spam protection". Hostnames the form runs on must be listed for the site in the hCaptcha dashboard.
 - Submissions from pull request previews reach the same FormSpark forms as the live site, so testing a form on a preview creates a real submission (and a notification email). Warn the editor before testing, and suggest they delete the test submission in the dashboard afterwards.
 - If a form shows its error message on the live site, the usual causes are on FormSpark's side (form deleted or disabled, or the plan's submission limit reached). Send the editor to the dashboard to check, and tell Napon if it isn't that.

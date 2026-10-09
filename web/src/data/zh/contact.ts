@@ -13,6 +13,7 @@ export const contactForm = {
   pendingLabel: '发送中…',
   successMessage: '感谢来信，我们已收到您的消息。Fleet 团队将尽快回复您。',
   errorMessage: '出了点问题。请重试，或发送邮件至 admin@runfleet.com。',
+  captchaMessage: '请先完成验证再发送。',
   fields: [
     { name: 'name', label: '姓名', type: 'text', autocomplete: 'name', required: true },
     { name: 'email', label: '工作邮箱', type: 'email', autocomplete: 'email', required: true },
