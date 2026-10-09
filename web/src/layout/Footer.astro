@@ -1,6 +1,5 @@
 ---
 import { aboutPages } from '@/about'
-import NewsletterSignup from '@/components/newsletter/NewsletterSignup.astro'
 import Container from '@/components/ui/Container.astro'
 import Logo from '@/components/ui/Logo.astro'
 import { websiteConfig } from '@/config'
@@ -54,7 +53,6 @@ const { name } = websiteConfig
         </nav>
       ))}
     </div>
-    <NewsletterSignup />
   </Container>
   <Container class="text-muted pb-8 text-[13px]">
     {`© ${new Date().getFullYear()} ${name}`}

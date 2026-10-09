@@ -1,11 +1,10 @@
 # Forms (FormSpark)
 
-The site's two forms send their submissions to FormSpark, an outside service. The site only shows the form; FormSpark receives, stores and emails the submissions.
+The site's contact form sends its submissions to FormSpark, an outside service. The site only shows the form; FormSpark receives, stores and emails the submissions. The site no longer has a newsletter signup; if an editor asks to bring one back, that changes how the site is built, so treat it as a code change.
 
 | Form              | Where on the site                      | FormSpark form name  | Form ID     |
 | ----------------- | -------------------------------------- | -------------------- | ----------- |
 | Contact form      | `/contact` (and `/<language>/contact`) | "Contact Form"       | `Scb6CnrE2` |
-| Newsletter signup | Footer of every page                   | "Newsletter Sign Up" | `3gWO6kLFK` |
 
 ## The FormSpark dashboard
 
@@ -20,7 +19,7 @@ Decide this first, and tell the editor which it is.
 **In the FormSpark dashboard (the editor does it, no pull request):**
 
 - Who gets an email when someone submits a form, or stopping those emails.
-- Reading, searching, exporting or deleting submissions (contact messages and newsletter signups).
+- Reading, searching, exporting or deleting submissions (contact messages).
 - Spam protection settings.
 - An automatic reply email to the person who submitted.
 - Sending submissions to other tools (for example Zapier, Slack, a webhook or a mailing list).
@@ -30,10 +29,10 @@ Open the dashboard, pick the form by its name in the table above, and look in it
 
 **In the website (you do it, with the usual edit-website workflow):**
 
-- Wording of the forms: labels, button text, the message after sending, the error message, and the thank-you pages. Files are in `content-map.md` (Contact page, Newsletter signup rows), in all six languages.
+- Wording of the forms: labels, button text, the message after sending, the error message, and the thank-you page. Files are in `content-map.md` (Contact page rows), in all six languages.
 - Adding, removing or renaming a field, or making one required. The contact form's fields are the `fields` list in `data/<language>/contact.ts`; change all six languages the same way. FormSpark stores whatever fields arrive, so nothing needs to change in the dashboard, but tell the editor that new fields show up in submissions only from the next one onwards.
-- Pointing a form at a different FormSpark form: the editor creates it in the dashboard and gives you its form ID; replace `actionUrl` (`https://submit-form.com/<form ID>`) in `contact.ts` or `newsletter.ts` for all six languages.
-- Adding a new form somewhere else on the site: this changes how the site is built. Reuse the existing form components and `scripts/formspark.ts`, and the editor creates a new form in the dashboard first.
+- Pointing a form at a different FormSpark form: the editor creates it in the dashboard and gives you its form ID; replace `actionUrl` (`https://submit-form.com/<form ID>`) in `contact.ts` for all six languages.
+- Adding a new form somewhere else on the site: this changes how the site is built. Reuse the existing contact form component and `scripts/formspark.ts`, and the editor creates a new form in the dashboard first.
 
 ## Things to know
 

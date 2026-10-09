@@ -51,10 +51,10 @@ If someone else changed the same part of the site in the meantime, Claude shows 
 
 ## Forms
 
-The contact form and the newsletter signup in the footer send their submissions to FormSpark, an outside service. Some form changes are made there rather than on the website:
+The contact form sends its submissions to FormSpark, an outside service. Some form changes are made there rather than on the website:
 
-- **In FormSpark, by you:** who gets an email for each submission, reading or exporting submissions and newsletter signups, spam protection, automatic replies, and sending submissions to other tools. Go to [formspark.io](https://formspark.io), sign in with Google as **admin@runfleet.com**, and open "Contact Form" or "Newsletter Sign Up". Ask Napon if you don't have access to that account.
-- **On the website, through Claude:** the form's wording, its fields, and the thank-you pages. Ask as you would for any other change.
+- **In FormSpark, by you:** who gets an email for each submission, reading or exporting submissions, spam protection, automatic replies, and sending submissions to other tools. Go to [formspark.io](https://formspark.io), sign in with Google as **admin@runfleet.com**, and open "Contact Form". Ask Napon if you don't have access to that account.
+- **On the website, through Claude:** the form's wording, its fields, and the thank-you page. Ask as you would for any other change.
 
 Not sure which? Ask Claude; it will tell you where the change belongs.
 
