@@ -22,7 +22,7 @@ const [mainPhoto, ...sidePhotos] = page.hero.photos
 ---
 
 <section class="bg-rich-blue text-white">
-  <Container class="flex flex-col items-center gap-12 pt-16 pb-16 lg:pt-24 lg:pb-20">
+  <Container class="flex flex-col items-center gap-12 pt-16 pb-16 lg:pt-16 lg:pb-14">
     <div class="flex max-w-[760px] flex-col items-center gap-5 text-center">
       <p class="eyebrow text-sky-blue">{page.hero.eyebrow}</p>
       <h1 class="text-display-xl text-white">{page.hero.title}</h1>
@@ -44,7 +44,7 @@ const [mainPhoto, ...sidePhotos] = page.hero.photos
 </section>
 
 <section>
-  <Container class="flex flex-col gap-12 py-16 lg:py-24">
+  <Container class="flex flex-col gap-12 py-16 lg:py-16">
     <div class="flex max-w-[720px] flex-col gap-4">
       <p class="eyebrow text-celestial-blue">{page.story.eyebrow}</p>
       <h2 class="text-display-md hyphenate">{page.story.title}</h2>
@@ -71,7 +71,7 @@ const [mainPhoto, ...sidePhotos] = page.hero.photos
 </section>
 
 <section class="bg-surface border-border border-y">
-  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-16">
     <div class="relative aspect-[4/3] overflow-hidden rounded-xl lg:aspect-[4/5]">
       <Photo photo={page.mission.photo} sizes="(min-width: 1024px) 40vw, 100vw" />
     </div>

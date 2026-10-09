@@ -21,7 +21,7 @@ const { hero, audiences, rows, field, stories } = webMobile
 ---
 
 <section>
-  <Container class="flex flex-col items-center gap-6 pt-20 pb-14 text-center">
+  <Container class="flex flex-col items-center gap-6 pt-14 pb-14 text-center">
     <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
     <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
     <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
@@ -63,7 +63,7 @@ const { hero, audiences, rows, field, stories } = webMobile
 </PageSection>
 
 <section>
-  <Container width="wide" class="pb-24">
+  <Container width="wide" class="pb-16">
     <div class="bg-azul-blue grid grid-cols-1 items-center gap-8 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-[1fr_auto]">
       <SectionHeader
         eyebrow={field.eyebrow}
