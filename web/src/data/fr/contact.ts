@@ -14,6 +14,7 @@ export const contactForm = {
   successMessage:
     'Merci, nous avons bien reçu votre message. L’équipe Fleet vous répondra très vite.',
   errorMessage: 'Une erreur est survenue. Veuillez réessayer ou écrire à admin@runfleet.com.',
+  captchaMessage: 'Veuillez compléter la vérification avant l’envoi.',
   fields: [
     { name: 'name', label: 'Nom', type: 'text', autocomplete: 'name', required: true },
     {

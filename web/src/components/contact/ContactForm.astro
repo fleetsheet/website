@@ -25,6 +25,7 @@ const fieldClass = [
   data-formspark
   data-success-message={contactForm.successMessage}
   data-error-message={contactForm.errorMessage}
+  data-captcha-message={contactForm.captchaMessage}
   class:list={[
     'flex flex-col gap-5', // Layout
     'bg-surface border-border rounded-xl border p-6 shadow-sm sm:p-8', // Visual
@@ -67,6 +68,7 @@ const fieldClass = [
       )}
     </div>
   ))}
+  <div data-hcaptcha data-sitekey={websiteConfig.hcaptchaSiteKey} data-hl={locale}></div>
   <button
     type="submit"
     data-label={contactForm.submitLabel}

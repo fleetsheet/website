@@ -24,6 +24,7 @@ type WebsiteConfig = {
     height: number
   }
   socialUrls: string[]
+  hcaptchaSiteKey: string
 }
 
 export const websiteConfig: WebsiteConfig = {
@@ -45,4 +46,5 @@ export const websiteConfig: WebsiteConfig = {
     height: 630,
   },
   socialUrls: [],
+  hcaptchaSiteKey: '10000000-ffff-ffff-ffff-000000000001',
 }
