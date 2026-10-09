@@ -24,9 +24,316 @@ projects:
               - key: NODE_VERSION
                 value: '22'
               - key: WEBSITE_URL
-                value: https://runfleet.com
+                value: https://www.runfleet.com
               - key: SITE_ENV
                 value: production
+            routes:
+              - type: redirect
+                source: /home
+                destination: /
+              - type: redirect
+                source: /contact-1
+                destination: /contact
+              - type: redirect
+                source: /features-overview
+                destination: /platform
+              - type: redirect
+                source: /solutions-overview
+                destination: /
+              - type: redirect
+                source: /custom-workflows
+                destination: /platform/workflow-builder
+              - type: redirect
+                source: /ai-agents
+                destination: /platform/runner-ai
+              - type: redirect
+                source: /document-management
+                destination: /features/document-management
+              - type: redirect
+                source: /asset-management
+                destination: /features/asset-management
+              - type: redirect
+                source: /audit-tracking
+                destination: /features/audit-tracking
+              - type: redirect
+                source: /facility-management
+                destination: /solutions/facility-management
+              - type: redirect
+                source: /shopping-malls-retail
+                destination: /solutions/shopping-malls-retail
+              - type: redirect
+                source: /hospitality
+                destination: /solutions/hospitality-food-beverage
+              - type: redirect
+                source: /shipping-logistics
+                destination: /solutions/shipping-logistics
+              - type: redirect
+                source: /vehicle-management
+                destination: /solutions/vehicle-management
+              - type: redirect
+                source: /residential-communitites
+                destination: /solutions/tenant-resident-management
+              - type: redirect
+                source: /consultancy
+                destination: /resources/easyonboard
+              - type: redirect
+                source: /pricing
+                destination: /contact
+              - type: redirect
+                source: /de/home
+                destination: /de
+              - type: redirect
+                source: /de/contact-1
+                destination: /de/contact
+              - type: redirect
+                source: /de/features-overview
+                destination: /de/platform
+              - type: redirect
+                source: /de/solutions-overview
+                destination: /de
+              - type: redirect
+                source: /de/custom-workflows
+                destination: /de/platform/workflow-builder
+              - type: redirect
+                source: /de/ai-agents
+                destination: /de/platform/runner-ai
+              - type: redirect
+                source: /de/document-management
+                destination: /de/features/document-management
+              - type: redirect
+                source: /de/asset-management
+                destination: /de/features/asset-management
+              - type: redirect
+                source: /de/audit-tracking
+                destination: /de/features/audit-tracking
+              - type: redirect
+                source: /de/facility-management
+                destination: /de/solutions/facility-management
+              - type: redirect
+                source: /de/shopping-malls-retail
+                destination: /de/solutions/shopping-malls-retail
+              - type: redirect
+                source: /de/hospitality
+                destination: /de/solutions/hospitality-food-beverage
+              - type: redirect
+                source: /de/shipping-logistics
+                destination: /de/solutions/shipping-logistics
+              - type: redirect
+                source: /de/vehicle-management
+                destination: /de/solutions/vehicle-management
+              - type: redirect
+                source: /de/residential-communitites
+                destination: /de/solutions/tenant-resident-management
+              - type: redirect
+                source: /de/consultancy
+                destination: /de/resources/easyonboard
+              - type: redirect
+                source: /de/pricing
+                destination: /de/contact
+              - type: redirect
+                source: /ar/home
+                destination: /ar
+              - type: redirect
+                source: /ar/contact-1
+                destination: /ar/contact
+              - type: redirect
+                source: /ar/features-overview
+                destination: /ar/platform
+              - type: redirect
+                source: /ar/solutions-overview
+                destination: /ar
+              - type: redirect
+                source: /ar/custom-workflows
+                destination: /ar/platform/workflow-builder
+              - type: redirect
+                source: /ar/ai-agents
+                destination: /ar/platform/runner-ai
+              - type: redirect
+                source: /ar/document-management
+                destination: /ar/features/document-management
+              - type: redirect
+                source: /ar/asset-management
+                destination: /ar/features/asset-management
+              - type: redirect
+                source: /ar/audit-tracking
+                destination: /ar/features/audit-tracking
+              - type: redirect
+                source: /ar/facility-management
+                destination: /ar/solutions/facility-management
+              - type: redirect
+                source: /ar/shopping-malls-retail
+                destination: /ar/solutions/shopping-malls-retail
+              - type: redirect
+                source: /ar/hospitality
+                destination: /ar/solutions/hospitality-food-beverage
+              - type: redirect
+                source: /ar/shipping-logistics
+                destination: /ar/solutions/shipping-logistics
+              - type: redirect
+                source: /ar/vehicle-management
+                destination: /ar/solutions/vehicle-management
+              - type: redirect
+                source: /ar/residential-communitites
+                destination: /ar/solutions/tenant-resident-management
+              - type: redirect
+                source: /ar/consultancy
+                destination: /ar/resources/easyonboard
+              - type: redirect
+                source: /ar/pricing
+                destination: /ar/contact
+              - type: redirect
+                source: /fr/home
+                destination: /fr
+              - type: redirect
+                source: /fr/contact-1
+                destination: /fr/contact
+              - type: redirect
+                source: /fr/features-overview
+                destination: /fr/platform
+              - type: redirect
+                source: /fr/solutions-overview
+                destination: /fr
+              - type: redirect
+                source: /fr/custom-workflows
+                destination: /fr/platform/workflow-builder
+              - type: redirect
+                source: /fr/ai-agents
+                destination: /fr/platform/runner-ai
+              - type: redirect
+                source: /fr/document-management
+                destination: /fr/features/document-management
+              - type: redirect
+                source: /fr/asset-management
+                destination: /fr/features/asset-management
+              - type: redirect
+                source: /fr/audit-tracking
+                destination: /fr/features/audit-tracking
+              - type: redirect
+                source: /fr/facility-management
+                destination: /fr/solutions/facility-management
+              - type: redirect
+                source: /fr/shopping-malls-retail
+                destination: /fr/solutions/shopping-malls-retail
+              - type: redirect
+                source: /fr/hospitality
+                destination: /fr/solutions/hospitality-food-beverage
+              - type: redirect
+                source: /fr/shipping-logistics
+                destination: /fr/solutions/shipping-logistics
+              - type: redirect
+                source: /fr/vehicle-management
+                destination: /fr/solutions/vehicle-management
+              - type: redirect
+                source: /fr/residential-communitites
+                destination: /fr/solutions/tenant-resident-management
+              - type: redirect
+                source: /fr/consultancy
+                destination: /fr/resources/easyonboard
+              - type: redirect
+                source: /fr/pricing
+                destination: /fr/contact
+              - type: redirect
+                source: /zh/home
+                destination: /zh
+              - type: redirect
+                source: /zh/contact-1
+                destination: /zh/contact
+              - type: redirect
+                source: /zh/features-overview
+                destination: /zh/platform
+              - type: redirect
+                source: /zh/solutions-overview
+                destination: /zh
+              - type: redirect
+                source: /zh/custom-workflows
+                destination: /zh/platform/workflow-builder
+              - type: redirect
+                source: /zh/ai-agents
+                destination: /zh/platform/runner-ai
+              - type: redirect
+                source: /zh/document-management
+                destination: /zh/features/document-management
+              - type: redirect
+                source: /zh/asset-management
+                destination: /zh/features/asset-management
+              - type: redirect
+                source: /zh/audit-tracking
+                destination: /zh/features/audit-tracking
+              - type: redirect
+                source: /zh/facility-management
+                destination: /zh/solutions/facility-management
+              - type: redirect
+                source: /zh/shopping-malls-retail
+                destination: /zh/solutions/shopping-malls-retail
+              - type: redirect
+                source: /zh/hospitality
+                destination: /zh/solutions/hospitality-food-beverage
+              - type: redirect
+                source: /zh/shipping-logistics
+                destination: /zh/solutions/shipping-logistics
+              - type: redirect
+                source: /zh/vehicle-management
+                destination: /zh/solutions/vehicle-management
+              - type: redirect
+                source: /zh/residential-communitites
+                destination: /zh/solutions/tenant-resident-management
+              - type: redirect
+                source: /zh/consultancy
+                destination: /zh/resources/easyonboard
+              - type: redirect
+                source: /zh/pricing
+                destination: /zh/contact
+              - type: redirect
+                source: /es/home
+                destination: /es
+              - type: redirect
+                source: /es/contact-1
+                destination: /es/contact
+              - type: redirect
+                source: /es/features-overview
+                destination: /es/platform
+              - type: redirect
+                source: /es/solutions-overview
+                destination: /es
+              - type: redirect
+                source: /es/custom-workflows
+                destination: /es/platform/workflow-builder
+              - type: redirect
+                source: /es/ai-agents
+                destination: /es/platform/runner-ai
+              - type: redirect
+                source: /es/document-management
+                destination: /es/features/document-management
+              - type: redirect
+                source: /es/asset-management
+                destination: /es/features/asset-management
+              - type: redirect
+                source: /es/audit-tracking
+                destination: /es/features/audit-tracking
+              - type: redirect
+                source: /es/facility-management
+                destination: /es/solutions/facility-management
+              - type: redirect
+                source: /es/shopping-malls-retail
+                destination: /es/solutions/shopping-malls-retail
+              - type: redirect
+                source: /es/hospitality
+                destination: /es/solutions/hospitality-food-beverage
+              - type: redirect
+                source: /es/shipping-logistics
+                destination: /es/solutions/shipping-logistics
+              - type: redirect
+                source: /es/vehicle-management
+                destination: /es/solutions/vehicle-management
+              - type: redirect
+                source: /es/residential-communitites
+                destination: /es/solutions/tenant-resident-management
+              - type: redirect
+                source: /es/consultancy
+                destination: /es/resources/easyonboard
+              - type: redirect
+                source: /es/pricing
+                destination: /es/contact
             headers:
               - path: /*
                 name: X-Frame-Options
