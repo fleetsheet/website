@@ -6,7 +6,7 @@ export const description =
   'Fleet ist die Plattform für das Management von Gewerbeimmobilien, entwickelt für Strategie, Betrieb und Instandhaltung.'
 
 export const actions = {
-  signIn: { label: 'Anmelden', href: '#' },
+  signIn: { label: 'Anmelden', href: 'https://app.runfleet.com' },
   bookDemo: { label: 'Demo buchen', href: '/contact' },
 } satisfies Record<string, NavLink>
 
