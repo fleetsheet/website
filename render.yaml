@@ -41,6 +41,12 @@ projects:
                 source: /solutions-overview
                 destination: /
               - type: redirect
+                source: /features
+                destination: /platform
+              - type: redirect
+                source: /solutions
+                destination: /
+              - type: redirect
                 source: /custom-workflows
                 destination: /platform/workflow-builder
               - type: redirect
@@ -90,6 +96,12 @@ projects:
                 destination: /de/platform
               - type: redirect
                 source: /de/solutions-overview
+                destination: /de
+              - type: redirect
+                source: /de/features
+                destination: /de/platform
+              - type: redirect
+                source: /de/solutions
                 destination: /de
               - type: redirect
                 source: /de/custom-workflows
@@ -143,6 +155,12 @@ projects:
                 source: /ar/solutions-overview
                 destination: /ar
               - type: redirect
+                source: /ar/features
+                destination: /ar/platform
+              - type: redirect
+                source: /ar/solutions
+                destination: /ar
+              - type: redirect
                 source: /ar/custom-workflows
                 destination: /ar/platform/workflow-builder
               - type: redirect
@@ -192,6 +210,12 @@ projects:
                 destination: /fr/platform
               - type: redirect
                 source: /fr/solutions-overview
+                destination: /fr
+              - type: redirect
+                source: /fr/features
+                destination: /fr/platform
+              - type: redirect
+                source: /fr/solutions
                 destination: /fr
               - type: redirect
                 source: /fr/custom-workflows
@@ -245,6 +269,12 @@ projects:
                 source: /zh/solutions-overview
                 destination: /zh
               - type: redirect
+                source: /zh/features
+                destination: /zh/platform
+              - type: redirect
+                source: /zh/solutions
+                destination: /zh
+              - type: redirect
                 source: /zh/custom-workflows
                 destination: /zh/platform/workflow-builder
               - type: redirect
@@ -294,6 +324,12 @@ projects:
                 destination: /es/platform
               - type: redirect
                 source: /es/solutions-overview
+                destination: /es
+              - type: redirect
+                source: /es/features
+                destination: /es/platform
+              - type: redirect
+                source: /es/solutions
                 destination: /es
               - type: redirect
                 source: /es/custom-workflows
