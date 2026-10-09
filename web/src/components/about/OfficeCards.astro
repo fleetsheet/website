@@ -17,7 +17,7 @@ const { offices } = getContent(getLocale(Astro.url)).about
 ---
 
 <section>
-  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+  <Container class="flex flex-col gap-10 py-16 lg:py-14">
     <SectionHeader eyebrow={eyebrow} title={title} description={description} />
     <ul class="grid grid-cols-1 gap-4 sm:grid-cols-3">
       {offices.map((office) => (

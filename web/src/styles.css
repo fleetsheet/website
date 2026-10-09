@@ -34,19 +34,19 @@
   --color-border: #e2e8f0;
   --color-muted: #64748b;
 
-  --text-display-xl: clamp(2.5rem, 6vw, 4.25rem);
+  --text-display-xl: clamp(2.25rem, 4.5vw, 3.25rem);
   --text-display-xl--line-height: 1.05;
   --text-display-xl--letter-spacing: -0.035em;
   --text-display-xl--font-weight: 600;
-  --text-display-lg: clamp(2rem, 4.4vw, 3.25rem);
+  --text-display-lg: clamp(1.875rem, 3.4vw, 2.625rem);
   --text-display-lg--line-height: 1.08;
   --text-display-lg--letter-spacing: -0.03em;
   --text-display-lg--font-weight: 600;
-  --text-display-md: clamp(1.875rem, 3.6vw, 2.625rem);
+  --text-display-md: clamp(1.625rem, 2.6vw, 2.125rem);
   --text-display-md--line-height: 1.12;
   --text-display-md--letter-spacing: -0.03em;
   --text-display-md--font-weight: 600;
-  --text-lead: clamp(1.0625rem, 1.6vw, 1.25rem);
+  --text-lead: clamp(1rem, 1.3vw, 1.125rem);
   --text-lead--line-height: 1.6;
 
   --shadow-xs: 0 1px 2px 0 rgb(28 57 80 / 0.05);

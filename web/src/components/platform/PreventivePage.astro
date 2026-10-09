@@ -42,7 +42,7 @@ const heroVisual = capabilities.tabs[0].visual
 ---
 
 <section class="bg-columbia-blue/40 border-border border-b">
-  <Container class="grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1fr_1.05fr] lg:py-24">
+  <Container class="grid grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:py-16">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
         <IconChip size="sm">
@@ -70,7 +70,7 @@ const heroVisual = capabilities.tabs[0].visual
         ))}
       </ul>
     </div>
-    <div class="relative pb-16 lg:pb-20" aria-hidden="true">
+    <div class="relative pb-16 lg:pb-14" aria-hidden="true">
       <OverviewVisual visual={heroVisual} />
       <div class="absolute end-0 bottom-0 w-[min(100%,320px)] lg:-end-6">
         <MockPanel elevation="float" class="text-rich-blue flex flex-col gap-3">
@@ -108,7 +108,7 @@ const heroVisual = capabilities.tabs[0].visual
 
 <StepsBand eyebrow={steps.eyebrow} title={steps.title} items={steps.items} />
 
-<div class="pt-24">
+<div class="pt-16">
   <FeatureBanner
     eyebrow={banner.eyebrow}
     title={banner.title}
@@ -138,7 +138,7 @@ const heroVisual = capabilities.tabs[0].visual
 </PageSection>
 
 <section>
-  <Container width="wide" class="pt-24">
+  <Container width="wide" class="pt-16">
     <figure class="bg-azul-blue text-alice-blue flex flex-col gap-6 rounded-2xl p-[clamp(32px,5vw,64px)]">
       <Quote class="text-sky-blue size-10 rtl:-scale-x-100" aria-hidden="true" />
       <blockquote class="font-display text-display-md max-w-[900px] text-white">

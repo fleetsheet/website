@@ -21,7 +21,7 @@ const valueIcons = [Eye, Zap, Users, ShieldCheck]
 ---
 
 <section class="bg-columbia-blue/40 border-border overflow-hidden border-b">
-  <Container class="flex flex-col items-center gap-12 pt-16 pb-16 lg:pt-24 lg:pb-20">
+  <Container class="flex flex-col items-center gap-12 pt-16 pb-16 lg:pt-16 lg:pb-14">
     <div class="flex max-w-[760px] flex-col items-center gap-5 text-center">
       <p class="eyebrow text-azul-blue">{page.hero.eyebrow}</p>
       <h1 class="text-display-lg hyphenate">{page.hero.title}</h1>
@@ -50,7 +50,7 @@ const valueIcons = [Eye, Zap, Users, ShieldCheck]
 </section>
 
 <section>
-  <Container class="py-16 lg:py-20">
+  <Container class="py-16 lg:py-14">
     <div class="bg-rich-blue grid grid-cols-1 items-center gap-10 rounded-2xl p-8 text-white sm:p-12 lg:grid-cols-[1fr_1.2fr]">
       <div class="flex flex-col gap-3">
         <h2 class="text-display-md text-white">{page.growth.title}</h2>
@@ -72,7 +72,7 @@ const valueIcons = [Eye, Zap, Users, ShieldCheck]
 </section>
 
 <section>
-  <Container class="flex flex-col gap-10 pb-16 lg:pb-20">
+  <Container class="flex flex-col gap-10 pb-16 lg:pb-14">
     <SectionHeader
       eyebrow={page.culture.eyebrow}
       title={page.culture.title}
@@ -96,7 +96,7 @@ const valueIcons = [Eye, Zap, Users, ShieldCheck]
 </section>
 
 <section class="bg-surface border-border border-y">
-  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-20">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-14">
     <div class="flex flex-col gap-5">
       <h2 class="text-display-md hyphenate">{page.spotlight.title}</h2>
       <p class="text-azul-blue text-[17px] leading-[1.65]">{page.spotlight.description}</p>
@@ -115,7 +115,7 @@ const valueIcons = [Eye, Zap, Users, ShieldCheck]
 />
 
 <section id="join" class="bg-rich-blue scroll-mt-20 text-white">
-  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+  <Container class="flex flex-col gap-10 py-16 lg:py-14">
     <SectionHeader eyebrow={page.join.eyebrow} title={page.join.title} tone="dark" />
     <ol class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {page.join.steps.map((step, index) => (

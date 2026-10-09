@@ -100,7 +100,7 @@ const supportIcons = [MessagesSquare, Globe, LifeBuoy]
 ---
 
 <section class="bg-columbia-blue/40 border-border border-b">
-  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:py-24">
+  <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:py-16">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
         <IconChip size="sm">
@@ -166,7 +166,7 @@ const supportIcons = [MessagesSquare, Globe, LifeBuoy]
 </section>
 
 <section>
-  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+  <Container class="flex flex-col gap-10 py-16 lg:py-14">
     <SectionHeader title={page.steps.title} description={page.steps.description} />
     <ol class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
       {page.steps.items.map((step, index) => (
@@ -185,7 +185,7 @@ const supportIcons = [MessagesSquare, Globe, LifeBuoy]
 </section>
 
 <section id="knowledge-base" class="scroll-mt-20">
-  <Container class="pb-16 lg:pb-20">
+  <Container class="pb-16 lg:pb-14">
     <div class="bg-surface border-border flex flex-col gap-10 rounded-2xl border p-6 shadow-xs sm:p-10">
       <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div class="flex flex-col gap-2">
@@ -254,7 +254,7 @@ const supportIcons = [MessagesSquare, Globe, LifeBuoy]
 </section>
 
 <section class="bg-surface border-border border-y">
-  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+  <Container class="flex flex-col gap-10 py-16 lg:py-14">
     <SectionHeader title={page.training.title} description={page.training.description} />
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {page.training.items.map((item) => (
@@ -265,7 +265,7 @@ const supportIcons = [MessagesSquare, Globe, LifeBuoy]
 </section>
 
 <section class="bg-rich-blue text-white">
-  <Container class="flex flex-col gap-10 py-16 lg:py-20">
+  <Container class="flex flex-col gap-10 py-16 lg:py-14">
     <SectionHeader title={page.support.title} description={page.support.description} tone="dark" />
     <ul class="grid grid-cols-1 gap-4 md:grid-cols-3">
       {page.support.items.map((item, index) => {
