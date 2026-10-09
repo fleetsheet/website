@@ -45,6 +45,6 @@ export const websiteConfig: WebsiteConfig = {
     width: 1200,
     height: 630,
   },
-  socialUrls: [],
+  socialUrls: ['https://www.linkedin.com/company/runfleet/'],
   hcaptchaSiteKey: '0634646a-05ae-4cb8-8a0c-e9f8244ee0b4',
 }
