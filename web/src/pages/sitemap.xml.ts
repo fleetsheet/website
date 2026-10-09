@@ -1,6 +1,8 @@
 import { aboutPages } from '@/about'
 import { locales, localizePath } from '@/i18n'
+import { platformPages } from '@/platform'
 import { resourcePages } from '@/resources'
+import { solutionPages } from '@/solutions'
 import { getAllPublishedInsights, getInsightPath } from '@/utils/insights'
 import type { APIRoute } from 'astro'
 import { WEBSITE_URL } from 'astro:env/client'
@@ -14,6 +16,8 @@ export const GET: APIRoute = async () => {
         '/',
         '/contact',
         '/faqs',
+        ...platformPages.map((entry) => entry.href),
+        ...solutionPages.map((entry) => entry.href),
         ...resourcePages.map((entry) => entry.href),
         ...aboutPages.map((entry) => entry.href),
       ].map((path) => localizePath(path, locale)),

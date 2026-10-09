@@ -56,6 +56,7 @@ Pass the page paths that will change. Each path gets a desktop and a phone scree
 - Keep text lengths close to the original unless asked, so layouts don't break.
 - Images and Insights articles: follow `images.md`.
 - Translations: the site is also in German, Arabic, French, Chinese (Simplified) and Spanish (see "Languages" in `content-map.md`). When you change English wording, update the same text in all five translations in the same change, translating it yourself, and tell the editor in one line that the other languages were updated too. A new Insights article gets translations too, unless the editor says English only. If the editor asks to change only one language, change only that one. Include one translated page (Arabic, for right to left) in the after screenshots when wording changed.
+- Adding, removing or renaming a page: keep the sitemap (`web/src/pages/sitemap.xml.ts`) in step, so search engines find every page and stop looking for ones that are gone. A new page goes into the list it belongs to (`platform.ts`, `solutions.ts`, `resources.ts`, `about.ts` in `web/src/`) or the fixed list in `sitemap.xml.ts`; a removed or renamed page comes out of it, and its old address gets a redirect in `render.yaml` to the closest page, for English and each language prefix (`/de`, `/ar`, `/fr`, `/zh`, `/es`). Insights articles are added to the sitemap automatically. After `pnpm build` in step 5, check `web/dist/sitemap.xml` lists every new page and none that were removed. Tell the editor in one line that the sitemap was updated.
 - If the request needs a code change (a new section type, a layout change, a new page template), tell the editor in plain words that it changes how the site is built, not just its content, and that it will be flagged on the pull request. Then do it carefully following `CLAUDE.md`.
 
 ## 5. Check
@@ -114,4 +115,4 @@ If the editor wants a change taken back, revert its merge commit on a fresh bran
 - Push to main, force push, rebase or rewrite history.
 - Merge without the editor's approval in this conversation.
 - Drop someone else's change to resolve a conflict without the editor choosing that.
-- Edit `render.yaml`, `.github/`, `.claude/` or dependencies unless the editor explicitly asks and understands it changes how the site is built.
+- Edit `render.yaml`, `.github/`, `.claude/` or dependencies unless the editor explicitly asks and understands it changes how the site is built. The one exception is a redirect for a page the editor removed or renamed (step 4), which you flag on the pull request.

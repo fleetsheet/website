@@ -93,6 +93,15 @@ This website implements JSON-LD structured data for SEO. All schema definitions 
 4. **URL Construction**: Always use `new URL(path, SITE_URL)`. Do not use `normalizePath`
 5. **Usage**: Import and call schema functions in layout files, then render with `<Schema item={schema} />`
 
+### Sitemap and Redirects
+
+`web/src/pages/sitemap.xml.ts` must list every indexable page in every language, and nothing else. Whenever a page is added, removed or renamed, update it in the same change:
+
+1. **New page**: add its path to the matching page list (`web/src/platform.ts`, `solutions.ts`, `resources.ts`, `about.ts`) or to the fixed list in `sitemap.xml.ts`. Every locale is generated from that path. Insights articles are included automatically.
+2. **Removed or renamed page**: take it out of the list and add a `redirect` route in `render.yaml` from the old path to the closest page, once per locale prefix.
+3. **Pages with `noIndex`** (like `/contact/thanks`) stay out of the sitemap.
+4. After `pnpm build`, confirm `web/dist/sitemap.xml` matches the built pages.
+
 ### Icon Imports
 
 Always import `@lucide/astro` icons via the per-icon subpath, using the icon's kebab-case name (`import CalendarDays from '@lucide/astro/icons/calendar-days'`) — never the barrel `from '@lucide/astro'`, which drastically slows dev reloads.
@@ -131,4 +140,5 @@ The site is a static build of `web/` hosted on Render (Fleet Website project, pr
 - Merging to `main` deploys to production once GitHub checks pass.
 - Every pull request gets its own Render preview URL, posted on the PR.
 - `SITE_ENV` is `production` on the live site and `preview` on pull request previews; analytics and indexing only run in `production`.
-- Response headers and any rewrites live in `render.yaml`, not in the Astro config.
+- Response headers, redirects and rewrites live in `render.yaml`, not in the Astro config. `routes` there redirects the old runfleet.com (Squarespace) addresses to their new pages; keep those redirects when editing it.
+- The canonical address is `https://www.runfleet.com` (`WEBSITE_URL` in `render.yaml`); the bare `runfleet.com` should redirect to it through Render's custom domain settings once the domain is connected.
