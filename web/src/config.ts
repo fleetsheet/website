@@ -46,5 +46,5 @@ export const websiteConfig: WebsiteConfig = {
     height: 630,
   },
   socialUrls: [],
-  hcaptchaSiteKey: '10000000-ffff-ffff-ffff-000000000001',
+  hcaptchaSiteKey: '0634646a-05ae-4cb8-8a0c-e9f8244ee0b4',
 }
