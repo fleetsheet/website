@@ -6,7 +6,7 @@ export const description: string =
   'Fleet is the commercial real estate management platform purpose-built for strategy, operations, and maintenance.'
 
 export const actions = {
-  signIn: { label: 'Sign in', href: '#' },
+  signIn: { label: 'Sign in', href: 'https://app.runfleet.com' },
   bookDemo: { label: 'Book a demo', href: '/contact' },
 } satisfies Record<string, NavLink>
 

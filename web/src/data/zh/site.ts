@@ -5,7 +5,7 @@ export const tagline = '为房地产打造统一的数据与智能。'
 export const description = 'Fleet 是专为战略、运营和维护打造的商业地产管理平台。'
 
 export const actions = {
-  signIn: { label: '登录', href: '#' },
+  signIn: { label: '登录', href: 'https://app.runfleet.com' },
   bookDemo: { label: '预约演示', href: '/contact' },
 } satisfies Record<string, NavLink>
 
