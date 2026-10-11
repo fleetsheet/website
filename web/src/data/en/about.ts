@@ -279,8 +279,8 @@ export const about: AboutContent = {
     invite: {
       title: 'Ready to join Fleet?',
       description:
-        'We are always happy to meet talented people. Send us your CV and tell us how you would like to contribute.',
-      primaryAction: { label: 'Send us your CV', href: '/contact' },
+        'We are always happy to meet talented people. Get in touch and tell us how you would like to contribute.',
+      primaryAction: { label: 'Get in touch', href: '/contact' },
       secondaryAction: { label: 'Read our story', href: '/about' },
     },
   },

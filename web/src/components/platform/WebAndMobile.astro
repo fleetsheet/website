@@ -20,27 +20,30 @@ const { webMobile, overview, cta } = getContent(getLocale(Astro.url)).platform
 const { hero, audiences, rows, field, stories } = webMobile
 ---
 
-<section>
-  <Container class="flex flex-col items-center gap-6 pt-14 pb-14 text-center">
-    <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
-    <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
-    <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
-    <Button href={hero.primaryAction.href}>
-      {hero.primaryAction.label}
-      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-    </Button>
-    <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
-      {hero.highlights.map((highlight) => (
-        <li class="flex items-center gap-1.5">
-          <Check class="text-celestial-blue size-4" aria-hidden="true" />
-          {highlight}
-        </li>
-      ))}
-    </ul>
-  </Container>
-</section>
+<!-- The hero's ground runs from dark navy through steel to white, into the device photograph. -->
+<div class="web-mobile-ground text-cream">
+  <section class="tone-invert web-mobile-hero">
+    <Container class="flex flex-col items-center gap-6 pt-14 pb-80 text-center">
+      <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
+      <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
+      <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
+      <Button href={hero.primaryAction.href}>
+        {hero.primaryAction.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+      <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
 
-<DeviceShowcase />
+  <DeviceShowcase />
+</div>
 
 <PageSection tone="surface" containerClass="flex flex-col gap-12">
   <div class="grid grid-cols-1 items-end gap-6 lg:grid-cols-2 lg:gap-16">
@@ -102,3 +105,31 @@ const { hero, audiences, rows, field, stories } = webMobile
   primaryAction={cta.primaryAction}
   secondaryAction={cta.secondaryAction}
 />
+
+<style>
+  .web-mobile-ground {
+    --color-action: var(--color-cream);
+    --color-on-action: var(--color-espresso);
+
+    background: var(--color-steel-mist);
+  }
+
+  /* Dark behind the copy, then steel and pale steel in the space below it, where the
+     photograph fades in. */
+  .web-mobile-hero {
+    background: linear-gradient(
+      in oklab to bottom,
+      var(--color-black),
+      var(--color-navy-deep) 24%,
+      var(--color-navy) 56%,
+      color-mix(in oklab, var(--color-navy) 80%, var(--color-steel)) 63%,
+      color-mix(in oklab, var(--color-navy) 55%, var(--color-steel)) 69%,
+      color-mix(in oklab, var(--color-navy) 25%, var(--color-steel)) 75%,
+      var(--color-steel) 80%,
+      color-mix(in oklab, var(--color-steel) 50%, var(--color-steel-soft)) 84%,
+      var(--color-steel-soft) 88%,
+      color-mix(in oklab, var(--color-steel-soft) 50%, var(--color-steel-mist)) 92%,
+      var(--color-steel-mist)
+    );
+  }
+</style>

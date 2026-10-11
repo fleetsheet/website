@@ -20,12 +20,12 @@ const { customerStories: page } = getContent(locale).resources
 const localize = (href: string) => localizePath(href, locale)
 ---
 
-<section class="bg-rich-blue text-white">
+<section class="tone-light">
   <Container class="grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-16">
     <div class="flex flex-col items-start gap-6">
-      <p class="eyebrow text-sky-blue">{page.hero.eyebrow}</p>
-      <h1 class="text-display-lg hyphenate text-white">{page.hero.title}</h1>
-      <p class="text-lead text-columbia-blue text-pretty">{page.hero.description}</p>
+      <p class="eyebrow text-celestial-blue">{page.hero.eyebrow}</p>
+      <h1 class="text-display-lg hyphenate">{page.hero.title}</h1>
+      <p class="text-lead text-azul-blue text-pretty">{page.hero.description}</p>
       <Button href={page.hero.action.href} variant="accent">
         {page.hero.action.label}
         <ChevronDown class="size-4" aria-hidden="true" />
@@ -33,8 +33,8 @@ const localize = (href: string) => localizePath(href, locale)
     </div>
 
     <div class="flex flex-col gap-4" data-spotlight>
-      <p class="eyebrow text-sky-blue">{page.spotlight.label}</p>
-      <div class="bg-azul-blue relative rounded-xl p-7 shadow-lg sm:p-9">
+      <p class="eyebrow text-celestial-blue">{page.spotlight.label}</p>
+      <div class="bg-rich-blue relative rounded-xl p-7 shadow-lg sm:p-9">
         {page.stories.map((story, index) => (
           <figure class="flex flex-col items-start gap-5" hidden={index > 0} data-spotlight-slide>
             <Quote class="text-sky-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
@@ -56,16 +56,16 @@ const localize = (href: string) => localizePath(href, locale)
         ))}
       </div>
       <div class="flex items-center gap-4">
-        <div class="bg-azul-blue h-1 flex-1 overflow-hidden rounded-full">
+        <div class="bg-uranian-blue h-1 flex-1 overflow-hidden rounded-full">
           <div
-            class="bg-sky-blue h-full rounded-full transition-[width] duration-300"
+            class="bg-azul-blue h-full rounded-full transition-[width] duration-300"
             style={`width: ${100 / page.stories.length}%`}
             data-spotlight-progress
           ></div>
         </div>
         <button
           type="button"
-          class="hover:bg-azul-blue rounded-md border border-white/20 p-2 text-white transition-colors"
+          class="hover:bg-columbia-blue border-border text-rich-blue rounded-md border p-2 transition-colors"
           aria-label={page.spotlight.previous}
           data-spotlight-step="-1"
         >
@@ -73,7 +73,7 @@ const localize = (href: string) => localizePath(href, locale)
         </button>
         <button
           type="button"
-          class="hover:bg-azul-blue rounded-md border border-white/20 p-2 text-white transition-colors"
+          class="hover:bg-columbia-blue border-border text-rich-blue rounded-md border p-2 transition-colors"
           aria-label={page.spotlight.next}
           data-spotlight-step="1"
         >

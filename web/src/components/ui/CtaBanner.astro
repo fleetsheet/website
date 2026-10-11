@@ -1,6 +1,8 @@
 ---
+import type { Photo as PhotoType } from '@/photos'
 import Button from './Button.astro'
 import Container from './Container.astro'
+import Photo from './Photo.astro'
 
 type Action = {
   label: string
@@ -13,20 +15,40 @@ type Props = {
   description?: string
   primaryAction: Action
   secondaryAction?: Action
+  /** Shows the banner over this photo with a dark blue overlay and light text. */
+  photo?: PhotoType
 }
 
-const { id, title, description, primaryAction, secondaryAction } = Astro.props
+const { id, title, description, primaryAction, secondaryAction, photo } = Astro.props
 ---
 
 <section id={id}>
   <Container width="wide" class="py-16">
     <div
-      class="bg-supergraphic brand-c:bg-cream brand-c:bg-none brand-c:rounded-3xl flex flex-col items-center gap-5 rounded-2xl p-[clamp(40px,6vw,80px)] text-center"
-      data-surface="light"
+      class:list={[
+        'relative isolate flex flex-col items-center gap-5 overflow-hidden rounded-3xl p-[clamp(40px,6vw,80px)] text-center',
+        // Over a photo: dark blue overlay and cream type. Otherwise a steel panel on
+        // light pages, and the cream panel on the dark homepage.
+        photo
+          ? 'tone-dark text-cream'
+          : 'tone-steel text-navy-deep brand-c:bg-cream brand-c:bg-none brand-c:text-black',
+      ]}
+      data-surface={photo ? undefined : 'light'}
     >
-      <h2 class="text-display-lg brand-c:text-black max-w-[760px] text-white">{title}</h2>
+      {photo && (
+        <>
+          <Photo photo={photo} sizes="(min-width: 1280px) 1250px, 100vw" class="-z-10 grayscale" />
+          <div class="bg-navy-deep/80 absolute inset-0 -z-10" aria-hidden="true" />
+        </>
+      )}
+      <h2 class="text-display-lg max-w-[760px]">{title}</h2>
       {description && (
-        <p class="text-columbia-blue brand-c:text-slate-ink max-w-[560px] text-lg leading-relaxed">
+        <p
+          class:list={[
+            'max-w-[560px] text-lg leading-relaxed',
+            photo ? 'text-cream/85' : 'text-navy-deep brand-c:text-slate-ink',
+          ]}
+        >
           {description}
         </p>
       )}
@@ -37,9 +59,11 @@ const { id, title, description, primaryAction, secondaryAction } = Astro.props
         {secondaryAction && (
           <Button
             href={secondaryAction.href}
-            variant="inverse"
+            variant="secondary"
             size="lg"
-            class="on-light:border-slate-ink on-light:text-black on-light:hover:bg-cream-deep"
+            class:list={[
+              photo && 'border-fog! text-cream! hover:bg-navy! bg-transparent! bg-none!',
+            ]}
           >
             {secondaryAction.label}
           </Button>

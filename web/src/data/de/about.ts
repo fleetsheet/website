@@ -229,8 +229,8 @@ export const about: AboutContent = {
     invite: {
       title: 'Bereit für Fleet?',
       description:
-        'Wir lernen gern talentierte Menschen kennen. Senden Sie uns Ihren Lebenslauf und erzählen Sie, wie Sie beitragen möchten.',
-      primaryAction: { label: 'Lebenslauf senden', href: '/contact' },
+        'Wir lernen gern talentierte Menschen kennen. Nehmen Sie Kontakt auf und erzählen Sie, wie Sie beitragen möchten.',
+      primaryAction: { label: 'Kontakt aufnehmen', href: '/contact' },
       secondaryAction: { label: 'Unsere Geschichte lesen', href: '/about' },
     },
   },

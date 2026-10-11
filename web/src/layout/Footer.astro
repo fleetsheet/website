@@ -2,6 +2,7 @@
 import { aboutPages } from '@/about'
 import Container from '@/components/ui/Container.astro'
 import Logo from '@/components/ui/Logo.astro'
+import ClosingBackdrop from '@/layout/ClosingBackdrop.astro'
 import { websiteConfig } from '@/config'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
@@ -34,10 +35,18 @@ const footerColumns = [
 const { name } = websiteConfig
 ---
 
-<footer class="border-border brand-c:border-hairline border-t">
+<!-- The footer is dark everywhere; outside the homepage it carries its own grid glow. -->
+<footer
+  data-brand="c"
+  class:list={[
+    'border-border brand-c:border-hairline border-t',
+    brand !== 'c' && 'relative isolate overflow-hidden bg-black',
+  ]}
+>
+  {brand !== 'c' && <ClosingBackdrop />}
   <Container class="flex flex-wrap justify-between gap-12 py-12">
     <div class="flex max-w-[280px] flex-col gap-3">
-      <Logo tone={brand === 'c' ? 'light' : 'dark'} />
+      <Logo tone="light" />
       <p class="text-azul-blue brand-c:text-fog text-sm leading-[1.55]">{tagline}</p>
     </div>
     <div class="flex flex-wrap gap-16 text-sm">
