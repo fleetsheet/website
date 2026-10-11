@@ -14,8 +14,9 @@ const { items: audienceItems } = Astro.props
     <li class="border-border from-steel-soft to-steel-mist flex flex-col gap-3 overflow-hidden rounded-xl border bg-linear-to-tr p-6">
       <h3 class="text-lg font-semibold">{audience.title}</h3>
       <p class="text-navy-deep text-[15px] leading-[1.55]">{audience.description}</p>
+      <!-- The phone sits on the card's bottom edge, whatever the text length above. -->
       <div
-        class="bg-rich-blue mx-auto mt-4 -mb-6 w-full max-w-60 rounded-t-[28px] px-2.5 pt-2.5"
+        class="bg-rich-blue mx-auto mt-auto -mb-6 w-full max-w-60 rounded-t-[28px] px-2.5 pt-2.5"
         aria-hidden="true"
       >
         <div class="bg-page flex flex-col gap-2.5 rounded-t-[20px] px-3.5 pt-4 pb-8">
