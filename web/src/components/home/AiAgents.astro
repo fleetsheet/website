@@ -4,10 +4,13 @@ import IconChip from '@/components/ui/IconChip.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
+import handLeft from '@/assets/brand/hand-left.webp'
+import handRight from '@/assets/brand/hand-right.webp'
 import { getLocale } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import ShieldCheck from '@lucide/astro/icons/shield-check'
 import Sparkles from '@lucide/astro/icons/sparkles'
+import { Image } from 'astro:assets'
 
 const locale = getLocale(Astro.url)
 const content = getContent(locale)
@@ -19,8 +22,8 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
 
 <PageSection
   id="ai"
-  class="bg-steel-soft"
-  surface="steel"
+  class="relative overflow-hidden bg-white"
+  surface="light"
   containerClass="grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-center gap-14"
 >
   <SectionHeader
@@ -37,94 +40,133 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
           </IconChip>
           <div>
             <h3 class="text-base font-medium text-black">{point.title}</h3>
-            <p class="text-navy-deep text-[15px] leading-[1.55]">{point.description}</p>
+            <p class="text-slate-ink text-[15px] leading-[1.55]">{point.description}</p>
           </div>
         </li>
       ))}
     </ul>
   </SectionHeader>
 
-  <div
-    class="bg-cream-deep border-hairline-light overflow-hidden rounded-3xl border text-black"
-    aria-hidden="true"
-  >
-    <div class="border-hairline-light flex items-center gap-2.5 border-b px-5 py-4">
-      <IconChip size="sm">
-        <Sparkles />
-      </IconChip>
-      <span class="flex-1 text-sm font-medium">{chat.assistant}</span>
-      <span class="text-slate-ink flex items-center gap-1.5 text-xs">
-        <span class="bg-status-done size-[7px] rounded-full"></span>
-        {chat.context}
-      </span>
-    </div>
-    <div class="flex flex-col gap-4 p-5">
-      <p class="bg-navy text-cream max-w-[85%] self-end rounded-[12px_12px_4px_12px] px-3.5 py-2.5 text-sm leading-[1.45]">
-        {chat.question}
-      </p>
-      <div class="flex flex-col gap-3">
-        <p class="text-sm leading-[1.55]">
-          <span class="font-medium">{chat.answer.lead}</span> {chat.answer.body}{' '}
-          <span class="font-medium">{chat.answer.cost}</span> {chat.answer.tail}
-        </p>
-        <div class="bg-cream border-hairline-light flex flex-col gap-3.5 rounded-2xl border p-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <p class="text-[13px] font-medium">{chat.chartTitle}</p>
-            <Badge tone="info">{chat.chartBadge}</Badge>
-          </div>
-          <div class="grid grid-cols-3 gap-2 text-xs">
-            {chat.stats.map((stat) => (
-              <div class="bg-cream-deep rounded-md p-2">
-                <p class="text-slate-ink">{stat.label}</p>
-                <p
-                  class:list={[
-                    'mt-0.5 text-base font-medium',
-                    stat.trend === 'up' && 'text-status-urgent',
-                  ]}
-                >
-                  {stat.value}
-                </p>
+  <!-- The assistant shown on a tablet held upright in two hands. -->
+  <div class="tablet relative mx-auto w-full max-w-[560px]" aria-hidden="true">
+    <Image src={handLeft} alt="" widths={[330, 660]} sizes="330px" class="hand hand-start" />
+    <Image src={handRight} alt="" widths={[350, 700]} sizes="350px" class="hand hand-end" />
+    <div class="relative rounded-[40px] bg-black p-[18px] shadow-xl ring-1 ring-black/10">
+      <div class="bg-cream-deep overflow-hidden rounded-3xl text-black">
+        <div class="border-hairline-light flex items-center gap-2.5 border-b px-5 py-4">
+          <IconChip size="sm">
+            <Sparkles />
+          </IconChip>
+          <span class="flex-1 text-sm font-medium">{chat.assistant}</span>
+          <span class="text-slate-ink flex items-center gap-1.5 text-xs">
+            <span class="bg-status-done size-[7px] rounded-full"></span>
+            {chat.context}
+          </span>
+        </div>
+        <div class="flex flex-col gap-4 p-5">
+          <p class="bg-navy text-cream max-w-[85%] self-end rounded-[12px_12px_4px_12px] px-3.5 py-2.5 text-sm leading-[1.45]">
+            {chat.question}
+          </p>
+          <div class="flex flex-col gap-3">
+            <p class="text-sm leading-[1.55]">
+              <span class="font-medium">{chat.answer.lead}</span> {chat.answer.body}{' '}
+              <span class="font-medium">{chat.answer.cost}</span> {chat.answer.tail}
+            </p>
+            <div class="bg-cream border-hairline-light flex flex-col gap-3.5 rounded-2xl border p-4">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <p class="text-[13px] font-medium">{chat.chartTitle}</p>
+                <Badge tone="info">{chat.chartBadge}</Badge>
               </div>
-            ))}
-          </div>
-          <div class="flex flex-col gap-2">
-            {chat.rows.map((row, index) => (
-              <div class="flex items-center gap-2.5 text-xs">
-                <span class="text-slate-ink w-24 shrink-0 truncate">{row.site}</span>
-                <div class="bg-cream-deep h-3.5 flex-1 overflow-hidden rounded-[3px]">
-                  <div
-                    class:list={[
-                      'h-full rounded-[3px]',
-                      index === 0 ? 'bg-status-high' : 'bg-steel',
-                    ]}
-                    style={`width: ${Math.round((row.hours / maxHours) * 100)}%`}
-                  />
-                </div>
-                <span class="w-7 text-end font-medium">{row.hours}</span>
+              <div class="grid grid-cols-3 gap-2 text-xs">
+                {chat.stats.map((stat) => (
+                  <div class="bg-cream-deep rounded-md p-2">
+                    <p class="text-slate-ink">{stat.label}</p>
+                    <p
+                      class:list={[
+                        'mt-0.5 text-base font-medium',
+                        stat.trend === 'up' && 'text-status-urgent',
+                      ]}
+                    >
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div class="border-hairline-light flex flex-wrap items-center justify-between gap-2 border-t pt-2.5">
-            <span class="text-slate-ink text-xs">{chat.sources}</span>
-            <span class="bg-espresso text-cream rounded-md px-2.5 py-1.5 text-xs font-medium">
-              {chat.action}
-            </span>
+              <div class="flex flex-col gap-2">
+                {chat.rows.map((row, index) => (
+                  <div class="flex items-center gap-2.5 text-xs">
+                    <span class="text-slate-ink w-24 shrink-0 truncate">{row.site}</span>
+                    <div class="bg-cream-deep h-3.5 flex-1 overflow-hidden rounded-[3px]">
+                      <div
+                        class:list={[
+                          'h-full rounded-[3px]',
+                          index === 0 ? 'bg-status-high' : 'bg-steel',
+                        ]}
+                        style={`width: ${Math.round((row.hours / maxHours) * 100)}%`}
+                      />
+                    </div>
+                    <span class="w-7 text-end font-medium">{row.hours}</span>
+                  </div>
+                ))}
+              </div>
+              <div class="border-hairline-light flex flex-wrap items-center justify-between gap-2 border-t pt-2.5">
+                <span class="text-slate-ink text-xs">{chat.sources}</span>
+                <span class="bg-espresso text-cream rounded-md px-2.5 py-1.5 text-xs font-medium">
+                  {chat.action}
+                </span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {chat.followUps.map((followUp) => (
+                <span class="border-hairline-light bg-cream text-black rounded-full border px-2.5 py-1.5 text-xs font-medium">
+                  {followUp}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap gap-1.5">
-          {chat.followUps.map((followUp) => (
-            <span class="border-hairline-light bg-cream text-black rounded-full border px-2.5 py-1.5 text-xs font-medium">
-              {followUp}
-            </span>
-          ))}
+        <div class="border-hairline-light flex items-center gap-2.5 border-t px-4 py-3">
+          <span class="text-slate-ink flex-1 text-sm">{chat.placeholder}</span>
+          <span class="bg-espresso text-cream flex size-[30px] items-center justify-center rounded-md">
+            <ArrowRight class="size-3.5 rtl:-scale-x-100" stroke-width={2.5} />
+          </span>
         </div>
       </div>
     </div>
-    <div class="border-hairline-light flex items-center gap-2.5 border-t px-4 py-3">
-      <span class="text-slate-ink flex-1 text-sm">{chat.placeholder}</span>
-      <span class="bg-espresso text-cream flex size-[30px] items-center justify-center rounded-md">
-        <ArrowRight class="size-3.5 rtl:-scale-x-100" stroke-width={2.5} />
-      </span>
-    </div>
   </div>
 </PageSection>
+
+<style>
+  /* Hands cut from a photo, sized so their grip meets the tablet's lower corners;
+     the frame sits in front, so only the hands show. Shown where the layout is wide. */
+  .hand {
+    display: none;
+    position: absolute;
+    height: auto;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+
+  @media (min-width: 64rem) {
+    .hand {
+      display: block;
+    }
+  }
+
+  .hand-start {
+    width: 322px;
+    inset-inline-start: -195px;
+    top: calc(100% - 350px);
+  }
+
+  .hand-end {
+    width: 347px;
+    inset-inline-end: -228px;
+    top: calc(100% - 351px);
+  }
+
+  /* The start hand is a left hand; mirror both for right-to-left so thumbs stay outside. */
+  :global([dir='rtl']) .hand {
+    transform: scaleX(-1);
+  }
+</style>

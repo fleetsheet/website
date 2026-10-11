@@ -5,6 +5,7 @@ import Logo from '@/components/ui/Logo.astro'
 import { websiteConfig } from '@/config'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
+import { legalPages } from '@/legal'
 import { resourcePages } from '@/resources'
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 
 const { brand } = Astro.props
 const locale = getLocale(Astro.url)
-const { site, resources, about } = getContent(locale)
+const { site, resources, about, legal } = getContent(locale)
 const { tagline } = site
 // The Resources and About Fleet columns mirror their menus.
 const footerColumns = [
@@ -59,7 +60,21 @@ const { name } = websiteConfig
       ))}
     </div>
   </Container>
-  <Container class="text-muted brand-c:text-fog pb-8 text-[13px]">
-    {`© ${new Date().getFullYear()} ${name}`}
+  <Container class="text-muted brand-c:text-fog flex flex-wrap items-center justify-between gap-x-8 gap-y-3 pb-8 text-[13px]">
+    <p>{`© ${new Date().getFullYear()} ${name}`}</p>
+    <nav aria-label={legal.navLabel}>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {legalPages.map((entry) => (
+          <li>
+            <a
+              href={localizePath(entry.href, locale)}
+              class="hover:text-rich-blue brand-c:hover:text-cream transition-colors"
+            >
+              {legal.pages[entry.id].label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </Container>
 </footer>

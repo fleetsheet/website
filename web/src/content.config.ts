@@ -18,4 +18,12 @@ const insights = defineCollection({
     }),
 })
 
-export const collections = { insights }
+// Policy pages: one English Markdown file per page, named by its id in `legal.ts`.
+const legal = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/legal' }),
+  schema: z.object({
+    updatedAt: z.coerce.date().optional(),
+  }),
+})
+
+export const collections = { insights, legal }
