@@ -192,9 +192,8 @@ export const about: AboutContent = {
     },
     invite: {
       title: 'هل أنت مستعد للانضمام إلى Fleet؟',
-      description:
-        'يسعدنا دائمًا التعرّف على الموهوبين. أرسل سيرتك الذاتية وأخبرنا كيف تود أن تساهم.',
-      primaryAction: { label: 'أرسل سيرتك الذاتية', href: '/contact' },
+      description: 'يسعدنا دائمًا التعرّف على الموهوبين. تواصل معنا وأخبرنا كيف تود أن تساهم.',
+      primaryAction: { label: 'تواصل معنا', href: '/contact' },
       secondaryAction: { label: 'اقرأ قصتنا', href: '/about' },
     },
   },

@@ -13,105 +13,564 @@ import Workflow from '@lucide/astro/icons/workflow'
 
 const { devices } = getContent(getLocale(Astro.url)).platform.webMobile
 const navIcons = [LayoutDashboard, ClipboardList, Building, Box, Workflow, ChartLine]
+const [firstTask] = devices.phoneItems
 ---
 
+<!--
+  Fleet on four devices, lined up on a shelf like a product shot: a phone, a
+  tablet, a desktop monitor and a laptop. Each screen is a size container, and
+  everything on it is sized in em from a cqw font size, so the app scales with
+  the screen it sits on.
+-->
 <section aria-hidden="true">
-  <Container width="wide" class="pb-14">
-    <div class="relative mx-auto max-w-[1080px] pb-10 lg:pe-24">
-      <!-- Laptop: a black bezel with a camera notch, the app on screen, and a silver base. -->
-      <div class="relative rounded-t-[22px] bg-black p-3 pt-5 shadow-xl">
-        <span class="absolute start-1/2 top-0 h-3 w-24 -translate-x-1/2 rounded-b-lg bg-black rtl:translate-x-1/2"></span>
-        <div class="bg-surface overflow-hidden rounded-md">
-          <div class="bg-page border-border flex items-center gap-3 border-b px-4 py-3">
-            <span class="flex gap-1.5">
-              <span class="bg-border size-2.5 rounded-full"></span>
-              <span class="bg-border size-2.5 rounded-full"></span>
-              <span class="bg-border size-2.5 rounded-full"></span>
-            </span>
-            <span class="bg-surface border-border text-muted mx-auto flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs">
-              <Lock class="size-3" />
-              {devices.url}
-            </span>
-          </div>
-          <div class="flex">
-            <nav class="bg-rich-blue hidden w-16 shrink-0 flex-col items-center gap-3 py-5 sm:flex">
-              {navIcons.map((Icon, index) => (
-                <span
-                  class:list={[
-                    'flex size-9 items-center justify-center rounded-md',
-                    index === 0 ? 'bg-azul-blue text-white' : 'text-sky-blue',
-                  ]}
-                >
-                  <Icon class="size-[18px]" />
-                </span>
-              ))}
-            </nav>
-            <div class="flex min-w-0 flex-1 flex-col gap-4 p-5">
-              <div>
-                <p class="font-display text-lg font-semibold">{devices.greeting}</p>
-                <p class="text-azul-blue text-xs">{devices.scope}</p>
-              </div>
-              <dl class="grid grid-cols-3 gap-3">
-                {devices.stats.map((stat) => (
-                  <div class="border-border rounded-lg border p-3">
-                    <dt class="text-muted text-[11px]">{stat.label}</dt>
-                    <dd class="font-display mt-1 text-xl font-semibold">{stat.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div class="border-border rounded-lg border">
-                <p class="border-border border-b px-3 py-2 text-[13px] font-semibold">
-                  {devices.listTitle}
-                </p>
-                <ul>
-                  {devices.items.map((item) => (
-                    <li class="border-border flex items-center gap-3 border-b px-3 py-2.5 text-[13px] last:border-b-0">
-                      <div class="min-w-0 flex-1">
-                        <p class="truncate font-semibold">{item.title}</p>
-                        <p class="text-muted truncate text-xs">{item.location}</p>
-                      </div>
-                      <Badge tone={item.tone}>{item.status}</Badge>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="-mx-[5%] h-4 rounded-b-[18px] bg-linear-to-b from-status-open to-fog shadow-lg">
-        <span class="bg-fog mx-auto block h-1.5 w-28 rounded-b-md"></span>
-      </div>
-
-      <!-- Tablet: a rounded black frame around the field app. -->
-      <div class="shadow-float mx-auto -mt-6 w-72 rounded-[30px] bg-black p-3 lg:absolute lg:end-0 lg:bottom-0 lg:mt-0">
-        <div class="bg-page flex flex-col gap-2.5 rounded-[18px] px-4 pt-5 pb-6">
-          <p class="font-display text-sm font-semibold">{devices.phoneTitle}</p>
-          {devices.phoneItems.map((task, index) => (
-            <div class="bg-surface border-border flex flex-col gap-2 rounded-[10px] border p-3">
-              <div class="flex items-start justify-between gap-1.5">
-                <span class="text-[13px] font-bold">{task.title}</span>
-                <Badge tone={task.tone}>{task.status}</Badge>
-              </div>
-              <p class="text-muted text-xs">{task.location}</p>
-              {index === 0 && (
-                <div class="flex gap-1.5">
-                  {devices.phoneActions.map((action, actionIndex) => (
-                    <span
-                      class:list={[
-                        'flex-1 rounded-md p-[7px] text-center text-[11px] font-semibold',
-                        actionIndex === 0 ? 'bg-rich-blue text-alice-blue' : 'border-border border',
-                      ]}
-                    >
-                      {action}
-                    </span>
-                  ))}
+  <Container width="wide" class="pt-16 pb-20">
+    <div class="shelf">
+      <div class="device phone">
+        <div class="frame">
+          <div class="screen">
+            <div class="app app-phone">
+              <p class="app-title">{devices.phoneTitle}</p>
+              {firstTask && (
+                <div class="tile">
+                  <p class="strong">{firstTask.title}</p>
+                  <p class="muted">{firstTask.location}</p>
+                  <Badge tone={firstTask.tone} class="pill">
+                    {firstTask.status}
+                  </Badge>
+                  <span class="action">{devices.phoneActions[0]}</span>
                 </div>
               )}
             </div>
-          ))}
+          </div>
         </div>
+        <span class="shadow"></span>
+      </div>
+
+      <div class="device tablet">
+        <div class="frame">
+          <span class="camera"></span>
+          <div class="screen">
+            <div class="app">
+              <p class="app-title">{devices.phoneTitle}</p>
+              {devices.phoneItems.map((task, index) => (
+                <div class="tile">
+                  <p class="strong">{task.title}</p>
+                  <p class="muted">{task.location}</p>
+                  <Badge tone={task.tone} class="pill">
+                    {task.status}
+                  </Badge>
+                  {index === 0 && (
+                    <div class="actions">
+                      {devices.phoneActions.map((action, actionIndex) => (
+                        <span class:list={['action', actionIndex > 0 && 'action-ghost']}>
+                          {action}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          <span class="home"></span>
+        </div>
+        <span class="shadow"></span>
+      </div>
+
+      <div class="device monitor">
+        <div class="frame">
+          <div class="screen">
+            <div class="app app-desktop">
+              <div class="browser">
+                <span class="dots">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+                <span class="url">
+                  <Lock class="icon" />
+                  {devices.url}
+                </span>
+              </div>
+              <div class="body">
+                <nav class="rail">
+                  {navIcons.map((Icon, index) => (
+                    <span class:list={['rail-item', index === 0 && 'active']}>
+                      <Icon class="icon" />
+                    </span>
+                  ))}
+                </nav>
+                <div class="content">
+                  <p class="app-title">{devices.greeting}</p>
+                  <p class="muted">{devices.scope}</p>
+                  <dl class="stats">
+                    {devices.stats.map((stat) => (
+                      <div class="tile">
+                        <dt class="muted">{stat.label}</dt>
+                        <dd class="figure">{stat.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div class="tile list">
+                    <p class="strong list-title">{devices.listTitle}</p>
+                    {devices.items.map((item) => (
+                      <div class="row">
+                        <div>
+                          <p class="strong">{item.title}</p>
+                          <p class="muted">{item.location}</p>
+                        </div>
+                        <Badge tone={item.tone} class="pill">
+                          {item.status}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chin"></div>
+        </div>
+        <div class="neck"></div>
+        <div class="foot"></div>
+        <span class="shadow"></span>
+      </div>
+
+      <div class="device laptop">
+        <div class="frame">
+          <div class="screen">
+            <div class="app app-desktop">
+              <div class="body">
+                <nav class="rail">
+                  {navIcons.map((Icon, index) => (
+                    <span class:list={['rail-item', index === 1 && 'active']}>
+                      <Icon class="icon" />
+                    </span>
+                  ))}
+                </nav>
+                <div class="content">
+                  <p class="app-title">{devices.listTitle}</p>
+                  <div class="tile list">
+                    {devices.items.map((item) => (
+                      <div class="row">
+                        <div>
+                          <p class="strong">{item.title}</p>
+                          <p class="muted">{item.location}</p>
+                        </div>
+                        <Badge tone={item.tone} class="pill">
+                          {item.status}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="base">
+          <span></span>
+        </div>
+        <span class="shadow"></span>
       </div>
     </div>
   </Container>
 </section>
+
+<style>
+  .shelf {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(12px, 2.4vw, 36px);
+  }
+
+  .device {
+    position: relative;
+    flex: none;
+  }
+
+  /* Soft contact shadow on the shelf beneath each device. */
+  .shadow {
+    position: absolute;
+    inset-inline: 4%;
+    bottom: -14px;
+    z-index: -1;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--color-navy-deep) 32%, transparent),
+      transparent
+    );
+    filter: blur(4px);
+  }
+
+  .frame {
+    position: relative;
+    background: var(--color-black);
+  }
+
+  .screen {
+    container-type: inline-size;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-alice-blue);
+  }
+
+  /* Phone: thin bezel, tall screen. */
+  .phone {
+    width: 7.5%;
+  }
+
+  .phone .frame {
+    padding: 5%;
+    border-radius: 18% / 8.5%;
+    box-shadow: inset 0 0 0 1px var(--color-slate-ink);
+  }
+
+  .phone .screen {
+    aspect-ratio: 9 / 19;
+    border-radius: 14% / 6.5%;
+  }
+
+  /* Tablet: even bezel with a camera above and a home button below. */
+  .tablet {
+    width: 16%;
+  }
+
+  .tablet .frame {
+    padding: 9% 6% 15%;
+    border-radius: 7%;
+  }
+
+  .tablet .screen {
+    aspect-ratio: 3 / 4;
+  }
+
+  .camera,
+  .home {
+    position: absolute;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    border-radius: 50%;
+  }
+
+  .camera {
+    top: 4%;
+    width: 3%;
+    aspect-ratio: 1;
+    background: var(--color-slate-ink);
+  }
+
+  .home {
+    bottom: 3.5%;
+    width: 9%;
+    aspect-ratio: 1;
+    box-shadow: inset 0 0 0 1.5px var(--color-slate-ink);
+  }
+
+  /* Monitor: black screen, silver chin, neck and foot. */
+  .monitor {
+    width: 46%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .monitor .frame {
+    width: 100%;
+    padding: 1.6% 1.6% 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .monitor .screen {
+    aspect-ratio: 16 / 9;
+  }
+
+  .chin {
+    height: 0;
+    padding-bottom: 9%;
+    margin-inline: -1.6%;
+    margin-top: 1.6%;
+    background: linear-gradient(to bottom, var(--color-steel-mist), var(--color-status-open));
+  }
+
+  .neck {
+    width: 16%;
+    height: 0;
+    padding-bottom: 9%;
+    background: linear-gradient(
+      to right,
+      var(--color-status-open),
+      var(--color-steel-mist),
+      var(--color-status-open)
+    );
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+  }
+
+  .foot {
+    width: 28%;
+    height: 0;
+    padding-bottom: 2%;
+    border-radius: 0 0 40% 40% / 0 0 100% 100%;
+    background: linear-gradient(to bottom, var(--color-steel-mist), var(--color-status-open));
+  }
+
+  /* Laptop: lid with a thin bezel over a wider silver base. */
+  .laptop {
+    width: 30%;
+  }
+
+  .laptop .frame {
+    margin-inline: 5%;
+    padding: 2.4% 2.4% 1.2%;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .laptop .screen {
+    aspect-ratio: 16 / 10;
+  }
+
+  .base {
+    height: 0;
+    padding-bottom: 3%;
+    position: relative;
+    border-radius: 0 0 45% 45% / 0 0 100% 100%;
+    background: linear-gradient(to bottom, var(--color-steel-mist), var(--color-fog));
+  }
+
+  .base span {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    width: 16%;
+    height: 45%;
+    border-radius: 0 0 6px 6px;
+    background: var(--color-status-open);
+  }
+
+  /* The app: sizes in em from a font size set by the screen width. */
+  .app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    padding: 1em;
+    font-size: 5.4cqw;
+    line-height: 1.3;
+    color: var(--color-rich-blue);
+  }
+
+  .app-phone {
+    font-size: 11cqw;
+    padding-top: 2.2em;
+  }
+
+  .app-desktop {
+    padding: 0;
+    gap: 0;
+    font-size: 1.75cqw;
+  }
+
+  .laptop .app-desktop {
+    font-size: 2.3cqw;
+  }
+
+  .app :is(p, dt, dd) {
+    margin: 0;
+  }
+
+  .app-title {
+    font-size: 1.25em;
+    font-weight: 500;
+  }
+
+  .strong {
+    font-weight: 500;
+  }
+
+  .muted {
+    font-size: 0.82em;
+    color: var(--color-muted);
+  }
+
+  .figure {
+    font-size: 1.9em;
+    font-weight: 300;
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35em;
+    padding: 0.7em;
+    border: 1px solid var(--color-border);
+    border-radius: 0.6em;
+    background: var(--color-surface);
+  }
+
+  .app :global(.pill) {
+    height: 2em;
+    padding-inline: 0.75em;
+    font-size: 0.85em;
+    gap: 0.4em;
+  }
+
+  .app :global(.pill)::before {
+    width: 0.45em;
+    height: 0.45em;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.4em;
+    width: 100%;
+  }
+
+  .action {
+    flex: 1;
+    padding: 0.45em;
+    border-radius: 0.4em;
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 500;
+    background: var(--color-action);
+    color: var(--color-on-action);
+  }
+
+  .action-ghost {
+    background: var(--color-surface);
+    color: var(--color-rich-blue);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  .browser {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.6em 1em;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-page);
+  }
+
+  .dots {
+    display: flex;
+    gap: 0.35em;
+  }
+
+  .dots i {
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .url {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-inline: auto;
+    padding: 0.25em 0.9em;
+    border: 1px solid var(--color-border);
+    border-radius: 0.4em;
+    font-size: 0.85em;
+    color: var(--color-muted);
+    background: var(--color-surface);
+  }
+
+  .app :global(.icon) {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  .body {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+  }
+
+  .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    width: 4em;
+    padding-top: 1.2em;
+    background: var(--color-navy-deep);
+    color: var(--color-steel);
+  }
+
+  .rail-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 0.5em;
+  }
+
+  .rail-item.active {
+    background: var(--color-navy);
+    color: var(--color-cream);
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    min-width: 0;
+    padding: 1.3em 1.5em;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8em;
+    margin: 0;
+  }
+
+  .list {
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .list-title {
+    padding: 0.7em 0.9em;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.65em 0.9em;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .row:last-child {
+    border-bottom: 0;
+  }
+
+  /* On narrow screens keep the monitor and phone, side by side. */
+  @media (max-width: 47.99rem) {
+    .tablet,
+    .laptop {
+      display: none;
+    }
+
+    .monitor {
+      width: 76%;
+    }
+
+    .phone {
+      width: 18%;
+    }
+  }
+</style>

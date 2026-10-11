@@ -174,8 +174,8 @@ export const about: AboutContent = {
     },
     invite: {
       title: '准备好加入 Fleet 了吗？',
-      description: '我们一直乐于结识有才华的人。发送简历，告诉我们您希望如何贡献力量。',
-      primaryAction: { label: '发送简历', href: '/contact' },
+      description: '我们一直乐于结识有才华的人。欢迎联系我们，告诉我们您希望如何贡献力量。',
+      primaryAction: { label: '联系我们', href: '/contact' },
       secondaryAction: { label: '阅读我们的故事', href: '/about' },
     },
   },

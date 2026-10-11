@@ -240,8 +240,8 @@ export const about: AboutContent = {
     invite: {
       title: 'Prêt à rejoindre Fleet ?',
       description:
-        'Nous aimons rencontrer des talents. Envoyez-nous votre CV et dites-nous comment vous aimeriez contribuer.',
-      primaryAction: { label: 'Envoyer votre CV', href: '/contact' },
+        'Nous aimons rencontrer des talents. Contactez-nous et dites-nous comment vous aimeriez contribuer.',
+      primaryAction: { label: 'Nous contacter', href: '/contact' },
       secondaryAction: { label: 'Lire notre histoire', href: '/about' },
     },
   },
