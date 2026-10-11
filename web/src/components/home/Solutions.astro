@@ -2,9 +2,11 @@
 import Badge from '@/components/ui/Badge.astro'
 import CheckList from '@/components/ui/CheckList.astro'
 import PageSection from '@/components/ui/PageSection.astro'
+import Photo from '@/components/ui/Photo.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import { getLocale } from '@/i18n'
+import type { PhotoId } from '@/photos'
 import MapPin from '@lucide/astro/icons/map-pin'
 
 const locale = getLocale(Astro.url)
@@ -13,6 +15,16 @@ const { solutions } = content.home
 
 const tabId = (index: number) => `solutions-tab-${index}`
 const panelId = (index: number) => `solutions-panel-${index}`
+
+// One backdrop per sector, in the order the sectors are listed in every language.
+const sectorPhotos: PhotoId[] = [
+  'cityTowers',
+  'mallAtrium',
+  'hotelReception',
+  'warehouseTeam',
+  'apartmentBuilding',
+  'fleetVans',
+]
 ---
 
 <PageSection id="solutions" tone="surface" containerClass="flex flex-col gap-8">
@@ -45,25 +57,36 @@ const panelId = (index: number) => `solutions-panel-${index}`
         id={panelId(index)}
         aria-labelledby={tabId(index)}
         hidden={index !== 0}
-        class="bg-black border-hairline grid grid-cols-[repeat(auto-fit,minmax(min(100%,360px),1fr))] items-center gap-10 rounded-3xl border p-[clamp(24px,3vw,40px)]"
+        class="border-hairline relative isolate grid grid-cols-[repeat(auto-fit,minmax(min(100%,360px),1fr))] items-center gap-10 overflow-hidden rounded-3xl border bg-black p-[clamp(24px,3vw,40px)]"
       >
+        <Photo
+          photo={{ id: sectorPhotos[index % sectorPhotos.length], alt: '' }}
+          sizes="(min-width: 1280px) 1200px, 100vw"
+          class="-z-10 grayscale"
+        />
+        <div class="bg-navy-deep/80 absolute inset-0 -z-10" aria-hidden="true"></div>
         <div class="flex flex-col gap-4">
           <h3 class="text-cream text-[28px] font-light tracking-[-0.025em]">{sector.title}</h3>
-          <p class="text-fog leading-[1.65]">{sector.description}</p>
-          <CheckList items={sector.points} />
+          <p class="text-cream/85 leading-[1.65]">{sector.description}</p>
+          <CheckList items={sector.points} class="text-cream" />
         </div>
-        <div class="bg-navy-deep flex flex-col gap-2.5 rounded-2xl p-5" aria-hidden="true">
-          <p class="text-fog flex items-center gap-2 text-[13px]">
+        <div
+          class="border-hairline grid grid-cols-1 gap-2.5 rounded-2xl sm:grid-cols-[minmax(0,1fr)_auto] border bg-black/75 p-5 backdrop-blur-sm"
+          aria-hidden="true"
+        >
+          <p class="text-cream/85 col-span-full flex items-center gap-2 text-[13px]">
             <MapPin class="text-steel size-4" />
             <span class="font-medium">{sector.site}</span>
           </p>
           {sector.tasks.map((task) => (
-            <div class="bg-navy border-hairline text-cream flex items-center gap-3 rounded-[10px] border px-3.5 py-3 text-sm">
-              <div class="min-w-0 flex-1">
+            <div class="border-hairline text-cream col-span-full grid grid-cols-subgrid items-center gap-x-3 gap-y-2 rounded-[10px] border bg-black px-3.5 py-3 text-sm">
+              <div class="min-w-0">
                 <p>{task.title}</p>
                 <p class="text-fog text-xs">{task.location}</p>
               </div>
-              <Badge tone={task.tone}>{task.status}</Badge>
+              <Badge tone={task.tone} class="justify-self-start">
+                {task.status}
+              </Badge>
             </div>
           ))}
         </div>

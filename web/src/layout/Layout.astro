@@ -6,6 +6,7 @@ import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
 import { ClientRouter } from 'astro:transitions'
 import '../styles.css'
+import ClosingBackdrop from './ClosingBackdrop.astro'
 import Footer from './Footer.astro'
 import Header from './Header.astro'
 import SEOMetadata from './SEOMetadata.astro'
@@ -67,9 +68,12 @@ const alternatePaths = meta.noIndex
       {labels.skipToContent}
     </a>
     <Header translations={translations} brand={brand} />
-    <main id="main" class="flex-1">
-      <slot />
-    </main>
-    <Footer brand={brand} />
+    <div class="relative isolate flex flex-1 flex-col">
+      {brand === 'c' && <ClosingBackdrop />}
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+      <Footer brand={brand} />
+    </div>
   </body>
 </html>

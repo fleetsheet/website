@@ -12,8 +12,8 @@ const { padding = 'md', elevation = 'sm', class: className } = Astro.props
   class:list={[
     'bg-surface rounded-xl',
     elevation === 'sm' ? 'border-border border shadow-sm' : 'shadow-float',
-    // Palette C: dark separates with hairlines, not shadows.
-    'brand-c:bg-navy-deep brand-c:border-hairline brand-c:border brand-c:text-cream brand-c:shadow-none',
+    // Palette C: dark separates with hairlines, not shadows; black keeps status pills legible.
+    'brand-c:bg-black brand-c:border-hairline brand-c:border brand-c:text-cream brand-c:shadow-none',
     { 'p-1.5': padding === 'xs', 'p-4': padding === 'md' },
     className,
   ]}

@@ -46,6 +46,9 @@
   --color-slate-ink: #5e6475;
   --color-hairline: #2a3047;
   --color-hairline-light: #e8e2c6;
+  /* Lighter steel grounds, derived for legibility: black text reads clearly on both. */
+  --color-steel-soft: #b6c7db;
+  --color-steel-mist: #e7ecf3;
   --color-status-urgent: #951a1d;
   --color-status-high: #d8944c;
   --color-status-progress: #eac834;
@@ -81,10 +84,12 @@
 
 /* Palette C applies where an ancestor (the homepage <html>) has data-brand="c".
    on-light marks cream sections inside it, where the action flips to espresso;
-   on-steel marks steel sections, which take black text. */
+   on-steel marks steel sections, which take black text; on-navy marks navy
+   sections, where secondary text lifts to cream for contrast. */
 @custom-variant brand-c (&:where([data-brand='c'], [data-brand='c'] *));
 @custom-variant on-light (&:where([data-brand='c'] [data-surface='light'], [data-brand='c'] [data-surface='light'] *));
 @custom-variant on-steel (&:where([data-brand='c'] [data-surface='steel'], [data-brand='c'] [data-surface='steel'] *));
+@custom-variant on-navy (&:where([data-brand='c'] [data-surface='navy'], [data-brand='c'] [data-surface='navy'] *));
 
 @layer base {
   html {
