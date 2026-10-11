@@ -22,7 +22,7 @@ const stepStyles = ['bg-steel text-black', 'bg-cream text-espresso', 'bg-navy te
 
 <PageSection
   id="platform"
-  class="to-steel-mist relative isolate overflow-hidden bg-linear-to-b from-white"
+  class="via-steel-mist relative isolate overflow-hidden bg-linear-to-b from-white via-60% to-white"
   surface="light"
   containerClass="flex flex-col gap-12"
 >
@@ -177,17 +177,19 @@ const stepStyles = ['bg-steel text-black', 'bg-cream text-espresso', 'bg-navy te
     opacity: 0.85;
   }
 
-  /* A white wash from the start side keeps the heading crisp. */
+  /* A white wash from the start side, strongest behind the heading, keeps the copy crisp. */
   .platform-photo::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--color-white) 85%, transparent),
-      color-mix(in srgb, var(--color-white) 50%, transparent) 45%,
-      color-mix(in srgb, var(--color-white) 10%, transparent) 75%
-    );
+    background:
+      radial-gradient(ellipse 55% 45% at 25% 12%, var(--color-white) 30%, transparent 100%),
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--color-white) 92%, transparent),
+        color-mix(in srgb, var(--color-white) 65%, transparent) 45%,
+        color-mix(in srgb, var(--color-white) 15%, transparent) 75%
+      );
   }
 
   /* In right-to-left languages the heading sits on the right, so the people move left. */
@@ -196,11 +198,13 @@ const stepStyles = ['bg-steel text-black', 'bg-cream text-espresso', 'bg-navy te
   }
 
   :global([dir='rtl']) .platform-photo::after {
-    background: linear-gradient(
-      to left,
-      color-mix(in srgb, var(--color-white) 85%, transparent),
-      color-mix(in srgb, var(--color-white) 50%, transparent) 45%,
-      color-mix(in srgb, var(--color-white) 10%, transparent) 75%
-    );
+    background:
+      radial-gradient(ellipse 55% 45% at 75% 12%, var(--color-white) 30%, transparent 100%),
+      linear-gradient(
+        to left,
+        color-mix(in srgb, var(--color-white) 92%, transparent),
+        color-mix(in srgb, var(--color-white) 65%, transparent) 45%,
+        color-mix(in srgb, var(--color-white) 15%, transparent) 75%
+      );
   }
 </style>
