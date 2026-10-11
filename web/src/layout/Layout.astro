@@ -6,6 +6,7 @@ import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
 import { ClientRouter } from 'astro:transitions'
 import '../styles.css'
+import ClosingBackdrop from './ClosingBackdrop.astro'
 import Footer from './Footer.astro'
 import Header from './Header.astro'
 import SEOMetadata from './SEOMetadata.astro'
@@ -13,9 +14,11 @@ import SEOMetadata from './SEOMetadata.astro'
 type Props = {
   meta: PageMeta
   translatedLocales?: readonly Locale[]
+  /** Brand palette for this page: 'c' applies Palette C (currently the homepage). */
+  brand?: 'c'
 }
 
-const { meta, translatedLocales = locales } = Astro.props
+const { meta, translatedLocales = locales, brand } = Astro.props
 const locale = getLocale(Astro.url)
 const { hreflang, dir } = languages[locale]
 const { labels } = getContent(locale).site
@@ -39,7 +42,7 @@ const alternatePaths = meta.noIndex
 ---
 
 <!doctype html>
-<html lang={hreflang} dir={dir}>
+<html lang={hreflang} dir={dir} data-brand={brand}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,7 +50,7 @@ const alternatePaths = meta.noIndex
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href={websiteConfig.icon} type="image/png" />
     <link rel="apple-touch-icon" href={websiteConfig.icon} />
-    <meta name="theme-color" content={websiteConfig.themeColor} />
+    <meta name="theme-color" content={brand === 'c' ? '#000000' : websiteConfig.themeColor} />
     <meta name="format-detection" content="telephone=no" />
 
     <Font cssVariable="--font-sora" preload />
@@ -60,14 +63,17 @@ const alternatePaths = meta.noIndex
   <body class="flex min-h-screen flex-col">
     <a
       href="#main"
-      class="bg-rich-blue text-alice-blue sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:start-3"
+      class="bg-rich-blue text-alice-blue brand-c:bg-cream brand-c:text-espresso sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:fixed focus:top-3 focus:start-3"
     >
       {labels.skipToContent}
     </a>
-    <Header translations={translations} />
-    <main id="main" class="flex-1">
-      <slot />
-    </main>
-    <Footer />
+    <Header translations={translations} brand={brand} />
+    <div class="relative isolate flex flex-1 flex-col">
+      {brand === 'c' && <ClosingBackdrop />}
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+      <Footer brand={brand} />
+    </div>
   </body>
 </html>

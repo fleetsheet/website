@@ -1,0 +1,278 @@
+---
+/**
+ * Homepage hero background: a signal field. An even grid of points, with a
+ * plus sign on a sparser regular lattice, grows from nothing to small to large
+ * where steel and cream light passes. The light pools low on the start side
+ * and high on the end side, flows diagonally between them, and stays dim
+ * behind the headline so the copy reads cleanly.
+ *
+ * Drawn on a canvas by the script below; it pauses off screen and draws a
+ * single still frame for reduced motion.
+ */
+---
+
+<div class="hero-field" aria-hidden="true" data-hero-field>
+  <canvas></canvas>
+</div>
+
+<style>
+  .hero-field {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: var(--color-black);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 86%, transparent);
+  }
+
+  .hero-field canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Keep the headline area quiet so the copy pops. */
+  .hero-field::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 34% 44% at 50% 42%,
+      rgb(0 0 0 / 0.78),
+      rgb(0 0 0 / 0.35) 60%,
+      transparent 90%
+    );
+  }
+</style>
+
+<script>
+  type Rgb = [number, number, number]
+
+  // Grid pitch in CSS pixels, and the lattice that carries plus signs.
+  const GAP = 22
+  const PLUS_EVERY_COLUMN = 6
+  const PLUS_EVERY_ROW = 4
+
+  const rgb = (value: string): Rgb => {
+    const hex = value.trim().replace('#', '')
+    const full =
+      hex.length === 3
+        ? hex
+            .split('')
+            .map((char) => char + char)
+            .join('')
+        : hex
+    const channel = (index: number) => parseInt(full.slice(index, index + 2), 16)
+    return [channel(0), channel(2), channel(4)]
+  }
+
+  const rgba = ([red, green, blue]: Rgb, alpha: number) =>
+    `rgb(${red} ${green} ${blue} / ${alpha.toFixed(3)})`
+
+  const mix = (from: Rgb, to: Rgb, amount: number): Rgb => [
+    Math.round(from[0] + (to[0] - from[0]) * amount),
+    Math.round(from[1] + (to[1] - from[1]) * amount),
+    Math.round(from[2] + (to[2] - from[2]) * amount),
+  ]
+
+  const smoothstep = (edge0: number, edge1: number, x: number) => {
+    const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)))
+    return t * t * (3 - 2 * t)
+  }
+
+  // A fixed per-cell value in [0, 1) so twinkles land in the same places.
+  const hash = (column: number, row: number) => {
+    const value = Math.sin(column * 12.9898 + row * 78.233) * 43758.5453
+    return value - Math.floor(value)
+  }
+
+  let stop: (() => void) | undefined
+
+  document.addEventListener('astro:page-load', () => {
+    stop?.()
+    stop = undefined
+
+    const field = document.querySelector<HTMLElement>('[data-hero-field]')
+    const canvas = field?.querySelector('canvas')
+    const context = canvas?.getContext('2d')
+    if (!field || !canvas || !context) {
+      return
+    }
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const styles = getComputedStyle(document.documentElement)
+    const steel = rgb(styles.getPropertyValue('--color-steel'))
+    const cream = rgb(styles.getPropertyValue('--color-cream'))
+
+    let width = 0
+    let height = 0
+
+    const resize = () => {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2)
+      width = field.clientWidth
+      height = field.clientHeight
+      canvas.width = Math.round(width * ratio)
+      canvas.height = Math.round(height * ratio)
+      context.setTransform(ratio, 0, 0, ratio, 0, 0)
+    }
+
+    const draw = (t: number) => {
+      context.globalCompositeOperation = 'source-over'
+      context.clearRect(0, 0, width, height)
+      context.globalCompositeOperation = 'lighter'
+
+      // Two pools of light: one low on the start side, one high on the end side.
+      const reach = Math.max(width, 720)
+      const sources = [
+        {
+          x: width * (0.05 + 0.03 * Math.sin(t * 0.19)),
+          y: height * (0.9 + 0.05 * Math.sin(t * 0.23 + 1)),
+          radius: reach * 0.3,
+          strength: 0.95,
+        },
+        {
+          x: width * (0.95 + 0.03 * Math.sin(t * 0.17 + 2)),
+          y: height * (0.22 + 0.06 * Math.sin(t * 0.21)),
+          radius: reach * 0.28,
+          strength: 0.85,
+        },
+      ]
+
+      // A soft steel underglow beneath each pool.
+      for (const source of sources) {
+        const glow = context.createRadialGradient(
+          source.x,
+          source.y,
+          0,
+          source.x,
+          source.y,
+          source.radius * 1.5,
+        )
+        glow.addColorStop(0, rgba(steel, 0.22 * source.strength))
+        glow.addColorStop(0.5, rgba(steel, 0.06 * source.strength))
+        glow.addColorStop(1, rgba(steel, 0))
+        context.fillStyle = glow
+        context.fillRect(0, 0, width, height)
+      }
+
+      const columns = Math.ceil(width / GAP) + 1
+      const rows = Math.ceil(height / GAP) + 1
+      const startX = (width - (columns - 1) * GAP) / 2
+      const startY = (height - (rows - 1) * GAP) / 2
+
+      for (let row = 0; row < rows; row++) {
+        const y = startY + row * GAP
+
+        for (let column = 0; column < columns; column++) {
+          const x = startX + column * GAP
+
+          let level = 0
+          for (const source of sources) {
+            const distance = ((x - source.x) ** 2 + (y - source.y) ** 2) / source.radius ** 2
+            level += source.strength * Math.exp(-distance * 2.2)
+          }
+
+          // Waves of light travel diagonally from the bottom left to the top right.
+          const diagonal = x / width - y / height
+          const phase = diagonal * 1.2 - t * 0.07
+          level += 0.6 * Math.exp(-(((phase - Math.floor(phase) - 0.5) / 0.13) ** 2))
+
+          // Occasional single cells that flare and fade.
+          const seed = hash(column, row)
+          level += 0.25 * Math.max(0, Math.sin(t * 0.7 + seed * 40)) ** 24 * (seed > 0.88 ? 1 : 0)
+
+          const quiet =
+            1 -
+            0.92 *
+              Math.exp(
+                -(
+                  ((x - width / 2) / Math.max(width * 0.3, 240)) ** 2 +
+                  ((y - height * 0.45) / (height * 0.34)) ** 2
+                ),
+              )
+          level = Math.min(1, level * quiet)
+
+          // Points grow with the light: nothing in the dark, small, then large.
+          const color = mix(steel, cream, smoothstep(0.7, 1, level))
+          const alpha = 0.45 + 0.55 * level
+
+          if (column % PLUS_EVERY_COLUMN === 3 && row % PLUS_EVERY_ROW === 2) {
+            const arm = 4.5 * level
+            if (arm < 1) {
+              continue
+            }
+            context.strokeStyle = rgba(color, alpha)
+            context.lineWidth = 1
+            context.beginPath()
+            context.moveTo(x - arm, y)
+            context.lineTo(x + arm, y)
+            context.moveTo(x, y - arm)
+            context.lineTo(x, y + arm)
+            context.stroke()
+          } else {
+            const radius = 3 * level
+            if (radius < 0.4) {
+              continue
+            }
+            context.fillStyle = rgba(color, alpha)
+            context.beginPath()
+            context.arc(x, y, radius, 0, Math.PI * 2)
+            context.fill()
+          }
+        }
+      }
+    }
+
+    // The still frame for reduced motion, and how fast the light moves.
+    const STILL = 9
+    const SPEED = 2.5
+
+    const resizer = new ResizeObserver(() => {
+      resize()
+      if (reduced) {
+        draw(STILL)
+      }
+    })
+    resizer.observe(field)
+    resize()
+
+    if (reduced) {
+      draw(STILL)
+      stop = () => resizer.disconnect()
+      return
+    }
+
+    let frame = 0
+    let last = 0
+    let visible = true
+    const start = performance.now()
+
+    const render = (now: number) => {
+      frame = requestAnimationFrame(render)
+      // About 30 frames a second is plenty for slow ambient motion.
+      if (!visible || now - last < 33) {
+        return
+      }
+      last = now
+      draw(((now - start) / 1000) * SPEED + STILL)
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+    })
+    observer.observe(field)
+    const onVisibility = () => {
+      visible = document.visibilityState === 'visible'
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    frame = requestAnimationFrame(render)
+
+    stop = () => {
+      cancelAnimationFrame(frame)
+      resizer.disconnect()
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  })
+</script>

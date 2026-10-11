@@ -33,11 +33,11 @@ const { prediction } = showcase
 <section aria-label={content.site.labels.productPreview}>
   <Container width="wide" class="pb-16">
     <div
-      class="bg-supergraphic flex flex-wrap items-start gap-5 rounded-2xl p-[clamp(20px,4vw,48px)]"
+      class="bg-supergraphic brand-c:bg-navy brand-c:bg-none brand-c:border brand-c:border-hairline brand-c:rounded-3xl flex flex-wrap items-start gap-5 rounded-2xl p-[clamp(20px,4vw,48px)]"
       aria-hidden="true"
     >
-      <div class="bg-surface shadow-float flex min-w-0 flex-[1_1_600px] overflow-hidden rounded-xl">
-        <aside class="bg-rich-blue border-azul-blue hidden w-[188px] shrink-0 flex-col gap-1 border-r px-3 py-4 sm:flex">
+      <div class="bg-surface shadow-float brand-c:bg-black brand-c:border brand-c:border-hairline brand-c:shadow-none brand-c:rounded-2xl flex min-w-0 flex-[1_1_600px] overflow-hidden rounded-xl">
+        <aside class="bg-rich-blue border-azul-blue brand-c:bg-black brand-c:border-hairline hidden w-[188px] shrink-0 flex-col gap-1 border-r px-3 py-4 sm:flex">
           <div class="px-2 pt-1 pb-4">
             <Logo size="sm" tone="light" />
           </div>
@@ -45,7 +45,9 @@ const { prediction } = showcase
             <div
               class:list={[
                 'font-display flex items-center gap-2.5 rounded-md p-2 text-[13px]',
-                active ? 'bg-azul-blue text-alice-blue' : 'text-uranian-blue',
+                active
+                  ? 'bg-azul-blue text-alice-blue brand-c:bg-navy brand-c:text-cream'
+                  : 'text-uranian-blue brand-c:text-fog',
               ]}
             >
               <Icon class="size-4" />
@@ -53,17 +55,17 @@ const { prediction } = showcase
             </div>
           ))}
         </aside>
-        <div class="bg-page flex min-w-0 flex-1 flex-col gap-5 p-4 sm:p-6">
+        <div class="bg-page brand-c:bg-navy-deep brand-c:text-cream flex min-w-0 flex-1 flex-col gap-5 p-4 sm:p-6">
           <div class="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p class="font-display text-xl font-semibold tracking-[-0.02em]">
+              <p class="font-display brand-c:font-light text-xl font-semibold tracking-[-0.02em]">
                 {showcase.greeting}
               </p>
-              <p class="text-azul-blue text-[13px]">{showcase.scope}</p>
+              <p class="text-azul-blue brand-c:text-fog text-[13px]">{showcase.scope}</p>
             </div>
             <div class="flex gap-1.5">
               {showcase.filters.map((filter) => (
-                <span class="bg-surface border-border rounded-md border px-2.5 py-1.5 text-xs font-medium">
+                <span class="bg-surface border-border brand-c:bg-transparent brand-c:border-hairline brand-c:text-fog brand-c:rounded-full rounded-md border px-2.5 py-1.5 text-xs font-medium">
                   {filter}
                 </span>
               ))}
@@ -71,26 +73,30 @@ const { prediction } = showcase
           </div>
           <div class="grid grid-cols-3 gap-2 sm:gap-3">
             {showcase.stats.map((stat) => (
-              <div class="bg-surface border-border rounded-xl border p-2.5 shadow-xs sm:p-3.5">
-                <p class="text-azul-blue text-xs">{stat.label}</p>
-                <p class="font-display mt-1 text-lg font-semibold sm:text-2xl">{stat.value}</p>
+              <div class="bg-surface border-border brand-c:bg-navy brand-c:border-hairline brand-c:shadow-none rounded-xl border p-2.5 shadow-xs sm:p-3.5">
+                <p class="text-azul-blue brand-c:text-cream/80 text-xs">{stat.label}</p>
+                <p class="font-display brand-c:font-light mt-1 text-lg font-semibold sm:text-2xl">
+                  {stat.value}
+                </p>
               </div>
             ))}
           </div>
-          <div class="bg-surface border-border overflow-hidden rounded-xl border shadow-xs">
-            <p class="font-display border-border border-b px-4 py-3 text-sm font-semibold">
+          <div class="bg-surface border-border brand-c:bg-black brand-c:border-hairline brand-c:shadow-none grid grid-cols-[minmax(0,1fr)_auto] overflow-hidden rounded-xl border shadow-xs sm:grid-cols-[auto_minmax(0,1fr)_auto]">
+            <p class="font-display border-border brand-c:border-hairline col-span-full border-b px-4 py-3 text-sm font-semibold">
               Work orders
             </p>
             {showcase.workOrders.map((order) => (
-              <div class="flex items-center gap-3 border-b border-slate-100 px-4 py-[11px] text-[13px] last:border-b-0">
-                <span class="text-muted hidden w-[58px] shrink-0 font-mono text-[11px] sm:inline">
+              <div class="brand-c:border-hairline col-span-full grid grid-cols-subgrid items-center gap-3 border-b border-slate-100 px-4 py-[11px] text-[13px] last:border-b-0">
+                <span class="text-muted brand-c:text-fog hidden font-mono text-[11px] whitespace-nowrap sm:block">
                   {order.id}
                 </span>
-                <div class="min-w-0 flex-1">
+                <div class="min-w-0">
                   <p class="truncate font-semibold">{order.title}</p>
-                  <p class="text-muted truncate text-xs">{order.location}</p>
+                  <p class="text-muted brand-c:text-fog truncate text-xs">{order.location}</p>
                 </div>
-                <Badge tone={order.tone}>{order.status}</Badge>
+                <Badge tone={order.tone} class="justify-self-start">
+                  {order.status}
+                </Badge>
               </div>
             ))}
           </div>
@@ -105,7 +111,7 @@ const { prediction } = showcase
             </IconChip>
             <div class="flex-1">
               <p class="font-display text-[13px] font-semibold">{prediction.title}</p>
-              <p class="text-muted text-xs">{prediction.asset}</p>
+              <p class="text-muted brand-c:text-fog text-xs">{prediction.asset}</p>
             </div>
             <Badge tone="overdue">{prediction.risk}</Badge>
           </div>
@@ -115,15 +121,17 @@ const { prediction } = showcase
               <div
                 class:list={[
                   'flex-1 rounded-xs',
-                  index >= prediction.alertFrom ? 'bg-sun-orange' : 'bg-uranian-blue',
+                  index >= prediction.alertFrom
+                    ? 'bg-sun-orange brand-c:bg-status-high'
+                    : 'bg-uranian-blue brand-c:bg-steel/45',
                 ]}
                 style={`height: ${value}%`}
               />
             ))}
           </div>
-          <div class="border-border flex items-center justify-between gap-2 border-t pt-2.5">
-            <span class="text-muted text-xs">{prediction.rule}</span>
-            <span class="bg-rich-blue text-alice-blue rounded-md px-2.5 py-1.5 text-xs font-semibold">
+          <div class="border-border brand-c:border-hairline flex items-center justify-between gap-2 border-t pt-2.5">
+            <span class="text-muted brand-c:text-fog text-xs">{prediction.rule}</span>
+            <span class="bg-rich-blue text-alice-blue brand-c:bg-cream brand-c:text-espresso rounded-md px-2.5 py-1.5 text-xs font-semibold">
               {prediction.action}
             </span>
           </div>
@@ -132,11 +140,11 @@ const { prediction } = showcase
           <p class="font-display text-[13px] font-semibold">{content.site.labels.auditLog}</p>
           {showcase.audit.map((entry) => (
             <div class="flex gap-2.5 text-xs leading-[1.4]">
-              <span class="bg-celestial-blue mt-1 size-2 shrink-0 rounded-full" />
+              <span class="bg-celestial-blue brand-c:bg-steel mt-1 size-2 shrink-0 rounded-full" />
               <p class="flex-1">
                 <span class="font-semibold">{entry.who}</span> {entry.what}
               </p>
-              <span class="text-muted whitespace-nowrap">{entry.when}</span>
+              <span class="text-muted brand-c:text-fog whitespace-nowrap">{entry.when}</span>
             </div>
           ))}
         </MockPanel>

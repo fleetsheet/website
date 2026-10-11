@@ -1,0 +1,40 @@
+---
+import Container from '@/components/ui/Container.astro'
+import { websiteConfig } from '@/config'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+import Layout from '@/layout/Layout.astro'
+import type { LegalPageId } from '@/legal'
+import { getEntry, render } from 'astro:content'
+
+type Props = {
+  id: LegalPageId
+}
+
+const { id } = Astro.props
+const locale = getLocale(Astro.url)
+const { legal } = getContent(locale)
+const page = legal.pages[id]
+
+// The policy text is published in English for every language.
+const entry = await getEntry('legal', id)
+if (!entry) {
+  throw new Error(`Missing policy text for "${id}" in src/content/legal`)
+}
+const { Content } = await render(entry)
+---
+
+<Layout meta={{ title: `${page.label} | ${websiteConfig.name}`, description: page.description }}>
+  <Container class="py-16">
+    <article class="mx-auto max-w-3xl">
+      <header class="flex flex-col gap-4">
+        <p class="eyebrow text-azul-blue">{legal.navLabel}</p>
+        <h1 class="text-display-md">{page.label}</h1>
+        {legal.englishNotice && <p class="text-muted text-sm">{legal.englishNotice}</p>}
+      </header>
+      <div class="prose mt-10 max-w-none" lang="en" dir="ltr">
+        <Content />
+      </div>
+    </article>
+  </Container>
+</Layout>

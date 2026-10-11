@@ -29,6 +29,7 @@ import plantManagers from '@/assets/photos/plant-managers.jpg'
 import plumberRepair from '@/assets/photos/plumber-repair.jpg'
 import propertyManager from '@/assets/photos/property-manager.jpg'
 import rooftopUnits from '@/assets/photos/rooftop-units.jpg'
+import solarRooftop from '@/assets/photos/solar-rooftop.jpg'
 import stockCheck from '@/assets/photos/stock-check.jpg'
 import supportAgent from '@/assets/photos/support-agent.jpg'
 import teamWorkshop from '@/assets/photos/team-workshop.jpg'
@@ -73,6 +74,7 @@ export const photos = {
   plumberRepair,
   propertyManager,
   rooftopUnits,
+  solarRooftop,
   stockCheck,
   supportAgent,
   teamWorkshop,

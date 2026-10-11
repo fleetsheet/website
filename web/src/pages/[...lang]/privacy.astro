@@ -1,0 +1,9 @@
+---
+import LegalPage from '@/components/legal/LegalPage.astro'
+import { localeStaticPaths } from '@/i18n'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (() => localeStaticPaths()) satisfies GetStaticPaths
+---
+
+<LegalPage id="privacy" />

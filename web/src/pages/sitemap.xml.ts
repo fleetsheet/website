@@ -1,5 +1,6 @@
 import { aboutPages } from '@/about'
 import { locales, localizePath } from '@/i18n'
+import { legalPages } from '@/legal'
 import { platformPages } from '@/platform'
 import { resourcePages } from '@/resources'
 import { solutionPages } from '@/solutions'
@@ -20,6 +21,7 @@ export const GET: APIRoute = async () => {
         ...solutionPages.map((entry) => entry.href),
         ...resourcePages.map((entry) => entry.href),
         ...aboutPages.map((entry) => entry.href),
+        ...legalPages.map((entry) => entry.href),
       ].map((path) => localizePath(path, locale)),
     ),
     ...insights.map(getInsightPath),

@@ -26,15 +26,27 @@ const {
   ]}
 >
   {eyebrow && (
-    <p class:list={['eyebrow', tone === 'light' ? 'text-azul-blue' : 'text-sky-blue']}>{eyebrow}</p>
+    <p
+      class:list={[
+        'eyebrow brand-c:text-[11px] brand-c:font-medium brand-c:tracking-[0.08em] brand-c:text-steel on-light:text-slate-ink on-steel:text-navy-deep on-navy:text-cream/80',
+        tone === 'light' ? 'text-azul-blue' : 'text-sky-blue',
+      ]}
+    >
+      {eyebrow}
+    </p>
   )}
-  <h2 class:list={['text-display-md', tone === 'light' ? 'text-rich-blue' : 'text-white']}>
+  <h2
+    class:list={[
+      'text-display-md brand-c:text-cream on-light:text-black on-steel:text-black',
+      tone === 'light' ? 'text-rich-blue' : 'text-white',
+    ]}
+  >
     {title}
   </h2>
   {description && (
     <p
       class:list={[
-        'text-base leading-[1.65] text-pretty',
+        'brand-c:text-fog on-light:text-slate-ink on-steel:text-navy-deep on-navy:text-cream/85 text-base leading-[1.65] text-pretty',
         tone === 'light' ? 'text-azul-blue' : 'text-columbia-blue',
       ]}
     >

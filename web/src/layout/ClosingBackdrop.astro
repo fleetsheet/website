@@ -1,0 +1,66 @@
+---
+/**
+ * Palette C closing background: a still steel grid on black that glows in from
+ * the end edge and the lower start corner, behind the last sections and the
+ * footer. Anchored to the bottom of the page and fading to black at its top,
+ * so it blends into whatever sits above it.
+ */
+---
+
+<div class="closing-backdrop" aria-hidden="true">
+  <div class="closing-glow"></div>
+  <div class="closing-grid"></div>
+</div>
+
+<style>
+  .closing-backdrop {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: -1;
+    height: min(1600px, 100%);
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, transparent, black 30%);
+  }
+
+  .closing-glow,
+  .closing-grid {
+    position: absolute;
+    inset: 0;
+  }
+
+  .closing-glow {
+    background:
+      radial-gradient(
+        ellipse 38% 55% at 100% 68%,
+        color-mix(in srgb, var(--color-steel) 55%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 34% 40% at 0% 92%,
+        color-mix(in srgb, var(--color-steel) 32%, transparent),
+        transparent 70%
+      );
+  }
+
+  /* The grid shows where the light falls and fades into the dark elsewhere. */
+  .closing-grid {
+    --line: color-mix(in srgb, var(--color-steel) 70%, transparent);
+
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 18px 18px;
+    mask-image:
+      radial-gradient(ellipse 55% 70% at 100% 68%, black, transparent 75%),
+      radial-gradient(ellipse 50% 50% at 0% 92%, rgb(0 0 0 / 0.75), transparent 75%),
+      linear-gradient(to bottom, transparent 30%, rgb(0 0 0 / 0.14));
+  }
+
+  /* Mirror the light for right-to-left languages. */
+  :global([dir='rtl']) .closing-glow,
+  :global([dir='rtl']) .closing-grid {
+    transform: scaleX(-1);
+  }
+</style>

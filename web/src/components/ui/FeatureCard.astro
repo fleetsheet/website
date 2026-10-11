@@ -9,11 +9,17 @@ const { title, description, class: className } = Astro.props
 ---
 
 <article
-  class:list={['bg-page border-border flex flex-col gap-5 rounded-xl border p-6', className]}
+  class:list={[
+    'bg-page border-border flex flex-col gap-5 rounded-xl border p-6',
+    'brand-c:bg-navy brand-c:border-hairline brand-c:rounded-2xl',
+    className,
+  ]}
 >
   <div class="flex flex-col gap-1.5">
-    <h3 class="font-display text-[19px] font-semibold tracking-[-0.01em]">{title}</h3>
-    <p class="text-azul-blue text-[15px] leading-[1.55]">{description}</p>
+    <h3 class="font-display brand-c:text-cream brand-c:font-normal text-[19px] font-semibold tracking-[-0.01em]">
+      {title}
+    </h3>
+    <p class="text-azul-blue brand-c:text-cream/80 text-[15px] leading-[1.55]">{description}</p>
   </div>
   <div class="mt-auto" aria-hidden="true">
     <slot />

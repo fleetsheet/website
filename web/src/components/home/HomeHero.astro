@@ -1,4 +1,5 @@
 ---
+import HeroSignalField from '@/components/home/HeroSignalField.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import { getContent } from '@/data'
@@ -11,13 +12,14 @@ const content = getContent(locale)
 const { hero } = content.home
 ---
 
-<section>
-  <Container class="flex flex-col items-center gap-6 pt-14 pb-12 text-center">
+<section class="relative isolate overflow-hidden bg-black">
+  <HeroSignalField />
+  <Container class="relative flex min-h-[min(760px,calc(100svh-64px))] flex-col items-center justify-center gap-6 pt-20 pb-36 text-center sm:pb-44">
     <a
       href={localizePath(hero.announcement.href, locale)}
-      class="bg-surface border-border text-azul-blue hover:text-rich-blue flex items-center gap-2 rounded-md border py-1.5 ps-1.5 pe-3 text-[13px] font-medium shadow-xs transition-colors"
+      class="border-hairline bg-navy-deep/70 text-fog hover:text-cream flex items-center gap-2 rounded-full border py-1.5 ps-1.5 pe-3.5 text-[13px] backdrop-blur-sm transition-colors"
     >
-      <span class="bg-columbia-blue text-rich-blue rounded-sm px-2 py-0.5 font-semibold">
+      <span class="bg-steel rounded-full px-2.5 py-0.5 font-medium text-black">
         {hero.announcement.label}
       </span>
       {hero.announcement.text}
@@ -25,8 +27,8 @@ const { hero } = content.home
         →
       </span>
     </a>
-    <h1 class="text-display-xl max-w-[900px]">{hero.title}</h1>
-    <p class="text-lead text-azul-blue max-w-[640px] text-pretty">{hero.description}</p>
+    <h1 class="text-display-xl text-cream max-w-[900px]">{hero.title}</h1>
+    <p class="text-lead text-fog max-w-[640px] text-pretty">{hero.description}</p>
     <div class="flex flex-wrap justify-center gap-3">
       <Button href={hero.primaryAction.href}>
         {hero.primaryAction.label}
@@ -36,10 +38,10 @@ const { hero } = content.home
         {hero.secondaryAction.label}
       </Button>
     </div>
-    <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
+    <ul class="text-fog flex flex-wrap justify-center gap-5 text-sm">
       {hero.highlights.map((highlight) => (
         <li class="flex items-center gap-1.5">
-          <Check class="text-celestial-blue size-4" aria-hidden="true" />
+          <Check class="text-steel size-4" aria-hidden="true" />
           {highlight}
         </li>
       ))}

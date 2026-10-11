@@ -16,17 +16,23 @@ const { href, variant = 'primary', size = 'md', class: className, ...rest } = As
   class:list={[
     'inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap transition duration-200',
     'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-2',
+    // Palette C: cream action with an espresso label on dark, espresso action on cream.
+    'brand-c:rounded-[10px] brand-c:focus-visible:outline-steel on-light:focus-visible:outline-espresso',
     {
       'px-3.5 py-2 text-sm font-medium': size === 'sm',
       'px-5 py-3 text-[15px] font-semibold': size === 'md',
       'px-[22px] py-3.5 text-[15px] font-semibold': size === 'lg',
     },
     {
-      'bg-rich-blue text-alice-blue hover:opacity-90': variant === 'primary',
-      'bg-surface border-border text-rich-blue border hover:bg-slate-50': variant === 'secondary',
-      'text-rich-blue hover:bg-border': variant === 'ghost',
-      'bg-sun-orange text-rich-blue font-bold hover:opacity-90': variant === 'accent',
-      'bg-azul-blue text-alice-blue hover:bg-azul-blue-light hover:text-white':
+      'bg-rich-blue text-alice-blue hover:opacity-90 brand-c:bg-cream brand-c:text-espresso on-light:bg-espresso on-light:text-cream':
+        variant === 'primary',
+      'bg-sun-orange text-rich-blue font-bold hover:opacity-90 brand-c:bg-cream brand-c:text-espresso on-light:bg-espresso on-light:text-cream':
+        variant === 'accent',
+      'bg-surface border-border text-rich-blue border hover:bg-slate-50 brand-c:border-fog brand-c:bg-transparent brand-c:text-cream brand-c:hover:bg-navy on-light:border-slate-ink on-light:text-black on-light:hover:bg-cream-deep':
+        variant === 'secondary',
+      'text-rich-blue hover:bg-border brand-c:text-fog brand-c:hover:bg-navy brand-c:hover:text-cream on-light:text-black on-light:hover:bg-cream-deep':
+        variant === 'ghost',
+      'bg-azul-blue text-alice-blue hover:bg-azul-blue-light hover:text-white brand-c:border brand-c:border-fog brand-c:bg-transparent brand-c:text-cream brand-c:hover:bg-navy':
         variant === 'inverse',
     },
     className,
