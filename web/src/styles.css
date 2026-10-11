@@ -49,6 +49,9 @@
   /* Lighter steel grounds, derived for legibility: black text reads clearly on both. */
   --color-steel-soft: #b6c7db;
   --color-steel-mist: #e7ecf3;
+  /* Card gradient stops: a lifted black and a deepened navy. */
+  --color-navy-night: #141a2c;
+  --color-navy-dusk: #273152;
   --color-status-urgent: #951a1d;
   --color-status-high: #d8944c;
   --color-status-progress: #eac834;
