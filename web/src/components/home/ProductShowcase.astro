@@ -33,10 +33,10 @@ const { prediction } = showcase
 <section aria-label={content.site.labels.productPreview}>
   <Container width="wide" class="pb-16">
     <div
-      class="bg-supergraphic brand-c:bg-navy brand-c:bg-none brand-c:border brand-c:border-hairline brand-c:rounded-3xl flex flex-wrap items-start gap-5 rounded-2xl p-[clamp(20px,4vw,48px)]"
+      class="bg-supergraphic brand-c:bg-transparent brand-c:bg-none brand-c:p-0 flex flex-wrap items-start gap-5 rounded-2xl p-[clamp(20px,4vw,48px)]"
       aria-hidden="true"
     >
-      <div class="bg-surface shadow-float brand-c:bg-black brand-c:border brand-c:border-hairline brand-c:shadow-none brand-c:rounded-2xl flex min-w-0 flex-[1_1_600px] overflow-hidden rounded-xl">
+      <div class="bg-surface shadow-float brand-c:bg-black brand-c:border brand-c:border-cream brand-c:shadow-none brand-c:rounded-2xl flex min-w-0 flex-[1_1_600px] overflow-hidden rounded-xl">
         <aside class="bg-rich-blue border-azul-blue brand-c:bg-black brand-c:border-hairline hidden w-[188px] shrink-0 flex-col gap-1 border-r px-3 py-4 sm:flex">
           <div class="px-2 pt-1 pb-4">
             <Logo size="sm" tone="light" />
@@ -104,7 +104,7 @@ const { prediction } = showcase
       </div>
 
       <div class="flex min-w-0 flex-[1_1_280px] flex-col gap-4">
-        <MockPanel elevation="float" class="flex flex-col gap-3 p-[18px]">
+        <MockPanel elevation="float" class="brand-c:border-cream! flex flex-col gap-3 p-[18px]">
           <div class="flex items-center gap-2.5">
             <IconChip>
               <Sparkles />
@@ -136,7 +136,7 @@ const { prediction } = showcase
             </span>
           </div>
         </MockPanel>
-        <MockPanel elevation="float" class="flex flex-col gap-2.5 p-[18px]">
+        <MockPanel elevation="float" class="brand-c:border-cream! flex flex-col gap-2.5 p-[18px]">
           <p class="font-display text-[13px] font-semibold">{content.site.labels.auditLog}</p>
           {showcase.audit.map((entry) => (
             <div class="flex gap-2.5 text-xs leading-[1.4]">
