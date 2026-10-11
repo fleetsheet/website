@@ -209,7 +209,7 @@
   }
 
   .tone-light {
-    background: linear-gradient(to top right, var(--color-cream), var(--color-steel-mist));
+    background: linear-gradient(to top right, var(--color-steel-mist), var(--color-steel-soft));
   }
 
   .tone-steel {
@@ -260,6 +260,18 @@
     var(--color-navy-deep) 55%,
     var(--color-navy-dusk)
   );
+}
+
+/* Dark panels on a dark tone take a thin cream outline, as on the homepage. Kept
+   outside the layers so it wins over each panel's own border utility. */
+.tone-invert
+  :where(.bg-surface, .bg-page, .bg-columbia-blue):where(
+    .rounded-xl,
+    .rounded-2xl,
+    .rounded-3xl
+  ):where(:not(:where(.bg-surface, .bg-page, .bg-columbia-blue) *)) {
+  border: 1px solid var(--color-cream);
+  box-shadow: none;
 }
 
 @layer utilities {

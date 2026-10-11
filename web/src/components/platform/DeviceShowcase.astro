@@ -18,65 +18,74 @@ const navIcons = [LayoutDashboard, ClipboardList, Building, Box, Workflow, Chart
 <section aria-hidden="true">
   <Container width="wide" class="pb-14">
     <div class="relative mx-auto max-w-[1080px] pb-10 lg:pe-24">
-      <div class="bg-surface border-border shadow-float overflow-hidden rounded-2xl border">
-        <div class="bg-page border-border flex items-center gap-3 border-b px-4 py-3">
-          <span class="flex gap-1.5">
-            <span class="bg-border size-2.5 rounded-full"></span>
-            <span class="bg-border size-2.5 rounded-full"></span>
-            <span class="bg-border size-2.5 rounded-full"></span>
-          </span>
-          <span class="bg-surface border-border text-muted mx-auto flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs">
-            <Lock class="size-3" />
-            {devices.url}
-          </span>
-        </div>
-        <div class="flex">
-          <nav class="bg-rich-blue hidden w-16 shrink-0 flex-col items-center gap-3 py-5 sm:flex">
-            {navIcons.map((Icon, index) => (
-              <span
-                class:list={[
-                  'flex size-9 items-center justify-center rounded-md',
-                  index === 0 ? 'bg-azul-blue text-white' : 'text-sky-blue',
-                ]}
-              >
-                <Icon class="size-[18px]" />
-              </span>
-            ))}
-          </nav>
-          <div class="flex min-w-0 flex-1 flex-col gap-4 p-5">
-            <div>
-              <p class="font-display text-lg font-semibold">{devices.greeting}</p>
-              <p class="text-azul-blue text-xs">{devices.scope}</p>
-            </div>
-            <dl class="grid grid-cols-3 gap-3">
-              {devices.stats.map((stat) => (
-                <div class="border-border rounded-lg border p-3">
-                  <dt class="text-muted text-[11px]">{stat.label}</dt>
-                  <dd class="font-display mt-1 text-xl font-semibold">{stat.value}</dd>
-                </div>
+      <!-- Laptop: a black bezel with a camera notch, the app on screen, and a silver base. -->
+      <div class="relative rounded-t-[22px] bg-black p-3 pt-5 shadow-xl">
+        <span class="absolute start-1/2 top-0 h-3 w-24 -translate-x-1/2 rounded-b-lg bg-black rtl:translate-x-1/2"></span>
+        <div class="bg-surface overflow-hidden rounded-md">
+          <div class="bg-page border-border flex items-center gap-3 border-b px-4 py-3">
+            <span class="flex gap-1.5">
+              <span class="bg-border size-2.5 rounded-full"></span>
+              <span class="bg-border size-2.5 rounded-full"></span>
+              <span class="bg-border size-2.5 rounded-full"></span>
+            </span>
+            <span class="bg-surface border-border text-muted mx-auto flex items-center gap-1.5 rounded-md border px-3 py-1 text-xs">
+              <Lock class="size-3" />
+              {devices.url}
+            </span>
+          </div>
+          <div class="flex">
+            <nav class="bg-rich-blue hidden w-16 shrink-0 flex-col items-center gap-3 py-5 sm:flex">
+              {navIcons.map((Icon, index) => (
+                <span
+                  class:list={[
+                    'flex size-9 items-center justify-center rounded-md',
+                    index === 0 ? 'bg-azul-blue text-white' : 'text-sky-blue',
+                  ]}
+                >
+                  <Icon class="size-[18px]" />
+                </span>
               ))}
-            </dl>
-            <div class="border-border rounded-lg border">
-              <p class="border-border border-b px-3 py-2 text-[13px] font-semibold">
-                {devices.listTitle}
-              </p>
-              <ul>
-                {devices.items.map((item) => (
-                  <li class="border-border flex items-center gap-3 border-b px-3 py-2.5 text-[13px] last:border-b-0">
-                    <div class="min-w-0 flex-1">
-                      <p class="truncate font-semibold">{item.title}</p>
-                      <p class="text-muted truncate text-xs">{item.location}</p>
-                    </div>
-                    <Badge tone={item.tone}>{item.status}</Badge>
-                  </li>
+            </nav>
+            <div class="flex min-w-0 flex-1 flex-col gap-4 p-5">
+              <div>
+                <p class="font-display text-lg font-semibold">{devices.greeting}</p>
+                <p class="text-azul-blue text-xs">{devices.scope}</p>
+              </div>
+              <dl class="grid grid-cols-3 gap-3">
+                {devices.stats.map((stat) => (
+                  <div class="border-border rounded-lg border p-3">
+                    <dt class="text-muted text-[11px]">{stat.label}</dt>
+                    <dd class="font-display mt-1 text-xl font-semibold">{stat.value}</dd>
+                  </div>
                 ))}
-              </ul>
+              </dl>
+              <div class="border-border rounded-lg border">
+                <p class="border-border border-b px-3 py-2 text-[13px] font-semibold">
+                  {devices.listTitle}
+                </p>
+                <ul>
+                  {devices.items.map((item) => (
+                    <li class="border-border flex items-center gap-3 border-b px-3 py-2.5 text-[13px] last:border-b-0">
+                      <div class="min-w-0 flex-1">
+                        <p class="truncate font-semibold">{item.title}</p>
+                        <p class="text-muted truncate text-xs">{item.location}</p>
+                      </div>
+                      <Badge tone={item.tone}>{item.status}</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="bg-rich-blue shadow-float mx-auto -mt-6 w-60 rounded-[32px] p-2.5 lg:absolute lg:end-0 lg:bottom-0 lg:mt-0">
-        <div class="bg-page flex flex-col gap-2.5 rounded-[24px] px-3.5 pt-5 pb-6">
+      <div class="-mx-[5%] h-4 rounded-b-[18px] bg-linear-to-b from-status-open to-fog shadow-lg">
+        <span class="bg-fog mx-auto block h-1.5 w-28 rounded-b-md"></span>
+      </div>
+
+      <!-- Tablet: a rounded black frame around the field app. -->
+      <div class="shadow-float mx-auto -mt-6 w-72 rounded-[30px] bg-black p-3 lg:absolute lg:end-0 lg:bottom-0 lg:mt-0">
+        <div class="bg-page flex flex-col gap-2.5 rounded-[18px] px-4 pt-5 pb-6">
           <p class="font-display text-sm font-semibold">{devices.phoneTitle}</p>
           {devices.phoneItems.map((task, index) => (
             <div class="bg-surface border-border flex flex-col gap-2 rounded-[10px] border p-3">

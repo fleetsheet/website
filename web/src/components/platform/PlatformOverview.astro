@@ -47,7 +47,9 @@ const hrefOf = (id: string) =>
     </Container>
   </section>
 
-  <ProductShowcase />
+  <div class="tone-invert">
+    <ProductShowcase />
+  </div>
 </div>
 
 <section>
@@ -173,4 +175,5 @@ const hrefOf = (id: string) =>
   description={cta.description}
   primaryAction={cta.primaryAction}
   secondaryAction={cta.secondaryAction}
+  photo={{ id: 'engineersRooftop', alt: '' }}
 />
