@@ -274,6 +274,33 @@
   box-shadow: none;
 }
 
+/* Glass UI: product panels on an animated dark ground turn translucent and blur
+   the motion behind them, keeping cream text crisp on top. */
+.glass-ui
+  :where(.bg-surface, .bg-page, .bg-columbia-blue):where(
+    .rounded-xl,
+    .rounded-2xl,
+    .rounded-3xl
+  ):where(:not(:where(.bg-surface, .bg-page, .bg-columbia-blue) *)) {
+  background-color: color-mix(in srgb, var(--color-navy-deep) 38%, transparent);
+  background-image: linear-gradient(
+    to top right,
+    color-mix(in srgb, var(--color-navy-night) 40%, transparent),
+    color-mix(in srgb, var(--color-navy-dusk) 18%, transparent)
+  );
+  backdrop-filter: blur(12px) saturate(1.3);
+  border-color: color-mix(in srgb, var(--color-cream) 55%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-cream) 18%, transparent);
+}
+
+.glass-ui
+  :where(.bg-surface, .bg-page, .bg-columbia-blue)
+  :where(.bg-surface, .bg-page, .bg-columbia-blue),
+.glass-ui :where(.bg-navy-deep) {
+  background-color: color-mix(in srgb, var(--color-navy) 22%, transparent);
+  background-image: none;
+}
+
 @layer utilities {
   .prose {
     --tw-prose-body: var(--color-azul-blue);
