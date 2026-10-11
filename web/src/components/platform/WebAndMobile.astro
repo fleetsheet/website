@@ -20,27 +20,30 @@ const { webMobile, overview, cta } = getContent(getLocale(Astro.url)).platform
 const { hero, audiences, rows, field, stories } = webMobile
 ---
 
-<section class="tone-dark tone-invert">
-  <Container class="flex flex-col items-center gap-6 pt-14 pb-14 text-center">
-    <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
-    <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
-    <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
-    <Button href={hero.primaryAction.href}>
-      {hero.primaryAction.label}
-      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-    </Button>
-    <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
-      {hero.highlights.map((highlight) => (
-        <li class="flex items-center gap-1.5">
-          <Check class="text-celestial-blue size-4" aria-hidden="true" />
-          {highlight}
-        </li>
-      ))}
-    </ul>
-  </Container>
-</section>
+<!-- The hero's dark ground runs on into the device photograph below it. -->
+<div class="tone-dark">
+  <section class="tone-invert">
+    <Container class="flex flex-col items-center gap-6 pt-14 pb-10 text-center">
+      <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
+      <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
+      <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
+      <Button href={hero.primaryAction.href}>
+        {hero.primaryAction.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+      <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </section>
 
-<DeviceShowcase />
+  <DeviceShowcase />
+</div>
 
 <PageSection tone="surface" containerClass="flex flex-col gap-12">
   <div class="grid grid-cols-1 items-end gap-6 lg:grid-cols-2 lg:gap-16">

@@ -1,18 +1,18 @@
 ---
 import devicesPhoto from '@/assets/brand/fleet-devices.webp'
-import Container from '@/components/ui/Container.astro'
 import { Image } from 'astro:assets'
 ---
 
-<!-- Fleet on a laptop, phone, desktop and tablet: a supplied product photograph. -->
+<!--
+  Fleet on a laptop, phone, desktop and tablet: a supplied product photograph,
+  full width, fading in from the dark hero above it.
+-->
 <section aria-hidden="true">
-  <Container width="wide" class="pt-16 pb-20">
-    <Image
-      src={devicesPhoto}
-      alt=""
-      widths={[640, 1024, 1440, 2000]}
-      sizes="(min-width: 1280px) 1248px, 100vw"
-      class="h-auto w-full rounded-3xl shadow-lg"
-    />
-  </Container>
+  <Image
+    src={devicesPhoto}
+    alt=""
+    widths={[640, 1024, 1440, 2000]}
+    sizes="100vw"
+    class="block h-auto w-full mask-[linear-gradient(to_bottom,transparent,black_32%)]"
+  />
 </section>

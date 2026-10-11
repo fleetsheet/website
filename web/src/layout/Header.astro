@@ -213,12 +213,12 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
   {megaMenus.map((megaMenu) => (
     <div
       id={`${megaMenu.id}-menu`}
-      class="bg-surface border-border brand-c:bg-navy-deep brand-c:border-hairline absolute inset-x-0 top-full hidden border-b shadow-lg lg:data-open:block"
+      class="bg-surface border-border brand-c:bg-navy-deep brand-c:border-hairline absolute inset-x-0 top-full hidden max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain border-b shadow-lg lg:data-open:block"
       data-mega-panel
     >
       <Container
         class:list={[
-          'grid gap-10 py-8',
+          'grid gap-8 py-6',
           megaMenu.groups.some((group) => group.compact)
             ? 'lg:grid-cols-[1fr_1.35fr_240px]'
             : megaMenu.groups.length > 1
@@ -231,7 +231,7 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
             <p class="eyebrow text-muted brand-c:text-fog px-3">{group.title}</p>
             <ul
               class:list={[
-                'grid grid-cols-1 gap-1',
+                'grid grid-cols-1 gap-0.5',
                 (megaMenu.groups.length === 1 || group.compact) && 'lg:grid-cols-2',
               ]}
             >
@@ -241,11 +241,11 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
                     href={localize(entry.href)}
                     class:list={[
                       'hover:bg-page brand-c:hover:bg-navy flex gap-3 rounded-lg transition-colors',
-                      group.compact ? 'items-center px-3 py-2' : 'items-start p-3',
+                      group.compact ? 'items-center px-3 py-1.5' : 'items-start px-3 py-2',
                       entry.kind === 'contact' && 'bg-page brand-c:bg-navy mt-1',
                     ]}
                   >
-                    <IconChip size={group.compact ? 'sm' : 'md'}>
+                    <IconChip size="sm">
                       {entry.kind === 'platform' ? (
                         <PlatformIcon id={entry.id} />
                       ) : entry.kind === 'solution' ? (
@@ -262,13 +262,13 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
                       <span
                         class:list={[
                           'text-rich-blue brand-c:text-cream font-semibold',
-                          group.compact ? 'text-sm' : 'text-[15px]',
+                          group.compact ? 'text-[13px]' : 'text-sm',
                         ]}
                       >
                         {entry.label}
                       </span>
                       {entry.summary && (
-                        <span class="text-azul-blue brand-c:text-fog text-sm leading-snug">
+                        <span class="text-azul-blue brand-c:text-fog text-[13px] leading-snug">
                           {entry.summary}
                         </span>
                       )}
@@ -280,7 +280,7 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
           </div>
         ))}
         <div class="bg-supergraphic brand-c:bg-navy brand-c:bg-none flex flex-col items-start gap-3 rounded-xl p-6">
-          <p class="font-display brand-c:text-cream text-lg font-semibold text-white">
+          <p class="font-display brand-c:text-cream text-base font-semibold text-white">
             {megaMenu.promo.title}
           </p>
           <p class="text-columbia-blue brand-c:text-fog text-sm leading-relaxed">
