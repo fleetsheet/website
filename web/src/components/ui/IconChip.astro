@@ -18,6 +18,7 @@ const { size = 'md', tone = 'light', class: className } = Astro.props
       'size-9 [&>svg]:size-[18px]': size === 'lg',
     },
     tone === 'light' ? 'bg-columbia-blue text-celestial-blue' : 'bg-azul-blue text-sky-blue',
+    'brand-c:bg-navy-deep brand-c:text-steel brand-c:rounded-[10px] on-light:bg-cream-deep on-light:text-espresso',
     className,
   ]}
 >

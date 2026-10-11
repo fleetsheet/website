@@ -7,6 +7,11 @@ import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
 import { resourcePages } from '@/resources'
 
+type Props = {
+  brand?: 'c'
+}
+
+const { brand } = Astro.props
 const locale = getLocale(Astro.url)
 const { site, resources, about } = getContent(locale)
 const { tagline } = site
@@ -28,22 +33,22 @@ const footerColumns = [
 const { name } = websiteConfig
 ---
 
-<footer class="border-border border-t">
+<footer class="border-border brand-c:border-hairline brand-c:bg-black border-t">
   <Container class="flex flex-wrap justify-between gap-12 py-12">
     <div class="flex max-w-[280px] flex-col gap-3">
-      <Logo />
-      <p class="text-azul-blue text-sm leading-[1.55]">{tagline}</p>
+      <Logo tone={brand === 'c' ? 'light' : 'dark'} />
+      <p class="text-azul-blue brand-c:text-fog text-sm leading-[1.55]">{tagline}</p>
     </div>
     <div class="flex flex-wrap gap-16 text-sm">
       {footerColumns.map((column) => (
         <nav aria-label={column.title} class="flex flex-col gap-2.5">
-          <p class="font-display font-semibold">{column.title}</p>
+          <p class="font-display brand-c:text-cream font-semibold">{column.title}</p>
           <ul class="flex flex-col gap-2.5">
             {column.links.map((link) => (
               <li>
                 <a
                   href={localizePath(link.href, locale)}
-                  class="text-azul-blue hover:text-rich-blue transition-colors"
+                  class="text-azul-blue hover:text-rich-blue brand-c:text-fog brand-c:hover:text-cream transition-colors"
                 >
                   {link.label}
                 </a>
@@ -54,7 +59,7 @@ const { name } = websiteConfig
       ))}
     </div>
   </Container>
-  <Container class="text-muted pb-8 text-[13px]">
+  <Container class="text-muted brand-c:text-fog pb-8 text-[13px]">
     {`© ${new Date().getFullYear()} ${name}`}
   </Container>
 </footer>

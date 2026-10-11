@@ -23,7 +23,7 @@ const menuId = `${id}-menu`
 <div class:list={['relative', className]} data-language-switcher>
   <button
     type="button"
-    class="text-rich-blue hover:bg-border flex items-center gap-2 rounded-md px-2 py-2 text-[15px] font-medium"
+    class="text-rich-blue hover:bg-border brand-c:text-cream brand-c:hover:bg-navy flex items-center gap-2 rounded-md px-2 py-2 text-[15px] font-medium"
     aria-expanded="false"
     aria-controls={menuId}
     aria-label={`${label}: ${current.name}`}
@@ -46,7 +46,7 @@ const menuId = `${id}-menu`
   </button>
   <ul
     id={menuId}
-    class="bg-surface border-border absolute end-0 top-full z-50 mt-2 hidden min-w-52 flex-col gap-0.5 rounded-xl border p-1.5 shadow-[0_10px_30px_-12px_rgb(15_42_74/0.25)]"
+    class="bg-surface border-border brand-c:bg-navy-deep brand-c:border-hairline brand-c:text-cream absolute end-0 top-full z-50 mt-2 hidden min-w-52 flex-col gap-0.5 rounded-xl border p-1.5 shadow-[0_10px_30px_-12px_rgb(15_42_74/0.25)]"
     data-language-menu
   >
     {translations.map((translation) => {
@@ -60,7 +60,7 @@ const menuId = `${id}-menu`
             lang={language.hreflang}
             aria-current={isCurrent ? 'true' : undefined}
             data-astro-reload
-            class="hover:bg-page aria-[current]:bg-page flex items-center gap-3 rounded-md px-3 py-2 text-[15px] aria-[current]:font-semibold"
+            class="hover:bg-page aria-[current]:bg-page brand-c:hover:bg-navy brand-c:aria-[current]:bg-navy flex items-center gap-3 rounded-md px-3 py-2 text-[15px] aria-[current]:font-semibold"
           >
             <img
               src={`/flags/${translation.locale}.svg`}

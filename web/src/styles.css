@@ -34,6 +34,24 @@
   --color-border: #e2e8f0;
   --color-muted: #64748b;
 
+  /* Brand Palette C (homepage). Black and navy share the ground, steel is detail,
+     cream is the light, espresso marks the one action. */
+  --color-navy: #323f67;
+  --color-navy-deep: #1b2238;
+  --color-steel: #85a1c3;
+  --color-cream: #fdf9e2;
+  --color-cream-deep: #f3edd0;
+  --color-espresso: #372622;
+  --color-fog: #a7b0c4;
+  --color-slate-ink: #5e6475;
+  --color-hairline: #2a3047;
+  --color-hairline-light: #e8e2c6;
+  --color-status-urgent: #951a1d;
+  --color-status-high: #d8944c;
+  --color-status-progress: #eac834;
+  --color-status-done: #609e4f;
+  --color-status-open: #bfc2c8;
+
   --text-display-xl: clamp(2.25rem, 4.5vw, 3.25rem);
   --text-display-xl--line-height: 1.05;
   --text-display-xl--letter-spacing: -0.035em;
@@ -61,6 +79,11 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
+/* Palette C applies where an ancestor (the homepage <html>) has data-brand="c".
+   on-light marks cream sections inside it, where the action flips to espresso. */
+@custom-variant brand-c (&:where([data-brand='c'], [data-brand='c'] *));
+@custom-variant on-light (&:where([data-brand='c'] [data-surface='light'], [data-brand='c'] [data-surface='light'] *));
+
 @layer base {
   html {
     @apply bg-page text-rich-blue scroll-pt-20 font-sans antialiased;
@@ -86,6 +109,32 @@
 
   svg {
     @apply shrink-0;
+  }
+
+  /* Palette C type: Hanken Grotesk only, light display, never bold. */
+  [data-brand='c'] {
+    --font-display: var(--font-sans);
+    --font-weight-semibold: 500;
+    --font-weight-bold: 500;
+    --text-display-xl: clamp(2.5rem, 5.2vw, 4rem);
+    --text-display-xl--line-height: 1.06;
+    --text-display-xl--font-weight: 300;
+    --text-display-lg--font-weight: 300;
+    --text-display-md--font-weight: 300;
+    --text-display-xl--letter-spacing: -0.03em;
+    --text-display-lg--letter-spacing: -0.03em;
+    --text-display-md--letter-spacing: -0.025em;
+
+    background-color: var(--color-black);
+    color: var(--color-cream);
+  }
+
+  [data-brand='c'] body {
+    background-color: var(--color-black);
+  }
+
+  [data-brand='c'] [data-surface='light'] {
+    color: var(--color-black);
   }
 }
 

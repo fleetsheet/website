@@ -10,7 +10,7 @@ const content = getContent(locale)
 const { consultancy } = content.home
 ---
 
-<PageSection id="consultancy" tone="surface" containerClass="flex flex-col gap-10">
+<PageSection id="consultancy" containerClass="flex flex-col gap-10">
   <div class="flex flex-wrap items-end justify-between gap-6">
     <SectionHeader
       eyebrow={consultancy.eyebrow}
@@ -24,15 +24,15 @@ const { consultancy } = content.home
   </div>
   <ol class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-4">
     {consultancy.phases.map((phase, index) => (
-      <li class="bg-page border-border flex flex-col gap-3 rounded-xl border p-6">
+      <li class="bg-navy border-hairline flex flex-col gap-3 rounded-2xl border p-6">
         <div class="flex items-center gap-2.5">
-          <span class="font-display bg-rich-blue text-alice-blue flex size-7 items-center justify-center rounded-md text-[13px] font-semibold">
+          <span class="bg-navy-deep text-steel flex size-7 items-center justify-center rounded-[10px] text-[13px] font-medium">
             {index + 1}
           </span>
-          <div class="h-px flex-1 bg-slate-300" />
+          <div class="bg-hairline h-px flex-1" />
         </div>
-        <h3 class="text-lg font-semibold">{phase.title}</h3>
-        <p class="text-azul-blue text-[15px] leading-[1.55]">{phase.description}</p>
+        <h3 class="text-cream text-lg font-normal">{phase.title}</h3>
+        <p class="text-fog text-[15px] leading-[1.55]">{phase.description}</p>
       </li>
     ))}
   </ol>

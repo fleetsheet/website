@@ -19,25 +19,25 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
 
 <PageSection
   id="ai"
-  tone="inverse"
+  class="bg-cream"
+  surface="light"
   containerClass="grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-center gap-14"
 >
   <SectionHeader
     eyebrow={aiAgents.eyebrow}
     title={aiAgents.title}
     description={aiAgents.description}
-    tone="dark"
     class="gap-5"
   >
     <ul class="mt-2 flex flex-col gap-4">
       {aiAgents.points.map((point) => (
         <li class="flex gap-3.5">
-          <IconChip size="lg" tone="dark">
+          <IconChip size="lg">
             <ShieldCheck />
           </IconChip>
           <div>
-            <h3 class="font-display text-base font-semibold text-white">{point.title}</h3>
-            <p class="text-columbia-blue text-[15px] leading-[1.55]">{point.description}</p>
+            <h3 class="text-base font-medium text-black">{point.title}</h3>
+            <p class="text-slate-ink text-[15px] leading-[1.55]">{point.description}</p>
           </div>
         </li>
       ))}
@@ -45,41 +45,41 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
   </SectionHeader>
 
   <div
-    class="bg-surface text-rich-blue overflow-hidden rounded-xl shadow-[0_10px_15px_-3px_rgb(0_0_0/0.25)]"
+    class="bg-cream-deep border-hairline-light overflow-hidden rounded-3xl border text-black"
     aria-hidden="true"
   >
-    <div class="border-border flex items-center gap-2.5 border-b px-5 py-4">
+    <div class="border-hairline-light flex items-center gap-2.5 border-b px-5 py-4">
       <IconChip size="sm">
         <Sparkles />
       </IconChip>
-      <span class="font-display flex-1 text-sm font-semibold">{chat.assistant}</span>
-      <span class="text-muted flex items-center gap-1.5 text-xs">
-        <span class="size-[7px] rounded-full bg-green-600"></span>
+      <span class="flex-1 text-sm font-medium">{chat.assistant}</span>
+      <span class="text-slate-ink flex items-center gap-1.5 text-xs">
+        <span class="bg-status-done size-[7px] rounded-full"></span>
         {chat.context}
       </span>
     </div>
-    <div class="flex flex-col gap-4 bg-slate-50 p-5">
-      <p class="bg-rich-blue text-alice-blue max-w-[85%] self-end rounded-[12px_12px_4px_12px] px-3.5 py-2.5 text-sm leading-[1.45]">
+    <div class="flex flex-col gap-4 p-5">
+      <p class="bg-navy text-cream max-w-[85%] self-end rounded-[12px_12px_4px_12px] px-3.5 py-2.5 text-sm leading-[1.45]">
         {chat.question}
       </p>
       <div class="flex flex-col gap-3">
         <p class="text-sm leading-[1.55]">
-          <span class="font-bold">{chat.answer.lead}</span> {chat.answer.body}{' '}
-          <span class="font-bold">{chat.answer.cost}</span> {chat.answer.tail}
+          <span class="font-medium">{chat.answer.lead}</span> {chat.answer.body}{' '}
+          <span class="font-medium">{chat.answer.cost}</span> {chat.answer.tail}
         </p>
-        <div class="bg-surface border-border flex flex-col gap-3.5 rounded-xl border p-4 shadow-sm">
+        <div class="bg-cream border-hairline-light flex flex-col gap-3.5 rounded-2xl border p-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <p class="font-display text-[13px] font-semibold">{chat.chartTitle}</p>
+            <p class="text-[13px] font-medium">{chat.chartTitle}</p>
             <Badge tone="info">{chat.chartBadge}</Badge>
           </div>
           <div class="grid grid-cols-3 gap-2 text-xs">
             {chat.stats.map((stat) => (
-              <div class="bg-page rounded-md p-2">
-                <p class="text-muted">{stat.label}</p>
+              <div class="bg-cream-deep rounded-md p-2">
+                <p class="text-slate-ink">{stat.label}</p>
                 <p
                   class:list={[
-                    'font-display mt-0.5 text-base font-semibold',
-                    stat.trend === 'up' && 'text-amber-700',
+                    'mt-0.5 text-base font-medium',
+                    stat.trend === 'up' && 'text-status-urgent',
                   ]}
                 >
                   {stat.value}
@@ -90,39 +90,39 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
           <div class="flex flex-col gap-2">
             {chat.rows.map((row, index) => (
               <div class="flex items-center gap-2.5 text-xs">
-                <span class="text-azul-blue w-24 shrink-0 truncate">{row.site}</span>
-                <div class="bg-page h-3.5 flex-1 overflow-hidden rounded-[3px]">
+                <span class="text-slate-ink w-24 shrink-0 truncate">{row.site}</span>
+                <div class="bg-cream-deep h-3.5 flex-1 overflow-hidden rounded-[3px]">
                   <div
                     class:list={[
                       'h-full rounded-[3px]',
-                      index === 0 ? 'bg-sun-orange' : 'bg-celestial-blue',
+                      index === 0 ? 'bg-status-high' : 'bg-steel',
                     ]}
                     style={`width: ${Math.round((row.hours / maxHours) * 100)}%`}
                   />
                 </div>
-                <span class="w-7 text-end font-bold">{row.hours}</span>
+                <span class="w-7 text-end font-medium">{row.hours}</span>
               </div>
             ))}
           </div>
-          <div class="border-border flex flex-wrap items-center justify-between gap-2 border-t pt-2.5">
-            <span class="text-muted text-xs">{chat.sources}</span>
-            <span class="bg-rich-blue text-alice-blue rounded-md px-2.5 py-1.5 text-xs font-semibold">
+          <div class="border-hairline-light flex flex-wrap items-center justify-between gap-2 border-t pt-2.5">
+            <span class="text-slate-ink text-xs">{chat.sources}</span>
+            <span class="bg-espresso text-cream rounded-md px-2.5 py-1.5 text-xs font-medium">
               {chat.action}
             </span>
           </div>
         </div>
         <div class="flex flex-wrap gap-1.5">
           {chat.followUps.map((followUp) => (
-            <span class="border-border bg-surface text-azul-blue rounded-full border px-2.5 py-1.5 text-xs font-medium">
+            <span class="border-hairline-light bg-cream text-black rounded-full border px-2.5 py-1.5 text-xs font-medium">
               {followUp}
             </span>
           ))}
         </div>
       </div>
     </div>
-    <div class="border-border flex items-center gap-2.5 border-t px-4 py-3">
-      <span class="text-muted flex-1 text-sm">{chat.placeholder}</span>
-      <span class="bg-rich-blue text-alice-blue flex size-[30px] items-center justify-center rounded-md">
+    <div class="border-hairline-light flex items-center gap-2.5 border-t px-4 py-3">
+      <span class="text-slate-ink flex-1 text-sm">{chat.placeholder}</span>
+      <span class="bg-espresso text-cream flex size-[30px] items-center justify-center rounded-md">
         <ArrowRight class="size-3.5 rtl:-scale-x-100" stroke-width={2.5} />
       </span>
     </div>
