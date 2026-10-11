@@ -16,6 +16,7 @@ import Check from '@lucide/astro/icons/check'
 import AudienceColumns from './AudienceColumns.astro'
 import OverviewVisual from './OverviewVisual.astro'
 import PlatformIcon from './PlatformIcon.astro'
+import WorkflowField from './WorkflowField.astro'
 
 const locale = getLocale(Astro.url)
 const { overview, cta } = getContent(locale).platform
@@ -29,7 +30,9 @@ const hrefOf = (id: string) =>
 ---
 
 <!-- The hero and the product preview share one dark ground. -->
-<div class="tone-dark">
+<!-- Workflow paths move behind the hero and the glass product preview. -->
+<div class="tone-dark relative isolate overflow-hidden">
+  <WorkflowField />
   <section class="tone-invert">
     <Container class="flex flex-col items-center gap-6 pt-14 pb-4 text-center">
       <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
@@ -47,7 +50,7 @@ const hrefOf = (id: string) =>
     </Container>
   </section>
 
-  <div class="tone-invert">
+  <div class="tone-invert glass-ui">
     <ProductShowcase />
   </div>
 </div>

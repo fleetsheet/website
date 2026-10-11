@@ -1,0 +1,321 @@
+---
+/**
+ * Platform hero background: workflow paths. Orthogonal routes run across a
+ * regular grid, turning at rounded corners and passing checkpoints, while
+ * glowing pulses of steel and cream light travel along them. The routes stay
+ * clear of the headline, and the glass product preview blurs them below.
+ *
+ * Drawn once at build time; CSS animates the pulses and checkpoints, and
+ * everything holds still for reduced motion.
+ */
+
+const W = 1600
+const H = 1100
+const CELL = 40
+const RADIUS = 16
+
+let seed = 11
+const random = () => {
+  seed = (seed * 16807) % 2147483647
+  return (seed - 1) / 2147483646
+}
+const pick = (min: number, max: number) => min + Math.floor(random() * (max - min + 1))
+
+type Point = { x: number; y: number }
+type Route = { d: string; tone: 'steel' | 'cream'; duration: number; delay: number }
+type Checkpoint = Point & { icon: 'check' | 'square'; delay: number }
+
+// Turn a list of grid points into a path with rounded corners.
+const pathFrom = (points: Point[]) => {
+  let d = `M${points[0].x} ${points[0].y}`
+  for (let i = 1; i < points.length; i++) {
+    const [prev, at, next] = [points[i - 1], points[i], points[i + 1]]
+    const inX = Math.sign(at.x - prev.x)
+    const inY = Math.sign(at.y - prev.y)
+    if (!next) {
+      d += `L${at.x} ${at.y}`
+      break
+    }
+    const outX = Math.sign(next.x - at.x)
+    const outY = Math.sign(next.y - at.y)
+    d += `L${at.x - inX * RADIUS} ${at.y - inY * RADIUS}`
+    d += `Q${at.x} ${at.y} ${at.x + outX * RADIUS} ${at.y + outY * RADIUS}`
+  }
+  return d
+}
+
+const routes: Route[] = []
+const checkpoints: Checkpoint[] = []
+const ends: Point[] = []
+
+// Routes enter from the start and end edges, step across in horizontal runs and
+// vertical jogs, and stop short of the centre column where the copy sits.
+const lanes = [5, 8, 11, 14, 17, 20, 23, 25]
+lanes.forEach((lane, index) => {
+  for (const side of ['start', 'end'] as const) {
+    const dir = side === 'start' ? 1 : -1
+    let x = side === 'start' ? -CELL : W + CELL
+    let y = (lane + (side === 'end' ? 1 : 0)) * CELL
+    const points: Point[] = [{ x, y }]
+    const stopX = side === 'start' ? pick(13, 17) * CELL : W - pick(13, 17) * CELL
+    let turn = 0
+    while ((stopX - x) * dir > CELL * 2) {
+      x += dir * pick(3, 6) * CELL
+      if ((stopX - x) * dir < 0) x = stopX
+      points.push({ x, y })
+      if ((stopX - x) * dir <= CELL * 2) break
+      const jog = pick(1, 3) * CELL * (random() > 0.5 ? 1 : -1)
+      const clamp = (value: number) => Math.min(H - 3 * CELL, Math.max(3 * CELL, value))
+      y = clamp(y + jog) === y ? clamp(y - jog) : clamp(y + jog)
+      points.push({ x, y })
+      if (turn++ % 2 === 0) {
+        checkpoints.push({
+          x,
+          y,
+          icon: random() > 0.5 ? 'check' : 'square',
+          delay: -random() * 12,
+        })
+      }
+    }
+    // Finish on a short horizontal run and mark the end of the route.
+    const last = points[points.length - 1]
+    if (points[points.length - 2].x === last.x) {
+      points.push({ x: last.x + dir * CELL, y: last.y })
+    }
+    const end = points[points.length - 1]
+    ends.push({ x: end.x, y: end.y })
+    routes.push({
+      d: pathFrom(points),
+      tone: (index + (side === 'end' ? 1 : 0)) % 3 === 0 ? 'cream' : 'steel',
+      duration: 9 + random() * 7,
+      delay: -random() * 14,
+    })
+  }
+})
+---
+
+<div class="workflow-field" aria-hidden="true">
+  <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMin slice" fill="none">
+    <defs>
+      <pattern id="workflow-grid" width={CELL} height={CELL} patternUnits="userSpaceOnUse">
+        <circle cx={CELL / 2} cy={CELL / 2} r="1" class="grid-dot"></circle>
+      </pattern>
+    </defs>
+    <rect
+      x="0"
+      y="0"
+      width={W}
+      height={H}
+      fill="url(#workflow-grid)"
+      transform={`translate(${-CELL / 2} ${-CELL / 2})`}
+    ></rect>
+    {routes.map((route) => (
+      <path class="track" d={route.d} />
+    ))}
+    <g class="traces">
+      {routes.map((route) => (
+        <path
+          class:list={['trace', route.tone]}
+          d={route.d}
+          pathLength="100"
+          style={`--duration: ${route.duration.toFixed(1)}s; --delay: ${route.delay.toFixed(1)}s`}
+        />
+      ))}
+    </g>
+    {checkpoints.map((point) => (
+      <g class="checkpoint" style={`--delay: ${point.delay.toFixed(1)}s`}>
+        <rect x={point.x - 14} y={point.y - 14} width="28" height="28" rx="8" />
+        {point.icon === 'check' ? (
+          <path d={`M${point.x - 5} ${point.y}l3.5 3.5 6.5-7`} />
+        ) : (
+          <path d={`M${point.x - 4} ${point.y - 4}h8v8h-8z`} />
+        )}
+      </g>
+    ))}
+    {ends.map((end) => (
+      <circle class="end" cx={end.x} cy={end.y} r="3" />
+    ))}
+  </svg>
+  <svg class="repeat" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMin slice" fill="none">
+    <defs>
+      <pattern id="workflow-grid-2" width={CELL} height={CELL} patternUnits="userSpaceOnUse">
+        <circle cx={CELL / 2} cy={CELL / 2} r="1" class="grid-dot"></circle>
+      </pattern>
+    </defs>
+    <rect
+      x="0"
+      y="0"
+      width={W}
+      height={H}
+      fill="url(#workflow-grid-2)"
+      transform={`translate(${-CELL / 2} ${-CELL / 2})`}
+    ></rect>
+    {routes.map((route) => (
+      <path class="track" d={route.d} />
+    ))}
+    <g class="traces">
+      {routes.map((route) => (
+        <path
+          class:list={['trace', route.tone]}
+          d={route.d}
+          pathLength="100"
+          style={`--duration: ${route.duration.toFixed(1)}s; --delay: ${route.delay.toFixed(1)}s`}
+        />
+      ))}
+    </g>
+    {checkpoints.map((point) => (
+      <g class="checkpoint" style={`--delay: ${point.delay.toFixed(1)}s`}>
+        <rect x={point.x - 14} y={point.y - 14} width="28" height="28" rx="8" />
+        {point.icon === 'check' ? (
+          <path d={`M${point.x - 5} ${point.y}l3.5 3.5 6.5-7`} />
+        ) : (
+          <path d={`M${point.x - 4} ${point.y - 4}h8v8h-8z`} />
+        )}
+      </g>
+    ))}
+    {ends.map((end) => (
+      <circle class="end" cx={end.x} cy={end.y} r="3" />
+    ))}
+  </svg>
+</div>
+
+<style>
+  .workflow-field {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    mask-image:
+      radial-gradient(ellipse 34% 24% at 50% 20%, transparent 30%, black 100%),
+      linear-gradient(to bottom, black 80%, transparent);
+    mask-composite: intersect;
+  }
+
+  .workflow-field svg {
+    width: 100%;
+    height: 100%;
+    min-width: 1100px;
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  .workflow-field .repeat {
+    display: none;
+  }
+
+  /* On narrow screens tile the field down the page at a readable scale, the
+     second copy turned round so the pattern does not repeat exactly. */
+  @media (max-width: 47.99rem) {
+    .workflow-field svg {
+      position: relative;
+      display: block;
+      width: 760px;
+      min-width: 0;
+      height: auto;
+    }
+
+    .workflow-field .repeat {
+      display: block;
+      rotate: 180deg;
+    }
+  }
+
+  .grid-dot {
+    fill: var(--color-steel);
+    opacity: 0.16;
+  }
+
+  .track {
+    stroke: var(--color-steel);
+    stroke-width: 1;
+    opacity: 0.3;
+  }
+
+  .traces {
+    filter: drop-shadow(0 0 3px var(--color-cream)) drop-shadow(0 0 12px var(--color-steel));
+  }
+
+  .trace {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 16 84;
+    stroke-dashoffset: 14;
+    opacity: 0;
+    animation: workflow-route var(--duration) linear var(--delay) infinite;
+  }
+
+  .trace.steel {
+    stroke: var(--color-steel);
+  }
+
+  .trace.cream {
+    stroke: var(--color-cream);
+  }
+
+  .end {
+    fill: var(--color-steel);
+    opacity: 0.45;
+  }
+
+  .checkpoint {
+    opacity: 0.3;
+    animation: workflow-check 12s ease-in-out var(--delay) infinite;
+  }
+
+  .checkpoint rect {
+    fill: var(--color-navy-deep);
+    stroke: var(--color-steel);
+    stroke-width: 1;
+  }
+
+  .checkpoint path {
+    stroke: var(--color-cream);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @keyframes workflow-route {
+    0% {
+      stroke-dashoffset: 14;
+      opacity: 0;
+    }
+
+    8%,
+    80% {
+      opacity: 0.95;
+    }
+
+    100% {
+      stroke-dashoffset: -100;
+      opacity: 0;
+    }
+  }
+
+  @keyframes workflow-check {
+    0%,
+    75%,
+    100% {
+      opacity: 0.3;
+    }
+
+    35%,
+    50% {
+      opacity: 0.9;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trace,
+    .checkpoint {
+      animation: none;
+    }
+
+    .trace {
+      opacity: 0.6;
+      stroke-dashoffset: -40;
+    }
+  }
+</style>
