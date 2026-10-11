@@ -4,26 +4,36 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
+  /* Palette C type: Hanken Grotesk only, light display, never bold. */
   --font-sans: var(--font-hanken-grotesk);
-  --font-display: var(--font-sora);
+  --font-display: var(--font-sans);
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 500;
 
-  --color-rich-blue: #1c3950;
-  --color-alice-blue: #f0f5f8;
-  --color-sky-blue: #9dd4fd;
-  --color-celestial-blue: #4e9dd9;
-  --color-sun-orange: #f7ab25;
+  /* The original token names now carry Palette C values, so every page speaks the
+     same palette: rich blue is the dark ink and ground, azul the navy, the blues
+     steel, alice blue a pale steel page, and sun orange the high-status orange. */
+  --color-rich-blue: #1b2238;
+  --color-alice-blue: #f2f5f9;
+  --color-sky-blue: #85a1c3;
+  --color-celestial-blue: #4f6d94;
+  --color-sun-orange: #d8944c;
 
-  --color-azul-blue: #2d5a7e;
-  --color-azul-blue-light: #35668f;
-  --color-argentinian-blue: #68afe5;
-  --color-maya-blue: #83c2f1;
-  --color-uranian-blue: #b9dffb;
-  --color-columbia-blue: #d4eafa;
-  --color-sunset: #fac76e;
-  --color-cream-peach: #fce3b6;
-  --color-cream-peach-foreground: #7a4b00;
-  --color-soft-gray: #adbbcb;
+  --color-azul-blue: #323f67;
+  --color-azul-blue-light: #3d4b78;
+  --color-argentinian-blue: #85a1c3;
+  --color-maya-blue: #85a1c3;
+  --color-uranian-blue: #b6c7db;
+  --color-columbia-blue: #e7ecf3;
+  --color-sunset: #f3edd0;
+  --color-cream-peach: #f3edd0;
+  --color-cream-peach-foreground: #372622;
+  --color-soft-gray: #a7b0c4;
+
+  /* The one action per view: espresso on light grounds, flipped to cream on dark. */
+  --color-action: #372622;
+  --color-on-action: #fdf9e2;
 
   --color-primary: var(--color-rich-blue);
   --color-primary-foreground: var(--color-alice-blue);
@@ -31,11 +41,11 @@
   --color-accent: var(--color-celestial-blue);
   --color-page: var(--color-alice-blue);
   --color-surface: #ffffff;
-  --color-border: #e2e8f0;
-  --color-muted: #64748b;
+  --color-border: #dfe4ec;
+  --color-muted: #5e6475;
 
-  /* Brand Palette C (homepage). Black and navy share the ground, steel is detail,
-     cream is the light, espresso marks the one action. */
+  /* Brand Palette C. Black and navy share the ground, steel is detail, cream is
+     the light, espresso marks the one action. */
   --color-navy: #323f67;
   --color-navy-deep: #1b2238;
   --color-steel: #85a1c3;
@@ -58,26 +68,26 @@
   --color-status-done: #609e4f;
   --color-status-open: #bfc2c8;
 
-  --text-display-xl: clamp(2.25rem, 4.5vw, 3.25rem);
-  --text-display-xl--line-height: 1.05;
-  --text-display-xl--letter-spacing: -0.035em;
-  --text-display-xl--font-weight: 600;
+  --text-display-xl: clamp(2.5rem, 5.2vw, 4rem);
+  --text-display-xl--line-height: 1.06;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 300;
   --text-display-lg: clamp(1.875rem, 3.4vw, 2.625rem);
   --text-display-lg--line-height: 1.08;
   --text-display-lg--letter-spacing: -0.03em;
-  --text-display-lg--font-weight: 600;
+  --text-display-lg--font-weight: 300;
   --text-display-md: clamp(1.625rem, 2.6vw, 2.125rem);
   --text-display-md--line-height: 1.12;
-  --text-display-md--letter-spacing: -0.03em;
-  --text-display-md--font-weight: 600;
+  --text-display-md--letter-spacing: -0.025em;
+  --text-display-md--font-weight: 300;
   --text-lead: clamp(1rem, 1.3vw, 1.125rem);
   --text-lead--line-height: 1.6;
 
-  --shadow-xs: 0 1px 2px 0 rgb(28 57 80 / 0.05);
-  --shadow-sm: 0 1px 3px 0 rgb(28 57 80 / 0.1), 0 1px 2px -1px rgb(28 57 80 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(28 57 80 / 0.1), 0 2px 4px -2px rgb(28 57 80 / 0.08);
-  --shadow-lg: 0 10px 15px -3px rgb(28 57 80 / 0.12), 0 4px 6px -4px rgb(28 57 80 / 0.08);
-  --shadow-float: 0 10px 15px -3px rgb(28 57 80 / 0.25), 0 4px 6px -4px rgb(28 57 80 / 0.2);
+  --shadow-xs: 0 1px 2px 0 rgb(27 34 56 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(27 34 56 / 0.1), 0 1px 2px -1px rgb(27 34 56 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(27 34 56 / 0.1), 0 2px 4px -2px rgb(27 34 56 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(27 34 56 / 0.12), 0 4px 6px -4px rgb(27 34 56 / 0.08);
+  --shadow-float: 0 10px 15px -3px rgb(27 34 56 / 0.25), 0 4px 6px -4px rgb(27 34 56 / 0.2);
 
   --container-content: 75rem;
   --container-wide: 78rem;
@@ -121,20 +131,8 @@
     @apply shrink-0;
   }
 
-  /* Palette C type: Hanken Grotesk only, light display, never bold. */
+  /* The dark Palette C shell: the homepage, and the header and footer everywhere. */
   [data-brand='c'] {
-    --font-display: var(--font-sans);
-    --font-weight-semibold: 500;
-    --font-weight-bold: 500;
-    --text-display-xl: clamp(2.5rem, 5.2vw, 4rem);
-    --text-display-xl--line-height: 1.06;
-    --text-display-xl--font-weight: 300;
-    --text-display-lg--font-weight: 300;
-    --text-display-md--font-weight: 300;
-    --text-display-xl--letter-spacing: -0.03em;
-    --text-display-lg--letter-spacing: -0.03em;
-    --text-display-md--letter-spacing: -0.025em;
-
     background-color: var(--color-black);
     color: var(--color-cream);
   }
@@ -147,10 +145,85 @@
   [data-brand='c'] [data-surface='steel'] {
     color: var(--color-black);
   }
+
+  /* Cards carry a subtle gradient from the bottom start to the top end: white into
+     pale steel on light grounds, lifted black into navy on dark ones. */
+  :root {
+    --card-from: var(--color-white);
+    --card-to: color-mix(in srgb, var(--color-steel-mist) 70%, var(--color-white));
+    --card-dark-from: var(--color-navy-night);
+    --card-dark-to: var(--color-navy-dusk);
+  }
+
+  :where(.bg-surface, .bg-page):where(.rounded-xl, .rounded-2xl, .rounded-3xl):where(
+      :not([data-brand='c'], [data-brand='c'] *)
+    ) {
+    background-image: linear-gradient(to top right, var(--card-from), var(--card-to));
+  }
+
+  :where(.bg-rich-blue):where(.rounded-xl, .rounded-2xl, .rounded-3xl):where(
+      :not([data-brand='c'], [data-brand='c'] *, .tone-invert *)
+    ) {
+    background-image: linear-gradient(to top right, var(--card-dark-from), var(--card-dark-to));
+  }
+}
+
+/* Section tones for heroes and bands outside the homepage. Each lays a subtle
+   gradient ground; the dark, inverted and steel tones also re-point the palette
+   tokens so content written for light pages reads correctly on them. */
+@layer components {
+  .tone-dark {
+    --color-action: var(--color-cream);
+    --color-on-action: var(--color-espresso);
+
+    background:
+      radial-gradient(
+        ellipse 55% 70% at 100% 0%,
+        color-mix(in srgb, var(--color-steel) 14%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(
+        to top right,
+        var(--color-black),
+        var(--color-navy-deep) 55%,
+        var(--color-navy-dusk)
+      );
+    color: var(--color-cream);
+  }
+
+  /* Light-page content shown on a dark tone: ink turns cream, cards turn navy. */
+  .tone-invert {
+    --color-rich-blue: var(--color-cream);
+    --color-alice-blue: var(--color-espresso);
+    --color-azul-blue: var(--color-fog);
+    --color-azul-blue-light: var(--color-steel-mist);
+    --color-muted: var(--color-fog);
+    --color-celestial-blue: var(--color-steel);
+    --color-sky-blue: var(--color-steel);
+    --color-columbia-blue: var(--color-navy);
+    --color-page: var(--color-navy-deep);
+    --color-surface: var(--color-navy);
+    --color-border: var(--color-hairline);
+    --card-from: var(--color-navy-night);
+    --card-to: var(--color-navy-dusk);
+  }
+
+  .tone-light {
+    background: linear-gradient(to top right, var(--color-cream), var(--color-steel-mist));
+  }
+
+  .tone-steel {
+    --color-azul-blue: var(--color-navy-deep);
+    --color-muted: var(--color-navy-deep);
+    --color-celestial-blue: var(--color-navy);
+    --color-border: color-mix(in srgb, var(--color-navy) 25%, transparent);
+
+    background: linear-gradient(to top right, var(--color-steel), var(--color-steel-soft));
+  }
 }
 
 @utility eyebrow {
-  @apply text-[13px] font-semibold tracking-[0.04em] uppercase;
+  @apply text-[11px] font-medium tracking-[0.08em] uppercase;
 }
 
 @utility hyphenate {
@@ -175,10 +248,18 @@
   hyphens: none;
 }
 
+/* The dark brand ground: black lifting into navy towards the top end. */
 @utility bg-supergraphic {
-  background-color: var(--color-rich-blue);
-  background-image: url('./assets/brand/fleet-supergraphic-bg.png');
-  background-size: 480px auto;
+  --color-action: var(--color-cream);
+  --color-on-action: var(--color-espresso);
+
+  background-color: var(--color-navy-deep);
+  background-image: linear-gradient(
+    to top right,
+    var(--color-black),
+    var(--color-navy-deep) 55%,
+    var(--color-navy-dusk)
+  );
 }
 
 @layer utilities {

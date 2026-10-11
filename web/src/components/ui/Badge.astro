@@ -11,17 +11,14 @@ const { tone = 'info', class: className } = Astro.props
 
 <span
   class:list={[
-    'inline-flex items-center rounded-md px-2 py-[3px] text-[11px] font-semibold whitespace-nowrap',
     // Palette C: 28px labelled status pills with a 6px dot, in the exact status palette.
-    "brand-c:h-7 brand-c:gap-1.5 brand-c:rounded-full brand-c:px-3 brand-c:py-0 brand-c:text-[13px] brand-c:font-medium brand-c:before:size-1.5 brand-c:before:rounded-full brand-c:before:bg-current brand-c:before:content-['']",
+    "inline-flex h-7 items-center gap-1.5 rounded-full px-3 text-[13px] font-medium whitespace-nowrap before:size-1.5 before:rounded-full before:bg-current before:content-['']",
     {
-      'bg-cream-peach text-cream-peach-foreground brand-c:bg-status-progress brand-c:text-black':
-        tone === 'due',
-      'bg-sun-orange text-rich-blue brand-c:bg-status-urgent brand-c:text-cream':
-        tone === 'overdue',
-      'bg-green-100 text-green-700 brand-c:bg-status-done brand-c:text-black': tone === 'done',
-      'bg-columbia-blue text-azul-blue brand-c:bg-status-open brand-c:text-black': tone === 'info',
-      'border-border text-azul-blue border bg-white brand-c:border-hairline brand-c:bg-transparent brand-c:text-cream on-light:border-hairline-light on-light:text-black':
+      'bg-status-progress text-black': tone === 'due',
+      'bg-status-urgent text-cream': tone === 'overdue',
+      'bg-status-done text-black': tone === 'done',
+      'bg-status-open text-black': tone === 'info',
+      'border-border text-rich-blue border bg-transparent brand-c:border-hairline brand-c:text-cream on-light:border-hairline-light on-light:text-black':
         tone === 'neutral',
     },
     className,

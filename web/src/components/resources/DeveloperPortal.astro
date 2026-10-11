@@ -24,22 +24,22 @@ const cardIcons = [Wrench, Blocks, BellRing]
 const capabilityIcons = [ClipboardList, Boxes, Receipt, Building]
 ---
 
-<section class="bg-rich-blue bg-supergraphic text-white">
+<section class="tone-light">
   <Container class="flex flex-col items-start gap-6 pt-16 pb-36 lg:pt-16 lg:pb-40">
-    <p class="eyebrow text-sky-blue flex items-center gap-2.5">
-      <IconChip size="sm" tone="dark">
+    <p class="eyebrow text-celestial-blue flex items-center gap-2.5">
+      <IconChip size="sm">
         <CodeXml />
       </IconChip>
       {page.hero.eyebrow}
     </p>
-    <h1 class="text-display-lg hyphenate max-w-[760px] text-white">{page.hero.title}</h1>
-    <p class="text-lead text-columbia-blue max-w-[640px] text-pretty">{page.hero.description}</p>
+    <h1 class="text-display-lg hyphenate max-w-[760px]">{page.hero.title}</h1>
+    <p class="text-lead text-azul-blue max-w-[640px] text-pretty">{page.hero.description}</p>
     <div class="flex flex-wrap gap-3">
       <Button href={page.hero.primaryAction.href} variant="accent">
         {page.hero.primaryAction.label}
         <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
       </Button>
-      <Button href={page.hero.secondaryAction.href} variant="inverse">
+      <Button href={page.hero.secondaryAction.href} variant="secondary">
         {page.hero.secondaryAction.label}
       </Button>
     </div>

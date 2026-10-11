@@ -25,9 +25,10 @@ const {
   id={id}
   data-surface={surface ?? (tone === 'page' ? undefined : 'navy')}
   class:list={[
+    // A soft white-to-pale-steel band on light pages; flat navy on the homepage.
     tone === 'surface' &&
-      'bg-surface border-border brand-c:bg-navy brand-c:border-hairline border-y',
-    tone === 'inverse' && 'bg-rich-blue text-alice-blue brand-c:bg-navy brand-c:text-cream',
+      'bg-surface border-border brand-c:bg-navy brand-c:bg-none brand-c:border-hairline to-alice-blue border-y bg-linear-to-b from-white',
+    tone === 'inverse' && 'tone-dark brand-c:bg-navy brand-c:bg-none brand-c:text-cream',
     className,
   ]}
 >

@@ -33,7 +33,7 @@ type MenuEntry = { href: string; label: string; summary?: string } & (
   | { kind: 'contact' }
 )
 
-const { translations, brand } = Astro.props
+const { translations } = Astro.props
 const locale = getLocale(Astro.url)
 const content = getContent(locale)
 const { headerLinks, actions, labels } = content.site
@@ -134,13 +134,15 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
 ]
 ---
 
+<!-- The header is the dark Palette C shell on every page. -->
 <header
   id="site-header"
-  class="bg-page border-border brand-c:border-hairline brand-c:bg-black/85 brand-c:backdrop-blur-md sticky top-0 z-40 border-b"
+  data-brand="c"
+  class="bg-page border-border brand-c:border-hairline brand-c:bg-black sticky top-0 z-40 border-b"
 >
   <Container class="flex items-center gap-6 py-3.5 xl:gap-8">
     <a href={localize('/')} aria-label={labels.home} class="rounded-md">
-      <Logo tone={brand === 'c' ? 'light' : 'dark'} />
+      <Logo tone="light" />
     </a>
 
     <nav aria-label={labels.mainNav} class="hidden flex-1 lg:block">

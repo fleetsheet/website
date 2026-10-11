@@ -28,24 +28,27 @@ const hrefOf = (id: string) =>
   localizePath(detailPages.find((entry) => entry.id === id)?.href ?? '/platform', locale)
 ---
 
-<section>
-  <Container class="flex flex-col items-center gap-6 pt-14 pb-4 text-center">
-    <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
-    <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
-    <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
-    <div class="flex flex-wrap justify-center gap-3">
-      <Button href={hero.primaryAction.href}>
-        {hero.primaryAction.label}
-        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-      </Button>
-      <Button href={hero.secondaryAction.href} variant="secondary">
-        {hero.secondaryAction.label}
-      </Button>
-    </div>
-  </Container>
-</section>
+<!-- The hero and the product preview share one dark ground. -->
+<div class="tone-dark">
+  <section class="tone-invert">
+    <Container class="flex flex-col items-center gap-6 pt-14 pb-4 text-center">
+      <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
+      <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
+      <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <Button href={hero.primaryAction.href}>
+          {hero.primaryAction.label}
+          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        </Button>
+        <Button href={hero.secondaryAction.href} variant="secondary">
+          {hero.secondaryAction.label}
+        </Button>
+      </div>
+    </Container>
+  </section>
 
-<ProductShowcase />
+  <ProductShowcase />
+</div>
 
 <section>
   <Container class="flex flex-col items-center gap-5 py-14 text-center">
