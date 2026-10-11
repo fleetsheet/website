@@ -19,8 +19,8 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
 
 <PageSection
   id="ai"
-  class="bg-cream"
-  surface="light"
+  class="bg-steel"
+  surface="steel"
   containerClass="grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-center gap-14"
 >
   <SectionHeader
@@ -37,7 +37,7 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
           </IconChip>
           <div>
             <h3 class="text-base font-medium text-black">{point.title}</h3>
-            <p class="text-slate-ink text-[15px] leading-[1.55]">{point.description}</p>
+            <p class="text-navy-deep text-[15px] leading-[1.55]">{point.description}</p>
           </div>
         </li>
       ))}

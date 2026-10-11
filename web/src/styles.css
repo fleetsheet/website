@@ -80,9 +80,11 @@
 }
 
 /* Palette C applies where an ancestor (the homepage <html>) has data-brand="c".
-   on-light marks cream sections inside it, where the action flips to espresso. */
+   on-light marks cream sections inside it, where the action flips to espresso;
+   on-steel marks steel sections, which take black text. */
 @custom-variant brand-c (&:where([data-brand='c'], [data-brand='c'] *));
 @custom-variant on-light (&:where([data-brand='c'] [data-surface='light'], [data-brand='c'] [data-surface='light'] *));
+@custom-variant on-steel (&:where([data-brand='c'] [data-surface='steel'], [data-brand='c'] [data-surface='steel'] *));
 
 @layer base {
   html {
@@ -133,7 +135,8 @@
     background-color: var(--color-black);
   }
 
-  [data-brand='c'] [data-surface='light'] {
+  [data-brand='c'] [data-surface='light'],
+  [data-brand='c'] [data-surface='steel'] {
     color: var(--color-black);
   }
 }

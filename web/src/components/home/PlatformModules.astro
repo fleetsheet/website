@@ -1,7 +1,6 @@
 ---
 import Badge from '@/components/ui/Badge.astro'
 import FeatureCard from '@/components/ui/FeatureCard.astro'
-import IconChip from '@/components/ui/IconChip.astro'
 import MockPanel from '@/components/ui/MockPanel.astro'
 import PageSection from '@/components/ui/PageSection.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
@@ -19,7 +18,7 @@ const { workOrders, assets, documents, workflows, auditLogs, mobile } = platform
 const stepStyles = ['bg-steel text-black', 'bg-cream text-espresso', 'bg-navy text-cream']
 ---
 
-<PageSection id="platform" containerClass="flex flex-col gap-12">
+<PageSection id="platform" class="bg-cream" surface="light" containerClass="flex flex-col gap-12">
   <SectionHeader
     eyebrow={platform.eyebrow}
     title={platform.title}
@@ -43,9 +42,9 @@ const stepStyles = ['bg-steel text-black', 'bg-cream text-espresso', 'bg-navy te
     <FeatureCard title={assets.title} description={assets.description}>
       <MockPanel class="flex flex-col gap-3">
         <div class="flex items-center gap-2.5">
-          <IconChip size="lg">
-            <Box />
-          </IconChip>
+          <span class="bg-navy text-steel flex size-9 shrink-0 items-center justify-center rounded-[10px]">
+            <Box class="size-[18px]" />
+          </span>
           <div class="flex-1">
             <p class="text-sm font-medium">{assets.asset.name}</p>
             <p class="text-fog text-xs">{assets.asset.location}</p>

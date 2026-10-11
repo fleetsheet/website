@@ -1,5 +1,5 @@
 ---
-import HeroScene from '@/components/home/HeroScene.astro'
+import HeroSignalField from '@/components/home/HeroSignalField.astro'
 import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import { getContent } from '@/data'
@@ -13,7 +13,7 @@ const { hero } = content.home
 ---
 
 <section class="relative isolate overflow-hidden bg-black">
-  <HeroScene />
+  <HeroSignalField />
   <Container class="relative flex min-h-[min(760px,calc(100svh-64px))] flex-col items-center justify-center gap-6 pt-20 pb-36 text-center sm:pb-44">
     <a
       href={localizePath(hero.announcement.href, locale)}
