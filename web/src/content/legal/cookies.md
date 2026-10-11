@@ -24,6 +24,10 @@ We use cookies mainly for collecting data for assessment of the website, for exa
 
 On our website, we use the following types of cookies:
 
+- **Essential cookies:** These keep the website secure and working smoothly as you move between pages, for example by remembering the details you enter in a form. The website relies on them to run, so they are always active.
+- **Preference cookies:** These remember your settings, such as your language and interface preferences, so the website looks and behaves the way you chose on your next visit.
+- **Analytics cookies:** These help us understand how visitors use the website, such as which pages are visited most and how people find them. We use analytics tools such as Mixpanel for this, and we review the results in aggregate to improve the website.
+
 ## Your Choices Regarding Cookies
 
 If you’d like to delete cookies or instruct your web browser to delete or refuse cookies, please visit the help pages of your web browser. Individuals under GDPR have certain rights to their information. You can learn more about this in the GDPR guide.

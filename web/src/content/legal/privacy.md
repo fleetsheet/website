@@ -29,12 +29,12 @@ We collect Device Information using the following technologies:
 
 ## How We Use Your Information
 
-We may use the information that we collect through our website for a variety of purposes supporting our (goal/mission - what sounds better?), including to:
+We may use the information that we collect through our website for a variety of purposes that support the services we provide to you, including to:
 
 - Provide you with the products, promotions and services you request.
 - Provide you with information about how to use our third-party products or services
 - Customize or personalize your use of our website, including the use of Cookies to remember your interface preferences.
-- Inform you about important public policy issues that relate to our mission/goal or that might affect our services.
+- Inform you about important public policy issues that relate to our work or that might affect our services.
 - Help us screen for potential risk (particularly using your IP address)
 - Improve and optimize our website (for example by generating analytics about how our customers interact with the website and to assess and improve its user experience.
 
@@ -60,7 +60,7 @@ However, please note that no data transmission or storage can be guaranteed to b
 
 ## Adherence to General Data Protection Regulation (GDPR)
 
-At any stage you may request for us to share any non-anonymised information that we are storing about you. To do so please email team@blackhat.agency and make your request clear.
+At any stage you may request for us to share any non-anonymised information that we are storing about you. To do so please email [support@runfleet.com](mailto:support@runfleet.com) and make your request clear.
 
 By providing your e-mail through our website, you are agreeing to receive promotional e-mails, newsletters, and similar communications from us. You may opt out of receiving these e-mails from us by clicking on the opt-out or “unsubscribe” link included in the e-mails you receive. Please note that opt-out requests may take up to 5-10 business days to be effective. Your opt-out request will not apply to messages that you request or that are not promotional in nature. For example, we may contact you concerning your account or any correspondence you have made with us, even if you opt out of receiving unsolicited promotional e-mail messages.
 
