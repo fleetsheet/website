@@ -1165,7 +1165,7 @@ export const workflowBuilderPage = {
     helpDescription: '我们的上线团队会在第一周与您一起，把审批、分派和升级流程配置到 Fleet。',
     action: { label: '联系我们的团队', href: '/contact' },
     center: '工作流',
-    nodes: ['审批', '分派', '升级', '通知', '角色', '站点'],
+    nodes: ['文档', '巡检', '问题', '审批', '升级', '完成'],
   },
   panels: {
     blocks: {

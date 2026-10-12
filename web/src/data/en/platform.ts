@@ -1532,7 +1532,7 @@ export const workflowBuilderPage = {
       'Our onboarding team works with you to map your approvals, routing and escalations into Fleet during your first week.',
     action: { label: 'Talk to our team', href: '/contact' },
     center: 'Workflow',
-    nodes: ['Approvals', 'Routing', 'Escalations', 'Notifications', 'Roles', 'Sites'],
+    nodes: ['Documents', 'Inspections', 'Issues', 'Approvals', 'Escalations', 'Completion'],
   },
   panels: {
     blocks: {

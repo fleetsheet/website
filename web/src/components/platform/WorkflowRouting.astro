@@ -1,0 +1,299 @@
+---
+/**
+ * Workflow Builder diagram: inputs on the start side (sites, roles, approvals)
+ * are routed through the workflow at the centre and out to the actions on the
+ * end side (routing, escalations, notifications). Glowing steel and cream
+ * pulses travel along the orthogonal routes in turn, in to the centre and back
+ * out, and each node lights as a pulse reaches it.
+ *
+ * Drawn once at build time; CSS runs the pulses, and everything holds still for
+ * reduced motion.
+ */
+import CircleAlert from '@lucide/astro/icons/circle-alert'
+import CircleCheck from '@lucide/astro/icons/circle-check'
+import ClipboardCheck from '@lucide/astro/icons/clipboard-check'
+import FileText from '@lucide/astro/icons/file-text'
+import Flag from '@lucide/astro/icons/flag'
+import Siren from '@lucide/astro/icons/siren'
+import Workflow from '@lucide/astro/icons/workflow'
+
+type Props = {
+  /** Node labels: the three inputs top to bottom, then the three outputs top to bottom. */
+  nodes: readonly string[]
+  center: string
+}
+
+const { nodes, center } = Astro.props
+const [documents, inspections, issues, approvals, escalations, completion] = nodes
+
+const SIZE = 440
+const MID = SIZE / 2
+const RADIUS = 12
+const CYCLE = 6
+
+type Point = { x: number; y: number }
+
+// Turn a list of points into a path with rounded corners.
+const pathFrom = (points: Point[]) => {
+  let d = `M${points[0].x} ${points[0].y}`
+  for (let i = 1; i < points.length; i++) {
+    const [prev, at, next] = [points[i - 1], points[i], points[i + 1]]
+    const inX = Math.sign(at.x - prev.x)
+    const inY = Math.sign(at.y - prev.y)
+    if (!next) {
+      d += `L${at.x} ${at.y}`
+      break
+    }
+    const outX = Math.sign(next.x - at.x)
+    const outY = Math.sign(next.y - at.y)
+    d += `L${at.x - inX * RADIUS} ${at.y - inY * RADIUS}`
+    d += `Q${at.x} ${at.y} ${at.x + outX * RADIUS} ${at.y + outY * RADIUS}`
+  }
+  return d
+}
+
+const rows = [90, MID, SIZE - 90]
+// Where each route meets the centre tile.
+const ports = [MID - 22, MID, MID + 22]
+
+const inputs = [
+  { label: documents, Icon: FileText },
+  { label: inspections, Icon: ClipboardCheck },
+  { label: issues, Icon: CircleAlert },
+].map((node, index) => {
+  const y = rows[index]
+  const port = ports[index]
+  const points =
+    y === port
+      ? [
+          { x: 124, y },
+          { x: MID - 52, y: port },
+        ]
+      : [
+          { x: 124, y },
+          { x: 150, y },
+          { x: 150, y: port },
+          { x: MID - 52, y: port },
+        ]
+  return { ...node, y, d: pathFrom(points), delay: index * (CYCLE / 6) }
+})
+
+const outputs = [
+  { label: approvals, Icon: CircleCheck },
+  { label: escalations, Icon: Siren },
+  { label: completion, Icon: Flag },
+].map((node, index) => {
+  const y = rows[index]
+  const port = ports[index]
+  const points =
+    y === port
+      ? [
+          { x: MID + 52, y: port },
+          { x: SIZE - 124, y },
+        ]
+      : [
+          { x: MID + 52, y: port },
+          { x: SIZE - 150, y: port },
+          { x: SIZE - 150, y },
+          { x: SIZE - 124, y },
+        ]
+  // Each output fires just after the input on the same row reaches the centre.
+  return { ...node, y, d: pathFrom(points), delay: index * (CYCLE / 6) + CYCLE / 2 }
+})
+
+const routes = [...inputs, ...outputs]
+const percent = (value: number) => `${(value / SIZE) * 100}%`
+---
+
+<div
+  class="workflow-routing relative mx-auto aspect-square w-full max-w-[460px]"
+  aria-hidden="true"
+>
+  <svg viewBox={`0 0 ${SIZE} ${SIZE}`} fill="none" class="absolute inset-0 size-full">
+    <defs>
+      <marker
+        id="routing-arrow"
+        viewBox="0 0 8 8"
+        refX="6"
+        refY="4"
+        markerWidth="7"
+        markerHeight="7"
+        orient="auto-start-reverse"
+      >
+        <path d="M1 1l5 3-5 3" class="arrow" />
+      </marker>
+    </defs>
+    {routes.map((route) => (
+      <path class="track" d={route.d} marker-end="url(#routing-arrow)" />
+    ))}
+    <g class="pulses">
+      {routes.map((route, index) => (
+        <path
+          class:list={['pulse', index % 3 === 1 ? 'cream' : 'steel']}
+          d={route.d}
+          pathLength="100"
+          style={`--delay: ${route.delay.toFixed(2)}s`}
+        />
+      ))}
+    </g>
+  </svg>
+
+  <div class="hub absolute flex flex-col items-center justify-center gap-1.5 rounded-2xl text-sm font-semibold">
+    <Workflow class="size-6" />
+    {center}
+  </div>
+
+  {routes.map((route, index) => (
+    <span
+      class:list={[
+        'node absolute flex items-center justify-center gap-2 rounded-lg px-2.5 py-2 text-xs font-medium whitespace-nowrap sm:justify-start',
+        index < 3 ? 'input' : 'output',
+      ]}
+      style={`top: ${percent(route.y)}; --delay: ${route.delay.toFixed(2)}s`}
+    >
+      <span class="node-icon flex size-6 items-center justify-center rounded-md">
+        <route.Icon class="size-3.5" />
+      </span>
+      <span class="hidden min-w-0 truncate sm:inline">{route.label}</span>
+    </span>
+  ))}
+</div>
+
+<style>
+  .workflow-routing {
+    --cycle: 6s;
+  }
+
+  .track {
+    stroke: var(--color-steel);
+    stroke-width: 1.25;
+    opacity: 0.45;
+  }
+
+  .arrow {
+    stroke: var(--color-steel);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .pulses {
+    filter: drop-shadow(0 0 3px var(--color-cream)) drop-shadow(0 0 10px var(--color-steel));
+  }
+
+  .pulse {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 22 78;
+    opacity: 0;
+    animation: routing-pulse var(--cycle) ease-in-out var(--delay) infinite;
+  }
+
+  .pulse.steel {
+    stroke: var(--color-steel-soft);
+  }
+
+  .pulse.cream {
+    stroke: var(--color-cream);
+  }
+
+  .hub {
+    left: 50%;
+    top: 50%;
+    width: 23%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background: linear-gradient(to top right, var(--color-steel-soft), var(--color-cream));
+    color: var(--color-navy-deep);
+    box-shadow:
+      0 0 0 6px color-mix(in srgb, var(--color-steel) 18%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-steel) 45%, transparent);
+    animation: routing-hub calc(var(--cycle) / 2) ease-in-out infinite;
+  }
+
+  /* Every node is the same width and spans from the edge to where its route
+     meets it, so the icons and labels line up in each column. */
+  .node {
+    width: calc(124 / 440 * 100%);
+    translate: 0 -50%;
+    border: 1px solid color-mix(in srgb, var(--color-cream) 22%, transparent);
+    background: color-mix(in srgb, var(--color-navy) 55%, transparent);
+    color: var(--color-cream);
+    backdrop-filter: blur(8px);
+    animation: routing-node var(--cycle) ease-in-out var(--delay) infinite;
+  }
+
+  .node.input {
+    left: 0;
+  }
+
+  .node.output {
+    right: 0;
+  }
+
+  .node-icon {
+    background: var(--color-black);
+    color: var(--color-steel);
+  }
+
+  /* Inputs light as their pulse leaves; outputs as their pulse arrives. */
+  .node.output {
+    animation-delay: calc(var(--delay) + 1.4s);
+  }
+
+  @keyframes routing-pulse {
+    0% {
+      stroke-dashoffset: 22;
+      opacity: 0;
+    }
+
+    8%,
+    28% {
+      opacity: 1;
+    }
+
+    40%,
+    100% {
+      stroke-dashoffset: -100;
+      opacity: 0;
+    }
+  }
+
+  @keyframes routing-node {
+    0%,
+    20%,
+    100% {
+      border-color: color-mix(in srgb, var(--color-cream) 22%, transparent);
+      box-shadow: none;
+    }
+
+    6%,
+    12% {
+      border-color: var(--color-cream);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--color-steel) 60%, transparent);
+    }
+  }
+
+  @keyframes routing-hub {
+    0%,
+    100% {
+      box-shadow:
+        0 0 0 6px color-mix(in srgb, var(--color-steel) 18%, transparent),
+        0 0 40px color-mix(in srgb, var(--color-steel) 45%, transparent);
+    }
+
+    50% {
+      box-shadow:
+        0 0 0 10px color-mix(in srgb, var(--color-steel) 12%, transparent),
+        0 0 60px color-mix(in srgb, var(--color-steel) 60%, transparent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse,
+    .node,
+    .hub {
+      animation: none;
+    }
+  }
+</style>

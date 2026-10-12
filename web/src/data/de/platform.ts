@@ -1433,7 +1433,7 @@ export const workflowBuilderPage = {
       'Unser Onboarding-Team überträgt in Ihrer ersten Woche gemeinsam mit Ihnen Freigaben, Zuweisungen und Eskalationen in Fleet.',
     action: { label: 'Mit unserem Team sprechen', href: '/contact' },
     center: 'Workflow',
-    nodes: ['Freigaben', 'Zuweisung', 'Eskalationen', 'Hinweise', 'Rollen', 'Standorte'],
+    nodes: ['Dokumente', 'Inspektionen', 'Störungen', 'Freigaben', 'Eskalationen', 'Abschluss'],
   },
   panels: {
     blocks: {

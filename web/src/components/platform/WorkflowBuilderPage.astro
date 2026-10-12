@@ -6,102 +6,78 @@ import CtaBanner from '@/components/ui/CtaBanner.astro'
 import IconChip from '@/components/ui/IconChip.astro'
 import MockPanel from '@/components/ui/MockPanel.astro'
 import PageSection from '@/components/ui/PageSection.astro'
+import Photo from '@/components/ui/Photo.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
-import Bell from '@lucide/astro/icons/bell'
 import ChartColumn from '@lucide/astro/icons/chart-column'
 import Check from '@lucide/astro/icons/check'
 import CircleCheck from '@lucide/astro/icons/circle-check'
 import GitBranch from '@lucide/astro/icons/git-branch'
 import Layers from '@lucide/astro/icons/layers'
-import MapPin from '@lucide/astro/icons/map-pin'
 import Plug from '@lucide/astro/icons/plug'
 import Quote from '@lucide/astro/icons/quote'
-import Route from '@lucide/astro/icons/route'
-import Siren from '@lucide/astro/icons/siren'
-import Users from '@lucide/astro/icons/users'
 import Workflow from '@lucide/astro/icons/workflow'
 import Zap from '@lucide/astro/icons/zap'
+import WorkflowRouting from './WorkflowRouting.astro'
 
 const locale = getLocale(Astro.url)
 const { workflowBuilderPage, webMobile, cta } = getContent(locale).platform
 const { hero, build, panels, templates, benefits } = workflowBuilderPage
 const { stories } = webMobile
-const nodeIcons = [CircleCheck, Route, Siren, Bell, Users, MapPin]
-const orbit = build.nodes.map((label, index) => {
-  const angle = (index / build.nodes.length) * Math.PI * 2 - Math.PI / 2
-  return {
-    label,
-    Icon: nodeIcons[index % nodeIcons.length],
-    style: `left: ${50 + 40 * Math.cos(angle)}%; top: ${50 + 40 * Math.sin(angle)}%`,
-  }
-})
+// Customer story cards: a technician, then a business leader.
+const storyPhotos = ['technicianPlantRoom', 'plantManagers'] as const
 const blockIcons = [Zap, GitBranch, CircleCheck, Workflow]
 const benefitIcons = [Layers, Zap, ChartColumn]
 ---
 
-<section class="tone-dark tone-invert">
-  <Container class="flex flex-col items-center gap-6 pt-14 pb-16 text-center">
-    <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
-    <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
-    <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
-    <Button href={hero.primaryAction.href}>
-      {hero.primaryAction.label}
-      <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-    </Button>
-    <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
-      {hero.highlights.map((highlight) => (
-        <li class="flex items-center gap-1.5">
-          <Check class="text-celestial-blue size-4" aria-hidden="true" />
-          {highlight}
-        </li>
-      ))}
-    </ul>
-  </Container>
-</section>
-
-<section>
-  <Container width="wide" class="pb-16">
-    <div class="bg-rich-blue text-alice-blue action-light grid grid-cols-1 items-center gap-12 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-2">
-      <div class="flex flex-col items-start gap-10">
-        <SectionHeader
-          eyebrow={build.eyebrow}
-          title={build.title}
-          description={build.description}
-          tone="dark"
-        />
-        <div class="border-azul-blue flex flex-col items-start gap-4 border-t pt-8">
-          <h3 class="text-xl font-semibold text-white">{build.helpTitle}</h3>
-          <p class="text-columbia-blue text-[15px] leading-[1.6]">{build.helpDescription}</p>
-          <Button href={build.action.href} variant="accent">
-            {build.action.label}
-          </Button>
-        </div>
-      </div>
-      <div class="relative mx-auto aspect-square w-full max-w-[440px]" aria-hidden="true">
-        <div class="border-azul-blue-light absolute inset-[10%] rounded-full border-2 border-dashed"></div>
-        <div class="border-azul-blue absolute inset-[30%] rounded-full border-2"></div>
-        <span class="bg-sun-orange text-rich-blue absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5 rounded-2xl px-4 py-3.5 text-sm font-bold">
-          <Workflow class="size-6" />
-          {build.center}
-        </span>
-        {orbit.map((node) => (
-          <span
-            class="bg-surface text-rich-blue shadow-float absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-lg px-2.5 py-2 text-xs font-semibold whitespace-nowrap"
-            style={node.style}
-          >
-            <IconChip size="sm">
-              <node.Icon />
-            </IconChip>
-            <span class="hidden sm:inline">{node.label}</span>
-          </span>
+<!-- One ground from the hero through the Build section: dark navy easing through
+     steel to white, where the next section begins. -->
+<div class="builder-ground">
+  <section class="tone-dark tone-invert bg-transparent! bg-none!">
+    <Container class="flex flex-col items-center gap-6 pt-14 pb-16 text-center">
+      <p class="eyebrow text-azul-blue">{hero.eyebrow}</p>
+      <h1 class="text-display-xl hyphenate max-w-[900px]">{hero.title}</h1>
+      <p class="text-lead text-azul-blue max-w-[680px] text-pretty">{hero.description}</p>
+      <Button href={hero.primaryAction.href}>
+        {hero.primaryAction.label}
+        <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+      </Button>
+      <ul class="text-azul-blue flex flex-wrap justify-center gap-5 text-sm">
+        {hero.highlights.map((highlight) => (
+          <li class="flex items-center gap-1.5">
+            <Check class="text-celestial-blue size-4" aria-hidden="true" />
+            {highlight}
+          </li>
         ))}
+      </ul>
+    </Container>
+  </section>
+
+  <section>
+    <Container width="wide" class="pb-16">
+      <div class="bg-rich-blue text-alice-blue action-light grid grid-cols-1 items-center gap-12 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-2">
+        <div class="flex flex-col items-start gap-10">
+          <SectionHeader
+            eyebrow={build.eyebrow}
+            title={build.title}
+            description={build.description}
+            tone="dark"
+          />
+          <div class="border-azul-blue flex flex-col items-start gap-4 border-t pt-8">
+            <h3 class="text-display-md text-white">{build.helpTitle}</h3>
+            <p class="text-columbia-blue text-[15px] leading-[1.6]">{build.helpDescription}</p>
+            <Button href={build.action.href} variant="accent">
+              {build.action.label}
+            </Button>
+          </div>
+        </div>
+        <WorkflowRouting nodes={build.nodes} center={build.center} />
       </div>
-    </div>
-  </Container>
-</section>
+    </Container>
+  </section>
+</div>
 
 <PageSection tone="surface" containerClass="grid grid-cols-1 gap-12 lg:grid-cols-2">
   <div class="flex flex-col gap-8">
@@ -173,7 +149,7 @@ const benefitIcons = [Layers, Zap, ChartColumn]
   <SectionHeader title={templates.title} description={templates.description} />
   <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2" aria-label={templates.title}>
     {templates.items.map((item) => (
-      <li class="bg-surface border-border flex flex-col gap-3 rounded-xl border p-5 shadow-xs">
+      <li class="border-steel-soft from-steel-soft/70 to-steel-mist flex flex-col gap-3 rounded-xl border bg-linear-to-br p-5 shadow-xs">
         <IconChip size="sm">
           <Workflow />
         </IconChip>
@@ -215,13 +191,25 @@ const benefitIcons = [Layers, Zap, ChartColumn]
 <PageSection containerClass="flex flex-col gap-12">
   <SectionHeader eyebrow={stories.eyebrow} title={stories.title} />
   <ul class="grid grid-cols-1 gap-5 md:grid-cols-2">
-    {stories.items.map((story) => (
-      <li class="bg-surface border-border flex flex-col gap-6 rounded-xl border p-8 shadow-xs">
-        <Quote class="text-celestial-blue size-8 rtl:-scale-x-100" aria-hidden="true" />
-        <blockquote class="font-display text-xl leading-snug font-medium">{story.quote}</blockquote>
-        <p class="mt-auto text-sm">
+    {stories.items.map((story, index) => (
+      <li class="text-cream relative isolate flex min-h-80 flex-col gap-6 overflow-hidden rounded-xl p-8">
+        <Photo
+          photo={{ id: storyPhotos[index % storyPhotos.length], alt: '' }}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          class="-z-10"
+        />
+        {/* A blue overlay, deepest at the bottom where the quote sits. */}
+        <div
+          class="from-navy-deep/55 via-navy-deep/75 to-navy-night/95 absolute inset-0 -z-10 bg-linear-to-b"
+          aria-hidden="true"
+        />
+        <Quote class="text-steel-soft size-8 rtl:-scale-x-100" aria-hidden="true" />
+        <blockquote class="font-display mt-auto text-xl leading-snug font-medium">
+          {story.quote}
+        </blockquote>
+        <p class="text-sm">
           <span class="block font-semibold">{story.author}</span>
-          <span class="text-azul-blue">{story.company}</span>
+          <span class="text-cream/75">{story.company}</span>
         </p>
       </li>
     ))}
@@ -234,3 +222,25 @@ const benefitIcons = [Layers, Zap, ChartColumn]
   primaryAction={cta.primaryAction}
   secondaryAction={cta.secondaryAction}
 />
+
+<style>
+  .builder-ground {
+    background:
+      radial-gradient(
+        ellipse 55% 30% at 100% 0%,
+        color-mix(in srgb, var(--color-steel) 14%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(
+        in oklab to bottom,
+        var(--color-navy-night),
+        var(--color-navy-deep) 22%,
+        var(--color-navy) 40%,
+        color-mix(in oklab, var(--color-navy), var(--color-steel)) 52%,
+        var(--color-steel) 64%,
+        var(--color-steel-soft) 78%,
+        var(--color-steel-mist) 90%,
+        var(--color-white)
+      );
+  }
+</style>
