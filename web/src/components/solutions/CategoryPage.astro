@@ -12,6 +12,7 @@ import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import type { CategoryIcon } from '@/data/en/solutions'
 import { getLocale, localizePath } from '@/i18n'
+import type { PhotoId } from '@/photos'
 import { solutionPages, type SolutionPageId } from '@/solutions'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import BadgeCheck from '@lucide/astro/icons/badge-check'
@@ -79,10 +80,30 @@ const heroChart = tabVisuals.find(
 const heroFlow = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
 // The CAFM & CMMS hero runs the blueprint motion behind a glass preview.
 const blueprint = page === 'cafm'
+// Industry heroes with a photo behind them, darkened under a blue overlay.
+const heroPhotos: Partial<Record<SolutionPageId, PhotoId>> = {
+  facilityManagement: 'steelCoilAisle',
+  hospitality: 'wokKitchen',
+  logistics: 'containerPort',
+  dataCenters: 'serverRacks',
+  mep: 'mepModel',
+}
+const heroPhoto = heroPhotos[page]
 ---
 
 <section class="tone-dark tone-invert relative isolate overflow-hidden">
   {blueprint && <BlueprintField />}
+  {heroPhoto && (
+    <>
+      <Photo
+        photo={{ id: heroPhoto, alt: '' }}
+        sizes="100vw"
+        loading="eager"
+        class="-z-10 saturate-75"
+      />
+      <div class="hero-photo-overlay absolute inset-0 -z-10" aria-hidden="true" />
+    </>
+  )}
   <Container class="grid grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:py-16">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
@@ -116,7 +137,7 @@ const blueprint = page === 'cafm'
       chart={heroChart}
       flow={heroFlow}
       features={capabilities.tabs.map((tab) => ({ label: tab.label, icon: tabIcons[tab.icon] }))}
-      glass={blueprint}
+      glass={blueprint ? 'clear' : heroPhoto ? 'frosted' : undefined}
     />
   </Container>
 </section>
@@ -267,3 +288,51 @@ const blueprint = page === 'cafm'
     </div>
   </Container>
 </section>
+
+<style>
+  /* Deep blue over the hero photo: darkest behind the copy so it pops, and
+     light behind the preview so the photo reads. */
+  .hero-photo-overlay {
+    background:
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--color-navy-night) 94%, transparent) 25%,
+        color-mix(in srgb, var(--color-navy-deep) 72%, transparent) 45%,
+        color-mix(in srgb, var(--color-navy-deep) 30%, transparent) 68%,
+        color-mix(in srgb, var(--color-navy-deep) 20%, transparent)
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 70%,
+        color-mix(in srgb, var(--color-black) 45%, transparent)
+      );
+  }
+
+  :global([dir='rtl']) .hero-photo-overlay {
+    background:
+      linear-gradient(
+        to left,
+        color-mix(in srgb, var(--color-navy-night) 94%, transparent) 25%,
+        color-mix(in srgb, var(--color-navy-deep) 72%, transparent) 45%,
+        color-mix(in srgb, var(--color-navy-deep) 30%, transparent) 68%,
+        color-mix(in srgb, var(--color-navy-deep) 20%, transparent)
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 70%,
+        color-mix(in srgb, var(--color-black) 45%, transparent)
+      );
+  }
+
+  /* On narrow screens the copy sits above the preview. */
+  @media (max-width: 63.99rem) {
+    .hero-photo-overlay,
+    :global([dir='rtl']) .hero-photo-overlay {
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-navy-night) 92%, transparent) 40%,
+        color-mix(in srgb, var(--color-navy-deep) 72%, transparent)
+      );
+    }
+  }
+</style>

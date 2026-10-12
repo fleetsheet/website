@@ -6,6 +6,7 @@ import chefManager from '@/assets/photos/chef-manager.jpg'
 import cityTowers from '@/assets/photos/city-towers.jpg'
 import cleanerCorridor from '@/assets/photos/cleaner-corridor.jpg'
 import colleaguesTablets from '@/assets/photos/colleagues-tablets.jpg'
+import containerPort from '@/assets/photos/container-port.jpg'
 import dataCenter from '@/assets/photos/data-center.jpg'
 import electricianPanel from '@/assets/photos/electrician-panel.jpg'
 import engineersRooftop from '@/assets/photos/engineers-rooftop.jpg'
@@ -20,6 +21,7 @@ import inspectionClipboard from '@/assets/photos/inspection-clipboard.jpg'
 import liftShaft from '@/assets/photos/lift-shaft.jpg'
 import liftTechnician from '@/assets/photos/lift-technician.jpg'
 import mallAtrium from '@/assets/photos/mall-atrium.jpg'
+import mepModel from '@/assets/photos/mep-model.jpg'
 import officeCollaboration from '@/assets/photos/office-collaboration.jpg'
 import officeCorridor from '@/assets/photos/office-corridor.jpg'
 import officeFloor from '@/assets/photos/office-floor.jpg'
@@ -29,7 +31,9 @@ import plantManagers from '@/assets/photos/plant-managers.jpg'
 import plumberRepair from '@/assets/photos/plumber-repair.jpg'
 import propertyManager from '@/assets/photos/property-manager.jpg'
 import rooftopUnits from '@/assets/photos/rooftop-units.jpg'
+import serverRacks from '@/assets/photos/server-racks.jpg'
 import solarRooftop from '@/assets/photos/solar-rooftop.jpg'
+import steelCoilAisle from '@/assets/photos/steel-coil-aisle.jpg'
 import stockCheck from '@/assets/photos/stock-check.jpg'
 import supportAgent from '@/assets/photos/support-agent.jpg'
 import teamWorkshop from '@/assets/photos/team-workshop.jpg'
@@ -40,6 +44,7 @@ import vanDriver from '@/assets/photos/van-driver.jpg'
 import warehouseAnalytics from '@/assets/photos/warehouse-analytics.jpg'
 import warehouseTeam from '@/assets/photos/warehouse-team.jpg'
 import welcomeHandshake from '@/assets/photos/welcome-handshake.jpg'
+import wokKitchen from '@/assets/photos/wok-kitchen.jpg'
 
 /** Editorial photos from the Fleet photo library, referenced by id from page data. */
 export const photos = {
@@ -51,6 +56,7 @@ export const photos = {
   cityTowers,
   cleanerCorridor,
   colleaguesTablets,
+  containerPort,
   dataCenter,
   electricianPanel,
   engineersRooftop,
@@ -65,6 +71,7 @@ export const photos = {
   liftShaft,
   liftTechnician,
   mallAtrium,
+  mepModel,
   officeCollaboration,
   officeCorridor,
   officeFloor,
@@ -74,7 +81,9 @@ export const photos = {
   plumberRepair,
   propertyManager,
   rooftopUnits,
+  serverRacks,
   solarRooftop,
+  steelCoilAisle,
   stockCheck,
   supportAgent,
   teamWorkshop,
@@ -85,6 +94,7 @@ export const photos = {
   warehouseAnalytics,
   warehouseTeam,
   welcomeHandshake,
+  wokKitchen,
 }
 
 export type PhotoId = keyof typeof photos
