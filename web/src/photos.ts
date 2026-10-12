@@ -14,6 +14,7 @@ import factoryTechnician from '@/assets/photos/factory-technician.jpg'
 import fleetInspection from '@/assets/photos/fleet-inspection.jpg'
 import fleetManager from '@/assets/photos/fleet-manager.jpg'
 import fleetVans from '@/assets/photos/fleet-vans.jpg'
+import gymFloor from '@/assets/photos/gym-floor.jpg'
 import hotelHousekeeping from '@/assets/photos/hotel-housekeeping.jpg'
 import hotelReception from '@/assets/photos/hotel-reception.jpg'
 import hvacTechnicians from '@/assets/photos/hvac-technicians.jpg'
@@ -21,15 +22,19 @@ import inspectionClipboard from '@/assets/photos/inspection-clipboard.jpg'
 import liftShaft from '@/assets/photos/lift-shaft.jpg'
 import liftTechnician from '@/assets/photos/lift-technician.jpg'
 import mallAtrium from '@/assets/photos/mall-atrium.jpg'
+import mallSkylight from '@/assets/photos/mall-skylight.jpg'
 import mepModel from '@/assets/photos/mep-model.jpg'
 import officeCollaboration from '@/assets/photos/office-collaboration.jpg'
 import officeCorridor from '@/assets/photos/office-corridor.jpg'
 import officeFloor from '@/assets/photos/office-floor.jpg'
 import officeTeam from '@/assets/photos/office-team.jpg'
+import operatingTheatre from '@/assets/photos/operating-theatre.jpg'
 import partnerMeeting from '@/assets/photos/partner-meeting.jpg'
 import plantManagers from '@/assets/photos/plant-managers.jpg'
 import plumberRepair from '@/assets/photos/plumber-repair.jpg'
 import propertyManager from '@/assets/photos/property-manager.jpg'
+import robotAssemblyLine from '@/assets/photos/robot-assembly-line.jpg'
+import rooftopCondensers from '@/assets/photos/rooftop-condensers.jpg'
 import rooftopUnits from '@/assets/photos/rooftop-units.jpg'
 import serverRacks from '@/assets/photos/server-racks.jpg'
 import solarRooftop from '@/assets/photos/solar-rooftop.jpg'
@@ -64,6 +69,7 @@ export const photos = {
   fleetInspection,
   fleetManager,
   fleetVans,
+  gymFloor,
   hotelHousekeeping,
   hotelReception,
   hvacTechnicians,
@@ -71,15 +77,19 @@ export const photos = {
   liftShaft,
   liftTechnician,
   mallAtrium,
+  mallSkylight,
   mepModel,
   officeCollaboration,
   officeCorridor,
   officeFloor,
   officeTeam,
+  operatingTheatre,
   partnerMeeting,
   plantManagers,
   plumberRepair,
   propertyManager,
+  robotAssemblyLine,
+  rooftopCondensers,
   rooftopUnits,
   serverRacks,
   solarRooftop,
