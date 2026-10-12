@@ -9,11 +9,6 @@ import { getLocale, localizePath } from '@/i18n'
 import { legalPages } from '@/legal'
 import { resourcePages } from '@/resources'
 
-type Props = {
-  brand?: 'c'
-}
-
-const { brand } = Astro.props
 const locale = getLocale(Astro.url)
 const { site, resources, about, legal } = getContent(locale)
 const { tagline } = site
@@ -35,15 +30,12 @@ const footerColumns = [
 const { name } = websiteConfig
 ---
 
-<!-- The footer is dark everywhere; outside the homepage it carries its own grid glow. -->
+<!-- The footer is dark everywhere and carries its own grid glow. -->
 <footer
   data-brand="c"
-  class:list={[
-    'border-border brand-c:border-hairline border-t',
-    brand !== 'c' && 'relative isolate overflow-hidden bg-black',
-  ]}
+  class="border-border brand-c:border-hairline relative isolate overflow-hidden border-t bg-black"
 >
-  {brand !== 'c' && <ClosingBackdrop />}
+  <ClosingBackdrop />
   <Container class="flex flex-wrap justify-between gap-12 py-12">
     <div class="flex max-w-[280px] flex-col gap-3">
       <Logo tone="light" />
