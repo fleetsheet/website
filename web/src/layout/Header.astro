@@ -8,9 +8,11 @@ import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import IconChip from '@/components/ui/IconChip.astro'
 import Logo from '@/components/ui/Logo.astro'
+import Photo from '@/components/ui/Photo.astro'
 import type { NavLink } from '@/config'
 import { getContent } from '@/data'
 import { getLocale, localizePath } from '@/i18n'
+import type { PhotoId } from '@/photos'
 import { platformGroups, platformPages, type PlatformPageId } from '@/platform'
 import { resourceGroups, resourcePages, type ResourcePageId } from '@/resources'
 import { solutionGroups, solutionPages, type SolutionPageId } from '@/solutions'
@@ -127,6 +129,13 @@ const megaMenus = [
   },
 ]
 type MegaMenu = (typeof megaMenus)[number]
+// The promo panel in each dropdown sits on one of the industry hero photos.
+const promoPhotos: Record<MegaMenu['id'], PhotoId> = {
+  platform: 'robotAssemblyLine',
+  solutions: 'containerPort',
+  resources: 'serverRacks',
+  about: 'mallSkylight',
+}
 // Navigation order: the dropdowns (Platform, Solutions, Resources, About Fleet), then plain links.
 const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLink })[] = [
   ...megaMenus.map((menu) => ({ kind: 'mega' as const, menu })),
@@ -279,7 +288,12 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
             </ul>
           </div>
         ))}
-        <div class="bg-supergraphic brand-c:bg-black/45 brand-c:bg-none brand-c:border-cream/15 flex flex-col items-start gap-3 rounded-xl border border-transparent p-6">
+        <div class="brand-c:border-cream/15 relative isolate flex min-h-56 flex-col items-start gap-3 overflow-hidden rounded-xl border border-transparent p-6">
+          <Photo photo={{ id: promoPhotos[megaMenu.id], alt: '' }} sizes="280px" class="-z-10" />
+          <div
+            class="from-navy-night/95 via-navy-deep/75 to-navy-night/90 absolute inset-0 -z-10 bg-linear-to-b"
+            aria-hidden="true"
+          />
           <p class="font-display brand-c:text-cream text-base font-semibold text-white">
             {megaMenu.promo.title}
           </p>
