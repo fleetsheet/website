@@ -208,7 +208,7 @@ export const aiAgents = {
     },
   ],
   chat: {
-    assistant: 'مساعد Fleet',
+    assistant: 'RunnerAI',
     context: 'بيانات حية · 14 موقعًا',
     question: 'ما المواقع التي شهدت أطول توقف لأنظمة التكييف في الربع الماضي، وكم كلّفنا ذلك؟',
     answer: {

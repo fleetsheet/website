@@ -225,7 +225,7 @@ export const aiAgents = {
     },
   ],
   chat: {
-    assistant: 'Assistant Fleet',
+    assistant: 'RunnerAI',
     context: 'Données en direct · 14 sites',
     question:
       'Quels sites ont connu le plus d’arrêts CVC le trimestre dernier, et combien cela nous a-t-il coûté ?',

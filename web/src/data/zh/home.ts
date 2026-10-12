@@ -197,7 +197,7 @@ export const aiAgents = {
     },
   ],
   chat: {
-    assistant: 'Fleet 助手',
+    assistant: 'RunnerAI',
     context: '实时数据 · 14 个地点',
     question: '上季度哪些物业的暖通空调停机时间最长？造成了多少损失？',
     answer: {

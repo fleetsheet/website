@@ -213,7 +213,7 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
   {megaMenus.map((megaMenu) => (
     <div
       id={`${megaMenu.id}-menu`}
-      class="bg-surface border-border brand-c:bg-navy-deep/90 brand-c:border-cream/15 absolute inset-x-0 top-full hidden glass-blur max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain border-b shadow-lg lg:data-open:block"
+      class="bg-surface border-border brand-c:bg-navy-deep/80 brand-c:border-cream/15 absolute inset-x-0 top-full hidden glass-blur max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain border-b shadow-lg lg:data-open:block"
       data-mega-panel
     >
       <Container
@@ -245,7 +245,7 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
                       entry.kind === 'contact' && 'bg-page brand-c:bg-navy/60 mt-1',
                     ]}
                   >
-                    <IconChip size="sm">
+                    <IconChip size="sm" class="brand-c:bg-black! brand-c:text-steel!">
                       {entry.kind === 'platform' ? (
                         <PlatformIcon id={entry.id} />
                       ) : entry.kind === 'solution' ? (
@@ -323,7 +323,7 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
                                 href={localize(entry.href)}
                                 class="hover:bg-border brand-c:hover:bg-navy flex items-center gap-3 rounded-md px-2 py-2 text-base"
                               >
-                                <IconChip size="sm">
+                                <IconChip size="sm" class="brand-c:bg-black! brand-c:text-steel!">
                                   {entry.kind === 'platform' ? (
                                     <PlatformIcon id={entry.id} />
                                   ) : entry.kind === 'solution' ? (

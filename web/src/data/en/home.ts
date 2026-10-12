@@ -206,7 +206,7 @@ export const aiAgents = {
     },
   ],
   chat: {
-    assistant: 'Fleet Assistant',
+    assistant: 'RunnerAI',
     context: 'Live data · 14 locations',
     question: 'Which sites had the most HVAC downtime last quarter, and what did it cost us?',
     answer: {

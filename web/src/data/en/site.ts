@@ -17,9 +17,9 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: 'Platform',
     links: [
       { label: 'Overview', href: '/platform' },
-      { label: 'Asset management', href: '/features/asset-management' },
-      { label: 'Document management', href: '/features/document-management' },
-      { label: 'Audit tracking & inspections', href: '/features/audit-tracking' },
+      { label: 'Asset Management', href: '/features/asset-management' },
+      { label: 'Document Management', href: '/features/document-management' },
+      { label: 'Audit Tracking & Inspections', href: '/features/audit-tracking' },
       { label: 'RunnerAI', href: '/platform/runner-ai' },
     ],
   },
@@ -27,7 +27,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: 'Company',
     links: [
       { label: 'FAQs', href: '/faqs' },
-      { label: 'AI agents', href: '/#ai' },
+      { label: 'AI Agents', href: '/#ai' },
       { label: 'Contact', href: '/contact' },
     ],
   },
