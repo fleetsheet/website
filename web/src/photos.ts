@@ -45,7 +45,9 @@ import teamWorkshop from '@/assets/photos/team-workshop.jpg'
 import technicianDrill from '@/assets/photos/technician-drill.jpg'
 import technicianPlantRoom from '@/assets/photos/technician-plant-room.jpg'
 import techniciansPanel from '@/assets/photos/technicians-panel.jpg'
+import towerFacadeNight from '@/assets/photos/tower-facade-night.jpg'
 import vanDriver from '@/assets/photos/van-driver.jpg'
+import vanFleetParking from '@/assets/photos/van-fleet-parking.jpg'
 import warehouseAnalytics from '@/assets/photos/warehouse-analytics.jpg'
 import warehouseTeam from '@/assets/photos/warehouse-team.jpg'
 import welcomeHandshake from '@/assets/photos/welcome-handshake.jpg'
@@ -100,7 +102,9 @@ export const photos = {
   technicianDrill,
   technicianPlantRoom,
   techniciansPanel,
+  towerFacadeNight,
   vanDriver,
+  vanFleetParking,
   warehouseAnalytics,
   warehouseTeam,
   welcomeHandshake,
