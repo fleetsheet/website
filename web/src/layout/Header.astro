@@ -129,7 +129,8 @@ const megaMenus = [
   },
 ]
 type MegaMenu = (typeof megaMenus)[number]
-// The promo panel in each dropdown sits on one of the industry hero photos.
+// The promo panel in each dropdown sits on one of the industry hero photos, in
+// black and white so the overlay tints it dark blue only.
 const promoPhotos: Record<MegaMenu['id'], PhotoId> = {
   platform: 'robotAssemblyLine',
   solutions: 'containerPort',
@@ -289,7 +290,11 @@ const navItems: ({ kind: 'mega'; menu: MegaMenu } | { kind: 'link'; link: NavLin
           </div>
         ))}
         <div class="brand-c:border-cream/15 relative isolate flex min-h-56 flex-col items-start gap-3 overflow-hidden rounded-xl border border-transparent p-6">
-          <Photo photo={{ id: promoPhotos[megaMenu.id], alt: '' }} sizes="280px" class="-z-10" />
+          <Photo
+            photo={{ id: promoPhotos[megaMenu.id], alt: '' }}
+            sizes="280px"
+            class="-z-10 grayscale"
+          />
           <div
             class="from-navy-night/95 via-navy-deep/75 to-navy-night/90 absolute inset-0 -z-10 bg-linear-to-b"
             aria-hidden="true"
