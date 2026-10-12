@@ -25,6 +25,7 @@ import ChallengeCards from './ChallengeCards.astro'
 import FeatureBanner from './FeatureBanner.astro'
 import FeatureRows from './FeatureRows.astro'
 import IndustriesIntegrate from './IndustriesIntegrate.astro'
+import RunnerOrbit from './RunnerOrbit.astro'
 import StepsBand from './StepsBand.astro'
 
 const { runnerAiPage, cta } = getContent(getLocale(Astro.url)).platform
@@ -44,7 +45,10 @@ const stepStyles = [
 ]
 ---
 
-<section class="tone-dark text-alice-blue">
+<!-- Orbit motion behind the hero and its glass preview, on a ground that runs
+     from navy to black and then lightens to white through the next section. -->
+<section class="runner-hero text-alice-blue relative isolate overflow-hidden">
+  <RunnerOrbit />
   <Container class="grid grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:py-16">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-sky-blue flex items-center gap-2.5">
@@ -65,7 +69,7 @@ const stepStyles = [
         </Button>
       </div>
     </div>
-    <div aria-hidden="true">
+    <div class="tone-invert glass-ui" aria-hidden="true">
       <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
         <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
           <IconChip size="sm">
@@ -111,7 +115,7 @@ const stepStyles = [
   </Container>
 </section>
 
-<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} />
+<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} class="runner-fade" />
 
 <CapabilityTabs
   idPrefix="runner"
@@ -164,3 +168,34 @@ const stepStyles = [
   primaryAction={cta.primaryAction}
   secondaryAction={cta.secondaryAction}
 />
+
+<style>
+  .runner-hero {
+    --color-action: var(--color-cream);
+    --color-on-action: var(--color-espresso);
+
+    background:
+      radial-gradient(
+        ellipse 55% 70% at 100% 0%,
+        color-mix(in srgb, var(--color-steel) 14%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(to bottom, var(--color-navy-deep), var(--color-black));
+  }
+
+  /* Picks up the hero's black and lightens through steel to white, where the
+     capabilities section begins. */
+  :global(.runner-fade) {
+    background: linear-gradient(
+      to bottom,
+      var(--color-black),
+      var(--color-navy-night) 14%,
+      var(--color-navy-deep) 26%,
+      var(--color-navy) 44%,
+      var(--color-steel) 66%,
+      var(--color-steel-soft) 80%,
+      var(--color-steel-mist) 91%,
+      var(--color-white)
+    );
+  }
+</style>

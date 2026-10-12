@@ -6,12 +6,13 @@ import Sparkles from '@lucide/astro/icons/sparkles'
 type Props = {
   pressure: { title: string; description: string; points: string[] }
   answer: { title: string; description: string }
+  class?: string
 }
 
-const { pressure, answer } = Astro.props
+const { pressure, answer, class: className } = Astro.props
 ---
 
-<PageSection containerClass="grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
+<PageSection class={className} containerClass="grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
   <div class="bg-azul-blue text-alice-blue flex flex-col gap-5 rounded-2xl p-8 lg:p-10">
     <h2 class="text-display-md text-white">{pressure.title}</h2>
     <p class="text-columbia-blue text-[17px] leading-[1.65]">{pressure.description}</p>
