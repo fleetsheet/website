@@ -2,9 +2,11 @@
 import Button from '@/components/ui/Button.astro'
 import IconChip from '@/components/ui/IconChip.astro'
 import PageSection from '@/components/ui/PageSection.astro'
+import Photo from '@/components/ui/Photo.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import { getLocale } from '@/i18n'
+import type { PhotoId } from '@/photos'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
 import Check from '@lucide/astro/icons/check'
 import Plug from '@lucide/astro/icons/plug'
@@ -16,15 +18,36 @@ type Props = {
 
 const { industries, integrate } = Astro.props
 const { overview } = getContent(getLocale(Astro.url)).platform
+// One photo per property type, in the order of the industries list in every language.
+const industryPhotos: PhotoId[] = [
+  'mallAtrium',
+  'hotelReception',
+  'warehouseTeam',
+  'apartmentBuilding',
+  'officeFloor',
+  'cityTowers',
+  'officeCorridor',
+  'fleetVans',
+]
 ---
 
 <PageSection containerClass="flex flex-col gap-10">
   <SectionHeader title={industries.title} description={industries.description} align="center" />
   <ul class="grid grid-cols-2 gap-4 md:grid-cols-4">
-    {overview.industries.items.map((item) => (
-      <li class="bg-surface border-border flex min-h-28 flex-col justify-between gap-4 rounded-xl border p-5 shadow-xs">
-        <Check class="text-celestial-blue size-5" aria-hidden="true" />
-        <span class="font-display text-[15px] font-semibold">{item}</span>
+    {overview.industries.items.map((item, index) => (
+      <li class="border-border relative isolate flex min-h-40 flex-col justify-between gap-4 overflow-hidden rounded-xl border p-5 shadow-xs">
+        <Photo
+          photo={{ id: industryPhotos[index % industryPhotos.length], alt: '' }}
+          sizes="(min-width: 768px) 25vw, 50vw"
+          class="-z-10"
+        />
+        {/* A blue overlay, deeper at the bottom, keeps the label readable. */}
+        <div
+          class="from-navy-deep/60 via-navy-deep/40 to-navy-deep/85 absolute inset-0 -z-10 bg-linear-to-b"
+          aria-hidden="true"
+        />
+        <Check class="text-cream size-5" aria-hidden="true" />
+        <span class="font-display text-cream text-[15px] font-semibold">{item}</span>
       </li>
     ))}
   </ul>
