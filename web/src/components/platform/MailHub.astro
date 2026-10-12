@@ -1,0 +1,280 @@
+---
+/**
+ * Fleet Mail diagram: tenants and vendors email in, Fleet Mail turns each
+ * message into a job, and updates go out to technicians and managers. Glowing
+ * steel and cream pulses run along the spokes, in from the senders and out to
+ * the recipients, each node lights as a pulse reaches it, and small envelopes
+ * circle the dashed ring.
+ *
+ * Drawn once at build time; CSS runs the motion, and everything holds still for
+ * reduced motion.
+ */
+import Building from '@lucide/astro/icons/building'
+import Handshake from '@lucide/astro/icons/handshake'
+import Mail from '@lucide/astro/icons/mail'
+import Users from '@lucide/astro/icons/users'
+import Wrench from '@lucide/astro/icons/wrench'
+
+type Props = {
+  /** Node labels in content order: tenants, vendors, technicians, managers. */
+  nodes: readonly string[]
+  center: string
+}
+
+const { nodes, center } = Astro.props
+const [tenants, vendors, technicians, managers] = nodes
+
+const SIZE = 440
+const MID = SIZE / 2
+const RING = 150
+const HUB = 52
+const CYCLE = 6
+
+const spokes = [
+  { label: tenants, Icon: Users, x: MID, y: MID - RING, inbound: true },
+  { label: vendors, Icon: Handshake, x: MID - RING, y: MID, inbound: true },
+  { label: technicians, Icon: Wrench, x: MID + RING, y: MID, inbound: false },
+  { label: managers, Icon: Building, x: MID, y: MID + RING, inbound: false },
+].map((spoke, index) => {
+  const dx = Math.sign(spoke.x - MID)
+  const dy = Math.sign(spoke.y - MID)
+  const outer = { x: spoke.x - dx * 34, y: spoke.y - dy * 30 }
+  const inner = { x: MID + dx * HUB, y: MID + dy * HUB }
+  // Inbound pulses run from the sender to the hub; outbound from the hub out.
+  const [from, to] = spoke.inbound ? [outer, inner] : [inner, outer]
+  return {
+    ...spoke,
+    d: `M${from.x} ${from.y}L${to.x} ${to.y}`,
+    delay: spoke.inbound ? index * (CYCLE / 4) : CYCLE / 2 + (index - 2) * (CYCLE / 4),
+  }
+})
+
+const envelopes = [45, 135, 225, 315]
+const percent = (value: number) => `${(value / SIZE) * 100}%`
+---
+
+<div class="mail-hub relative mx-auto aspect-square w-full max-w-[460px]" aria-hidden="true">
+  <svg viewBox={`0 0 ${SIZE} ${SIZE}`} fill="none" class="absolute inset-0 size-full">
+    <circle class="ring" cx={MID} cy={MID} r={RING} />
+    {spokes.map((spoke) => (
+      <path class="track" d={spoke.d} />
+    ))}
+    <g class="pulses">
+      {spokes.map((spoke, index) => (
+        <path
+          class:list={['pulse', index % 2 ? 'cream' : 'steel']}
+          d={spoke.d}
+          pathLength="100"
+          style={`--delay: ${spoke.delay.toFixed(2)}s`}
+        />
+      ))}
+    </g>
+  </svg>
+
+  <div class="orbit">
+    {envelopes.map((angle) => (
+      <span class="envelope-slot" style={`--a: ${angle}deg`}>
+        <span class="envelope">
+          <Mail class="size-4" />
+        </span>
+      </span>
+    ))}
+  </div>
+
+  <div class="hub absolute flex flex-col items-center justify-center gap-1.5 rounded-2xl text-sm font-semibold">
+    <Mail class="size-6" />
+    {center}
+  </div>
+
+  {spokes.map((spoke) => (
+    <span
+      class="node absolute flex flex-col items-center gap-1.5 rounded-xl px-3 py-2.5 text-center text-xs font-medium"
+      style={`left: ${percent(spoke.x)}; top: ${percent(spoke.y)}; --delay: ${(spoke.inbound ? spoke.delay : spoke.delay + 1.4).toFixed(2)}s`}
+    >
+      <span class="node-icon flex size-7 items-center justify-center rounded-md">
+        <spoke.Icon class="size-4" />
+      </span>
+      {spoke.label}
+    </span>
+  ))}
+</div>
+
+<style>
+  .mail-hub {
+    --cycle: 6s;
+
+    container-type: inline-size;
+  }
+
+  .ring {
+    stroke: var(--color-steel);
+    stroke-width: 1.25;
+    stroke-dasharray: 4 6;
+    opacity: 0.45;
+    transform-origin: center;
+    animation: hub-spin 60s linear infinite;
+  }
+
+  .track {
+    stroke: var(--color-steel);
+    stroke-width: 1.25;
+    opacity: 0.35;
+  }
+
+  .pulses {
+    filter: drop-shadow(0 0 3px var(--color-cream)) drop-shadow(0 0 10px var(--color-steel));
+  }
+
+  .pulse {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 26 74;
+    opacity: 0;
+    animation: hub-pulse var(--cycle) ease-in-out var(--delay) infinite;
+  }
+
+  .pulse.steel {
+    stroke: var(--color-steel-soft);
+  }
+
+  .pulse.cream {
+    stroke: var(--color-cream);
+  }
+
+  /* Envelopes circling the ring between the nodes. */
+  .orbit {
+    position: absolute;
+    inset: 0;
+    animation: hub-spin 40s linear infinite;
+  }
+
+  .envelope-slot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    rotate: var(--a);
+  }
+
+  .envelope {
+    position: absolute;
+    display: flex;
+    width: 36px;
+    height: 36px;
+    margin: -18px;
+    translate: 0 calc(150 / 440 * -100cqw);
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in srgb, var(--color-cream) 16%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-navy) 70%, transparent);
+    color: var(--color-steel-soft);
+    animation: hub-counter 40s linear infinite;
+  }
+
+  .hub {
+    left: 50%;
+    top: 50%;
+    width: 24%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background: linear-gradient(to top right, var(--color-steel-soft), var(--color-cream));
+    color: var(--color-navy-deep);
+    box-shadow:
+      0 0 0 6px color-mix(in srgb, var(--color-steel) 18%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-steel) 45%, transparent);
+    animation: hub-glow calc(var(--cycle) / 2) ease-in-out infinite;
+  }
+
+  .node {
+    min-width: 21%;
+    translate: -50% -50%;
+    border: 1px solid color-mix(in srgb, var(--color-cream) 22%, transparent);
+    background: color-mix(in srgb, var(--color-navy) 70%, transparent);
+    color: var(--color-cream);
+    backdrop-filter: blur(8px);
+    animation: hub-node var(--cycle) ease-in-out var(--delay) infinite;
+  }
+
+  .node-icon {
+    background: var(--color-black);
+    color: var(--color-steel);
+  }
+
+  @keyframes hub-spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  /* Turns against the orbit, so each envelope stays upright. */
+  @keyframes hub-counter {
+    from {
+      rotate: calc(var(--a) * -1);
+    }
+
+    to {
+      rotate: calc(var(--a) * -1 - 360deg);
+    }
+  }
+
+  @keyframes hub-pulse {
+    0% {
+      stroke-dashoffset: 26;
+      opacity: 0;
+    }
+
+    8%,
+    26% {
+      opacity: 1;
+    }
+
+    38%,
+    100% {
+      stroke-dashoffset: -100;
+      opacity: 0;
+    }
+  }
+
+  @keyframes hub-node {
+    0%,
+    20%,
+    100% {
+      border-color: color-mix(in srgb, var(--color-cream) 22%, transparent);
+      box-shadow: none;
+    }
+
+    6%,
+    12% {
+      border-color: var(--color-cream);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--color-steel) 60%, transparent);
+    }
+  }
+
+  @keyframes hub-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 0 0 6px color-mix(in srgb, var(--color-steel) 18%, transparent),
+        0 0 40px color-mix(in srgb, var(--color-steel) 45%, transparent);
+    }
+
+    50% {
+      box-shadow:
+        0 0 0 10px color-mix(in srgb, var(--color-steel) 12%, transparent),
+        0 0 60px color-mix(in srgb, var(--color-steel) 60%, transparent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring,
+    .pulse,
+    .orbit,
+    .envelope,
+    .hub,
+    .node {
+      animation: none;
+    }
+  }
+</style>
