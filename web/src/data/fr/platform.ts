@@ -1430,7 +1430,7 @@ export const workflowBuilderPage = {
       'Notre équipe d’onboarding transpose avec vous validations, routage et escalades dans Fleet dès la première semaine.',
     action: { label: 'Parler à notre équipe', href: '/contact' },
     center: 'Workflow',
-    nodes: ['Validations', 'Routage', 'Escalades', 'Notifications', 'Rôles', 'Sites'],
+    nodes: ['Documents', 'Inspections', 'Incidents', 'Validations', 'Escalades', 'Clôture'],
   },
   panels: {
     blocks: {

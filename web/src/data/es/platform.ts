@@ -1424,7 +1424,7 @@ export const workflowBuilderPage = {
       'Nuestro equipo de incorporación traslada con usted aprobaciones, asignaciones y escalados a Fleet durante la primera semana.',
     action: { label: 'Hablar con nuestro equipo', href: '/contact' },
     center: 'Flujo',
-    nodes: ['Aprobaciones', 'Asignación', 'Escalados', 'Avisos', 'Roles', 'Sedes'],
+    nodes: ['Documentos', 'Inspecciones', 'Incidencias', 'Aprobaciones', 'Escalados', 'Cierre'],
   },
   panels: {
     blocks: {
