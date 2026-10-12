@@ -7,13 +7,20 @@ type Props = {
   pressure: { title: string; description: string; points: string[] }
   answer: { title: string; description: string }
   class?: string
+  /** Frosted glass cards over a motion background: dark blue and white. */
+  glass?: boolean
 }
 
-const { pressure, answer, class: className } = Astro.props
+const { pressure, answer, class: className, glass = false } = Astro.props
 ---
 
 <PageSection class={className} containerClass="grid grid-cols-1 gap-5 lg:grid-cols-[1.5fr_1fr]">
-  <div class="bg-azul-blue text-alice-blue flex flex-col gap-5 rounded-2xl p-8 lg:p-10">
+  <div
+    class:list={[
+      'text-alice-blue flex flex-col gap-5 rounded-2xl p-8 lg:p-10',
+      glass ? 'bg-navy/55 border-cream/20 glass-blur border bg-none!' : 'bg-azul-blue',
+    ]}
+  >
     <h2 class="text-display-md text-white">{pressure.title}</h2>
     <p class="text-columbia-blue text-[17px] leading-[1.65]">{pressure.description}</p>
     <ul class="mt-auto flex flex-wrap gap-2">
@@ -24,7 +31,12 @@ const { pressure, answer, class: className } = Astro.props
       ))}
     </ul>
   </div>
-  <div class="bg-surface border-border flex flex-col gap-5 rounded-2xl border p-8 shadow-xs lg:p-10">
+  <div
+    class:list={[
+      'flex flex-col gap-5 rounded-2xl border p-8 shadow-xs lg:p-10',
+      glass ? 'glass-blur border-white/80 bg-white/75' : 'bg-surface border-border',
+    ]}
+  >
     <IconChip size="lg">
       <Sparkles />
     </IconChip>

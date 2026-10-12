@@ -45,77 +45,84 @@ const stepStyles = [
 ]
 ---
 
-<!-- Orbit motion behind the hero and its glass preview, on a ground that runs
-     from navy to black and then lightens to white through the next section. -->
-<section class="runner-hero text-alice-blue relative isolate overflow-hidden">
-  <RunnerOrbit />
-  <Container class="grid grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:py-16">
-    <div class="flex flex-col items-start gap-6">
-      <p class="eyebrow text-sky-blue flex items-center gap-2.5">
-        <IconChip size="sm" tone="dark">
-          <Sparkles />
-        </IconChip>
-        {hero.eyebrow}
-      </p>
-      <h1 class="text-display-xl hyphenate text-white">{hero.title}</h1>
-      <p class="text-lead text-columbia-blue text-pretty">{hero.description}</p>
-      <div class="flex flex-wrap gap-3">
-        <Button href={hero.primaryAction.href} variant="accent">
-          {hero.primaryAction.label}
-          <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
-        </Button>
-        <Button href={hero.secondaryAction.href} variant="inverse">
-          {hero.secondaryAction.label}
-        </Button>
-      </div>
-    </div>
-    <div class="tone-invert glass-ui" aria-hidden="true">
-      <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
-        <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
-          <IconChip size="sm">
+<!-- Orbit motion behind the hero, its glass preview and the glass cards below,
+     on one ground that runs from dark navy to white. -->
+<div class="runner-ground relative isolate overflow-hidden">
+  <section class="runner-hero text-alice-blue relative isolate">
+    <RunnerOrbit />
+    <Container class="grid grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[1fr_1.05fr] lg:py-16">
+      <div class="flex flex-col items-start gap-6">
+        <p class="eyebrow text-sky-blue flex items-center gap-2.5">
+          <IconChip size="sm" tone="dark">
             <Sparkles />
           </IconChip>
-          <p class="font-display text-sm font-semibold">{hero.demo.title}</p>
-          <span class="text-muted ms-auto text-xs">{hero.demo.context}</span>
+          {hero.eyebrow}
+        </p>
+        <h1 class="text-display-xl hyphenate text-white">{hero.title}</h1>
+        <p class="text-lead text-columbia-blue text-pretty">{hero.description}</p>
+        <div class="flex flex-wrap gap-3">
+          <Button href={hero.primaryAction.href} variant="accent">
+            {hero.primaryAction.label}
+            <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
+          </Button>
+          <Button href={hero.secondaryAction.href} variant="inverse">
+            {hero.secondaryAction.label}
+          </Button>
         </div>
-        <div class="flex flex-col gap-4 p-5">
-          <p class="bg-rich-blue text-alice-blue max-w-[85%] self-end rounded-lg px-3.5 py-2.5 text-sm leading-[1.5]">
-            {hero.demo.prompt}
-          </p>
-          <div class="flex flex-col gap-3">
-            <p class="text-sm font-semibold">{hero.demo.reply}</p>
-            <div class="flex flex-col">
-              {hero.demo.steps.map((step, index) => (
-                <div class="flex flex-col items-start">
-                  <div class="bg-surface border-border flex w-full items-center gap-2.5 rounded-md border px-3 py-2.5 text-[13px] shadow-xs">
-                    <span
-                      class:list={[
-                        'rounded-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.04em] uppercase',
-                        stepStyles[index % stepStyles.length],
-                      ]}
-                    >
-                      {step.kind}
-                    </span>
-                    <span class="font-semibold">{step.text}</span>
-                  </div>
-                  {index < hero.demo.steps.length - 1 && (
-                    <div class="bg-uranian-blue ms-6 h-3 w-0.5" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <span class="bg-rich-blue text-alice-blue flex items-center gap-2 self-start rounded-md px-3 py-2 text-xs font-semibold">
-              <ArrowUp class="size-3.5" />
-              {hero.demo.action}
-            </span>
+      </div>
+      <div class="tone-invert glass-ui glass-clear" aria-hidden="true">
+        <MockPanel elevation="float" padding="none" class="text-rich-blue overflow-hidden">
+          <div class="border-border flex items-center gap-2.5 border-b px-4 py-3">
+            <IconChip size="sm">
+              <Sparkles />
+            </IconChip>
+            <p class="font-display text-sm font-semibold">{hero.demo.title}</p>
+            <span class="text-muted ms-auto text-xs">{hero.demo.context}</span>
           </div>
-        </div>
-      </MockPanel>
-    </div>
-  </Container>
-</section>
+          <div class="flex flex-col gap-4 p-5">
+            <p class="bg-rich-blue text-alice-blue max-w-[85%] self-end rounded-lg px-3.5 py-2.5 text-sm leading-[1.5]">
+              {hero.demo.prompt}
+            </p>
+            <div class="flex flex-col gap-3">
+              <p class="text-sm font-semibold">{hero.demo.reply}</p>
+              <div class="flex flex-col">
+                {hero.demo.steps.map((step, index) => (
+                  <div class="flex flex-col items-start">
+                    <div class="bg-surface border-border flex w-full items-center gap-2.5 rounded-md border px-3 py-2.5 text-[13px] shadow-xs">
+                      <span
+                        class:list={[
+                          'rounded-sm px-1.5 py-0.5 text-[10px] font-bold tracking-[0.04em] uppercase',
+                          stepStyles[index % stepStyles.length],
+                        ]}
+                      >
+                        {step.kind}
+                      </span>
+                      <span class="font-semibold">{step.text}</span>
+                    </div>
+                    {index < hero.demo.steps.length - 1 && (
+                      <div class="bg-uranian-blue ms-6 h-3 w-0.5" />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <span class="bg-rich-blue text-alice-blue flex items-center gap-2 self-start rounded-md px-3 py-2 text-xs font-semibold">
+                <ArrowUp class="size-3.5" />
+                {hero.demo.action}
+              </span>
+            </div>
+          </div>
+        </MockPanel>
+      </div>
+    </Container>
+  </section>
 
-<ChallengeCards pressure={challenge.pressure} answer={challenge.answer} class="runner-fade" />
+  <ChallengeCards
+    pressure={challenge.pressure}
+    answer={challenge.answer}
+    class="relative z-1 pt-8"
+    glass
+  />
+</div>
 
 <CapabilityTabs
   idPrefix="runner"
@@ -173,29 +180,28 @@ const stepStyles = [
   .runner-hero {
     --color-action: var(--color-cream);
     --color-on-action: var(--color-espresso);
+  }
 
+  /* One continuous ground from the hero to the capabilities section: darkest
+     at the top, then easing through navy and steel to white. Mixed in OKLab so the steps between colours stay even. */
+  .runner-ground {
     background:
       radial-gradient(
-        ellipse 55% 70% at 100% 0%,
+        ellipse 55% 40% at 100% 0%,
         color-mix(in srgb, var(--color-steel) 14%, transparent),
         transparent 70%
       ),
-      linear-gradient(to bottom, var(--color-navy-deep), var(--color-black));
-  }
-
-  /* Picks up the hero's black and lightens through steel to white, where the
-     capabilities section begins. */
-  :global(.runner-fade) {
-    background: linear-gradient(
-      to bottom,
-      var(--color-black),
-      var(--color-navy-night) 14%,
-      var(--color-navy-deep) 26%,
-      var(--color-navy) 44%,
-      var(--color-steel) 66%,
-      var(--color-steel-soft) 80%,
-      var(--color-steel-mist) 91%,
-      var(--color-white)
-    );
+      linear-gradient(
+        in oklab to bottom,
+        var(--color-navy-night),
+        color-mix(in oklab, var(--color-navy-night), var(--color-navy-deep)) 30%,
+        var(--color-navy-deep) 48%,
+        var(--color-navy) 64%,
+        color-mix(in oklab, var(--color-navy), var(--color-steel)) 75%,
+        var(--color-steel) 84%,
+        var(--color-steel-soft) 91%,
+        var(--color-steel-mist) 96%,
+        var(--color-white)
+      );
   }
 </style>

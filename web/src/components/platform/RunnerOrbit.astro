@@ -85,23 +85,27 @@ const rings: Ring[] = [
 </div>
 
 <style>
+  /* The layer runs on below the hero, so the rings pass behind the glass cards
+     of the next section and fade out there. */
   .runner-orbit {
+    --spill: 320px;
+
     position: absolute;
-    inset: 0;
+    inset: 0 0 calc(var(--spill) * -1);
     z-index: -1;
     overflow: hidden;
     pointer-events: none;
     /* Quiet behind the copy on the start side, full strength around the preview. */
     mask-image:
       linear-gradient(to right, rgb(0 0 0 / 0.3) 25%, black 60%),
-      linear-gradient(to bottom, black 75%, transparent);
+      linear-gradient(to bottom, black 55%, transparent 95%);
     mask-composite: intersect;
   }
 
   :global([dir='rtl']) .runner-orbit {
     mask-image:
       linear-gradient(to left, rgb(0 0 0 / 0.3) 25%, black 60%),
-      linear-gradient(to bottom, black 75%, transparent);
+      linear-gradient(to bottom, black 55%, transparent 95%);
   }
 
   .orbit-grid {
@@ -121,7 +125,7 @@ const rings: Ring[] = [
   .orbit-centre {
     position: absolute;
     inset-inline-start: 74%;
-    top: 50%;
+    top: calc((100% - var(--spill)) * 0.5);
     width: 0;
     height: 0;
   }
@@ -266,7 +270,7 @@ const rings: Ring[] = [
 
     .orbit-centre {
       inset-inline-start: 50%;
-      top: 76%;
+      top: calc((100% - var(--spill)) * 0.76);
       scale: 0.7;
     }
 
