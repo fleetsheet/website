@@ -18,10 +18,17 @@ import Settings from '@lucide/astro/icons/settings'
 import SlidersHorizontal from '@lucide/astro/icons/sliders-horizontal'
 import Workflow from '@lucide/astro/icons/workflow'
 
+type Props = {
+  /** `hero` fills its section; `mark` is a compact orbit for a banner. */
+  variant?: 'hero' | 'mark'
+}
+
 type Chip = { icon?: typeof Settings; angle: number; accent?: boolean }
 type Ring = { radius: number; duration: number; reverse?: boolean; chips: Chip[]; sparks: number[] }
 
-const rings: Ring[] = [
+const { variant = 'hero' } = Astro.props
+
+const heroRings: Ring[] = [
   {
     radius: 220,
     duration: 70,
@@ -56,10 +63,45 @@ const rings: Ring[] = [
     sparks: [45, 120, 255, 335],
   },
 ]
+
+const markRings: Ring[] = [
+  {
+    radius: 72,
+    duration: 40,
+    chips: [
+      { icon: Settings, angle: 30 },
+      { angle: 210, accent: true },
+    ],
+    sparks: [120, 300],
+  },
+  {
+    radius: 122,
+    duration: 60,
+    reverse: true,
+    chips: [
+      { icon: SlidersHorizontal, angle: 80 },
+      { icon: ChartColumn, angle: 200 },
+      { icon: Eye, angle: 320 },
+    ],
+    sparks: [20, 140, 260],
+  },
+  {
+    radius: 172,
+    duration: 85,
+    chips: [
+      { icon: Workflow, angle: 10 },
+      { angle: 130, accent: true },
+      { icon: Database, angle: 250 },
+    ],
+    sparks: [70, 190, 310],
+  },
+]
+
+const rings = variant === 'mark' ? markRings : heroRings
 ---
 
-<div class="runner-orbit" aria-hidden="true">
-  <div class="orbit-grid"></div>
+<div class:list={['runner-orbit', variant]} aria-hidden="true">
+  {variant === 'hero' && <div class="orbit-grid" />}
   <div class="orbit-centre">
     <div class="orbit-halo"></div>
     {rings.map((ring) => (
@@ -277,6 +319,45 @@ const rings: Ring[] = [
     .orbit-grid {
       mask-image: radial-gradient(ellipse 90% 50% at 50% 76%, black, transparent 80%);
     }
+  }
+
+  /* The compact orbit for a banner: rings round a soft glow, fading at the edge. */
+  .runner-orbit.mark {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    width: 380px;
+    height: 380px;
+    mask-image: radial-gradient(circle, black 55%, transparent 72%);
+  }
+
+  .mark .orbit-centre {
+    inset-inline-start: 50%;
+    top: 50%;
+    scale: 1;
+  }
+
+  .mark .orbit-halo {
+    width: 300px;
+    height: 300px;
+    margin: -150px;
+  }
+
+  .mark .chip {
+    width: 40px;
+    height: 40px;
+    margin: -20px;
+    border-radius: 11px;
+  }
+
+  .mark .chip :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mark .chip.accent :global(svg) {
+    width: 26px;
+    height: 26px;
   }
 
   @keyframes orbit-spin {

@@ -112,7 +112,11 @@ const supportIcons = [MessagesSquare, Globe, LifeBuoy]
       <p class="text-lead text-azul-blue text-pretty">{page.hero.description}</p>
       <div class="flex flex-wrap gap-3">
         <Button href={page.hero.primaryAction.href}>{page.hero.primaryAction.label}</Button>
-        <Button href={page.hero.secondaryAction.href} variant="secondary">
+        <Button
+          href={page.hero.secondaryAction.href}
+          variant="secondary"
+          class="bg-white! hover:bg-steel-mist!"
+        >
           {page.hero.secondaryAction.label}
         </Button>
       </div>

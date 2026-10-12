@@ -220,6 +220,30 @@
 
     background: linear-gradient(to top right, var(--color-steel), var(--color-steel-soft));
   }
+
+  /* Dark panels on light pages: the main action turns cream so it stands out. */
+  .action-light {
+    --color-action: var(--color-cream);
+    --color-on-action: var(--color-espresso);
+  }
+
+  /* Call-to-action panels without a photo: navy in the lower start corner,
+     easing through steel to pale steel at the top end. */
+  .tone-cta {
+    background:
+      radial-gradient(
+        ellipse 50% 60% at 100% 0%,
+        color-mix(in srgb, var(--color-white) 35%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(
+        in oklab to top right,
+        var(--color-navy),
+        var(--color-steel) 45%,
+        var(--color-steel-soft) 75%,
+        var(--color-steel-mist)
+      );
+  }
 }
 
 @utility eyebrow {

@@ -17,6 +17,8 @@ const { href, variant = 'primary', size = 'md', class: className, ...rest } = As
     'inline-flex items-center justify-center gap-2 rounded-md whitespace-nowrap transition duration-200',
     'focus-visible:outline-celestial-blue focus-visible:outline-2 focus-visible:outline-offset-2',
     // Palette C: the action token is espresso on light grounds and cream on dark tones.
+    // Secondary and inverse buttons are light steel with dark text, so they stand out
+    // from white cards and dark bands alike.
     'brand-c:rounded-[10px] brand-c:focus-visible:outline-steel on-light:focus-visible:outline-espresso',
     {
       'px-3.5 py-2 text-sm font-medium': size === 'sm',
@@ -26,11 +28,11 @@ const { href, variant = 'primary', size = 'md', class: className, ...rest } = As
     {
       'bg-action text-on-action hover:opacity-90 brand-c:bg-cream brand-c:text-espresso on-light:bg-espresso on-light:text-cream':
         variant === 'primary' || variant === 'accent',
-      'bg-surface border-border text-rich-blue border hover:bg-slate-50 brand-c:border-fog brand-c:bg-transparent brand-c:text-cream brand-c:hover:bg-navy on-light:border-slate-ink on-light:text-black on-light:hover:bg-cream-deep':
+      'bg-steel-soft border-navy/30 text-navy-deep border hover:bg-steel brand-c:border-fog brand-c:bg-transparent brand-c:text-cream brand-c:hover:bg-navy on-light:border-slate-ink on-light:text-black on-light:hover:bg-cream-deep':
         variant === 'secondary',
       'text-rich-blue hover:bg-border brand-c:text-fog brand-c:hover:bg-navy brand-c:hover:text-cream on-light:text-black on-light:hover:bg-cream-deep':
         variant === 'ghost',
-      'bg-azul-blue text-alice-blue hover:bg-azul-blue-light hover:text-white brand-c:border brand-c:border-fog brand-c:bg-transparent brand-c:text-cream brand-c:hover:bg-navy':
+      'bg-steel-soft text-navy-deep hover:bg-steel-mist brand-c:border brand-c:border-fog brand-c:bg-transparent brand-c:text-cream brand-c:hover:bg-navy':
         variant === 'inverse',
     },
     className,

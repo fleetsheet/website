@@ -27,11 +27,11 @@ const { id, title, description, primaryAction, secondaryAction, photo } = Astro.
     <div
       class:list={[
         'relative isolate flex flex-col items-center gap-5 overflow-hidden rounded-3xl p-[clamp(40px,6vw,80px)] text-center',
-        // Over a photo: dark blue overlay and cream type. Otherwise a steel panel on
-        // light pages, and the cream panel on the dark homepage.
+        // Over a photo: dark blue overlay and cream type. Otherwise a navy-to-steel
+        // gradient panel on light pages, and the cream panel on the dark homepage.
         photo
           ? 'tone-dark text-cream'
-          : 'tone-steel text-navy-deep brand-c:bg-cream brand-c:bg-none brand-c:text-black',
+          : 'tone-steel tone-cta text-navy-deep brand-c:bg-cream brand-c:bg-none brand-c:text-black',
       ]}
       data-surface={photo ? undefined : 'light'}
     >
@@ -62,7 +62,9 @@ const { id, title, description, primaryAction, secondaryAction, photo } = Astro.
             variant="secondary"
             size="lg"
             class:list={[
-              photo && 'border-fog! text-cream! hover:bg-navy! bg-transparent! bg-none!',
+              photo
+                ? 'border-fog! text-cream! hover:bg-navy! bg-transparent! bg-none!'
+                : 'brand-c:bg-transparent! bg-white! hover:bg-steel-mist!',
             ]}
           >
             {secondaryAction.label}
