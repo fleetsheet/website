@@ -35,6 +35,7 @@ import Smartphone from '@lucide/astro/icons/smartphone'
 import Sparkles from '@lucide/astro/icons/sparkles'
 import Users from '@lucide/astro/icons/users'
 import Wallet from '@lucide/astro/icons/wallet'
+import BlueprintField from './BlueprintField.astro'
 import HeroBento from './HeroBento.astro'
 import PhotoWithCard from './PhotoWithCard.astro'
 import SolutionIcon from './SolutionIcon.astro'
@@ -76,9 +77,12 @@ const heroChart = tabVisuals.find(
   (visual): visual is Extract<typeof visual, { kind: 'chart' }> => visual.kind === 'chart',
 )
 const heroFlow = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
+// The CAFM & CMMS hero runs the blueprint motion behind a glass preview.
+const blueprint = page === 'cafm'
 ---
 
-<section class="tone-dark tone-invert">
+<section class="tone-dark tone-invert relative isolate overflow-hidden">
+  {blueprint && <BlueprintField />}
   <Container class="grid grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:py-16">
     <div class="flex flex-col items-start gap-6">
       <p class="eyebrow text-azul-blue flex items-center gap-2.5">
@@ -112,6 +116,7 @@ const heroFlow = tabVisuals.find((visual) => visual.kind === 'steps' || visual.k
       chart={heroChart}
       flow={heroFlow}
       features={capabilities.tabs.map((tab) => ({ label: tab.label, icon: tabIcons[tab.icon] }))}
+      glass={blueprint}
     />
   </Container>
 </section>

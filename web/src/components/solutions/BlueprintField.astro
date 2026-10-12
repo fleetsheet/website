@@ -1,0 +1,315 @@
+---
+/**
+ * Solutions hero background: a blueprint. Building floor plans drawn in thin
+ * steel lines sit over the same dotted grid as the other heroes, and glowing
+ * pulses of steel and cream light travel along the service routes between
+ * rooms, lighting the checkpoints they pass. A soft scan line sweeps across.
+ * The plans stay faint behind the headline and fuller behind the glass preview.
+ *
+ * Drawn once at build time; CSS animates the pulses, checkpoints and scan line,
+ * and everything holds still for reduced motion.
+ */
+
+type Plan = { x: number; y: number; scale: number; rotate: number; phase: number }
+
+// One floor plan, drawn on a 400 × 600 sheet: room outlines, the service routes
+// between them and the checkpoints along those routes.
+const footprints = [
+  'M-32 64H160V136H80V248H-32Z',
+  'M-32 80H144V120H64V232H-32M16 80V120H64M80 64V120M-16 168H64M16 168V232',
+  'M240-24V48H304V-24M256-24V32H304',
+  'M192 224H320V360H192Z',
+  'M208 240H304V344H208ZM208 280H256V240M256 280V344M256 312H304',
+  'M-24 344H96V392H144V520H-24M-24 360H80V408H128V504H-24M32 360V408H80M32 456H128M80 456V504',
+  'M240 488H352V624H240ZM256 504H336V608H256ZM256 552H336M296 552V608',
+]
+const routes = [
+  'M-24 168H112Q128 168 128 184V296Q128 312 144 312H272',
+  'M48 556V440Q48 424 64 424H192Q208 424 208 408V360',
+  'M352 24V88Q352 104 336 104H256Q240 104 240 120V208',
+]
+const checkpoints = [
+  { x: 272, y: 312 },
+  { x: 240, y: 208 },
+  { x: 208, y: 360 },
+]
+const junctions = [
+  { x: 128, y: 240 },
+  { x: 112, y: 424 },
+  { x: 304, y: 104 },
+]
+// Dimension marks along the plan's edges, as on a drawing.
+const dimensions = ['M-32 40H160M-32 34V46M160 34V46', 'M192 380H320M192 374V386M320 374V386']
+
+// Where the plans sit on a 1600 × 900 field: faint at the start behind the copy,
+// denser at the end behind the preview.
+const plans: Plan[] = [
+  { x: -60, y: 320, scale: 0.9, rotate: 0, phase: 0 },
+  { x: 380, y: -260, scale: 0.75, rotate: 90, phase: -4 },
+  { x: 860, y: 40, scale: 1.05, rotate: 0, phase: -8 },
+  { x: 1660, y: 960, scale: 1.05, rotate: 180, phase: -12 },
+  { x: 1180, y: 520, scale: 0.8, rotate: 270, phase: -15 },
+]
+const W = 1600
+const H = 900
+---
+
+<div class="blueprint-field" aria-hidden="true">
+  <div class="blueprint-grid"></div>
+  <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" fill="none">
+    {plans.map((plan) => (
+      <g transform={`translate(${plan.x} ${plan.y}) rotate(${plan.rotate}) scale(${plan.scale})`}>
+        <g class="footprints">
+          {footprints.map((d) => (
+            <path d={d} />
+          ))}
+        </g>
+        <g class="dimensions">
+          {dimensions.map((d) => (
+            <path d={d} />
+          ))}
+        </g>
+        <g class="routes">
+          {routes.map((d) => (
+            <path d={d} />
+          ))}
+        </g>
+        <g class="signals">
+          {routes.map((d, index) => (
+            <path
+              class:list={['signal', index === 1 ? 'cream' : 'steel']}
+              d={d}
+              pathLength="100"
+              style={`--phase: ${plan.phase - index * 5}s`}
+            />
+          ))}
+        </g>
+        {checkpoints.map((point, index) => (
+          <rect
+            class="checkpoint"
+            x={point.x - 6}
+            y={point.y - 6}
+            width="12"
+            height="12"
+            rx="3"
+            style={`--phase: ${plan.phase - index * 5}s`}
+          />
+        ))}
+        {junctions.map((point) => (
+          <circle class="junction" cx={point.x} cy={point.y} r="3" />
+        ))}
+      </g>
+    ))}
+  </svg>
+  <div class="blueprint-scan"></div>
+</div>
+
+<style>
+  .blueprint-field {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    /* Faint behind the copy on the start side, full behind the preview, and
+       fading out at the top and bottom of the hero. */
+    mask-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.35) 20%, black 55%),
+      linear-gradient(to bottom, transparent, black 10%, black 85%, transparent);
+    mask-composite: intersect;
+  }
+
+  :global([dir='rtl']) .blueprint-field {
+    mask-image:
+      linear-gradient(to left, rgb(0 0 0 / 0.35) 20%, black 55%),
+      linear-gradient(to bottom, transparent, black 10%, black 85%, transparent);
+  }
+
+  /* The same dotted grid as the other heroes. */
+  .blueprint-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-steel) 55%, transparent) 1px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+    opacity: 0.22;
+  }
+
+  .blueprint-field svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1100px;
+  }
+
+  /* Mirror the drawing for right-to-left languages, so its fuller side stays
+     behind the preview. */
+  :global([dir='rtl']) .blueprint-field svg {
+    scale: -1 1;
+  }
+
+  .footprints,
+  .dimensions,
+  .routes {
+    stroke: var(--color-steel);
+    stroke-width: 1;
+  }
+
+  .footprints path,
+  .dimensions path,
+  .routes path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .footprints {
+    opacity: 0.3;
+  }
+
+  .dimensions {
+    opacity: 0.22;
+  }
+
+  .routes {
+    opacity: 0.32;
+    stroke-dasharray: 3 4;
+  }
+
+  .signals {
+    filter: drop-shadow(0 0 3px var(--color-cream)) drop-shadow(0 0 10px var(--color-steel));
+  }
+
+  .signal {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 9 91;
+    opacity: 0;
+    animation: blueprint-signal 18s linear var(--phase) infinite;
+  }
+
+  .signal.steel {
+    stroke: var(--color-steel);
+  }
+
+  .signal.cream {
+    stroke: var(--color-cream);
+  }
+
+  .checkpoint {
+    fill: var(--color-navy-deep);
+    stroke: var(--color-steel);
+    stroke-width: 1.25;
+    opacity: 0.45;
+    animation: blueprint-checkpoint 18s ease-in-out var(--phase) infinite;
+  }
+
+  .junction {
+    fill: var(--color-steel);
+    opacity: 0.5;
+  }
+
+  /* A soft band of light that sweeps across the drawing. */
+  .blueprint-scan {
+    position: absolute;
+    inset-block: 0;
+    width: 220px;
+    left: -240px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--color-steel) 10%, transparent) 70%,
+      color-mix(in srgb, var(--color-cream) 22%, transparent) 99%,
+      transparent
+    );
+    animation: blueprint-scan 14s ease-in-out infinite;
+  }
+
+  /* On narrow screens the preview sits below the copy: centre the drawing and
+     keep it faint behind the copy at the top. */
+  @media (max-width: 63.99rem) {
+    .blueprint-field,
+    :global([dir='rtl']) .blueprint-field {
+      mask-image: linear-gradient(
+        to bottom,
+        rgb(0 0 0 / 0.35) 25%,
+        black 55%,
+        black 90%,
+        transparent
+      );
+    }
+
+    .blueprint-field svg {
+      left: 50%;
+      translate: -50% 0;
+    }
+  }
+
+  @keyframes blueprint-signal {
+    0% {
+      stroke-dashoffset: 10;
+      opacity: 0;
+    }
+
+    8%,
+    62% {
+      opacity: 0.95;
+    }
+
+    75%,
+    100% {
+      stroke-dashoffset: -100;
+      opacity: 0;
+    }
+  }
+
+  @keyframes blueprint-checkpoint {
+    0%,
+    30%,
+    100% {
+      opacity: 0.45;
+    }
+
+    45%,
+    55% {
+      opacity: 1;
+      stroke: var(--color-cream);
+    }
+  }
+
+  @keyframes blueprint-scan {
+    0% {
+      translate: 0 0;
+      opacity: 0;
+    }
+
+    10%,
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      translate: calc(100vw + 480px) 0;
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal,
+    .checkpoint,
+    .blueprint-scan {
+      animation: none;
+    }
+
+    .signal {
+      opacity: 0.6;
+      stroke-dashoffset: -40;
+    }
+
+    .blueprint-scan {
+      display: none;
+    }
+  }
+</style>
