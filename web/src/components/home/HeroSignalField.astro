@@ -122,20 +122,24 @@
           x: width * (0.05 + 0.03 * Math.sin(t * 0.19)),
           y: hero * (0.9 + 0.05 * Math.sin(t * 0.23 + 1)),
           radius: reach * 0.3,
-          strength: 0.95,
+          strength: 0.75,
+          glow: 1,
         },
         {
           x: width * (0.95 + 0.03 * Math.sin(t * 0.17 + 2)),
           y: hero * (0.22 + 0.06 * Math.sin(t * 0.21)),
           radius: reach * 0.28,
-          strength: 0.85,
+          strength: 0.65,
+          glow: 1,
         },
-        // Behind the product preview, so its glass panels catch the light.
+        // Behind the product preview, with a brighter underglow so the gradient
+        // shows through its glass panels.
         {
-          x: width * (0.78 + 0.04 * Math.sin(t * 0.15 + 4)),
+          x: width * (0.62 + 0.12 * Math.sin(t * 0.15 + 4)),
           y: hero + (height - hero) * (0.45 + 0.08 * Math.sin(t * 0.18 + 3)),
-          radius: reach * 0.3,
-          strength: 0.9,
+          radius: reach * 0.32,
+          strength: 0.6,
+          glow: 2.6,
         },
       ]
 
@@ -149,8 +153,8 @@
           source.y,
           source.radius * 1.5,
         )
-        glow.addColorStop(0, rgba(steel, 0.22 * source.strength))
-        glow.addColorStop(0.5, rgba(steel, 0.06 * source.strength))
+        glow.addColorStop(0, rgba(steel, 0.22 * source.strength * source.glow))
+        glow.addColorStop(0.5, rgba(steel, 0.06 * source.strength * source.glow))
         glow.addColorStop(1, rgba(steel, 0))
         context.fillStyle = glow
         context.fillRect(0, 0, width, height)
@@ -170,13 +174,13 @@
           let level = 0
           for (const source of sources) {
             const distance = ((x - source.x) ** 2 + (y - source.y) ** 2) / source.radius ** 2
-            level += source.strength * Math.exp(-distance * 2.2)
+            level += source.strength * Math.exp(-distance * 2.8)
           }
 
           // Waves of light travel diagonally from the bottom left to the top right.
           const diagonal = x / width - y / height
           const phase = diagonal * 1.2 - t * 0.07
-          level += 0.6 * Math.exp(-(((phase - Math.floor(phase) - 0.5) / 0.13) ** 2))
+          level += 0.4 * Math.exp(-(((phase - Math.floor(phase) - 0.5) / 0.1) ** 2))
 
           // Occasional single cells that flare and fade.
           const seed = hash(column, row)
