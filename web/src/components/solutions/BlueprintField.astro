@@ -117,7 +117,7 @@ const routes = Array.from({ length: 10 }, (_, index) => {
 })
 ---
 
-<div class="blueprint-field" aria-hidden="true">
+<div class:list={['blueprint-field', { dim: lines === 'routes' }]} aria-hidden="true">
   <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" fill="none">
     <g class="grid">
       {Array.from({ length: COLUMNS + 1 }, (_, column) => (
@@ -357,6 +357,37 @@ const routes = Array.from({ length: 10 }, (_, index) => {
         transparent 100%
       );
     }
+  }
+
+  /* The routes version sits on a darker ground: dimmer grid, cells, markers and
+     edge light, with the glowing routes left to carry the motion. */
+  .blueprint-field.dim {
+    background: radial-gradient(
+      ellipse 30% 45% at 100% 40%,
+      color-mix(in srgb, var(--color-steel) 12%, transparent),
+      transparent 70%
+    );
+  }
+
+  .dim .grid {
+    opacity: 0.2;
+  }
+
+  .dim .cells,
+  .dim .circles,
+  .dim .markers {
+    opacity: 0.5;
+  }
+
+  .dim .route-tracks {
+    opacity: 0.18;
+  }
+
+  .dim::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-black) 35%, transparent);
   }
 
   .route-tracks {
