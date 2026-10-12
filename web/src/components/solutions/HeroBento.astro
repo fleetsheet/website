@@ -9,15 +9,20 @@ type Props = {
   chart?: Extract<Visual, { kind: 'chart' }>
   flow?: Visual
   features: { label: string; icon: typeof Workflow }[]
+  /** Frosted glass tiles over a motion background. */
+  glass?: boolean
 }
 
-const { main, chart, flow, features } = Astro.props
+const { main, chart, flow, features, glass = false } = Astro.props
 const [primaryStat, secondaryStat] = chart?.stats ?? []
 const [FirstIcon, SecondIcon] = features.map((feature) => feature.icon)
 ---
 
 <!-- Dashboard-style bento grid: every tile has its own space, nothing overlaps. -->
-<div class="grid grid-cols-1 gap-4 lg:grid-cols-[1.15fr_1fr]" aria-hidden="true">
+<div
+  class:list={['grid grid-cols-1 gap-4 lg:grid-cols-[1.15fr_1fr]', glass && 'glass-ui glass-clear']}
+  aria-hidden="true"
+>
   <div class="flex flex-col gap-4">
     <OverviewVisual visual={main} variant="card" />
     <div class="hidden lg:block">{flow && <OverviewVisual visual={flow} variant="card" />}</div>
@@ -25,7 +30,12 @@ const [FirstIcon, SecondIcon] = features.map((feature) => feature.icon)
   <div class="flex flex-col gap-4">
     {primaryStat && secondaryStat && (
       <div class="grid grid-cols-2 gap-4">
-        <div class="bg-steel flex min-h-36 flex-col justify-between gap-4 rounded-2xl p-5 text-black">
+        <div
+          class:list={[
+            'flex min-h-36 flex-col justify-between gap-4 rounded-2xl p-5 text-black',
+            glass ? 'bg-steel/75 glass-blur border-cream/30 border' : 'bg-steel',
+          ]}
+        >
           {FirstIcon && (
             <span class="bg-steel-soft text-navy-deep self-end rounded-lg p-2">
               <FirstIcon class="size-5" />

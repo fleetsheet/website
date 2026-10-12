@@ -1,0 +1,323 @@
+---
+/**
+ * Solutions hero background: a blueprint grid. Dotted grid lines run edge to
+ * edge, with square markers, plus signs and small circles at the crossings.
+ * Some cells are filled, lighter or deeper, like rooms on a plan, and slowly
+ * brighten and fade. Glowing steel and cream lines travel along the grid from
+ * one crossing to the next. The area behind the headline stays darker and
+ * quieter so the copy pops; the glass preview blurs the grid on the other side.
+ *
+ * Drawn once at build time; CSS animates the cells and lines, and everything
+ * holds still for reduced motion.
+ */
+
+const CELL = 68
+const COLUMNS = 24
+const ROWS = 14
+const W = CELL * COLUMNS
+const H = CELL * ROWS
+
+let seed = 7
+const random = () => {
+  seed = (seed * 16807) % 2147483647
+  return (seed - 1) / 2147483646
+}
+const pick = (min: number, max: number) => min + Math.floor(random() * (max - min + 1))
+
+// Filled cells, lighter or deeper, a few of them breathing.
+const cells = Array.from({ length: 36 }, () => ({
+  x: pick(0, COLUMNS - 1) * CELL,
+  y: pick(0, ROWS - 1) * CELL,
+  tone: random() > 0.45 ? 'light' : 'deep',
+  pulse: random() > 0.5,
+  delay: -random() * 10,
+}))
+
+// Markers at grid crossings: small squares and plus signs.
+const crossings = Array.from({ length: 70 }, () => ({
+  x: pick(1, COLUMNS - 1) * CELL,
+  y: pick(1, ROWS - 1) * CELL,
+  kind: random() > 0.5 ? 'square' : 'plus',
+}))
+
+// Small circles inside cells.
+const circles = Array.from({ length: 22 }, () => ({
+  x: pick(0, COLUMNS - 1) * CELL + pick(14, 54),
+  y: pick(0, ROWS - 1) * CELL + pick(14, 54),
+  r: pick(5, 11),
+}))
+
+// Glowing lines along the grid, each running across one to three cells.
+const streaks = Array.from({ length: 26 }, (_, index) => {
+  const span = pick(1, 3) * CELL
+  const d =
+    index % 2 === 0
+      ? `M${pick(0, COLUMNS - 3) * CELL} ${pick(1, ROWS - 1) * CELL}h${span}`
+      : `M${pick(1, COLUMNS - 1) * CELL} ${pick(0, ROWS - 3) * CELL}v${span}`
+  return {
+    d,
+    tone: index % 3 === 0 ? 'cream' : 'steel',
+    duration: 6 + random() * 6,
+    delay: -random() * 12,
+  }
+})
+---
+
+<div class="blueprint-field" aria-hidden="true">
+  <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" fill="none">
+    <g class="grid">
+      {Array.from({ length: COLUMNS + 1 }, (_, column) => (
+        <path d={`M${column * CELL} 0V${H}`} />
+      ))}
+      {Array.from({ length: ROWS + 1 }, (_, row) => (
+        <path d={`M0 ${row * CELL}H${W}`} />
+      ))}
+    </g>
+  </svg>
+  <svg
+    class="blueprint-marks"
+    viewBox={`0 0 ${W} ${H}`}
+    preserveAspectRatio="xMidYMid slice"
+    fill="none"
+  >
+    <g class="cells">
+      {cells.map((cell) => (
+        <rect
+          class:list={['cell', cell.tone, { pulse: cell.pulse }]}
+          x={cell.x + 1}
+          y={cell.y + 1}
+          width={CELL - 2}
+          height={CELL - 2}
+          style={`--delay: ${cell.delay.toFixed(1)}s`}
+        />
+      ))}
+    </g>
+    <g class="circles">
+      {circles.map((circle) => (
+        <circle cx={circle.x} cy={circle.y} r={circle.r} />
+      ))}
+    </g>
+    <g class="markers">
+      {crossings.map((point) =>
+        point.kind === 'square' ? (
+          <rect class="marker-square" x={point.x - 3.5} y={point.y - 3.5} width="7" height="7" />
+        ) : (
+          <path
+            class="marker-plus"
+            d={`M${point.x - 6} ${point.y}h12M${point.x} ${point.y - 6}v12`}
+          />
+        ),
+      )}
+    </g>
+    <g class="streaks">
+      {streaks.map((streak) => (
+        <path
+          class:list={['streak', streak.tone]}
+          d={streak.d}
+          pathLength="100"
+          style={`--duration: ${streak.duration.toFixed(1)}s; --delay: ${streak.delay.toFixed(1)}s`}
+        />
+      ))}
+    </g>
+  </svg>
+  <div class="blueprint-quiet"></div>
+</div>
+
+<style>
+  .blueprint-field {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    /* Soft steel light at the edges, as in a lit drawing. */
+    background:
+      radial-gradient(
+        ellipse 30% 45% at 0% 45%,
+        color-mix(in srgb, var(--color-steel) 22%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 30% 45% at 100% 40%,
+        color-mix(in srgb, var(--color-steel) 22%, transparent),
+        transparent 70%
+      );
+    mask-image: linear-gradient(to bottom, transparent, black 8%, black 88%, transparent);
+  }
+
+  .blueprint-field svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    min-width: 1100px;
+    translate: -50% 0;
+  }
+
+  .grid {
+    stroke: var(--color-steel);
+    stroke-width: 0.6;
+    opacity: 0.32;
+  }
+
+  /* The grid all but disappears on the copy side. */
+  .blueprint-field svg:first-of-type {
+    mask-image: linear-gradient(to right, rgb(0 0 0 / 0.08) 35%, black 62%);
+  }
+
+  :global([dir='rtl']) .blueprint-field svg:first-of-type {
+    mask-image: linear-gradient(to left, rgb(0 0 0 / 0.08) 35%, black 62%);
+  }
+
+  .grid path {
+    stroke-dasharray: 2 4;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* The highlights and moving lines keep clear of the headline. */
+  .blueprint-marks {
+    mask-image: radial-gradient(ellipse 34% 62% at 22% 50%, transparent 55%, black 100%);
+  }
+
+  :global([dir='rtl']) .blueprint-marks {
+    mask-image: radial-gradient(ellipse 34% 62% at 78% 50%, transparent 55%, black 100%);
+  }
+
+  .cell.light {
+    fill: var(--color-steel);
+    opacity: 0.28;
+  }
+
+  .cell.deep {
+    fill: var(--color-steel);
+    opacity: 0.1;
+  }
+
+  .cell.pulse {
+    animation: blueprint-cell 10s ease-in-out var(--delay) infinite;
+  }
+
+  .circles {
+    stroke: var(--color-steel);
+    stroke-width: 1;
+    opacity: 0.5;
+  }
+
+  .marker-square {
+    fill: var(--color-steel-soft);
+    opacity: 0.75;
+  }
+
+  .marker-plus {
+    stroke: var(--color-steel-soft);
+    stroke-width: 1.25;
+    opacity: 0.7;
+  }
+
+  .streaks {
+    filter: drop-shadow(0 0 3px var(--color-cream)) drop-shadow(0 0 8px var(--color-steel));
+  }
+
+  .streak {
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-dasharray: 45 55;
+    opacity: 0;
+    animation: blueprint-streak var(--duration) ease-in-out var(--delay) infinite;
+  }
+
+  .streak.steel {
+    stroke: var(--color-steel-soft);
+  }
+
+  .streak.cream {
+    stroke: var(--color-cream);
+  }
+
+  /* Darker and quieter behind the headline, so the copy pops. */
+  .blueprint-quiet {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 38% 60% at 24% 50%,
+      color-mix(in srgb, var(--color-black) 72%, transparent),
+      color-mix(in srgb, var(--color-black) 35%, transparent) 60%,
+      transparent 100%
+    );
+  }
+
+  :global([dir='rtl']) .blueprint-quiet {
+    background: radial-gradient(
+      ellipse 38% 60% at 76% 50%,
+      color-mix(in srgb, var(--color-black) 72%, transparent),
+      color-mix(in srgb, var(--color-black) 35%, transparent) 60%,
+      transparent 100%
+    );
+  }
+
+  /* On narrow screens the copy sits above the preview. */
+  @media (max-width: 63.99rem) {
+    .blueprint-field svg:first-of-type,
+    :global([dir='rtl']) .blueprint-field svg:first-of-type {
+      mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.08) 35%, black 62%);
+    }
+
+    .blueprint-marks,
+    :global([dir='rtl']) .blueprint-marks {
+      mask-image: linear-gradient(to bottom, transparent 42%, black 62%);
+    }
+
+    .blueprint-quiet,
+    :global([dir='rtl']) .blueprint-quiet {
+      background: radial-gradient(
+        ellipse 90% 30% at 50% 22%,
+        color-mix(in srgb, var(--color-black) 72%, transparent),
+        color-mix(in srgb, var(--color-black) 35%, transparent) 60%,
+        transparent 100%
+      );
+    }
+  }
+
+  @keyframes blueprint-cell {
+    0%,
+    100% {
+      opacity: 0.1;
+    }
+
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  /* A line of light runs from one crossing to the next and fades. */
+  @keyframes blueprint-streak {
+    0% {
+      stroke-dashoffset: 45;
+      opacity: 0;
+    }
+
+    15%,
+    55% {
+      opacity: 1;
+    }
+
+    75%,
+    100% {
+      stroke-dashoffset: -100;
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cell.pulse,
+    .streak {
+      animation: none;
+    }
+
+    .streak {
+      opacity: 0.7;
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
