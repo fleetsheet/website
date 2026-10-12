@@ -1,0 +1,295 @@
+---
+/**
+ * RunnerAI hero background: an orbit. Three rings circle the product preview,
+ * each carrying abstract tool icons and a glowing trail of steel and cream
+ * light, over a subtle dotted grid. The rings turn slowly at different speeds
+ * while the icons stay upright; the glass preview blurs whatever passes behind.
+ *
+ * Pure CSS motion; everything holds still for reduced motion.
+ */
+import Bell from '@lucide/astro/icons/bell'
+import ChartColumn from '@lucide/astro/icons/chart-column'
+import Database from '@lucide/astro/icons/database'
+import Diamond from '@lucide/astro/icons/diamond'
+import Eye from '@lucide/astro/icons/eye'
+import ListChecks from '@lucide/astro/icons/list-checks'
+import Radar from '@lucide/astro/icons/radar'
+import Settings from '@lucide/astro/icons/settings'
+import SlidersHorizontal from '@lucide/astro/icons/sliders-horizontal'
+import Workflow from '@lucide/astro/icons/workflow'
+
+type Chip = { icon?: typeof Settings; angle: number; accent?: boolean }
+type Ring = { radius: number; duration: number; reverse?: boolean; chips: Chip[]; sparks: number[] }
+
+const rings: Ring[] = [
+  {
+    radius: 220,
+    duration: 70,
+    chips: [
+      { icon: Settings, angle: 20 },
+      { icon: Eye, angle: 150 },
+      { angle: 260, accent: true },
+    ],
+    sparks: [95, 210, 330],
+  },
+  {
+    radius: 340,
+    duration: 110,
+    reverse: true,
+    chips: [
+      { icon: SlidersHorizontal, angle: 60 },
+      { icon: ChartColumn, angle: 175 },
+      { icon: Database, angle: 290 },
+    ],
+    sparks: [10, 120, 235],
+  },
+  {
+    radius: 470,
+    duration: 150,
+    chips: [
+      { icon: Workflow, angle: 0 },
+      { icon: Bell, angle: 85 },
+      { angle: 150, accent: true },
+      { icon: ListChecks, angle: 215 },
+      { icon: Radar, angle: 300 },
+    ],
+    sparks: [45, 120, 255, 335],
+  },
+]
+---
+
+<div class="runner-orbit" aria-hidden="true">
+  <div class="orbit-grid"></div>
+  <div class="orbit-centre">
+    <div class="orbit-halo"></div>
+    {rings.map((ring) => (
+      <div
+        class:list={['ring', { reverse: ring.reverse }]}
+        style={`--r: ${ring.radius}px; --duration: ${ring.duration}s`}
+      >
+        <div class="ring-line" />
+        <div class="ring-trail" />
+        <div class="ring-spin">
+          {ring.sparks.map((angle) => (
+            <span class="spark" style={`--a: ${angle}deg`} />
+          ))}
+          {ring.chips.map(({ icon: Icon, angle, accent }) => (
+            <div class="chip-slot" style={`--a: ${angle}deg`}>
+              <div class:list={['chip', { accent }]}>{Icon ? <Icon /> : <Diamond />}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  /* The layer runs on below the hero, so the rings pass behind the glass cards
+     of the next section and fade out there. */
+  .runner-orbit {
+    --spill: 320px;
+
+    position: absolute;
+    inset: 0 0 calc(var(--spill) * -1);
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    /* Quiet behind the copy on the start side, full strength around the preview. */
+    mask-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.3) 25%, black 60%),
+      linear-gradient(to bottom, black 55%, transparent 95%);
+    mask-composite: intersect;
+  }
+
+  :global([dir='rtl']) .runner-orbit {
+    mask-image:
+      linear-gradient(to left, rgb(0 0 0 / 0.3) 25%, black 60%),
+      linear-gradient(to bottom, black 55%, transparent 95%);
+  }
+
+  .orbit-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-steel) 55%, transparent) 1px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+    opacity: 0.22;
+    mask-image: radial-gradient(ellipse 60% 70% at 72% 50%, black, transparent 80%);
+  }
+
+  /* The orbit's centre sits behind the product preview. */
+  .orbit-centre {
+    position: absolute;
+    inset-inline-start: 74%;
+    top: calc((100% - var(--spill)) * 0.5);
+    width: 0;
+    height: 0;
+  }
+
+  .orbit-halo {
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    margin: -320px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-steel) 30%, transparent),
+      color-mix(in srgb, var(--color-steel) 8%, transparent) 45%,
+      transparent 70%
+    );
+  }
+
+  .ring,
+  .ring-line,
+  .ring-trail,
+  .ring-spin {
+    position: absolute;
+    width: calc(var(--r) * 2);
+    height: calc(var(--r) * 2);
+    margin: calc(var(--r) * -1);
+    border-radius: 50%;
+  }
+
+  .ring {
+    margin: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .ring-line {
+    border: 1px solid color-mix(in srgb, var(--color-steel) 28%, transparent);
+  }
+
+  /* A glowing trail of light that sweeps round the ring. */
+  .ring-trail {
+    background: conic-gradient(
+      transparent 0 62%,
+      color-mix(in srgb, var(--color-steel) 50%, transparent) 88%,
+      var(--color-cream)
+    );
+    mask-image: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 2px),
+      black calc(100% - 1.5px)
+    );
+    filter: drop-shadow(0 0 4px var(--color-steel));
+    animation: orbit-spin calc(var(--duration) * 0.35) linear infinite;
+  }
+
+  .ring-spin {
+    animation: orbit-spin var(--duration) linear infinite;
+  }
+
+  .reverse .ring-spin,
+  .reverse .ring-trail {
+    animation-direction: reverse;
+  }
+
+  .chip-slot,
+  .spark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(var(--a) * -1));
+  }
+
+  .chip {
+    display: flex;
+    width: 52px;
+    height: 52px;
+    margin: -26px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in srgb, var(--color-cream) 16%, transparent);
+    border-radius: 14px;
+    background: linear-gradient(
+      to top right,
+      color-mix(in srgb, var(--color-navy-night) 85%, transparent),
+      color-mix(in srgb, var(--color-navy-dusk) 70%, transparent)
+    );
+    color: var(--color-steel);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+    /* Turns against the ring so the icon stays upright. */
+    animation: orbit-spin var(--duration) linear infinite reverse;
+  }
+
+  .reverse .chip {
+    animation-direction: normal;
+  }
+
+  .chip :global(svg) {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.5;
+  }
+
+  .chip.accent {
+    border: none;
+    background: none;
+    box-shadow: none;
+    color: var(--color-steel);
+    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-steel) 70%, transparent));
+  }
+
+  .chip.accent :global(svg) {
+    width: 34px;
+    height: 34px;
+    fill: color-mix(in srgb, var(--color-steel) 75%, transparent);
+    stroke: var(--color-steel-soft);
+  }
+
+  .spark {
+    width: 6px;
+    height: 6px;
+    margin: -3px;
+    border-radius: 50%;
+    background: var(--color-cream);
+    box-shadow:
+      0 0 6px var(--color-cream),
+      0 0 14px var(--color-steel);
+    opacity: 0.8;
+  }
+
+  /* On narrow screens the orbit circles the preview below the copy. */
+  @media (max-width: 63.99rem) {
+    .runner-orbit,
+    :global([dir='rtl']) .runner-orbit {
+      mask-image: linear-gradient(
+        to bottom,
+        rgb(0 0 0 / 0.3) 30%,
+        black 60%,
+        black 85%,
+        transparent
+      );
+    }
+
+    .orbit-centre {
+      inset-inline-start: 50%;
+      top: calc((100% - var(--spill)) * 0.76);
+      scale: 0.7;
+    }
+
+    .orbit-grid {
+      mask-image: radial-gradient(ellipse 90% 50% at 50% 76%, black, transparent 80%);
+    }
+  }
+
+  @keyframes orbit-spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring-trail,
+    .ring-spin,
+    .chip {
+      animation: none;
+    }
+  }
+</style>
