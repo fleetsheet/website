@@ -39,7 +39,11 @@ const capabilityIcons = [ClipboardList, Boxes, Receipt, Building]
         {page.hero.primaryAction.label}
         <ArrowRight class="size-4 rtl:-scale-x-100" aria-hidden="true" />
       </Button>
-      <Button href={page.hero.secondaryAction.href} variant="secondary">
+      <Button
+        href={page.hero.secondaryAction.href}
+        variant="secondary"
+        class="bg-white! hover:bg-steel-mist!"
+      >
         {page.hero.secondaryAction.label}
       </Button>
     </div>

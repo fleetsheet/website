@@ -3,12 +3,15 @@ import Button from '@/components/ui/Button.astro'
 import Container from '@/components/ui/Container.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Sparkles from '@lucide/astro/icons/sparkles'
+import RunnerOrbit from './RunnerOrbit.astro'
 
 type Props = {
   eyebrow: string
   title: string
   description: string
   action: { label: string; href: string }
+  /** Shows the RunnerAI orbit in place of the icon tile. */
+  orbit?: boolean
 }
 
 const rules = Astro.props
@@ -16,7 +19,7 @@ const rules = Astro.props
 
 <section>
   <Container width="wide" class="pb-16">
-    <div class="bg-azul-blue grid grid-cols-1 items-center gap-8 rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-[1fr_auto]">
+    <div class="bg-azul-blue grid grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl p-[clamp(32px,5vw,64px)] lg:grid-cols-[1fr_auto]">
       <div class="flex flex-col items-start gap-6">
         <SectionHeader
           eyebrow={rules.eyebrow}
@@ -28,14 +31,20 @@ const rules = Astro.props
           {rules.action.label}
         </Button>
       </div>
-      <div
-        class="bg-rich-blue hidden size-40 items-center justify-center rounded-2xl lg:flex"
-        aria-hidden="true"
-      >
-        <slot>
-          <Sparkles class="text-sky-blue size-16" />
-        </slot>
-      </div>
+      {rules.orbit ? (
+        <div class="-my-24 hidden lg:block">
+          <RunnerOrbit variant="mark" />
+        </div>
+      ) : (
+        <div
+          class="bg-rich-blue hidden size-40 items-center justify-center rounded-2xl lg:flex"
+          aria-hidden="true"
+        >
+          <slot>
+            <Sparkles class="text-sky-blue size-16" />
+          </slot>
+        </div>
+      )}
     </div>
   </Container>
 </section>
