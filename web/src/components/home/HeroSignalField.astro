@@ -4,7 +4,8 @@
  * plus sign on a sparser regular lattice, grows from nothing to small to large
  * where steel and cream light passes. The light pools low on the start side
  * and high on the end side, flows diagonally between them, and stays dim
- * behind the headline so the copy reads cleanly.
+ * behind the headline so the copy reads cleanly. It runs on behind the glass
+ * product preview below the hero.
  *
  * Drawn on a canvas by the script below; it pauses off screen and draws a
  * single still frame for reduced motion.
@@ -30,19 +31,6 @@
     display: block;
     width: 100%;
     height: 100%;
-  }
-
-  /* Keep the headline area quiet so the copy pops. */
-  .hero-field::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse 34% 44% at 50% 42%,
-      rgb(0 0 0 / 0.78),
-      rgb(0 0 0 / 0.35) 60%,
-      transparent 90%
-    );
   }
 </style>
 
@@ -107,11 +95,15 @@
 
     let width = 0
     let height = 0
+    // The hero copy's height: the light and the quiet area are placed around it,
+    // while the field itself runs on behind the product preview.
+    let hero = 0
 
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2)
       width = field.clientWidth
       height = field.clientHeight
+      hero = document.querySelector<HTMLElement>('[data-hero-copy]')?.offsetHeight || height
       canvas.width = Math.round(width * ratio)
       canvas.height = Math.round(height * ratio)
       context.setTransform(ratio, 0, 0, ratio, 0, 0)
@@ -122,20 +114,28 @@
       context.clearRect(0, 0, width, height)
       context.globalCompositeOperation = 'lighter'
 
-      // Two pools of light: one low on the start side, one high on the end side.
+      // Pools of light: low on the start side, high on the end side, and one
+      // behind the product preview.
       const reach = Math.max(width, 720)
       const sources = [
         {
           x: width * (0.05 + 0.03 * Math.sin(t * 0.19)),
-          y: height * (0.9 + 0.05 * Math.sin(t * 0.23 + 1)),
+          y: hero * (0.9 + 0.05 * Math.sin(t * 0.23 + 1)),
           radius: reach * 0.3,
           strength: 0.95,
         },
         {
           x: width * (0.95 + 0.03 * Math.sin(t * 0.17 + 2)),
-          y: height * (0.22 + 0.06 * Math.sin(t * 0.21)),
+          y: hero * (0.22 + 0.06 * Math.sin(t * 0.21)),
           radius: reach * 0.28,
           strength: 0.85,
+        },
+        // Behind the product preview, so its glass panels catch the light.
+        {
+          x: width * (0.78 + 0.04 * Math.sin(t * 0.15 + 4)),
+          y: hero + (height - hero) * (0.45 + 0.08 * Math.sin(t * 0.18 + 3)),
+          radius: reach * 0.3,
+          strength: 0.9,
         },
       ]
 
@@ -188,7 +188,7 @@
               Math.exp(
                 -(
                   ((x - width / 2) / Math.max(width * 0.3, 240)) ** 2 +
-                  ((y - height * 0.45) / (height * 0.34)) ** 2
+                  ((y - hero * 0.45) / (hero * 0.34)) ** 2
                 ),
               )
           level = Math.min(1, level * quiet)
