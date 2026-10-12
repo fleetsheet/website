@@ -137,11 +137,12 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
 </PageSection>
 
 <style>
-  /* Hands cut from a photo, sized so their grip meets the tablet's lower corners;
-     the frame sits in front, so only the hands show. Shown where the layout is wide. */
+  /* Hands cut from a photo, sized so their grip meets the tablet's lower corners
+     and the thumbs rest on the bezel in front of it. Shown where the layout is wide. */
   .hand {
     display: none;
     position: absolute;
+    z-index: 1;
     height: auto;
     pointer-events: none;
     mask-image: linear-gradient(to bottom, black 70%, transparent);
@@ -155,13 +156,13 @@ const maxHours = Math.max(...chat.rows.map((row) => row.hours))
 
   .hand-start {
     width: 322px;
-    inset-inline-start: -195px;
+    inset-inline-start: -183px;
     top: calc(100% - 350px);
   }
 
   .hand-end {
     width: 347px;
-    inset-inline-end: -228px;
+    inset-inline-end: -216px;
     top: calc(100% - 351px);
   }
 

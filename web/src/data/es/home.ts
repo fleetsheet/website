@@ -230,7 +230,7 @@ export const aiAgents = {
     },
   ],
   chat: {
-    assistant: 'Asistente de Fleet',
+    assistant: 'RunnerAI',
     context: 'Datos en tiempo real · 14 ubicaciones',
     question:
       '¿Qué sedes tuvieron más tiempo de inactividad de HVAC el último trimestre y cuánto nos costó?',

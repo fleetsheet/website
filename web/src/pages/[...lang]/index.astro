@@ -1,6 +1,7 @@
 ---
 import AiAgents from '@/components/home/AiAgents.astro'
 import Consultancy from '@/components/home/Consultancy.astro'
+import HeroSignalField from '@/components/home/HeroSignalField.astro'
 import HomeHero from '@/components/home/HomeHero.astro'
 import PlatformModules from '@/components/home/PlatformModules.astro'
 import ProductShowcase from '@/components/home/ProductShowcase.astro'
@@ -29,8 +30,14 @@ const { demoCta, meta } = content.home
   }}
   brand="c"
 >
-  <HomeHero />
-  <ProductShowcase />
+  <!-- The signal field runs behind the hero and the glass product preview. -->
+  <div class="relative isolate overflow-hidden bg-black">
+    <HeroSignalField />
+    <HomeHero />
+    <div class="glass-ui glass-clear">
+      <ProductShowcase />
+    </div>
+  </div>
   <UnifiedModel />
   <PlatformModules />
   <AiAgents />

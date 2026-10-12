@@ -217,7 +217,7 @@ export const aiAgents = {
     },
   ],
   chat: {
-    assistant: 'Fleet Assistant',
+    assistant: 'RunnerAI',
     context: 'Live-Daten · 14 Standorte',
     question:
       'Welche Standorte hatten im letzten Quartal die meisten HLK-Ausfallzeiten, und was hat uns das gekostet?',
