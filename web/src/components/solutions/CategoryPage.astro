@@ -40,7 +40,6 @@ import BlueprintField from './BlueprintField.astro'
 import HeroBento from './HeroBento.astro'
 import PhotoWithCard from './PhotoWithCard.astro'
 import SolutionIcon from './SolutionIcon.astro'
-import TimelineField from './TimelineField.astro'
 
 type Props = {
   page: SolutionPageId
@@ -79,8 +78,8 @@ const heroChart = tabVisuals.find(
   (visual): visual is Extract<typeof visual, { kind: 'chart' }> => visual.kind === 'chart',
 )
 const heroFlow = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
-// Motion heroes behind a glass preview: a blueprint for CAFM & CMMS and a
-// project timeline for Work Order Management.
+// Motion heroes behind a glass preview: a blueprint for CAFM & CMMS, and for
+// Work Order Management the same blueprint with routes in place of streaks.
 const blueprint = page === 'cafm'
 const timeline = page === 'workOrders'
 // Industry heroes with a photo behind them, darkened under a blue overlay.
@@ -103,7 +102,7 @@ const heroPhoto = heroPhotos[page]
 
 <section class="tone-dark tone-invert relative isolate overflow-hidden">
   {blueprint && <BlueprintField />}
-  {timeline && <TimelineField />}
+  {timeline && <BlueprintField lines="routes" />}
   {heroPhoto && (
     <>
       <Photo

@@ -227,35 +227,8 @@
     --color-on-action: var(--color-espresso);
   }
 
-  /* Core feature heroes: each one keeps the dark ground but lights it in its
-     own way, so the six pages are told apart at a glance. */
-  .hero-dots {
-    position: relative;
-    isolation: isolate;
-    background:
-      radial-gradient(
-        ellipse 60% 70% at 85% 110%,
-        color-mix(in srgb, var(--color-steel) 38%, transparent),
-        transparent 70%
-      ),
-      linear-gradient(to bottom, var(--color-black), var(--color-navy-night) 45%, var(--color-navy));
-  }
-
-  /* A fine dot screen that shows where the light rises. */
-  .hero-dots::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-steel-soft) 55%, transparent) 0.9px,
-      transparent 1.4px
-    );
-    background-size: 8px 8px;
-    mask-image: linear-gradient(to bottom, transparent 25%, rgb(0 0 0 / 0.7));
-  }
-
+  /* Core feature heroes: three ways of lighting the dark ground, shared
+     across the six pages so neighbouring pages look different. */
   .hero-rise {
     background:
       radial-gradient(
@@ -264,28 +237,6 @@
         transparent 75%
       ),
       linear-gradient(to bottom, var(--color-black), var(--color-navy-deep) 55%, var(--color-navy));
-  }
-
-  .hero-streak {
-    background:
-      linear-gradient(
-        160deg,
-        transparent 30%,
-        color-mix(in srgb, var(--color-steel-soft) 16%, transparent) 46%,
-        transparent 58%
-      ),
-      linear-gradient(
-        160deg,
-        transparent 55%,
-        color-mix(in srgb, var(--color-steel) 10%, transparent) 66%,
-        transparent 74%
-      ),
-      linear-gradient(
-        to bottom right,
-        var(--color-black),
-        var(--color-navy-night) 60%,
-        var(--color-black)
-      );
   }
 
   .hero-corners {
@@ -311,21 +262,6 @@
         transparent 70%
       ),
       linear-gradient(to bottom, var(--color-navy-deep), var(--color-black));
-  }
-
-  .hero-tide {
-    background:
-      radial-gradient(
-        ellipse 80% 45% at 50% 100%,
-        color-mix(in srgb, var(--color-navy-dusk) 90%, transparent),
-        transparent 75%
-      ),
-      linear-gradient(
-        to right,
-        var(--color-black),
-        color-mix(in oklab, var(--color-navy-deep), var(--color-navy)) 50%,
-        var(--color-black)
-      );
   }
 
   /* Call-to-action panels without a photo: navy in the lower start corner,
