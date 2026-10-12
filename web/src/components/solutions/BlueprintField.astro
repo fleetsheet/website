@@ -7,9 +7,19 @@
  * one crossing to the next. The area behind the headline stays darker and
  * quieter so the copy pops; the glass preview blurs the grid on the other side.
  *
+ * With `lines="routes"` the short streaks give way to orthogonal routes, as on
+ * the Platform overview: glowing pulses travel along them from crossing to
+ * crossing and light the checkpoints they pass.
+ *
  * Drawn once at build time; CSS animates the cells and lines, and everything
  * holds still for reduced motion.
  */
+
+type Props = {
+  lines?: 'streaks' | 'routes'
+}
+
+const { lines = 'streaks' } = Astro.props
 
 const CELL = 68
 const COLUMNS = 24
@@ -61,9 +71,53 @@ const streaks = Array.from({ length: 26 }, (_, index) => {
     delay: -random() * 12,
   }
 })
+
+// Orthogonal routes that enter from the end edge and step across the grid with
+// rounded corners, stopping short of the copy.
+const RADIUS = 16
+type Point = { x: number; y: number }
+const pathFrom = (points: Point[]) => {
+  let d = `M${points[0].x} ${points[0].y}`
+  for (let i = 1; i < points.length; i++) {
+    const [prev, at, next] = [points[i - 1], points[i], points[i + 1]]
+    const inX = Math.sign(at.x - prev.x)
+    const inY = Math.sign(at.y - prev.y)
+    if (!next) {
+      d += `L${at.x} ${at.y}`
+      break
+    }
+    const outX = Math.sign(next.x - at.x)
+    const outY = Math.sign(next.y - at.y)
+    d += `L${at.x - inX * RADIUS} ${at.y - inY * RADIUS}`
+    d += `Q${at.x} ${at.y} ${at.x + outX * RADIUS} ${at.y + outY * RADIUS}`
+  }
+  return d
+}
+const checkpoints: Point[] = []
+const routes = Array.from({ length: 10 }, (_, index) => {
+  let x = (COLUMNS + 1) * CELL
+  let y = (1 + index + pick(0, 3)) * CELL
+  const stop = pick(9, 12) * CELL
+  const points: Point[] = [{ x, y }]
+  while (x > stop) {
+    x = Math.max(stop, x - pick(2, 4) * CELL)
+    points.push({ x, y })
+    if (x <= stop) break
+    const jog = pick(1, 2) * CELL * (random() > 0.5 ? 1 : -1)
+    y = Math.min((ROWS - 1) * CELL, Math.max(CELL, y + jog))
+    points.push({ x, y })
+    if (random() > 0.5) checkpoints.push({ x, y })
+  }
+  return {
+    d: pathFrom(points),
+    tone: index % 3 === 0 ? 'cream' : 'steel',
+    duration: 9 + random() * 6,
+    delay: -random() * 14,
+  }
+})
 ---
 
-<div class="blueprint-field" aria-hidden="true">
+<div class:list={['blueprint-field', { dim: lines === 'routes' }]} aria-hidden="true">
   <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" fill="none">
     <g class="grid">
       {Array.from({ length: COLUMNS + 1 }, (_, column) => (
@@ -109,16 +163,42 @@ const streaks = Array.from({ length: 26 }, (_, index) => {
         ),
       )}
     </g>
-    <g class="streaks">
-      {streaks.map((streak) => (
-        <path
-          class:list={['streak', streak.tone]}
-          d={streak.d}
-          pathLength="100"
-          style={`--duration: ${streak.duration.toFixed(1)}s; --delay: ${streak.delay.toFixed(1)}s`}
-        />
-      ))}
-    </g>
+    {lines === 'streaks' ? (
+      <g class="streaks">
+        {streaks.map((streak) => (
+          <path
+            class:list={['streak', streak.tone]}
+            d={streak.d}
+            pathLength="100"
+            style={`--duration: ${streak.duration.toFixed(1)}s; --delay: ${streak.delay.toFixed(1)}s`}
+          />
+        ))}
+      </g>
+    ) : (
+      <>
+        <g class="route-tracks">
+          {routes.map((route) => (
+            <path d={route.d} />
+          ))}
+        </g>
+        <g class="streaks">
+          {routes.map((route) => (
+            <path
+              class:list={['route', route.tone]}
+              d={route.d}
+              pathLength="100"
+              style={`--duration: ${route.duration.toFixed(1)}s; --delay: ${route.delay.toFixed(1)}s`}
+            />
+          ))}
+        </g>
+        {checkpoints.map((point, index) => (
+          <g class="checkpoint" style={`--delay: ${(-index * 1.7).toFixed(1)}s`}>
+            <rect x={point.x - 13} y={point.y - 13} width="26" height="26" rx="7" />
+            <path d={`M${point.x - 5} ${point.y}l3.5 3.5 6.5-7`} />
+          </g>
+        ))}
+      </>
+    )}
   </svg>
   <div class="blueprint-quiet"></div>
 </div>
@@ -279,6 +359,108 @@ const streaks = Array.from({ length: 26 }, (_, index) => {
     }
   }
 
+  /* The routes version sits on a darker ground: dimmer grid, cells, markers and
+     edge light, with the glowing routes left to carry the motion. */
+  .blueprint-field.dim {
+    background: radial-gradient(
+      ellipse 30% 45% at 100% 40%,
+      color-mix(in srgb, var(--color-steel) 12%, transparent),
+      transparent 70%
+    );
+  }
+
+  .dim .grid {
+    opacity: 0.2;
+  }
+
+  .dim .cells,
+  .dim .circles,
+  .dim .markers {
+    opacity: 0.5;
+  }
+
+  .dim .route-tracks {
+    opacity: 0.18;
+  }
+
+  .dim::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-black) 35%, transparent);
+  }
+
+  .route-tracks {
+    stroke: var(--color-steel);
+    stroke-width: 1;
+    opacity: 0.3;
+  }
+
+  .route {
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 16 84;
+    stroke-dashoffset: 14;
+    opacity: 0;
+    animation: blueprint-route var(--duration) linear var(--delay) infinite;
+  }
+
+  .route.steel {
+    stroke: var(--color-steel-soft);
+  }
+
+  .route.cream {
+    stroke: var(--color-cream);
+  }
+
+  .checkpoint {
+    opacity: 0.35;
+    animation: blueprint-check 12s ease-in-out var(--delay) infinite;
+  }
+
+  .checkpoint rect {
+    fill: var(--color-navy-deep);
+    stroke: var(--color-steel);
+    stroke-width: 1;
+  }
+
+  .checkpoint path {
+    stroke: var(--color-cream);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @keyframes blueprint-route {
+    0% {
+      stroke-dashoffset: 14;
+      opacity: 0;
+    }
+
+    8%,
+    80% {
+      opacity: 0.95;
+    }
+
+    100% {
+      stroke-dashoffset: -100;
+      opacity: 0;
+    }
+  }
+
+  @keyframes blueprint-check {
+    0%,
+    75%,
+    100% {
+      opacity: 0.35;
+    }
+
+    35%,
+    50% {
+      opacity: 0.95;
+    }
+  }
+
   @keyframes blueprint-cell {
     0%,
     100% {
@@ -311,8 +493,15 @@ const streaks = Array.from({ length: 26 }, (_, index) => {
 
   @media (prefers-reduced-motion: reduce) {
     .cell.pulse,
-    .streak {
+    .streak,
+    .route,
+    .checkpoint {
       animation: none;
+    }
+
+    .route {
+      opacity: 0.6;
+      stroke-dashoffset: -40;
     }
 
     .streak {

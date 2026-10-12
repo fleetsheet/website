@@ -8,28 +8,19 @@ import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { getContent } from '@/data'
 import { getLocale } from '@/i18n'
 import ArrowRight from '@lucide/astro/icons/arrow-right'
-import Building from '@lucide/astro/icons/building'
 import Eye from '@lucide/astro/icons/eye'
-import Handshake from '@lucide/astro/icons/handshake'
 import Mail from '@lucide/astro/icons/mail'
 import Timer from '@lucide/astro/icons/timer'
 import Users from '@lucide/astro/icons/users'
-import Wrench from '@lucide/astro/icons/wrench'
 import ChallengeCards from './ChallengeCards.astro'
 import FeatureBanner from './FeatureBanner.astro'
 import FeatureRows from './FeatureRows.astro'
 import IndustriesIntegrate from './IndustriesIntegrate.astro'
+import MailHub from './MailHub.astro'
 import StepsBand from './StepsBand.astro'
 
 const { fleetMailPage, cta } = getContent(getLocale(Astro.url)).platform
 const { hero, challenge, intro, rows, flow, banner, connect, industries, integrate } = fleetMailPage
-const nodeIcons = [Users, Handshake, Wrench, Building]
-const nodePositions = [
-  'col-start-2 row-start-1',
-  'col-start-1 row-start-2',
-  'col-start-3 row-start-2',
-  'col-start-2 row-start-3',
-]
 const connectIcons = [Users, Eye, Timer]
 ---
 
@@ -54,46 +45,7 @@ const connectIcons = [Users, Eye, Timer]
         </Button>
       </div>
     </div>
-    <div class="relative mx-auto w-full max-w-[460px]" aria-hidden="true">
-      <div class="border-azul-blue-light absolute inset-[16%] rounded-full border-2 border-dashed"></div>
-      <div class="relative grid aspect-square grid-cols-3 grid-rows-3 place-items-center">
-        {[0, 2, 6, 8].map((cell) => (
-          <span
-            class:list={[
-              'bg-azul-blue text-sky-blue flex size-10 items-center justify-center rounded-full',
-              {
-                'col-start-1 row-start-1': cell === 0,
-                'col-start-3 row-start-1': cell === 2,
-                'col-start-1 row-start-3': cell === 6,
-                'col-start-3 row-start-3': cell === 8,
-              },
-            ]}
-          >
-            <Mail class="size-4" />
-          </span>
-        ))}
-        {hero.hub.nodes.map((node, index) => {
-          const Icon = nodeIcons[index % nodeIcons.length]
-          return (
-            <span
-              class:list={[
-                'bg-surface text-rich-blue shadow-float flex flex-col items-center gap-1.5 rounded-xl px-3 py-2.5 text-center text-xs font-semibold',
-                nodePositions[index % nodePositions.length],
-              ]}
-            >
-              <IconChip size="sm">
-                <Icon />
-              </IconChip>
-              {node}
-            </span>
-          )
-        })}
-        <span class="bg-sun-orange text-rich-blue col-start-2 row-start-2 flex flex-col items-center gap-1.5 rounded-2xl px-4 py-3.5 text-center text-sm font-bold">
-          <Mail class="size-6" />
-          {hero.hub.center}
-        </span>
-      </div>
-    </div>
+    <MailHub nodes={hero.hub.nodes} center={hero.hub.center} />
   </Container>
 </section>
 

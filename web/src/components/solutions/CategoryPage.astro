@@ -78,8 +78,10 @@ const heroChart = tabVisuals.find(
   (visual): visual is Extract<typeof visual, { kind: 'chart' }> => visual.kind === 'chart',
 )
 const heroFlow = tabVisuals.find((visual) => visual.kind === 'steps' || visual.kind === 'log')
-// The CAFM & CMMS hero runs the blueprint motion behind a glass preview.
+// Motion heroes behind a glass preview: a blueprint for CAFM & CMMS, and for
+// Work Order Management the same blueprint with routes in place of streaks.
 const blueprint = page === 'cafm'
+const timeline = page === 'workOrders'
 // Industry heroes with a photo behind them, darkened under a blue overlay.
 const heroPhotos: Partial<Record<SolutionPageId, PhotoId>> = {
   facilityManagement: 'steelCoilAisle',
@@ -100,6 +102,7 @@ const heroPhoto = heroPhotos[page]
 
 <section class="tone-dark tone-invert relative isolate overflow-hidden">
   {blueprint && <BlueprintField />}
+  {timeline && <BlueprintField lines="routes" />}
   {heroPhoto && (
     <>
       <Photo
@@ -144,7 +147,7 @@ const heroPhoto = heroPhotos[page]
       chart={heroChart}
       flow={heroFlow}
       features={capabilities.tabs.map((tab) => ({ label: tab.label, icon: tabIcons[tab.icon] }))}
-      glass={blueprint ? 'clear' : heroPhoto ? 'frosted' : undefined}
+      glass={blueprint || timeline ? 'clear' : heroPhoto ? 'frosted' : undefined}
     />
   </Container>
 </section>
