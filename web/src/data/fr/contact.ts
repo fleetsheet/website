@@ -13,7 +13,7 @@ export const contactForm = {
   pendingLabel: 'Envoi…',
   successMessage:
     'Merci, nous avons bien reçu votre message. L’équipe Fleet vous répondra très vite.',
-  errorMessage: 'Une erreur est survenue. Veuillez réessayer ou écrire à admin@runfleet.com.',
+  errorMessage: 'Une erreur est survenue. Veuillez réessayer.',
   captchaMessage: 'Veuillez compléter la vérification avant l’envoi.',
   fields: [
     { name: 'name', label: 'Nom', type: 'text', autocomplete: 'name', required: true },

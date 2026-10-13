@@ -42,7 +42,6 @@ export const labels = {
   closeMenu: 'Cerrar menú',
   language: 'Idioma',
   optional: '(opcional)',
-  emailPrompt: '¿Prefiere el correo? Escriba a',
   productPreview: 'Vista previa del producto',
   auditLog: 'Registro de auditoría',
   beforeFleet: 'Antes de Fleet',

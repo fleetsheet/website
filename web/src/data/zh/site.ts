@@ -41,7 +41,6 @@ export const labels = {
   closeMenu: '关闭菜单',
   language: '语言',
   optional: '（选填）',
-  emailPrompt: '更喜欢发邮件？请写信至',
   productPreview: '产品预览',
   auditLog: '审计日志',
   beforeFleet: '使用 Fleet 之前',
