@@ -25,6 +25,8 @@ type WebsiteConfig = {
   }
   socialUrls: string[]
   hcaptchaSiteKey: string
+  googleTagIds: string[]
+  googleSiteVerification: string
 }
 
 export const websiteConfig: WebsiteConfig = {
@@ -47,4 +49,6 @@ export const websiteConfig: WebsiteConfig = {
   },
   socialUrls: ['https://www.linkedin.com/company/runfleet/'],
   hcaptchaSiteKey: '0634646a-05ae-4cb8-8a0c-e9f8244ee0b4',
+  googleTagIds: ['G-27YLLCSLP3', 'AW-17699977115'],
+  googleSiteVerification: 'qV6Zm7gsb3IpPyGHlHIfX8m1uHgdDcklGCcQm6_lBqU',
 }

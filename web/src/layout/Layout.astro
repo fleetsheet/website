@@ -6,6 +6,7 @@ import type { PageMeta } from '@/types'
 import { Font } from 'astro:assets'
 import { ClientRouter } from 'astro:transitions'
 import '../styles.css'
+import Analytics from './Analytics.astro'
 import Footer from './Footer.astro'
 import Header from './Header.astro'
 import SEOMetadata from './SEOMetadata.astro'
@@ -55,6 +56,8 @@ const alternatePaths = meta.noIndex
     <Font cssVariable="--font-hanken-grotesk" preload />
 
     <SEOMetadata {...meta} alternatePaths={alternatePaths} locale={locale} />
+
+    <Analytics />
 
     <ClientRouter />
   </head>
