@@ -27,6 +27,10 @@ export const hero = {
   highlights: ['iOS وAndroid', 'سجلات تدقيق مدمجة', 'بيانات معزولة لكل مؤسسة'],
 }
 
+export const video = {
+  title: 'فيديو تعريفي بمنصة Fleet',
+}
+
 export const showcase = {
   greeting: 'مرحبًا، John S.',
   scope: 'المحفظة · 14 موقعًا',

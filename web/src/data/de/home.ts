@@ -27,6 +27,10 @@ export const hero = {
   highlights: ['iOS & Android', 'Integrierte Audit-Logs', 'Getrennte Daten pro Organisation'],
 }
 
+export const video = {
+  title: 'Fleet Produktvideo',
+}
+
 export const showcase = {
   greeting: 'Willkommen, John S.',
   scope: 'Portfolio · 14 Standorte',

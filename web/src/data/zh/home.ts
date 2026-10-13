@@ -26,6 +26,10 @@ export const hero = {
   highlights: ['支持 iOS 和 Android', '内置审计日志', '各组织数据独立隔离'],
 }
 
+export const video = {
+  title: 'Fleet 产品视频',
+}
+
 export const showcase = {
   greeting: '欢迎，John S.',
   scope: '资产组合 · 14 个地点',
