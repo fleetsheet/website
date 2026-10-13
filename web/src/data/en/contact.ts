@@ -12,7 +12,7 @@ export const contactForm = {
   submitLabel: 'Send message',
   pendingLabel: 'Sending…',
   successMessage: 'Thanks, we got your message. Someone from the Fleet team will reply shortly.',
-  errorMessage: 'Something went wrong. Please try again or email admin@runfleet.com.',
+  errorMessage: 'Something went wrong. Please try again.',
   captchaMessage: 'Please complete the verification before sending.',
   fields: [
     { name: 'name', label: 'Name', type: 'text', autocomplete: 'name', required: true },

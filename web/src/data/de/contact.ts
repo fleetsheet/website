@@ -13,8 +13,7 @@ export const contactForm = {
   pendingLabel: 'Wird gesendet…',
   successMessage:
     'Vielen Dank, Ihre Nachricht ist angekommen. Das Fleet-Team meldet sich in Kürze bei Ihnen.',
-  errorMessage:
-    'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an admin@runfleet.com.',
+  errorMessage: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.',
   captchaMessage: 'Bitte schließen Sie vor dem Senden die Verifizierung ab.',
   fields: [
     { name: 'name', label: 'Name', type: 'text', autocomplete: 'name', required: true },

@@ -2,7 +2,6 @@
 import ContactForm from '@/components/contact/ContactForm.astro'
 import CheckList from '@/components/ui/CheckList.astro'
 import Container from '@/components/ui/Container.astro'
-import { websiteConfig } from '@/config'
 import { getContent } from '@/data'
 import { getLocale, localeStaticPaths } from '@/i18n'
 import Layout from '@/layout/Layout.astro'
@@ -22,15 +21,6 @@ const { contactPage } = content.contact
       <h1 class="text-display-xl">{contactPage.title}</h1>
       <p class="text-lead text-azul-blue max-w-[520px] text-pretty">{contactPage.description}</p>
       <CheckList items={contactPage.highlights} class="mt-2" />
-      <p class="text-azul-blue mt-4 text-[15px]">
-        {content.site.labels.emailPrompt}{' '}
-        <a
-          href={`mailto:${websiteConfig.email}`}
-          class="text-rich-blue font-semibold underline underline-offset-4"
-        >
-          {websiteConfig.email}
-        </a>
-      </p>
     </div>
     <ContactForm />
   </Container>

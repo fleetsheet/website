@@ -42,7 +42,6 @@ export const labels = {
   closeMenu: 'إغلاق القائمة',
   language: 'اللغة',
   optional: '(اختياري)',
-  emailPrompt: 'تفضّل البريد الإلكتروني؟ راسلنا على',
   productPreview: 'معاينة المنتج',
   auditLog: 'سجل التدقيق',
   beforeFleet: 'قبل Fleet',
