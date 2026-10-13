@@ -1,0 +1,36 @@
+---
+import Container from '@/components/ui/Container.astro'
+import { getContent } from '@/data'
+import { getLocale } from '@/i18n'
+
+const { video } = getContent(getLocale(Astro.url)).home
+// The product video plays on its own, muted and on a loop, like a moving image.
+const VIDEO_ID = 'iEeyN2yahcg'
+const params = new URLSearchParams({
+  autoplay: '1',
+  mute: '1',
+  loop: '1',
+  playlist: VIDEO_ID,
+  playsinline: '1',
+  controls: '1',
+  rel: '0',
+  modestbranding: '1',
+})
+const src = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?${params}`
+---
+
+<section class="bg-black">
+  <Container width="wide" class="pb-20">
+    <div class="border-hairline relative aspect-video overflow-hidden rounded-2xl border bg-black">
+      <iframe
+        src={src}
+        title={video.title}
+        loading="lazy"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        class="absolute inset-0 size-full"
+      ></iframe>
+    </div>
+  </Container>
+</section>

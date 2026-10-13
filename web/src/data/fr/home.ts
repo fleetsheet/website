@@ -31,6 +31,10 @@ export const hero = {
   ],
 }
 
+export const video = {
+  title: 'Vidéo de présentation de Fleet',
+}
+
 export const showcase = {
   greeting: 'Bienvenue, John S.',
   scope: 'Patrimoine · 14 sites',
