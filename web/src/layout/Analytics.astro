@@ -1,0 +1,26 @@
+---
+import { websiteConfig } from '@/config'
+import { SITE_ENV } from 'astro:env/server'
+
+const { googleTagIds, googleSiteVerification } = websiteConfig
+const [primaryTagId] = googleTagIds
+---
+
+{SITE_ENV === 'production' && (
+  <>
+    <meta name="google-site-verification" content={googleSiteVerification} />
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${primaryTagId}`} />
+    <script is:inline define:vars={{ googleTagIds }}>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        dataLayer.push(arguments)
+      }
+      if (!window.gtag) {
+        window.gtag = gtag
+        gtag('js', new Date())
+        googleTagIds.forEach((id) => gtag('config', id))
+      }
+    </script>
+  </>
+)}
