@@ -24,6 +24,8 @@ type WebsiteConfig = {
     height: number
   }
   socialUrls: string[]
+  /** The social media links shown as icons in the footer. */
+  socialLinks: { linkedIn: string; youTube: string }
   hcaptchaSiteKey: string
   googleTagIds: string[]
   googleSiteVerification: string
@@ -48,6 +50,10 @@ export const websiteConfig: WebsiteConfig = {
     height: 630,
   },
   socialUrls: ['https://www.linkedin.com/company/runfleet/'],
+  socialLinks: {
+    linkedIn: 'https://www.linkedin.com/company/runfleet/',
+    youTube: 'https://www.youtube.com/watch?v=iEeyN2yahcg',
+  },
   hcaptchaSiteKey: '0634646a-05ae-4cb8-8a0c-e9f8244ee0b4',
   googleTagIds: ['G-27YLLCSLP3'],
   googleSiteVerification: 'qV6Zm7gsb3IpPyGHlHIfX8m1uHgdDcklGCcQm6_lBqU',
