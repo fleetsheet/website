@@ -43,9 +43,10 @@ export const about: AboutContent = {
     },
   },
   offices: [
-    { city: 'بانكوك', region: 'تايلاند' },
-    { city: 'لوس أنجلوس', region: 'الولايات المتحدة' },
     { city: 'سنغافورة', region: 'سنغافورة' },
+    { city: 'فانكوفر', region: 'كندا' },
+    { city: 'فرانكفورت', region: 'ألمانيا' },
+    { city: 'برشلونة', region: 'إسبانيا' },
   ],
   story: {
     hero: {
@@ -103,9 +104,8 @@ export const about: AboutContent = {
       ],
     },
     offices: {
-      eyebrow: 'مكاتبنا',
       title: 'أين تجدنا',
-      description: 'تعمل فرقنا في ثلاث مدن لخدمة محافظ في مناطق عديدة.',
+      description: 'تعمل فرقنا في أربع مدن لخدمة محافظ في مناطق عديدة.',
     },
     careers: {
       title: 'ابنِ المستقبل معنا',
@@ -171,7 +171,7 @@ export const about: AboutContent = {
     offices: {
       eyebrow: 'مكاتبنا',
       title: 'أين يمكنك العمل',
-      description: 'انضم إلى زملاء في بانكوك ولوس أنجلوس وسنغافورة.',
+      description: 'انضم إلى زملاء في سنغافورة وفانكوفر وفرانكفورت وبرشلونة.',
     },
     join: {
       eyebrow: 'كيف تنضم',

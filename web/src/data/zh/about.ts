@@ -43,9 +43,10 @@ export const about: AboutContent = {
     },
   },
   offices: [
-    { city: '曼谷', region: '泰国' },
-    { city: '洛杉矶', region: '美国' },
     { city: '新加坡', region: '新加坡' },
+    { city: '温哥华', region: '加拿大' },
+    { city: '法兰克福', region: '德国' },
+    { city: '巴塞罗那', region: '西班牙' },
   ],
   story: {
     hero: {
@@ -99,9 +100,8 @@ export const about: AboutContent = {
       ],
     },
     offices: {
-      eyebrow: '我们的办公室',
       title: '在这里找到我们',
-      description: '我们的团队分布在三座城市，服务多个地区的资产组合。',
+      description: '我们的团队分布在四座城市，服务多个地区的资产组合。',
     },
     careers: {
       title: '与我们一起创造未来',
@@ -159,7 +159,7 @@ export const about: AboutContent = {
     offices: {
       eyebrow: '我们的办公室',
       title: '您可以在这里工作',
-      description: '在曼谷、洛杉矶和新加坡与同事们共事。',
+      description: '在新加坡、温哥华、法兰克福和巴塞罗那与同事们共事。',
     },
     join: {
       eyebrow: '如何加入',

@@ -26,7 +26,7 @@ export type AboutContent = {
       valuesTitle: string
       values: Item[]
     }
-    offices: { eyebrow: string; title: string; description: string }
+    offices: { title: string; description: string }
     careers: { title: string; description: string; action: NavLink }
     cta: Cta
   }
@@ -96,9 +96,10 @@ export const about: AboutContent = {
     },
   },
   offices: [
-    { city: 'Bangkok', region: 'Thailand' },
-    { city: 'Los Angeles', region: 'United States' },
     { city: 'Singapore', region: 'Singapore' },
+    { city: 'Vancouver', region: 'Canada' },
+    { city: 'Frankfurt', region: 'Germany' },
+    { city: 'Barcelona', region: 'Spain' },
   ],
   story: {
     hero: {
@@ -172,9 +173,8 @@ export const about: AboutContent = {
       ],
     },
     offices: {
-      eyebrow: 'Our offices',
       title: 'Where to find us',
-      description: 'Our teams work across three cities to support portfolios in many regions.',
+      description: 'Our teams work across four cities to support portfolios in many regions.',
     },
     careers: {
       title: 'Build what’s next with us',
@@ -251,7 +251,7 @@ export const about: AboutContent = {
     offices: {
       eyebrow: 'Our offices',
       title: 'Where you could work',
-      description: 'Join colleagues in Bangkok, Los Angeles and Singapore.',
+      description: 'Join colleagues in Singapore, Vancouver, Frankfurt and Barcelona.',
     },
     join: {
       eyebrow: 'How to join',
