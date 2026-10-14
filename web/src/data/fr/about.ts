@@ -44,9 +44,10 @@ export const about: AboutContent = {
     },
   },
   offices: [
-    { city: 'Bangkok', region: 'Thaïlande' },
-    { city: 'Los Angeles', region: 'États-Unis' },
     { city: 'Singapour', region: 'Singapour' },
+    { city: 'Vancouver', region: 'Canada' },
+    { city: 'Francfort', region: 'Allemagne' },
+    { city: 'Barcelone', region: 'Espagne' },
   ],
   story: {
     hero: {
@@ -123,10 +124,9 @@ export const about: AboutContent = {
       ],
     },
     offices: {
-      eyebrow: 'Nos bureaux',
       title: 'Où nous trouver',
       description:
-        'Nos équipes travaillent dans trois villes pour accompagner des patrimoines dans de nombreuses régions.',
+        'Nos équipes travaillent dans quatre villes pour accompagner des patrimoines dans de nombreuses régions.',
     },
     careers: {
       title: 'Construisez la suite avec nous',
@@ -212,7 +212,7 @@ export const about: AboutContent = {
     offices: {
       eyebrow: 'Nos bureaux',
       title: 'Où vous pourriez travailler',
-      description: 'Rejoignez des collègues à Bangkok, Los Angeles et Singapour.',
+      description: 'Rejoignez des collègues à Singapour, Vancouver, Francfort et Barcelone.',
     },
     join: {
       eyebrow: 'Nous rejoindre',

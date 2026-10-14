@@ -44,9 +44,10 @@ export const about: AboutContent = {
     },
   },
   offices: [
-    { city: 'Bangkok', region: 'Thailand' },
-    { city: 'Los Angeles', region: 'Vereinigte Staaten' },
     { city: 'Singapur', region: 'Singapur' },
+    { city: 'Vancouver', region: 'Kanada' },
+    { city: 'Frankfurt', region: 'Deutschland' },
+    { city: 'Barcelona', region: 'Spanien' },
   ],
   story: {
     hero: {
@@ -118,10 +119,9 @@ export const about: AboutContent = {
       ],
     },
     offices: {
-      eyebrow: 'Unsere Büros',
       title: 'Hier finden Sie uns',
       description:
-        'Unsere Teams arbeiten in drei Städten und betreuen Portfolios in vielen Regionen.',
+        'Unsere Teams arbeiten in vier Städten und betreuen Portfolios in vielen Regionen.',
     },
     careers: {
       title: 'Gestalten Sie mit uns, was kommt',
@@ -200,7 +200,7 @@ export const about: AboutContent = {
       eyebrow: 'Unsere Büros',
       title: 'Wo Sie arbeiten könnten',
       description:
-        'Arbeiten Sie mit Kolleginnen und Kollegen in Bangkok, Los Angeles und Singapur.',
+        'Arbeiten Sie mit Kolleginnen und Kollegen in Singapur, Vancouver, Frankfurt und Barcelona.',
     },
     join: {
       eyebrow: 'So bewerben Sie sich',

@@ -44,9 +44,10 @@ export const about: AboutContent = {
     },
   },
   offices: [
-    { city: 'Bangkok', region: 'Tailandia' },
-    { city: 'Los Ángeles', region: 'Estados Unidos' },
     { city: 'Singapur', region: 'Singapur' },
+    { city: 'Vancouver', region: 'Canadá' },
+    { city: 'Fráncfort', region: 'Alemania' },
+    { city: 'Barcelona', region: 'España' },
   ],
   story: {
     hero: {
@@ -120,10 +121,9 @@ export const about: AboutContent = {
       ],
     },
     offices: {
-      eyebrow: 'Nuestras oficinas',
       title: 'Dónde encontrarnos',
       description:
-        'Nuestros equipos trabajan en tres ciudades para dar servicio a carteras en muchas regiones.',
+        'Nuestros equipos trabajan en cuatro ciudades para dar servicio a carteras en muchas regiones.',
     },
     careers: {
       title: 'Construya lo que viene con nosotros',
@@ -202,7 +202,7 @@ export const about: AboutContent = {
     offices: {
       eyebrow: 'Nuestras oficinas',
       title: 'Dónde podría trabajar',
-      description: 'Trabaje con compañeros en Bangkok, Los Ángeles y Singapur.',
+      description: 'Trabaje con compañeros en Singapur, Vancouver, Fráncfort y Barcelona.',
     },
     join: {
       eyebrow: 'Cómo unirse',
