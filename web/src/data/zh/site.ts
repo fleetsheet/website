@@ -45,4 +45,8 @@ export const labels = {
   auditLog: '审计日志',
   beforeFleet: '使用 Fleet 之前',
   withFleet: '使用 Fleet 之后',
+  socialNav: '社交媒体',
+  linkedIn: 'Fleet 的 LinkedIn 主页',
+  youTube: 'Fleet 的 YouTube 视频',
+  newTab: '（在新标签页中打开）',
 }

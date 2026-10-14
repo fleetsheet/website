@@ -46,4 +46,8 @@ export const labels = {
   auditLog: 'Journal d’audit',
   beforeFleet: 'Avant Fleet',
   withFleet: 'Avec Fleet',
+  socialNav: 'Réseaux sociaux',
+  linkedIn: 'Fleet sur LinkedIn',
+  youTube: 'Fleet sur YouTube',
+  newTab: '(s’ouvre dans un nouvel onglet)',
 }
