@@ -75,7 +75,7 @@ Los edificios son cada vez más capaces y, evidentemente, más autónomos. Las p
 
 El edificio puede ser tan ambicioso como prometen los proveedores. La tarea de Fleet es asegurarse de que tenga un lugar real donde poner esa ambición a trabajar.
 
-Descubra cómo Fleet ofrece a su equipo, y a su IA, un lugar real desde el que gestionar el edificio: pruebe nuestra demo gratuita en staging.runfleet.com/demo o siga leyendo nuestros últimos análisis.
+Descubra cómo Fleet ofrece a su equipo, y a su IA, un lugar real desde el que gestionar el edificio: reserve una demo gratuita en nuestra [página de contacto](/es/contact) o siga leyendo nuestros últimos análisis.
 
 _Fuente: encuesta de JLL de 2025, previsión de Frost and Sullivan, comunicado del 23 de junio de 2026, Departamento de Energía de EE. UU._
 
@@ -85,4 +85,4 @@ _Fuente: encuesta de JLL de 2025, previsión de Frost and Sullivan, comunicado d
 
 _Gestione el mantenimiento, el cumplimiento normativo, los activos y las operaciones diarias desde una sola plataforma._
 
-[Pruebe nuestra demo hoy](https://staging.runfleet.com/demo)
+[Pruebe nuestra demo hoy](/es/contact)

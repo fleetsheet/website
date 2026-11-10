@@ -75,7 +75,7 @@ Gebäude werden leistungsfähiger und offenkundig auch autonomer. Die Zahlen der
 
 Das Gebäude darf so ehrgeizig sein, wie die Anbieter versprechen. Die Aufgabe von Fleet ist es, dafür zu sorgen, dass dieser Ehrgeiz einen echten Ort hat, an dem er wirken kann.
 
-Sehen Sie, wie Fleet Ihrem Team und Ihrer KI einen echten Ort gibt, um das Gebäude zu betreiben: Testen Sie unsere kostenlose Demo unter staging.runfleet.com/demo oder lesen Sie weiter in unseren neuesten Insights.
+Sehen Sie, wie Fleet Ihrem Team und Ihrer KI einen echten Ort gibt, um das Gebäude zu betreiben: Buchen Sie eine kostenlose Demo über unsere [Kontaktseite](/de/contact) oder lesen Sie weiter in unseren neuesten Insights.
 
 _Quellen: JLL-Umfrage 2025, Prognose von Frost and Sullivan, Veröffentlichung vom 23. Juni 2026, US-Energieministerium (US Department of Energy)_
 
@@ -85,4 +85,4 @@ _Quellen: JLL-Umfrage 2025, Prognose von Frost and Sullivan, Veröffentlichung v
 
 _Steuern Sie Instandhaltung, Compliance, Anlagen und den täglichen Betrieb auf einer Plattform._
 
-[Testen Sie jetzt unsere Demo](https://staging.runfleet.com/demo)
+[Testen Sie jetzt unsere Demo](/de/contact)

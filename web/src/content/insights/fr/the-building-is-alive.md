@@ -101,4 +101,4 @@ _Source : enquête JLL 2025, prévisions Frost and Sullivan, communiqué du 23 j
 
 _Essayez la démo gratuite de Fleet et gérez la maintenance, la conformité, les actifs et l’exploitation quotidienne depuis une seule plateforme :_
 
-[Essayez notre démo dès aujourd’hui](https://staging.runfleet.com/demo)
+[Essayez notre démo dès aujourd’hui](/fr/contact)
