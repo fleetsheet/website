@@ -75,7 +75,7 @@ Les bâtiments gagnent en capacités et, de toute évidence, en autonomie. Les c
 
 Le bâtiment peut être aussi ambitieux que le promettent les éditeurs. Le rôle de Fleet est de lui offrir un véritable endroit où mettre cette ambition au travail.
 
-Découvrez comment Fleet offre à votre équipe, et à votre IA, un véritable endroit pour piloter le bâtiment : essayez notre démo gratuite sur staging.runfleet.com/demo, ou continuez à lire nos dernières analyses.
+Découvrez comment Fleet offre à votre équipe, et à votre IA, un véritable endroit pour piloter le bâtiment : réservez une démo gratuite via notre [page de contact](/fr/contact), ou continuez à lire nos dernières analyses.
 
 _Source : enquête JLL 2025, prévisions Frost and Sullivan, communiqué du 23 juin 2026, Département de l’Énergie des États-Unis_
 
@@ -85,4 +85,4 @@ _Source : enquête JLL 2025, prévisions Frost and Sullivan, communiqué du 23 j
 
 _Gérez la maintenance, la conformité, les actifs et l’exploitation quotidienne depuis une seule plateforme._
 
-[Essayez notre démo dès aujourd’hui](https://staging.runfleet.com/demo)
+[Essayez notre démo dès aujourd’hui](/fr/contact)

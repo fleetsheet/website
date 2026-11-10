@@ -101,4 +101,4 @@ _Source: JLL’s 2025 survey, Frost and Sullivan forecast, June 23, 2026 release
 
 _Try Fleet's free demo and manage maintenance, compliance, assets, and daily operations from one platform:_
 
-[Try Our Demo Today](https://staging.runfleet.com/demo)
+[Try Our Demo Today](/contact)

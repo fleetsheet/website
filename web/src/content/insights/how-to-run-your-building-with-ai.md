@@ -75,7 +75,7 @@ Buildings are getting more capable, and evidently, more autonomous. The industry
 
 The building can be as ambitious as the vendors promise. Fleet's job is making sure it has somewhere real to put that ambition to work.
 
-See how Fleet gives your team, and your AI, a real place to run the building: try our free demo at staging.runfleet.com/demo, or keep reading our latest insights.
+See how Fleet gives your team, and your AI, a real place to run the building: book a free demo through our [contact page](/contact), or keep reading our latest insights.
 
 _Source: JLL’s 2025 survey, Frost and Sullivan forecast, June 23, 2026 release, the US Department of Energy_
 
@@ -85,4 +85,4 @@ _Source: JLL’s 2025 survey, Frost and Sullivan forecast, June 23, 2026 release
 
 _Manage maintenance, compliance, assets, and daily operations from one platform._
 
-[Try Our Demo Today](https://staging.runfleet.com/demo)
+[Try Our Demo Today](/contact)
