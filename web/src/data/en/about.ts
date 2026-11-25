@@ -349,8 +349,9 @@ export const about: AboutContent = {
           description: 'A REST API and 20+ integrations connect Fleet to existing systems.',
         },
         {
-          title: 'Regional presence',
-          description: 'Teams in Bangkok, Los Angeles and Singapore with localized onboarding.',
+          title: 'Global presence',
+          description:
+            'Teams on three continents supporting clients worldwide, with localized onboarding.',
         },
         {
           title: 'Mobile-first',

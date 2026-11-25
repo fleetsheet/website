@@ -122,7 +122,7 @@ export const faqPage = {
     {
       question: 'Does Fleet support different languages or regions?',
       answer:
-        'Yes. Fleet is used by teams across Asia, Europe, and North America, with multi-language support and local timezone awareness.',
+        'Yes. Fleet is used by teams around the world, with multi-language support and local timezone awareness.',
     },
     {
       question: 'Can we migrate from another CMMS or CAFM tool?',

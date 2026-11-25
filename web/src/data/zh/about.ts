@@ -225,7 +225,7 @@ export const about: AboutContent = {
         { title: '快速上线', description: '大多数团队 7 天内即可上线，工单流程随即可用。' },
         { title: '按用量计费', description: '客户按实际使用付费，账单透明。' },
         { title: '开放集成', description: 'REST API 和 20 多项集成将 Fleet 连接到现有系统。' },
-        { title: '区域布局', description: '曼谷、洛杉矶和新加坡均有团队，提供本地化上线。' },
+        { title: '全球布局', description: '团队遍布三大洲，服务全球客户，提供本地化上线。' },
         {
           title: '移动优先',
           description: '可在 iOS 和 Android 的任何浏览器中使用，随时服务每位技术人员。',

@@ -310,8 +310,9 @@ export const about: AboutContent = {
             'Una API REST y más de 20 integraciones conectan Fleet con los sistemas existentes.',
         },
         {
-          title: 'Presencia regional',
-          description: 'Equipos en Bangkok, Los Ángeles y Singapur con onboarding localizado.',
+          title: 'Presencia global',
+          description:
+            'Equipos en tres continentes al servicio de clientes de todo el mundo, con onboarding localizado.',
         },
         {
           title: 'Pensado para móvil',

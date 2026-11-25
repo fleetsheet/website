@@ -122,7 +122,7 @@ export const faqPage = {
     {
       question: 'Fleet prend-il en charge plusieurs langues et régions ?',
       answer:
-        'Oui. Fleet est utilisé par des équipes en Asie, en Europe et en Amérique du Nord, avec une prise en charge multilingue et des fuseaux horaires locaux.',
+        'Oui. Fleet est utilisé par des équipes du monde entier, avec une prise en charge multilingue et des fuseaux horaires locaux.',
     },
     {
       question: 'Pouvons-nous migrer depuis une autre GMAO ou un autre CAFM ?',
