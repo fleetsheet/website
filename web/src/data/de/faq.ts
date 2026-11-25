@@ -122,7 +122,7 @@ export const faqPage = {
     {
       question: 'Unterstützt Fleet verschiedene Sprachen und Regionen?',
       answer:
-        'Ja. Fleet wird von Teams in Asien, Europa und Nordamerika genutzt, mit Unterstützung für mehrere Sprachen und lokale Zeitzonen.',
+        'Ja. Fleet wird von Teams auf der ganzen Welt genutzt, mit Unterstützung für mehrere Sprachen und lokale Zeitzonen.',
     },
     {
       question: 'Können wir von einem anderen CMMS- oder CAFM-Tool migrieren?',

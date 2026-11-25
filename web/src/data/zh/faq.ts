@@ -110,7 +110,7 @@ export const faqPage = {
     },
     {
       question: 'Fleet 支持不同的语言和地区吗？',
-      answer: '支持。Fleet 已被亚洲、欧洲和北美的团队使用，支持多语言和本地时区。',
+      answer: '支持。Fleet 已被全球各地的团队使用，支持多语言和本地时区。',
     },
     {
       question: '我们可以从其他 CMMS 或 CAFM 工具迁移过来吗？',

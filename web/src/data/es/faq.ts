@@ -122,7 +122,7 @@ export const faqPage = {
     {
       question: '¿Fleet admite distintos idiomas y regiones?',
       answer:
-        'Sí. Fleet lo utilizan equipos de Asia, Europa y Norteamérica, con soporte multilingüe y zonas horarias locales.',
+        'Sí. Fleet lo utilizan equipos de todo el mundo, con soporte multilingüe y zonas horarias locales.',
     },
     {
       question: '¿Podemos migrar desde otro GMAO o CAFM?',
